@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8a5edff2-c769-480d-a259-e05682922156">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="nombre" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select pd.Descripcion as SUELA,p.PrecioA AS PRECIOA,p.PrecioB AS PRECIOB,
+case p.Activo when 1 then 'A' else 'I' end as ESTATUS
+from
+RcptPhylonA.dbo.Precios p inner join ProduccionPhy.dbo.Producto as pd on p.Id_Producto = pd.Id_Producto
+inner join Clientes c on
+p.Id_Cliente = c.Id_Cliente
+where  c.RazonSocial = $P{nombre}]]>
+	</queryString>
+	<field name="SUELA" class="java.lang.String"/>
+	<field name="PRECIOA" class="java.math.BigDecimal"/>
+	<field name="PRECIOB" class="java.math.BigDecimal"/>
+	<field name="ESTATUS" class="java.lang.String"/>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="1" width="47" height="13" uuid="ff21b087-7fca-4846-9dbb-85535fdf63f6"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[SUELA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="137" y="1" width="61" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="b5e03acc-0ab9-4a02-9fe3-843dc84c4556"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[PRECIO  A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="202" y="1" width="59" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="76d67b88-083d-43a5-a24c-e1eb1a566b34"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[PRECIO  B]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="267" y="1" width="55" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="14976336-18ab-40e5-bb3f-18355d261267"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ESTATUS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="5" width="319" height="14" uuid="d67012d8-8a69-4a07-a920-f94c088a7e69"/>
+				<text><![CDATA[- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<textField>
+				<reportElement x="2" y="4" width="135" height="14" uuid="d3b62b44-4e3e-4911-aba4-551ab8500488"/>
+				<textElement>
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SUELA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="138" y="4" width="24" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="fc8f7b9e-96c4-4bab-be4a-6ce7f80123ad"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRECIOA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="204" y="4" width="29" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="5f52c9c6-e2de-40c9-ab26-dedc71f30aff"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRECIOB}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="267" y="4" width="33" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="197bf808-dd00-4ff6-8ca4-20ed73c7f6ed"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ESTATUS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

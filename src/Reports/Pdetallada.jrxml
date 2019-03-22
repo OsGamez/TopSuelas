@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ef49fa0e-c9b3-4465-9912-ae7b22b250fd">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT 
+ DATEPART(WK,Fecha_Entrega) as Semana,
+ 
+ CASE WHEN DATEPART(WK,Fecha_Entrega) = 1 THEN '2018/12/31' + '  -  ' + '2019/01/05'
+ WHEN DATEPART(WK,Fecha_Entrega) = 2 THEN '2019/01/07' + '  -  ' + '2019/01/12'
+ WHEN DATEPART(WK,Fecha_Entrega) = 3 THEN '2019/01/14' + '  -  ' + '2019/01/19'
+ WHEN DATEPART(WK,Fecha_Entrega) = 4 THEN '2019/01/21' + '  -  ' + '2019/01/26'
+ WHEN DATEPART(WK,Fecha_Entrega) = 5 THEN '2019/01/28' + '  -  ' + '2019/02/02'
+ WHEN DATEPART(WK,Fecha_Entrega) = 6 THEN '2019/02/04' + '  -  ' + '2019/02/09'
+ WHEN DATEPART(WK,Fecha_Entrega) = 7 THEN '2019/02/11' + '  -  ' + '2019/02/16'
+ WHEN DATEPART(WK,Fecha_Entrega) = 8 THEN '2019/02/18' + '  -  ' + '2019/02/23'
+ WHEN DATEPART(WK,Fecha_Entrega) = 9 THEN '2019/02/25' + '  -  ' + '2019/03/02'
+ WHEN DATEPART(WK,Fecha_Entrega) = 10 THEN '2019/03/04' + '  -  ' + '2019/03/09'
+ WHEN DATEPART(WK,Fecha_Entrega) = 11 THEN '2019/03/11' + '  -  ' + '2019/03/16'
+ WHEN DATEPART(WK,Fecha_Entrega) = 12 THEN '2019/03/18' + '  -  ' + '2019/03/26'
+ WHEN DATEPART(WK,Fecha_Entrega) = 13 THEN '2019/03/25' + '  -  ' + '2019/03/30'
+ WHEN DATEPART(WK,Fecha_Entrega) = 14 THEN '2019/04/01' + '  -  ' + '2019/04/06'
+ WHEN DATEPART(WK,Fecha_Entrega) = 15 THEN '2019/04/08' + '  -  ' + '2019/04/13'
+ WHEN DATEPART(WK,Fecha_Entrega) = 16 THEN '2019/04/15' + '  -  ' + '2019/04/20'
+ END AS 'RANGO'
+FROM Pedidos
+GROUP BY DATEPART(WK,Fecha_Entrega)]]>
+	</queryString>
+	<field name="Semana" class="java.lang.Integer"/>
+	<field name="RANGO" class="java.lang.String"/>
+	<title>
+		<band height="92" splitType="Stretch">
+			<image>
+				<reportElement x="1" y="32" width="131" height="28" uuid="66185831-0afe-4e7b-b752-520925df3528"/>
+				<imageExpression><![CDATA["C:\\Program Files\\logo.png"]]></imageExpression>
+			</image>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="483" y="10" width="100" height="20" uuid="c85d0497-b6df-4ed7-853c-a32f598c4a4e"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="194" y="44" width="220" height="20" uuid="49bcbcc2-7378-4a8d-810b-1520a80cb694"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PLANEACIÓN SEMANAL DETALLADA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="14">
+			<rectangle>
+				<reportElement x="2" y="0" width="572" height="14" backcolor="#000066" uuid="5ef7b856-805e-402d-bf84-2de463dc7f05"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="7" y="-1" width="47" height="14" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="4c219c36-02f3-4763-8ff8-c31552f0ab16"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[SEMANA]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="57" y="-1" width="33" height="14" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="cfbd4134-6212-4551-a142-49c56a6b79f5"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Semana}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="100" y="-1" width="120" height="14" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="f4286a12-fe60-40e6-8afe-5f09276b68df"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RANGO}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="-19" y="-7" width="117" height="10" uuid="d8f16981-fb2e-44f7-9c89-be75c63628f9"/>
+				<subreportParameter name="Date">
+					<subreportParameterExpression><![CDATA[$F{Semana}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\SubPdetallada.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="22">
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="540" y="1" width="32" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="1bcdc41b-307e-4574-972d-1db47bc18bdb"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="495" y="1" width="80" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="f8105dd5-a31e-49d1-9c45-9c3a17102839"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

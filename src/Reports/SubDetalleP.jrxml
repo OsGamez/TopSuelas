@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d9240b64-89fb-4f22-8176-84b1b45de432">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Numero" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+p.ParesSurt as Npares,d.Id_Producto,c.Descripcion as Corrida,pd.Descripcion,d.Pares as Pares 
+FROM Pedidos p
+INNER JOIN Dpedido d
+ON p.Npedido = d.Npedido
+INNER JOIN ProduccionPhy.dbo.Producto pd
+ON d.Id_Producto = pd.Id_Producto
+INNER JOIN ProduccionPhy.dbo.Corrida c
+ON pd.Id_Corrida = c.Id_Corrida
+WHERE p.Npedido = $P{Numero}
+GROUP BY p.Npedido,d.Id_Producto,c.Descripcion,pd.Descripcion,p.ParesSurt,d.Pares]]>
+	</queryString>
+	<field name="Npares" class="java.lang.Integer"/>
+	<field name="Id_Producto" class="java.lang.Short"/>
+	<field name="Corrida" class="java.lang.String"/>
+	<field name="Descripcion" class="java.lang.String"/>
+	<field name="Pares" class="java.lang.Integer"/>
+	<variable name="Total" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{Pares}]]></variableExpression>
+	</variable>
+	<variable name="TPares" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{Npares}]]></variableExpression>
+	</variable>
+	<detail>
+		<band height="15">
+			<textField>
+				<reportElement mode="Transparent" x="0" y="2" width="40" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="cc9ad7e2-972d-4a0a-bc13-aabcb22e050d"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Id_Producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="117" y="2" width="118" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="53d965ac-b227-45cf-bfde-e9492fd4dcc8"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Descripcion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="254" y="3" width="31" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="2388525a-1e1a-4933-a1c5-c45895e8a604"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Pares}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="308" y="3" width="30" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="53c8f743-e039-4748-984c-8cb63b8876c0"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Npares}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="378" y="3" width="30" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="9ec96e23-d495-475f-9308-b5abdc54c55f"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Npares}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="447" y="3" width="30" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="f0c034c9-10e1-4419-9866-4fffc5e42524"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Npares}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="517" y="3" width="30" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="57100fcc-82e1-4cbb-a51c-fcd0f6845339"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Npares}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="54" y="2" width="43" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="2be15c2b-edef-44e3-a40b-988a8fe67a91"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Corrida}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="22">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="255" y="7" width="31" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="222abd92-17e3-48b6-b2db-604b77ced940"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Total}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="308" y="8" width="26" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="961fee16-b403-4f9b-8c1a-29adb0cd7349"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TPares}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="378" y="8" width="26" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="98df1832-d3db-4b4c-9326-5c5677c2b522"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TPares}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="447" y="8" width="26" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="3446eab2-9139-4e77-8369-52d4952d3ee8"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TPares}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="517" y="8" width="26" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="e27f4404-18fc-44fb-8b57-8f9fd2b70312"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TPares}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-1" y="2" width="573" height="1" uuid="cc79f9ff-0621-4ffd-a8e0-01f34e3ec1f7"/>
+			</line>
+			<staticText>
+				<reportElement mode="Transparent" x="158" y="8" width="77" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="b8c74a03-60bd-4bd0-a5df-bf0031fca82f"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="7" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[PARES X PEDIDO:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
