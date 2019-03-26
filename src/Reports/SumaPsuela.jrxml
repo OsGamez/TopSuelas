@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="26ba1875-680e-4c3b-921f-2fd1cdbec024">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Date" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT dp.Pares from 
+Pedidos p INNER JOIN Dpedido dp
+ON p.Npedido = dp.Npedido
+WHERE DATEPART(WK, p.Fecha_Entrega) = $P{Date}]]>
+	</queryString>
+	<field name="Pares" class="java.lang.Integer"/>
+	<variable name="suma" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{Pares}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="13">
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="0" width="33" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="272529e0-1987-4538-af11-058899d8d73b"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="6" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="9" width="29" height="1" uuid="55305004-a033-40cb-bcea-5839f783f460"/>
+			</line>
+		</band>
+	</pageHeader>
+	<summary>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement mode="Transparent" x="5" y="0" width="33" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="00de7092-70d5-4c19-a3c1-0dc847db6c2e"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{suma}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

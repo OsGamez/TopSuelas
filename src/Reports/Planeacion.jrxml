@@ -52,7 +52,7 @@ CASE
 	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1
 	WHEN Corrida = '[30-33]' THEN @v1 END AS '17',
 CASE
-	WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[15-17]' THEN  @v1 WHEN Corrida = '[18-21]' THEN C1 WHEN Corrida = '[22-24]' THEN @v1 WHEN Corrida = '[22-26]' THEN @v1
+	WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[15-17]' THEN  @v1 WHEN Corrida = '[18-21]' THEN C1 WHEN Corrida = '[22-24]' THEN @v1 WHEN Corrida = '[22-26]' THEN @v1
 	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 END AS '18',
 CASE 
 	WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[15-17]' THEN  @v1 WHEN Corrida = '[18-21]' THEN C2 WHEN Corrida = '[22-24]' THEN @v1 WHEN Corrida = '[22-26]' THEN @v1
@@ -280,23 +280,7 @@ WHERE DATEPART(WK,p.Fecha_Entrega) = $P{Fecha}]]>
 				<textFieldExpression><![CDATA[$F{23}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="459" y="1" width="18" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="4dda61b5-36d3-48ca-972e-911b7c42ce9e"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{23}]]></textFieldExpression>
-			</textField>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="476" y="1" width="17" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="07af5cb5-299b-487b-aacc-ae77caf62bc4"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{24}]]></textFieldExpression>
-			</textField>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="493" y="1" width="16" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="68b47982-4e86-4ba0-8a2a-e241069ce6e9"/>
+				<reportElement mode="Transparent" x="476" y="1" width="16" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="68b47982-4e86-4ba0-8a2a-e241069ce6e9"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -304,7 +288,7 @@ WHERE DATEPART(WK,p.Fecha_Entrega) = $P{Fecha}]]>
 				<textFieldExpression><![CDATA[$F{25}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="509" y="1" width="18" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="2b006ce0-2a25-4ed1-bb51-71a268ab6731"/>
+				<reportElement mode="Transparent" x="492" y="1" width="18" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="2b006ce0-2a25-4ed1-bb51-71a268ab6731"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -384,14 +368,6 @@ WHERE DATEPART(WK,p.Fecha_Entrega) = $P{Fecha}]]>
 				<textFieldExpression><![CDATA[$F{13}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="279" y="1" width="20" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="f9337736-099b-436e-8c35-fb83cf6bab46"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{15}]]></textFieldExpression>
-			</textField>
-			<textField pattern="" isBlankWhenNull="false">
 				<reportElement mode="Transparent" x="2" y="1" width="21" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="28d42c07-4731-4c96-98e5-81a02f6ffa31"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -422,6 +398,30 @@ WHERE DATEPART(WK,p.Fecha_Entrega) = $P{Fecha}]]>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{33}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="279" y="1" width="21" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="0198de0f-101e-443b-9c6e-2d8f96f628df"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{14}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="459" y="1" width="17" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="8642bdcc-eff0-4196-b2bd-4349f4db0713"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{24}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="508" y="1" width="19" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="530e30c8-6435-44b0-8209-f4caebbc8484"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{27}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

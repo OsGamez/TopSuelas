@@ -349,7 +349,7 @@ public class ObjectPedidos {
         try {
             st = c.prepareStatement("select p.Estatus,p.Npedido from RPTPhylon.dbo.Dpedido d\n"
                     + "inner join RPTPhylon.dbo.Pedidos p on p.Npedido = d.Npedido\n"
-                    + "where p.Npedido = ? and p.Estatus<>10");
+                    + "where p.Npedido = ? and d.Estatus<>10");
             c.setAutoCommit(false);
             st.setString(1, Np);
             rs = st.executeQuery();
@@ -390,7 +390,7 @@ public class ObjectPedidos {
         try {
             dp = pa.prepareStatement("select p.Estatus,p.Npedido from RCPTPhylonA.dbo.Dpedido d\n"
                     + "inner join RCPTPhylonA.dbo.Pedidos p on p.Npedido = d.Npedido\n"
-                    + "where p.Npedido = ? and p.Estatus<>10");
+                    + "where p.Npedido = ? and d.Estatus<>10");
             pa.setAutoCommit(false);
             dp.setString(1, Np);
             ra = dp.executeQuery();
@@ -567,4 +567,16 @@ public class ObjectPedidos {
             return false;
         }
     }
+
+    private boolean AddPrograma(Programa p){
+        try {
+            st = c.prepareStatement("");
+            st.execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

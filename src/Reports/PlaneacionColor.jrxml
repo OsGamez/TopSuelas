@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2d79477b-1618-4208-bdea-6b8abe7f2f43">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Date" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+ DISTINCT c.Descripcion as Color,DATEPART(WK,p.Fecha_Entrega) as Fecha
+FROM Pedidos p 
+INNER JOIN Dpedido dp 
+ON p.Npedido = dp.Npedido
+INNER JOIN ProduccionPhy.dbo.Producto pd
+ON dp.Id_Producto = pd.Id_Producto
+INNER JOIN ProduccionPhy.dbo.Color c
+ON pd.Id_Color = c.Id_Color
+WHERE DATEPART(WK,p.Fecha_Entrega) = $P{Date}
+GROUP BY dp.Pares,p.Fecha_Entrega,c.Descripcion]]>
+	</queryString>
+	<field name="Color" class="java.lang.String"/>
+	<field name="Fecha" class="java.lang.Integer"/>
+	<pageHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement x="2" y="9" width="29" height="1" uuid="9b0eba30-2137-4247-bfd7-3fa33b3ca943"/>
+			</line>
+			<staticText>
+				<reportElement mode="Transparent" x="2" y="1" width="30" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="99b00ebf-33e4-4b4f-b4e8-61a3f75feafe"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="6" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[COLOR]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField>
+				<reportElement mode="Transparent" x="2" y="0" width="91" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="a06128fb-2a92-4905-b6bb-06225ed0b0fb"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Color}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="-19" y="0" width="118" height="12" uuid="f21550bc-3f25-4cf0-9589-e3d88c5331b9"/>
+				<subreportParameter name="Date">
+					<subreportParameterExpression><![CDATA[$F{Fecha}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="Color">
+					<subreportParameterExpression><![CDATA[$F{Color}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\SubpColor.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

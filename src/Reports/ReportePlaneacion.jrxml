@@ -77,7 +77,7 @@ GROUP BY DATEPART(WK,Fecha_Entrega)]]>
 				<textFieldExpression><![CDATA[$F{RANGO}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="312" y="-1" width="135" height="25" uuid="5dd7f850-ea8e-425e-8a7a-2f5e65a1c86b"/>
+				<reportElement x="311" y="-1" width="135" height="25" uuid="5dd7f850-ea8e-425e-8a7a-2f5e65a1c86b"/>
 				<imageExpression><![CDATA["C:\\Program Files\\logo.png"]]></imageExpression>
 			</image>
 			<textField pattern="EEEEE dd MMMMM yyyy">
@@ -396,4 +396,40 @@ GROUP BY DATEPART(WK,Fecha_Entrega)]]>
 			</textField>
 		</band>
 	</pageFooter>
+	<summary>
+		<band height="19">
+			<subreport>
+				<reportElement x="-15" y="0" width="109" height="19" uuid="94a77609-0235-495e-905f-8ba862019b58"/>
+				<subreportParameter name="Date">
+					<subreportParameterExpression><![CDATA[$F{Semana}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\PlaneacionSuela.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="227" y="0" width="112" height="19" uuid="dba36786-5413-4c17-bbbf-15d34f0fc46b"/>
+				<subreportParameter name="Date">
+					<subreportParameterExpression><![CDATA[$F{Semana}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\SumaPsuela.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="65" y="0" width="109" height="19" uuid="c1ffadf1-fe93-4707-bc5a-7f9632be01fd"/>
+				<subreportParameter name="Date">
+					<subreportParameterExpression><![CDATA[$F{Semana}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\PlaneacionAgente.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="147" y="0" width="109" height="19" uuid="73216ca3-523d-4739-9838-64e7d4bbefa2"/>
+				<subreportParameter name="Date">
+					<subreportParameterExpression><![CDATA[$F{Semana}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\PlaneacionColor.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
 </jasperReport>

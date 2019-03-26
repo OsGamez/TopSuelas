@@ -98,6 +98,10 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JtRenglon.setVisible(false);
         //JdCaptura.setEnabled(false);
     }
+    
+    
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -180,8 +184,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JtCliente = new javax.swing.JTextField();
         JtRenglon = new javax.swing.JTextField();
         JbSerie = new javax.swing.JLabel();
-        L7 = new javax.swing.JLabel();
-        JtC7 = new javax.swing.JTextField();
 
         setClosable(true);
         setMaximizable(true);
@@ -548,9 +550,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
         JbSerie.setText("C");
 
-        L7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        L7.setText("C7");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -602,83 +601,78 @@ public class Pedidos extends javax.swing.JInternalFrame {
                                 .addGap(21, 21, 21)
                                 .addComponent(JtprecioA, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel11)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(JbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(409, 409, 409))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(JbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(JbQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)))
-                                        .addComponent(jLabel8))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(JcCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(JcSuela, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(JtCorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(JtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(JtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(JtRenglon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(JbSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(JbCD, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(JbAgente, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(JbPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(JbPais, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(JbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(JbColonia, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(JbCP, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(104, 104, 104))
-                                    .addComponent(JbCalle, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(166, 166, 166)
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(JtCant, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(15, 15, 15)
-                                .addComponent(L1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(JtC1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(L2)
-                                .addGap(18, 18, 18)
-                                .addComponent(JtC2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(L3)
-                                .addGap(18, 18, 18)
-                                .addComponent(JtC3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(L4)
-                                .addGap(18, 18, 18)
-                                .addComponent(JtC4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(L5)
-                                .addGap(18, 18, 18)
-                                .addComponent(JtC5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(L6)
-                                .addGap(18, 18, 18)
-                                .addComponent(JtC6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(L7)))
-                        .addGap(18, 18, 18)
-                        .addComponent(JtC7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(JbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(409, 409, 409))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(JbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(JbQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)))
+                                    .addComponent(jLabel8))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(JcCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel6)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(JcSuela, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(JtCorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(JtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(JtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(JtRenglon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(JbSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(JbCD, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JbAgente, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JbPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JbPais, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JbColonia, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(JbCP, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(104, 104, 104))
+                                .addComponent(JbCalle, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(166, 166, 166)
+                            .addComponent(jLabel13)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(JtCant, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(15, 15, 15)
+                            .addComponent(L1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(JtC1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(L2)
+                            .addGap(18, 18, 18)
+                            .addComponent(JtC2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(L3)
+                            .addGap(18, 18, 18)
+                            .addComponent(JtC3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(L4)
+                            .addGap(18, 18, 18)
+                            .addComponent(JtC4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(L5)
+                            .addGap(18, 18, 18)
+                            .addComponent(JtC5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(L6)
+                            .addGap(18, 18, 18)
+                            .addComponent(JtC6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -741,9 +735,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                                 .addComponent(L1))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(L6)
-                                .addComponent(JtC6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(L7)
-                                .addComponent(JtC7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(JtC6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(L5)
                                 .addComponent(JtC5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -859,6 +851,28 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtCorrida.setText("");
             } else {
                 switch (JtCorrida.getText()) {
+                    case "[11-14]":
+                        JtCant.setText("");
+                        L1.setVisible(true);
+                        L2.setVisible(true);
+                        L3.setVisible(true);
+                        L4.setVisible(true);
+                        L1.setText("11");
+                        L2.setText("12");
+                        L3.setText("13");
+                        L4.setText("14");
+                        JtC1.setVisible(true);
+                        JtC2.setVisible(true);
+                        JtC3.setVisible(true);
+                        JtC4.setVisible(true);
+                        JtC1.setText("");
+                        JtC2.setText("");
+                        JtC3.setText("");
+                        JtC4.setText("");
+                        JtC5.setText("0");
+                        JtC6.setText("0");
+                        HideBack2();
+                        break;
                     case "[15-17]":
                         JtCant.setText("");
                         L1.setVisible(true);
@@ -876,7 +890,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         JtC4.setText("0");
                         JtC5.setText("0");
                         JtC6.setText("0");
-                        JtC7.setText("0");
                         HideBack();
                         break;
                     case "[18-21]":
@@ -899,7 +912,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         JtC4.setText("");
                         JtC5.setText("0");
                         JtC6.setText("0");
-                        JtC7.setText("0");
                         HideBack2();
                         break;
                     case "[22-24]":
@@ -919,7 +931,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         JtC4.setText("0");
                         JtC5.setText("0");
                         JtC6.setText("0");
-                        JtC7.setText("0");
                         HideBack();
                         break;
                     case "[23-26]":
@@ -942,7 +953,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         JtC4.setText("");
                         JtC5.setText("0");
                         JtC6.setText("0");
-                        JtC7.setText("0");
                         HideBack4();
                         break;
                     case "[22-26]":
@@ -968,7 +978,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         JtC4.setText("");
                         JtC5.setText("");
                         JtC6.setText("0");
-                        JtC7.setText("0");
                         HideBack3();
                         break;
                     case "[23-29]":
@@ -1220,6 +1229,16 @@ public class Pedidos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbAgregarActionPerformed
     private void AddItem() {
         switch (JtCorrida.getText()) {
+            case "[11-14]":
+                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
+                        || JtC4.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
+                } else if (ValidarC2()) {
+                    AddProducto();
+                    Limpiar();
+                    OcultarCampos();
+                }
+                break;
             case "[15-17]":
                 if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
@@ -2116,14 +2135,12 @@ public class Pedidos extends javax.swing.JInternalFrame {
         L4.setVisible(false);
         L5.setVisible(false);
         L6.setVisible(false);
-        L7.setVisible(false);
         JtC1.setVisible(false);
         JtC2.setVisible(false);
         JtC3.setVisible(false);
         JtC4.setVisible(false);
         JtC5.setVisible(false);
         JtC6.setVisible(false);
-        JtC7.setVisible(false);
         JtprecioA.setVisible(false);
         JtCliente.setVisible(false);
     }
@@ -2243,7 +2260,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JtC4.setText("");
         JtC5.setText("");
         JtC6.setText("");
-        JtC7.setText("");
         JtCorrida.setText("");
         JtColor.setText("");
         JtprecioA.setText("");
@@ -2369,7 +2385,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField JtC4;
     private javax.swing.JTextField JtC5;
     private javax.swing.JTextField JtC6;
-    private javax.swing.JTextField JtC7;
     private javax.swing.JTextField JtCancelar;
     private javax.swing.JTextField JtCant;
     private javax.swing.JTextField JtCliente;
@@ -2390,7 +2405,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel L4;
     private javax.swing.JLabel L5;
     private javax.swing.JLabel L6;
-    private javax.swing.JLabel L7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
