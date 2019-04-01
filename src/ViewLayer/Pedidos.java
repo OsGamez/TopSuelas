@@ -85,23 +85,17 @@ public class Pedidos extends javax.swing.JInternalFrame {
         OcultarCampos();
         JbAlerta.setBackground(java.awt.Color.gray);
         JbAlerta.setToolTipText("REMICIÓN");
-        //JbAlerta.setEnabled(false);
         cargarListenerPedido();
         CargarPedido();
         JtNpedido.setEditable(false);
         JtNpedido.setForeground(java.awt.Color.red);
         JtPedido.getTableHeader().setReorderingAllowed(false);
         JbActualizar.setEnabled(false);
-        //JbEliminar.setEnabled(false);
         JbSerie.setText("A");
         JbSerie.setVisible(false);
         JtRenglon.setVisible(false);
         //JdCaptura.setEnabled(false);
     }
-    
-    
-    
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -778,14 +772,50 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
 
     private void JbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEliminarActionPerformed
+        if (JtBuscar.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "No has seleccionado un pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            String Np = JtNpedido.getText();
+            Parametro pam = new Parametro();
+            pam.setNpedido(Np);
 
-        int opcion = JOptionPane.showConfirmDialog(this, "¿Quitar cancelar este pedido?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            int opcion = JOptionPane.showConfirmDialog(this, "¿Quieres cancelar este pedido?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-        if (opcion == JOptionPane.YES_OPTION) {
-            if (JtBuscar.getText().equals("")) {
-                LimpiarPedido();
-                LimpiarCliente();
-                CleanTable();
+            if (opcion == JOptionPane.YES_OPTION) {
+                if (JbSerie.getText().equals("A")) {
+                    if (pedido.cancelarPedido(Np, pam) && pedido.cancelarPedidoA(Np, pam)) {
+                        JOptionPane.showMessageDialog(this, "Se ha cancelado el pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                        LimpiarPedido();
+                        LimpiarCliente();
+                        CleanTable();
+                        JtBuscar.setText("");
+                        JtBuscar.requestFocus();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se puede cancelar este pedido", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                        LimpiarPedido();
+                        LimpiarCliente();
+                        CleanTable();
+                        JtBuscar.setText("");
+                        JtBuscar.requestFocus();
+                    }
+                } else {
+                    if (pedido.cancelarPedidoA(Np, pam)) {
+                        JOptionPane.showMessageDialog(this, "Se ha cancelado el pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                        LimpiarPedido();
+                        LimpiarCliente();
+                        CleanTable();
+                        JtBuscar.setText("");
+                        JtBuscar.requestFocus();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se puede cancelar este pedido", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                        LimpiarPedido();
+                        LimpiarCliente();
+                        CleanTable();
+                        JtBuscar.setText("");
+                        JtBuscar.requestFocus();
+                    }
+                }
+
             }
         }
     }//GEN-LAST:event_JbEliminarActionPerformed
@@ -797,7 +827,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
         ArrayList<Parametro> listP = pedido.getPedidoActual();
         if (listP.size() > 0) {
             for (Parametro par : listP) {
-                int Np = par.getNpedido();
+                int Np = Integer.parseInt(par.getNpedido());
                 int var = num + Np;
                 JtNpedido.setText(String.valueOf(var));
             }
@@ -1061,7 +1091,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
         if (JtCant.getText().isEmpty() || JcSuela.getSelectedIndex() == 0) {
             JtCant.requestFocus();
             JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
-            //JbAlerta.setEnabled(false);
         } else if (list.size() > 0) {
             Producto prod = (Producto) JcSuela.getSelectedItem();
             double precioa = Double.parseDouble(JtprecioA.getText());
@@ -1201,10 +1230,11 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         JOptionPane.showMessageDialog(this, "Se agrego la suela al pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         Limpiar();
                         OcultarCampos();
-                        CleanTable();
-                        CargarDetalle();
+
                     } else {
-                        JOptionPane.showMessageDialog(this, "Este pedido no se puede actualizar!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Este pedido no se puede actualizar!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                        Limpiar();
+                        OcultarCampos();
                         CleanTable();
                         CargarDetalle();
                     }
@@ -1213,10 +1243,12 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         JOptionPane.showMessageDialog(this, "Se agrego la suela al pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         Limpiar();
                         OcultarCampos();
-                        CleanTable();
-                        CargarDetalle();
+
                     } else {
-                        JOptionPane.showMessageDialog(this, "Este pedido no se puede actualizar!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Este pedido no se puede actualizar!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+
+                        Limpiar();
+                        OcultarCampos();
                         CleanTable();
                         CargarDetalle();
                     }
@@ -1336,7 +1368,12 @@ public class Pedidos extends javax.swing.JInternalFrame {
                                 OcultarCampos();
                                 Limpiar();
                             } else {
-                                JOptionPane.showMessageDialog(null, "Este pedido ya fue surtido", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                                JOptionPane.showMessageDialog(null, "Este pedido ya fue surtido", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+
+                                OcultarCampos();
+                                Limpiar();
+                                CleanTable();
+                                CargarDetalle();
                             }
                         } else {
                             if (pedido.eliminarPedidoA(pd, Integer.parseInt(Num))) {
@@ -1345,6 +1382,8 @@ public class Pedidos extends javax.swing.JInternalFrame {
                                 Limpiar();
                             } else {
                                 JOptionPane.showMessageDialog(this, "Registro eliminado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                                OcultarCampos();
+                                Limpiar();
                             }
                         }
                     }
@@ -1373,16 +1412,13 @@ public class Pedidos extends javax.swing.JInternalFrame {
         Producto prod = (Producto) JcSuela.getSelectedItem();
         Cliente cli = (Cliente) JcCliente.getSelectedItem();
 
+        /*if (cli.getId_Cliente() == 0 || prod.getId_Producto() == 0) {
+            System.out.println("Vacio");
+        }*/
         ArrayList<Precio> lista = pc.GetByID(prod.getId_Producto(), cli.getId_Cliente());
-
         double pa;
         double pb;
 
-        /*if(lista.size() == 0){
-                System.out.println("Vacio");
-            }else{
-            
-        }*/
         if (evt.getClickCount() == 1) {
 
             if (lista.size() > 0) {
@@ -1407,7 +1443,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
             }
             JbAlerta.setBackground(java.awt.Color.yellow);
             JbAlerta.setToolTipText("FACTURA");
-
         }
     }//GEN-LAST:event_JbAlertaMouseClicked
 
@@ -1459,7 +1494,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         pd.setFecha_Recibido(fechaRec);
                         pd.setFecha_Captura(fechaCap);
                         Parametro pam = new Parametro();
-                        pam.setNpedido(Integer.parseInt(Npedido));
+                        pam.setNpedido(Npedido);
                         pam.setEntrada(0);
                         pam.setFcatura(0);
                         pam.setSalida(0);
@@ -1548,7 +1583,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         pd.setFecha_Recibido(fechaRec);
                         pd.setFecha_Captura(fechaCap);
                         Parametro pam = new Parametro();
-                        pam.setNpedido(Integer.parseInt(Npedido));
+                        pam.setNpedido(Npedido);
                         pam.setEntrada(0);
                         pam.setFcatura(0);
                         pam.setSalida(0);
@@ -1642,7 +1677,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     pd.setFecha_Recibido(fechaRec);
                     pd.setFecha_Captura(fechaCap);
                     Parametro pam = new Parametro();
-                    pam.setNpedido(Integer.parseInt(Npedido));
+                    pam.setNpedido(Npedido);
                     pam.setEntrada(0);
                     pam.setFcatura(0);
                     pam.setSalida(0);
@@ -1941,39 +1976,39 @@ public class Pedidos extends javax.swing.JInternalFrame {
     }
     private void JbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbActualizarActionPerformed
         int row = JtPedido.getSelectedRow();
-        String Npedido = JtNpedido.getText();
-        String par = lblPares.getText();
-        int TotalPares = Integer.parseInt(par);
-        String costo = lblTotal.getText();
-        double costoPedido = Double.parseDouble(costo);
-        int id_dt = Integer.parseInt((String) JtPedido.getValueAt(row, 1));
-        int cs1 = Integer.parseInt((String) JtPedido.getValueAt(row, 5));
-        int cs2 = Integer.parseInt((String) JtPedido.getValueAt(row, 6));
-        int cs3 = Integer.parseInt((String) JtPedido.getValueAt(row, 7));
-        int cs4 = Integer.parseInt((String) JtPedido.getValueAt(row, 8));
-        int cs5 = Integer.parseInt((String) JtPedido.getValueAt(row, 9));
-        int cs6 = Integer.parseInt((String) JtPedido.getValueAt(row, 10));
-        int cant = Integer.parseInt((String) JtPedido.getValueAt(row, 11));
-        Double imp = Double.parseDouble((String) JtPedido.getValueAt(row, 13));
-
-        Dpedido det = new Dpedido();
-        det.setC1(cs1);
-        det.setC2(cs2);
-        det.setC3(cs3);
-        det.setC4(cs4);
-        det.setC5(cs5);
-        det.setC6(cs6);
-        det.setPares(cant);
-        det.setImporte(imp);
-        det.setRenglon(id_dt);
-        det.setNpedido(Npedido);
-
-        Pedido pd = new Pedido();
-        pd.setNpedido(Npedido);
-        pd.setCostoTotal(costoPedido);
-        pd.setTotalPares(TotalPares);
 
         if (row >= 0) {
+            String Npedido = JtNpedido.getText();
+            String par = lblPares.getText();
+            int TotalPares = Integer.parseInt(par);
+            String costo = lblTotal.getText();
+            double costoPedido = Double.parseDouble(costo);
+            int id_dt = Integer.parseInt((String) JtPedido.getValueAt(row, 1));
+            int cs1 = Integer.parseInt((String) JtPedido.getValueAt(row, 5));
+            int cs2 = Integer.parseInt((String) JtPedido.getValueAt(row, 6));
+            int cs3 = Integer.parseInt((String) JtPedido.getValueAt(row, 7));
+            int cs4 = Integer.parseInt((String) JtPedido.getValueAt(row, 8));
+            int cs5 = Integer.parseInt((String) JtPedido.getValueAt(row, 9));
+            int cs6 = Integer.parseInt((String) JtPedido.getValueAt(row, 10));
+            int cant = Integer.parseInt((String) JtPedido.getValueAt(row, 11));
+            Double imp = Double.parseDouble((String) JtPedido.getValueAt(row, 13));
+
+            Dpedido det = new Dpedido();
+            det.setC1(cs1);
+            det.setC2(cs2);
+            det.setC3(cs3);
+            det.setC4(cs4);
+            det.setC5(cs5);
+            det.setC6(cs6);
+            det.setPares(cant);
+            det.setImporte(imp);
+            det.setRenglon(id_dt);
+            det.setNpedido(Npedido);
+
+            Pedido pd = new Pedido();
+            pd.setNpedido(Npedido);
+            pd.setCostoTotal(costoPedido);
+            pd.setTotalPares(TotalPares);
             int opcion = JOptionPane.showConfirmDialog(this, "¿Modificar registro del pedido?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (opcion == JOptionPane.YES_OPTION) {
                 if (JbSerie.getText().equals("A")) {
@@ -1983,16 +2018,25 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     } else {
                         JOptionPane.showMessageDialog(this, "Este pedido no se puede modificar!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         JbAlerta.setEnabled(true);
-                        LimpiarCambios();
+                        OcultarCampos();
+                        Limpiar();
+                        CleanTable();
+                        CargarDetalle();
                     }
                 } else {
                     if (pedido.actualizarPedidoA(pd, det, id_dt)) {
                         JOptionPane.showMessageDialog(this, "Se actualizo el pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         JbAlerta.setEnabled(true);
+                        OcultarCampos();
+                        Limpiar();
                     } else {
                         JOptionPane.showMessageDialog(this, "Este pedido no se puede modificar!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         JbAlerta.setEnabled(true);
-                        LimpiarCambios();
+
+                        OcultarCampos();
+                        Limpiar();
+                        CleanTable();
+                        CargarDetalle();
                     }
                 }
             }
