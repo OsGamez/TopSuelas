@@ -37,6 +37,7 @@ public class Principal extends javax.swing.JFrame {
     String id_usuario = "";
     String UsuarioChat = "";
     Moldes m;
+    Maquinas maq;
 
     public Principal() {
         initComponents();
@@ -128,6 +129,7 @@ public class Principal extends javax.swing.JFrame {
         JmMateriales = new javax.swing.JMenuItem();
         JmProductos = new javax.swing.JMenuItem();
         JmMoldes = new javax.swing.JMenuItem();
+        JmMaquina = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         JmAyuda = new javax.swing.JMenuItem();
         JmSalir = new javax.swing.JMenuItem();
@@ -490,6 +492,16 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu7.add(JmMoldes);
 
+        JmMaquina.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmMaquina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/machine.png"))); // NOI18N
+        JmMaquina.setText("Maquinas");
+        JmMaquina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmMaquinaActionPerformed(evt);
+            }
+        });
+        jMenu7.add(JmMaquina);
+
         JmProduccion.add(jMenu7);
 
         jMenuBar1.add(JmProduccion);
@@ -823,6 +835,12 @@ public class Principal extends javax.swing.JFrame {
             MainContent.getDesktopManager().maximizeFrame(m);
             m.setVisible(true);
     }
+    private void LoadMaquina(){
+            maq = new Maquinas();
+            MainContent.add(maq);
+            MainContent.getDesktopManager().maximizeFrame(maq);
+            maq.setVisible(true);
+    }
     private void JmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmSalirActionPerformed
         Cerrar();
     }//GEN-LAST:event_JmSalirActionPerformed
@@ -912,24 +930,30 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_JmReportesActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        int codigo = evt.getKeyCode();
-
-        switch (codigo) {
-            case KeyEvent.VK_ESCAPE:
-                Cerrar();
-                break;
-            case KeyEvent.VK_F1:
-                LoadAgente();
-            case KeyEvent.VK_F10:
-                LoadMolde();
-            default:
-                break;
-        }
+//        int codigo = evt.getKeyCode();
+//
+//        switch (codigo) {
+//            case KeyEvent.VK_ESCAPE:
+//                Cerrar();
+//                break;
+//            case KeyEvent.VK_F1:
+//                LoadAgente();
+//            case KeyEvent.VK_F10:
+//                LoadMolde();
+//            case KeyEvent.VK_F11:
+//                LoadMaquina();    
+//            default:
+//                break;
+//        }
     }//GEN-LAST:event_formKeyPressed
 
     private void JmMoldesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmMoldesActionPerformed
         LoadMolde();
     }//GEN-LAST:event_JmMoldesActionPerformed
+
+    private void JmMaquinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmMaquinaActionPerformed
+        LoadMaquina();
+    }//GEN-LAST:event_JmMaquinaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -987,6 +1011,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JmEstados;
     private javax.swing.JMenuItem JmGastos;
     private javax.swing.JMenuItem JmLineas;
+    private javax.swing.JMenuItem JmMaquina;
     private javax.swing.JMenuItem JmMateriales;
     private javax.swing.JMenuItem JmMoldes;
     private javax.swing.JMenuItem JmPais;
