@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="16bf0a43-b955-483c-8c7d-2208558903eb">
+	<property name="ireport.zoom" value="1.2100000000000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="linea" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select molde,punto,cant,stat,suela,l.descripcion as 'descripcion' from Moldes m join Linea l on m.suela=l.Id_Linea
+ where l.descripcion like '%$P!{linea}%'
+order by l.descripcion]]>
+	</queryString>
+	<field name="molde" class="java.lang.Integer"/>
+	<field name="punto" class="java.lang.Integer"/>
+	<field name="cant" class="java.lang.Integer"/>
+	<field name="stat" class="java.lang.String"/>
+	<field name="suela" class="java.lang.Short"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="197" y="43" width="215" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="35df6064-1c24-4a9d-b81f-dc7af014ab47"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[CATALOGO DE MOLDES]]></text>
+			</staticText>
+			<image>
+				<reportElement x="1" y="51" width="131" height="28" uuid="3f038f18-b2de-4494-b74f-66d883dd72f1"/>
+				<imageExpression><![CDATA["C:\\Program Files\\logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="51" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="458" y="0" width="113" height="20" uuid="ef9894f1-4894-4d45-9f71-d94459869e41"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH.mm.ss">
+				<reportElement x="521" y="26" width="51" height="20" uuid="72685c7a-1af1-4666-87ef-1cfd841c4edb"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="48">
+			<rectangle>
+				<reportElement x="77" y="30" width="444" height="14" forecolor="#6699FF" backcolor="#6699FF" uuid="2920be73-8eed-467a-b0e5-0fcf73c37ea1"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="77" y="30" width="100" height="14" uuid="00791ea7-01ab-4fe2-80b1-ec872ca1d24e"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Molde]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="177" y="30" width="100" height="14" uuid="c37f97da-b879-4ce9-b101-9a7275ed8e92"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Suela]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="277" y="30" width="100" height="14" uuid="6999d5be-8c2e-4f38-94e5-a5d04e1fc853"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Punto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="377" y="30" width="100" height="14" uuid="4b3f8085-4e74-4873-ba25-fcdaffae3c55"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="477" y="30" width="44" height="14" uuid="82618fe2-d605-4f12-b21d-d721b317dd3d"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<textField>
+				<reportElement x="77" y="0" width="100" height="11" uuid="8af40ee9-f72d-400d-b898-2bad2d2742f6"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{molde}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="277" y="0" width="100" height="11" uuid="2488057f-cee0-4e21-af37-97bc3ac167c9"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{punto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="377" y="0" width="100" height="11" uuid="4f6fe60c-e111-450b-bea0-3dfddfa34547"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cant}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="177" y="0" width="100" height="11" uuid="25c2628d-d0bf-4344-bb55-d54384c776c8"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="477" y="0" width="44" height="11" uuid="fd55e627-3c91-4d48-b83b-f82b1a2104b6"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{stat}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="21" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="494" y="0" width="80" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="3c37958a-ec14-40a5-a795-3486f72fd06e"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="539" y="0" width="32" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="2432dedc-95ce-41b7-bf3c-3c40cb80bf78"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>
