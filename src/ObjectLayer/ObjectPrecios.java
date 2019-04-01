@@ -12,11 +12,11 @@ import java.util.logging.Logger;
 
 public class ObjectPrecios {
 
-    Connection c = Server.getRpt();
-    Connection pa = Server.getRcpt();
+    //Connection c = Server.getRpt();
+    //Connection pa = Server.getRcpt();
     
-    //Connection c = Conexion.getRpt();
-    //Connection pa = Conexion.getRcpt();
+    Connection c = Conexion.getRpt();
+    Connection pa = Conexion.getRcpt();
 
     PreparedStatement st, st2 = null;
     ResultSet rs = null;

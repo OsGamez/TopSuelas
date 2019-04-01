@@ -3,7 +3,10 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="Fecha" class="java.lang.Integer">
+	<parameter name="Año" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Semana" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -127,7 +130,8 @@ INNER JOIN ProduccionPhy.dbo.Color cr
 ON pd.Id_Color = cr.Id_Color
 INNER JOIN ProduccionPhy.dbo.Linea l
 ON pd.Id_Linea = l.Id_Linea
-WHERE DATEPART(WK,p.Fecha_Entrega) = $P{Fecha}]]>
+WHERE  DATEPART(YEAR,p.Fecha_Entrega) = $P{Año} 
+AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 	</queryString>
 	<field name="Numero" class="java.lang.Long"/>
 	<field name="Pedido" class="java.lang.String"/>

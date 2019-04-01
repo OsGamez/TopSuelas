@@ -9,8 +9,8 @@ import java.sql.SQLException;
 
 public class ObjectDetalle {
 
-    Connection c = Server.getRpt();
-    Connection p = Server.getRcpt();
+    Connection c = Conexion.getRpt();
+    Connection p = Conexion.getRcpt();
     
     //Connection c = Conexion.getRpt();
     //Connection p = Conexion.getRcpt();
@@ -248,6 +248,42 @@ public class ObjectDetalle {
         } catch (Exception ex) {
             Conexion.cerrarPhylonA(dp);
             ex.printStackTrace();
+        }
+        return rpta;
+    }
+
+    public boolean cambiarEstatusA(String Npedido, String Estatus){
+        boolean rpta = false;
+        try {
+            dp = p.prepareStatement("UPDATE Dpedido SET Estatus = ? WHERE Npedido = ?");
+            dp.setString(1, Estatus);
+            dp.setString(2, Npedido);
+            rpta = dp.executeUpdate() == 1 ? true : false;
+            Conexion.cerrarPhylonA(dp);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPhylonA(dp);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPhylonA(dp);
+        }
+        return rpta;
+    }
+    
+    public boolean cambiarEstatus(String Npedido, String Estatus){
+        boolean rpta = false;
+        try {
+            st = c.prepareStatement("UPDATE Dpedido SET Estatus = ? WHERE Npedido = ?");
+            st.setString(1, Estatus);
+            st.setString(2, Npedido);
+            rpta = st.executeUpdate() == 1 ? true : false;
+            Conexion.cerrarPrep(st);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(st);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(st);
         }
         return rpta;
     }
