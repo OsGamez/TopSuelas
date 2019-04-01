@@ -13,7 +13,7 @@ import java.util.Vector;
 public class PtProducto {
 
     PreparedStatement st = null;
-    Connection c = Server.getServer();
+    Connection c = Conexion.getServer();
     ResultSet rs = null;
     Statement sta = null;
 

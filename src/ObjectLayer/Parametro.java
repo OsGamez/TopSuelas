@@ -2,7 +2,7 @@ package ObjectLayer;
 
 public class Parametro {
 
-    private int Npedido;
+    private String Npedido;
     private int Entrada;
     private int Salida;
     private int Factura;
@@ -10,11 +10,11 @@ public class Parametro {
     public Parametro() {
     }
 
-    public int getNpedido() {
+    public String getNpedido() {
         return Npedido;
     }
 
-    public void setNpedido(int Npedido) {
+    public void setNpedido(String Npedido) {
         this.Npedido = Npedido;
     }
 

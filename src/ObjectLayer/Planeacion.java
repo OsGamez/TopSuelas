@@ -28,18 +28,6 @@ public class Planeacion {
     private int Pto10;
     private int Pto11;
     private int Pto12;
-    private int Cant1;
-    private int Cant2;
-    private int Cant3;
-    private int Cant4;
-    private int Cant5;
-    private int Cant6;
-    private int Cant7;
-    private int Cant8;
-    private int Cant9;
-    private int Cant10;
-    private int Cant11;
-    private int Cant12;
     private int Pares;
     private int Numero;
     private String Modelo;
@@ -47,111 +35,43 @@ public class Planeacion {
     private String Color;
     private String Corrida;
     private String Agente;
-    private int c11;
-    private int c12;
-    private int c13;
-    private int c14;
-    private int c15;
-    private int c16;
-    private int c17;
-    private int c18;
-    private int c19;
-    private int c20;
-    private int c21;
-    private int c22;
-    private int c23;
-    private int c24;
-    private int c25;
-    private int c26;
-    private int c27;
-    private int c28;
-    private int c29;
-    private int c30;
-    private int c31;
-    private int c32;
-    private int c33;
+    private int C1;
+    private int C2;
+    private int C3;
+    private int C4;
+    private int C5;
+    private int C6;
+    private int C7;
+    private int C8;
+    private int C9;
+    private int C10;
+    private int C11;
+    private int C12;
+   
     private String Observaciones;
     private String OrdenCompra;
+    private String Estatus;
+    private String Serie;
 
-    public int getPrograma() {
-        return Programa;
+    public String getSerie() {
+        return Serie;
     }
 
-    public void setPrograma(int Programa) {
-        this.Programa = Programa;
+    public void setSerie(String Serie) {
+        this.Serie = Serie;
+    }
+    
+    
+
+    public String getEstatus() {
+        return Estatus;
     }
 
-    public String getMes() {
-        return Mes;
+    public void setEstatus(String Estatus) {
+        this.Estatus = Estatus;
     }
-
-    public void setMes(String Mes) {
-        this.Mes = Mes;
-    }
-
-    public Date getFecha() {
-        return Fecha;
-    }
-
-    public void setFecha(Date Fecha) {
-        this.Fecha = Fecha;
-    }
-
-    public int getCont() {
-        return cont;
-    }
-
-    public void setCont(int cont) {
-        this.cont = cont;
-    }
-
-    public String getNpedido() {
-        return Npedido;
-    }
-
-    public void setNpedido(String Npedido) {
-        this.Npedido = Npedido;
-    }
-
-    public int getId_Cliente() {
-        return Id_Cliente;
-    }
-
-    public void setId_Cliente(int Id_Cliente) {
-        this.Id_Cliente = Id_Cliente;
-    }
-
-    public int getId_Agente() {
-        return Id_Agente;
-    }
-
-    public void setId_Agente(int Id_Agente) {
-        this.Id_Agente = Id_Agente;
-    }
-
-    public int getId_Producto() {
-        return Id_Producto;
-    }
-
-    public void setId_Producto(int Id_Producto) {
-        this.Id_Producto = Id_Producto;
-    }
-
-    public int getId_Color() {
-        return Id_Color;
-    }
-
-    public void setId_Color(int Id_Color) {
-        this.Id_Color = Id_Color;
-    }
-
-    public int getId_Corrida() {
-        return Id_Corrida;
-    }
-
-    public void setId_Corrida(int Id_Corrida) {
-        this.Id_Corrida = Id_Corrida;
-    }
+    
+    
 
     public int getPto1() {
         return Pto1;
@@ -249,100 +169,184 @@ public class Planeacion {
         this.Pto12 = Pto12;
     }
 
-    public int getCant1() {
-        return Cant1;
+    public int getC1() {
+        return C1;
     }
 
-    public void setCant1(int Cant1) {
-        this.Cant1 = Cant1;
+    public void setC1(int C1) {
+        this.C1 = C1;
     }
 
-    public int getCant2() {
-        return Cant2;
+    public int getC2() {
+        return C2;
     }
 
-    public void setCant2(int Cant2) {
-        this.Cant2 = Cant2;
+    public void setC2(int C2) {
+        this.C2 = C2;
     }
 
-    public int getCant3() {
-        return Cant3;
+    public int getC3() {
+        return C3;
     }
 
-    public void setCant3(int Cant3) {
-        this.Cant3 = Cant3;
+    public void setC3(int C3) {
+        this.C3 = C3;
     }
 
-    public int getCant4() {
-        return Cant4;
+    public int getC4() {
+        return C4;
     }
 
-    public void setCant4(int Cant4) {
-        this.Cant4 = Cant4;
+    public void setC4(int C4) {
+        this.C4 = C4;
     }
 
-    public int getCant5() {
-        return Cant5;
+    public int getC5() {
+        return C5;
     }
 
-    public void setCant5(int Cant5) {
-        this.Cant5 = Cant5;
+    public void setC5(int C5) {
+        this.C5 = C5;
     }
 
-    public int getCant6() {
-        return Cant6;
+    public int getC6() {
+        return C6;
     }
 
-    public void setCant6(int Cant6) {
-        this.Cant6 = Cant6;
+    public void setC6(int C6) {
+        this.C6 = C6;
     }
 
-    public int getCant7() {
-        return Cant7;
+    public int getC7() {
+        return C7;
     }
 
-    public void setCant7(int Cant7) {
-        this.Cant7 = Cant7;
+    public void setC7(int C7) {
+        this.C7 = C7;
     }
 
-    public int getCant8() {
-        return Cant8;
+    public int getC8() {
+        return C8;
     }
 
-    public void setCant8(int Cant8) {
-        this.Cant8 = Cant8;
+    public void setC8(int C8) {
+        this.C8 = C8;
     }
 
-    public int getCant9() {
-        return Cant9;
+    public int getC9() {
+        return C9;
     }
 
-    public void setCant9(int Cant9) {
-        this.Cant9 = Cant9;
+    public void setC9(int C9) {
+        this.C9 = C9;
     }
 
-    public int getCant10() {
-        return Cant10;
+    public int getC10() {
+        return C10;
     }
 
-    public void setCant10(int Cant10) {
-        this.Cant10 = Cant10;
+    public void setC10(int C10) {
+        this.C10 = C10;
     }
 
-    public int getCant11() {
-        return Cant11;
+    public int getC11() {
+        return C11;
     }
 
-    public void setCant11(int Cant11) {
-        this.Cant11 = Cant11;
+    public void setC11(int C11) {
+        this.C11 = C11;
     }
 
-    public int getCant12() {
-        return Cant12;
+    public int getC12() {
+        return C12;
     }
 
-    public void setCant12(int Cant12) {
-        this.Cant12 = Cant12;
+    public void setC12(int C12) {
+        this.C12 = C12;
+    }
+    
+    
+    
+    
+
+    public int getPrograma() {
+        return Programa;
+    }
+
+    public void setPrograma(int Programa) {
+        this.Programa = Programa;
+    }
+
+    public String getMes() {
+        return Mes;
+    }
+
+    public void setMes(String Mes) {
+        this.Mes = Mes;
+    }
+
+    public Date getFecha() {
+        return Fecha;
+    }
+
+    public void setFecha(Date Fecha) {
+        this.Fecha = Fecha;
+    }
+
+    public int getCont() {
+        return cont;
+    }
+
+    public void setCont(int cont) {
+        this.cont = cont;
+    }
+
+    public String getNpedido() {
+        return Npedido;
+    }
+
+    public void setNpedido(String Npedido) {
+        this.Npedido = Npedido;
+    }
+
+    public int getId_Cliente() {
+        return Id_Cliente;
+    }
+
+    public void setId_Cliente(int Id_Cliente) {
+        this.Id_Cliente = Id_Cliente;
+    }
+
+    public int getId_Agente() {
+        return Id_Agente;
+    }
+
+    public void setId_Agente(int Id_Agente) {
+        this.Id_Agente = Id_Agente;
+    }
+
+    public int getId_Producto() {
+        return Id_Producto;
+    }
+
+    public void setId_Producto(int Id_Producto) {
+        this.Id_Producto = Id_Producto;
+    }
+
+    public int getId_Color() {
+        return Id_Color;
+    }
+
+    public void setId_Color(int Id_Color) {
+        this.Id_Color = Id_Color;
+    }
+
+    public int getId_Corrida() {
+        return Id_Corrida;
+    }
+
+    public void setId_Corrida(int Id_Corrida) {
+        this.Id_Corrida = Id_Corrida;
     }
 
     public int getPares() {
@@ -391,190 +395,6 @@ public class Planeacion {
 
     public void setCorrida(String Corrida) {
         this.Corrida = Corrida;
-    }
-
-    public int getC11() {
-        return c11;
-    }
-
-    public void setC11(int c11) {
-        this.c11 = c11;
-    }
-
-    public int getC12() {
-        return c12;
-    }
-
-    public void setC12(int c12) {
-        this.c12 = c12;
-    }
-
-    public int getC13() {
-        return c13;
-    }
-
-    public void setC13(int c13) {
-        this.c13 = c13;
-    }
-
-    public int getC14() {
-        return c14;
-    }
-
-    public void setC14(int c14) {
-        this.c14 = c14;
-    }
-
-    public int getC15() {
-        return c15;
-    }
-
-    public void setC15(int c15) {
-        this.c15 = c15;
-    }
-
-    public int getC16() {
-        return c16;
-    }
-
-    public void setC16(int c16) {
-        this.c16 = c16;
-    }
-
-    public int getC17() {
-        return c17;
-    }
-
-    public void setC17(int c17) {
-        this.c17 = c17;
-    }
-
-    public int getC18() {
-        return c18;
-    }
-
-    public void setC18(int c18) {
-        this.c18 = c18;
-    }
-
-    public int getC19() {
-        return c19;
-    }
-
-    public void setC19(int c19) {
-        this.c19 = c19;
-    }
-
-    public int getC20() {
-        return c20;
-    }
-
-    public void setC20(int c20) {
-        this.c20 = c20;
-    }
-
-    public int getC21() {
-        return c21;
-    }
-
-    public void setC21(int c21) {
-        this.c21 = c21;
-    }
-
-    public int getC22() {
-        return c22;
-    }
-
-    public void setC22(int c22) {
-        this.c22 = c22;
-    }
-
-    public int getC23() {
-        return c23;
-    }
-
-    public void setC23(int c23) {
-        this.c23 = c23;
-    }
-
-    public int getC24() {
-        return c24;
-    }
-
-    public void setC24(int c24) {
-        this.c24 = c24;
-    }
-
-    public int getC25() {
-        return c25;
-    }
-
-    public void setC25(int c25) {
-        this.c25 = c25;
-    }
-
-    public int getC26() {
-        return c26;
-    }
-
-    public void setC26(int c26) {
-        this.c26 = c26;
-    }
-
-    public int getC27() {
-        return c27;
-    }
-
-    public void setC27(int c27) {
-        this.c27 = c27;
-    }
-
-    public int getC28() {
-        return c28;
-    }
-
-    public void setC28(int c28) {
-        this.c28 = c28;
-    }
-
-    public int getC29() {
-        return c29;
-    }
-
-    public void setC29(int c29) {
-        this.c29 = c29;
-    }
-
-    public int getC30() {
-        return c30;
-    }
-
-    public void setC30(int c30) {
-        this.c30 = c30;
-    }
-
-    public int getC31() {
-        return c31;
-    }
-
-    public void setC31(int c31) {
-        this.c31 = c31;
-    }
-
-    public int getC32() {
-        return c32;
-    }
-
-    public void setC32(int c32) {
-        this.c32 = c32;
-    }
-
-    public int getC33() {
-        return c33;
-    }
-
-    public void setC33(int c33) {
-        this.c33 = c33;
     }
 
     public String getObservaciones() {

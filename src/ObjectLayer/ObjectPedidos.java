@@ -12,12 +12,11 @@ import java.util.ArrayList;
 
 public class ObjectPedidos {
 
-    Connection c = Server.getRpt();
-    Connection pa = Server.getRcpt();
-    
-    //Connection c= Conexion.getRpt();
-    //Connection pa = Conexion.getRcpt();
-    
+    //Connection c = Server.getRpt();
+    //Connection pa = Server.getRcpt();
+    Connection c = Conexion.getRpt();
+    Connection pa = Conexion.getRcpt();
+
     PreparedStatement st, dp = null;
     ResultSet rs, ra = null;
     CallableStatement cl = null;
@@ -61,7 +60,7 @@ public class ObjectPedidos {
                         break;
                     }
                 }
-                pam.setNpedido(Integer.parseInt(p.getNpedido()));
+                pam.setNpedido(p.getNpedido());
                 rpta = parametro.insertarPam(pam);
                 if (rpta) {
                     c.commit();
@@ -122,7 +121,7 @@ public class ObjectPedidos {
                         break;
                     }
                 }
-                pam.setNpedido(Integer.parseInt(p.getNpedido()));
+                pam.setNpedido(p.getNpedido());
                 rpta = parametro.insertarPamA(pam);
                 if (rpta) {
                     pa.commit();
@@ -152,7 +151,7 @@ public class ObjectPedidos {
             st = c.prepareStatement("INSERT INTO Parametros(Npedido, Entrada,Salida,Factura)"
                     + "values(?,?,?,?)");
 
-            st.setInt(1, p.getNpedido());
+            st.setString(1, p.getNpedido());
             st.setInt(2, p.getEntrada());
             st.setInt(3, p.getSalida());
             st.setInt(4, p.getFactura());
@@ -239,7 +238,7 @@ public class ObjectPedidos {
         }
         return listaPedido;
     }
-    
+
     public ArrayList<Pedido> pedidoGetByIDA(String filtro, String filtro2) {
         ArrayList<Pedido> listaPedido = new ArrayList<Pedido>();
         try {
@@ -429,7 +428,7 @@ public class ObjectPedidos {
     public boolean eliminarPedido(Pedido p, int id) {
         boolean rpta = false;
         try {
-            st = c.prepareStatement("select p.Estatus,p.Npedido from RPTPhylon.dbo.Dpedido d\n"
+            st = c.prepareStatement("select d.Estatus,d.Npedido from RPTPhylon.dbo.Dpedido d\n"
                     + "            inner join RPTPhylon.dbo.Pedidos p on p.Npedido = d.Npedido\n"
                     + "            WHERE d.Renglon = ? and d.Npedido = ?\n"
                     + "			and d.Estatus<>10");
@@ -466,7 +465,7 @@ public class ObjectPedidos {
     public boolean eliminarPedidoA(Pedido p, int id) {
         boolean rpta = false;
         try {
-            dp = pa.prepareStatement("select p.Estatus,p.Npedido from RCPTPhylonA.dbo.Dpedido d\n"
+            dp = pa.prepareStatement("select d.Estatus,d.Npedido from RCPTPhylonA.dbo.Dpedido d\n"
                     + "            inner join RCPTPhylonA.dbo.Pedidos p on p.Npedido = d.Npedido\n"
                     + "            WHERE d.Renglon = ? and d.Npedido = ?\n"
                     + "			and d.Estatus<>10");
@@ -502,10 +501,10 @@ public class ObjectPedidos {
 
     public int validarPedido(int Npedido) {
         try {
-            st = c.prepareStatement("SELECT COUNT (Npedido) FROM Parametros  WHERE Npedido =?");
-            st.setInt(1, Npedido);
+            dp = pa.prepareStatement("SELECT COUNT (Npedido) FROM Parametros  WHERE Npedido =?");
+            dp.setInt(1, Npedido);
 
-            rs = st.executeQuery();
+            rs = dp.executeQuery();
             if (rs.next()) {
                 return rs.getInt(1);
             }
@@ -535,14 +534,14 @@ public class ObjectPedidos {
     public ArrayList<Parametro> getPedidoActual() {
         ArrayList<Parametro> listaP = new ArrayList<Parametro>();
         try {
-            st = c.prepareStatement("SELECT  MAX(CONVERT(INT,Npedido)) as Pedido FROM Pedidos");
+            dp = pa.prepareStatement("SELECT  MAX(CONVERT(INT,Npedido)) as Pedido FROM Pedidos");
 
-            rs = st.executeQuery();
+            rs = dp.executeQuery();
 
             while (rs.next()) {
                 int Np = rs.getInt("Pedido");
                 Parametro par = new Parametro();
-                par.setNpedido(Np);
+                par.setNpedido(String.valueOf(Np));
 
                 listaP.add(par);
             }
@@ -567,4 +566,72 @@ public class ObjectPedidos {
             return false;
         }
     }
+
+    public boolean cancelarPedidoA(String Npedido, Parametro pam) {
+        boolean rpta = false;
+        try {
+            dp = pa.prepareStatement("SELECT Estatus,Npedido FROM Pedidos WHERE Npedido = ? AND Estatus<>10");
+            pa.setAutoCommit(false);
+            dp.setString(1, Npedido);
+            rs = dp.executeQuery();
+
+            if (rs.next()) {
+                return false;
+            } else {
+                dp = pa.prepareStatement("DELETE Pedidos WHERE Npedido = ?");
+                dp.setString(1, Npedido);
+                rpta = dp.executeUpdate() == 1 ? true : false;
+                if (rpta) {
+                    rpta = parametro.cancelarPamA(Npedido);
+                    pa.commit();
+                } else {
+                    Conexion.rollbackA(pa);
+                }
+                Conexion.cerrarPhylonA(dp);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rpta;
+    }
+
+    public boolean cancelarPedido(String Npedido, Parametro pam) {
+        boolean rpta = false;
+        try {
+            st = c.prepareStatement("SELECT Estatus,Npedido FROM Pedidos WHERE Npedido = ? AND Estatus<>10");
+            c.setAutoCommit(false);
+            st.setString(1, Npedido);
+            rs = st.executeQuery();
+
+            if (rs.next()) {
+                return false;
+            } else {
+                st = c.prepareStatement("DELETE Pedidos WHERE Npedido = ?");
+                st.setString(1, Npedido);
+                rpta = st.executeUpdate() == 1 ? true : false;
+                if (rpta) {
+                    rpta = parametro.cancelarPam(Npedido);
+                    c.commit();
+                } else {
+                    Conexion.rollback(c);
+                }
+                Conexion.cerrarPrep(st);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rpta;
+    }
+
+    /*public boolean cancelarParametro(String Npedido) {
+        boolean rpta = false;
+        try {
+            dp = pa.prepareStatement("DELETE FROM Parametros WHERE Npedido = ?");
+            dp.setString(1, Npedido);
+            rpta = dp.executeUpdate() == 1 ? true : false;
+        } catch (Exception e) {
+        }
+    }*/
 }

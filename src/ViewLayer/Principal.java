@@ -2,7 +2,6 @@ package ViewLayer;
 
 import ObjectLayer.Hora;
 import ObjectLayer.Usuario;
-import com.sun.glass.events.KeyEvent;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JDialog;
@@ -31,7 +30,7 @@ public class Principal extends javax.swing.JFrame {
     Costos costo;
     Materiales material;
     Almacenes almacen;
-    Programacion pr;
+    frmPlaneacion pr;
     double precioa;
     double preciob;
     String id_usuario = "";
@@ -367,7 +366,7 @@ public class Principal extends javax.swing.JFrame {
 
         JmReportes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/travel_journey_icon-icons.com_55995.png"))); // NOI18N
-        JmReportes.setText("Programación");
+        JmReportes.setText("Planeación");
         JmReportes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JmReportesActionPerformed(evt);
@@ -817,13 +816,13 @@ public class Principal extends javax.swing.JFrame {
 
     private void LoadProgramacion() {
         if (pr == null) {
-            pr = new Programacion();
+            pr = new frmPlaneacion();
             MainContent.add(pr);
             MainContent.getDesktopManager().maximizeFrame(pr);
             pr.setVisible(true);
         } else {
             pr.dispose();
-            pr = new Programacion();
+            pr = new frmPlaneacion();
             MainContent.add(pr);
             MainContent.getDesktopManager().maximizeFrame(pr);
             pr.setVisible(true);

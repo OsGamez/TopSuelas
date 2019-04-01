@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="68f32427-3336-41d4-9578-4d4fb910e196">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Date" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Color" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+ SUM(dp.Pares) as Pares
+FROM Pedidos p 
+INNER JOIN Dpedido dp 
+ON p.Npedido = dp.Npedido
+INNER JOIN ProduccionPhy.dbo.Producto pd
+ON dp.Id_Producto = pd.Id_Producto
+INNER JOIN ProduccionPhy.dbo.Color c
+ON pd.Id_Color = c.Id_Color
+WHERE c.Descripcion = $P{Color} AND DATEPART(WK,p.Fecha_Entrega)= $P{Date}]]>
+	</queryString>
+	<field name="Pares" class="java.lang.Integer"/>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="0" width="25" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="f771c130-d775-4f27-bfcf-e6ef0b25b3c7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[PARES:]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="23" y="0" width="100" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="0ef72008-5c1f-4ef0-823f-33869ca21b40"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Pares}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
