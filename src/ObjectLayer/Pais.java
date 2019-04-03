@@ -15,7 +15,7 @@ public class Pais {
     private boolean Activo;
 
     PreparedStatement st = null;
-    Connection c = Server.getCobranza();
+    Connection c = Conexion.getCobranza();
     ResultSet rs = null;
 
     public Pais() {

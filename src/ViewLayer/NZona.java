@@ -116,10 +116,7 @@ public class NZona extends javax.swing.JDialog {
         if (JtDescripcion.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingresa una descripción", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
         } else if (obj.validarZona(JtDescripcion.getText()) == 0) {
-            Zona zona = new Zona();
-            zona.setDescripcion(JtDescripcion.getText());
-            zona.setActivo(true);
-            if (obj.zonaAdd(zona)) {
+            if (obj.zonaAdd(JtDescripcion.getText(), true)) {
                 JOptionPane.showMessageDialog(this, "Zona Guardada Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                 informacion = "1";
                 Limpiar();

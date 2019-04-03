@@ -100,6 +100,7 @@ public class ObjectUsuarios {
             st.setInt(5, usuario.getId_Usuario());
 
             st.executeUpdate();
+            st.close();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();

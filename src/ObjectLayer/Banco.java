@@ -17,7 +17,7 @@ public class Banco {
     private boolean Activo;
 
     PreparedStatement st = null;
-    Connection c = Server.getCobranza();
+    Connection c = Conexion.getCobranza();
     ResultSet rs = null;
 
     public Banco() {

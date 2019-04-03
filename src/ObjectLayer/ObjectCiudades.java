@@ -14,50 +14,67 @@ public class ObjectCiudades {
 
     PreparedStatement st = null;
     PreparedStatement copy = null;
-    Connection c = Server.getCobranza();
-    Connection rc = Server.getRcobranza();
+    Connection c = Conexion.getCobranza();
+    Connection rc = Conexion.getRcobranza();
     ResultSet rs = null;
 
-    public boolean ciudadAdd(Ciudad ciudad) {
+    public boolean ciudadAdd(String Descripcion, boolean Activo) {
+        boolean rpta = false;
         try {
-            rc.setAutoCommit(false);
+            st = c.prepareStatement("INSERT INTO Ciudades (Descripcion ,Activo)"
+                    + "values(?,?)");
             c.setAutoCommit(false);
-            try {
-                st = c.prepareStatement("INSERT INTO Ciudades (Descripcion ,Activo)"
-                        + "values(?,?)");
-
-                st.setString(1, ciudad.getDescripcion());
-                st.setBoolean(2, ciudad.getActivo());
-                st.executeUpdate();
-
-                copy = rc.prepareStatement("INSERT INTO Ciudades (Descripcion ,Activo)"
-                        + "values(?,?)");
-
-                copy.setString(1, ciudad.getDescripcion());
-                copy.setBoolean(2, ciudad.getActivo());
-                copy.executeUpdate();
-                c.commit();
-                rc.commit();
-                return true;
-            } catch (SQLException ex) {
-                c.rollback();
-                ex.printStackTrace();
-            } finally {
-                try {
-                    if (st != null) {
-                        st.close();
-                    }
-                    if (copy != null) {
-                        copy.close();
-                    }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
+            st.setString(1, Descripcion);
+            st.setBoolean(2, Activo);
+            rpta = st.executeUpdate() == 1 ? true : false;
+            
+            if (rpta) {
+                rpta = ciudadAddCopy(Descripcion, Activo);
+                if (rpta) {
+                    c.commit();
+                } else {
+                    Conexion.rollbackA(c);
                 }
+            } else {
+                Conexion.rollbackA(c);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(ObjectCiudades.class.getName()).log(Level.SEVERE, null, ex);
+            Conexion.cerrarPhylonA(st);
+
+        }catch (SQLException ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPhylonA(st);
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(st);
         }
-        return false;
+        return rpta;
+    }
+
+    public boolean ciudadAddCopy(String Descripcion, boolean Activo) {
+        boolean rpta = false;
+        try {
+            copy = rc.prepareStatement("INSERT INTO Ciudades (Descripcion,Activo)"
+                    + "values(?,?)");
+            rc.setAutoCommit(false);
+            copy.setString(1, Descripcion);
+            copy.setBoolean(2, Activo);
+
+            rpta = copy.executeUpdate() == 1 ? true : false;
+
+            if (rpta) {
+                rc.commit();
+            } else {
+                Conexion.rollbackA(rc);
+            }
+            Conexion.cerrarPrep(copy);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        }
+        return rpta;
     }
 
     public int validarCiudad(String nombre) {
@@ -114,41 +131,121 @@ public class ObjectCiudades {
         return listaCiudades;
     }
 
-    public boolean ciudadDelete(int Id_Ciudad) {
+    public boolean ciudadDelete(int Id_Ciudad, String Descripcion) {
+        boolean rpta = false;
         try {
             st = c.prepareStatement("select c.RazonSocial,c.Id_Ciudad from Clientes c\n"
                     + "inner join Ciudades cd \n"
                     + "on c.Id_Ciudad = cd.Id_Ciudad\n"
                     + "where cd.Id_Ciudad = ? and c.Activo = 1");
+            c.setAutoCommit(false);
             st.setInt(1, Id_Ciudad);
             rs = st.executeQuery();
 
             if (rs.next()) {
                 return false;
             } else {
-                st = c.prepareStatement("UPDATE Ciudades SET Activo = 0 WHERE Id_Ciudad = ?");
-                st.setInt(1, Id_Ciudad);
-                st.execute();
-                return true;
+                st = c.prepareStatement("UPDATE Ciudades SET Activo = 0 WHERE Descripcion = ?");
+                st.setString(1, Descripcion);
+                rpta = st.executeUpdate() == 1 ? true : false;
+                
+                if (rpta) {
+                    rpta = ciudadDeleteCopy(Descripcion);
+                    c.commit();
+                } else {
+                    Conexion.rollbackA(c);
+                }
+                Conexion.cerrarPhylonA(st);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return false;
+           Conexion.cerrarPhylonA(st);
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(st);
         }
+        return rpta;
     }
-
-    public boolean ciudadUpdate(Ciudad ciudad) {
+    
+    public boolean ciudadDeleteCopy(String Descripcion){
+        boolean rpta = false;
         try {
-            st = c.prepareStatement("UPDATE Ciudades SET Descripcion = ? WHERE Id_Ciudad = ?");
+            copy = rc.prepareStatement("UPDATE Ciudades SET Activo = 0 WHERE Descripcion = ?");
+            rc.setAutoCommit(false);
+            copy.setString(1, Descripcion);
+           
+            rpta = copy.executeUpdate() == 1 ? true : false;
 
-            st.setString(1, ciudad.getDescripcion());
-            st.setInt(2, ciudad.getId_Ciudad());
-
-            st.executeUpdate();
-            return true;
+            if (rpta) {
+                rc.commit();
+            } else {
+                Conexion.rollbackA(rc);
+            }
+            Conexion.cerrarPrep(copy);
         } catch (SQLException ex) {
             ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
         }
-        return false;
+        return rpta;
+    }
+
+    public boolean ciudadUpdate(String Descripcion, String Nombre) {
+           boolean rpta = false;
+        try {
+            st = c.prepareStatement("UPDATE Ciudades SET Descripcion = ? WHERE Descripcion = ?");
+            c.setAutoCommit(false);
+            st.setString(1, Descripcion);
+            st.setString(2, Nombre);
+            rpta = st.executeUpdate() == 1 ? true : false;
+            
+            if(rpta){
+                rpta = ciudadUpdateCopy(Descripcion, Nombre);
+                 if (rpta) {
+                    c.commit();
+                } else {
+                    Conexion.rollbackA(c);
+                }
+            }else {
+                Conexion.rollbackA(c);
+            }
+            Conexion.cerrarPhylonA(st);
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPhylonA(st);
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(st);
+        }
+        return rpta;
+    }
+    
+    public boolean ciudadUpdateCopy(String Descripcion, String Nombre){
+           boolean rpta = false;
+        try {
+            copy = rc.prepareStatement("UPDATE Ciudades SET Descripcion = ? WHERE Descripcion = ?");
+            rc.setAutoCommit(false);
+            copy.setString(1, Descripcion);
+            copy.setString(2, Nombre);
+            rpta = copy.executeUpdate() == 1 ? true : false;
+
+            if (rpta) {
+                rc.commit();
+            } else {
+                Conexion.rollbackA(rc);
+            }
+            Conexion.cerrarPrep(copy);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        }
+        return rpta;
     }
 }

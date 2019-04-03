@@ -92,8 +92,8 @@ public class MPais extends javax.swing.JDialog {
                         .addComponent(JbDes)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JtId, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(JtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JtId, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
@@ -124,11 +124,7 @@ public class MPais extends javax.swing.JDialog {
            JOptionPane.showMessageDialog(this, "Ingresa una descripción","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
        }
         else if(obj.validarPais(JtDescripcion.getText())==0){
-            Pais pais = new Pais();
-            pais.setId_Pais(Integer.parseInt(JtId.getText()));
-            pais.setDescripcion(JtDescripcion.getText());
-            pais.setActivo(true);
-            if(obj.paisUpdate(pais)){
+            if(obj.paisUpdate(JtDescripcion.getText(),JtId.getText())){
              JOptionPane.showMessageDialog(this, "Pais Modificado Correctamente!!!","TOP-SUELAS" ,JOptionPane.INFORMATION_MESSAGE);
              dispose();
              informacion = "1";  

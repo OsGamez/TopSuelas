@@ -7,8 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ObjectCostos {
 
@@ -34,6 +32,7 @@ public class ObjectCostos {
             st.setDouble(11, costo.getCosto());
             st.setDouble(12, costo.getPrecio());
             st.executeUpdate();
+            st.close();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -103,6 +102,7 @@ public class ObjectCostos {
             st.setInt(3, ct.getId_Producto());
             st.setInt(4, ct.getPunto());
             st.executeUpdate();
+            st.close();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -116,6 +116,7 @@ public class ObjectCostos {
             st.setDouble(1, ct.getPtolerancia());
             st.setDouble(2, ct.getPcolada());
             st.executeUpdate();
+            st.close();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -137,6 +138,7 @@ public class ObjectCostos {
             st.setDouble(2, ct.getPcolada());
             st.setInt(3, ct.getLinea());
             st.executeUpdate();
+            st.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -151,6 +153,7 @@ public class ObjectCostos {
             st.setDouble(1, precio);
             st.setString(2, cve);
             st.executeUpdate();
+            st.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();

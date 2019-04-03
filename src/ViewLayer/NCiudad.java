@@ -1,4 +1,3 @@
-
 package ViewLayer;
 
 import ObjectLayer.Ciudad;
@@ -13,6 +12,7 @@ public class NCiudad extends javax.swing.JDialog {
 
     ObjectCiudades obj = new ObjectCiudades();
     String informacion = "";
+
     public NCiudad(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -20,10 +20,13 @@ public class NCiudad extends javax.swing.JDialog {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/pluscircleregular_106319.png"));
         setIconImage(icon);
         setLocationRelativeTo(null);
+        Jtid.setVisible(false);
     }
-    public String getInformacion(){
+
+    public String getInformacion() {
         return this.informacion;
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -32,6 +35,7 @@ public class NCiudad extends javax.swing.JDialog {
         JtDescripcion = new javax.swing.JTextField();
         JbGuardar = new javax.swing.JButton();
         JbCancelar = new javax.swing.JButton();
+        Jtid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("NUEVA CIUDAD");
@@ -79,19 +83,23 @@ public class NCiudad extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(JbDes)
-                        .addGap(18, 18, 18)
-                        .addComponent(JtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(JbGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(JbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(JbDes)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Jtid, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addComponent(Jtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbDes)
                     .addComponent(JtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -110,54 +118,71 @@ public class NCiudad extends javax.swing.JDialog {
     }//GEN-LAST:event_JbCancelarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-       Cerrar();
+        Cerrar();
     }//GEN-LAST:event_formWindowClosing
 
     private void JbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbGuardarActionPerformed
-          if(JtDescripcion.getText().isEmpty()){
-           JOptionPane.showMessageDialog(this, "Ingresa una descripción","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-       }else if(obj.validarCiudad(JtDescripcion.getText())==0){
-           Ciudad ciudad = new Ciudad();
-           ciudad.setDescripcion(JtDescripcion.getText());
-           ciudad.setActivo(true);
-           if(obj.ciudadAdd(ciudad)){
-             JOptionPane.showMessageDialog(this, "Ciudad Guardada Correctamente!!!","TOP-SUELAS" ,JOptionPane.INFORMATION_MESSAGE);
-             informacion = "1";
-             Limpiar();
-           }else{
-             JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-             Limpiar();  
-           }
-       }
-        else{
-            JOptionPane.showMessageDialog(null,"La ciudad ya existe!!!","TOP-SUELAS",JOptionPane.WARNING_MESSAGE);
-        }
+        if (JtDescripcion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingresa una descripción", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+        }else if(Jtid.getText().isEmpty()){
+            if (obj.validarCiudad(JtDescripcion.getText()) == 0){
+                Guardar();
+            }
+        }else{
+            if (obj.validarCiudad(JtDescripcion.getText()) == 0){
+                Editar();
+            }
+        }  
     }//GEN-LAST:event_JbGuardarActionPerformed
 
+    private void Guardar() {
+        if (obj.ciudadAdd(JtDescripcion.getText(), true)) {
+            JOptionPane.showMessageDialog(this, "Registro Guardado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            informacion = "1";
+            Limpiar();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            Limpiar();
+        }
+    }
+
+    private void Editar() {
+        if(obj.ciudadUpdate(JtDescripcion.getText(), Jtid.getText())){
+            JOptionPane.showMessageDialog(this, "Registro Editado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            informacion = "1";
+            this.dispose();
+            
+        }else{
+            JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            this.dispose();
+        }
+    }
+
     private void JtDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtDescripcionKeyReleased
-          if (!Character.isLetter(evt.getKeyChar())
+        if (!Character.isLetter(evt.getKeyChar())
                 && !(evt.getKeyChar() == KeyEvent.VK_SPACE)
                 && !(evt.getKeyChar() == KeyEvent.VK_BACK_SPACE)
-                && !(evt.getKeyChar()== KeyEvent.VK_ENTER)
+                && !(evt.getKeyChar() == KeyEvent.VK_ENTER)
                 && !(evt.getKeyCode() == KeyEvent.VK_CAPS_LOCK)) {
-      evt.consume();
-       JOptionPane.showMessageDialog(null,"Escribe solo letras");
-       JtDescripcion.setText("");
-       } 
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Escribe solo letras");
+            JtDescripcion.setText("");
+        }
     }//GEN-LAST:event_JtDescripcionKeyReleased
 
     private void JtDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtDescripcionKeyTyped
         char c = evt.getKeyChar();
-        if(Character.isLowerCase(c)){
-            String cad = (""+c).toUpperCase();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
     }//GEN-LAST:event_JtDescripcionKeyTyped
-    private void Limpiar(){
+    private void Limpiar() {
         this.JtDescripcion.setText("");
         JtDescripcion.requestFocus();
     }
+
     /**
      * @param args the command line arguments
      */
@@ -200,20 +225,22 @@ public class NCiudad extends javax.swing.JDialog {
             }
         });
     }
-    private void Cerrar(){
+
+    private void Cerrar() {
         String botones[] = {"SI", "NO"};
-        int eleccion = JOptionPane.showOptionDialog(this,"¿Deseas cerrar esta ventana?", "TOP-SUELAS", 
+        int eleccion = JOptionPane.showOptionDialog(this, "¿Deseas cerrar esta ventana?", "TOP-SUELAS",
                 0, 0, null, botones, this);
-        if(eleccion == JOptionPane.YES_OPTION){
+        if (eleccion == JOptionPane.YES_OPTION) {
             dispose();
-        }else if(eleccion == JOptionPane.NO_OPTION){
-            
+        } else if (eleccion == JOptionPane.NO_OPTION) {
+
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbCancelar;
     private javax.swing.JLabel JbDes;
     private javax.swing.JButton JbGuardar;
-    private javax.swing.JTextField JtDescripcion;
+    public javax.swing.JTextField JtDescripcion;
+    public javax.swing.JTextField Jtid;
     // End of variables declaration//GEN-END:variables
 }

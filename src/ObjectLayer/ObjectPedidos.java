@@ -592,6 +592,7 @@ public class ObjectPedidos {
 
         } catch (Exception e) {
             e.printStackTrace();
+            Conexion.cerrarPhylonA(dp);
         }
         return rpta;
     }
@@ -625,13 +626,4 @@ public class ObjectPedidos {
         return rpta;
     }
 
-    /*public boolean cancelarParametro(String Npedido) {
-        boolean rpta = false;
-        try {
-            dp = pa.prepareStatement("DELETE FROM Parametros WHERE Npedido = ?");
-            dp.setString(1, Npedido);
-            rpta = dp.executeUpdate() == 1 ? true : false;
-        } catch (Exception e) {
-        }
-    }*/
 }

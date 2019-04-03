@@ -54,6 +54,7 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
         JdFecha.setCalendar(fecha);
         JbBuscar.setToolTipText("HOLA");
         Jmes.setVisible(false);
+        Tb.getTableHeader().setReorderingAllowed(false);
     }
 
     private void LoadColumns() {
@@ -214,7 +215,7 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setMaximizable(true);
-        setTitle("PROGRAMACIÓN");
+        setTitle("PLANEACIÓN");
 
         jLabel1.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         jLabel1.setText("Programa:");
@@ -410,13 +411,13 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
 
             } else {
              if(Serie.equals(A)){
-                if (obj.AddPlaneacionA(p,String.valueOf(Est), pedido)) {
+                if (obj.AddPlaneacionA(p,String.valueOf(Est), pedido)&& obj.CambiarEstatus(String.valueOf(Est), pedido)) {
                         var = "ok";
                     } else {
                         var = "error";
                 } 
              }else{
-                 if (obj.AddPlaneacionA(p,String.valueOf(Est), pedido) && obj.CambiarEstatus(String.valueOf(Est), pedido)) {
+                 if (obj.AddPlaneacionA(p,String.valueOf(Est), pedido)) {
                         var = "ok";
                     } else {
                         var = "ok";

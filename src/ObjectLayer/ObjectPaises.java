@@ -14,51 +14,66 @@ public class ObjectPaises {
 
     PreparedStatement st = null;
     PreparedStatement copy = null;
-    Connection c = Server.getCobranza();
-    Connection rc = Server.getRcobranza();
+    Connection c = Conexion.getCobranza();
+    Connection rc = Conexion.getRcobranza();
     ResultSet rs = null;
 
-    public boolean paisAdd(Pais pais) {
+    public boolean paisAdd(String Descripcion, boolean Activo) {
+        boolean rpta = false;
         try {
+            st = c.prepareStatement("INSERT INTO Paises (Descripcion ,Activo)"
+                    + "values(?,?)");
             c.setAutoCommit(false);
-            rc.setAutoCommit(false);
-            try {
-                st = c.prepareStatement("INSERT INTO Paises (Descripcion ,Activo)"
-                        + "values(?,?)");
+            st.setString(1, Descripcion);
+            st.setBoolean(2, Activo);
+            rpta = st.executeUpdate() == 1 ? true : false;
 
-                st.setString(1, pais.getDescripcion());
-                st.setBoolean(2, pais.getActivo());
-                st.executeUpdate();
-
-                copy = rc.prepareStatement("INSERT INTO Paises (Descripcion ,Activo)"
-                        + "values(?,?)");
-
-                copy.setString(1, pais.getDescripcion());
-                copy.setBoolean(2, pais.getActivo());
-                copy.executeUpdate();
-                c.commit();
-                rc.commit();
-                return true;
-            } catch (SQLException ex) {
-                c.rollback();
-                rc.rollback();
-                ex.printStackTrace();
-            } finally {
-                try {
-                    if (st != null) {
-                        st.close();
-                    }
-                    if (copy != null) {
-                        copy.close();
-                    }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
+            if (rpta) {
+                rpta = paisAddCopy(Descripcion, Activo);
+                if (rpta) {
+                    c.commit();
+                } else {
+                    Conexion.rollbackA(c);
                 }
+            } else {
+                Conexion.rollbackA(c);
             }
+            Conexion.cerrarPhylonA(st);
         } catch (SQLException ex) {
-            Logger.getLogger(ObjectPaises.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            Conexion.cerrarPhylonA(st);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(st);
         }
-        return false;
+        return rpta;
+    }
+
+    public boolean paisAddCopy(String Descripcion, boolean Activo) {
+        boolean rpta = false;
+        try {
+            copy = rc.prepareStatement("INSERT INTO Paises (Descripcion ,Activo)"
+                    + "values(?,?)");
+            rc.setAutoCommit(false);
+            copy.setString(1, Descripcion);
+            copy.setBoolean(2, Activo);
+            rpta = copy.executeUpdate() == 1 ? true : false;
+
+            if (rpta) {
+                rc.commit();
+            } else {
+                Conexion.rollbackA(rc);
+            }
+
+            Conexion.cerrarPrep(copy);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        }
+        return rpta;
     }
 
     public int validarPais(String nombre) {
@@ -112,41 +127,120 @@ public class ObjectPaises {
         return listaPaises;
     }
 
-    public boolean paisDelete(int Id_Pais) {
+    public boolean paisDelete(int Id_Pais, String Descripcion) {
+        boolean rpta = false;
         try {
             st = c.prepareStatement("select c.RazonSocial,p.Id_Pais from Clientes c\n"
                     + "inner join Paises p \n"
                     + "on c.Id_Pais = p.Id_Pais\n"
                     + "where p.Id_Pais = ? and c.Activo = 1");
+            c.setAutoCommit(false);
             st.setInt(1, Id_Pais);
             rs = st.executeQuery();
-
             if (rs.next()) {
                 return false;
             } else {
-                st = c.prepareStatement("UPDATE Paises SET Activo = 0 WHERE Id_Pais = ?");
-                st.setInt(1, Id_Pais);
-                st.execute();
-                return true;
+                st = c.prepareStatement("UPDATE Paises SET Activo = 0 WHERE Descripcion = ?");
+                st.setString(1, Descripcion);
+                rpta = st.executeUpdate() == 1 ? true : false;
+                if (rpta) {
+                    rpta = paisDeleteCopy(Descripcion);
+                    c.commit();
+                } else {
+                    Conexion.rollbackA(c);
+                }
+                Conexion.cerrarPhylonA(st);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return false;
+            Conexion.cerrarPhylonA(st);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(st);
         }
+        return rpta;
     }
 
-    public boolean paisUpdate(Pais pais) {
+    public boolean paisDeleteCopy(String Descripcion) {
+        boolean rpta = false;
         try {
-            st = c.prepareStatement("UPDATE Paises SET Descripcion = ? WHERE Id_Pais = ?");
+            copy = rc.prepareStatement("UPDATE Paises SET Activo = 0 WHERE Descripcion = ?");
+            rc.setAutoCommit(false);
+            copy.setString(1, Descripcion);
 
-            st.setString(1, pais.getDescripcion());
-            st.setInt(2, pais.getId_Pais());
+            rpta = copy.executeUpdate() == 1 ? true : false;
 
-            st.executeUpdate();
-            return true;
+            if (rpta) {
+                rc.commit();
+            } else {
+                Conexion.rollbackA(rc);
+            }
+            Conexion.cerrarPrep(copy);
+
         } catch (SQLException ex) {
             ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
         }
-        return false;
+        return rpta;
+    }
+
+    public boolean paisUpdate(String Descripcion, String Nombre) {
+        boolean rpta = false;
+        try {
+            st = c.prepareStatement("UPDATE Paises SET Descripcion = ? WHERE Descripcion = ?");
+            c.setAutoCommit(false);
+            st.setString(1, Descripcion);
+            st.setString(2, Nombre);
+            rpta = st.executeUpdate() == 1 ? true : false;
+
+            if (rpta) {
+                rpta = paisUpdateCopy(Descripcion, Nombre);
+                if (rpta) {
+                    c.commit();
+                } else {
+                    Conexion.rollbackA(c);
+                }
+            } else {
+                Conexion.rollbackA(c);
+            }
+            Conexion.cerrarPhylonA(st);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPhylonA(st);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(st);
+        }
+        return rpta;
+    }
+
+    public boolean paisUpdateCopy(String Descripcion, String Nombre) {
+        boolean rpta = false;
+        try {
+            copy = rc.prepareStatement("UPDATE Paises SET Descripcion = ? WHERE Descripcion = ?");
+            rc.setAutoCommit(false);
+            copy.setString(1, Descripcion);
+            copy.setString(2, Nombre);
+            rpta = copy.executeUpdate() == 1 ? true : false;
+
+            if (rpta) {
+                rc.commit();
+            } else {
+                Conexion.rollbackA(rc);
+            }
+            Conexion.cerrarPrep(copy);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        }
+        return rpta;
     }
 }

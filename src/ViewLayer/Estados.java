@@ -214,7 +214,9 @@ public class Estados extends javax.swing.JInternalFrame {
             if (row >= 0) {
                 int opcion = JOptionPane.showConfirmDialog(this, "¿Estas seguro de borrar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (opcion == JOptionPane.YES_OPTION) {
-                    if (obj.estadoDelete(Integer.parseInt(JtDatosEstado.getValueAt(row, 0).toString()))) {
+                    int id = Integer.parseInt(JtDatosEstado.getValueAt(row, 0).toString());
+                    String desc = JtDatosEstado.getValueAt(row, 1).toString();
+                    if (obj.estadoDelete(id, desc)) {
                         modelEstado.removeRow(row);
                         JOptionPane.showMessageDialog(null, "Registro eliminado");
                     } else {
@@ -231,14 +233,14 @@ public class Estados extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbEliminarActionPerformed
 
     private void JbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEditarActionPerformed
-        MEstado editar = new MEstado(null, true);
+        NEstado editar = new NEstado(null, true);
         int fila = JtDatosEstado.getSelectedRow();
 
         try {
             if (fila >= 0) {
                 int opcion = JOptionPane.showConfirmDialog(this, "¿Quires editar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (opcion == JOptionPane.YES_OPTION) {
-                    editar.JtId.setText(JtDatosEstado.getValueAt(fila, 0).toString());
+                    editar.Jtid.setText(JtDatosEstado.getValueAt(fila, 1).toString());
                     editar.JtDescripcion.setText(JtDatosEstado.getValueAt(fila, 1).toString());
 
                     editar.setVisible(true);

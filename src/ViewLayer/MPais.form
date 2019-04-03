@@ -43,8 +43,8 @@
                       <Component id="JbDes" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="JtId" min="-2" pref="52" max="-2" attributes="0"/>
                           <Component id="JtDescripcion" min="-2" pref="184" max="-2" attributes="0"/>
+                          <Component id="JtId" min="-2" pref="142" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>

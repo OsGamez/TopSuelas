@@ -14,47 +14,69 @@ public class ObjectAgentes {
 
     PreparedStatement st = null;
     PreparedStatement copy = null;
-    Connection c = Server.getCobranza();
-    Connection rc = Server.getRcobranza();
-    
-    //Connection c = Conexion.getCobranza();
-    //Connection rc = Conexion.getRcobranza();
+    //Connection c = Server.getCobranza();
+    //Connection rc = Server.getRcobranza();
+
+    Connection c = Conexion.getCobranza();
+    Connection rc = Conexion.getRcobranza();
     ResultSet rs = null;
 
-    public boolean agenteAdd(Agente agente) {
+    public boolean agenteAdd(String Descripcion, boolean Activo) {
+        boolean rpta = false;
         try {
+            st = c.prepareStatement("INSERT INTO Agentes (Descripcion ,Activo)"
+                    + "values(?,?)");
             c.setAutoCommit(false);
-            rc.setAutoCommit(false);
-            try {
-                st = c.prepareStatement("INSERT INTO Agentes (Descripcion ,Activo)"
-                        + "values(?,?)");
-                st.setString(1, agente.getDescripcion());
-                st.setBoolean(2, agente.getActivo());
-                st.executeUpdate();
+            st.setString(1, Descripcion);
+            st.setBoolean(2, Activo);
+            rpta = st.executeUpdate() == 1 ? true : false;
 
-                copy = rc.prepareStatement("INSERT INTO Agentes (Descripcion ,Activo)"
-                        + "values(?,?)");
-                copy.setString(1, agente.getDescripcion());
-                copy.setBoolean(2, agente.getActivo());
-                copy.executeUpdate();
-                c.commit();
-                rc.commit();
-                return true;
-            } catch (SQLException ex) {
-                c.rollback();
-                ex.printStackTrace();
-            } finally {
-                if (st != null) {
-                    st.close();
+            if (rpta) {
+                rpta = agregarCopia(Descripcion, Activo);
+                if (rpta) {
+                    c.commit();
+                } else {
+                    Conexion.rollbackA(c);
                 }
-                if (copy != null) {
-                    copy.close();
-                }
+            } else {
+                Conexion.rollbackA(c);
             }
+            Conexion.cerrarPhylonA(st);
         } catch (SQLException ex) {
-            Logger.getLogger(ObjectAgentes.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            Conexion.cerrarPhylonA(st);
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(st);
         }
-        return false;
+        return rpta;
+    }
+
+    public boolean agregarCopia(String Descripcion, boolean Activo) {
+        boolean rpta = false;
+        try {
+            copy = rc.prepareStatement("INSERT INTO Agentes (Descripcion ,Activo)"
+                    + "values(?,?)");
+            rc.setAutoCommit(false);
+            copy.setString(1, Descripcion);
+            copy.setBoolean(2, Activo);
+            rpta = copy.executeUpdate() == 1 ? true : false;
+
+            if (rpta) {
+                rc.commit();
+            } else {
+                Conexion.rollbackA(rc);
+            }
+
+            Conexion.cerrarPrep(copy);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        }
+        return rpta;
     }
 
     public int validarAgente(String nombre) {
@@ -108,38 +130,120 @@ public class ObjectAgentes {
         }
         return listaAgentes;
     }
-    public boolean agenteDelete(int Id_Agente) {
+
+    public boolean agenteDelete(int Id_Agente, String Descripcion) {
+        boolean rpta = false;
         try {
             st = c.prepareStatement("select c.RazonSocial,a.Id_Agente from Clientes c\n"
                     + "inner join Agentes a \n"
                     + "on c.Id_Agente = a.Id_Agente\n"
                     + "where a.Id_Agente = ? and c.Activo = 1");
+            c.setAutoCommit(false);
             st.setInt(1, Id_Agente);
             rs = st.executeQuery();
             if (rs.next()) {
                 return false;
             } else {
-                st = c.prepareStatement("UPDATE Agentes SET Activo = 0 WHERE Id_Agente = ?");
-                st.setInt(1, Id_Agente);
-                st.execute();
-                return true;
+                st = c.prepareStatement("UPDATE Agentes SET Activo = 0 WHERE Descripcion = ?");
+                st.setString(1, Descripcion);
+                rpta = st.executeUpdate() == 1 ? true : false;
+                if (rpta) {
+                    rpta = agenteDeleteCopy(Descripcion);
+                    c.commit();
+                } else {
+                    Conexion.rollbackA(c);
+                }
+                Conexion.cerrarPhylonA(st);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return false;
+            Conexion.cerrarPhylonA(st);
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(st);
         }
+        return rpta;
     }
 
-    public boolean agenteUpdate(Agente agente) {
+    public boolean agenteUpdate(String Descripcion, String Nombre) {
+        boolean rpta = false;
         try {
-            st = c.prepareStatement("UPDATE Agentes SET Descripcion = ? WHERE Id_Agente = ?");
-            st.setString(1, agente.getDescripcion());
-            st.setInt(2, agente.getId_Agente());
-            st.executeUpdate();
-            return true;
+            st = c.prepareStatement("UPDATE Agentes SET Descripcion = ? WHERE Descripcion = ?");
+            c.setAutoCommit(false);
+            st.setString(1, Descripcion);
+            st.setString(2, Nombre);
+            rpta = st.executeUpdate() == 1 ? true : false;
+            
+            if(rpta){
+                rpta = agenteUpdateCopy(Descripcion, Nombre);
+                 if (rpta) {
+                    c.commit();
+                } else {
+                    Conexion.rollbackA(c);
+                }
+            }else {
+                Conexion.rollbackA(c);
+            }
+            Conexion.cerrarPhylonA(st);
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
+            Conexion.cerrarPhylonA(st);
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(st);
         }
-        return false;
+        return rpta;
+    }
+
+    public boolean agenteUpdateCopy(String Descripcion, String Nombre) {
+        boolean rpta = false;
+        try {
+            copy = rc.prepareStatement("UPDATE Agentes SET Descripcion = ? WHERE Descripcion = ?");
+            rc.setAutoCommit(false);
+            copy.setString(1, Descripcion);
+            copy.setString(2, Nombre);
+            rpta = copy.executeUpdate() == 1 ? true : false;
+
+            if (rpta) {
+                rc.commit();
+            } else {
+                Conexion.rollbackA(rc);
+            }
+            Conexion.cerrarPrep(copy);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        }
+        return rpta;
+    }
+    public boolean agenteDeleteCopy(String Descripcion) {
+        boolean rpta = false;
+        try {
+            copy = rc.prepareStatement("UPDATE Agentes SET Activo = 0 WHERE Descripcion = ?");
+            rc.setAutoCommit(false);
+            copy.setString(1, Descripcion);
+           
+            rpta = copy.executeUpdate() == 1 ? true : false;
+
+            if (rpta) {
+                rc.commit();
+            } else {
+                Conexion.rollbackA(rc);
+            }
+            Conexion.cerrarPrep(copy);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        }
+        return rpta;
     }
 }

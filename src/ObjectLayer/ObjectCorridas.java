@@ -26,20 +26,13 @@ public class ObjectCorridas {
             st.setString(4, corrida.getObservaciones());
             st.setBoolean(5, corrida.getActivo());
             st.executeUpdate();
-            c.commit();
+            st.close();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
-        } finally {
-            if (st != null) {
-                try {
-                    st.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(ObjectCorridas.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            return false;
         }
+            return false;
+        
     }
 
     public int validarCorrida(String nombre) {
@@ -115,7 +108,7 @@ public class ObjectCorridas {
             st.setInt(5, corrida.getId_Corrida());
             
             st.executeUpdate();
-      
+            st.close();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();

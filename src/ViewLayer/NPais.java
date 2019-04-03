@@ -115,10 +115,7 @@ public class NPais extends javax.swing.JDialog {
      if(JtDescripcion.getText().isEmpty()){
         JOptionPane.showMessageDialog(this, "Ingresa una descripción","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
        }else if(obj.validarPais(JtDescripcion.getText())==0){
-        Pais pais = new Pais();
-        pais.setDescripcion(JtDescripcion.getText());
-        pais.setActivo(true);
-        if( obj.paisAdd(pais)){
+        if( obj.paisAdd(JtDescripcion.getText(), true)){
         JOptionPane.showMessageDialog(this, "Pais Guardado Correctamente!!!","TOP-SUELAS" ,JOptionPane.INFORMATION_MESSAGE);
         informacion = "1";
         Limpiar(); 

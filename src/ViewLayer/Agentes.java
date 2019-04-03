@@ -233,7 +233,9 @@ public class Agentes extends javax.swing.JInternalFrame {
             if (row >= 0) {
                 int opcion = JOptionPane.showConfirmDialog(this, "¿Estas seguro de borrar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (opcion == JOptionPane.YES_OPTION) {
-                    if (obj.agenteDelete(Integer.parseInt(JtDatosAgente.getValueAt(row, 0).toString()))) {
+                    int id = Integer.parseInt(JtDatosAgente.getValueAt(row, 0).toString());
+                    String desc = JtDatosAgente.getValueAt(row, 1).toString();
+                    if (obj.agenteDelete(id, desc)) {
                         modelAgente.removeRow(row);
                         JOptionPane.showMessageDialog(null, "Registro eliminado");
                     } else {
@@ -250,14 +252,14 @@ public class Agentes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbEliminarActionPerformed
 
     private void JbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEditarActionPerformed
-        MAgente editar = new MAgente(null, true);
+        NAgente editar = new NAgente(null, true);
         int fila = JtDatosAgente.getSelectedRow();
 
         try {
             if (fila >= 0) {
                 int opcion = JOptionPane.showConfirmDialog(this, "¿Quires editar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (opcion == JOptionPane.YES_OPTION) {
-                    editar.JtId.setText(JtDatosAgente.getValueAt(fila, 0).toString());
+                    editar.Jtid.setText(JtDatosAgente.getValueAt(fila, 1).toString());
                     editar.JtDescripcion.setText(JtDatosAgente.getValueAt(fila, 1).toString());
 
                     editar.setVisible(true);
@@ -292,11 +294,8 @@ public class Agentes extends javax.swing.JInternalFrame {
         for (int i = 0; i < listaAgentes.size(); i++) {
             Agente agente = listaAgentes.get(i);
 
-            int id = agente.getId_Agente();
-            String descripcion = agente.getDescripcion();
-
-            modelAgente.setValueAt(id, i, 0);
-            modelAgente.setValueAt(descripcion, i, 1);
+            modelAgente.setValueAt(agente.getId_Agente(), i, 0);
+            modelAgente.setValueAt(agente.getDescripcion(), i, 1);
         }
     }
     private void JtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyReleased

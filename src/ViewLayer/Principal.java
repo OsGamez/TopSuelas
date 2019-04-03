@@ -36,6 +36,8 @@ public class Principal extends javax.swing.JFrame {
     String id_usuario = "";
     String UsuarioChat = "";
     Moldes m;
+    Proveedores pv;
+
     Maquinas maq;
     public Principal() {
         initComponents();
@@ -945,13 +947,26 @@ public class Principal extends javax.swing.JFrame {
             m.setVisible(true);
     }
     
+    private void LoadProveedor() {
+        if (pv == null) {
+            pv = new Proveedores();
+            MainContent.add(pv);
+            MainContent.getDesktopManager().maximizeFrame(pv);
+            pv.setVisible(true);
+        } else {
+            pv.dispose();
+            pv = new Proveedores();
+            MainContent.add(pv);
+            MainContent.getDesktopManager().maximizeFrame(pv);
+            pv.setVisible(true);
+        }
+    }
     private void LoadMaquina(){
             maq = new Maquinas();
             MainContent.add(maq);
             MainContent.getDesktopManager().maximizeFrame(maq);
             maq.setVisible(true);
     }
-  
     private void JmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmSalirActionPerformed
         Cerrar();
     }//GEN-LAST:event_JmSalirActionPerformed
@@ -1045,13 +1060,11 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_JmMoldesActionPerformed
 
     private void JmProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmProveedorActionPerformed
-
+       LoadProveedor();
     }//GEN-LAST:event_JmProveedorActionPerformed
-
-    private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmMaquinasActionPerformed
-        LoadMaquina();
-    }//GEN-LAST:event_JmMaquinasActionPerformed
-
+ private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {                                            
+       LoadMaquina();
+    }  
     /**
      * @param args the command line arguments
      */

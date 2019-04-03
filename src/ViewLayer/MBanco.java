@@ -21,7 +21,6 @@ public class MBanco extends javax.swing.JDialog {
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/edit-validated_40458.png"));
         setIconImage(icon);
-        JtDescripcion.setEnabled(false);
         setLocationRelativeTo(null);
     }
 
@@ -56,7 +55,7 @@ public class MBanco extends javax.swing.JDialog {
         JtId.setEnabled(false);
 
         JbDes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        JbDes.setText("Decripción:");
+        JbDes.setText("Descripción:");
 
         JtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -109,13 +108,16 @@ public class MBanco extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(JbDes)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JbDes)
+                            .addComponent(JbRfc)
+                            .addComponent(JbCta))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(JtCTA, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
                             .addComponent(JtRFC)
                             .addComponent(JtDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                            .addComponent(JtId, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(JtId, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
@@ -123,13 +125,6 @@ public class MBanco extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                         .addComponent(JbCancelar)
                         .addGap(21, 21, 21))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(14, 14, 14)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(JbRfc)
-                        .addComponent(JbCta))
-                    .addContainerGap(291, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,21 +136,18 @@ public class MBanco extends javax.swing.JDialog {
                     .addComponent(JbDes)
                     .addComponent(JtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
-                .addComponent(JtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JbRfc))
                 .addGap(26, 26, 26)
-                .addComponent(JtCTA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JtCTA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JbCta))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbGuardar)
                     .addComponent(JbCancelar))
                 .addGap(48, 48, 48))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(133, 133, 133)
-                    .addComponent(JbRfc)
-                    .addGap(27, 27, 27)
-                    .addComponent(JbCta)
-                    .addContainerGap(137, Short.MAX_VALUE)))
         );
 
         pack();
@@ -174,20 +166,21 @@ public class MBanco extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Faltan datos de ingresar", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
             JtDescripcion.setText("");
         } else {
-            Banco banco = new Banco();
-            banco.setId_Banco(Integer.parseInt(JtId.getText()));
-            banco.setDescripcion(JtDescripcion.getText());
-            banco.setRFC(JtRFC.getText());
-            banco.setCTA(JtCTA.getText());
-            banco.setActivo(true);
-            if (obj.bancoUpdate(banco)) {
+           
+            
+            String Descripcion = JtDescripcion.getText();
+            String RFC = JtRFC.getText();
+            String CTA = JtCTA.getText();
+            String Nombre = JtId.getText();
+            
+            /*if (obj.bancoUpdate(Descripcion, RFC, CTA , Nombre)) {
                 JOptionPane.showMessageDialog(this, "Banco Modificado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                 informacion = "1";
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
                 dispose();
-            }
+            }*/
         }
     }//GEN-LAST:event_JbGuardarActionPerformed
 
