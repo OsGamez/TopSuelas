@@ -170,7 +170,6 @@ public class ReporteMaquinas extends javax.swing.JDialog {
                 try {
                     JasperPrint jprint = JasperFillManager.fillReport(reporte, par, c);
                     JasperViewer view = new JasperViewer(jprint, false);
-                    this.dispose();
                     view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                     view.setVisible(true);
                     view.setIconImage(getImage());

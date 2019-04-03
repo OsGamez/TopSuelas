@@ -178,9 +178,8 @@ public class MMaquinaEstacion extends javax.swing.JDialog {
                 if(maq.getEstaciones()==Integer.parseInt(Jte.getText())){// verifica si el contenido es lo mismo y no sufrio cambios
                     Jte.requestFocus();
                 }else{
-                    //cadena para saber si el valor que ingreso es menor o menor al inicial
                     String resp = (maq.getEstaciones()>Integer.parseInt(Jte.getText()))?"borrar":"insertar";
-                    maq.setEstacionesmod(Integer.parseInt(Jte.getText()));//asignar valor en que se procesara la informacion para el numero de estaciones
+                    maq.setEstacionesmod(Integer.parseInt(Jte.getText()));
                     
                     if(obmaq.MaquinaUpdate(maq, resp)){
                         JOptionPane.showMessageDialog(this, "Modificacion exitosa!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);

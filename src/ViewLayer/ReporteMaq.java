@@ -22,12 +22,12 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
-public class ReporteMoldes extends javax.swing.JDialog {
+public class ReporteMaq extends javax.swing.JDialog {
 
     Connection c = Server.getProduccion();
     Vector<Linea> datos = new Vector<Linea>();
 
-    public ReporteMoldes(java.awt.Frame parent, boolean modal) {
+    public ReporteMaq(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -164,10 +164,10 @@ public class ReporteMoldes extends javax.swing.JDialog {
                     view.setIconImage(getImage());
                     view.setTitle("TOP-SUELAS");
                 } catch (JRException ex) {
-                    Logger.getLogger(ReporteMoldes.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ReporteMaq.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } catch (JRException ex) {
-                Logger.getLogger(ReporteMoldes.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ReporteMaq.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -236,14 +236,18 @@ public class ReporteMoldes extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ReporteMoldes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReporteMaq.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ReporteMoldes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReporteMaq.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ReporteMoldes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReporteMaq.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ReporteMoldes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReporteMaq.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -252,7 +256,7 @@ public class ReporteMoldes extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ReporteMoldes dialog = new ReporteMoldes(new javax.swing.JFrame(), true);
+                ReporteMaq dialog = new ReporteMaq(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
