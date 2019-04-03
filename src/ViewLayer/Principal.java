@@ -36,6 +36,7 @@ public class Principal extends javax.swing.JFrame {
     String id_usuario = "";
     String UsuarioChat = "";
     Moldes m;
+    Proveedores pv;
 
     public Principal() {
         initComponents();
@@ -88,6 +89,7 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem5 = new javax.swing.JMenuItem();
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         MainContent = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -110,10 +112,27 @@ public class Principal extends javax.swing.JFrame {
         JmZona = new javax.swing.JMenuItem();
         JmCPT = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
+        JmPrecios = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        JmProveedor = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
         JmCancelación = new javax.swing.JMenuItem();
         JmPedidos = new javax.swing.JMenuItem();
-        JmPrecios = new javax.swing.JMenuItem();
         JmReportes = new javax.swing.JMenuItem();
+        jMenu8 = new javax.swing.JMenu();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
         JmConfig = new javax.swing.JMenu();
         JmUsuario = new javax.swing.JMenuItem();
         JmProduccion = new javax.swing.JMenu();
@@ -133,16 +152,14 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuItem5.setText("jMenuItem5");
 
+        jCheckBoxMenuItem1.setSelected(true);
+        jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TOP-SUELAS");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
-            }
-        });
-        addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                formKeyPressed(evt);
             }
         });
 
@@ -330,27 +347,13 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(JmCobranza);
 
-        JmCPT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1486504352-checklist-clipboard-inventory-list-report-tasks-todo_81326.png"))); // NOI18N
+        JmCPT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1562683-branding-card-pencil-profile_107062.png"))); // NOI18N
         JmCPT.setText("CPT");
         JmCPT.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/korganizer_task_tasks_list_9500.png"))); // NOI18N
-        jMenu6.setText("Catálogo");
-
-        JmCancelación.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        JmCancelación.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Cancel_icon-icons.com_54824.png"))); // NOI18N
-        JmCancelación.setText("Cancelación");
-        jMenu6.add(JmCancelación);
-
-        JmPedidos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        JmPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Documents_43884.png"))); // NOI18N
-        JmPedidos.setText("Pedidos");
-        JmPedidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JmPedidosActionPerformed(evt);
-            }
-        });
-        jMenu6.add(JmPedidos);
+        jMenu6.setText("Catálogos");
+        jMenu6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         JmPrecios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmPrecios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/cash_40532.png"))); // NOI18N
@@ -362,6 +365,94 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu6.add(JmPrecios);
 
+        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/User_Group-80_icon-icons.com_57247.png"))); // NOI18N
+        jMenuItem1.setText("Clientes");
+        jMenu6.add(jMenuItem1);
+
+        jMenuItem2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/package_box_10801.png"))); // NOI18N
+        jMenuItem2.setText("Almacénes");
+        jMenu6.add(jMenuItem2);
+
+        jMenuItem3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/courses_letters_blackboard_board_staff_book_1475.png"))); // NOI18N
+        jMenuItem3.setText("Conceptos");
+        jMenu6.add(jMenuItem3);
+
+        jMenuItem4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/zapato.png"))); // NOI18N
+        jMenuItem4.setText("Productos");
+        jMenu6.add(jMenuItem4);
+
+        JmProveedor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/money-care_116477.png"))); // NOI18N
+        JmProveedor.setText("Proveedores");
+        JmProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmProveedorActionPerformed(evt);
+            }
+        });
+        jMenu6.add(JmProveedor);
+
+        JmCPT.add(jMenu6);
+
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1486564168-finance-bank-check_81495.png"))); // NOI18N
+        jMenu1.setText("Facturación");
+        jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jMenuItem10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1486564168-finance-bank-check_81495.png"))); // NOI18N
+        jMenuItem10.setText("Facturación");
+        jMenu1.add(jMenuItem10);
+
+        jMenuItem11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/exchange-dollar_icon-icons.com_53141.png"))); // NOI18N
+        jMenuItem11.setText("Refacturación");
+        jMenu1.add(jMenuItem11);
+
+        JmCPT.add(jMenu1);
+
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/move_23058.png"))); // NOI18N
+        jMenu2.setText("Movimientos");
+        jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jMenuItem7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/BagOK_icon-icons.com_51210.png"))); // NOI18N
+        jMenuItem7.setText("Entradas");
+        jMenu2.add(jMenuItem7);
+
+        jMenuItem8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Bagcancel_icon-icons.com_51212.png"))); // NOI18N
+        jMenuItem8.setText("Salidas");
+        jMenu2.add(jMenuItem8);
+
+        jMenuItem9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Refresh_36729.png"))); // NOI18N
+        jMenuItem9.setText("Devoluciones");
+        jMenu2.add(jMenuItem9);
+
+        JmCPT.add(jMenu2);
+
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Shopping-icon_30277.png"))); // NOI18N
+        jMenu3.setText("Pedidos");
+        jMenu3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        JmCancelación.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmCancelación.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Cancel_icon-icons.com_54824.png"))); // NOI18N
+        JmCancelación.setText("Cancelación");
+        jMenu3.add(JmCancelación);
+
+        JmPedidos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Shopping-icon_30277.png"))); // NOI18N
+        JmPedidos.setText("Pedidos");
+        JmPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmPedidosActionPerformed(evt);
+            }
+        });
+        jMenu3.add(JmPedidos);
+
         JmReportes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/travel_journey_icon-icons.com_55995.png"))); // NOI18N
         JmReportes.setText("Planeación");
@@ -370,9 +461,30 @@ public class Principal extends javax.swing.JFrame {
                 JmReportesActionPerformed(evt);
             }
         });
-        jMenu6.add(JmReportes);
+        jMenu3.add(JmReportes);
 
-        JmCPT.add(jMenu6);
+        JmCPT.add(jMenu3);
+
+        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Data_Meter4_37237.png"))); // NOI18N
+        jMenu8.setText("Reportes");
+        jMenu8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jMenuItem12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Data_Meter4_37237.png"))); // NOI18N
+        jMenuItem12.setText("Reportes");
+        jMenu8.add(jMenuItem12);
+
+        jMenuItem13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1486564180-finance-financial-report_81493.png"))); // NOI18N
+        jMenuItem13.setText("Existencias");
+        jMenu8.add(jMenuItem13);
+
+        jMenuItem14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/check-form_116472.png"))); // NOI18N
+        jMenuItem14.setText("Kardex");
+        jMenu8.add(jMenuItem14);
+
+        JmCPT.add(jMenu8);
 
         jMenuBar1.add(JmCPT);
 
@@ -392,7 +504,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(JmConfig);
 
-        JmProduccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/settings_78352.png"))); // NOI18N
+        JmProduccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/42498factory_99134.png"))); // NOI18N
         JmProduccion.setText("Producción");
         JmProduccion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -822,6 +934,21 @@ public class Principal extends javax.swing.JFrame {
             MainContent.getDesktopManager().maximizeFrame(m);
             m.setVisible(true);
     }
+    
+    private void LoadProveedor() {
+        if (pv == null) {
+            pv = new Proveedores();
+            MainContent.add(pv);
+            MainContent.getDesktopManager().maximizeFrame(pv);
+            pv.setVisible(true);
+        } else {
+            pv.dispose();
+            pv = new Proveedores();
+            MainContent.add(pv);
+            MainContent.getDesktopManager().maximizeFrame(pv);
+            pv.setVisible(true);
+        }
+    }
     private void JmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmSalirActionPerformed
         Cerrar();
     }//GEN-LAST:event_JmSalirActionPerformed
@@ -910,25 +1037,13 @@ public class Principal extends javax.swing.JFrame {
         LoadProgramacion();
     }//GEN-LAST:event_JmReportesActionPerformed
 
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        int codigo = evt.getKeyCode();
-
-        switch (codigo) {
-            case KeyEvent.VK_ESCAPE:
-                Cerrar();
-                break;
-            case KeyEvent.VK_F1:
-                LoadAgente();
-            case KeyEvent.VK_F10:
-                LoadMolde();
-            default:
-                break;
-        }
-    }//GEN-LAST:event_formKeyPressed
-
     private void JmMoldesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmMoldesActionPerformed
         LoadMolde();
     }//GEN-LAST:event_JmMoldesActionPerformed
+
+    private void JmProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmProveedorActionPerformed
+       LoadProveedor();
+    }//GEN-LAST:event_JmProveedorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -993,20 +1108,38 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JmPrecios;
     private javax.swing.JMenu JmProduccion;
     private javax.swing.JMenuItem JmProductos;
+    private javax.swing.JMenuItem JmProveedor;
     private javax.swing.JMenuItem JmReportes;
     private javax.swing.JMenuItem JmSalir;
     private javax.swing.JMenuItem JmUsuario;
     private javax.swing.JMenuItem JmZona;
     private javax.swing.JDesktopPane MainContent;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
