@@ -60,7 +60,7 @@ public class ObjectMoldes {
                 m.setMolde(rs.getInt("molde"));
                 m.setCantidad(rs.getInt("cant"));
                 m.setPunto(rs.getInt("punto"));
-                m.setLinea(rs.getShort("linea"));
+                m.setLinea(rs.getShort("suela"));
                 m.setStatus(rs.getString("stat"));
                 listamoldes.add(m);
             }

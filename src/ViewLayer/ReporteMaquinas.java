@@ -1,7 +1,7 @@
 package ViewLayer;
 
 import DataAccesLayer.Server;
-import ObjectLayer.Linea;
+import ObjectLayer.Maquina;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ItemEvent;
@@ -22,19 +22,19 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
-public class ReporteMoldes extends javax.swing.JDialog {
+public class ReporteMaquinas extends javax.swing.JDialog {
 
     Connection c = Server.getProduccion();
-    Vector<Linea> datos = new Vector<Linea>();
+    Vector<Maquina> datos = new Vector<>();
 
-    public ReporteMoldes(java.awt.Frame parent, boolean modal) {
+    public ReporteMaquinas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setLocationRelativeTo(null);
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/Print_icon-icons.com_73705.png"));
         setIconImage(icon);
-        LoadModelMolde();
+        LoadModelMaquina();
         ButtonGroup bg= new ButtonGroup();
         bg.add(Jtt);
         bg.add(Jts);
@@ -42,12 +42,18 @@ public class ReporteMoldes extends javax.swing.JDialog {
         Ocultar();
     }
 
-    private void LoadModelMolde() {
-        Linea ln = new Linea();
-        DefaultComboBoxModel modelLinea = new DefaultComboBoxModel(ln.getLinea());
-        datos = ln.getLinea();
-        Jtl.setModel(modelLinea);
-        Jtl.setSelectedIndex(0);
+    private void LoadModelMaquina() {
+        Maquina maq = new Maquina();
+        DefaultComboBoxModel modelMaq = new DefaultComboBoxModel();
+        
+        datos = maq.getMaquinamodelo();
+        //Jtm.addItem(maq.get);
+        for(int i =0;i<datos.size();i++){
+             Jtm.addItem(String.valueOf(datos.get(i).getMaquina()));
+        }
+        
+        //Jtm.setModel(modelMaq);
+        Jtm.setSelectedIndex(0);
     }
 
     @SuppressWarnings("unchecked")
@@ -55,13 +61,13 @@ public class ReporteMoldes extends javax.swing.JDialog {
     private void initComponents() {
 
         JbCliente = new javax.swing.JLabel();
-        Jtl = new javax.swing.JComboBox<>();
+        Jtm = new javax.swing.JComboBox<>();
         Jts = new javax.swing.JCheckBox();
         Jtt = new javax.swing.JCheckBox();
         JbImprimir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("REPORTE MOLDES");
+        setTitle("REPORTE MAQUINAS");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -69,10 +75,16 @@ public class ReporteMoldes extends javax.swing.JDialog {
         });
 
         JbCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        JbCliente.setText("Suela");
+        JbCliente.setText("Maquina");
+
+        Jtm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtmActionPerformed(evt);
+            }
+        });
 
         Jts.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Jts.setText("Suela");
+        Jts.setText("Maquina");
         Jts.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 JtsItemStateChanged(evt);
@@ -109,7 +121,7 @@ public class ReporteMoldes extends javax.swing.JDialog {
                         .addGap(19, 19, 19)
                         .addComponent(JbCliente)
                         .addGap(33, 33, 33)
-                        .addComponent(Jtl, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Jtm, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(Jts)
@@ -117,7 +129,7 @@ public class ReporteMoldes extends javax.swing.JDialog {
                         .addComponent(Jtt)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(JbImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +137,7 @@ public class ReporteMoldes extends javax.swing.JDialog {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbCliente)
-                    .addComponent(Jtl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Jtm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -142,19 +154,19 @@ public class ReporteMoldes extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JbImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbImprimirActionPerformed
-        String l = datos.get(Jtl.getSelectedIndex()).getDescripcion();
+        String l = String.valueOf(datos.get(Jtm.getSelectedIndex()).getMaquina());
         if (Jts.isSelected() == false && Jtt.isSelected() == false) {
             JOptionPane.showMessageDialog(this, "Selecciona una opcion", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
         } else if (Jts.isSelected() == true && Jtt.isSelected() == true) {
             JOptionPane.showMessageDialog(this, "Solo debes de seleccionar una opcion", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-        } else if (Jts.isSelected() == true && Jtl.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(this, "Selecciona una suela", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+        } else if (Jts.isSelected() == true && Jtm.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Selecciona una maquina", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
         } else {
             String select = (Jtt.isSelected()) ? "" : l;
             try {
                 Map par = new HashMap();
-                par.put("linea", select);
-                JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reports/CatalogoMoldes.jasper"));
+                par.put("maquina", select);
+                JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reports/CatalogoMaquinas.jasper"));
                 try {
                     JasperPrint jprint = JasperFillManager.fillReport(reporte, par, c);
                     JasperViewer view = new JasperViewer(jprint, false);
@@ -163,11 +175,12 @@ public class ReporteMoldes extends javax.swing.JDialog {
                     view.setVisible(true);
                     view.setIconImage(getImage());
                     view.setTitle("TOP-SUELAS");
+                    
                 } catch (JRException ex) {
-                    Logger.getLogger(ReporteMoldes.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ReporteMaquinas.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } catch (JRException ex) {
-                Logger.getLogger(ReporteMoldes.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ReporteMaquinas.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -194,23 +207,27 @@ public class ReporteMoldes extends javax.swing.JDialog {
     private void JtsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JtsActionPerformed
+
+    private void JtmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtmActionPerformed
     private void Cerrar() {
 //        String botones[] = {"SI", "NO"};
 //        int eleccion = JOptionPane.showOptionDialog(this, "¿Deseas cerrar esta ventana?", "TOP-SUELAS",
 //                0, 0, null, botones, this);
 //        if (eleccion == JOptionPane.YES_OPTION) {
-           dispose();
+            dispose();
 //        } else if (eleccion == JOptionPane.NO_OPTION) {
 //        }
     }
 
     private void Ocultar() {
-        Jtl.setVisible(false);
+        Jtm.setVisible(false);
         JbCliente.setVisible(false);
     }
 
     private void Mostrar() {
-        Jtl.setVisible(true);
+        Jtm.setVisible(true);
         JbCliente.setVisible(true);
     }
 
@@ -236,14 +253,18 @@ public class ReporteMoldes extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ReporteMoldes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReporteMaquinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ReporteMoldes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReporteMaquinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ReporteMoldes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReporteMaquinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ReporteMoldes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReporteMaquinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -252,7 +273,7 @@ public class ReporteMoldes extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ReporteMoldes dialog = new ReporteMoldes(new javax.swing.JFrame(), true);
+                ReporteMaquinas dialog = new ReporteMaquinas(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -266,7 +287,7 @@ public class ReporteMoldes extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JbCliente;
     private javax.swing.JButton JbImprimir;
-    private javax.swing.JComboBox<String> Jtl;
+    private javax.swing.JComboBox<String> Jtm;
     private javax.swing.JCheckBox Jts;
     private javax.swing.JCheckBox Jtt;
     // End of variables declaration//GEN-END:variables
