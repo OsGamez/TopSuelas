@@ -27,6 +27,7 @@ public class ObjectGastos {
             st.setDouble(5, g.getGa());
             st.setDouble(6, g.getMi());
             st.executeUpdate();
+            st.close();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -133,6 +134,7 @@ public class ObjectGastos {
             st.setInt(6, g.getAño());
 
             st.executeUpdate();
+            st.close();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();

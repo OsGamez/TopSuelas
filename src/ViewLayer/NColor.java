@@ -119,7 +119,7 @@ public class NColor extends javax.swing.JDialog {
     private void JbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbGuardarActionPerformed
         if(JtDescripcion.getText().isEmpty()){
            JOptionPane.showMessageDialog(this, "Ingresa una descripción","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-       }else if(obj.validadrColor(JtDescripcion.getText())==0){
+       }else if(obj.validarColor(JtDescripcion.getText())==0){
            Color color = new Color();
            color.setDescripcion(JtDescripcion.getText());
            color.setActivo(true);

@@ -20,35 +20,21 @@ public class ObjectProductos {
 
     public boolean productoAdd(Producto producto) {
         try {
-            c.setAutoCommit(false);
-            try {
-                st = c.prepareStatement("INSERT INTO Producto (Id_Linea,Descripcion, Observaciones, Id_Color, Id_Corrida, Activo)"
-                        + "values(?,?,?,?,?,?)");
+            st = c.prepareStatement("INSERT INTO Producto (Id_Linea,Descripcion, Observaciones, Id_Color, Id_Corrida, Activo)"
+                    + "values(?,?,?,?,?,?)");
 
-                st.setInt(1, producto.getId_Linea());
-                st.setString(2, producto.getDescripcion());
-                st.setString(3, producto.getObservaciones());
-                st.setInt(4, producto.getId_Color());
-                st.setInt(5, producto.getId_Corrida());
-                st.setBoolean(6, producto.getActivo());
+            st.setInt(1, producto.getId_Linea());
+            st.setString(2, producto.getDescripcion());
+            st.setString(3, producto.getObservaciones());
+            st.setInt(4, producto.getId_Color());
+            st.setInt(5, producto.getId_Corrida());
+            st.setBoolean(6, producto.getActivo());
 
-                st.executeUpdate();
-                c.commit();
-                return true;
-            } catch (SQLException ex) {
-                c.rollback();
-                ex.printStackTrace();
-            } finally {
-                try {
-                    if (st != null) {
-                        st.close();
-                    }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-            }
+            st.executeUpdate();
+            st.close();
+            return true;
         } catch (SQLException ex) {
-            Logger.getLogger(ObjectProductos.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         return false;
     }
@@ -149,14 +135,14 @@ public class ObjectProductos {
         return listaProductos;
     }
 
-    public ArrayList<Producto>GetByCosto(String filtro){
+    public ArrayList<Producto> GetByCosto(String filtro) {
         ArrayList<Producto> listaProductos = new ArrayList<Producto>();
         try {
-           String sql = "SELECT * FROM Producto WHERE Descripcion LIKE '%"+filtro+"%'"+
-                   "ORDER BY Descripcion"; 
-           sta = c.createStatement();
-           rs = sta.executeQuery(sql);
-           while(rs.next()){
+            String sql = "SELECT * FROM Producto WHERE Descripcion LIKE '%" + filtro + "%'"
+                    + "ORDER BY Descripcion";
+            sta = c.createStatement();
+            rs = sta.executeQuery(sql);
+            while (rs.next()) {
                 Producto producto = new Producto();
                 producto.setId_Linea(rs.getInt("Id_Linea"));
                 producto.setId_Color(rs.getInt("Id_Color"));
@@ -165,13 +151,13 @@ public class ObjectProductos {
                 producto.setDescripcion(rs.getString("Descripcion"));
                 producto.setObservaciones(rs.getString("Observaciones"));
                 listaProductos.add(producto);
-           }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return listaProductos;
     }
-    
+
     public boolean productoUpdate(Producto producto) {
         try {
             st = c.prepareStatement("UPDATE Producto SET Descripcion=?,Observaciones=?,"
@@ -185,6 +171,7 @@ public class ObjectProductos {
             st.setInt(6, producto.getId_Producto());
 
             st.executeUpdate();
+            st.close();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();

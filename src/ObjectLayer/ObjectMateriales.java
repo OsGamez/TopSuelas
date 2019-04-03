@@ -20,39 +20,30 @@ public class ObjectMateriales {
 
     public boolean addMaterial(Material mat) {
         try {
-            c.setAutoCommit(false);
-            try {
-                st = c.prepareStatement("INSERT INTO Materiales(Almacen,CveMat,Descripcion,CodigoSat,UdeC,Fcompra,UdeCs,Fconsumo,UltimoCosto,"
-                        + "CostoCosteo,CantidadMinima,CantidadMaxima,TipoCosto,Divisa)"
-                        + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                st.setInt(1, mat.getAlmacen());
-                st.setString(2, mat.getCveMat());
-                st.setString(3, mat.getDescripcion());
-                st.setString(4, mat.getCodigoSat());
-                st.setString(5, mat.getUdeC());
-                st.setDouble(6, mat.getFcompra());
-                st.setString(7, mat.getUdeCs());
-                st.setDouble(8, mat.getFconsumo());
-                st.setDouble(9, mat.getUltimoCosto());
-                st.setDouble(10, mat.getCostoCosteo());
-                st.setDouble(11, mat.getCantidadMinima());
-                st.setDouble(12, mat.getCantidadMaxima());
-                st.setString(13, mat.getTipoCosto());
-                st.setString(14, mat.getDivisa());
-                st.executeUpdate();
-                c.commit();
-                return true;
-            } catch (SQLException ex) {
-                c.rollback();
-                ex.printStackTrace();
-            } finally {
-                if (st != null) {
-                    st.close();
-                }
-            }
+            st = c.prepareStatement("INSERT INTO Materiales(Almacen,CveMat,Descripcion,CodigoSat,UdeC,Fcompra,UdeCs,Fconsumo,UltimoCosto,"
+                    + "CostoCosteo,CantidadMinima,CantidadMaxima,TipoCosto,Divisa)"
+                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            st.setInt(1, mat.getAlmacen());
+            st.setString(2, mat.getCveMat());
+            st.setString(3, mat.getDescripcion());
+            st.setString(4, mat.getCodigoSat());
+            st.setString(5, mat.getUdeC());
+            st.setDouble(6, mat.getFcompra());
+            st.setString(7, mat.getUdeCs());
+            st.setDouble(8, mat.getFconsumo());
+            st.setDouble(9, mat.getUltimoCosto());
+            st.setDouble(10, mat.getCostoCosteo());
+            st.setDouble(11, mat.getCantidadMinima());
+            st.setDouble(12, mat.getCantidadMaxima());
+            st.setString(13, mat.getTipoCosto());
+            st.setString(14, mat.getDivisa());
+            st.executeUpdate();
+            st.close();
+            return true;
         } catch (SQLException ex) {
-            Logger.getLogger(ObjectGastos.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
+
         return false;
     }
 
@@ -66,7 +57,7 @@ public class ObjectMateriales {
                 Material mat = new Material();
                 mat.setAlmacen(rs.getInt("Almacen"));
                 mat.setCveMat(rs.getString("CveMat"));
-                mat.setDescripcion( rs.getString("Descripcion"));
+                mat.setDescripcion(rs.getString("Descripcion"));
                 mat.setCodigoSat(rs.getString("CodigoSat"));
                 mat.setUdeC(rs.getString("UdeC"));
                 mat.setFcompra(rs.getDouble("Fcompra"));
@@ -90,15 +81,15 @@ public class ObjectMateriales {
     public ArrayList<Material> materialSearch(String filtro) {
         ArrayList<Material> listaMat = new ArrayList<Material>();
         try {
-            st = c.prepareStatement("SELECT * FROM Materiales WHERE Descripcion LIKE'%" + filtro + "%'"+
-                    "ORDER BY Descripcion");
+            st = c.prepareStatement("SELECT * FROM Materiales WHERE Descripcion LIKE'%" + filtro + "%'"
+                    + "ORDER BY Descripcion");
             rs = st.executeQuery();
 
             while (rs.next()) {
                 Material mat = new Material();
                 mat.setAlmacen(rs.getInt("Almacen"));
                 mat.setCveMat(rs.getString("CveMat"));
-                mat.setDescripcion( rs.getString("Descripcion"));
+                mat.setDescripcion(rs.getString("Descripcion"));
                 mat.setCodigoSat(rs.getString("CodigoSat"));
                 mat.setUdeC(rs.getString("UdeC"));
                 mat.setFcompra(rs.getDouble("Fcompra"));
@@ -118,26 +109,26 @@ public class ObjectMateriales {
         return listaMat;
     }
 
-    public ArrayList<Material>GetByCosto(String filtro){
+    public ArrayList<Material> GetByCosto(String filtro) {
         ArrayList<Material> listaMat = new ArrayList<Material>();
         try {
-           String sql = "SELECT * FROM Materiales WHERE Descripcion LIKE'%"+filtro+"%'"+
-                   "ORDER BY Descripcion"; 
-           sta = c.createStatement();
-           rs = sta.executeQuery(sql);
-           while(rs.next()){
+            String sql = "SELECT * FROM Materiales WHERE Descripcion LIKE'%" + filtro + "%'"
+                    + "ORDER BY Descripcion";
+            sta = c.createStatement();
+            rs = sta.executeQuery(sql);
+            while (rs.next()) {
                 Material mat = new Material();
                 mat.setCveMat(rs.getString("CveMat"));
-                mat.setDescripcion( rs.getString("Descripcion"));
+                mat.setDescripcion(rs.getString("Descripcion"));
                 mat.setCostoCosteo(rs.getDouble("CostoCosteo"));
                 listaMat.add(mat);
-           }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return listaMat;
     }
-    
+
     public ArrayList<Material> GetPrecio(String filtro) {
         ArrayList<Material> listaMat = new ArrayList<Material>();
         try {
@@ -175,6 +166,7 @@ public class ObjectMateriales {
             st.setInt(13, mat.getAlmacen());
             st.setString(14, mat.getCveMat());
             st.executeUpdate();
+            st.close();
             return true;
 
         } catch (SQLException ex) {

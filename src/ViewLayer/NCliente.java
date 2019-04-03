@@ -1,4 +1,3 @@
-
 package ViewLayer;
 
 import ObjectLayer.Agente;
@@ -22,7 +21,6 @@ import java.awt.event.KeyEvent;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
-
 public class NCliente extends javax.swing.JDialog {
 
     ObjectClientes obj = new ObjectClientes();
@@ -33,7 +31,7 @@ public class NCliente extends javax.swing.JDialog {
     ObjectPaises ps = new ObjectPaises();
     ObjectZonas zn = new ObjectZonas();
     String informacion = "";
-    
+
     public NCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -47,42 +45,49 @@ public class NCliente extends javax.swing.JDialog {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/pluscircleregular_106319.png"));
         setIconImage(icon);
         setLocationRelativeTo(null);
+        Jtid.setVisible(false);
     }
-    public String getInformacion(){
+
+    public String getInformacion() {
         return this.informacion;
     }
-    private void LoadModelAgente()
-    {
+
+    private void LoadModelAgente() {
         Agente ag = new Agente();
         DefaultComboBoxModel modelAgente = new DefaultComboBoxModel(ag.getAgentes());
         JcAgente.setModel(modelAgente);
     }
-    private void LoadModelCiudad(){
+
+    private void LoadModelCiudad() {
         Ciudad cd = new Ciudad();
         DefaultComboBoxModel modelCiudad = new DefaultComboBoxModel(cd.getCiudades());
         JcCiudad.setModel(modelCiudad);
     }
-    private void LoadModelBanco(){
+
+    private void LoadModelBanco() {
         Banco bn = new Banco();
-        DefaultComboBoxModel modelBanco = new  DefaultComboBoxModel(bn.getBancos());
+        DefaultComboBoxModel modelBanco = new DefaultComboBoxModel(bn.getBancos());
         JcBanco.setModel(modelBanco);
     }
-    private void LoadModelEstado(){
+
+    private void LoadModelEstado() {
         Estado ed = new Estado();
         DefaultComboBoxModel modelEstado = new DefaultComboBoxModel(ed.getEstados());
         JcEstado.setModel(modelEstado);
     }
-    private void LoadModelPais(){
+
+    private void LoadModelPais() {
         Pais ps = new Pais();
         DefaultComboBoxModel modelPais = new DefaultComboBoxModel(ps.getPaises());
         JcPais.setModel(modelPais);
     }
-    private void LoadModelZona(){
+
+    private void LoadModelZona() {
         Zona zn = new Zona();
         DefaultComboBoxModel modelZona = new DefaultComboBoxModel(zn.getZonas());
         JcZona.setModel(modelZona);
     }
-  
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -142,6 +147,7 @@ public class NCliente extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         JtTel2 = new javax.swing.JTextField();
         JtTel3 = new javax.swing.JTextField();
+        Jtid = new javax.swing.JTextField();
         JbGuardar = new javax.swing.JButton();
         JbCancelar = new javax.swing.JButton();
 
@@ -488,7 +494,10 @@ public class NCliente extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(Pane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(JtColonia)
-                            .addComponent(JtEmail))))
+                            .addComponent(JtEmail)
+                            .addGroup(Pane2Layout.createSequentialGroup()
+                                .addComponent(Jtid, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(17, 17, 17))
         );
         Pane2Layout.setVerticalGroup(
@@ -536,7 +545,8 @@ public class NCliente extends javax.swing.JDialog {
                 .addGap(33, 33, 33)
                 .addGroup(Pane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(JtTel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JtTel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Jtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(Pane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -600,24 +610,48 @@ public class NCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbCancelarActionPerformed
-       Cerrar();
+        Cerrar();
     }//GEN-LAST:event_JbCancelarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         Cerrar();
     }//GEN-LAST:event_formWindowClosing
 
+    private void variables() {
+        
+    }
+
     private void JbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbGuardarActionPerformed
-        Agente agente = (Agente)JcAgente.getSelectedItem();
-        Ciudad ciudad = (Ciudad)JcCiudad.getSelectedItem();
-        Banco banco = (Banco)JcBanco.getSelectedItem();
-        Estado estado = (Estado)JcEstado.getSelectedItem();
-        Pais pais = (Pais)JcPais.getSelectedItem();
-        Zona zona = (Zona)JcZona.getSelectedItem();
+
+        if (JtRs.getText().isEmpty() || JtRFC.getText().isEmpty() || JtCta.getText().isEmpty()
+                || JtCod.getText().isEmpty() || JtContacto.getText().isEmpty()
+                || JtCf.getText().isEmpty() || JtTel.getText().isEmpty() || JcAgente.getSelectedIndex() == 0
+                || JcCiudad.getSelectedIndex() == 0 || JcBanco.getSelectedIndex() == 0 || JcEstado.getSelectedIndex() == 0
+                || JcPais.getSelectedIndex() == 0 || JcZona.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Falta datos de ingresar verifica", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+        }else if(Jtid.getText().isEmpty()){
+            if (obj.validarCliente(JtRs.getText()) == 0){
+                Guardar();
+            }else {
+            JOptionPane.showMessageDialog(null, "Este registro ya existe", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+        }
+        }else{
+             Editar();
+        
+        }  
+    }//GEN-LAST:event_JbGuardarActionPerformed
+
+    private void Guardar() {
+        Agente agente = (Agente) JcAgente.getSelectedItem();
+        Ciudad ciudad = (Ciudad) JcCiudad.getSelectedItem();
+        Banco banco = (Banco) JcBanco.getSelectedItem();
+        Estado estado = (Estado) JcEstado.getSelectedItem();
+        Pais pais = (Pais) JcPais.getSelectedItem();
+        Zona zona = (Zona) JcZona.getSelectedItem();
         String rs = JtRs.getText();
         String rfc = JtRFC.getText();
         String cta = JtCta.getText();
-        int cred =  (int) JsCred.getValue();
+        int cred = (int) JsCred.getValue();
         String cp = JtCP.getText();
         String email = JtEmail.getText();
         String col = JtColonia.getText();
@@ -632,46 +666,119 @@ public class NCliente extends javax.swing.JDialog {
         String tel = JtTel.getText();
         String tel2 = JtTel2.getText();
         String tel3 = JtTel3.getText();
-         
-        if(JtRs.getText().isEmpty() || JtRFC.getText().isEmpty() || JtCta.getText().isEmpty()  ||
-           JtCod.getText().isEmpty() || JtContacto.getText().isEmpty() ||
-           JtCf.getText().isEmpty() || JtTel.getText().isEmpty()|| JcAgente.getSelectedIndex()==0||
-           JcCiudad.getSelectedIndex()==0 || JcBanco.getSelectedIndex()==0 || JcEstado.getSelectedIndex()==0 
-           || JcPais.getSelectedIndex()==0 || JcZona.getSelectedIndex()==0){
-           JOptionPane.showMessageDialog(this, "Falta datos de ingresar verifica","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-          }else if(obj.validarCliente(JtRs.getText())==0){
-                 Cliente cl = new Cliente();
-                 cl.setRazonSocial(rs);cl.setCodigo(cod);cl.setId_Ciudad(ciudad.getId_Ciudad());
-                 cl.setRFC(rfc);cl.setId_Agente(agente.getId_Agente());cl.setCP(cp);cl.setId_Zona(zona.getId_Zona());
-                 cl.setColonia(col);cl.setCalle(Calle);cl.setNumeroCalle(Num);cl.setTelefono(tel);
-                 cl.setId_Pais(pais.getId_Pais());cl.setId_Estado(estado.getId_Estado());cl.setCuenta(cta);
-                 cl.setDiasCredito(cred);cl.setEmail(email);cl.setContacto(cont);cl.setObservaciones(obv);
-                 cl.setUsoCfdi(cf);cl.setFormaPago(Fpago);cl.setMetodoPago(Mpago);cl.setId_Banco(banco.getId_Banco());cl.setActivo(true);
-                 cl.setTelefono2(tel2);cl.setTelefono3(tel3);
-                 if( obj.clientesAdd(cl)){
-                   JOptionPane.showMessageDialog(this, "Cliente Guardado Correctamente!!!","TOP-SUELAS" ,JOptionPane.INFORMATION_MESSAGE); 
-                   informacion = "1";
-                   Limpiar();
-                 }else{
-                   JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE); 
-                   Limpiar(); 
-                 }
-                 //obj.addCopy(cliente);
-             }else{
-                 JOptionPane.showMessageDialog(null,"El cliente ya existe","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-             }
-    }//GEN-LAST:event_JbGuardarActionPerformed
+        
+        Cliente cl = new Cliente();
+        cl.setRazonSocial(rs);
+        cl.setCodigo(cod);
+        cl.setId_Ciudad(ciudad.getId_Ciudad());
+        cl.setRFC(rfc);
+        cl.setId_Agente(agente.getId_Agente());
+        cl.setCP(cp);
+        cl.setId_Zona(zona.getId_Zona());
+        cl.setColonia(col);
+        cl.setCalle(Calle);
+        cl.setNumeroCalle(Num);
+        cl.setTelefono(tel);
+        cl.setId_Pais(pais.getId_Pais());
+        cl.setId_Estado(estado.getId_Estado());
+        cl.setCuenta(cta);
+        cl.setDiasCredito(cred);
+        cl.setEmail(email);
+        cl.setContacto(cont);
+        cl.setObservaciones(obv);
+        cl.setUsoCfdi(cf);
+        cl.setFormaPago(Fpago);
+        cl.setMetodoPago(Mpago);
+        cl.setId_Banco(banco.getId_Banco());
+        cl.setActivo(true);
+        cl.setTelefono2(tel2);
+        cl.setTelefono3(tel3);
+        
+         if (obj.clientesAdd(cl)) {
+                JOptionPane.showMessageDialog(this, "Registro Guardado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                informacion = "1";
+                Limpiar();
+            } else {
+                JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                Limpiar();
+            }
+    }
 
+    private void Editar(){
+        int Id = Integer.parseInt(Jtid.getText());
+        Agente agente = (Agente) JcAgente.getSelectedItem();
+        Ciudad ciudad = (Ciudad) JcCiudad.getSelectedItem();
+        Banco banco = (Banco) JcBanco.getSelectedItem();
+        Estado estado = (Estado) JcEstado.getSelectedItem();
+        Pais pais = (Pais) JcPais.getSelectedItem();
+        Zona zona = (Zona) JcZona.getSelectedItem();
+        String rs = JtRs.getText();
+        String rfc = JtRFC.getText();
+        String cta = JtCta.getText();
+        int cred = (int) JsCred.getValue();
+        String cp = JtCP.getText();
+        String email = JtEmail.getText();
+        String col = JtColonia.getText();
+        String Calle = JtCalle.getText();
+        String Num = JtNum.getText();
+        String cod = JtCod.getText();
+        String cont = JtContacto.getText();
+        String obv = JaObv.getText();
+        String Fpago = JcFpago.getSelectedItem().toString();
+        String Mpago = JcMpago.getSelectedItem().toString();
+        String cf = JtCf.getText();
+        String tel = JtTel.getText();
+        String tel2 = JtTel2.getText();
+        String tel3 = JtTel3.getText();
+        
+        Cliente cl = new Cliente();
+        cl.setId_Cliente(Id);
+        cl.setRazonSocial(rs);
+        cl.setCodigo(cod);
+        cl.setId_Ciudad(ciudad.getId_Ciudad());
+        cl.setRFC(rfc);
+        cl.setId_Agente(agente.getId_Agente());
+        cl.setCP(cp);
+        cl.setId_Zona(zona.getId_Zona());
+        cl.setColonia(col);
+        cl.setCalle(Calle);
+        cl.setNumeroCalle(Num);
+        cl.setTelefono(tel);
+        cl.setId_Pais(pais.getId_Pais());
+        cl.setId_Estado(estado.getId_Estado());
+        cl.setCuenta(cta);
+        cl.setDiasCredito(cred);
+        cl.setEmail(email);
+        cl.setContacto(cont);
+        cl.setObservaciones(obv);
+        cl.setUsoCfdi(cf);
+        cl.setFormaPago(Fpago);
+        cl.setMetodoPago(Mpago);
+        cl.setId_Banco(banco.getId_Banco());
+        cl.setActivo(true);
+        cl.setTelefono2(tel2);
+        cl.setTelefono3(tel3);
+        
+         if (obj.clienteUpdate(cl)) {
+                JOptionPane.showMessageDialog(this, "Registro Editado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                informacion = "1";
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                Limpiar();
+            }
+    }
+    
     private void JtRsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtRsKeyReleased
-          if (!Character.isLetter(evt.getKeyChar())
+        if (!Character.isLetter(evt.getKeyChar())
                 && !(evt.getKeyChar() == KeyEvent.VK_SPACE)
                 && !(evt.getKeyChar() == KeyEvent.VK_BACK_SPACE)
-                && !(evt.getKeyChar()== KeyEvent.VK_ENTER)
+                && !(evt.getKeyChar() == KeyEvent.VK_ENTER)
                 && !(evt.getKeyCode() == KeyEvent.VK_CAPS_LOCK)) {
-      evt.consume();
-       JOptionPane.showMessageDialog(null,"Escribe solo letras");
-       JtRs.setText("");
-       } 
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Escribe solo letras");
+            JtRs.setText("");
+        }
     }//GEN-LAST:event_JtRsKeyReleased
 
     private void JtTelKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtTelKeyReleased
@@ -686,7 +793,7 @@ public class NCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_JtTelKeyReleased
 
     private void JtNumKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtNumKeyReleased
-         /* if(!Character.isDigit(evt.getKeyCode())
+        /* if(!Character.isDigit(evt.getKeyCode())
             &&!(evt.getKeyChar() == KeyEvent.VK_BACK_SPACE)
             && !(evt.getKeyChar()== KeyEvent.VK_ENTER)){
             evt.consume();
@@ -696,7 +803,7 @@ public class NCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_JtNumKeyReleased
 
     private void JtCPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtCPKeyReleased
-          /*if(!Character.isDigit(evt.getKeyCode())
+        /*if(!Character.isDigit(evt.getKeyCode())
             &&!(evt.getKeyChar() == KeyEvent.VK_BACK_SPACE)
             && !(evt.getKeyChar()== KeyEvent.VK_ENTER)
             && !(evt.getKeyCode() == KeyEvent.VK_CAPS_LOCK)){
@@ -708,8 +815,8 @@ public class NCliente extends javax.swing.JDialog {
 
     private void JtRsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtRsKeyTyped
         char c = evt.getKeyChar();
-        if(Character.isLowerCase(c)){
-            String cad = (""+c).toUpperCase();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
@@ -717,8 +824,8 @@ public class NCliente extends javax.swing.JDialog {
 
     private void JtRFCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtRFCKeyTyped
         char c = evt.getKeyChar();
-        if(Character.isLowerCase(c)){
-            String cad = (""+c).toUpperCase();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
@@ -726,17 +833,17 @@ public class NCliente extends javax.swing.JDialog {
 
     private void JaObvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JaObvKeyTyped
         char c = evt.getKeyChar();
-        if(Character.isLowerCase(c)){
-            String cad = (""+c).toUpperCase();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
     }//GEN-LAST:event_JaObvKeyTyped
 
     private void JtCalleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtCalleKeyTyped
-       char c = evt.getKeyChar();
-        if(Character.isLowerCase(c)){
-            String cad = (""+c).toUpperCase();
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
@@ -744,8 +851,8 @@ public class NCliente extends javax.swing.JDialog {
 
     private void JtColoniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtColoniaKeyTyped
         char c = evt.getKeyChar();
-        if(Character.isLowerCase(c)){
-            String cad = (""+c).toUpperCase();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
@@ -753,8 +860,8 @@ public class NCliente extends javax.swing.JDialog {
 
     private void JtCtaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtCtaKeyTyped
         char c = evt.getKeyChar();
-        if(Character.isLowerCase(c)){
-            String cad = (""+c).toUpperCase();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
@@ -762,17 +869,17 @@ public class NCliente extends javax.swing.JDialog {
 
     private void JtCodKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtCodKeyTyped
         char c = evt.getKeyChar();
-        if(Character.isLowerCase(c)){
-            String cad = (""+c).toUpperCase();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
     }//GEN-LAST:event_JtCodKeyTyped
 
     private void JtCfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtCfKeyTyped
-       char c = evt.getKeyChar();
-        if(Character.isLowerCase(c)){
-            String cad = (""+c).toUpperCase();
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
@@ -787,7 +894,7 @@ public class NCliente extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_JtContactoKeyTyped
 
-    private void Limpiar(){
+    private void Limpiar() {
         this.JtRs.setText("");
         this.JtColonia.setText("");
         this.JaObv.setText("");
@@ -817,6 +924,7 @@ public class NCliente extends javax.swing.JDialog {
         JtRs.requestFocus();
         JtRs.requestFocus();
     }
+
     /**
      * @param args the command line arguments
      */
@@ -859,17 +967,18 @@ public class NCliente extends javax.swing.JDialog {
             }
         });
     }
-    private void Cerrar(){
+
+    private void Cerrar() {
         String botones[] = {"SI", "NO"};
-        int eleccion = JOptionPane.showOptionDialog(this,"¿Deseas cerrar esta ventana?", "TOP-SUELAS", 
+        int eleccion = JOptionPane.showOptionDialog(this, "¿Deseas cerrar esta ventana?", "TOP-SUELAS",
                 0, 0, null, botones, this);
-        if(eleccion == JOptionPane.YES_OPTION){
+        if (eleccion == JOptionPane.YES_OPTION) {
             dispose();
-        }else if(eleccion == JOptionPane.NO_OPTION){       
+        } else if (eleccion == JOptionPane.NO_OPTION) {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea JaObv;
+    public javax.swing.JTextArea JaObv;
     private javax.swing.JLabel JbAgente;
     private javax.swing.JLabel JbBanco;
     private javax.swing.JLabel JbCFDI;
@@ -894,30 +1003,31 @@ public class NCliente extends javax.swing.JDialog {
     private javax.swing.JLabel JbRFC;
     private javax.swing.JLabel JbTel;
     private javax.swing.JLabel JbZona;
-    private javax.swing.JComboBox<String> JcAgente;
-    private javax.swing.JComboBox<String> JcBanco;
-    private javax.swing.JComboBox<String> JcCiudad;
-    private javax.swing.JComboBox<String> JcEstado;
-    private javax.swing.JComboBox<String> JcFpago;
-    private javax.swing.JComboBox<String> JcMpago;
-    private javax.swing.JComboBox<String> JcPais;
-    private javax.swing.JComboBox<String> JcZona;
-    private javax.swing.JSpinner JsCred;
-    private javax.swing.JTextField JtCP;
-    private javax.swing.JTextField JtCalle;
-    private javax.swing.JTextField JtCf;
-    private javax.swing.JTextField JtCod;
-    private javax.swing.JTextField JtColonia;
-    private javax.swing.JTextArea JtContacto;
-    private javax.swing.JTextField JtCta;
-    private javax.swing.JTextField JtEmail;
-    private javax.swing.JTextField JtNum;
-    private javax.swing.JTextField JtRFC;
-    private javax.swing.JTextField JtRs;
-    private javax.swing.JTextField JtTel;
-    private javax.swing.JTextField JtTel2;
-    private javax.swing.JTextField JtTel3;
+    public javax.swing.JComboBox<String> JcAgente;
+    public javax.swing.JComboBox<String> JcBanco;
+    public javax.swing.JComboBox<String> JcCiudad;
+    public javax.swing.JComboBox<String> JcEstado;
+    public javax.swing.JComboBox<String> JcFpago;
+    public javax.swing.JComboBox<String> JcMpago;
+    public javax.swing.JComboBox<String> JcPais;
+    public javax.swing.JComboBox<String> JcZona;
+    public javax.swing.JSpinner JsCred;
+    public javax.swing.JTextField JtCP;
+    public javax.swing.JTextField JtCalle;
+    public javax.swing.JTextField JtCf;
+    public javax.swing.JTextField JtCod;
+    public javax.swing.JTextField JtColonia;
+    public javax.swing.JTextArea JtContacto;
+    public javax.swing.JTextField JtCta;
+    public javax.swing.JTextField JtEmail;
+    public javax.swing.JTextField JtNum;
+    public javax.swing.JTextField JtRFC;
+    public javax.swing.JTextField JtRs;
+    public javax.swing.JTextField JtTel;
+    public javax.swing.JTextField JtTel2;
+    public javax.swing.JTextField JtTel3;
     private javax.swing.JTabbedPane JtabDatos;
+    public javax.swing.JTextField Jtid;
     private javax.swing.JPanel Pane1;
     private javax.swing.JPanel Pane2;
     private javax.swing.JLabel jLabel1;

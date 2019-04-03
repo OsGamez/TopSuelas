@@ -390,7 +390,7 @@ public class Clientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbEliminarActionPerformed
 
     private void JbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEditarActionPerformed
-        MCliente editar = new MCliente(null, true);
+        NCliente editar = new NCliente(null, true);
         int fila = JtDatosCliente.getSelectedRow();
 
         try{
@@ -405,7 +405,7 @@ public class Clientes extends javax.swing.JInternalFrame {
                     Pais ps = new Pais();
                     Zona zn = new Zona();
                 
-                    editar.JtId.setText(JtDatosCliente.getValueAt(fila, 0).toString());
+                    editar.Jtid.setText(JtDatosCliente.getValueAt(fila, 0).toString());
                     editar.JtRs.setText(JtDatosCliente.getValueAt(fila, 1).toString());
                     editar.JtRFC.setText(JtDatosCliente.getValueAt(fila, 2).toString());
                     editar.JtCod.setText(JtDatosCliente.getValueAt(fila, 3).toString());

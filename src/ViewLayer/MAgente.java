@@ -86,16 +86,14 @@ public class MAgente extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(JbGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                         .addComponent(JbCancelar))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(JbDes)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(JtId, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(134, 134, 134))
-                            .addComponent(JtDescripcion))))
+                            .addComponent(JtId)
+                            .addComponent(JtDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -129,11 +127,10 @@ public class MAgente extends javax.swing.JDialog {
         if (JtDescripcion.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingresa una descripción", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
         } else if (obj.validarAgente(JtDescripcion.getText()) == 0) {
-            Agente agente = new Agente();
-            agente.setId_Agente(Integer.parseInt(JtId.getText()));
-            agente.setDescripcion(JtDescripcion.getText());
-            agente.setActivo(true);
-            if (obj.agenteUpdate(agente)) {
+            String Descripcion = JtDescripcion.getText();
+            String Nombre = JtId.getText();
+            
+            if (obj.agenteUpdate(Descripcion, Nombre)) {
                 JOptionPane.showMessageDialog(this, "Agente Modificado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
                 informacion = "1";

@@ -23,18 +23,11 @@ public class ObjectLineas {
             st.setString(1, linea.getDescripcion());
             st.setBoolean(2, linea.getActivo());
             st.executeUpdate();
+            st.close();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
-        } finally {
-            if (st != null) {
-                try {
-                    st.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(ObjectLineas.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
+        } 
         return false;
     }
 
@@ -119,6 +112,7 @@ public class ObjectLineas {
             st.setInt(2, linea.getId_Linea());
 
             st.executeUpdate();
+            st.close();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();

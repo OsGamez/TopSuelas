@@ -23,22 +23,15 @@ public class ObjectColores {
             st.setString(1, color.getDescripcion());
             st.setBoolean(2, color.getActivo());
             st.executeUpdate();
+            st.close();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
-        } finally {
-            if (st != null) {
-                try {
-                    st.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(ObjectColores.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
+        } 
         return false;
     }
 
-    public int validadrColor(String nombre) {
+    public int validarColor(String nombre) {
         try {
             st = c.prepareStatement("SELECT COUNT (Id_Color) FROM Color WHERE Descripcion=? AND Activo = 1");
             st.setString(1, nombre);
@@ -116,6 +109,7 @@ public class ObjectColores {
             st.setString(1, color.getDescripcion());
             st.setInt(2, color.getId_Color());
             st.executeUpdate();
+            st.close();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();

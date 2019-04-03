@@ -117,11 +117,7 @@ public class MEstado extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(this, "Ingresa una descripción","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
        }
     else if(obj.validarEstado(JtDescripcion.getText())==0){
-       Estado estado = new Estado();
-       estado.setId_Estado(Integer.parseInt(JtId.getText()));
-       estado.setDescripcion(JtDescripcion.getText());
-       estado.setActivo(true);
-       if(obj.estadoUpdate(estado)){
+       if(obj.estadoUpdate(JtDescripcion.getText(),JtId.getText())){
        JOptionPane.showMessageDialog(this, "Estado Modificado Correctamente!!!","TOP-SUELAS" ,JOptionPane.INFORMATION_MESSAGE);
        dispose();
        informacion = "1";  

@@ -14,56 +14,75 @@ public class ObjectBancos {
 
     PreparedStatement st = null;
     PreparedStatement copy = null;
-    Connection c = Server.getCobranza();
-    Connection rc = Server.getRcobranza();
+    Connection c = Conexion.getCobranza();
+    Connection rc = Conexion.getRcobranza();
     ResultSet rs = null;
 
     public boolean bancoAdd(Banco banco) {
+        boolean rpta = false;
         try {
+            st = c.prepareStatement("INSERT INTO Bancos (Descripcion,RFC, CTA ,Activo)"
+                    + "values(?,?,?,?)");
             c.setAutoCommit(false);
-            rc.setAutoCommit(false);
-            try {
-                st = c.prepareStatement("INSERT INTO Bancos (Descripcion,RFC, CTA ,Activo)"
-                        + "values(?,?,?,?)");
+            st.setString(1, banco.getDescripcion());
+            st.setString(2, banco.getRFC());
+            st.setString(3, banco.getCTA());
+            st.setBoolean(4, banco.getActivo());
 
-                st.setString(1, banco.getDescripcion());
-                st.setString(2, banco.getRFC());
-                st.setString(3, banco.getCTA());
-                st.setBoolean(4, banco.getActivo());
-                st.executeUpdate();
+            rpta = st.executeUpdate() == 1 ? true : false;
 
-                copy = rc.prepareStatement("INSERT INTO Bancos (Descripcion,RFC, CTA ,Activo)"
-                        + "values(?,?,?,?)");
-                copy.setString(1, banco.getDescripcion());
-                copy.setString(2, banco.getRFC());
-                copy.setString(3, banco.getCTA());
-                copy.setBoolean(4, banco.getActivo());
-                copy.executeUpdate();
-
-                c.commit();
-                rc.commit();
-                return true;
-            } catch (SQLException ex) {
-                c.rollback();
-                ex.printStackTrace();
-            } finally {
-                try {
-                    if (st != null) {
-                        st.close();
-                    }
-                    if (copy != null) {
-                        copy.close();
-                    }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
+             if (rpta) {
+                rpta = bancoAddCopy(banco);
+                if (rpta) {
+                    c.commit();
+                } else {
+                    Conexion.rollbackA(c);
                 }
+            } else {
+                Conexion.rollbackA(c);
             }
+            Conexion.cerrarPhylonA(st);
+
         } catch (SQLException ex) {
-            Logger.getLogger(ObjectBancos.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            Conexion.cerrarPhylonA(st);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(st);
         }
-        return false;
+        return rpta;
     }
 
+    public boolean bancoAddCopy(Banco banco){
+        boolean rpta = false;
+        try {
+            copy = rc.prepareStatement("INSERT INTO Bancos (Descripcion,RFC,CTA ,Activo)"
+                    + "values(?,?,?,?)");
+            rc.setAutoCommit(false);
+            copy.setString(1, banco.getDescripcion());
+            copy.setString(2, banco.getRFC());
+            copy.setString(3, banco.getCTA());
+            copy.setBoolean(4, banco.getActivo());
+            
+            rpta = copy.executeUpdate() == 1 ? true : false;
+            
+            if (rpta) {
+                rc.commit();
+            } else {
+                Conexion.rollbackA(rc);
+            }
+             Conexion.cerrarPrep(copy);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        } 
+        catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        }
+        return rpta;
+    }
+    
     public int validarBanco(String nombre) {
         try {
             st = c.prepareStatement("SELECT COUNT (Id_Banco) FROM Bancos WHERE Descripcion=? AND Activo=1");
@@ -123,43 +142,126 @@ public class ObjectBancos {
         return listaBancos;
     }
 
-    public boolean bancoDelete(int Id_Banco) {
+    public boolean bancoDelete(int Id_Banco, String Descripcion) {
+       boolean rpta = false;
         try {
             st = c.prepareStatement("select c.RazonSocial,c.Id_Banco from Clientes c\n"
                     + "inner join Bancos b \n"
                     + "on c.Id_Banco = b.Id_Banco\n"
                     + "where b.Id_Banco = ? and c.Activo = 1");
+            c.setAutoCommit(false);
             st.setInt(1, Id_Banco);
             rs = st.executeQuery();
 
             if (rs.next()) {
                 return false;
             } else {
-                st = c.prepareStatement("UPDATE Bancos SET Activo = 0 WHERE Id_Banco = ?");
-                st.setInt(1, Id_Banco);
-                st.execute();
-                return true;
+                st = c.prepareStatement("UPDATE Bancos SET Activo = 0 WHERE Descripcion = ?");
+                st.setString(1, Descripcion);
+                rpta = st.executeUpdate() == 1 ? true : false;
+                if (rpta) {
+                    rpta = bancoDeleteCopy(Descripcion);
+                    c.commit();
+                } else {
+                    Conexion.rollbackA(c);
+                }
+                Conexion.cerrarPhylonA(st);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return false;
+            Conexion.cerrarPhylonA(st);
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
         }
+        return rpta;
     }
-
-    public boolean bancoUpdate(Banco banco) {
+    public boolean bancoDeleteCopy(String Descripcion) {
+        boolean rpta = false;
         try {
-            st = c.prepareStatement("UPDATE Bancos SET Descripcion = ?, RFC = ?, CTA = ? WHERE Id_Banco = ?");
-
-            st.setString(1, banco.getDescripcion());
-            st.setString(2, banco.getRFC());
-            st.setString(3, banco.getCTA());
-            st.setInt(4, banco.getId_Banco());
-
-            st.executeUpdate();
-            return true;
+            copy = rc.prepareStatement("UPDATE Bancos SET Activo = 0 WHERE Descripcion = ?");
+            rc.setAutoCommit(false);
+            copy.setString(1, Descripcion);
+            
+             rpta = copy.executeUpdate() == 1 ? true : false;
+             
+            if (rpta) {
+                rc.commit();
+            } else {
+                Conexion.rollbackA(rc);
+            }
+            Conexion.cerrarPrep(copy);
         } catch (SQLException ex) {
             ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
         }
-        return false;
+        return rpta;
     }
+    
+
+    public boolean bancoUpdate(String Descripcion,String Rfc,String Cta,String Nombre) {
+        boolean rpta = false;
+        try {
+            st = c.prepareStatement("UPDATE Bancos SET Descripcion = ?, RFC = ?, CTA = ? WHERE Descripcion = ?");
+            c.setAutoCommit(false);
+            st.setString(1, Descripcion);
+            st.setString(2, Rfc);
+            st.setString(3, Cta);
+            st.setString(4,Nombre);
+
+            rpta = st.executeUpdate() == 1 ? true : false;
+            
+             if(rpta){
+                rpta = bancoUpdateCopy(Descripcion,Rfc, Cta, Nombre);
+                 if (rpta) {
+                    c.commit();
+                } else {
+                    Conexion.rollbackA(c);
+                }
+            }else {
+                Conexion.rollbackA(c);
+            }
+            Conexion.cerrarPhylonA(st);
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPhylonA(st);
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(st);
+        }
+        return rpta;
+    }
+    
+    public boolean bancoUpdateCopy(String Descripcion,String Rfc,String Cta,String Nombre) {
+        boolean rpta = false;
+        try {
+            copy = rc.prepareStatement("UPDATE Bancos SET Descripcion = ?, RFC = ?, CTA = ? WHERE Descripcion = ?");
+            rc.setAutoCommit(false);
+            copy.setString(1, Descripcion);
+            copy.setString(2, Rfc);
+            copy.setString(3, Cta);
+            copy.setString(4, Nombre);
+
+            rpta = copy.executeUpdate() == 1 ? true : false;
+                     
+            if (rpta) {
+                rc.commit();
+            } else {
+                Conexion.rollbackA(rc);
+            }
+            Conexion.cerrarPrep(copy);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        }
+        return rpta;
+    }
+    
 }

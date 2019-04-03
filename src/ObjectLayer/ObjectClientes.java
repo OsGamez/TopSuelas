@@ -12,125 +12,107 @@ import java.util.logging.Logger;
 
 public class ObjectClientes {
 
-    Connection c = Server.getCobranza();
-    Connection rc = Server.getRcobranza();
+    Connection c = Conexion.getCobranza();
+    Connection rc = Conexion.getRcobranza();
     PreparedStatement st = null;
     PreparedStatement copy = null;
     ResultSet rs = null;
 
     public boolean clientesAdd(Cliente cliente) {
+        //boolean rpta = false;
         try {
-            c.setAutoCommit(false);
 
-            try {
-
-                st = c.prepareStatement("INSERT INTO Clientes (RazonSocial, Codigo, Id_Ciudad, RFC, Id_Agente, CP,"
-                        + "Id_Zona, Colonia,Calle,NumeroCalle ,Telefono,Telefono2, Telefono3, Id_Pais, Id_Estado, Cuenta, DiasCredito, Email, Contacto, Observaciones,"
-                        + "UsoCfdi, FormaPago,MetodoPago ,Id_Banco, Activo)"
-                        + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
-                st.setString(1, cliente.getRazonSocial());
-                st.setString(2, cliente.getCodigo());
-                st.setInt(3, cliente.getId_Ciudad());
-                st.setString(4, cliente.getRFC());
-                st.setInt(5, cliente.getId_Agente());
-                st.setString(6, cliente.getCP());
-                st.setInt(7, cliente.getId_Zona());
-                st.setString(8, cliente.getColonia());
-                st.setString(9, cliente.getCalle());
-                st.setString(10, cliente.getNumeroCalle());
-                st.setString(11, cliente.getTelefono());
-                st.setString(12, cliente.getTelefono2());
-                st.setString(13, cliente.getTelefono3());
-                st.setInt(14, cliente.getId_Pais());
-                st.setInt(15, cliente.getId_Estado());
-                st.setString(16, cliente.getCuenta());
-                st.setInt(17, cliente.getDiasCredito());
-                st.setString(18, cliente.getEmail());
-                st.setString(19, cliente.getContacto());
-                st.setString(20, cliente.getObservaciones());
-                st.setString(21, cliente.getUsoCfdi());
-                st.setString(22, cliente.getFormaPago());
-                st.setString(23, cliente.getMetodoPago());
-                st.setInt(24, cliente.getId_Banco());
-                st.setBoolean(25, cliente.getActivo());
-                st.executeUpdate();
-                c.commit();
-                return true;
-            } catch (SQLException ex) {
-                c.rollback();
-                ex.printStackTrace();
-            } finally {
-                try {
-                    if (st != null) {
-                        st.close();
-                    }
-                    if (copy != null) {
-                        copy.close();
-                    }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ObjectClientes.class.getName()).log(Level.SEVERE, null, ex);
+            st = c.prepareStatement("INSERT INTO Clientes (RazonSocial, Codigo, Id_Ciudad, RFC, Id_Agente, CP,"
+                    + "Id_Zona, Colonia,Calle,NumeroCalle ,Telefono,Telefono2, Telefono3, Id_Pais, Id_Estado, Cuenta, DiasCredito, Email, Contacto, Observaciones,"
+                    + "UsoCfdi, FormaPago,MetodoPago ,Id_Banco, Activo)"
+                    + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            //c.setAutoCommit(false);
+            st.setString(1, cliente.getRazonSocial());
+            st.setString(2, cliente.getCodigo());
+            st.setInt(3, cliente.getId_Ciudad());
+            st.setString(4, cliente.getRFC());
+            st.setInt(5, cliente.getId_Agente());
+            st.setString(6, cliente.getCP());
+            st.setInt(7, cliente.getId_Zona());
+            st.setString(8, cliente.getColonia());
+            st.setString(9, cliente.getCalle());
+            st.setString(10, cliente.getNumeroCalle());
+            st.setString(11, cliente.getTelefono());
+            st.setString(12, cliente.getTelefono2());
+            st.setString(13, cliente.getTelefono3());
+            st.setInt(14, cliente.getId_Pais());
+            st.setInt(15, cliente.getId_Estado());
+            st.setString(16, cliente.getCuenta());
+            st.setInt(17, cliente.getDiasCredito());
+            st.setString(18, cliente.getEmail());
+            st.setString(19, cliente.getContacto());
+            st.setString(20, cliente.getObservaciones());
+            st.setString(21, cliente.getUsoCfdi());
+            st.setString(22, cliente.getFormaPago());
+            st.setString(23, cliente.getMetodoPago());
+            st.setInt(24, cliente.getId_Banco());
+            st.setBoolean(25, cliente.getActivo());
+            
+            st.execute();
+            return true; 
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(st);
         }
         return false;
     }
 
-    public void addCopy(Cliente cliente) {
+    public boolean clienteAddCopy(Cliente cliente) {
+        boolean rpta = false;
         try {
+            copy = rc.prepareStatement("INSERT INTO Clientes (RazonSocial, Codigo, Id_Ciudad, RFC, Id_Agente, CP,"
+                    + "Id_Zona, Colonia,Calle,NumeroCalle ,Telefono,Telefono2, Telefono3, Id_Pais, Id_Estado, Cuenta, DiasCredito, Email, Contacto, Observaciones,"
+                    + "UsoCfdi, FormaPago,MetodoPago ,Id_Banco, Activo)"
+                    + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             rc.setAutoCommit(false);
+            copy.setString(1, cliente.getRazonSocial());
+            copy.setString(2, cliente.getCodigo());
+            copy.setInt(3, cliente.getId_Ciudad());
+            copy.setString(4, cliente.getRFC());
+            copy.setInt(5, cliente.getId_Agente());
+            copy.setString(6, cliente.getCP());
+            copy.setInt(7, cliente.getId_Zona());
+            copy.setString(8, cliente.getColonia());
+            copy.setString(9, cliente.getColonia());
+            copy.setString(10, cliente.getNumeroCalle());
+            copy.setString(11, cliente.getTelefono());
+            copy.setString(12, cliente.getTelefono2());
+            copy.setString(13, cliente.getTelefono3());
+            copy.setInt(14, cliente.getId_Pais());
+            copy.setInt(15, cliente.getId_Estado());
+            copy.setString(16, cliente.getCuenta());
+            copy.setInt(17, cliente.getDiasCredito());
+            copy.setString(18, cliente.getEmail());
+            copy.setString(19, cliente.getContacto());
+            copy.setString(20, cliente.getObservaciones());
+            copy.setString(21, cliente.getUsoCfdi());
+            copy.setString(22, cliente.getFormaPago());
+            copy.setString(23, cliente.getMetodoPago());
+            copy.setInt(24, cliente.getId_Banco());
+            copy.setBoolean(25, cliente.getActivo());
 
-            try {
+            rpta = copy.executeUpdate() == 1 ? true : false;
 
-                st = rc.prepareStatement("INSERT INTO Clientes (RazonSocial, Codigo, Id_Ciudad, RFC, Id_Agente, CP,"
-                        + "Id_Zona, Colonia,Calle,NumeroCalle ,Telefono,Telefono2, Telefono3, Id_Pais, Id_Estado, Cuenta, DiasCredito, Email, Contacto, Observaciones,"
-                        + "UsoCfdi, FormaPago,MetodoPago ,Id_Banco, Activo)"
-                        + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
-                st.setString(1, cliente.getRazonSocial());
-                st.setString(2, cliente.getCodigo());
-                st.setInt(3, cliente.getId_Ciudad());
-                st.setString(4, cliente.getRFC());
-                st.setInt(5, cliente.getId_Agente());
-                st.setString(6, cliente.getCP());
-                st.setInt(7, cliente.getId_Zona());
-                st.setString(8, cliente.getColonia());
-                st.setString(9, cliente.getColonia());
-                st.setString(10, cliente.getNumeroCalle());
-                st.setString(11, cliente.getTelefono());
-                st.setString(12, cliente.getTelefono2());
-                st.setString(13, cliente.getTelefono3());
-                st.setInt(14, cliente.getId_Pais());
-                st.setInt(15, cliente.getId_Estado());
-                st.setString(16, cliente.getCuenta());
-                st.setInt(17, cliente.getDiasCredito());
-                st.setString(18, cliente.getEmail());
-                st.setString(19, cliente.getContacto());
-                st.setString(20, cliente.getObservaciones());
-                st.setString(21, cliente.getUsoCfdi());
-                st.setString(22, cliente.getFormaPago());
-                st.setString(23, cliente.getMetodoPago());
-                st.setInt(24, cliente.getId_Banco());
-                st.setBoolean(25, cliente.getActivo());
-                st.executeUpdate();
+            if (rpta) {
                 rc.commit();
-            } catch (SQLException ex) {
-                rc.rollback();
-                ex.printStackTrace();
-            } finally {
-                try {
-                    if (st != null) {
-                        st.close();
-                    }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
+            } else {
+                Conexion.rollbackA(rc);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(ObjectClientes.class.getName()).log(Level.SEVERE, null, ex);
+            Conexion.cerrarPrep(copy);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
         }
+        return rpta;
+
     }
 
     public int validarCliente(String nombre) {
@@ -176,7 +158,7 @@ public class ObjectClientes {
                 cliente.setTelefono2(rs.getString("Telefono2"));
                 cliente.setTelefono3(rs.getString("Telefono3"));
                 cliente.setCuenta(rs.getString("Cuenta"));
-                cliente.setDiasCredito( rs.getInt("DiasCredito"));
+                cliente.setDiasCredito(rs.getInt("DiasCredito"));
                 cliente.setContacto(rs.getString("Contacto"));
                 cliente.setFormaPago(rs.getString("FormaPago"));
                 cliente.setMetodoPago(rs.getString("MetodoPago"));
@@ -198,7 +180,7 @@ public class ObjectClientes {
                 cliente.setZona(rs.getString("Zona"));
                 cliente.setPais(rs.getString("Pais"));
                 cliente.setEstado(rs.getString("Estado"));
-                cliente.setCiudad( rs.getString("Ciudad"));
+                cliente.setCiudad(rs.getString("Ciudad"));
                 cliente.setBanco(rs.getString("Banco"));
                 listaClientes.add(cliente);
             }
@@ -236,7 +218,7 @@ public class ObjectClientes {
                 cliente.setTelefono2(rs.getString("Telefono2"));
                 cliente.setTelefono3(rs.getString("Telefono3"));
                 cliente.setCuenta(rs.getString("Cuenta"));
-                cliente.setDiasCredito( rs.getInt("DiasCredito"));
+                cliente.setDiasCredito(rs.getInt("DiasCredito"));
                 cliente.setContacto(rs.getString("Contacto"));
                 cliente.setFormaPago(rs.getString("FormaPago"));
                 cliente.setMetodoPago(rs.getString("MetodoPago"));
@@ -258,7 +240,7 @@ public class ObjectClientes {
                 cliente.setZona(rs.getString("Zona"));
                 cliente.setPais(rs.getString("Pais"));
                 cliente.setEstado(rs.getString("Estado"));
-                cliente.setCiudad( rs.getString("Ciudad"));
+                cliente.setCiudad(rs.getString("Ciudad"));
                 cliente.setBanco(rs.getString("Banco"));
                 listaClientes.add(cliente);
             }
@@ -292,13 +274,13 @@ public class ObjectClientes {
     public ArrayList<Cliente> clienteGetByID(int filtro) {
         ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
         try {
-            st = c.prepareStatement("SELECT  c.Id_Cliente,c.RazonSocial,c.RFC,c.Codigo,c.CP,c.Colonia,c.Calle,\n" +
-"                    c.NumeroCalle,c.Observaciones,c.DiasCredito,cd.Descripcion as Ciudad,e.Descripcion as Estado,\n"+
-                     "p.Descripcion as Pais, a.Id_Agente as Agente FROM Clientes c\n" +
-"                    inner join Ciudades cd on c.Id_Ciudad = cd.Id_Ciudad\n"+
-                     "inner join Estados e on c.Id_Estado = e.Id_Estado\n"+
-                     "inner join Paises p on c.Id_Pais = p.Id_Pais\n"+
-                     "inner join Agentes a on c.Id_Agente = a.Id_Agente WHERE c.Activo = 1 AND c.Id_Cliente LIKE '" + filtro + "%' ORDER BY c.RazonSocial");
+            st = c.prepareStatement("SELECT  c.Id_Cliente,c.RazonSocial,c.RFC,c.Codigo,c.CP,c.Colonia,c.Calle,\n"
+                    + "                    c.NumeroCalle,c.Observaciones,c.DiasCredito,cd.Descripcion as Ciudad,e.Descripcion as Estado,\n"
+                    + "p.Descripcion as Pais, a.Id_Agente as Agente FROM Clientes c\n"
+                    + "                    inner join Ciudades cd on c.Id_Ciudad = cd.Id_Ciudad\n"
+                    + "inner join Estados e on c.Id_Estado = e.Id_Estado\n"
+                    + "inner join Paises p on c.Id_Pais = p.Id_Pais\n"
+                    + "inner join Agentes a on c.Id_Agente = a.Id_Agente WHERE c.Activo = 1 AND c.Id_Cliente LIKE '" + filtro + "%' ORDER BY c.RazonSocial");
             rs = st.executeQuery();
 
             while (rs.next()) {
@@ -306,7 +288,7 @@ public class ObjectClientes {
                 cliente.setId_Cliente(rs.getInt("Id_Cliente"));
                 cliente.setRazonSocial(rs.getString("RazonSocial"));
                 cliente.setRFC(rs.getString("RFC"));
-                cliente.setDiasCredito( rs.getInt("DiasCredito"));
+                cliente.setDiasCredito(rs.getInt("DiasCredito"));
                 cliente.setCodigo(rs.getString("Codigo"));
                 cliente.setColonia(rs.getString("Colonia"));
                 cliente.setCalle(rs.getString("Calle"));

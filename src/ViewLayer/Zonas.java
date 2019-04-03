@@ -216,7 +216,9 @@ public class Zonas extends javax.swing.JInternalFrame {
             if(row >=0){
                 int opcion = JOptionPane.showConfirmDialog(this,"¿Estas seguro de borrar este registro?","TOP-SUELAS",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
                 if(opcion ==JOptionPane.YES_OPTION){
-                    if(obj.zonaDelete(Integer.parseInt(JtDatosZona.getValueAt(row, 0).toString()))){
+                    int id = Integer.parseInt(JtDatosZona.getValueAt(row, 0).toString());
+                    String desc = JtDatosZona.getValueAt(row, 1).toString();
+                    if(obj.zonaDelete(id, desc)){
                         modelZona.removeRow(row);
                         JOptionPane.showMessageDialog(null,"Registro eliminado");
                     }else{
@@ -241,7 +243,7 @@ public class Zonas extends javax.swing.JInternalFrame {
             if(fila >=0){
                 int opcion = JOptionPane.showConfirmDialog(this,"¿Quires editar este registro?","TOP-SUELAS",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
                 if(opcion ==JOptionPane.YES_OPTION){
-                editar.JtId.setText(JtDatosZona.getValueAt(fila, 0).toString());
+                editar.JtId.setText(JtDatosZona.getValueAt(fila, 1).toString());
                 editar.JtDescripcion.setText(JtDatosZona.getValueAt(fila, 1).toString());
 
                 editar.setVisible(true);

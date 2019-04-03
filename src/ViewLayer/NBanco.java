@@ -1,4 +1,3 @@
-
 package ViewLayer;
 
 import ObjectLayer.Banco;
@@ -9,11 +8,11 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
-
 public class NBanco extends javax.swing.JDialog {
 
     ObjectBancos obj = new ObjectBancos();
     String informacion = "";
+
     public NBanco(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -21,10 +20,13 @@ public class NBanco extends javax.swing.JDialog {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/pluscircleregular_106319.png"));
         setIconImage(icon);
         setLocationRelativeTo(null);
+        Jtid.setVisible(false);
     }
-    public String getInformacion(){
+
+    public String getInformacion() {
         return this.informacion;
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -38,9 +40,10 @@ public class NBanco extends javax.swing.JDialog {
         JbCTA = new javax.swing.JLabel();
         JtRFC = new javax.swing.JTextField();
         JtCTA = new javax.swing.JTextField();
+        Jtid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("NUEVO BANCO");
+        setTitle("BANCO");
         setLocation(new java.awt.Point(0, 0));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -112,10 +115,13 @@ public class NBanco extends javax.swing.JDialog {
                                 .addComponent(JbDes)
                                 .addComponent(JbCTA))
                             .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(JtDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                                .addComponent(JtRFC)
-                                .addComponent(JtCTA))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(JtDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                                    .addComponent(JtRFC)
+                                    .addComponent(JtCTA))
+                                .addComponent(Jtid, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(0, 0, Short.MAX_VALUE)))
                     .addComponent(JbRFC))
                 .addGap(17, 17, 17))
         );
@@ -134,11 +140,13 @@ public class NBanco extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbCTA)
                     .addComponent(JtCTA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
+                .addGap(9, 9, 9)
+                .addComponent(Jtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbGuardar)
                     .addComponent(JbCancelar))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -153,43 +161,68 @@ public class NBanco extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowClosing
 
     private void JbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbGuardarActionPerformed
-        if(JtDescripcion.getText().isEmpty() || JtRFC.getText().isEmpty() || JtCTA.getText().isEmpty()){
-           JOptionPane.showMessageDialog(this, "Faltan datos de ingresar","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-       }else if(obj.validarBanco(JtDescripcion.getText())==0){
-            Banco banco = new Banco();
-            banco.setDescripcion(JtDescripcion.getText());
-            banco.setRFC(JtRFC.getText());
-            banco.setCTA(JtCTA.getText());
-            banco.setActivo(true);
-         if(obj.bancoAdd(banco)){
-           JOptionPane.showMessageDialog(this, "Banco Guardado Correctamente!!!","TOP-SUELAS" ,JOptionPane.INFORMATION_MESSAGE);
-           Limpiar();
-           informacion = "1"; 
-        }else{
-           JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-           Limpiar();  
-         } 
-       }else{
-            JOptionPane.showMessageDialog(null,"El banco ya existe","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
+        if (JtDescripcion.getText().isEmpty() || JtRFC.getText().isEmpty() || JtCTA.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Faltan datos de ingresar", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+        } else if (Jtid.getText().isEmpty()) {
+            if (obj.validarBanco(JtDescripcion.getText()) == 0) {
+                Guardar();
+            } else {
+                JOptionPane.showMessageDialog(null, "El registro ya existe", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+                Editar();
         }
     }//GEN-LAST:event_JbGuardarActionPerformed
-    
+
+    private void Guardar() {
+        Banco banco = new Banco();
+        banco.setDescripcion(JtDescripcion.getText());
+        banco.setRFC(JtRFC.getText());
+        banco.setCTA(JtCTA.getText());
+        banco.setActivo(true);
+        if (obj.bancoAdd(banco)) {
+            JOptionPane.showMessageDialog(this, "Registro Guardado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            Limpiar();
+            informacion = "1";
+        } else {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            Limpiar();
+        }
+    }
+
+    private void Editar() {
+        String Descripcion = JtDescripcion.getText();
+        String RFC = JtRFC.getText();
+        String CTA = JtCTA.getText();
+        String Nombre = Jtid.getText();
+
+        if (obj.bancoUpdate(Descripcion, RFC, CTA, Nombre)) {
+            JOptionPane.showMessageDialog(this, "Registro Editado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            Limpiar();
+            informacion = "1";
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            this.dispose();
+        }
+    }
+
     private void JtDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtDescripcionKeyReleased
-           if (!Character.isLetter(evt.getKeyChar())
+        if (!Character.isLetter(evt.getKeyChar())
                 && !(evt.getKeyChar() == KeyEvent.VK_SPACE)
                 && !(evt.getKeyChar() == KeyEvent.VK_BACK_SPACE)
-                && !(evt.getKeyChar()== KeyEvent.VK_ENTER)
+                && !(evt.getKeyChar() == KeyEvent.VK_ENTER)
                 && !(evt.getKeyCode() == KeyEvent.VK_CAPS_LOCK)) {
-      evt.consume();
-       JOptionPane.showMessageDialog(null,"Escribe solo letras");
-       JtDescripcion.setText("");
-       } 
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Escribe solo letras");
+            JtDescripcion.setText("");
+        }
     }//GEN-LAST:event_JtDescripcionKeyReleased
 
     private void JtDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtDescripcionKeyTyped
         char c = evt.getKeyChar();
-        if(Character.isLowerCase(c)){
-            String cad = (""+c).toUpperCase();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
@@ -197,8 +230,8 @@ public class NBanco extends javax.swing.JDialog {
 
     private void JtRFCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtRFCKeyTyped
         char c = evt.getKeyChar();
-        if(Character.isLowerCase(c)){
-            String cad = (""+c).toUpperCase();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
@@ -206,28 +239,30 @@ public class NBanco extends javax.swing.JDialog {
 
     private void JtCTAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtCTAKeyTyped
         char c = evt.getKeyChar();
-        if(Character.isLowerCase(c)){
-            String cad = (""+c).toUpperCase();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
     }//GEN-LAST:event_JtCTAKeyTyped
-    private void Limpiar(){
+    private void Limpiar() {
         this.JtDescripcion.setText("");
         this.JtCTA.setText("");
         this.JtRFC.setText("");
         JtDescripcion.requestFocus();
-    } 
-    private void Cerrar(){
+    }
+
+    private void Cerrar() {
         String botones[] = {"SI", "NO"};
-        int eleccion = JOptionPane.showOptionDialog(this,"¿Deseas cerrar esta ventana?", "TOP-SUELAS", 
+        int eleccion = JOptionPane.showOptionDialog(this, "¿Deseas cerrar esta ventana?", "TOP-SUELAS",
                 0, 0, null, botones, this);
-        if(eleccion == JOptionPane.YES_OPTION){
+        if (eleccion == JOptionPane.YES_OPTION) {
             dispose();
-        }else if(eleccion == JOptionPane.NO_OPTION){
-            
+        } else if (eleccion == JOptionPane.NO_OPTION) {
+
         }
     }
+
     /**
      * @param args the command line arguments
      */
@@ -277,9 +312,10 @@ public class NBanco extends javax.swing.JDialog {
     private javax.swing.JLabel JbDes;
     private javax.swing.JButton JbGuardar;
     private javax.swing.JLabel JbRFC;
-    private javax.swing.JTextField JtCTA;
-    private javax.swing.JTextField JtDescripcion;
-    private javax.swing.JTextField JtRFC;
+    public javax.swing.JTextField JtCTA;
+    public javax.swing.JTextField JtDescripcion;
+    public javax.swing.JTextField JtRFC;
+    public javax.swing.JTextField Jtid;
     private javax.swing.JProgressBar jProgressBar1;
     // End of variables declaration//GEN-END:variables
 }

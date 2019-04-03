@@ -93,7 +93,7 @@ public class MCiudad extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(JtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JtId, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(JtId, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -127,11 +127,8 @@ public class MCiudad extends javax.swing.JDialog {
         if (JtDescripcion.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingresa una descripción", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
         } else if (obj.validarCiudad(JtDescripcion.getText()) == 0) {
-            Ciudad ciudad = new Ciudad();
-            ciudad.setId_Ciudad(Integer.parseInt(JtId.getText()));
-            ciudad.setDescripcion(JtDescripcion.getText());
-            ciudad.setActivo(true);
-            if (obj.ciudadUpdate(ciudad)) {
+            
+            if (obj.ciudadUpdate(JtDescripcion.getText(),JtId.getText())) {
                 JOptionPane.showMessageDialog(this, "Ciudad Modificada Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
                 informacion = "1";

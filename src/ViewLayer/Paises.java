@@ -217,7 +217,9 @@ public class Paises extends javax.swing.JInternalFrame {
             if(row >=0){
                 int opcion = JOptionPane.showConfirmDialog(this,"¿Estas seguro de borrar este registro?","TOP-SUELAS",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
                 if(opcion ==JOptionPane.YES_OPTION){
-                    if( obj.paisDelete(Integer.parseInt(JtDatosPais.getValueAt(row, 0).toString()))){
+                    int id = Integer.parseInt(JtDatosPais.getValueAt(row, 0).toString());
+                    String desc = JtDatosPais.getValueAt(row, 1).toString();
+                    if( obj.paisDelete(id, desc)){
                          modelPais.removeRow(row);
                          JOptionPane.showMessageDialog(null,"Registro eliminado");
                     }else{
@@ -241,7 +243,7 @@ public class Paises extends javax.swing.JInternalFrame {
             if(fila >=0){
                 int opcion = JOptionPane.showConfirmDialog(this,"¿Quires editar este registro?","TOP-SUELAS",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
                 if(opcion ==JOptionPane.YES_OPTION){
-                editar.JtId.setText(JtDatosPais.getValueAt(fila, 0).toString());
+                editar.JtId.setText(JtDatosPais.getValueAt(fila, 1).toString());
                 editar.JtDescripcion.setText(JtDatosPais.getValueAt(fila, 1).toString());
 
                 editar.setVisible(true);

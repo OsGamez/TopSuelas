@@ -14,70 +14,66 @@ public class ObjectZonas {
 
     PreparedStatement st = null;
     PreparedStatement copy = null;
-    Connection c = Server.getCobranza();
-    Connection rc = Server.getRcobranza();
+    Connection c = Conexion.getCobranza();
+    Connection rc = Conexion.getRcobranza();
     ResultSet rs = null;
 
-    public boolean zonaAdd(Zona zona) {
+    public boolean zonaAdd(String Descripcion, boolean Activo) {
+       boolean rpta = false;
         try {
-            c.setAutoCommit(false);
-            rc.setAutoCommit(false);
-            try {
-                st = c.prepareStatement("INSERT INTO Zonas (Descripcion ,Activo)"
-                        + "values(?,?)");
-
-                st.setString(1, zona.getDescripcion());
-                st.setBoolean(2, zona.getActivo());
-                st.executeUpdate();
-
-                copy = rc.prepareStatement("INSERT INTO Zonas (Descripcion ,Activo)"
-                        + "values(?,?)");
-
-                copy.setString(1, zona.getDescripcion());
-                copy.setBoolean(2, zona.getActivo());
-                copy.executeUpdate();
-                c.commit();
-                rc.commit();
-                return true;
-            } catch (SQLException ex) {
-                c.rollback();
-                ex.printStackTrace();
-            } finally {
-                try {
-                    if (st != null) {
-                        st.close();
-                    }
-                    if (copy != null) {
-                        copy.close();
-                    }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ObjectZonas.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
-    }
-
-    public void zonaAddCopy(Zona zona) {
-        try {
-            st = rc.prepareStatement("INSERT INTO Zonas (Descripcion ,Activo)"
+            st = c.prepareStatement("INSERT INTO Zonas (Descripcion ,Activo)"
                     + "values(?,?)");
+            c.setAutoCommit(false);
+            st.setString(1, Descripcion);
+            st.setBoolean(2, Activo);
+            rpta = st.executeUpdate() == 1 ? true : false;
 
-            st.setString(1, zona.getDescripcion());
-            st.setBoolean(2, zona.getActivo());
-
-            st.executeUpdate();
+            if (rpta) {
+                rpta = zonaAddCopy(Descripcion, Activo);
+                if (rpta) {
+                    c.commit();
+                } else {
+                    Conexion.rollbackA(c);
+                }
+            } else {
+                Conexion.rollbackA(c);
+            }
+            Conexion.cerrarPhylonA(st);
         } catch (SQLException ex) {
             ex.printStackTrace();
-        } finally {
-            try {
-                st.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+            Conexion.cerrarPhylonA(st);
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(st);
         }
+        return rpta; 
+    }
+
+    public boolean zonaAddCopy(String Descripcion, boolean Activo) {
+        boolean rpta = false;
+        try {
+            copy = rc.prepareStatement("INSERT INTO Zonas (Descripcion ,Activo)"
+                    + "values(?,?)");
+            rc.setAutoCommit(false);
+            copy.setString(1, Descripcion);
+            copy.setBoolean(2, Activo);
+            rpta = copy.executeUpdate() == 1 ? true : false;
+
+            if (rpta) {
+                rc.commit();
+            } else {
+                Conexion.rollbackA(rc);
+            }
+
+            Conexion.cerrarPrep(copy);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        }
+        return rpta;
     }
 
     public int validarZona(String nombre) {
@@ -141,41 +137,120 @@ public class ObjectZonas {
 
     }
 
-    public boolean zonaDelete(int Id_Zona) {
+    public boolean zonaDelete(int Id_Zona,String Descripcion) {
+        boolean rpta = false;
         try {
             st = c.prepareStatement("select c.RazonSocial,z.Id_Zona from Clientes c\n"
                     + "inner join Zonas z \n"
                     + "on c.Id_Zona = z.Id_Zona\n"
                     + "where z.Id_Zona = ? and c.Activo = 1");
+            c.setAutoCommit(false);
             st.setInt(1, Id_Zona);
             rs = st.executeQuery();
-
             if (rs.next()) {
                 return false;
             } else {
-                st = c.prepareStatement("UPDATE Zonas SET Activo = 0 WHERE Id_Zona = ?");
-                st.setInt(1, Id_Zona);
-                st.execute();
-                return true;
+                st = c.prepareStatement("UPDATE Zonas SET Activo = 0 WHERE Descripcion = ?");
+                st.setString(1, Descripcion);
+                rpta = st.executeUpdate() == 1 ? true : false;
+                if (rpta) {
+                    rpta = zonaDeleteCopy(Descripcion);
+                    c.commit();
+                } else {
+                    Conexion.rollbackA(c);
+                }
+                Conexion.cerrarPhylonA(st);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return false;
+            Conexion.cerrarPhylonA(st);
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(st);
         }
+        return rpta;
     }
-
-    public boolean zonaUpdate(Zona zona) {
+    
+    public boolean zonaDeleteCopy(String Descripcion) {
+        boolean rpta = false;
         try {
-            st = c.prepareStatement("UPDATE Zonas SET Descripcion = ? WHERE Id_Zona = ?");
+            copy = rc.prepareStatement("UPDATE Zonas SET Activo = 0 WHERE Descripcion = ?");
+            rc.setAutoCommit(false);
+            copy.setString(1, Descripcion);
+           
+            rpta = copy.executeUpdate() == 1 ? true : false;
 
-            st.setString(1, zona.getDescripcion());
-            st.setInt(2, zona.getId_Zona());
+            if (rpta) {
+                rc.commit();
+            } else {
+                Conexion.rollbackA(rc);
+            }
+            Conexion.cerrarPrep(copy);
 
-            st.executeUpdate();
-            return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
         }
-        return false;
+        return rpta;
+    }
+
+    public boolean zonaUpdate(String Descripcion, String Nombre) {
+       boolean rpta = false;
+        try {
+            st = c.prepareStatement("UPDATE Zonas SET Descripcion = ? WHERE Descripcion = ?");
+            c.setAutoCommit(false);
+            st.setString(1, Descripcion);
+            st.setString(2, Nombre);
+            rpta = st.executeUpdate() == 1 ? true : false;
+            
+            if(rpta){
+                rpta = zonaUpdateCopy(Descripcion, Nombre);
+                 if (rpta) {
+                    c.commit();
+                } else {
+                    Conexion.rollbackA(c);
+                }
+            }else {
+                Conexion.rollbackA(c);
+            }
+            Conexion.cerrarPhylonA(st);
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPhylonA(st);
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(st);
+        }
+        return rpta;
+    }
+    
+    public boolean zonaUpdateCopy(String Descripcion, String Nombre){
+       boolean rpta = false;
+        try {
+            copy = rc.prepareStatement("UPDATE Zonas SET Descripcion = ? WHERE Descripcion = ?");
+            rc.setAutoCommit(false);
+            copy.setString(1, Descripcion);
+            copy.setString(2, Nombre);
+            rpta = copy.executeUpdate() == 1 ? true : false;
+
+            if (rpta) {
+                rc.commit();
+            } else {
+                Conexion.rollbackA(rc);
+            }
+            Conexion.cerrarPrep(copy);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(copy);
+        }
+        return rpta; 
     }
 }
