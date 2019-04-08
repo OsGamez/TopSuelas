@@ -20,6 +20,7 @@ public class NCorrida extends javax.swing.JDialog {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/pluscircleregular_106319.png"));;
         setIconImage(icon);
         setLocationRelativeTo(null);
+        Jtid.setVisible(false);
     }
     public String getInformacion(){
         return this.informacion;
@@ -39,9 +40,10 @@ public class NCorrida extends javax.swing.JDialog {
         JbOb = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         JaObservacion = new javax.swing.JTextArea();
+        Jtid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("NUEVA CORRIDA");
+        setTitle("CORRIDA");
         setLocation(new java.awt.Point(0, 0));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -99,11 +101,14 @@ public class NCorrida extends javax.swing.JDialog {
                             .addComponent(JbPi)
                             .addComponent(JbPt))
                         .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(JtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(JtPf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
-                                .addComponent(JtPi, javax.swing.GroupLayout.Alignment.LEADING))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(JtPf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+                                    .addComponent(JtPi, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Jtid, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(JbOb)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
@@ -127,7 +132,8 @@ public class NCorrida extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbPt)
-                    .addComponent(JtPf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JtPf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Jtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addComponent(JbOb)
                 .addGap(22, 22, 22)
@@ -161,7 +167,22 @@ public class NCorrida extends javax.swing.JDialog {
     private void JbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbGuardarActionPerformed
       if(JtDescripcion.getText().equals("") || JtPf.getText().equals("") || JtPi.getText().equals("")){
         JOptionPane.showMessageDialog(this, "Faltan datos de ingresar","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-      }else if(obj.validarCorrida(JtDescripcion.getText())==0){
+      }else if(Jtid.getText().isEmpty()){
+          if(obj.validarCorrida(JtDescripcion.getText())==0){
+              Guardar();
+          }else{
+        JOptionPane.showMessageDialog(null,"Este registro ya existe","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
+        }   
+      }else{
+          if(obj.validarCorrida(JtDescripcion.getText())==0){
+              Editar();
+          }else{
+        JOptionPane.showMessageDialog(null,"Este registro ya existe","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
+        }    
+      }
+    }//GEN-LAST:event_JbGuardarActionPerformed
+
+    private void Guardar(){
         float Pi = Float.parseFloat(JtPi.getText());
         float Pt = Float.parseFloat(JtPf.getText());
         Corrida corrida = new Corrida();
@@ -171,19 +192,35 @@ public class NCorrida extends javax.swing.JDialog {
         corrida.setObservaciones(JaObservacion.getText());
         corrida.setActivo(true);
         if(obj.corridaAdd(corrida)){
-        JOptionPane.showMessageDialog(this, "Corrida Guardada Correctamente!!!","TOP-SUELAS" ,JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Registro Guardado Correctamente!!!","TOP-SUELAS" ,JOptionPane.INFORMATION_MESSAGE);
         informacion = "1";
         Limpiar();
         }else{
         JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
         Limpiar();
          }
-       }
-        else{
-        JOptionPane.showMessageDialog(null,"La corrida ya existe","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-        }   
-    }//GEN-LAST:event_JbGuardarActionPerformed
-
+    }
+    
+    private void Editar(){
+        float Pi = Float.parseFloat(JtPi.getText());
+        float Pt = Float.parseFloat(JtPf.getText());
+        Corrida corrida = new Corrida();
+        corrida.setDescripcion(JtDescripcion.getText());
+        corrida.setPunto_Inicial(Pi);
+        corrida.setPunto_Final(Pt);
+        corrida.setObservaciones(JaObservacion.getText());
+        corrida.setId_Corrida(Integer.parseInt(Jtid.getText()));
+      
+        if(obj.corridaUpdate(corrida)){
+        JOptionPane.showMessageDialog(this, "Corrida Editada Correctamente!!!","TOP-SUELAS" ,JOptionPane.INFORMATION_MESSAGE);
+        informacion = "1";
+        this.dispose();
+        }else{
+        JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
+        this.dispose();
+         }
+    }
+    
     private void JaObservacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JaObservacionKeyTyped
         char c = evt.getKeyChar();
         if(Character.isLowerCase(c)){
@@ -254,9 +291,10 @@ public class NCorrida extends javax.swing.JDialog {
     private javax.swing.JLabel JbOb;
     private javax.swing.JLabel JbPi;
     private javax.swing.JLabel JbPt;
-    private javax.swing.JTextField JtDescripcion;
-    private javax.swing.JTextField JtPf;
-    private javax.swing.JTextField JtPi;
+    public javax.swing.JTextField JtDescripcion;
+    public javax.swing.JTextField JtPf;
+    public javax.swing.JTextField JtPi;
+    public javax.swing.JTextField Jtid;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

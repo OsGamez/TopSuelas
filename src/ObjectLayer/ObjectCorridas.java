@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class ObjectCorridas {
 
-    public Connection c = Server.getProduccion();
+    public Connection c = Conexion.getProduccion();
     PreparedStatement st = null;
     ResultSet rs = null;
 

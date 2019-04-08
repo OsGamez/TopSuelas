@@ -1,4 +1,3 @@
-
 package ViewLayer;
 
 import ObjectLayer.Color;
@@ -8,10 +7,11 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
-
 public class NColor extends javax.swing.JDialog {
+
     ObjectColores obj = new ObjectColores();
-    String informacion = "";  
+    String informacion = "";
+
     public NColor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -19,12 +19,13 @@ public class NColor extends javax.swing.JDialog {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/pluscircleregular_106319.png"));
         setIconImage(icon);
         setLocationRelativeTo(null);
+        Jtid.setVisible(false);
     }
-    public String getInformacion(){
+
+    public String getInformacion() {
         return this.informacion;
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -33,9 +34,10 @@ public class NColor extends javax.swing.JDialog {
         JtDescripcion = new javax.swing.JTextField();
         JbGuardar = new javax.swing.JButton();
         JbCancelar = new javax.swing.JButton();
+        Jtid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("NUEVO COLOR");
+        setTitle("COLOR");
         setLocation(new java.awt.Point(0, 0));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -80,21 +82,25 @@ public class NColor extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(JbDes)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                        .addComponent(JtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(JbGuardar)
                         .addGap(31, 31, 31)
                         .addComponent(JbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(JbDes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Jtid, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(64, 64, 64)
+                .addContainerGap()
+                .addComponent(Jtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbDes)
                     .addComponent(JtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -113,55 +119,75 @@ public class NColor extends javax.swing.JDialog {
     }//GEN-LAST:event_JbCancelarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-       Cerrar();
+        Cerrar();
     }//GEN-LAST:event_formWindowClosing
 
     private void JbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbGuardarActionPerformed
-        if(JtDescripcion.getText().isEmpty()){
-           JOptionPane.showMessageDialog(this, "Ingresa una descripción","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-       }else if(obj.validarColor(JtDescripcion.getText())==0){
-           Color color = new Color();
-           color.setDescripcion(JtDescripcion.getText());
-           color.setActivo(true);
-           if(obj.colorAdd(color)){
-              JOptionPane.showMessageDialog(this, "Color Guardado Correctamente!!!","TOP-SUELAS" ,JOptionPane.INFORMATION_MESSAGE);
-              informacion = "1";
-              Limpiar();
-           }else{
-              JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-              Limpiar();    
-           } 
-       }
-        else{
-           JOptionPane.showMessageDialog(null,"El color ya existe","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
+        if (JtDescripcion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingresa una descripción", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+        }else if(Jtid.getText().isEmpty()){
+            if (obj.validarColor(JtDescripcion.getText()) == 0){
+                Guardar();
+            } else {
+            JOptionPane.showMessageDialog(null, "Este registro ya existe", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
         }
+        }else{
+            if (obj.validarColor(JtDescripcion.getText()) == 0){
+                Editar();
+            }else {
+            JOptionPane.showMessageDialog(null, "Este registro ya existe", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+        }
+        } 
     }//GEN-LAST:event_JbGuardarActionPerformed
 
+    private void Guardar() {
+        if (obj.colorAdd(JtDescripcion.getText(), true)) {
+            JOptionPane.showMessageDialog(this, "Registro Guardado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            informacion = "1";
+            Limpiar();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            Limpiar();
+        }
+    }
+
+    private void Editar() {
+        if (obj.colorUpdate(JtDescripcion.getText(),Integer.parseInt(Jtid.getText()))) {
+            JOptionPane.showMessageDialog(this, "Registro Guardado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            informacion = "1";
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            this.dispose();
+        }
+    }
+
     private void JtDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtDescripcionKeyReleased
-      if (!Character.isLetter(evt.getKeyChar())
+        if (!Character.isLetter(evt.getKeyChar())
                 && !(evt.getKeyChar() == KeyEvent.VK_SPACE)
                 && !(evt.getKeyChar() == KeyEvent.VK_BACK_SPACE)
-                && !(evt.getKeyChar()== KeyEvent.VK_ENTER)
+                && !(evt.getKeyChar() == KeyEvent.VK_ENTER)
                 && !(evt.getKeyCode() == KeyEvent.VK_CAPS_LOCK)) {
-      evt.consume();
-       JOptionPane.showMessageDialog(null,"Escribe solo letras");
-       JtDescripcion.setText("");
-       } 
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Escribe solo letras");
+            JtDescripcion.setText("");
+        }
     }//GEN-LAST:event_JtDescripcionKeyReleased
 
     private void JtDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtDescripcionKeyTyped
         char c = evt.getKeyChar();
-        if(Character.isLowerCase(c)){
-            String cad = (""+c).toUpperCase();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
     }//GEN-LAST:event_JtDescripcionKeyTyped
-    private void Limpiar(){
+    private void Limpiar() {
         this.JtDescripcion.setText("");
         JtDescripcion.requestFocus();
         JbDes.setForeground(java.awt.Color.BLACK);
     }
+
     /**
      * @param args the command line arguments
      */
@@ -206,20 +232,22 @@ public class NColor extends javax.swing.JDialog {
             }
         });
     }
-    private void Cerrar(){
+
+    private void Cerrar() {
         String botones[] = {"SI", "NO"};
-        int eleccion = JOptionPane.showOptionDialog(this,"¿Deseas cerrar esta ventana?", "TOP-SUELAS", 
+        int eleccion = JOptionPane.showOptionDialog(this, "¿Deseas cerrar esta ventana?", "TOP-SUELAS",
                 0, 0, null, botones, this);
-        if(eleccion == JOptionPane.YES_OPTION){
+        if (eleccion == JOptionPane.YES_OPTION) {
             dispose();
-        }else if(eleccion == JOptionPane.NO_OPTION){
-            
+        } else if (eleccion == JOptionPane.NO_OPTION) {
+
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbCancelar;
     private javax.swing.JLabel JbDes;
     private javax.swing.JButton JbGuardar;
-    private javax.swing.JTextField JtDescripcion;
+    public javax.swing.JTextField JtDescripcion;
+    public javax.swing.JTextField Jtid;
     // End of variables declaration//GEN-END:variables
 }

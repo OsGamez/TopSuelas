@@ -8,14 +8,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ObjectMateriales {
 
     PreparedStatement st = null;
     ResultSet rs = null;
-    Connection c = Server.getCmpPhylon();
+    Connection c = Conexion.getCmpPhylon();
     Statement sta = null;
 
     public boolean addMaterial(Material mat) {
@@ -50,12 +48,16 @@ public class ObjectMateriales {
     public ArrayList<Material> materialGetAll() {
         ArrayList<Material> listaMat = new ArrayList<Material>();
         try {
-            st = c.prepareStatement("SELECT * FROM Materiales");
+            st = c.prepareStatement("SELECT m.Almacen as #,a.Descripcion as Almacen,m.CveMat,m.Descripcion,m.CodigoSat,\n" +
+"                    m.UdeC,m.Fcompra,m.UdeCs,m.Fconsumo,m.UltimoCosto,m.CostoCosteo,m.CantidadMinima,\n" +
+"                    m.CantidadMaxima,m.TipoCosto,m.Divisa\n" +
+"                    FROM Materiales m INNER JOIN Almacenes a ON m.Almacen = a.Almacen");
             rs = st.executeQuery();
 
             while (rs.next()) {
                 Material mat = new Material();
-                mat.setAlmacen(rs.getInt("Almacen"));
+                mat.setAlmacen(rs.getInt("#"));
+                mat.setDesAlm(rs.getString("Almacen"));
                 mat.setCveMat(rs.getString("CveMat"));
                 mat.setDescripcion(rs.getString("Descripcion"));
                 mat.setCodigoSat(rs.getString("CodigoSat"));
@@ -69,7 +71,6 @@ public class ObjectMateriales {
                 mat.setCantidadMaxima(rs.getDouble("CantidadMaxima"));
                 mat.setTipoCosto(rs.getString("TipoCosto"));
                 mat.setDivisa(rs.getString("Divisa"));
-
                 listaMat.add(mat);
             }
         } catch (SQLException ex) {
@@ -81,13 +82,16 @@ public class ObjectMateriales {
     public ArrayList<Material> materialSearch(String filtro) {
         ArrayList<Material> listaMat = new ArrayList<Material>();
         try {
-            st = c.prepareStatement("SELECT * FROM Materiales WHERE Descripcion LIKE'%" + filtro + "%'"
-                    + "ORDER BY Descripcion");
+            st = c.prepareStatement("SELECT m.Almacen as #,a.Descripcion as Almacen,m.CveMat,m.Descripcion,m.CodigoSat,\n" +
+"                    m.UdeC,m.Fcompra,m.UdeCs,m.Fconsumo,m.UltimoCosto,m.CostoCosteo,m.CantidadMinima,\n" +
+"                    m.CantidadMaxima,m.TipoCosto,m.Divisa\n" +
+"                    FROM Materiales m INNER JOIN Almacenes a ON m.Almacen = a.Almacen WHERE m.Descripcion LIKE'%"+ filtro + "%'");
             rs = st.executeQuery();
 
             while (rs.next()) {
                 Material mat = new Material();
-                mat.setAlmacen(rs.getInt("Almacen"));
+                mat.setAlmacen(rs.getInt("#"));
+                mat.setDesAlm(rs.getString("Almacen"));
                 mat.setCveMat(rs.getString("CveMat"));
                 mat.setDescripcion(rs.getString("Descripcion"));
                 mat.setCodigoSat(rs.getString("CodigoSat"));

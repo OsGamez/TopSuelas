@@ -223,13 +223,18 @@ public class Gastos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbEliminarActionPerformed
 
     private void JbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEditarActionPerformed
-        MGasto editar = new MGasto(null, true);
+        NGasto editar = new NGasto(null, true);
         int row = JtGastos.getSelectedRow();
         try {
             if (row >= 0) {
                 int opcion = JOptionPane.showConfirmDialog(this, "¿Quieres editar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (opcion == JOptionPane.YES_OPTION) {
-                    editar.JcMes.setSelectedItem(JtGastos.getValueAt(row, 0));
+                    
+                    int mes = Integer.parseInt(JtGastos.getValueAt(row, 6).toString());
+                    editar.Jtid.setText(JtGastos.getValueAt(row, 6).toString());
+                    editar.JmMes.setEnabled(false);
+                    editar.JyAño.setEnabled(false);
+                    editar.JmMes.setMonth(mes-1);
                     editar.JyAño.setYear(Integer.parseInt(JtGastos.getValueAt(row, 1).toString()));
                     editar.JtMo.setText(String.valueOf(JtGastos.getValueAt(row, 2)));
                     editar.JtGf.setText(String.valueOf(JtGastos.getValueAt(row, 3)));
@@ -264,20 +269,16 @@ public class Gastos extends javax.swing.JInternalFrame {
         modelGasto.setNumRows(listaGastos.size());
         for (int i = 0; i < listaGastos.size(); i++) {
             Gasto g = listaGastos.get(i);
-            String Mes = g.getMes();
-            int Año = g.getAño();
-            double Mo = g.getMo();
-            double Gf = g.getGf();
-            double Ga = g.getGa();
-            double Mi = g.getMi();
+            
             DecimalFormat var = new DecimalFormat("0.00");
 
-            modelGasto.setValueAt(Mes, i, 0);
-            modelGasto.setValueAt(Año, i, 1);
-            modelGasto.setValueAt(var.format(Mo), i, 2);
-            modelGasto.setValueAt(var.format(Gf), i, 3);
-            modelGasto.setValueAt(var.format(Ga), i, 4);
-            modelGasto.setValueAt(var.format(Mi), i, 5);
+            modelGasto.setValueAt(g.getMes(), i, 0);
+            modelGasto.setValueAt(g.getAño(), i, 1);
+            modelGasto.setValueAt(var.format(g.getMo()), i, 2);
+            modelGasto.setValueAt(var.format(g.getGf()), i, 3);
+            modelGasto.setValueAt(var.format(g.getGa()), i, 4);
+            modelGasto.setValueAt(var.format(g.getMi()), i, 5);
+            modelGasto.setValueAt(g.getM(), i, 6);
         }
     }//GEN-LAST:event_JtBuscarKeyReleased
 
@@ -299,19 +300,14 @@ public class Gastos extends javax.swing.JInternalFrame {
             Gasto g = listaGastos.get(i);
 
             DecimalFormat var = new DecimalFormat("0.00");
-            String Mes = g.getMes();
-            int Año = g.getAño();
-            double Mo = g.getMo();
-            double Gf = g.getGf();
-            double Ga = g.getGa();
-            double Mi = g.getMi();
 
-            modelGasto.setValueAt(Mes, i, 0);
-            modelGasto.setValueAt(Año, i, 1);
-            modelGasto.setValueAt(var.format(Mo), i, 2);
-            modelGasto.setValueAt(var.format(Gf), i, 3);
-            modelGasto.setValueAt(var.format(Ga), i, 4);
-            modelGasto.setValueAt(var.format(Mi), i, 5);
+            modelGasto.setValueAt(g.getMes(), i, 0);
+            modelGasto.setValueAt(g.getAño(), i, 1);
+            modelGasto.setValueAt(var.format(g.getMo()), i, 2);
+            modelGasto.setValueAt(var.format(g.getGf()), i, 3);
+            modelGasto.setValueAt(var.format(g.getGa()), i, 4);
+            modelGasto.setValueAt(var.format(g.getMi()), i, 5);
+            modelGasto.setValueAt(g.getM(), i, 6);
         }
     }
 
@@ -322,6 +318,11 @@ public class Gastos extends javax.swing.JInternalFrame {
         modelGasto.addColumn("GASTOS FABRICACIÓN");
         modelGasto.addColumn("GASTOS ADMINISTRATIVOS");
         modelGasto.addColumn("MATERIAL INDIRECTO");
+        modelGasto.addColumn("M");
+        
+        JtGastos.getColumnModel().getColumn(6).setMaxWidth(0);
+        JtGastos.getColumnModel().getColumn(6).setMinWidth(0);
+        JtGastos.getColumnModel().getColumn(6).setPreferredWidth(0);
     }
 
     private void CleanTable() {

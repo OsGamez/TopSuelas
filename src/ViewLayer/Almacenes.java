@@ -252,13 +252,15 @@ public class Almacenes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbEliminarActionPerformed
 
     private void JbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEditarActionPerformed
-        MAlmacen editar = new MAlmacen(null, true);
+        NAlmacen editar = new NAlmacen(null, true);
         int row = JtAlmacen.getSelectedRow();
         try {
             if (row >= 0) {
                 int opcion = JOptionPane.showConfirmDialog(this, "¿Quieres editar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (opcion == JOptionPane.YES_OPTION) {
-                    editar.JbAlmacen.setText(JtAlmacen.getValueAt(row, 0).toString());
+                    editar.JtAlmacen.setEnabled(false);
+                    editar.JtAlmacen.setText(JtAlmacen.getValueAt(row, 0).toString());
+                    editar.Jtid.setText(JtAlmacen.getValueAt(row, 0).toString());
                     editar.JtDesc.setText(JtAlmacen.getValueAt(row, 1).toString());
 
                     editar.setVisible(true);

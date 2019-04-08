@@ -214,17 +214,11 @@ public class Usuarios extends javax.swing.JInternalFrame {
           for(int i =0; i <listaUsuarios.size(); i++){
             Usuario us = listaUsuarios.get(i);
             
-            int id = us.getId_Usuario();
-            String nombre = us.getNombre();
-            String usuario = us.getUsuario();
-            String pass = us.getPassword();
-            String Dep = us.getDepartamento();
-            
-            modelUsuario.setValueAt(id, i, 0);
-            modelUsuario.setValueAt(nombre, i, 1);
-            modelUsuario.setValueAt(usuario, i, 2);
-            modelUsuario.setValueAt(Dep, i, 3);
-            modelUsuario.setValueAt(pass, i, 4);
+            modelUsuario.setValueAt(us.getId_Usuario(), i, 0);
+            modelUsuario.setValueAt(us.getNombre(), i, 1);
+            modelUsuario.setValueAt(us.getUsuario(), i, 2);
+            modelUsuario.setValueAt(us.getDepartamento(), i, 3);
+            modelUsuario.setValueAt(us.getPassword(), i, 4);
             
           }
     }
@@ -310,18 +304,11 @@ public class Usuarios extends javax.swing.JInternalFrame {
         for(int i=0; i<listaUsuarios.size(); i++){
             Usuario us = listaUsuarios.get(i);
             
-            
-            int id = us.getId_Usuario();
-            String nombre = us.getNombre();
-            String usuario = us.getUsuario();
-            String pass = us.getPassword();
-            String Dep = us.getDepartamento();
-            
-            modelUsuario.setValueAt(id, i, 0);
-            modelUsuario.setValueAt(nombre, i, 1);
-            modelUsuario.setValueAt(usuario, i, 2);
-            modelUsuario.setValueAt(Dep, i, 3);
-            modelUsuario.setValueAt(pass, i, 4);
+            modelUsuario.setValueAt(us.getId_Usuario(), i, 0);
+            modelUsuario.setValueAt(us.getNombre(), i, 1);
+            modelUsuario.setValueAt(us.getUsuario(), i, 2);
+            modelUsuario.setValueAt(us.getDepartamento(), i, 3);
+            modelUsuario.setValueAt(us.getPassword(), i, 4);
         }
     }//GEN-LAST:event_JtBuscarKeyReleased
 

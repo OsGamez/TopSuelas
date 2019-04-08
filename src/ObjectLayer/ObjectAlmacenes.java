@@ -14,30 +14,20 @@ public class ObjectAlmacenes {
 
     PreparedStatement st = null;
     ResultSet rs = null;
-    Connection c = Server.getCmpPhylon();
+    Connection c = Conexion.getCmpPhylon();
 
-    public boolean almacenAdd(Almacen a) {
-        try {
-            c.setAutoCommit(false);
+    public boolean almacenAdd(int am, String Desc) {
             try {
                 st = c.prepareStatement("INSERT INTO Almacenes(Almacen,Descripcion)"
                         + "VALUES(?,?)");
-                st.setInt(1, a.getAlmacen());
-                st.setString(2, a.getDescripcion());
+                st.setInt(1, am);
+                st.setString(2, Desc);
                 st.executeUpdate();
-                c.commit();
+                st.close();
                 return true;
             } catch (SQLException ex) {
-                c.rollback();
                 ex.printStackTrace();
-            } finally {
-                if (st != null) {
-                    st.close();
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ObjectGastos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            } 
         return false;
     }
 
@@ -111,12 +101,13 @@ public class ObjectAlmacenes {
         return listaAlmacen;
     }
 
-    public boolean almacenUpdate(Almacen a) {
+    public boolean almacenUpdate(String Desc, int am) {
         try {
             st = c.prepareStatement("UPDATE Almacenes SET Descripcion =? WHERE Almacen = ?");
-            st.setString(1, a.getDescripcion());
-            st.setInt(2, a.getAlmacen());
+            st.setString(1, Desc);
+            st.setInt(2, am);
             st.executeUpdate();
+            st.close();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();

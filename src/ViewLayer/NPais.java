@@ -1,6 +1,4 @@
-
 package ViewLayer;
-
 
 import ObjectLayer.ObjectPaises;
 import ObjectLayer.Pais;
@@ -14,6 +12,7 @@ public class NPais extends javax.swing.JDialog {
 
     ObjectPaises obj = new ObjectPaises();
     String informacion = "";
+
     public NPais(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -21,10 +20,13 @@ public class NPais extends javax.swing.JDialog {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/pluscircleregular_106319.png"));
         setIconImage(icon);
         setLocationRelativeTo(null);
+        Jtid.setVisible(false);
     }
-    public String getInformacion(){
+
+    public String getInformacion() {
         return this.informacion;
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -33,9 +35,10 @@ public class NPais extends javax.swing.JDialog {
         JtDescripcion = new javax.swing.JTextField();
         JbGuardar = new javax.swing.JButton();
         JbCancelar = new javax.swing.JButton();
+        Jtid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("NUEVO PAIS");
+        setTitle("PAIS");
         setLocation(new java.awt.Point(0, 0));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -86,14 +89,18 @@ public class NPais extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(JbDes)
                         .addGap(18, 18, 18)
-                        .addComponent(JtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Jtid, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(Jtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbDes)
                     .addComponent(JtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -108,27 +115,50 @@ public class NPais extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbCancelarActionPerformed
-       Cerrar();
+        Cerrar();
     }//GEN-LAST:event_JbCancelarActionPerformed
 
     private void JbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbGuardarActionPerformed
-     if(JtDescripcion.getText().isEmpty()){
-        JOptionPane.showMessageDialog(this, "Ingresa una descripción","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-       }else if(obj.validarPais(JtDescripcion.getText())==0){
-        if( obj.paisAdd(JtDescripcion.getText(), true)){
-        JOptionPane.showMessageDialog(this, "Pais Guardado Correctamente!!!","TOP-SUELAS" ,JOptionPane.INFORMATION_MESSAGE);
-        informacion = "1";
-        Limpiar(); 
+        if (JtDescripcion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingresa una descripción", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+        }else if(Jtid.getText().isEmpty()){
+            if (obj.validarPais(JtDescripcion.getText()) == 0){
+                Guardar();
+            }else {
+            JOptionPane.showMessageDialog(this, "Este registro ya existe", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+        }
         }else{
-        JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-        Limpiar();
+            if (obj.validarPais(JtDescripcion.getText()) == 0){
+                Editar();
+            }else {
+            JOptionPane.showMessageDialog(this, "Este registro ya existe", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+        }
+        } 
+    }//GEN-LAST:event_JbGuardarActionPerformed
+
+    private void Guardar() {
+        if (obj.paisAdd(JtDescripcion.getText(), true)) {
+            JOptionPane.showMessageDialog(this, "Registro Guardado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            informacion = "1";
+            Limpiar();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            Limpiar();
         }
     }
-        else{ 
-            JOptionPane.showMessageDialog(this, "El pais ya existe","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
+
+    private void Editar() {
+        if (obj.paisUpdate(JtDescripcion.getText(), Jtid.getText())) {
+            JOptionPane.showMessageDialog(this, "Registro Guardado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            informacion = "1";
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            this.dispose();
         }
-    }//GEN-LAST:event_JbGuardarActionPerformed
-     private void Limpiar(){
+    }
+
+    private void Limpiar() {
         this.JtDescripcion.setText("");
         JtDescripcion.requestFocus();
         JbDes.setForeground(Color.BLACK);
@@ -138,21 +168,21 @@ public class NPais extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowClosing
 
     private void JtDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtDescripcionKeyReleased
-       if (!Character.isLetter(evt.getKeyChar())
+        if (!Character.isLetter(evt.getKeyChar())
                 && !(evt.getKeyChar() == KeyEvent.VK_SPACE)
                 && !(evt.getKeyChar() == KeyEvent.VK_BACK_SPACE)
-                && !(evt.getKeyChar()== KeyEvent.VK_ENTER)
+                && !(evt.getKeyChar() == KeyEvent.VK_ENTER)
                 && !(evt.getKeyCode() == KeyEvent.VK_CAPS_LOCK)) {
-      evt.consume();
-       JOptionPane.showMessageDialog(null,"Escribe solo letras");
-       JtDescripcion.setText("");
-       } 
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Escribe solo letras");
+            JtDescripcion.setText("");
+        }
     }//GEN-LAST:event_JtDescripcionKeyReleased
 
     private void JtDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtDescripcionKeyTyped
         char c = evt.getKeyChar();
-        if(Character.isLowerCase(c)){
-            String cad = (""+c).toUpperCase();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
@@ -200,20 +230,22 @@ public class NPais extends javax.swing.JDialog {
             }
         });
     }
-    private void Cerrar(){
+
+    private void Cerrar() {
         String botones[] = {"SI", "NO"};
-        int eleccion = JOptionPane.showOptionDialog(this,"¿Deseas cerrar esta ventana?", "TOP-SUELAS", 
+        int eleccion = JOptionPane.showOptionDialog(this, "¿Deseas cerrar esta ventana?", "TOP-SUELAS",
                 0, 0, null, botones, this);
-        if(eleccion == JOptionPane.YES_OPTION){
+        if (eleccion == JOptionPane.YES_OPTION) {
             dispose();
-        }else if(eleccion == JOptionPane.NO_OPTION){
-            
+        } else if (eleccion == JOptionPane.NO_OPTION) {
+
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbCancelar;
     private javax.swing.JLabel JbDes;
     private javax.swing.JButton JbGuardar;
-    private javax.swing.JTextField JtDescripcion;
+    public javax.swing.JTextField JtDescripcion;
+    public javax.swing.JTextField Jtid;
     // End of variables declaration//GEN-END:variables
 }

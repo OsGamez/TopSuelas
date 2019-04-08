@@ -68,25 +68,15 @@ public class Productos extends javax.swing.JInternalFrame {
         for(int i =0; i <listaProductos.size(); i++){
             Producto producto = listaProductos.get(i);
             
-            int id = producto.getId_Producto();
-            String nombre = producto.getDescripcion();
-            String obv = producto.getObservaciones();
-            String color = producto.getDescripcionColor();
-            String corrida = producto.getDescripcionCorrida();
-            String linea = producto.getDescripcionLinea();
-            int id_color = producto.getId_Color();
-            int id_corrida = producto.getId_Corrida();
-            int id_linea = producto.getId_Linea();
-            
-            modelProducto.setValueAt(id, i, 0);
-            modelProducto.setValueAt(nombre, i, 1);
-            modelProducto.setValueAt(obv, i, 2);
-            modelProducto.setValueAt(color, i, 3);
-            modelProducto.setValueAt(id_color, i, 4);
-            modelProducto.setValueAt(corrida, i, 5);
-            modelProducto.setValueAt(id_corrida, i, 6);
-            modelProducto.setValueAt(linea, i, 7);
-            modelProducto.setValueAt(id_linea, i, 8);
+            modelProducto.setValueAt(producto.getId_Producto(), i, 0);
+            modelProducto.setValueAt(producto.getDescripcion(), i, 1);
+            modelProducto.setValueAt(producto.getObservaciones(), i, 2);
+            modelProducto.setValueAt(producto.getDescripcionColor(), i, 3);
+            modelProducto.setValueAt(producto.getId_Color(), i, 4);
+            modelProducto.setValueAt(producto.getDescripcionCorrida(), i, 5);
+            modelProducto.setValueAt(producto.getId_Corrida(), i, 6);
+            modelProducto.setValueAt(producto.getDescripcionLinea(), i, 7);
+            modelProducto.setValueAt(producto.getId_Linea(), i, 8);
            
         }
     }
@@ -274,30 +264,20 @@ public class Productos extends javax.swing.JInternalFrame {
         for(int i = 0; i < listaProductos.size(); i++){
             Producto producto = listaProductos.get(i);
             
-            int id = producto.getId_Producto();
-            String nombre = producto.getDescripcion();
-            String obv = producto.getObservaciones();
-            String color = producto.getDescripcionColor();
-            String corrida = producto.getDescripcionCorrida();
-            String linea = producto.getDescripcionLinea();
-            int id_color = producto.getId_Color();
-            int id_corrida = producto.getId_Corrida();
-            int id_linea = producto.getId_Linea();
-            
-            modelProducto.setValueAt(id, i, 0);
-            modelProducto.setValueAt(nombre, i, 1);
-            modelProducto.setValueAt(obv, i, 2);
-            modelProducto.setValueAt(color, i, 3);
-            modelProducto.setValueAt(id_color, i, 4);
-            modelProducto.setValueAt(corrida, i, 5);
-            modelProducto.setValueAt(id_corrida, i, 6);
-            modelProducto.setValueAt(linea, i, 7);
-            modelProducto.setValueAt(id_linea, i, 8);
+            modelProducto.setValueAt(producto.getId_Producto(), i, 0);
+            modelProducto.setValueAt(producto.getDescripcion(), i, 1);
+            modelProducto.setValueAt(producto.getObservaciones(), i, 2);
+            modelProducto.setValueAt(producto.getDescripcionColor(), i, 3);
+            modelProducto.setValueAt(producto.getId_Color(), i, 4);
+            modelProducto.setValueAt(producto.getDescripcionCorrida(), i, 5);
+            modelProducto.setValueAt(producto.getId_Corrida(), i, 6);
+            modelProducto.setValueAt(producto.getDescripcionLinea(), i, 7);
+            modelProducto.setValueAt(producto.getId_Linea(), i, 8);
         }
     }//GEN-LAST:event_JtBuscarKeyReleased
 
     private void JbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEditarActionPerformed
-    MProducto editar = new MProducto(null, true);
+    NProducto editar = new NProducto(null, true);
     int fila = JtDatosProducto.getSelectedRow();       
     try{
         if(fila>=0){
@@ -306,7 +286,7 @@ public class Productos extends javax.swing.JInternalFrame {
         Color cl = new Color();
         Corrida cr = new Corrida();
         Linea ln = new Linea();
-        editar.JtId.setText(JtDatosProducto.getValueAt(fila, 0).toString());
+        editar.Jtid.setText(JtDatosProducto.getValueAt(fila, 0).toString());
         editar.JtNombre.setText(JtDatosProducto.getValueAt(fila, 1).toString());
         editar.JaObservacion.setText(JtDatosProducto.getValueAt(fila, 2).toString());
         cl.setDescripcion(JtDatosProducto.getValueAt(fila, 3).toString());

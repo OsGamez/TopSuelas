@@ -216,17 +216,11 @@ public class Corridas extends javax.swing.JInternalFrame {
 
             Corrida corrida = listaCorridas.get(i);
 
-            int id = corrida.getId_Corrida();
-            String nombre = corrida.getDescripcion();
-            float pi = corrida.getPunto_Inicial();
-            float pt = corrida.getPunto_Final();
-            String obv = corrida.getObservaciones();
-
-            modelCorrida.setValueAt(id, i, 0);
-            modelCorrida.setValueAt(nombre, i, 1);
-            modelCorrida.setValueAt(pi, i, 2);
-            modelCorrida.setValueAt(pt, i, 3);
-            modelCorrida.setValueAt(obv, i, 4);
+            modelCorrida.setValueAt(corrida.getId_Corrida(), i, 0);
+            modelCorrida.setValueAt(corrida.getDescripcion(), i, 1);
+            modelCorrida.setValueAt(corrida.getPunto_Inicial(), i, 2);
+            modelCorrida.setValueAt(corrida.getPunto_Final(), i, 3);
+            modelCorrida.setValueAt(corrida.getObservaciones(), i, 4);
         }
 
     }//GEN-LAST:event_JtBuscarKeyReleased
@@ -254,14 +248,14 @@ public class Corridas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbEliminarActionPerformed
 
     private void JbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEditarActionPerformed
-        MCorrida editar = new MCorrida(null, true);
+        NCorrida editar = new NCorrida(null, true);
         int fila = JtDatosCorrida.getSelectedRow();
 
         try {
             if (fila >= 0) {
                 int opcion = JOptionPane.showConfirmDialog(this, "¿Quieres editar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (opcion == JOptionPane.YES_OPTION) {
-                    editar.JtId.setText(JtDatosCorrida.getValueAt(fila, 0).toString());
+                    editar.Jtid.setText(JtDatosCorrida.getValueAt(fila, 0).toString());
                     editar.JtDescripcion.setText(JtDatosCorrida.getValueAt(fila, 1).toString());
                     editar.JtPi.setText(JtDatosCorrida.getValueAt(fila, 2).toString());
                     editar.JtPf.setText(JtDatosCorrida.getValueAt(fila, 3).toString());
@@ -332,17 +326,11 @@ public class Corridas extends javax.swing.JInternalFrame {
         for (int i = 0; i < listaCorridas.size(); i++) {
             Corrida corrida = listaCorridas.get(i);
 
-            int id = corrida.getId_Corrida();
-            String nombre = corrida.getDescripcion();
-            float pi = corrida.getPunto_Inicial();
-            float pt = corrida.getPunto_Final();
-            String obv = corrida.getObservaciones();
-
-            modelCorrida.setValueAt(id, i, 0);
-            modelCorrida.setValueAt(nombre, i, 1);
-            modelCorrida.setValueAt(pi, i, 2);
-            modelCorrida.setValueAt(pt, i, 3);
-            modelCorrida.setValueAt(obv, i, 4);
+            modelCorrida.setValueAt(corrida.getId_Corrida(), i, 0);
+            modelCorrida.setValueAt(corrida.getDescripcion(), i, 1);
+            modelCorrida.setValueAt(corrida.getPunto_Inicial(), i, 2);
+            modelCorrida.setValueAt(corrida.getPunto_Final(), i, 3);
+            modelCorrida.setValueAt(corrida.getObservaciones(), i, 4);
         }
     }
 

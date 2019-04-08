@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class ObjectCostos {
 
     PreparedStatement st = null;
-    Connection c = Server.getProduccion();
+    Connection c = Conexion.getProduccion();
     ResultSet rs = null;
 
     public boolean CostoAdd(Costo costo) {

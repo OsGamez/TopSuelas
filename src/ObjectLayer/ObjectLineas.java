@@ -13,15 +13,15 @@ import java.util.logging.Logger;
 public class ObjectLineas {
 
     PreparedStatement st = null;
-    public Connection c = Server.getProduccion();
+    public Connection c = Conexion.getProduccion();
     ResultSet rs = null;
 
-    public boolean lineaAdd(Linea linea) {
+    public boolean lineaAdd(String Descripcion, boolean Activo) {
         try {
             st = c.prepareStatement("INSERT INTO Linea (Descripcion ,Activo)"
                     + "values(?,?)");
-            st.setString(1, linea.getDescripcion());
-            st.setBoolean(2, linea.getActivo());
+            st.setString(1, Descripcion);
+            st.setBoolean(2, Activo);
             st.executeUpdate();
             st.close();
             return true;
@@ -104,12 +104,12 @@ public class ObjectLineas {
         }
     }
 
-    public boolean lineaUpdate(Linea linea) {
+    public boolean lineaUpdate(String Descripcion, int id) {
         try {
             st = c.prepareStatement("UPDATE Linea SET Descripcion = ? WHERE Id_Linea = ?");
 
-            st.setString(1, linea.getDescripcion());
-            st.setInt(2, linea.getId_Linea());
+            st.setString(1, Descripcion);
+            st.setInt(2, id);
 
             st.executeUpdate();
             st.close();

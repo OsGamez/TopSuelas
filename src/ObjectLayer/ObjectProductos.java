@@ -8,12 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ObjectProductos {
 
-    public Connection c = Server.getProduccion();
+    public Connection c = Conexion.getProduccion();
     PreparedStatement st, prod = null;
     ResultSet rs = null;
     Statement sta = null;

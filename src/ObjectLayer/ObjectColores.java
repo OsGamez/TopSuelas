@@ -7,21 +7,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 public class ObjectColores {
 
     PreparedStatement st = null;
-    public Connection c = Server.getProduccion();
+    public Connection c = Conexion.getProduccion();
     public ResultSet rs = null;
 
-    public boolean colorAdd(Color color) {
+    public boolean colorAdd(String Descripcion, boolean Activo) {
         try {
             st = c.prepareStatement("INSERT INTO Color (Descripcion ,Activo)"
                     + "values(?,?)");
-            st.setString(1, color.getDescripcion());
-            st.setBoolean(2, color.getActivo());
+            st.setString(1, Descripcion);
+            st.setBoolean(2, Activo);
             st.executeUpdate();
             st.close();
             return true;
@@ -103,11 +102,11 @@ public class ObjectColores {
         }
     }
 
-    public boolean colorUpdate(Color color) {
+    public boolean colorUpdate(String Descripcion, int id) {
         try {
             st = c.prepareStatement("UPDATE Color SET Descripcion = ? WHERE Id_Color = ?");
-            st.setString(1, color.getDescripcion());
-            st.setInt(2, color.getId_Color());
+            st.setString(1, Descripcion);
+            st.setInt(2, id);
             st.executeUpdate();
             st.close();
             return true;

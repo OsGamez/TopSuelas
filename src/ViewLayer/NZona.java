@@ -19,6 +19,7 @@ public class NZona extends javax.swing.JDialog {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/pluscircleregular_106319.png"));
         setIconImage(icon);
         setLocationRelativeTo(null);
+        Jtid.setVisible(false);
     }
 
     public String getInformacion() {
@@ -33,9 +34,10 @@ public class NZona extends javax.swing.JDialog {
         JtDescripcion = new javax.swing.JTextField();
         JbGuardar = new javax.swing.JButton();
         JbCancelar = new javax.swing.JButton();
+        Jtid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("NUEVA ZONA");
+        setTitle("ZONA");
         setLocation(new java.awt.Point(0, 0));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -77,20 +79,24 @@ public class NZona extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(JbGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(JbDes)
                         .addGap(18, 18, 18)
-                        .addComponent(JtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(JbGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Jtid, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addComponent(Jtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JbDes))
@@ -115,19 +121,44 @@ public class NZona extends javax.swing.JDialog {
     private void JbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbGuardarActionPerformed
         if (JtDescripcion.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingresa una descripción", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-        } else if (obj.validarZona(JtDescripcion.getText()) == 0) {
-            if (obj.zonaAdd(JtDescripcion.getText(), true)) {
-                JOptionPane.showMessageDialog(this, "Zona Guardada Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                informacion = "1";
-                Limpiar();
-            } else {
-                JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+        }else if(Jtid.getText().isEmpty()){
+            if (obj.validarZona(JtDescripcion.getText()) == 0){
+                Guardar();
+            }else {
+                JOptionPane.showMessageDialog(this, "Este registro ya existe!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
                 Limpiar();
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "La zona ya existe", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-        }
+        }else{
+            if (obj.validarZona(JtDescripcion.getText()) == 0){
+                Editar();
+            }else {
+                JOptionPane.showMessageDialog(this, "Este registro ya existe!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            }
+        } 
     }//GEN-LAST:event_JbGuardarActionPerformed
+
+    private void Guardar() {
+        if (obj.zonaAdd(JtDescripcion.getText(), true)) {
+           JOptionPane.showMessageDialog(this, "Registro Guardado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+           informacion = "1";
+           Limpiar();
+        }else {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            Limpiar();
+        }
+    }
+
+    private void Editar() {
+        if (obj.zonaUpdate(JtDescripcion.getText(), Jtid.getText())) {
+           JOptionPane.showMessageDialog(this, "Registro Editado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+           informacion = "1";
+           this.dispose();
+        }else {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            this.dispose();
+        } 
+    }
+
     private void Limpiar() {
         JtDescripcion.setText("");
         JtDescripcion.requestFocus();
@@ -198,6 +229,7 @@ public class NZona extends javax.swing.JDialog {
     private javax.swing.JButton JbCancelar;
     private javax.swing.JLabel JbDes;
     private javax.swing.JButton JbGuardar;
-    private javax.swing.JTextField JtDescripcion;
+    public javax.swing.JTextField JtDescripcion;
+    public javax.swing.JTextField Jtid;
     // End of variables declaration//GEN-END:variables
 }

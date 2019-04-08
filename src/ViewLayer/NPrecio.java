@@ -1,4 +1,3 @@
-
 package ViewLayer;
 
 import ObjectLayer.Cliente;
@@ -15,14 +14,13 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
-
 public class NPrecio extends javax.swing.JDialog {
 
     ObjectPrecios op = new ObjectPrecios();
     ObjectProductos ObjP = new ObjectProductos();
     String informacion = "";
     DefaultListModel<Producto> modeloListaProductos = new DefaultListModel<Producto>();
-    
+
     public NPrecio(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -32,25 +30,29 @@ public class NPrecio extends javax.swing.JDialog {
         setIconImage(icon);
         setLocationRelativeTo(null);
         JbIdProd.setVisible(false);
+        Jtid.setVisible(false);
     }
-    public String getInformacion(){
+
+    public String getInformacion() {
         return this.informacion;
     }
-  
-   private void LoadModelCliente(){
-       Cliente cl = new Cliente();
-       DefaultComboBoxModel modelCliente = new DefaultComboBoxModel(cl.getClientes());
-       JcCliente.setModel(modelCliente);
-   }
-   private void Cerrar(){
+
+    private void LoadModelCliente() {
+        Cliente cl = new Cliente();
+        DefaultComboBoxModel modelCliente = new DefaultComboBoxModel(cl.getClientes());
+        JcCliente.setModel(modelCliente);
+    }
+
+    private void Cerrar() {
         String botones[] = {"SI", "NO"};
-        int eleccion = JOptionPane.showOptionDialog(this,"¿Deseas cerrar esta ventana?", "TOP-SUELAS", 
+        int eleccion = JOptionPane.showOptionDialog(this, "¿Deseas cerrar esta ventana?", "TOP-SUELAS",
                 0, 0, null, botones, this);
-        if(eleccion == JOptionPane.YES_OPTION){
+        if (eleccion == JOptionPane.YES_OPTION) {
             dispose();
-        }else if(eleccion == JOptionPane.NO_OPTION){       
+        } else if (eleccion == JOptionPane.NO_OPTION) {
         }
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -68,9 +70,10 @@ public class NPrecio extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         listaProductos = new javax.swing.JList<>();
         JbIdProd = new javax.swing.JLabel();
+        Jtid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("NUEVA LISTA");
+        setTitle("PRECIO");
         setLocation(new java.awt.Point(0, 0));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -124,7 +127,7 @@ public class NPrecio extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(listaProductos);
 
-        JbIdProd.setText("jLabel2");
+        JbIdProd.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -148,11 +151,12 @@ public class NPrecio extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(JbIdProd)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(JbGuardar)
                         .addGap(50, 50, 50)
-                        .addComponent(JbCerrar)))
+                        .addComponent(JbCerrar))
+                    .addComponent(JbIdProd, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Jtid, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34))
         );
         layout.setVerticalGroup(
@@ -179,7 +183,8 @@ public class NPrecio extends javax.swing.JDialog {
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(JbPreciob)
-                            .addComponent(Jtb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Jtb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Jtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbGuardar)
@@ -199,31 +204,65 @@ public class NPrecio extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowClosing
 
     private void JbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbGuardarActionPerformed
-       Cliente cliente = (Cliente)JcCliente.getSelectedItem();
-       int Idp = Integer.parseInt(JbIdProd.getText());
-        
-        if(Jta.getText().equals("") || Jtb.getText().equals("") || JcCliente.getSelectedIndex()==0 ||
-               JtProducto.getText().equals("")){
-               JOptionPane.showMessageDialog(this, "Falta datos de ingresar verifica","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-         }else if(op.validarLista(Idp,cliente.getId_Cliente())==0){
-               Precio precio = new Precio();
-               precio.setId_Cliente(cliente.getId_Cliente());
-               precio.setId_Producto(Idp);
-               precio.setPrecioA(Double.parseDouble(Jta.getText()));
-               precio.setPrecioB( Double.parseDouble(Jtb.getText()));
-               precio.setActivo(true);
-             if(op.precioAdd(precio)){
-               JOptionPane.showMessageDialog(this, "Lista Guardada Correctamente!!!","TOP-SUELAS" ,JOptionPane.INFORMATION_MESSAGE);
-               informacion = "1";
-               Limpiar();  
-               }else{
-               JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-               Limpiar();
-               }
-           }else{
-               JOptionPane.showMessageDialog(this, "Este producto ya esta asignado a este cliente","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-           }
+        Cliente cliente = (Cliente) JcCliente.getSelectedItem();
+        int Idp = Integer.parseInt(JbIdProd.getText());
+
+        if (Jta.getText().equals("") || Jtb.getText().equals("") || JcCliente.getSelectedIndex() == 0
+                || JtProducto.getText().equals("") || JbIdProd.getText().equals("0")) {
+            JOptionPane.showMessageDialog(this, "Falta datos de ingresar verifica", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+        } else if (Jtid.getText().isEmpty()) {
+            if (op.validarLista(Idp, cliente.getId_Cliente()) == 0) {
+                Guardar();
+            } else {
+                JOptionPane.showMessageDialog(this, "Esta lista ya existe", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            Editar();
+        }
+
+
     }//GEN-LAST:event_JbGuardarActionPerformed
+
+    private void Guardar() {
+        Cliente cliente = (Cliente) JcCliente.getSelectedItem();
+        int Idp = Integer.parseInt(JbIdProd.getText());
+
+        Precio precio = new Precio();
+        precio.setId_Cliente(cliente.getId_Cliente());
+        precio.setId_Producto(Idp);
+        precio.setPrecioA(Double.parseDouble(Jta.getText()));
+        precio.setPrecioB(Double.parseDouble(Jtb.getText()));
+        precio.setActivo(true);
+
+        if (op.precioAdd(precio)) {
+            JOptionPane.showMessageDialog(this, "Registro Guardado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            informacion = "1";
+            Limpiar();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            Limpiar();
+        }
+    }
+
+    private void Editar() {
+        Cliente cliente = (Cliente) JcCliente.getSelectedItem();
+        int Idp = Integer.parseInt(Jtid.getText());
+
+        Precio precio = new Precio();
+        precio.setId_Cliente(cliente.getId_Cliente());
+        precio.setId_Producto(Idp);
+        precio.setPrecioA(Double.parseDouble(Jta.getText()));
+        precio.setPrecioB(Double.parseDouble(Jtb.getText()));
+
+        if (op.precioUpdate(precio)) {
+            JOptionPane.showMessageDialog(this, "Registro Editado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            informacion = "1";
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            this.dispose();
+        }
+    }
 
     private void JtProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtProductoKeyTyped
         char c = evt.getKeyChar();
@@ -258,11 +297,12 @@ public class NPrecio extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_JtProductoKeyReleased
-    
+
     private void limpiarListaProductos() {
         modeloListaProductos.clear();
     }
-    private void Limpiar(){
+
+    private void Limpiar() {
         JcCliente.setSelectedIndex(0);
         JtProducto.setText("");
         Jta.setText("");
@@ -273,6 +313,7 @@ public class NPrecio extends javax.swing.JDialog {
         JbPrecioa.setForeground(Color.BLACK);
         JbPreciob.setForeground(Color.BLACK);
     }
+
     /**
      * @param args the command line arguments
      */
@@ -319,14 +360,15 @@ public class NPrecio extends javax.swing.JDialog {
     private javax.swing.JButton JbCerrar;
     private javax.swing.JLabel JbDes;
     private javax.swing.JButton JbGuardar;
-    private javax.swing.JLabel JbIdProd;
+    public javax.swing.JLabel JbIdProd;
     private javax.swing.JLabel JbPrecioa;
     private javax.swing.JLabel JbPreciob;
     private javax.swing.JLabel JbProd;
-    private javax.swing.JComboBox<String> JcCliente;
-    private javax.swing.JTextField JtProducto;
-    private javax.swing.JTextField Jta;
-    private javax.swing.JTextField Jtb;
+    public javax.swing.JComboBox<String> JcCliente;
+    public javax.swing.JTextField JtProducto;
+    public javax.swing.JTextField Jta;
+    public javax.swing.JTextField Jtb;
+    public javax.swing.JTextField Jtid;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<Producto> listaProductos;
     // End of variables declaration//GEN-END:variables

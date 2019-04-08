@@ -132,6 +132,8 @@ public class NAgente extends javax.swing.JDialog {
         } else {
             if (obj.validarAgente(JtDescripcion.getText()) == 0) {
                 Editar();
+            }else {
+                JOptionPane.showMessageDialog(this, "Este registro ya existe!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
             }
         }
     }//GEN-LAST:event_JbGuardarActionPerformed

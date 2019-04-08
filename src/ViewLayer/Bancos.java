@@ -281,15 +281,10 @@ public class Bancos extends javax.swing.JInternalFrame {
         for (int i = 0; i < listaBancos.size(); i++) {
             Banco banco = listaBancos.get(i);
 
-            int id = banco.getId_Banco();
-            String descripcion = banco.getDescripcion();
-            String rfc = banco.getRFC();
-            String cta = banco.getCTA();
-
-            modelBanco.setValueAt(id, i, 0);
-            modelBanco.setValueAt(descripcion, i, 1);
-            modelBanco.setValueAt(rfc, i, 2);
-            modelBanco.setValueAt(cta, i, 3);
+            modelBanco.setValueAt(banco.getId_Banco(), i, 0);
+            modelBanco.setValueAt(banco.getDescripcion(), i, 1);
+            modelBanco.setValueAt(banco.getRFC(), i, 2);
+            modelBanco.setValueAt(banco.getCTA(), i, 3);
         }
     }
     private void JtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyReleased
@@ -303,11 +298,10 @@ public class Bancos extends javax.swing.JInternalFrame {
 
             Banco banco = listaBancos.get(i);
 
-            int id = banco.getId_Banco();
-            String descripcion = banco.getDescripcion();
-
-            modelBanco.setValueAt(id, i, 0);
-            modelBanco.setValueAt(descripcion, i, 1);
+            modelBanco.setValueAt(banco.getId_Banco(), i, 0);
+            modelBanco.setValueAt(banco.getDescripcion(), i, 1);
+            modelBanco.setValueAt(banco.getRFC(), i, 2);
+            modelBanco.setValueAt(banco.getCTA(), i, 3);
 
         }
     }//GEN-LAST:event_JtBuscarKeyReleased

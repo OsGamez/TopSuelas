@@ -29,7 +29,7 @@ GROUP BY dp.Pares,p.Fecha_Entrega,c.Descripcion]]>
 			<staticText>
 				<reportElement mode="Transparent" x="2" y="1" width="30" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="99b00ebf-33e4-4b4f-b4e8-61a3f75feafe"/>
 				<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial" size="6" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="6" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[COLOR]]></text>

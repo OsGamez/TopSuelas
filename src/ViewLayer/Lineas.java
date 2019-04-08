@@ -244,22 +244,19 @@ class Lineas extends javax.swing.JInternalFrame {
         for (int i = 0; i < listaLineas.size(); i++) {
             Linea linea = listaLineas.get(i);
 
-            int id = linea.getId_Linea();
-            String descripcion = linea.getDescripcion();
-
-            modelLinea.setValueAt(id, i, 0);
-            modelLinea.setValueAt(descripcion, i, 1);
+            modelLinea.setValueAt(linea.getId_Linea(), i, 0);
+            modelLinea.setValueAt(linea.getDescripcion(), i, 1);
         }
     }
     private void JbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEditarActionPerformed
-        MLinea editar = new MLinea(null, true);
+        NLinea editar = new NLinea(null, true);
         int fila = JtDatosLinea.getSelectedRow();
 
         try {
             if (fila >= 0) {
                 int opcion = JOptionPane.showConfirmDialog(this, "¿Quires editar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (opcion == JOptionPane.YES_OPTION) {
-                    editar.JtId.setText(JtDatosLinea.getValueAt(fila, 0).toString());
+                    editar.Jtid.setText(JtDatosLinea.getValueAt(fila, 0).toString());
                     editar.JtDescripcion.setText(JtDatosLinea.getValueAt(fila, 1).toString());
 
                     editar.setVisible(true);
@@ -289,11 +286,8 @@ class Lineas extends javax.swing.JInternalFrame {
 
             Linea linea = listaLineas.get(i);
 
-            int id = linea.getId_Linea();
-            String descripcion = linea.getDescripcion();
-
-            modelLinea.setValueAt(id, i, 0);
-            modelLinea.setValueAt(descripcion, i, 1);
+            modelLinea.setValueAt(linea.getId_Linea(), i, 0);
+            modelLinea.setValueAt(linea.getDescripcion(), i, 1);
         }
     }//GEN-LAST:event_JtBuscarKeyReleased
 
