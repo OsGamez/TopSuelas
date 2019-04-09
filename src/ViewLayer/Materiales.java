@@ -1,4 +1,3 @@
-
 package ViewLayer;
 
 import DataAccesLayer.Conexion;
@@ -24,16 +23,17 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
-
 public class Materiales extends javax.swing.JInternalFrame {
+
     Connection c = Server.getCmpPhylon();
-    DefaultTableModel modelMat = new DefaultTableModel(){
+    DefaultTableModel modelMat = new DefaultTableModel() {
         @Override
-          public boolean isCellEditable(int row, int column){
-          return false;
-        }  
-      };
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
     ObjectMateriales obj = new ObjectMateriales();
+
     public Materiales() {
         initComponents();
         LoadColums();
@@ -194,20 +194,20 @@ public class Materiales extends javax.swing.JInternalFrame {
         nuevo.setVisible(true);
         nuevo.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         nuevo.setAlwaysOnTop(true);
-        if(nuevo.getInformacion()!=""){
+        if (nuevo.getInformacion() != "") {
             CleanTable();
             LoadModelMaterial();
         }
     }//GEN-LAST:event_JbNuevoActionPerformed
 
     private void JbReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbReporteActionPerformed
-        try {                                          
+        try {
             JasperReport reporte = null;
-            reporte = (JasperReport)JRLoader.loadObject(getClass().getResource("/Reports/ReporteMateriales.jasper"));
+            reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reports/ReporteMateriales.jasper"));
             try {
-                JasperPrint jprint = JasperFillManager.fillReport(reporte, null,c);
-                JasperViewer view = new  JasperViewer(jprint,false);
-                
+                JasperPrint jprint = JasperFillManager.fillReport(reporte, null, c);
+                JasperViewer view = new JasperViewer(jprint, false);
+
                 view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                 view.setVisible(true);
                 view.setIconImage(getImage());
@@ -223,45 +223,48 @@ public class Materiales extends javax.swing.JInternalFrame {
     private void JbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbSalirActionPerformed
         dispose();
     }//GEN-LAST:event_JbSalirActionPerformed
-     public Image getImage(){
+    public Image getImage() {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/PhotoPrint_11187.png"));
         return icon;
     }
     private void JbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEliminarActionPerformed
         int row = JtMaterial.getSelectedRow();
-        try{
-            if(row>=0){
-               int opcion = JOptionPane.showConfirmDialog(this,"¿Estas seguro de borrar este registro?","TOP-SUELAS",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-                if(opcion ==JOptionPane.YES_OPTION){
+        try {
+            if (row >= 0) {
+                int opcion = JOptionPane.showConfirmDialog(this, "¿Estas seguro de borrar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (opcion == JOptionPane.YES_OPTION) {
                     int Alm = Integer.parseInt(JtMaterial.getValueAt(row, 0).toString());
                     String Cv = JtMaterial.getValueAt(row, 2).toString();
-                    if(obj.materialDelete(Alm, Cv)){
+                    if (obj.materialDelete(Alm, Cv)) {
                         modelMat.removeRow(row);
-                        JOptionPane.showMessageDialog(this, "Registro eliminado!!!","TOP-SUELAS" ,JOptionPane.INFORMATION_MESSAGE);
-                    }else{
-                        JOptionPane.showMessageDialog(null,"Ocurrio un error contacta con sistemas");
+                        JOptionPane.showMessageDialog(this, "Registro eliminado!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                    }else {
+                        JOptionPane.showMessageDialog(null, "Ocurrio un error contacta con sistemas");
                     }
                 }
-            }else{
-                  JOptionPane.showMessageDialog(null,"No se ha seleccionado ningun registro");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
             }
-        }catch(Exception ex){
-             ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_JbEliminarActionPerformed
 
     private void JbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEditarActionPerformed
-        MMaterial editar = new MMaterial(null,true);
+        NMaterial editar = new NMaterial(null, true);
         int row = JtMaterial.getSelectedRow();
-        try{
-            if(row >=0){
-                int opcion = JOptionPane.showConfirmDialog(this,"¿Quieres editar este registro?","TOP-SUELAS",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE); 
-                if(opcion == JOptionPane.YES_OPTION){
+        try {
+            if (row >= 0) {
+                int opcion = JOptionPane.showConfirmDialog(this, "¿Quieres editar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (opcion == JOptionPane.YES_OPTION) {
                     Almacen am = new Almacen();
-                    am.setAlmacen((int)JtMaterial.getValueAt(row, 0));
+                    editar.JcAlm.setEnabled(false);
+                    editar.JtCv.setEnabled(false);
+                    editar.JtId.setText(JtMaterial.getValueAt(row, 0).toString());
+                    am.setAlmacen((int) JtMaterial.getValueAt(row, 0));
                     am.setDescripcion(JtMaterial.getValueAt(row, 1).toString());
-                    editar.JcAlmacen.getModel().setSelectedItem(am);
-                    editar.JtCve.setText(JtMaterial.getValueAt(row, 2).toString());
+                    editar.JcAlm.getModel().setSelectedItem(am);
+                    editar.JtCv.setText(JtMaterial.getValueAt(row, 2).toString());
                     editar.JtNombre.setText(String.valueOf(JtMaterial.getValueAt(row, 3)));
                     editar.JtSat.setText(String.valueOf(JtMaterial.getValueAt(row, 4)));
                     editar.JcUdc.setSelectedItem(String.valueOf(JtMaterial.getValueAt(row, 5)));
@@ -274,19 +277,19 @@ public class Materiales extends javax.swing.JInternalFrame {
                     editar.JtCantidadMa.setText(String.valueOf(JtMaterial.getValueAt(row, 12)));
                     editar.JtTcosto.setText(String.valueOf(JtMaterial.getValueAt(row, 13)));
                     editar.JcDivisa.setSelectedItem(String.valueOf(JtMaterial.getValueAt(row, 14)));
-                    
+
                     editar.setVisible(true);
                     editar.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                     editar.setAlwaysOnTop(true);
-                   if(editar.getInformacion()!=""){ 
-                    CleanTable();
-                    LoadModelMaterial();
+                    if (editar.getInformacion() != "") {
+                        CleanTable();
+                        LoadModelMaterial();
+                    }
                 }
-                }
-            }else{
-                  JOptionPane.showMessageDialog(null,"No se ha seleccionado ningun registro");  
-                }
-        }catch(Exception ex){
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
+            }
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_JbEditarActionPerformed
@@ -297,91 +300,64 @@ public class Materiales extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbActualizarActionPerformed
 
     private void JtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyReleased
-      CleanTable();
-      ArrayList<Material>listaMat = obj.materialSearch(JtBuscar.getText());
-      
-      listaMat.size();
-      modelMat.setNumRows(listaMat.size());
-      for(int i=0; i<listaMat.size(); i++){
-          Material m = listaMat.get(i);
-          DecimalFormat var = new DecimalFormat("#.00");
-          int Alma = m.getAlmacen();
-          String DescAl = m.getDesAlm();
-          String Cv = m.getCveMat();
-          String Desc = m.getDescripcion();
-          String Sat = m.getCodigoSat();
-          String Udc = m.getUdeC();
-          double Fcompra = m.getFcompra();
-          String Udcs = m.getUdeCs();
-          double Fconsumo = m.getFconsumo();
-          double UltimoC = m.getUltimoCosto();
-          double CostoC = m.getCostoCosteo();
-          double CantidadM = m.getCantidadMinima();
-          double CantidadMx = m.getCantidadMaxima();
-          String Tipo = m.getTipoCosto();
-          String Divisa = m.getDivisa();
-             
-             modelMat.setValueAt(Alma, i, 0);
-             modelMat.setValueAt(Cv, i, 1);
-             modelMat.setValueAt(Desc, i, 2);
-             modelMat.setValueAt(Sat, i, 3);
-             modelMat.setValueAt(Udc, i, 4);
-             modelMat.setValueAt(var.format(Fcompra), i, 5);
-             modelMat.setValueAt(Udcs, i, 6);
-             modelMat.setValueAt(var.format(Fconsumo), i, 7);
-             modelMat.setValueAt(var.format(UltimoC), i, 8);
-             modelMat.setValueAt(var.format(CostoC), i, 9);
-             modelMat.setValueAt(var.format(CantidadM), i, 10);
-             modelMat.setValueAt(var.format(CantidadMx), i, 11);
-             modelMat.setValueAt(Tipo, i, 12);
-             modelMat.setValueAt(Divisa, i, 13);
-      }
+        CleanTable();
+        ArrayList<Material> listaMat = obj.materialSearch(JtBuscar.getText());
+
+        listaMat.size();
+        modelMat.setNumRows(listaMat.size());
+        for (int i = 0; i < listaMat.size(); i++) {
+            Material m = listaMat.get(i);
+            DecimalFormat var = new DecimalFormat("#.00");
+
+            modelMat.setValueAt(m.getAlmacen(), i, 0);
+            modelMat.setValueAt(m.getDesAlm(), i, 1);
+            modelMat.setValueAt(m.getCveMat(), i, 2);
+            modelMat.setValueAt(m.getDescripcion(), i, 3);
+            modelMat.setValueAt(m.getCodigoSat(), i, 4);
+            modelMat.setValueAt(m.getUdeC(), i, 5);
+            modelMat.setValueAt(var.format(m.getFcompra()), i, 6);
+            modelMat.setValueAt(m.getUdeCs(), i, 7);
+            modelMat.setValueAt(var.format(m.getFconsumo()), i, 8);
+            modelMat.setValueAt(var.format(m.getUltimoCosto()), i, 9);
+            modelMat.setValueAt(var.format(m.getCostoCosteo()), i, 10);
+            modelMat.setValueAt(var.format(m.getCantidadMinima()), i, 11);
+            modelMat.setValueAt(var.format(m.getCantidadMaxima()), i, 12);
+            modelMat.setValueAt(m.getTipoCosto(), i, 13);
+            modelMat.setValueAt(m.getDivisa(), i, 14);
+        }
     }//GEN-LAST:event_JtBuscarKeyReleased
-    
-    private void LoadModelMaterial(){
-        ArrayList<Material>listaMat = obj.materialGetAll();
-         
-         modelMat.setNumRows(listaMat.size());
-         
-         for(int i =0; i<listaMat.size(); i++){
-             Material m = listaMat.get(i);
-             
-             DecimalFormat var = new DecimalFormat("#.00");
-             int Alma = m.getAlmacen();
-             String DescAl = m.getDesAlm();
-             String Cv = m.getCveMat();
-             String Desc = m.getDescripcion();
-             String Sat = m.getCodigoSat();
-             String Udc = m.getUdeC();
-             double Fcompra = m.getFcompra();
-             String Udcs = m.getUdeCs();
-             double Fconsumo = m.getFconsumo();
-             double UltimoC = m.getUltimoCosto();
-             double CostoC = m.getCostoCosteo();
-             double CantidadM = m.getCantidadMinima();
-             double CantidadMx = m.getCantidadMaxima();
-             String Tipo = m.getTipoCosto();
-             String Divisa = m.getDivisa();
-             
-             modelMat.setValueAt(Alma, i, 0);
-             modelMat.setValueAt(Cv, i, 1);
-             modelMat.setValueAt(Desc, i, 2);
-             modelMat.setValueAt(Sat, i, 3);
-             modelMat.setValueAt(Udc, i, 4);
-             modelMat.setValueAt(var.format(Fcompra), i, 5);
-             modelMat.setValueAt(Udcs, i, 6);
-             modelMat.setValueAt(var.format(Fconsumo), i, 7);
-             modelMat.setValueAt(var.format(UltimoC), i, 8);
-             modelMat.setValueAt(var.format(CostoC), i, 9);
-             modelMat.setValueAt(var.format(CantidadM), i, 10);
-             modelMat.setValueAt(var.format(CantidadMx), i, 11);
-             modelMat.setValueAt(Tipo, i, 12);
-             modelMat.setValueAt(Divisa, i, 13);
+
+    private void LoadModelMaterial() {
+        ArrayList<Material> listaMat = obj.materialGetAll();
+
+        modelMat.setNumRows(listaMat.size());
+
+        for (int i = 0; i < listaMat.size(); i++) {
+            Material m = listaMat.get(i);
+
+            DecimalFormat var = new DecimalFormat("#.00");
+
+            modelMat.setValueAt(m.getAlmacen(), i, 0);
+            modelMat.setValueAt(m.getDesAlm(), i, 1);
+            modelMat.setValueAt(m.getCveMat(), i, 2);
+            modelMat.setValueAt(m.getDescripcion(), i, 3);
+            modelMat.setValueAt(m.getCodigoSat(), i, 4);
+            modelMat.setValueAt(m.getUdeC(), i, 5);
+            modelMat.setValueAt(var.format(m.getFcompra()), i, 6);
+            modelMat.setValueAt(m.getUdeCs(), i, 7);
+            modelMat.setValueAt(var.format(m.getFconsumo()), i, 8);
+            modelMat.setValueAt(var.format(m.getUltimoCosto()), i, 9);
+            modelMat.setValueAt(var.format(m.getCostoCosteo()), i, 10);
+            modelMat.setValueAt(var.format(m.getCantidadMinima()), i, 11);
+            modelMat.setValueAt(var.format(m.getCantidadMaxima()), i, 12);
+            modelMat.setValueAt(m.getTipoCosto(), i, 13);
+            modelMat.setValueAt(m.getDivisa(), i, 14);
+        }
     }
-    }
-    
-    private void LoadColums(){
+
+    private void LoadColums() {
         modelMat.addColumn("#");
+        modelMat.addColumn("Almacén");
         modelMat.addColumn("CVEMAT");
         modelMat.addColumn("MATERIAL");
         modelMat.addColumn("CODIGO-SAT");
@@ -396,11 +372,13 @@ public class Materiales extends javax.swing.JInternalFrame {
         modelMat.addColumn("T-COSTO");
         modelMat.addColumn("DIVISA");
     }
-    private void CleanTable(){
+
+    private void CleanTable() {
         int numFilas = modelMat.getRowCount();
-        if(numFilas > 0){
-            for(int i = numFilas - 1; i >=0; i--){
-               modelMat.removeRow(i);            }
+        if (numFilas > 0) {
+            for (int i = numFilas - 1; i >= 0; i--) {
+                modelMat.removeRow(i);
+            }
         }
     }
 

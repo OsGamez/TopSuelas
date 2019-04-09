@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 public class Proveedores extends javax.swing.JInternalFrame {
 
     ObjectProveedores obj = new ObjectProveedores();
-    
+
     DefaultTableModel modelProveedor = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int row, int column) {
@@ -187,7 +187,7 @@ public class Proveedores extends javax.swing.JInternalFrame {
         JtProveedor.getColumnModel().getColumn(0).setMinWidth(0);
         JtProveedor.getColumnModel().getColumn(0).setPreferredWidth(0);
     }
-    
+
     private void LoadModelProveedor() {
         ArrayList<Proveedor> listaPv = obj.provedorGetAll();
 
@@ -195,7 +195,7 @@ public class Proveedores extends javax.swing.JInternalFrame {
 
         for (int i = 0; i < listaPv.size(); i++) {
             Proveedor pv = listaPv.get(i);
-
+            
             modelProveedor.setValueAt(pv.getProveedor(), i, 0);
             modelProveedor.setValueAt(pv.getNombre(), i, 1);
             modelProveedor.setValueAt(pv.getRFC(), i, 2);
@@ -206,7 +206,6 @@ public class Proveedores extends javax.swing.JInternalFrame {
             modelProveedor.setValueAt(pv.getFax(), i, 7);
             modelProveedor.setValueAt(pv.getCorreoE(), i, 8);
             modelProveedor.setValueAt(pv.getContacto(), i, 9);
-            
         }
     }
 
@@ -269,7 +268,7 @@ public class Proveedores extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbEliminarActionPerformed
 
     private void JbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEditarActionPerformed
-        NProveedor editar = new  NProveedor(null, true);
+        NProveedor editar = new NProveedor(null, true);
         int fila = JtProveedor.getSelectedRow();
 
         try {
@@ -304,29 +303,10 @@ public class Proveedores extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbEditarActionPerformed
 
     private void JbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbActualizarActionPerformed
-        /*JtBuscar.setText("");
+        JtBuscar.setText("");
         CleanTable();
-        LoadModelAgente();*/
+        LoadModelProveedor();
     }//GEN-LAST:event_JbActualizarActionPerformed
-
-    private void JtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyReleased
-        /*CleanTable();
-        JtBuscar.getText();
-        ArrayList<Agente> listaAgentes = obj.agenteSearch(JtBuscar.getText());
-
-        listaAgentes.size();
-        modelAgente.setNumRows(listaAgentes.size());
-
-        for (int i = 0; i < listaAgentes.size(); i++) {
-
-            Agente agente = listaAgentes.get(i);
-            int id = agente.getId_Agente();
-            String descripcion = agente.getDescripcion();
-
-            modelAgente.setValueAt(id, i, 0);
-            modelAgente.setValueAt(descripcion, i, 1);
-        }*/
-    }//GEN-LAST:event_JtBuscarKeyReleased
 
     private void JtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyTyped
         char c = evt.getKeyChar();
@@ -336,12 +316,32 @@ public class Proveedores extends javax.swing.JInternalFrame {
             evt.setKeyChar(c);
         }
     }//GEN-LAST:event_JtBuscarKeyTyped
+
+    private void JtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyReleased
+        CleanTable();
+        ArrayList<Proveedor> listaPv = obj.proveedorSearch(JtBuscar.getText());
+        modelProveedor.setNumRows(listaPv.size());
+
+        for (int i = 0; i < listaPv.size(); i++) {
+            Proveedor pv = listaPv.get(i);
+
+            modelProveedor.setValueAt(pv.getProveedor(), i, 0);
+            modelProveedor.setValueAt(pv.getNombre(), i, 1);
+            modelProveedor.setValueAt(pv.getRFC(), i, 2);
+            modelProveedor.setValueAt(pv.getDireccion(), i, 3);
+            modelProveedor.setValueAt(pv.getCiudad(), i, 4);
+            modelProveedor.setValueAt(pv.getCP(), i, 5);
+            modelProveedor.setValueAt(pv.getTelefonos(), i, 6);
+            modelProveedor.setValueAt(pv.getFax(), i, 7);
+            modelProveedor.setValueAt(pv.getCorreoE(), i, 8);
+            modelProveedor.setValueAt(pv.getContacto(), i, 9);
+        }
+    }//GEN-LAST:event_JtBuscarKeyReleased
     private void CleanTable() {
         int numFilas = modelProveedor.getRowCount();
-        if (numFilas > 0) {
-            for (int i = numFilas - 1; i >= 0; i--) {
-                modelProveedor.removeRow(i);
-            }
+        if(numFilas > 0){
+            for(int i = numFilas - 1; i >=0; i--){
+                modelProveedor.removeRow(i);            }
         }
     }
 

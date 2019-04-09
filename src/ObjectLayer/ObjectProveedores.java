@@ -80,6 +80,34 @@ public class ObjectProveedores {
         return listaProveedores;
     }
 
+    public ArrayList<Proveedor> proveedorSearch(String filtro){
+         ArrayList<Proveedor> listaProveedores = new ArrayList<Proveedor>();
+         try {
+            st = c.prepareStatement("SELECT * FROM Proveedores WHERE Estatus = 'A' AND Nombre LIKE'%" + filtro + "%'"
+                     + "ORDER BY Nombre");
+            rs = st.executeQuery();
+            
+            while(rs.next()){
+                Proveedor pv = new Proveedor();
+                pv.setProveedor(rs.getInt("Proveedor"));
+                pv.setNombre(rs.getString("Nombre"));
+                pv.setRFC(rs.getString("RFC"));
+                pv.setDireccion(rs.getString("Direccion"));
+                pv.setCiudad(rs.getString("Ciudad"));
+                pv.setCP(rs.getString("CP"));
+                pv.setTelefonos(rs.getString("Telefonos"));
+                pv.setFax(rs.getString("Fax"));
+                pv.setCorreoE(rs.getString("CorreoE"));
+                pv.setContacto(rs.getString("Contacto"));
+
+                listaProveedores.add(pv);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+          return listaProveedores;
+    }
+    
     public boolean proveedorUpdate(Proveedor pv) {
         try {
             st = c.prepareStatement("UPDATE Proveedores SET Nombre = ?, RFC = ?, Direccion = ?, Ciudad = ?, CP = ?, Telefonos = ?,"

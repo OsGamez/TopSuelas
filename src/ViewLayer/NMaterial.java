@@ -1,4 +1,3 @@
-
 package ViewLayer;
 
 import ObjectLayer.Almacen;
@@ -11,12 +10,13 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 
-
 public class NMaterial extends javax.swing.JDialog {
+
     String informacion = "";
     ObjectMateriales obj = new ObjectMateriales();
+
     public NMaterial(java.awt.Frame parent, boolean modal) {
-        
+
         super(parent, modal);
         initComponents();
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -26,25 +26,30 @@ public class NMaterial extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         JtUcosto.setText("0.00");
         JtCostoC.setText("0.00");
+        JtId.setVisible(false);
     }
-     private void Cerrar(){
+
+    private void Cerrar() {
         String botones[] = {"SI", "NO"};
-        int eleccion = JOptionPane.showOptionDialog(this,"¿Deseas cerrar esta ventana?", "TOP-SUELAS", 
+        int eleccion = JOptionPane.showOptionDialog(this, "¿Deseas cerrar esta ventana?", "TOP-SUELAS",
                 0, 0, null, botones, this);
-        if(eleccion == JOptionPane.YES_OPTION){
+        if (eleccion == JOptionPane.YES_OPTION) {
             dispose();
-        }else if(eleccion == JOptionPane.NO_OPTION){
-            
+        } else if (eleccion == JOptionPane.NO_OPTION) {
+
         }
     }
-    public String getInformacion(){
+
+    public String getInformacion() {
         return this.informacion;
     }
-    private void LoadAlmacen(){
+
+    private void LoadAlmacen() {
         Almacen am = new Almacen();
         DefaultComboBoxModel modelAlmacen = new DefaultComboBoxModel(am.getAlmacenes());
         JcAlm.setModel(modelAlmacen);
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -81,13 +86,14 @@ public class NMaterial extends javax.swing.JDialog {
         JbDivisa = new javax.swing.JLabel();
         JcDivisa = new javax.swing.JComboBox<>();
         JcAlm = new javax.swing.JComboBox<>();
+        JtId = new javax.swing.JTextField();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("NUEVO MATERIAL");
+        setTitle("MATERIAL");
         setLocation(new java.awt.Point(0, 0));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -244,7 +250,8 @@ public class NMaterial extends javax.swing.JDialog {
                                             .addComponent(JtCantidadMa, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                                             .addComponent(JtCantidadM)
                                             .addComponent(JtUcosto))
-                                        .addComponent(JtCostoC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(JtCostoC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(JtId, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -279,7 +286,7 @@ public class NMaterial extends javax.swing.JDialog {
                             .addComponent(JtSat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(JbCmaxima)
                             .addComponent(JtCantidadMa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbUcompra)
                     .addComponent(JcUdc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -294,8 +301,9 @@ public class NMaterial extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbConsumo)
-                    .addComponent(JcConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                    .addComponent(JcConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbFconsumo)
                     .addComponent(JtFconsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -308,6 +316,27 @@ public class NMaterial extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbGuardarActionPerformed
+        int Alm = JcAlm.getSelectedIndex();
+        String Nombre = JtNombre.getText();
+        Almacen am = (Almacen) JcAlm.getSelectedItem();
+        String Cv = JtCv.getText();
+
+        if (JtCv.getText().equals("") || Alm == 0 || JtNombre.getText().equals("") || JtSat.getText().equals("") || JtTcosto.getText().equals("")
+                || JtFcompra.getText().equals("") || JtFconsumo.getText().equals("")
+                || JtCantidadM.getText().equals("") || JtCantidadMa.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Falta datos de ingresar verifica", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+        } else if (JtId.getText().isEmpty()) {
+            if (obj.validarMaterial(Nombre, am.getAlmacen(), Cv) == 0 && obj.validarMat(Nombre, am.getAlmacen()) == 0 && obj.validarMatr(am.getAlmacen(), Cv) == 0) {
+                Guardar();
+            } else {
+                JOptionPane.showMessageDialog(this, "Este Material ya esta registrado", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            Editar();
+        }
+    }//GEN-LAST:event_JbGuardarActionPerformed
+
+    private void Guardar() {
         String Cv = JtCv.getText();
         String Nombre = JtNombre.getText();
         String Sat = JtSat.getText();
@@ -315,21 +344,15 @@ public class NMaterial extends javax.swing.JDialog {
         String Udcs = JcConsumo.getSelectedItem().toString();
         String Tipo = JtTcosto.getText();
         String Divisa = JcDivisa.getSelectedItem().toString();
-        Almacen am = (Almacen)JcAlm.getSelectedItem();
-        int Alm = JcAlm.getSelectedIndex();
-        
-        if(JtCv.getText().equals("")|| Alm ==0 || JtNombre.getText().equals("") || JtSat.getText().equals("") || JtTcosto.getText().equals("") ||
-            JtFcompra.getText().equals("") || JtFconsumo.getText().equals("")  ||
-            JtCantidadM.getText().equals("") || JtCantidadMa.getText().equals("")){
-            JOptionPane.showMessageDialog(this, "Falta datos de ingresar verifica","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-        }    
-        else if(obj.validarMaterial(Nombre,am.getAlmacen(),Cv)==0 && obj.validarMat(Nombre, am.getAlmacen())==0 && obj.validarMatr(am.getAlmacen(), Cv)==0){
+        Almacen am = (Almacen) JcAlm.getSelectedItem();
+
         double Fcompra = Double.parseDouble(JtFcompra.getText());
         double Fconsumo = Double.parseDouble(JtFconsumo.getText());
         double Ucosto = Double.parseDouble(JtUcosto.getText());
         double CostoC = Double.parseDouble(JtCostoC.getText());
         double CnMaxima = Double.parseDouble(JtCantidadM.getText());
         double CnMinima = Double.parseDouble(JtCantidadMa.getText());
+
         Material m = new Material();
         m.setAlmacen(am.getAlmacen());
         m.setCveMat(Cv);
@@ -345,29 +368,65 @@ public class NMaterial extends javax.swing.JDialog {
         m.setCantidadMinima(CnMinima);
         m.setTipoCosto(Tipo);
         m.setDivisa(Divisa);
-        if(obj.addMaterial(m)){
-        JOptionPane.showMessageDialog(this, "Registro Guardado Correctamente!!!","TOP-SUELAS" ,JOptionPane.INFORMATION_MESSAGE);
-        informacion = "1";
-        Limpiar();
-        JtUcosto.setText("0.00");
-        JtCostoC.setText("0.00");
-        }else{
-        JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);  
-        Limpiar();
-        JtUcosto.setText("0.00");
-        JtCostoC.setText("0.00");
+
+        if (obj.addMaterial(m)) {
+            JOptionPane.showMessageDialog(this, "Registro Guardado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            informacion = "1";
+            Limpiar();
+            JtUcosto.setText("0.00");
+            JtCostoC.setText("0.00");
+        } else {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            Limpiar();
+            JtUcosto.setText("0.00");
+            JtCostoC.setText("0.00");
         }
-               // if(obj.validarNombre(JtNombre.getText())==0){
-           
-              //  }else{
-              //  JOptionPane.showMessageDialog(this, "Este Material ya esta registrado","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);  
-              //  Alerta();
-               // }
-        }else {
-            JOptionPane.showMessageDialog(this, "Este Material ya esta registrado","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);  
+
+    }
+
+    private void Editar() {
+        String Cv = JtCv.getText();
+        String Nombre = JtNombre.getText();
+        String Sat = JtSat.getText();
+        String Udc = JcUdc.getSelectedItem().toString();
+        String Udcs = JcConsumo.getSelectedItem().toString();
+        String Tipo = JtTcosto.getText();
+        String Divisa = JcDivisa.getSelectedItem().toString();
+        Almacen am = (Almacen) JcAlm.getSelectedItem();
+
+        double Fcompra = Double.parseDouble(JtFcompra.getText());
+        double Fconsumo = Double.parseDouble(JtFconsumo.getText());
+        double Ucosto = Double.parseDouble(JtUcosto.getText());
+        double CostoC = Double.parseDouble(JtCostoC.getText());
+        double CnMaxima = Double.parseDouble(JtCantidadM.getText());
+        double CnMinima = Double.parseDouble(JtCantidadMa.getText());
+        
+        Material m = new Material();
+        m.setAlmacen(am.getAlmacen());
+        m.setCveMat(Cv);
+        m.setDescripcion(Nombre);
+        m.setCodigoSat(Sat);
+        m.setUdeC(Udc);
+        m.setFcompra(Fcompra);
+        m.setUdeCs(Udcs);
+        m.setFconsumo(Fconsumo);
+        m.setUltimoCosto(Ucosto);
+        m.setCostoCosteo(CostoC);
+        m.setCantidadMaxima(CnMaxima);
+        m.setCantidadMinima(CnMinima);
+        m.setTipoCosto(Tipo);
+        m.setDivisa(Divisa);
+        if (obj.materialUpdate(m)) {
+            JOptionPane.showMessageDialog(this, "Registro Modificado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            informacion = "1";
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            dispose();
         }
-    }//GEN-LAST:event_JbGuardarActionPerformed
-    private void Limpiar(){
+    }
+
+    private void Limpiar() {
         JcAlm.setSelectedIndex(0);
         JtCv.setText("");
         JtNombre.setText("");
@@ -391,26 +450,26 @@ public class NMaterial extends javax.swing.JDialog {
 
     private void JtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtNombreKeyTyped
         char c = evt.getKeyChar();
-        if(Character.isLowerCase(c)){
-            String cad = (""+c).toUpperCase();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
     }//GEN-LAST:event_JtNombreKeyTyped
 
     private void JtSatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtSatKeyTyped
-       char c = evt.getKeyChar();
-        if(Character.isLowerCase(c)){
-            String cad = (""+c).toUpperCase();
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
     }//GEN-LAST:event_JtSatKeyTyped
 
     private void JtTcostoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtTcostoKeyTyped
-       char c = evt.getKeyChar();
-        if(Character.isLowerCase(c)){
-            String cad = (""+c).toUpperCase();
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
@@ -475,20 +534,21 @@ public class NMaterial extends javax.swing.JDialog {
     private javax.swing.JLabel JbTipo;
     private javax.swing.JLabel JbUcompra;
     private javax.swing.JLabel JbUcosto;
-    private javax.swing.JComboBox<String> JcAlm;
-    private javax.swing.JComboBox<String> JcConsumo;
-    private javax.swing.JComboBox<String> JcDivisa;
-    private javax.swing.JComboBox<String> JcUdc;
-    private javax.swing.JTextField JtCantidadM;
-    private javax.swing.JTextField JtCantidadMa;
-    private javax.swing.JTextField JtCostoC;
-    private javax.swing.JTextField JtCv;
-    private javax.swing.JTextField JtFcompra;
-    private javax.swing.JTextField JtFconsumo;
-    private javax.swing.JTextField JtNombre;
-    private javax.swing.JTextField JtSat;
-    private javax.swing.JTextField JtTcosto;
-    private javax.swing.JTextField JtUcosto;
+    public javax.swing.JComboBox<String> JcAlm;
+    public javax.swing.JComboBox<String> JcConsumo;
+    public javax.swing.JComboBox<String> JcDivisa;
+    public javax.swing.JComboBox<String> JcUdc;
+    public javax.swing.JTextField JtCantidadM;
+    public javax.swing.JTextField JtCantidadMa;
+    public javax.swing.JTextField JtCostoC;
+    public javax.swing.JTextField JtCv;
+    public javax.swing.JTextField JtFcompra;
+    public javax.swing.JTextField JtFconsumo;
+    public javax.swing.JTextField JtId;
+    public javax.swing.JTextField JtNombre;
+    public javax.swing.JTextField JtSat;
+    public javax.swing.JTextField JtTcosto;
+    public javax.swing.JTextField JtUcosto;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables

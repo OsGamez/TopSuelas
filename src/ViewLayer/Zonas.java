@@ -1,4 +1,3 @@
-
 package ViewLayer;
 
 import DataAccesLayer.Conexion;
@@ -22,17 +21,18 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
-
 public class Zonas extends javax.swing.JInternalFrame {
-   Connection c = Server.getCobranza();
-   DefaultTableModel modelZona = new DefaultTableModel(){
-     @Override
-      public boolean isCellEditable(int row, int column){
-          return false;
-      }   
-   };
-   ObjectZonas obj = new ObjectZonas();
-   Zona zona = new Zona();
+
+    Connection c = Server.getCobranza();
+    DefaultTableModel modelZona = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+    ObjectZonas obj = new ObjectZonas();
+    Zona zona = new Zona();
+
     public Zonas() {
         initComponents();
         LoadColumns();
@@ -40,7 +40,6 @@ public class Zonas extends javax.swing.JInternalFrame {
         JtDatosZona.getTableHeader().setReorderingAllowed(false);
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -198,11 +197,11 @@ public class Zonas extends javax.swing.JInternalFrame {
         nuevo.setVisible(true);
         nuevo.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         nuevo.setAlwaysOnTop(true);
-        if(nuevo.getInformacion()!=""){
-                   
-                    CleanTable();
-                    LoadModelZonas();
-                }
+        if (nuevo.getInformacion() != "") {
+
+            CleanTable();
+            LoadModelZonas();
+        }
     }//GEN-LAST:event_JbNuevoActionPerformed
 
     private void JbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbSalirActionPerformed
@@ -211,92 +210,87 @@ public class Zonas extends javax.swing.JInternalFrame {
 
     private void JbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEliminarActionPerformed
         int row = JtDatosZona.getSelectedRow();
-        
-        try{
-            if(row >=0){
-                int opcion = JOptionPane.showConfirmDialog(this,"¿Estas seguro de borrar este registro?","TOP-SUELAS",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-                if(opcion ==JOptionPane.YES_OPTION){
+
+        try {
+            if (row >= 0) {
+                int opcion = JOptionPane.showConfirmDialog(this, "¿Estas seguro de borrar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (opcion == JOptionPane.YES_OPTION) {
                     int id = Integer.parseInt(JtDatosZona.getValueAt(row, 0).toString());
                     String desc = JtDatosZona.getValueAt(row, 1).toString();
-                    if(obj.zonaDelete(id, desc)){
+                    if (obj.zonaDelete(id, desc)) {
                         modelZona.removeRow(row);
-                        JOptionPane.showMessageDialog(null,"Registro eliminado");
-                    }else{
-                        JOptionPane.showMessageDialog(null,"Esta zona se encuentra asociada a un cliente");
+                        JOptionPane.showMessageDialog(null, "Registro eliminado");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Esta zona se encuentra asociada a un cliente");
                     }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
             }
-        }else{
-                JOptionPane.showMessageDialog(null,"No se ha seleccionado ningun registro");
-            }
-     }
-        catch(Exception ex){
-            
+        } catch (Exception ex) {
+
             ex.printStackTrace();
         }
     }//GEN-LAST:event_JbEliminarActionPerformed
 
     private void JbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEditarActionPerformed
-        MZona editar = new MZona(null, true);
+        NZona editar = new NZona(null, true);
         int fila = JtDatosZona.getSelectedRow();
 
-        try{
-            if(fila >=0){
-                int opcion = JOptionPane.showConfirmDialog(this,"¿Quires editar este registro?","TOP-SUELAS",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-                if(opcion ==JOptionPane.YES_OPTION){
-                editar.JtId.setText(JtDatosZona.getValueAt(fila, 1).toString());
-                editar.JtDescripcion.setText(JtDatosZona.getValueAt(fila, 1).toString());
+        try {
+            if (fila >= 0) {
+                int opcion = JOptionPane.showConfirmDialog(this, "¿Quires editar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (opcion == JOptionPane.YES_OPTION) {
+                    editar.Jtid.setText(JtDatosZona.getValueAt(fila, 1).toString());
+                    editar.JtDescripcion.setText(JtDatosZona.getValueAt(fila, 1).toString());
 
-                editar.setVisible(true);
-                editar.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-                editar.setAlwaysOnTop(true);
-                if(editar.getInformacion()!=""){ 
-                    CleanTable();
-                    LoadModelZonas();
+                    editar.setVisible(true);
+                    editar.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                    editar.setAlwaysOnTop(true);
+                    if (editar.getInformacion() != "") {
+                        CleanTable();
+                        LoadModelZonas();
+                    }
                 }
-            } 
-        }else{
-                JOptionPane.showMessageDialog(null,"No se ha seleccionado ningun registro");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
             }
-    }
-        catch(Exception ex){
-           
+        } catch (Exception ex) {
+
             ex.printStackTrace();
         }
     }//GEN-LAST:event_JbEditarActionPerformed
-    private void LoadColumns(){
-         modelZona.addColumn("Código");
-         modelZona.addColumn("DESCRIPCIÓN");
-         
-         JtDatosZona.getColumnModel().getColumn(0).setMaxWidth(0);
-         JtDatosZona.getColumnModel().getColumn(0).setMinWidth(0);
-         JtDatosZona.getColumnModel().getColumn(0).setPreferredWidth(0);
+    private void LoadColumns() {
+        modelZona.addColumn("Código");
+        modelZona.addColumn("DESCRIPCIÓN");
+
+        JtDatosZona.getColumnModel().getColumn(0).setMaxWidth(0);
+        JtDatosZona.getColumnModel().getColumn(0).setMinWidth(0);
+        JtDatosZona.getColumnModel().getColumn(0).setPreferredWidth(0);
     }
-    private void LoadModelZonas(){
-         
-         ArrayList<Zona>listaZonas = obj.zonasGetAll();
-         
-         modelZona.setNumRows(listaZonas.size());
-         
-         for(int i =0; i<listaZonas.size(); i++){
-             Zona zona = listaZonas.get(i);
-             
-             int id = zona.getId_Zona();
-             String descripcion = zona.getDescripcion();
-             
-            
-             modelZona.setValueAt(id, i, 0);
-             modelZona.setValueAt(descripcion, i, 1);
-         }
+
+    private void LoadModelZonas() {
+
+        ArrayList<Zona> listaZonas = obj.zonasGetAll();
+
+        modelZona.setNumRows(listaZonas.size());
+
+        for (int i = 0; i < listaZonas.size(); i++) {
+            Zona zona = listaZonas.get(i);
+
+            modelZona.setValueAt(zona.getId_Zona(), i, 0);
+            modelZona.setValueAt(zona.getDescripcion(), i, 1);
+        }
     }
-    
+
     private void JtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyReleased
         CleanTable();
         JtBuscar.getText();
-        ArrayList<Zona>listaZonas = obj.zonaSearch(JtBuscar.getText());
+        ArrayList<Zona> listaZonas = obj.zonaSearch(JtBuscar.getText());
 
         listaZonas.size();
         modelZona.setNumRows(listaZonas.size());
-        for(int i=0; i< listaZonas.size(); i++){
+        for (int i = 0; i < listaZonas.size(); i++) {
 
             Zona zona = listaZonas.get(i);
 
@@ -310,15 +304,15 @@ public class Zonas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JtBuscarKeyReleased
 
     private void JbReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbReporteActionPerformed
-         try {                                          
+        try {
             JasperReport reporte = null;
             String path = "src\\Reports\\CatalogoZonas.jasper";
-            
-            reporte = (JasperReport)JRLoader.loadObject(getClass().getResource("/Reports/CatalogoZonas.jasper"));
+
+            reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reports/CatalogoZonas.jasper"));
             try {
-                JasperPrint jprint = JasperFillManager.fillReport(reporte, null,c);
-                JasperViewer view = new  JasperViewer(jprint,false);
-                
+                JasperPrint jprint = JasperFillManager.fillReport(reporte, null, c);
+                JasperViewer view = new JasperViewer(jprint, false);
+
                 view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                 view.setVisible(true);
                 view.setIconImage(getImage());
@@ -338,25 +332,26 @@ public class Zonas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbActualizarActionPerformed
 
     private void JtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyTyped
-      char c = evt.getKeyChar();
-      if(Character.isLowerCase(c)){
-        String cad = (""+c).toUpperCase();
-        c = cad.charAt(0);
-        evt.setKeyChar(c);
-      }
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
+        }
     }//GEN-LAST:event_JtBuscarKeyTyped
-      public Image getImage(){
+    public Image getImage() {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/PhotoPrint_11187.png"));
         return icon;
     }
-    private void CleanTable(){
-         int numFilas = modelZona.getRowCount();
-         if(numFilas >0){
-             for(int i =  numFilas - 1; i >=0; i--){
-                 modelZona.removeRow(i);
-             }
-         }
-}
+
+    private void CleanTable() {
+        int numFilas = modelZona.getRowCount();
+        if (numFilas > 0) {
+            for (int i = numFilas - 1; i >= 0; i--) {
+                modelZona.removeRow(i);
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbActualizar;

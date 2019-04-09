@@ -38,7 +38,7 @@ public class NEstado extends javax.swing.JDialog {
         Jtid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("NUEVO ESTADO");
+        setTitle("ESTADO");
         setLocation(new java.awt.Point(0, 0));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {

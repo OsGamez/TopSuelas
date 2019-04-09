@@ -25,8 +25,8 @@ GROUP BY dp.Pares,p.Fecha_Entrega,l.Descripcion]]>
 		<band height="13">
 			<staticText>
 				<reportElement mode="Transparent" x="0" y="0" width="35" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="196e7fd3-74ac-4ef7-acff-10c8447c2e4d"/>
-				<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial" size="6" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[MODELO]]></text>

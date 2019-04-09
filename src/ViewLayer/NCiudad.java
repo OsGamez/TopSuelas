@@ -38,7 +38,7 @@ public class NCiudad extends javax.swing.JDialog {
         Jtid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("NUEVA CIUDAD");
+        setTitle("CIUDAD");
         setLocation(new java.awt.Point(0, 0));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -127,10 +127,14 @@ public class NCiudad extends javax.swing.JDialog {
         }else if(Jtid.getText().isEmpty()){
             if (obj.validarCiudad(JtDescripcion.getText()) == 0){
                 Guardar();
+            }else {
+                JOptionPane.showMessageDialog(this, "Este registro ya existe!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
             }
         }else{
             if (obj.validarCiudad(JtDescripcion.getText()) == 0){
                 Editar();
+            }else {
+                JOptionPane.showMessageDialog(this, "Este registro ya existe!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
             }
         }  
     }//GEN-LAST:event_JbGuardarActionPerformed

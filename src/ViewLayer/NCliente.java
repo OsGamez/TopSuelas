@@ -152,7 +152,7 @@ public class NCliente extends javax.swing.JDialog {
         JbCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("NUEVO CLIENTE");
+        setTitle("CLIENTE");
         setLocation(new java.awt.Point(0, 0));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {

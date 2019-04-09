@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 public class ObjectGastos {
 
     PreparedStatement st = null;
-    Connection c = Server.getProduccion();
+    Connection c = Conexion.getProduccion();
     ResultSet rs = null;
 
     public boolean gastoAdd(Gasto g) {
@@ -62,7 +62,7 @@ public class ObjectGastos {
 "	 WHEN Mes = 12 THEN 'DICIEMBRE'\n" +
 "\n" +
 "END AS MES \n" +
-"	,Mo,Gf,Ga,Mi\n" +
+"	,Mo,Gf,Ga,Mi, Mes as M\n" +
 "	FROM Gastos\n" +
 "order by Año");
             rs = st.executeQuery();
@@ -74,6 +74,7 @@ public class ObjectGastos {
                 gs.setGf(rs.getDouble("Gf"));
                 gs.setGa(rs.getDouble("Ga"));
                 gs.setMi(rs.getDouble("Mi"));
+                gs.setM(rs.getString("M"));
                 listaGastos.add(gs);
             }
         } catch (SQLException ex) {
@@ -101,7 +102,7 @@ public class ObjectGastos {
 "	 WHEN Mes = 12 THEN 'DICIEMBRE'\n" +
 "\n" +
 "END AS MES \n" +
-"	,Mo,Gf,Ga,Mi\n" +
+"	,Mo,Gf,Ga,Mi, Mes as M\n" +
 "	FROM Gastos WHERE Año LIKE'%"+ filtro+"%'\n" +
 "order by Año");
             rs = st.executeQuery();
@@ -114,6 +115,7 @@ public class ObjectGastos {
                 gs.setGf(rs.getDouble("Gf"));
                 gs.setGa(rs.getDouble("Ga"));
                 gs.setMi(rs.getDouble("Mi"));
+                gs.setM(rs.getString("M"));
                 listaGastos.add(gs);
             }
         } catch (SQLException ex) {

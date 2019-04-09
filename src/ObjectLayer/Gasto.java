@@ -8,9 +8,21 @@ public class Gasto {
     private double Gf;
     private double Ga;
     private double Mi;
+    private String M;
 
     public Gasto() {
     }
+
+    public String getM() {
+        return M;
+    }
+
+    public void setM(String M) {
+        this.M = M;
+    }
+
+    
+    
 
     public String getMes() {
         return Mes;

@@ -2,6 +2,7 @@ package ViewLayer;
 
 import DataAccesLayer.Conexion;
 import DataAccesLayer.Server;
+import ObjectLayer.Color;
 import ObjectLayer.ObjectColores;
 import com.sun.glass.events.KeyEvent;
 import java.awt.Image;
@@ -234,33 +235,28 @@ public class Colores extends javax.swing.JInternalFrame {
 
     private void JtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyReleased
         CleanTable();
-        JtBuscar.getText();
-        ArrayList<ObjectLayer.Color> listaColores = obj.colorSearch(JtBuscar.getText());
-
-        listaColores.size();
+        ArrayList<Color> listaColores = obj.colorSearch(JtBuscar.getText());
         modelColor.setNumRows(listaColores.size());
+        
         for (int i = 0; i < listaColores.size(); i++) {
 
-            ObjectLayer.Color color = listaColores.get(i);
+            Color color = listaColores.get(i);
 
-            int id = color.getId_Color();
-            String descripcion = color.getDescripcion();
-
-            modelColor.setValueAt(id, i, 0);
-            modelColor.setValueAt(descripcion, i, 1);
+            modelColor.setValueAt(color.getId_Color(), i, 0);
+            modelColor.setValueAt(color.getDescripcion(), i, 1);
 
         }
     }//GEN-LAST:event_JtBuscarKeyReleased
 
     private void JbEditarCorridaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEditarCorridaActionPerformed
-        MColor editar = new MColor(null, true);
+        NColor editar = new NColor(null, true);
         int fila = JtDatosColor.getSelectedRow();
 
         try {
             if (fila >= 0) {
                 int opcion = JOptionPane.showConfirmDialog(this, "¿Quires editar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (opcion == JOptionPane.YES_OPTION) {
-                    editar.JtId.setText(JtDatosColor.getValueAt(fila, 0).toString());
+                    editar.Jtid.setText(JtDatosColor.getValueAt(fila, 0).toString());
                     editar.JtDescripcion.setText(JtDatosColor.getValueAt(fila, 1).toString());
 
                     editar.setVisible(true);

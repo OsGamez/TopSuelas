@@ -296,30 +296,31 @@ public class Costos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbEliminarActionPerformed
 
     private void JbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEditarActionPerformed
-        MCosto editar = new MCosto(null, true);
-        Producto p = new Producto();
-        PtProducto pt = new PtProducto();
-        Material m = new Material();
+        NCosto editar = new NCosto(null, true);
         int row = JtCostos.getSelectedRow();
         try {
             if (row >= 0) {
                 int opcion = JOptionPane.showConfirmDialog(this, "¿Quieres editar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (opcion == JOptionPane.YES_OPTION) {
-                    p.setId_Producto((int) JtCostos.getValueAt(row, 0));
-                    p.setDescripcion(JtCostos.getValueAt(row, 1).toString());
-                    pt.setProducto((int) JtCostos.getValueAt(row, 2));
-                    pt.setDescripcion(JtCostos.getValueAt(row, 3).toString());
-                    m.setDescripcion(JtCostos.getValueAt(row, 4).toString());
-                    editar.JcProd.getModel().setSelectedItem(p);
-                    editar.JcRc.getModel().setSelectedItem(pt);
-                    editar.JcMaterial.getModel().setSelectedItem(m);
+                    editar.JtProducto.setEnabled(false);
+                    editar.JtPt.setEnabled(false);
+                    editar.JtMat.setEnabled(false);
+                    editar.JtPeso.setEnabled(false);
+                    editar.JtPunto.setEnabled(false);
+                    editar.JtPtol.requestFocus();
+                    
+                    editar.Jtid.setText(JtCostos.getValueAt(row, 0).toString());
+                    editar.JtProducto.setText(JtCostos.getValueAt(row, 1).toString());
+                    editar.JbRCPT.setText(JtCostos.getValueAt(row, 2).toString());
+                    editar.JtPt.setText(JtCostos.getValueAt(row, 3).toString());
+                    editar.JtMat.setText(JtCostos.getValueAt(row, 4).toString());
                     editar.JtPunto.setText(JtCostos.getValueAt(row, 5).toString());
                     editar.JtPeso.setText(JtCostos.getValueAt(row, 6).toString());
                     editar.JtPtol.setText(JtCostos.getValueAt(row, 7).toString());
                     editar.JtPcol.setText(JtCostos.getValueAt(row, 8).toString());
                     editar.JbTolerancia.setText(JtCostos.getValueAt(row, 9).toString());
                     editar.JbColada.setText(JtCostos.getValueAt(row, 10).toString());
-                    editar.JbPesoT.setText(JtCostos.getValueAt(row, 11).toString());
+                    editar.JtPesoT.setText(JtCostos.getValueAt(row, 11).toString());
                     editar.JbPrecio.setText(JtCostos.getValueAt(row, 12).toString());
                     editar.JbCostoT.setText(JtCostos.getValueAt(row, 13).toString());
                     editar.setVisible(true);

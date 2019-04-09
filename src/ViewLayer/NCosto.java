@@ -21,7 +21,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 public class NCosto extends javax.swing.JDialog {
-
+    
     String informacion = "";
     Corrida cr = new Corrida();
     ObjectCostos obj = new ObjectCostos();
@@ -33,11 +33,11 @@ public class NCosto extends javax.swing.JDialog {
     double Colada = 0;
     double PesoTotal = 0;
     double CostoTotal = 0;
-
+    
     DefaultListModel<Producto> modeloListaProductos = new DefaultListModel<Producto>();
     DefaultListModel<PtProducto> modeloListaRCPT = new DefaultListModel<PtProducto>();
     DefaultListModel<Material> modeloListaMat = new DefaultListModel<Material>();
-
+    
     public NCosto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -54,12 +54,13 @@ public class NCosto extends javax.swing.JDialog {
         JbCostoT.setForeground(Color.blue);
         JbPrecio.setForeground(Color.blue);
         JtPesoT.setForeground(Color.blue);
+        Jtid.setVisible(false);
     }
-
+    
     public String getInformacion() {
         return this.informacion;
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -98,9 +99,10 @@ public class NCosto extends javax.swing.JDialog {
         jScrollPane3 = new javax.swing.JScrollPane();
         listaMat = new javax.swing.JList<>();
         JbCvet = new javax.swing.JLabel();
+        Jtid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("NUEVO COSTO");
+        setTitle("COSTO");
         setLocation(new java.awt.Point(0, 0));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -318,13 +320,16 @@ public class NCosto extends javax.swing.JDialog {
                                     .addComponent(JbPeso)
                                     .addComponent(JbTol))
                                 .addGap(34, 34, 34)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(JtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(JtPunto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(JtPtol, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(45, 45, 45)
-                                        .addComponent(JbTolerancia))))
+                                        .addComponent(JbTolerancia))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(JtPunto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(38, 38, 38)
+                                        .addComponent(Jtid))))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addGap(120, 120, 120)
@@ -352,7 +357,8 @@ public class NCosto extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(JbPunto)
-                            .addComponent(JtPunto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(JtPunto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Jtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(JtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -411,39 +417,64 @@ public class NCosto extends javax.swing.JDialog {
                 || JtPesoT.getText().equals("0.00") || JbCostoT.getText().equals("0.00")) {
             JOptionPane.showMessageDialog(this, "Falta datos de ingresar verifica", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
             JtPunto.requestFocus();
-        } else if (obj.validarCosto(Integer.parseInt(JbIdProd.getText()), Integer.parseInt(JtPunto.getText())) == 0) {
-            Costo ct = new Costo();
-            ct.setId_Producto(Integer.parseInt(JbIdProd.getText()));
-            ct.setId_ProductoRCPT(Integer.parseInt(JbRCPT.getText()));
-            ct.setPunto(Integer.parseInt(JtPunto.getText()));
-            ct.setPesoGr(Double.parseDouble(JtPeso.getText()));
-            ct.setPtolerancia(Double.parseDouble(JtPtol.getText()));
-            ct.setPcolada(Double.parseDouble(JtPcol.getText()));
-            ct.setTolerancia(Double.parseDouble(JbTolerancia.getText()));
-            ct.setColada(Double.parseDouble(JbColada.getText()));
-            ct.setCveMat(JbCvet.getText());
-            ct.setPesoTotal(PesoTotal);
-            ct.setPrecio(Double.parseDouble(JbPrecio.getText()));
-            ct.setCosto(CostoTotal);
-            if (ValidarCorrida()) {
-                if (obj.CostoAdd(ct)) {
-                    JOptionPane.showMessageDialog(this, "Registro Guardado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                    informacion = "1";
-                    Limpiar();
-                    JtProducto.requestFocus();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-                    Limpiar();
-                }
+        } else if (Jtid.getText().isEmpty()) {
+            if (obj.validarCosto(Integer.parseInt(JbIdProd.getText()), Integer.parseInt(JtPunto.getText())) == 0) {
+                Guardar();
             } else {
-                JOptionPane.showMessageDialog(this, "Este punto no esta en la corrida", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Este registro ya existe", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
                 JtPunto.requestFocus();
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Este punto ya esta registrado", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            Editar();
+        }        
+    }//GEN-LAST:event_JbGuardarActionPerformed
+    
+    private void Guardar() {
+        Costo ct = new Costo();
+        ct.setId_Producto(Integer.parseInt(JbIdProd.getText()));
+        ct.setId_ProductoRCPT(Integer.parseInt(JbRCPT.getText()));
+        ct.setPunto(Integer.parseInt(JtPunto.getText()));
+        ct.setPesoGr(Double.parseDouble(JtPeso.getText()));
+        ct.setPtolerancia(Double.parseDouble(JtPtol.getText()));
+        ct.setPcolada(Double.parseDouble(JtPcol.getText()));
+        ct.setTolerancia(Double.parseDouble(JbTolerancia.getText()));
+        ct.setColada(Double.parseDouble(JbColada.getText()));
+        ct.setCveMat(JbCvet.getText());
+        ct.setPesoTotal(PesoTotal);
+        ct.setPrecio(Double.parseDouble(JbPrecio.getText()));
+        ct.setCosto(CostoTotal);
+        if (ValidarCorrida()) {
+            if (obj.CostoAdd(ct)) {
+                JOptionPane.showMessageDialog(this, "Registro Guardado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                informacion = "1";
+                Limpiar();
+                JtProducto.requestFocus();
+            } else {
+                JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                Limpiar();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Este punto no esta en la corrida", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
             JtPunto.requestFocus();
         }
-    }//GEN-LAST:event_JbGuardarActionPerformed
+    }
+    
+    private void Editar() {
+        Costo ct = new Costo();
+        ct.setId_Producto(Integer.parseInt(Jtid.getText()));
+        ct.setPunto(Integer.parseInt(JtPunto.getText()));
+        ct.setPtolerancia(Double.parseDouble(JtPtol.getText()));
+        ct.setPcolada(Double.parseDouble(JtPcol.getText()));
+        if (obj.costoUpdate(ct)) {
+            JOptionPane.showMessageDialog(this, "Registro Actualizado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            informacion = "1";
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            this.dispose();
+        }
+    }
+    
     private void Limpiar() {
         JtPunto.setText("");
         JtPeso.setText("");
@@ -470,7 +501,7 @@ public class NCosto extends javax.swing.JDialog {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         Cerrar();
     }//GEN-LAST:event_formWindowClosing
-
+    
     private boolean ValidarCorrida() {
         switch (JbCorrida.getText()) {
             case "[15-17]":
@@ -574,7 +605,7 @@ public class NCosto extends javax.swing.JDialog {
             limpiarListaProductos();
         } else {
             ArrayList<Producto> listaProductos = ObjP.GetByCosto(JtProducto.getText());
-
+            
             for (Producto prod : listaProductos) {
                 modeloListaProductos.addElement(prod);
             }
@@ -592,7 +623,7 @@ public class NCosto extends javax.swing.JDialog {
 
     private void listaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaProductosMouseClicked
         JList lis = (JList) evt.getSource();
-
+        
         if (evt.getClickCount() == 1) {
             Producto prod = (Producto) lis.getSelectedValue();
             JbCorrida.setText(String.valueOf(cr.getCorridas(prod.getId_Producto())));
@@ -609,7 +640,7 @@ public class NCosto extends javax.swing.JDialog {
             limpiarRCPT();
         } else {
             ArrayList<PtProducto> listaProd = pt.GetByRCPT(JtPt.getText());
-
+            
             for (PtProducto prod : listaProd) {
                 modeloListaRCPT.addElement(prod);
             }
@@ -669,19 +700,19 @@ public class NCosto extends javax.swing.JDialog {
             JbPrecio.setText(var.format(mat.getCostoCosteo()));
         }
     }//GEN-LAST:event_listaMatMouseClicked
-
+    
     private void limpiarListaProductos() {
         modeloListaProductos.clear();
     }
-
+    
     private void limpiarRCPT() {
         modeloListaRCPT.clear();
     }
-
+    
     private void limpiarMaterial() {
         modeloListaMat.clear();
     }
-
+    
     private void Cerrar() {
         String botones[] = {"SI", "NO"};
         int eleccion = JOptionPane.showOptionDialog(this, "¿Deseas cerrar esta ventana?", "TOP-SUELAS",
@@ -738,36 +769,37 @@ public class NCosto extends javax.swing.JDialog {
     private javax.swing.JLabel JbC;
     private javax.swing.JButton JbCancelar;
     private javax.swing.JLabel JbCol;
-    private javax.swing.JLabel JbColada;
-    private javax.swing.JLabel JbCorrida;
-    private javax.swing.JLabel JbCostoT;
-    private javax.swing.JLabel JbCvet;
+    public javax.swing.JLabel JbColada;
+    public javax.swing.JLabel JbCorrida;
+    public javax.swing.JLabel JbCostoT;
+    public javax.swing.JLabel JbCvet;
     private javax.swing.JButton JbGuardar;
-    private javax.swing.JLabel JbIdProd;
+    public javax.swing.JLabel JbIdProd;
     private javax.swing.JLabel JbMat;
     private javax.swing.JLabel JbP;
     private javax.swing.JLabel JbPc;
     private javax.swing.JLabel JbPeso;
-    private javax.swing.JLabel JbPrecio;
+    public javax.swing.JLabel JbPrecio;
     private javax.swing.JLabel JbPunto;
-    private javax.swing.JLabel JbRCPT;
+    public javax.swing.JLabel JbRCPT;
     private javax.swing.JLabel JbSuela;
     private javax.swing.JLabel JbTol;
-    private javax.swing.JLabel JbTolerancia;
-    private javax.swing.JTextField JtMat;
-    private javax.swing.JTextField JtPcol;
-    private javax.swing.JTextField JtPeso;
-    private javax.swing.JLabel JtPesoT;
-    private javax.swing.JTextField JtProducto;
-    private javax.swing.JTextField JtPt;
-    private javax.swing.JTextField JtPtol;
-    private javax.swing.JTextField JtPunto;
+    public javax.swing.JLabel JbTolerancia;
+    public javax.swing.JTextField JtMat;
+    public javax.swing.JTextField JtPcol;
+    public javax.swing.JTextField JtPeso;
+    public javax.swing.JLabel JtPesoT;
+    public javax.swing.JTextField JtProducto;
+    public javax.swing.JTextField JtPt;
+    public javax.swing.JTextField JtPtol;
+    public javax.swing.JTextField JtPunto;
+    public javax.swing.JTextField Jtid;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JList<Material> listaMat;
-    private javax.swing.JList<Producto> listaProductos;
-    private javax.swing.JList<PtProducto> listaRCPT;
+    public javax.swing.JList<Material> listaMat;
+    public javax.swing.JList<Producto> listaProductos;
+    public javax.swing.JList<PtProducto> listaRCPT;
     // End of variables declaration//GEN-END:variables
 }

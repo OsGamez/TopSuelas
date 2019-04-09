@@ -1,4 +1,3 @@
-
 package ViewLayer;
 
 import DataAccesLayer.Conexion;
@@ -22,18 +21,18 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
-
 public class Paises extends javax.swing.JInternalFrame {
-     Connection c = Server.getCobranza();
-    DefaultTableModel modelPais = new DefaultTableModel(){
-      @Override
-      public boolean isCellEditable(int row, int column){
-          return false;
-      }  
+
+    Connection c = Server.getCobranza();
+    DefaultTableModel modelPais = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
     };
     ObjectPaises obj = new ObjectPaises();
     Pais pais = new Pais();
-    
+
     public Paises() {
         initComponents();
         LoadColumns();
@@ -200,9 +199,9 @@ public class Paises extends javax.swing.JInternalFrame {
         nuevo.setVisible(true);
         nuevo.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         nuevo.setAlwaysOnTop(true);
-         if(nuevo.getInformacion()!=""){ 
-                    CleanTable();
-                    LoadModelPais();
+        if (nuevo.getInformacion() != "") {
+            CleanTable();
+            LoadModelPais();
         }
     }//GEN-LAST:event_JbNuevoActionPerformed
 
@@ -212,89 +211,85 @@ public class Paises extends javax.swing.JInternalFrame {
 
     private void JbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEliminarActionPerformed
         int row = JtDatosPais.getSelectedRow();
-        
-        try{
-            if(row >=0){
-                int opcion = JOptionPane.showConfirmDialog(this,"¿Estas seguro de borrar este registro?","TOP-SUELAS",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-                if(opcion ==JOptionPane.YES_OPTION){
+
+        try {
+            if (row >= 0) {
+                int opcion = JOptionPane.showConfirmDialog(this, "¿Estas seguro de borrar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (opcion == JOptionPane.YES_OPTION) {
                     int id = Integer.parseInt(JtDatosPais.getValueAt(row, 0).toString());
                     String desc = JtDatosPais.getValueAt(row, 1).toString();
-                    if( obj.paisDelete(id, desc)){
-                         modelPais.removeRow(row);
-                         JOptionPane.showMessageDialog(null,"Registro eliminado");
-                    }else{
-                       JOptionPane.showMessageDialog(null,"Este pais esta asociado a un cliente"); 
+                    if (obj.paisDelete(id, desc)) {
+                        modelPais.removeRow(row);
+                        JOptionPane.showMessageDialog(null, "Registro eliminado");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Este pais esta asociado a un cliente");
                     }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
             }
-        }else{
-                JOptionPane.showMessageDialog(null,"No se ha seleccionado ningun registro");
-            } 
-    }
-        catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_JbEliminarActionPerformed
 
     private void JbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEditarActionPerformed
-        MPais editar = new MPais(null, true);
+        NPais editar = new NPais(null, true);
         int fila = JtDatosPais.getSelectedRow();
 
-        try{
-            if(fila >=0){
-                int opcion = JOptionPane.showConfirmDialog(this,"¿Quires editar este registro?","TOP-SUELAS",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-                if(opcion ==JOptionPane.YES_OPTION){
-                editar.JtId.setText(JtDatosPais.getValueAt(fila, 1).toString());
-                editar.JtDescripcion.setText(JtDatosPais.getValueAt(fila, 1).toString());
+        try {
+            if (fila >= 0) {
+                int opcion = JOptionPane.showConfirmDialog(this, "¿Quires editar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (opcion == JOptionPane.YES_OPTION) {
+                    editar.Jtid.setText(JtDatosPais.getValueAt(fila, 1).toString());
+                    editar.JtDescripcion.setText(JtDatosPais.getValueAt(fila, 1).toString());
 
-                editar.setVisible(true);
-                editar.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-                editar.setAlwaysOnTop(true);
-                if(editar.getInformacion()!=""){ 
-                    CleanTable();
-                    LoadModelPais();
+                    editar.setVisible(true);
+                    editar.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                    editar.setAlwaysOnTop(true);
+                    if (editar.getInformacion() != "") {
+                        CleanTable();
+                        LoadModelPais();
+                    }
                 }
-            } 
-        }else{
-               JOptionPane.showMessageDialog(null,"No se ha seleccionado ningun registro"); 
-            }  
-     }
-        catch(Exception ex){
-            
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
+            }
+        } catch (Exception ex) {
+
             ex.printStackTrace();
         }
     }//GEN-LAST:event_JbEditarActionPerformed
-    private void LoadColumns(){
+    private void LoadColumns() {
         modelPais.addColumn("Código");
         modelPais.addColumn("DESCRIPCIÓN");
-        
+
         JtDatosPais.getColumnModel().getColumn(0).setMaxWidth(0);
         JtDatosPais.getColumnModel().getColumn(0).setMinWidth(0);
         JtDatosPais.getColumnModel().getColumn(0).setPreferredWidth(0);
     }
-    private void LoadModelPais(){
- 
-        ArrayList<Pais>listaPaises = obj.paisesGetAll();
-         
+
+    private void LoadModelPais() {
+
+        ArrayList<Pais> listaPaises = obj.paisesGetAll();
+
         modelPais.setNumRows(listaPaises.size());
-         
-        for(int i =0; i<listaPaises.size(); i++){
-             Pais pais = listaPaises.get(i);
-             
-             int id = pais.getId_Pais();
-             String descripcion = pais.getDescripcion();
-             
-             modelPais.setValueAt(id, i, 0);
-             modelPais.setValueAt(descripcion, i, 1);
-         }
+
+        for (int i = 0; i < listaPaises.size(); i++) {
+            Pais pais = listaPaises.get(i);
+
+            modelPais.setValueAt(pais.getId_Pais(), i, 0);
+            modelPais.setValueAt(pais.getDescripcion(), i, 1);
+        }
     }
     private void JtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyReleased
         CleanTable();
         JtBuscar.getText();
-        ArrayList<Pais>listaPaises = obj.paisSearch(JtBuscar.getText());
+        ArrayList<Pais> listaPaises = obj.paisSearch(JtBuscar.getText());
 
         listaPaises.size();
         modelPais.setNumRows(listaPaises.size());
-        for(int i=0; i< listaPaises.size(); i++){
+        for (int i = 0; i < listaPaises.size(); i++) {
 
             Pais pais = listaPaises.get(i);
 
@@ -308,13 +303,13 @@ public class Paises extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JtBuscarKeyReleased
 
     private void JbReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbReporteActionPerformed
-          try {                                          
+        try {
             JasperReport reporte = null;
-            reporte = (JasperReport)JRLoader.loadObject(getClass().getResource("/Reports/CatalogoPaises.jasper"));
+            reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reports/CatalogoPaises.jasper"));
             try {
-                JasperPrint jprint = JasperFillManager.fillReport(reporte, null,c);
-                JasperViewer view = new  JasperViewer(jprint,false);
-                
+                JasperPrint jprint = JasperFillManager.fillReport(reporte, null, c);
+                JasperViewer view = new JasperViewer(jprint, false);
+
                 view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                 view.setVisible(true);
                 view.setIconImage(getImage());
@@ -333,25 +328,26 @@ public class Paises extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbActualizarActionPerformed
 
     private void JtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyTyped
-      char c = evt.getKeyChar();
-      if(Character.isLowerCase(c)){
-        String cad = (""+c).toUpperCase();
-        c = cad.charAt(0);
-        evt.setKeyChar(c);
-      }
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
+        }
     }//GEN-LAST:event_JtBuscarKeyTyped
-     public Image getImage(){
+    public Image getImage() {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/PhotoPrint_11187.png"));
         return icon;
     }
-    private void CleanTable(){
-         int numFilas = modelPais.getRowCount();
-         if(numFilas >0){
-             for(int i =  numFilas - 1; i >=0; i--){
-                 modelPais.removeRow(i);
-             }
-         }
-}
+
+    private void CleanTable() {
+        int numFilas = modelPais.getRowCount();
+        if (numFilas > 0) {
+            for (int i = numFilas - 1; i >= 0; i--) {
+                modelPais.removeRow(i);
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbActualizar;

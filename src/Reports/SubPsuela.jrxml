@@ -30,7 +30,7 @@ WHERE l.Descripcion = $P{Modelo} AND DATEPART(WK,p.Fecha_Entrega)= $P{Date}]]>
 			<staticText>
 				<reportElement mode="Transparent" x="0" y="1" width="37" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="b37cd191-2090-472f-9271-bd15025409a3"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[PARES:]]></text>
@@ -38,7 +38,7 @@ WHERE l.Descripcion = $P{Modelo} AND DATEPART(WK,p.Fecha_Entrega)= $P{Date}]]>
 			<textField>
 				<reportElement mode="Transparent" x="27" y="1" width="44" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="f1418dbd-cf44-4c8b-a0cc-c8d602e5134b"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Pares}]]></textFieldExpression>
