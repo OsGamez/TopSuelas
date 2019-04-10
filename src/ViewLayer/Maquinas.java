@@ -24,6 +24,7 @@ public class Maquinas extends javax.swing.JInternalFrame {
         initComponents();
         LoadColumns();
         LoadModelMaquina();
+        JbReporte.setVisible(false);
         JtDatosMaquina.getTableHeader().setReorderingAllowed(false);
     }
 
@@ -126,11 +127,11 @@ public class Maquinas extends javax.swing.JInternalFrame {
                 .addGap(29, 29, 29)
                 .addComponent(JbEditar)
                 .addGap(31, 31, 31)
-                .addComponent(JbReporte)
-                .addGap(29, 29, 29)
                 .addComponent(JbActualizar)
-                .addGap(27, 27, 27)
+                .addGap(36, 36, 36)
                 .addComponent(JbSalir)
+                .addGap(79, 79, 79)
+                .addComponent(JbReporte)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -179,7 +180,7 @@ public class Maquinas extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
