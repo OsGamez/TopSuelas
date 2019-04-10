@@ -38,6 +38,7 @@ public class Principal extends javax.swing.JFrame {
     String UsuarioChat = "";
     Moldes m;
     Proveedores pv;
+    PlaneacionPhy phy;
 
     Maquinas maq;
     public Principal() {
@@ -50,8 +51,8 @@ public class Principal extends javax.swing.JFrame {
 
         this.setLocationRelativeTo(null);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        //Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/shoeprints_24027.png"));
-        //setIconImage(icon);
+        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/programa.png"));
+        setIconImage(icon);
         popprod.add(JmProduccion);
         popcpt.add(JmCPT);
         popcobranza.add(JmCobranza);
@@ -379,8 +380,13 @@ public class Principal extends javax.swing.JFrame {
         jMenu8.add(jMenuItem14);
 
         jMenuItem15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/check-form_116472.png"))); // NOI18N
+        jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/applicationvnd_103607.png"))); // NOI18N
         jMenuItem15.setText("Inventario Fisico");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
         jMenu8.add(jMenuItem15);
 
         JmCPT.add(jMenu8);
@@ -626,13 +632,13 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(nominas)
-                        .addContainerGap())
+                        .addContainerGap(848, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(prod, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                        .addGap(47, 47, 47)
-                        .addComponent(cpt, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
-                        .addGap(44, 44, 44)
-                        .addComponent(cobranza, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE))))
+                        .addComponent(prod, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                        .addGap(127, 127, 127)
+                        .addComponent(cpt, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                        .addGap(138, 138, 138)
+                        .addComponent(cobranza, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -656,7 +662,7 @@ public class Principal extends javax.swing.JFrame {
         MainContent.setLayout(MainContentLayout);
         MainContentLayout.setHorizontalGroup(
             MainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 994, Short.MAX_VALUE)
         );
         MainContentLayout.setVerticalGroup(
             MainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -677,6 +683,21 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void LoadInFisico(){
+        if (phy == null) {
+            phy = new PlaneacionPhy();
+            MainContent.add(phy);
+            MainContent.getDesktopManager().maximizeFrame(phy);
+            phy.setVisible(true);
+        } else {
+            phy.dispose();
+            phy = new PlaneacionPhy();
+            MainContent.add(phy);
+            MainContent.getDesktopManager().maximizeFrame(phy);
+            phy.setVisible(true);
+        }
+    }
+    
     private void LoadProducto() {
         if (productos == null) {
             productos = new Productos();
@@ -1111,6 +1132,10 @@ public class Principal extends javax.swing.JFrame {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
       popopciones.show(evt.getComponent(), evt.getX(), evt.getY());
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+       LoadInFisico();
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
  private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {                                            
        LoadMaquina();
     }  

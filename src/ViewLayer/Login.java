@@ -23,7 +23,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/shoeprints_24027.png"));
+        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/programa.png"));
         setIconImage(icon);
         btnMostrar.setIcon(mostrar);
     }
