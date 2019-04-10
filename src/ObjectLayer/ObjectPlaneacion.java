@@ -14,6 +14,7 @@ public class ObjectPlaneacion {
 
     PreparedStatement st = null, dp = null;
     ObjectDetalle obj = new ObjectDetalle();
+    ObjectDprograma detalle = new ObjectDprograma();
 
     Connection pa = Conexion.getRcpt();
     Connection c = Conexion.getRpt();
@@ -144,38 +145,37 @@ public class ObjectPlaneacion {
         return lista;
     }
 
-
-    public boolean AddPlaneacionA(Planeacion p,String Estatus, String Npedido) {
+    public boolean AddPlaneacionA(Planeacion p, String Estatus, String Npedido) {
         boolean rpta = false;
         try {
-            dp = pa.prepareStatement("INSERT INTO Programa(Programa,Cont,Mes,Fecha,Npedido,Cliente,Agente,"
-                    + "Suela,Color,Corrida,Pto1,Pto2,Pto3,Pto4,Pto5,Pto6,Pto7,Pto8,Pto9,Pto10,Pto11,Pto12,"
-                    + "Pares,Cant1,Cant2,Cant3,Cant4,Cant5,Cant6,Cant7,Cant8,Cant9,Cant10,Cant11,Cant12,Serie)"
+            dp = pa.prepareStatement("INSERT INTO Programa(Programa,Mes,Fecha,Pares,Cont,Npedido,Cliente,Agente,Producto,"
+                    + "Color,Corrida,Pto1,Pto2,Pto3,Pto4,Pto5,Pto6,Pto7,Pto8,Pto9,Pto10,Pto11,Pto12,Cant1,Cant2,Cant3,"
+                    + "Cant4,Cant5,Cant6,Cant7,Cant8,Cant9,Cant10,Cant11,Cant12,Serie)"
                     + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pa.setAutoCommit(false);
             dp.setInt(1, p.getPrograma());
-            dp.setInt(2, p.getCont());
-            dp.setString(3, p.getMes());
-            dp.setDate(4, p.getFecha());
-            dp.setString(5, p.getNpedido());
-            dp.setInt(6, p.getId_Cliente());
-            dp.setInt(7, p.getId_Agente());
-            dp.setInt(8, p.getId_Producto());
-            dp.setInt(9, p.getId_Color());
-            dp.setInt(10, p.getId_Corrida());
-            dp.setInt(11, p.getPto1());
-            dp.setInt(12, p.getPto2());
-            dp.setInt(13, p.getPto3());
-            dp.setInt(14, p.getPto4());
-            dp.setInt(15, p.getPto5());
-            dp.setInt(16, p.getPto6());
-            dp.setInt(17, p.getPto7());
-            dp.setInt(18, p.getPto8());
-            dp.setInt(19, p.getPto9());
-            dp.setInt(20, p.getPto10());
-            dp.setInt(21, p.getPto11());
-            dp.setInt(22, p.getPto12());
-            dp.setInt(23, p.getPares());
+            dp.setString(2, p.getMes());
+            dp.setDate(3, p.getFecha());
+            dp.setInt(4, p.getPares());
+            dp.setInt(5, p.getCont());
+            dp.setString(6, p.getNpedido());
+            dp.setInt(7, p.getId_Cliente());
+            dp.setInt(8, p.getId_Agente());
+            dp.setInt(9, p.getId_Producto());
+            dp.setInt(10, p.getId_Color());
+            dp.setInt(11, p.getId_Corrida());
+            dp.setInt(12, p.getPto1());
+            dp.setInt(13, p.getPto2());
+            dp.setInt(14, p.getPto3());
+            dp.setInt(15, p.getPto4());
+            dp.setInt(16, p.getPto5());
+            dp.setInt(17, p.getPto6());
+            dp.setInt(18, p.getPto7());
+            dp.setInt(19, p.getPto8());
+            dp.setInt(20, p.getPto9());
+            dp.setInt(21, p.getPto10());
+            dp.setInt(22, p.getPto11());
+            dp.setInt(23, p.getPto12());
             dp.setInt(24, p.getC1());
             dp.setInt(25, p.getC2());
             dp.setInt(26, p.getC3());
@@ -189,6 +189,7 @@ public class ObjectPlaneacion {
             dp.setInt(34, p.getC11());
             dp.setInt(35, p.getC12());
             dp.setString(36, p.getSerie());
+
             rpta = dp.executeUpdate() == 1 ? true : false;
 
             if (rpta) {
@@ -204,6 +205,7 @@ public class ObjectPlaneacion {
             Conexion.cerrarPhylonA(dp);
         } catch (SQLException ex) {
             ex.printStackTrace();
+            Conexion.cerrarPhylonA(dp);
         }
         return rpta;
     }
@@ -261,5 +263,5 @@ public class ObjectPlaneacion {
         }
         return rpta;
     }
-    
+
 }

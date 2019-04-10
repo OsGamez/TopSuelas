@@ -9,8 +9,9 @@ public class Planeacion {
     private int Programa;
     private String Mes;
     private Date Fecha;
+    private int Pares;
     private int cont;
-    private String Npedido;
+     private String Npedido;
     private int Id_Cliente;
     private int Id_Agente;
     private int Id_Producto;
@@ -28,13 +29,6 @@ public class Planeacion {
     private int Pto10;
     private int Pto11;
     private int Pto12;
-    private int Pares;
-    private int Numero;
-    private String Modelo;
-    private String Cliente;
-    private String Color;
-    private String Corrida;
-    private String Agente;
     private int C1;
     private int C2;
     private int C3;
@@ -47,21 +41,82 @@ public class Planeacion {
     private int C10;
     private int C11;
     private int C12;
-   
+    private String Serie;
+    private int Numero;
+    private String Modelo;
+    private String Cliente;
+    private String Color;
+    private String Corrida;
+    private String Agente;
     private String Observaciones;
     private String OrdenCompra;
     private String Estatus;
-    private String Serie;
+    
+    public Planeacion(){}
 
-    public String getSerie() {
-        return Serie;
+    public int getNumero() {
+        return Numero;
     }
 
-    public void setSerie(String Serie) {
-        this.Serie = Serie;
+    public void setNumero(int Numero) {
+        this.Numero = Numero;
     }
-    
-    
+
+    public String getModelo() {
+        return Modelo;
+    }
+
+    public void setModelo(String Modelo) {
+        this.Modelo = Modelo;
+    }
+
+    public String getCliente() {
+        return Cliente;
+    }
+
+    public void setCliente(String Cliente) {
+        this.Cliente = Cliente;
+    }
+
+    public String getColor() {
+        return Color;
+    }
+
+    public void setColor(String Color) {
+        this.Color = Color;
+    }
+
+    public String getCorrida() {
+        return Corrida;
+    }
+
+    public void setCorrida(String Corrida) {
+        this.Corrida = Corrida;
+    }
+
+    public String getAgente() {
+        return Agente;
+    }
+
+    public void setAgente(String Agente) {
+        this.Agente = Agente;
+    }
+
+    public String getObservaciones() {
+        return Observaciones;
+    }
+
+    public void setObservaciones(String Observaciones) {
+        this.Observaciones = Observaciones;
+    }
+
+    public String getOrdenCompra() {
+        return OrdenCompra;
+    }
+
+    public void setOrdenCompra(String OrdenCompra) {
+        this.OrdenCompra = OrdenCompra;
+    }
 
     public String getEstatus() {
         return Estatus;
@@ -70,8 +125,65 @@ public class Planeacion {
     public void setEstatus(String Estatus) {
         this.Estatus = Estatus;
     }
+
     
     
+    
+    public int getCont() {
+        return cont;
+    }
+
+    public void setCont(int cont) {
+        this.cont = cont;
+    }
+
+    public String getNpedido() {
+        return Npedido;
+    }
+
+    public void setNpedido(String Npedido) {
+        this.Npedido = Npedido;
+    }
+
+    public int getId_Cliente() {
+        return Id_Cliente;
+    }
+
+    public void setId_Cliente(int Id_Cliente) {
+        this.Id_Cliente = Id_Cliente;
+    }
+
+    public int getId_Agente() {
+        return Id_Agente;
+    }
+
+    public void setId_Agente(int Id_Agente) {
+        this.Id_Agente = Id_Agente;
+    }
+
+    public int getId_Producto() {
+        return Id_Producto;
+    }
+
+    public void setId_Producto(int Id_Producto) {
+        this.Id_Producto = Id_Producto;
+    }
+
+    public int getId_Color() {
+        return Id_Color;
+    }
+
+    public void setId_Color(int Id_Color) {
+        this.Id_Color = Id_Color;
+    }
+
+    public int getId_Corrida() {
+        return Id_Corrida;
+    }
+
+    public void setId_Corrida(int Id_Corrida) {
+        this.Id_Corrida = Id_Corrida;
+    }
 
     public int getPto1() {
         return Pto1;
@@ -264,11 +376,20 @@ public class Planeacion {
     public void setC12(int C12) {
         this.C12 = C12;
     }
-    
-    
-    
-    
 
+    public String getSerie() {
+        return Serie;
+    }
+
+    public void setSerie(String Serie) {
+        this.Serie = Serie;
+    }
+    
+    
+    
+    
+    
+  
     public int getPrograma() {
         return Programa;
     }
@@ -292,63 +413,6 @@ public class Planeacion {
     public void setFecha(Date Fecha) {
         this.Fecha = Fecha;
     }
-
-    public int getCont() {
-        return cont;
-    }
-
-    public void setCont(int cont) {
-        this.cont = cont;
-    }
-
-    public String getNpedido() {
-        return Npedido;
-    }
-
-    public void setNpedido(String Npedido) {
-        this.Npedido = Npedido;
-    }
-
-    public int getId_Cliente() {
-        return Id_Cliente;
-    }
-
-    public void setId_Cliente(int Id_Cliente) {
-        this.Id_Cliente = Id_Cliente;
-    }
-
-    public int getId_Agente() {
-        return Id_Agente;
-    }
-
-    public void setId_Agente(int Id_Agente) {
-        this.Id_Agente = Id_Agente;
-    }
-
-    public int getId_Producto() {
-        return Id_Producto;
-    }
-
-    public void setId_Producto(int Id_Producto) {
-        this.Id_Producto = Id_Producto;
-    }
-
-    public int getId_Color() {
-        return Id_Color;
-    }
-
-    public void setId_Color(int Id_Color) {
-        this.Id_Color = Id_Color;
-    }
-
-    public int getId_Corrida() {
-        return Id_Corrida;
-    }
-
-    public void setId_Corrida(int Id_Corrida) {
-        this.Id_Corrida = Id_Corrida;
-    }
-
     public int getPares() {
         return Pares;
     }
@@ -356,69 +420,4 @@ public class Planeacion {
     public void setPares(int Pares) {
         this.Pares = Pares;
     }
-
-    public int getNumero() {
-        return Numero;
-    }
-
-    public void setNumero(int Numero) {
-        this.Numero = Numero;
-    }
-
-    public String getModelo() {
-        return Modelo;
-    }
-
-    public void setModelo(String Modelo) {
-        this.Modelo = Modelo;
-    }
-
-    public String getCliente() {
-        return Cliente;
-    }
-
-    public void setCliente(String Cliente) {
-        this.Cliente = Cliente;
-    }
-
-    public String getColor() {
-        return Color;
-    }
-
-    public void setColor(String Color) {
-        this.Color = Color;
-    }
-
-    public String getCorrida() {
-        return Corrida;
-    }
-
-    public void setCorrida(String Corrida) {
-        this.Corrida = Corrida;
-    }
-
-    public String getObservaciones() {
-        return Observaciones;
-    }
-
-    public void setObservaciones(String Observaciones) {
-        this.Observaciones = Observaciones;
-    }
-
-    public String getOrdenCompra() {
-        return OrdenCompra;
-    }
-
-    public void setOrdenCompra(String OrdenCompra) {
-        this.OrdenCompra = OrdenCompra;
-    }
-
-    public String getAgente() {
-        return Agente;
-    }
-
-    public void setAgente(String Agente) {
-        this.Agente = Agente;
-    }
-    
 }

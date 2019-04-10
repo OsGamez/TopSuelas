@@ -31,7 +31,6 @@ public class ObjectPedidos {
                     + "Fecha_Recibido,Fecha_Captura)"
                     + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             c.setAutoCommit(false);
-            //c.getTransactionIsolation();
             st.setString(1, p.getNpedido());
             st.setString(2, p.getNpedidoCl());
             st.setInt(3, p.getId_Cliente());

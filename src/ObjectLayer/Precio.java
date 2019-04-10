@@ -15,6 +15,8 @@ public class Precio {
     private int Id_Producto;
     private double PrecioA;
     private double PrecioB;
+    private double PrecioAP;
+    private double PrecioBP;
     private boolean Activo;
     private String DesProd;
     private String DesCli;
@@ -28,6 +30,25 @@ public class Precio {
     public Precio() {
     }
 
+    public double getPrecioAP() {
+        return PrecioAP;
+    }
+
+    public void setPrecioAP(double PrecioAP) {
+        this.PrecioAP = PrecioAP;
+    }
+
+    public double getPrecioBP() {
+        return PrecioBP;
+    }
+
+    public void setPrecioBP(double PrecioBP) {
+        this.PrecioBP = PrecioBP;
+    }
+
+    
+    
+    
     public String getDesProd() {
         return DesProd;
     }

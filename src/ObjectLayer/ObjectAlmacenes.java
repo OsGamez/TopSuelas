@@ -127,4 +127,22 @@ public class ObjectAlmacenes {
         }
         return false;
     }
+    
+    public ArrayList<Almacen>getById(String id){
+        ArrayList<Almacen> listaAlmacen = new ArrayList<Almacen>();
+        try {
+            st = c.prepareStatement("SELECT Almacen  FROM Almacenes WHERE Almacen =?");
+            st.setString(1, id);
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                Almacen am = new Almacen();
+                am.setAlmacen(rs.getInt("Almacen"));
+                listaAlmacen.add(am);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listaAlmacen;
+    }
 }

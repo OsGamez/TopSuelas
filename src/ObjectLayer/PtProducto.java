@@ -19,6 +19,9 @@ public class PtProducto {
 
     private int Producto;
     private String Descripcion;
+    private int Corrida;
+    private int Estilo;
+    private int Combinacion;
 
     public PtProducto() {
     }
@@ -39,6 +42,32 @@ public class PtProducto {
         this.Descripcion = Descripcion;
     }
 
+    public int getCorrida() {
+        return Corrida;
+    }
+
+    public void setCorrida(int Corrida) {
+        this.Corrida = Corrida;
+    }
+
+    public int getEstilo() {
+        return Estilo;
+    }
+
+    public void setEstilo(int Estilo) {
+        this.Estilo = Estilo;
+    }
+
+    public int getCombinacion() {
+        return Combinacion;
+    }
+
+    public void setCombinacion(int Combinacion) {
+        this.Combinacion = Combinacion;
+    }
+
+    
+    
     @Override
     public String toString() {
         return this.Descripcion;

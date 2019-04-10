@@ -180,7 +180,7 @@ public class Producto {
                     + "on p.Id_Corrida = cr.Id_Corrida\n"
                     + "inner join CobranzaPhy.dbo.Clientes as c on pc.Id_Cliente = c.Id_Cliente\n"
                     + "where pc.Id_Cliente=" + Id_Cliente
-                    + "order by P.Descripcion");
+                    + "and pc.Activo = 1 order by P.Descripcion");
             rs = st.executeQuery();
 
             pc = new Producto();

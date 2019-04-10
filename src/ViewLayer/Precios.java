@@ -211,10 +211,12 @@ public class Precios extends javax.swing.JInternalFrame {
         modelPrecio.addColumn("Codigo");
         modelPrecio.addColumn("CLIENTE");
         modelPrecio.addColumn("Cod-Cli");
-        modelPrecio.addColumn("PRODUCTO");
+        modelPrecio.addColumn("SUELA");
         modelPrecio.addColumn("Cod-Prod");
-        modelPrecio.addColumn("PRECIOA");
-        modelPrecio.addColumn("PRECIOB");
+        modelPrecio.addColumn("PRECIO A");
+        modelPrecio.addColumn("PRECIO B");
+        modelPrecio.addColumn("PRECIO A PREMIER");
+        modelPrecio.addColumn("PRECIO B PREMIER");
 
         JtDatosPrecio.getColumnModel().getColumn(0).setMaxWidth(0);
         JtDatosPrecio.getColumnModel().getColumn(0).setMinWidth(0);
@@ -244,6 +246,8 @@ public class Precios extends javax.swing.JInternalFrame {
             modelPrecio.setValueAt(pc.getId_Producto(), i, 4);
             modelPrecio.setValueAt(var.format(pc.getPrecioA()), i, 5);
             modelPrecio.setValueAt(var.format(pc.getPrecioB()), i, 6);
+            modelPrecio.setValueAt(var.format(pc.getPrecioAP()), i, 7);
+            modelPrecio.setValueAt(var.format(pc.getPrecioBP()), i, 8);
         }
     }
     private void JbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbSalirActionPerformed
@@ -257,9 +261,15 @@ public class Precios extends javax.swing.JInternalFrame {
             if (row >= 0) {
                 int opcion = JOptionPane.showConfirmDialog(this, "¿Estas seguro de borrar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (opcion == JOptionPane.YES_OPTION) {
-                    obj.precioDelete(Integer.parseInt(JtDatosPrecio.getValueAt(row, 4).toString()), Integer.parseInt(JtDatosPrecio.getValueAt(row, 2).toString()));
-                    modelPrecio.removeRow(row);
-                    JOptionPane.showMessageDialog(null, "Registro eliminado");
+                    int idp = Integer.parseInt(JtDatosPrecio.getValueAt(row, 4).toString());
+                    int idc = Integer.parseInt(JtDatosPrecio.getValueAt(row, 2).toString());
+                    
+                    if(obj.precioDelete(idp,idc)){
+                        modelPrecio.removeRow(row);
+                        JOptionPane.showMessageDialog(null, "Registro eliminado");
+                    }else {
+                    JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+        }                
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "No se ha selecionado ningun registro");
@@ -279,7 +289,6 @@ public class Precios extends javax.swing.JInternalFrame {
                 int opcion = JOptionPane.showConfirmDialog(this, "¿Quieres editar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (opcion == JOptionPane.YES_OPTION) {
                     Cliente cl = new Cliente();
-                    Producto pd = new Producto();
 
                     editar.JcCliente.setEnabled(false);
                     editar.JtProducto.setEnabled(false);
@@ -288,11 +297,10 @@ public class Precios extends javax.swing.JInternalFrame {
                     cl.setId_Cliente((int) JtDatosPrecio.getValueAt(fila, 2));
                     editar.JtProducto.setText(JtDatosPrecio.getValueAt(fila, 3).toString());
                     editar.JbIdProd.setText(JtDatosPrecio.getValueAt(fila, 4).toString());
-                    String precio = JtDatosPrecio.getValueAt(fila, 5).toString();
-                    String preciob = JtDatosPrecio.getValueAt(fila, 6).toString();
-                    editar.Jta.setText(String.valueOf(precio));
-                    editar.Jtb.setText(String.valueOf(preciob));
-
+                    editar.Jta.setText(JtDatosPrecio.getValueAt(fila, 5).toString());
+                    editar.Jtb.setText(JtDatosPrecio.getValueAt(fila, 6).toString());
+                    editar.JtaP.setText(JtDatosPrecio.getValueAt(fila, 7).toString());
+                    editar.JtbP.setText(JtDatosPrecio.getValueAt(fila, 8).toString());
                     editar.JcCliente.getModel().setSelectedItem(cl);
 
                     editar.setVisible(true);
@@ -330,6 +338,8 @@ public class Precios extends javax.swing.JInternalFrame {
             modelPrecio.setValueAt(pc.getId_Producto(), i, 4);
             modelPrecio.setValueAt(var.format(pc.getPrecioA()), i, 5);
             modelPrecio.setValueAt(var.format(pc.getPrecioB()), i, 6);
+            modelPrecio.setValueAt(var.format(pc.getPrecioAP()), i, 7);
+            modelPrecio.setValueAt(var.format(pc.getPrecioBP()), i, 8);
         }
     }//GEN-LAST:event_JtBuscarKeyReleased
 

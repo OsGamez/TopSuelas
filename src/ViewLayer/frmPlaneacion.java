@@ -2,6 +2,7 @@ package ViewLayer;
 
 import DataAccesLayer.Conexion;
 import DataAccesLayer.Server;
+import ObjectLayer.Dprograma;
 import ObjectLayer.ObjectPlaneacion;
 import ObjectLayer.Pedido;
 import ObjectLayer.Planeacion;
@@ -333,105 +334,117 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbLimpiarActionPerformed
 
     private void JbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbGuardarActionPerformed
-        ArrayList<Planeacion> pl = new ArrayList<Planeacion>();
+        ArrayList<Dprograma> dt = new ArrayList<Dprograma>();
         int Est = 20;
         String A = "A";
-       
+
         Date Entrega = JdFecha.getDate();
         long e = Entrega.getTime();
         java.sql.Date Fecha = new java.sql.Date(e);
 
-        String var = null;
+        String var = "";
         String var2 = null;
         int Mes = Jmes.getMonth() + 1;
         int row = Table.getRowCount();
         int Programa = (int) Jsemana.getValue();
         int pares = Integer.parseInt(lblPares.getText());
 
-        for (int i = 0; i < row; i++) {
-            int cont = Integer.parseInt((String) Table.getValueAt(i, 0));
-            String pedido = Table.getValueAt(i, 1).toString();
-            int cliente = Integer.parseInt((String) Table.getValueAt(i, 3));
-            int agente = Integer.parseInt((String) Table.getValueAt(i, 4));
-            int modelo = Integer.parseInt((String) Table.getValueAt(i, 5));
-            int corrida = Integer.parseInt((String) Table.getValueAt(i, 10));
-            int color = Integer.parseInt((String) Table.getValueAt(i, 9));
-            int Cant1 = Integer.parseInt((String) Table.getValueAt(i, 11));
-            int Cant2 = Integer.parseInt((String) Table.getValueAt(i, 12));
-            int Cant3 = Integer.parseInt((String) Table.getValueAt(i, 13));
-            int Cant4 = Integer.parseInt((String) Table.getValueAt(i, 14));
-            int Cant5 = Integer.parseInt((String) Table.getValueAt(i, 15));
-            int Cant6 = Integer.parseInt((String) Table.getValueAt(i, 16));
-            int Pto1 = Integer.parseInt((String) Table.getValueAt(i, 21));
-            int Pto2 = Integer.parseInt((String) Table.getValueAt(i, 22));
-            int Pto3 = Integer.parseInt((String) Table.getValueAt(i, 23));
-            int Pto4 = Integer.parseInt((String) Table.getValueAt(i, 24));
-            int Pto5 = Integer.parseInt((String) Table.getValueAt(i, 25));
-            int Pto6 = Integer.parseInt((String) Table.getValueAt(i, 26));
-            String Serie = Table.getValueAt(i, 27).toString();
+        if (ValidarDatos()) {
+            for (int i = 0; i < row; i++) {
+                int cont = Integer.parseInt((String) Table.getValueAt(i, 0));
+                String pedido = Table.getValueAt(i, 1).toString();
+                var = pedido;
+                int cliente = Integer.parseInt((String) Table.getValueAt(i, 3));
+                int agente = Integer.parseInt((String) Table.getValueAt(i, 4));
+                int modelo = Integer.parseInt((String) Table.getValueAt(i, 5));
+                int corrida = Integer.parseInt((String) Table.getValueAt(i, 10));
+                int color = Integer.parseInt((String) Table.getValueAt(i, 9));
+                int Cant1 = Integer.parseInt((String) Table.getValueAt(i, 11));
+                int Cant2 = Integer.parseInt((String) Table.getValueAt(i, 12));
+                int Cant3 = Integer.parseInt((String) Table.getValueAt(i, 13));
+                int Cant4 = Integer.parseInt((String) Table.getValueAt(i, 14));
+                int Cant5 = Integer.parseInt((String) Table.getValueAt(i, 15));
+                int Cant6 = Integer.parseInt((String) Table.getValueAt(i, 16));
+                int Pto1 = Integer.parseInt((String) Table.getValueAt(i, 21));
+                int Pto2 = Integer.parseInt((String) Table.getValueAt(i, 22));
+                int Pto3 = Integer.parseInt((String) Table.getValueAt(i, 23));
+                int Pto4 = Integer.parseInt((String) Table.getValueAt(i, 24));
+                int Pto5 = Integer.parseInt((String) Table.getValueAt(i, 25));
+                int Pto6 = Integer.parseInt((String) Table.getValueAt(i, 26));
+                String Serie = Table.getValueAt(i, 27).toString();
 
-            Planeacion p = new Planeacion();
-            p.setPrograma(Programa);
-            p.setCont(cont);
-            p.setMes(String.valueOf(Mes));
-            p.setFecha(Fecha);
-            p.setNpedido(pedido);
-            p.setId_Cliente(cliente);
-            p.setId_Agente(agente);
-            p.setId_Producto(modelo);
-            p.setId_Color(color);
-            p.setId_Corrida(corrida);
-            p.setPto1(Pto1);
-            p.setPto2(Pto2);
-            p.setPto3(Pto3);
-            p.setPto4(Pto4);
-            p.setPto5(Pto5);
-            p.setPto6(Pto6);
-            p.setPto7(0);
-            p.setPto8(0);
-            p.setPto9(0);
-            p.setPto10(0);
-            p.setPto12(0);
-            p.setPares(pares);
-            p.setC1(Cant1);
-            p.setC2(Cant2);
-            p.setC3(Cant3);
-            p.setC4(Cant4);
-            p.setC5(Cant5);
-            p.setC6(Cant6);
-            p.setC7(0);
-            p.setC8(0);
-            p.setC9(0);
-            p.setC10(0);
-            p.setC11(0);
-            p.setC12(0);
-            p.setSerie(Serie);
-            pl.add(p);
-            if (this.Tb.getRowCount() == 0 && this.Tb.getSelectedRow() == -1) {
-
+                Planeacion p = new Planeacion();
+                p.setPrograma(Programa);
+                p.setMes(String.valueOf(Mes));
+                p.setFecha(Fecha);
+                p.setPares(pares);
+                p.setCont(cont);
+                p.setNpedido(pedido);
+                p.setId_Cliente(cliente);
+                p.setId_Agente(agente);
+                p.setId_Producto(modelo);
+                p.setId_Color(color);
+                p.setId_Corrida(corrida);
+                p.setPto1(Pto1);
+                p.setPto2(Pto2);
+                p.setPto3(Pto3);
+                p.setPto4(Pto4);
+                p.setPto5(Pto5);
+                p.setPto6(Pto6);
+                p.setPto7(0);
+                p.setPto8(0);
+                p.setPto9(0);
+                p.setPto10(0);
+                p.setPto11(0);
+                p.setPto12(0);
+                p.setC1(Cant1);
+                p.setC2(Cant2);
+                p.setC3(Cant3);
+                p.setC4(Cant4);
+                p.setC5(Cant5);
+                p.setC6(Cant6);
+                p.setC7(0);
+                p.setC8(0);
+                p.setC9(0);
+                p.setC10(0);
+                p.setC11(0);
+                p.setC12(0);
+                p.setSerie(Serie);
+                
+                
+                if (Serie == "A") {
+                if (obj.AddPlaneacionA(p, String.valueOf(Est), String.valueOf(var)) && obj.CambiarEstatus(String.valueOf(Est), String.valueOf(var))) {
+                    var = "ok";
+                   
+                } else {
+                    var = "error";
+                }
             } else {
-             if(Serie.equals(A)){
-                if (obj.AddPlaneacionA(p,String.valueOf(Est), pedido)&& obj.CambiarEstatus(String.valueOf(Est), pedido)) {
-                        var = "ok";
-                    } else {
-                        var = "error";
-                } 
-             }else{
-                 if (obj.AddPlaneacionA(p,String.valueOf(Est), pedido)) {
-                        var = "ok";
-                    } else {
-                        var = "ok";
-                } 
-             }        
+                if (obj.AddPlaneacionA(p, String.valueOf(Est), String.valueOf(var))) {
+                   var = "ok";
+                } else {
+                    var = "error";
+                }
+            } 
             }
         }
         
-        if (var == "ok") {
-            JOptionPane.showMessageDialog(this, "Programa Guardado!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-        } else if (var == "error") {
-            JOptionPane.showMessageDialog(this, "Ocurrio un error!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+        if(var == "ok"){
+           JOptionPane.showMessageDialog(this, "Programa Guardado!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+        }else if(var == "error"){
+           JOptionPane.showMessageDialog(this, "Ocurrio un error!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
         }
+
     }//GEN-LAST:event_JbGuardarActionPerformed
+
+    private boolean ValidarDatos() {
+        if (this.Tb.getRowCount() == 0 && this.Tb.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "No hay datos para el programa", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     private void JbReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbReporteActionPerformed
         if (this.Tb.getRowCount() == 0 && this.Tb.getSelectedRow() == -1) {
