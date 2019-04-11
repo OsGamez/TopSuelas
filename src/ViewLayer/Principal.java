@@ -96,7 +96,7 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         JmCobranza = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+        JmCatalogocobranza = new javax.swing.JMenu();
         JmAgente = new javax.swing.JMenuItem();
         JmBanco = new javax.swing.JMenuItem();
         JmCiudad = new javax.swing.JMenuItem();
@@ -105,33 +105,33 @@ public class Principal extends javax.swing.JFrame {
         JmPais = new javax.swing.JMenuItem();
         JmZona = new javax.swing.JMenuItem();
         JmCPT = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
+        Jmcatcpt = new javax.swing.JMenu();
         JmPrecios = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        JmClientescpt = new javax.swing.JMenuItem();
+        JmAlmacenescpt = new javax.swing.JMenuItem();
+        JmConceptoscpt = new javax.swing.JMenuItem();
+        JmProductoscpt = new javax.swing.JMenuItem();
         JmProveedor = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        Jmfaccpt = new javax.swing.JMenu();
+        JmFacturacionfac = new javax.swing.JMenuItem();
+        JmFacturacionrefac = new javax.swing.JMenuItem();
+        Jmmovcpt = new javax.swing.JMenu();
+        JmEntradascpt = new javax.swing.JMenuItem();
+        JmSalidascpt = new javax.swing.JMenuItem();
+        JmDevolucionescpt = new javax.swing.JMenuItem();
+        Jmpedcpt = new javax.swing.JMenu();
         JmCancelación = new javax.swing.JMenuItem();
         JmPedidos = new javax.swing.JMenuItem();
         JmReportes = new javax.swing.JMenuItem();
-        jMenu8 = new javax.swing.JMenu();
-        jMenuItem12 = new javax.swing.JMenuItem();
-        jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem14 = new javax.swing.JMenuItem();
-        jMenuItem15 = new javax.swing.JMenuItem();
+        Jmrepcpt = new javax.swing.JMenu();
+        JmReportescpt = new javax.swing.JMenuItem();
+        JmExistenciascpt = new javax.swing.JMenuItem();
+        JmKardexcpt = new javax.swing.JMenuItem();
+        JmInventariofcpt = new javax.swing.JMenuItem();
         JmConfig = new javax.swing.JMenu();
         JmUsuario = new javax.swing.JMenuItem();
         JmProduccion = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
+        Jmcatprod = new javax.swing.JMenu();
         JmAlmacenes = new javax.swing.JMenuItem();
         JmColores = new javax.swing.JMenuItem();
         JmCorridas = new javax.swing.JMenuItem();
@@ -142,7 +142,7 @@ public class Principal extends javax.swing.JFrame {
         JmProductos = new javax.swing.JMenuItem();
         JmMoldes = new javax.swing.JMenuItem();
         JmMaquinas = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        JmOpciones = new javax.swing.JMenu();
         JmAyuda = new javax.swing.JMenuItem();
         JmSalir = new javax.swing.JMenuItem();
         popprod = new javax.swing.JPopupMenu();
@@ -166,9 +166,9 @@ public class Principal extends javax.swing.JFrame {
         JmCobranza.setText("Cobranza");
         JmCobranza.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/korganizer_task_tasks_list_9500.png"))); // NOI18N
-        jMenu5.setText("Catálgo");
-        jMenu5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmCatalogocobranza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/korganizer_task_tasks_list_9500.png"))); // NOI18N
+        JmCatalogocobranza.setText("Catálgo");
+        JmCatalogocobranza.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         JmAgente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmAgente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/customer_person_people_woman_you_1627.png"))); // NOI18N
@@ -178,7 +178,7 @@ public class Principal extends javax.swing.JFrame {
                 JmAgenteActionPerformed(evt);
             }
         });
-        jMenu5.add(JmAgente);
+        JmCatalogocobranza.add(JmAgente);
 
         JmBanco.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmBanco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/bank_78392.png"))); // NOI18N
@@ -188,7 +188,7 @@ public class Principal extends javax.swing.JFrame {
                 JmBancoActionPerformed(evt);
             }
         });
-        jMenu5.add(JmBanco);
+        JmCatalogocobranza.add(JmBanco);
 
         JmCiudad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmCiudad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Citycons_building_icon-icons.com_67935.png"))); // NOI18N
@@ -198,7 +198,7 @@ public class Principal extends javax.swing.JFrame {
                 JmCiudadActionPerformed(evt);
             }
         });
-        jMenu5.add(JmCiudad);
+        JmCatalogocobranza.add(JmCiudad);
 
         JmClientes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/manager_person_man_people_2841.png"))); // NOI18N
@@ -208,7 +208,7 @@ public class Principal extends javax.swing.JFrame {
                 JmClientesActionPerformed(evt);
             }
         });
-        jMenu5.add(JmClientes);
+        JmCatalogocobranza.add(JmClientes);
 
         JmEstados.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmEstados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1-51_icon-icons.com_68849.png"))); // NOI18N
@@ -218,7 +218,7 @@ public class Principal extends javax.swing.JFrame {
                 JmEstadosActionPerformed(evt);
             }
         });
-        jMenu5.add(JmEstados);
+        JmCatalogocobranza.add(JmEstados);
 
         JmPais.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmPais.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/mexico_flags_flag_17036.png"))); // NOI18N
@@ -228,7 +228,7 @@ public class Principal extends javax.swing.JFrame {
                 JmPaisActionPerformed(evt);
             }
         });
-        jMenu5.add(JmPais);
+        JmCatalogocobranza.add(JmPais);
 
         JmZona.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmZona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/if-traveling-icon-flat-outline09-3405110_107375.png"))); // NOI18N
@@ -238,17 +238,17 @@ public class Principal extends javax.swing.JFrame {
                 JmZonaActionPerformed(evt);
             }
         });
-        jMenu5.add(JmZona);
+        JmCatalogocobranza.add(JmZona);
 
-        JmCobranza.add(jMenu5);
+        JmCobranza.add(JmCatalogocobranza);
 
         JmCPT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1562683-branding-card-pencil-profile_107062.png"))); // NOI18N
         JmCPT.setText("CPT");
         JmCPT.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/korganizer_task_tasks_list_9500.png"))); // NOI18N
-        jMenu6.setText("Catálogos");
-        jMenu6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Jmcatcpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/korganizer_task_tasks_list_9500.png"))); // NOI18N
+        Jmcatcpt.setText("Catálogos");
+        Jmcatcpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         JmPrecios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmPrecios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/cash_40532.png"))); // NOI18N
@@ -258,27 +258,27 @@ public class Principal extends javax.swing.JFrame {
                 JmPreciosActionPerformed(evt);
             }
         });
-        jMenu6.add(JmPrecios);
+        Jmcatcpt.add(JmPrecios);
 
-        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/User_Group-80_icon-icons.com_57247.png"))); // NOI18N
-        jMenuItem1.setText("Clientes");
-        jMenu6.add(jMenuItem1);
+        JmClientescpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmClientescpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/User_Group-80_icon-icons.com_57247.png"))); // NOI18N
+        JmClientescpt.setText("Clientes");
+        Jmcatcpt.add(JmClientescpt);
 
-        jMenuItem2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/package_box_10801.png"))); // NOI18N
-        jMenuItem2.setText("Almacénes");
-        jMenu6.add(jMenuItem2);
+        JmAlmacenescpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmAlmacenescpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/package_box_10801.png"))); // NOI18N
+        JmAlmacenescpt.setText("Almacénes");
+        Jmcatcpt.add(JmAlmacenescpt);
 
-        jMenuItem3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/courses_letters_blackboard_board_staff_book_1475.png"))); // NOI18N
-        jMenuItem3.setText("Conceptos");
-        jMenu6.add(jMenuItem3);
+        JmConceptoscpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmConceptoscpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/courses_letters_blackboard_board_staff_book_1475.png"))); // NOI18N
+        JmConceptoscpt.setText("Conceptos");
+        Jmcatcpt.add(JmConceptoscpt);
 
-        jMenuItem4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/zapato.png"))); // NOI18N
-        jMenuItem4.setText("Productos");
-        jMenu6.add(jMenuItem4);
+        JmProductoscpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmProductoscpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/zapato.png"))); // NOI18N
+        JmProductoscpt.setText("Productos");
+        Jmcatcpt.add(JmProductoscpt);
 
         JmProveedor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/money-care_116477.png"))); // NOI18N
@@ -288,55 +288,55 @@ public class Principal extends javax.swing.JFrame {
                 JmProveedorActionPerformed(evt);
             }
         });
-        jMenu6.add(JmProveedor);
+        Jmcatcpt.add(JmProveedor);
 
-        JmCPT.add(jMenu6);
+        JmCPT.add(Jmcatcpt);
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1486564168-finance-bank-check_81495.png"))); // NOI18N
-        jMenu1.setText("Facturación");
-        jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Jmfaccpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1486564168-finance-bank-check_81495.png"))); // NOI18N
+        Jmfaccpt.setText("Facturación");
+        Jmfaccpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jMenuItem10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1486564168-finance-bank-check_81495.png"))); // NOI18N
-        jMenuItem10.setText("Facturación");
-        jMenu1.add(jMenuItem10);
+        JmFacturacionfac.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmFacturacionfac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1486564168-finance-bank-check_81495.png"))); // NOI18N
+        JmFacturacionfac.setText("Facturación");
+        Jmfaccpt.add(JmFacturacionfac);
 
-        jMenuItem11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/exchange-dollar_icon-icons.com_53141.png"))); // NOI18N
-        jMenuItem11.setText("Refacturación");
-        jMenu1.add(jMenuItem11);
+        JmFacturacionrefac.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmFacturacionrefac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/exchange-dollar_icon-icons.com_53141.png"))); // NOI18N
+        JmFacturacionrefac.setText("Refacturación");
+        Jmfaccpt.add(JmFacturacionrefac);
 
-        JmCPT.add(jMenu1);
+        JmCPT.add(Jmfaccpt);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/move_23058.png"))); // NOI18N
-        jMenu2.setText("Movimientos");
-        jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Jmmovcpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/move_23058.png"))); // NOI18N
+        Jmmovcpt.setText("Movimientos");
+        Jmmovcpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jMenuItem7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/BagOK_icon-icons.com_51210.png"))); // NOI18N
-        jMenuItem7.setText("Entradas");
-        jMenu2.add(jMenuItem7);
+        JmEntradascpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmEntradascpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/BagOK_icon-icons.com_51210.png"))); // NOI18N
+        JmEntradascpt.setText("Entradas");
+        Jmmovcpt.add(JmEntradascpt);
 
-        jMenuItem8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Bagcancel_icon-icons.com_51212.png"))); // NOI18N
-        jMenuItem8.setText("Salidas");
-        jMenu2.add(jMenuItem8);
+        JmSalidascpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmSalidascpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Bagcancel_icon-icons.com_51212.png"))); // NOI18N
+        JmSalidascpt.setText("Salidas");
+        Jmmovcpt.add(JmSalidascpt);
 
-        jMenuItem9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Refresh_36729.png"))); // NOI18N
-        jMenuItem9.setText("Devoluciones");
-        jMenu2.add(jMenuItem9);
+        JmDevolucionescpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmDevolucionescpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Refresh_36729.png"))); // NOI18N
+        JmDevolucionescpt.setText("Devoluciones");
+        Jmmovcpt.add(JmDevolucionescpt);
 
-        JmCPT.add(jMenu2);
+        JmCPT.add(Jmmovcpt);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Shopping-icon_30277.png"))); // NOI18N
-        jMenu3.setText("Pedidos");
-        jMenu3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Jmpedcpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Shopping-icon_30277.png"))); // NOI18N
+        Jmpedcpt.setText("Pedidos");
+        Jmpedcpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         JmCancelación.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmCancelación.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Cancel_icon-icons.com_54824.png"))); // NOI18N
         JmCancelación.setText("Cancelación");
-        jMenu3.add(JmCancelación);
+        Jmpedcpt.add(JmCancelación);
 
         JmPedidos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Shopping-icon_30277.png"))); // NOI18N
@@ -346,7 +346,7 @@ public class Principal extends javax.swing.JFrame {
                 JmPedidosActionPerformed(evt);
             }
         });
-        jMenu3.add(JmPedidos);
+        Jmpedcpt.add(JmPedidos);
 
         JmReportes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/travel_journey_icon-icons.com_55995.png"))); // NOI18N
@@ -356,40 +356,40 @@ public class Principal extends javax.swing.JFrame {
                 JmReportesActionPerformed(evt);
             }
         });
-        jMenu3.add(JmReportes);
+        Jmpedcpt.add(JmReportes);
 
-        JmCPT.add(jMenu3);
+        JmCPT.add(Jmpedcpt);
 
-        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Data_Meter4_37237.png"))); // NOI18N
-        jMenu8.setText("Reportes");
-        jMenu8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Jmrepcpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Data_Meter4_37237.png"))); // NOI18N
+        Jmrepcpt.setText("Reportes");
+        Jmrepcpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jMenuItem12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Data_Meter4_37237.png"))); // NOI18N
-        jMenuItem12.setText("Reportes");
-        jMenu8.add(jMenuItem12);
+        JmReportescpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmReportescpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Data_Meter4_37237.png"))); // NOI18N
+        JmReportescpt.setText("Reportes");
+        Jmrepcpt.add(JmReportescpt);
 
-        jMenuItem13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1486564180-finance-financial-report_81493.png"))); // NOI18N
-        jMenuItem13.setText("Existencias");
-        jMenu8.add(jMenuItem13);
+        JmExistenciascpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmExistenciascpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1486564180-finance-financial-report_81493.png"))); // NOI18N
+        JmExistenciascpt.setText("Existencias");
+        Jmrepcpt.add(JmExistenciascpt);
 
-        jMenuItem14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/check-form_116472.png"))); // NOI18N
-        jMenuItem14.setText("Kardex");
-        jMenu8.add(jMenuItem14);
+        JmKardexcpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmKardexcpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/check-form_116472.png"))); // NOI18N
+        JmKardexcpt.setText("Kardex");
+        Jmrepcpt.add(JmKardexcpt);
 
-        jMenuItem15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/applicationvnd_103607.png"))); // NOI18N
-        jMenuItem15.setText("Inventario Fisico");
-        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+        JmInventariofcpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmInventariofcpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/applicationvnd_103607.png"))); // NOI18N
+        JmInventariofcpt.setText("Inventario Fisico");
+        JmInventariofcpt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem15ActionPerformed(evt);
+                JmInventariofcptActionPerformed(evt);
             }
         });
-        jMenu8.add(jMenuItem15);
+        Jmrepcpt.add(JmInventariofcpt);
 
-        JmCPT.add(jMenu8);
+        JmCPT.add(Jmrepcpt);
 
         JmConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/cogregular_106332.png"))); // NOI18N
         JmConfig.setText("Configuración");
@@ -409,16 +409,16 @@ public class Principal extends javax.swing.JFrame {
         JmProduccion.setText("Producción");
         JmProduccion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/korganizer_task_tasks_list_9500.png"))); // NOI18N
-        jMenu7.setText("Catálogo");
-        jMenu7.addMouseListener(new java.awt.event.MouseAdapter() {
+        Jmcatprod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/korganizer_task_tasks_list_9500.png"))); // NOI18N
+        Jmcatprod.setText("Catálogo");
+        Jmcatprod.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu7MouseClicked(evt);
+                JmcatprodMouseClicked(evt);
             }
         });
-        jMenu7.addActionListener(new java.awt.event.ActionListener() {
+        Jmcatprod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu7ActionPerformed(evt);
+                JmcatprodActionPerformed(evt);
             }
         });
 
@@ -430,7 +430,7 @@ public class Principal extends javax.swing.JFrame {
                 JmAlmacenesActionPerformed(evt);
             }
         });
-        jMenu7.add(JmAlmacenes);
+        Jmcatprod.add(JmAlmacenes);
 
         JmColores.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmColores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/RGB_Circle_1-80_icon-icons.com_57282.png"))); // NOI18N
@@ -440,7 +440,7 @@ public class Principal extends javax.swing.JFrame {
                 JmColoresActionPerformed(evt);
             }
         });
-        jMenu7.add(JmColores);
+        Jmcatprod.add(JmColores);
 
         JmCorridas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmCorridas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Numbers512_44201.png"))); // NOI18N
@@ -450,7 +450,7 @@ public class Principal extends javax.swing.JFrame {
                 JmCorridasActionPerformed(evt);
             }
         });
-        jMenu7.add(JmCorridas);
+        Jmcatprod.add(JmCorridas);
 
         JmCostos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmCostos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/chart-1_111423.png"))); // NOI18N
@@ -460,7 +460,7 @@ public class Principal extends javax.swing.JFrame {
                 JmCostosActionPerformed(evt);
             }
         });
-        jMenu7.add(JmCostos);
+        Jmcatprod.add(JmCostos);
 
         JmLineas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmLineas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/organizer_calendar_pen_note_6134.png"))); // NOI18N
@@ -470,7 +470,7 @@ public class Principal extends javax.swing.JFrame {
                 JmLineasActionPerformed(evt);
             }
         });
-        jMenu7.add(JmLineas);
+        Jmcatprod.add(JmLineas);
 
         JmGastos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmGastos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/money_dollar_cash_coins_riches_wealth_icon-icons.com_53585.png"))); // NOI18N
@@ -480,7 +480,7 @@ public class Principal extends javax.swing.JFrame {
                 JmGastosActionPerformed(evt);
             }
         });
-        jMenu7.add(JmGastos);
+        Jmcatprod.add(JmGastos);
 
         JmMateriales.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmMateriales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/box_full_products_14639.png"))); // NOI18N
@@ -490,7 +490,7 @@ public class Principal extends javax.swing.JFrame {
                 JmMaterialesActionPerformed(evt);
             }
         });
-        jMenu7.add(JmMateriales);
+        Jmcatprod.add(JmMateriales);
 
         JmProductos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Vans_Sundown_Black_37299.png"))); // NOI18N
@@ -500,7 +500,7 @@ public class Principal extends javax.swing.JFrame {
                 JmProductosActionPerformed(evt);
             }
         });
-        jMenu7.add(JmProductos);
+        Jmcatprod.add(JmProductos);
 
         JmMoldes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmMoldes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/suela.png"))); // NOI18N
@@ -510,7 +510,7 @@ public class Principal extends javax.swing.JFrame {
                 JmMoldesActionPerformed(evt);
             }
         });
-        jMenu7.add(JmMoldes);
+        Jmcatprod.add(JmMoldes);
 
         JmMaquinas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmMaquinas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/machine.png"))); // NOI18N
@@ -520,17 +520,17 @@ public class Principal extends javax.swing.JFrame {
                 JmMaquinasActionPerformed(evt);
             }
         });
-        jMenu7.add(JmMaquinas);
+        Jmcatprod.add(JmMaquinas);
 
-        JmProduccion.add(jMenu7);
+        JmProduccion.add(Jmcatprod);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/File_Explorer_23583.png"))); // NOI18N
-        jMenu4.setText("Archivo");
-        jMenu4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmOpciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/File_Explorer_23583.png"))); // NOI18N
+        JmOpciones.setText("Archivo");
+        JmOpciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         JmAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1492616984-13-setting-configure-repair-support-optimization-google_83419.png"))); // NOI18N
         JmAyuda.setText("Soporte");
-        jMenu4.add(JmAyuda);
+        JmOpciones.add(JmAyuda);
 
         JmSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/exit_closethesession_close_6317.png"))); // NOI18N
         JmSalir.setText("Salir ");
@@ -539,7 +539,7 @@ public class Principal extends javax.swing.JFrame {
                 JmSalirActionPerformed(evt);
             }
         });
-        jMenu4.add(JmSalir);
+        JmOpciones.add(JmSalir);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TOP-SUELAS");
@@ -1105,13 +1105,13 @@ public class Principal extends javax.swing.JFrame {
        LoadProveedor();
     }//GEN-LAST:event_JmProveedorActionPerformed
 
-    private void jMenu7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu7ActionPerformed
+    private void JmcatprodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmcatprodActionPerformed
        
-    }//GEN-LAST:event_jMenu7ActionPerformed
+    }//GEN-LAST:event_JmcatprodActionPerformed
 
-    private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
+    private void JmcatprodMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JmcatprodMouseClicked
          
-    }//GEN-LAST:event_jMenu7MouseClicked
+    }//GEN-LAST:event_JmcatprodMouseClicked
 
     private void prodMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prodMouseClicked
         popprod.show(evt.getComponent(), evt.getX(), evt.getY());
@@ -1133,9 +1133,9 @@ public class Principal extends javax.swing.JFrame {
       popopciones.show(evt.getComponent(), evt.getX(), evt.getY());
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+    private void JmInventariofcptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmInventariofcptActionPerformed
        LoadInFisico();
-    }//GEN-LAST:event_jMenuItem15ActionPerformed
+    }//GEN-LAST:event_JmInventariofcptActionPerformed
  private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {                                            
        LoadMaquina();
     }  
@@ -1179,58 +1179,58 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel JbUser;
     private javax.swing.JMenuItem JmAgente;
     private javax.swing.JMenuItem JmAlmacenes;
+    private javax.swing.JMenuItem JmAlmacenescpt;
     private javax.swing.JMenuItem JmAyuda;
     private javax.swing.JMenuItem JmBanco;
     private javax.swing.JMenu JmCPT;
     private javax.swing.JMenuItem JmCancelación;
+    private javax.swing.JMenu JmCatalogocobranza;
     private javax.swing.JMenuItem JmCiudad;
     private javax.swing.JMenuItem JmClientes;
+    private javax.swing.JMenuItem JmClientescpt;
     private javax.swing.JMenu JmCobranza;
     private javax.swing.JMenuItem JmColores;
+    private javax.swing.JMenuItem JmConceptoscpt;
     private javax.swing.JMenu JmConfig;
     private javax.swing.JMenuItem JmCorridas;
     private javax.swing.JMenuItem JmCostos;
+    private javax.swing.JMenuItem JmDevolucionescpt;
+    private javax.swing.JMenuItem JmEntradascpt;
     private javax.swing.JMenuItem JmEstados;
+    private javax.swing.JMenuItem JmExistenciascpt;
+    private javax.swing.JMenuItem JmFacturacionfac;
+    private javax.swing.JMenuItem JmFacturacionrefac;
     private javax.swing.JMenuItem JmGastos;
+    private javax.swing.JMenuItem JmInventariofcpt;
+    private javax.swing.JMenuItem JmKardexcpt;
     private javax.swing.JMenuItem JmLineas;
     private javax.swing.JMenuItem JmMaquinas;
     private javax.swing.JMenuItem JmMateriales;
     private javax.swing.JMenuItem JmMoldes;
+    private javax.swing.JMenu JmOpciones;
     private javax.swing.JMenuItem JmPais;
     private javax.swing.JMenuItem JmPedidos;
     private javax.swing.JMenuItem JmPrecios;
     private javax.swing.JMenu JmProduccion;
     private javax.swing.JMenuItem JmProductos;
+    private javax.swing.JMenuItem JmProductoscpt;
     private javax.swing.JMenuItem JmProveedor;
     private javax.swing.JMenuItem JmReportes;
+    private javax.swing.JMenuItem JmReportescpt;
+    private javax.swing.JMenuItem JmSalidascpt;
     private javax.swing.JMenuItem JmSalir;
     private javax.swing.JMenuItem JmUsuario;
     private javax.swing.JMenuItem JmZona;
+    private javax.swing.JMenu Jmcatcpt;
+    private javax.swing.JMenu Jmcatprod;
+    private javax.swing.JMenu Jmfaccpt;
+    private javax.swing.JMenu Jmmovcpt;
+    private javax.swing.JMenu Jmpedcpt;
+    private javax.swing.JMenu Jmrepcpt;
     private javax.swing.JDesktopPane MainContent;
     private javax.swing.JLabel cobranza;
     private javax.swing.JLabel cpt;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
