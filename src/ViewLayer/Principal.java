@@ -39,6 +39,7 @@ public class Principal extends javax.swing.JFrame {
     Moldes m;
     Proveedores pv;
     PlaneacionPhy phy;
+    Consumos sumos;
 
     Maquinas maq;
     public Principal() {
@@ -142,6 +143,7 @@ public class Principal extends javax.swing.JFrame {
         JmProductos = new javax.swing.JMenuItem();
         JmMoldes = new javax.swing.JMenuItem();
         JmMaquinas = new javax.swing.JMenuItem();
+        JmConsumos = new javax.swing.JMenuItem();
         JmOpciones = new javax.swing.JMenu();
         JmAyuda = new javax.swing.JMenuItem();
         JmSalir = new javax.swing.JMenuItem();
@@ -521,6 +523,16 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         Jmcatprod.add(JmMaquinas);
+
+        JmConsumos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmConsumos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/medida.png"))); // NOI18N
+        JmConsumos.setText("Consumos");
+        JmConsumos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmConsumosActionPerformed(evt);
+            }
+        });
+        Jmcatprod.add(JmConsumos);
 
         JmProduccion.add(Jmcatprod);
 
@@ -1013,6 +1025,12 @@ public class Principal extends javax.swing.JFrame {
             MainContent.getDesktopManager().maximizeFrame(maq);
             maq.setVisible(true);
     }
+    private void LoadConsumo(){
+            sumos = new Consumos();
+            MainContent.add(sumos);
+            MainContent.getDesktopManager().maximizeFrame(sumos);
+            sumos.setVisible(true);
+    }
     private void JmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmSalirActionPerformed
         Cerrar();
     }//GEN-LAST:event_JmSalirActionPerformed
@@ -1136,6 +1154,10 @@ public class Principal extends javax.swing.JFrame {
     private void JmInventariofcptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmInventariofcptActionPerformed
        LoadInFisico();
     }//GEN-LAST:event_JmInventariofcptActionPerformed
+
+    private void JmConsumosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmConsumosActionPerformed
+        LoadConsumo();
+    }//GEN-LAST:event_JmConsumosActionPerformed
  private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {                                            
        LoadMaquina();
     }  
@@ -1192,6 +1214,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JmColores;
     private javax.swing.JMenuItem JmConceptoscpt;
     private javax.swing.JMenu JmConfig;
+    private javax.swing.JMenuItem JmConsumos;
     private javax.swing.JMenuItem JmCorridas;
     private javax.swing.JMenuItem JmCostos;
     private javax.swing.JMenuItem JmDevolucionescpt;

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b27d703e-d88f-4e75-825a-7eee08d13c38">
+	<property name="ireport.zoom" value="1.2100000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="linea" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select p.id_producto as 'producto',punto,peso,desperdicio,p.descripcion as 'descripcion',c.stat,l.descripcion as 'linea'
+from consumos c join Producto p on c.id_producto=p.Id_Producto
+join Linea l on p.id_linea=l.id_linea where l.descripcion like '%$P!{linea}%' 
+                    order by p.descripcion]]>
+	</queryString>
+	<field name="producto" class="java.lang.Short"/>
+	<field name="punto" class="java.lang.Short"/>
+	<field name="peso" class="java.lang.Double"/>
+	<field name="desperdicio" class="java.lang.Double"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<field name="stat" class="java.lang.String"/>
+	<field name="linea" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="69" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="207" y="39" width="178" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="cce16269-c7cd-4bba-ba1b-3351c9c9e0b5"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[CATALOGO DE CONSUMOS]]></text>
+			</staticText>
+			<image>
+				<reportElement x="2" y="39" width="131" height="28" uuid="66321ef5-1091-471a-92ac-7c8866ee9989"/>
+				<imageExpression><![CDATA["C:\\Program Files\\logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="47" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="489" y="0" width="82" height="20" uuid="a4296d20-fc44-47dd-bb97-56af7b4774c4"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH.mm.ss">
+				<reportElement x="524" y="27" width="47" height="20" uuid="909a26b2-f548-423e-82b0-9df3bfb06195"/>
+				<textElement>
+					<font fontName="Serif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="6" width="572" height="14" backcolor="#000066" uuid="f71e960e-a3fc-413c-88f0-7d624d939709"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="54" y="6" width="134" height="15" forecolor="#FFFFFF" uuid="37a4ddc4-0dd7-4680-ae0f-498972dca3cf"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Suela]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="188" y="6" width="66" height="15" forecolor="#FFFFFF" uuid="ecb40881-ce84-41f1-982d-8da554d89b8a"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Punto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="254" y="6" width="71" height="15" forecolor="#FFFFFF" uuid="5ce06b24-3b8b-4ee8-b08c-ce526ab3815b"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Peso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="325" y="6" width="100" height="15" forecolor="#FFFFFF" uuid="35262c04-b86b-4878-9974-c00f544f0afb"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[% Desperdicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="425" y="6" width="100" height="15" forecolor="#FFFFFF" uuid="3ada2102-a082-4620-8b87-f72377bcb03a"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField>
+				<reportElement x="54" y="0" width="134" height="12" uuid="42a6247c-e4bd-49d8-b984-e6cb19e5d80e"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="188" y="0" width="66" height="12" uuid="075ffc46-9f9c-44bf-9d7d-3c137c1f6448"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{punto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="254" y="0" width="71" height="12" uuid="6404b2b9-6bc0-415a-b932-94211c284cde"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{peso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="425" y="0" width="100" height="12" uuid="479bb8c8-5393-4809-a45a-22214297d5ad"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{stat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="325" y="0" width="100" height="12" uuid="3bb7a4a5-a220-4e0f-a9b0-1c6f9ec2d15c"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desperdicio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="22" splitType="Stretch">
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="539" y="2" width="32" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="e345b47d-9f08-4342-acae-56991b85de71"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="492" y="2" width="58" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="638d20a9-826a-4772-9e8b-fcc1b6943ae5"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>
