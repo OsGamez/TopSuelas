@@ -40,6 +40,7 @@ public class Principal extends javax.swing.JFrame {
     Proveedores pv;
     PlaneacionPhy phy;
     Consumos sumos;
+    Etiquetas etiq;
 
     Maquinas maq;
     public Principal() {
@@ -144,6 +145,8 @@ public class Principal extends javax.swing.JFrame {
         JmMoldes = new javax.swing.JMenuItem();
         JmMaquinas = new javax.swing.JMenuItem();
         JmConsumos = new javax.swing.JMenuItem();
+        Jmutilprod = new javax.swing.JMenu();
+        Jmetiqprod = new javax.swing.JMenuItem();
         JmOpciones = new javax.swing.JMenu();
         JmAyuda = new javax.swing.JMenuItem();
         JmSalir = new javax.swing.JMenuItem();
@@ -536,6 +539,20 @@ public class Principal extends javax.swing.JFrame {
 
         JmProduccion.add(Jmcatprod);
 
+        Jmutilprod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/utileria.png"))); // NOI18N
+        Jmutilprod.setText("Utilerias");
+
+        Jmetiqprod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/etiqueta.png"))); // NOI18N
+        Jmetiqprod.setText("Generador de Etiquetas");
+        Jmetiqprod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmetiqprodActionPerformed(evt);
+            }
+        });
+        Jmutilprod.add(Jmetiqprod);
+
+        JmProduccion.add(Jmutilprod);
+
         JmOpciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/File_Explorer_23583.png"))); // NOI18N
         JmOpciones.setText("Archivo");
         JmOpciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -641,16 +658,13 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(nominas)
-                        .addContainerGap(848, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(prod, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                        .addGap(127, 127, 127)
-                        .addComponent(cpt, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
-                        .addGap(138, 138, 138)
-                        .addComponent(cobranza, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(nominas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(prod, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
+                .addGap(127, 127, 127)
+                .addComponent(cpt, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                .addGap(138, 138, 138)
+                .addComponent(cobranza, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1031,6 +1045,11 @@ public class Principal extends javax.swing.JFrame {
             MainContent.getDesktopManager().maximizeFrame(sumos);
             sumos.setVisible(true);
     }
+    private void LoadEtiqueta(){
+            etiq = new Etiquetas(null,true);
+            etiq.setVisible(true);
+            
+    }
     private void JmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmSalirActionPerformed
         Cerrar();
     }//GEN-LAST:event_JmSalirActionPerformed
@@ -1158,6 +1177,10 @@ public class Principal extends javax.swing.JFrame {
     private void JmConsumosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmConsumosActionPerformed
         LoadConsumo();
     }//GEN-LAST:event_JmConsumosActionPerformed
+
+    private void JmetiqprodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmetiqprodActionPerformed
+        LoadEtiqueta();
+    }//GEN-LAST:event_JmetiqprodActionPerformed
  private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {                                            
        LoadMaquina();
     }  
@@ -1246,10 +1269,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JmZona;
     private javax.swing.JMenu Jmcatcpt;
     private javax.swing.JMenu Jmcatprod;
+    private javax.swing.JMenuItem Jmetiqprod;
     private javax.swing.JMenu Jmfaccpt;
     private javax.swing.JMenu Jmmovcpt;
     private javax.swing.JMenu Jmpedcpt;
     private javax.swing.JMenu Jmrepcpt;
+    private javax.swing.JMenu Jmutilprod;
     private javax.swing.JDesktopPane MainContent;
     private javax.swing.JLabel cobranza;
     private javax.swing.JLabel cpt;

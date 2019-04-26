@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="240" pageHeight="215" columnWidth="240" leftMargin="0" rightMargin="0" topMargin="4" bottomMargin="0" uuid="43dceaf3-c1be-49a7-83e7-a58dd2bff32b">
+	<property name="ireport.zoom" value="1.9487171000000019"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="almacen" class="java.lang.Integer">
+		<fieldDescription><![CDATA[almacen]]></fieldDescription>
+	</field>
+	<field name="class" class="java.lang.Class">
+		<fieldDescription><![CDATA[class]]></fieldDescription>
+	</field>
+	<field name="codigo" class="java.lang.String">
+		<fieldDescription><![CDATA[codigo]]></fieldDescription>
+	</field>
+	<field name="color" class="java.lang.String">
+		<fieldDescription><![CDATA[color]]></fieldDescription>
+	</field>
+	<field name="corrida" class="java.lang.String">
+		<fieldDescription><![CDATA[corrida]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[descripcion]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.lang.String">
+		<fieldDescription><![CDATA[fecha]]></fieldDescription>
+	</field>
+	<field name="lote" class="java.lang.Integer">
+		<fieldDescription><![CDATA[lote]]></fieldDescription>
+	</field>
+	<field name="modelo" class="java.lang.String">
+		<fieldDescription><![CDATA[modelo]]></fieldDescription>
+	</field>
+	<field name="pares" class="java.lang.String">
+		<fieldDescription><![CDATA[pares]]></fieldDescription>
+	</field>
+	<field name="pf" class="java.lang.Integer">
+		<fieldDescription><![CDATA[pf]]></fieldDescription>
+	</field>
+	<field name="pi" class="java.lang.Integer">
+		<fieldDescription><![CDATA[pi]]></fieldDescription>
+	</field>
+	<field name="producto" class="java.lang.String">
+		<fieldDescription><![CDATA[producto]]></fieldDescription>
+	</field>
+	<field name="punto" class="java.lang.String">
+		<fieldDescription><![CDATA[punto]]></fieldDescription>
+	</field>
+	<detail>
+		<band height="144" splitType="Stretch">
+			<staticText>
+				<reportElement x="8" y="42" width="52" height="14" uuid="c501919f-ddb3-4471-ac3e-77dfb9f7ac48"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MODELO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="69" y="42" width="129" height="14" uuid="fc8a5d55-d0d4-4ac9-ba4b-83033d7b079e"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="80" width="52" height="14" uuid="63fe71a0-8075-4cea-b577-f92e59319423"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TALLA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="58" width="52" height="14" uuid="ce8b178e-4608-4e81-b51c-1bc73e512e67"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COLOR:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="60" y="74" width="49" height="23" uuid="9b0d481f-12f9-42ee-a704-fd35fba1e11f"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{punto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="58" width="52" height="14" uuid="567d2f36-540b-47e6-8f04-ef4ec56245df"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{color}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="109" y="80" width="39" height="14" uuid="c21d20fb-34a0-4c6b-8997-280d261d798b"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PARES:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="148" y="74" width="50" height="23" uuid="ea16625d-68b9-4a27-a9ac-761d8ce0a700"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pares}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="151" y="11" width="37" height="13" uuid="81d4022b-4dfc-4cde-adad-e1d8b90d6da0"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="144" y="24" width="49" height="14" uuid="445cfca9-b04b-45b9-bbcf-b3d3ff2206da"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="7" y="20" width="63" height="18" uuid="60fad133-928a-4927-86dc-1a27377037b6"/>
+				<imageExpression><![CDATA["C:\\tsmanager\\imagenes\\logo.png"]]></imageExpression>
+			</image>
+			<componentElement>
+				<reportElement stretchType="RelativeToBandHeight" x="36" y="107" width="152" height="37" uuid="48213cab-4323-4890-8dea-5d323d54f735"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128B" drawText="false" checksumRequired="false" barHeight="50">
+					<jr:codeExpression><![CDATA["123456789123"]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<line>
+				<reportElement x="7" y="40" width="191" height="1" uuid="a8064277-9392-4557-857e-b832d1b5f7bc"/>
+			</line>
+			<line>
+				<reportElement x="8" y="102" width="191" height="1" uuid="42a63695-e49e-4300-af55-d77d65fe866d"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>
