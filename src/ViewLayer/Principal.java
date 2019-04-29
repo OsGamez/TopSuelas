@@ -1,9 +1,15 @@
 package ViewLayer;
 
 import ObjectLayer.Hora;
+import ObjectLayer.ObjectVersioning;
 import ObjectLayer.Usuario;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -43,6 +49,7 @@ public class Principal extends javax.swing.JFrame {
     Etiquetas etiq;
 
     Maquinas maq;
+
     public Principal() {
         initComponents();
     }
@@ -58,18 +65,18 @@ public class Principal extends javax.swing.JFrame {
         popprod.add(JmProduccion);
         popcpt.add(JmCPT);
         popcobranza.add(JmCobranza);
-        
+
         popopciones.add(JmConfig);
         popopciones.add(JmSalir);
         JbUser.setText(us.getNombre());
         JbRol.setText(us.getDepartamento());
         this.us = us;
-
+        LoadVersion();
         if (us.getDepartamento().equals("ADMIN")) {
 
         } else if (us.getUsuario().equals("kim")) {
             JmConfig.setVisible(false);
-            
+
         } else if (us.getDepartamento().equals("COBRANZA")) {
             JmConfig.setVisible(false);
             JmProduccion.setVisible(false);
@@ -709,7 +716,7 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LoadInFisico(){
+    private void LoadInFisico() {
         if (phy == null) {
             phy = new PlaneacionPhy();
             MainContent.add(phy);
@@ -723,7 +730,7 @@ public class Principal extends javax.swing.JFrame {
             phy.setVisible(true);
         }
     }
-    
+
     private void LoadProducto() {
         if (productos == null) {
             productos = new Productos();
@@ -1012,13 +1019,14 @@ public class Principal extends javax.swing.JFrame {
             pr.setVisible(true);
         }
     }
-    private void LoadMolde(){
-            m = new Moldes();
-            MainContent.add(m);
-            MainContent.getDesktopManager().maximizeFrame(m);
-            m.setVisible(true);
+
+    private void LoadMolde() {
+        m = new Moldes();
+        MainContent.add(m);
+        MainContent.getDesktopManager().maximizeFrame(m);
+        m.setVisible(true);
     }
-    
+
     private void LoadProveedor() {
         if (pv == null) {
             pv = new Proveedores();
@@ -1033,22 +1041,58 @@ public class Principal extends javax.swing.JFrame {
             pv.setVisible(true);
         }
     }
-    private void LoadMaquina(){
-            maq = new Maquinas();
-            MainContent.add(maq);
-            MainContent.getDesktopManager().maximizeFrame(maq);
-            maq.setVisible(true);
+
+    private void LoadMaquina() {
+        maq = new Maquinas();
+        MainContent.add(maq);
+        MainContent.getDesktopManager().maximizeFrame(maq);
+        maq.setVisible(true);
     }
-    private void LoadConsumo(){
-            sumos = new Consumos();
-            MainContent.add(sumos);
-            MainContent.getDesktopManager().maximizeFrame(sumos);
-            sumos.setVisible(true);
+
+    private void LoadConsumo() {
+        sumos = new Consumos();
+        MainContent.add(sumos);
+        MainContent.getDesktopManager().maximizeFrame(sumos);
+        sumos.setVisible(true);
     }
-    private void LoadEtiqueta(){
-            etiq = new Etiquetas(null,true);
-            etiq.setVisible(true);
-            
+
+    private void LoadEtiqueta() {
+        etiq = new Etiquetas(null, true);
+        etiq.setVisible(true);
+
+    }
+    private void LoadVersion(){
+         File archivo = new File("c:\\tsmanager\\conf.dat");
+        ObjectVersioning ov = new ObjectVersioning();
+        try {
+            FileWriter fichero;
+            PrintWriter pw;
+            if (!archivo.exists()) {// si no existe se ejecuta aplicacion con archivos y se crea el archivo de version
+                Process p = Runtime.getRuntime().exec("h:\\sistemas\\tsmanager.exe");//ejecuta aplicacion de copia de archivos
+                fichero = new FileWriter("c:\\tsmanager\\conf.dat");//instancia ruta de archivo
+                pw = new PrintWriter(fichero);
+                pw.println(ov.validarVersion());
+                fichero.close();// cerrar archivo
+            } else {//si existe el archivo
+                String version;
+                try (FileReader fr = new FileReader(archivo)) {
+                    BufferedReader br = new BufferedReader(fr);
+                    version=br.readLine();//lectura y guardar primer linea
+//                    while ((version=br.readLine()) != null) {//lectura del archivo
+//                        System.out.println("-"+version+"-");
+//                    }
+                }
+                //System.out.println(version);
+                if (!version.equals(ov.validarVersion())) {//si lo que encontro con lo de la bd son diferentes
+                    fichero = new FileWriter("c:\\tsmanager\\conf.dat");
+                    pw = new PrintWriter(fichero);
+                    pw.println(ov.validarVersion());
+                    fichero.close();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     private void JmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmSalirActionPerformed
         Cerrar();
@@ -1139,15 +1183,15 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_JmMoldesActionPerformed
 
     private void JmProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmProveedorActionPerformed
-       LoadProveedor();
+        LoadProveedor();
     }//GEN-LAST:event_JmProveedorActionPerformed
 
     private void JmcatprodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmcatprodActionPerformed
-       
+
     }//GEN-LAST:event_JmcatprodActionPerformed
 
     private void JmcatprodMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JmcatprodMouseClicked
-         
+
     }//GEN-LAST:event_JmcatprodMouseClicked
 
     private void prodMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prodMouseClicked
@@ -1155,23 +1199,23 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_prodMouseClicked
 
     private void cptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cptMouseClicked
-       popcpt.show(evt.getComponent(), evt.getX(), evt.getY());
+        popcpt.show(evt.getComponent(), evt.getX(), evt.getY());
     }//GEN-LAST:event_cptMouseClicked
 
     private void cobranzaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cobranzaMouseClicked
-       popcobranza.show(evt.getComponent(), evt.getX(), evt.getY());
+        popcobranza.show(evt.getComponent(), evt.getX(), evt.getY());
     }//GEN-LAST:event_cobranzaMouseClicked
 
     private void nominasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nominasMouseClicked
-       popnomina.show(evt.getComponent(), evt.getX(), evt.getY());
+        popnomina.show(evt.getComponent(), evt.getX(), evt.getY());
     }//GEN-LAST:event_nominasMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-      popopciones.show(evt.getComponent(), evt.getX(), evt.getY());
+        popopciones.show(evt.getComponent(), evt.getX(), evt.getY());
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void JmInventariofcptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmInventariofcptActionPerformed
-       LoadInFisico();
+        LoadInFisico();
     }//GEN-LAST:event_JmInventariofcptActionPerformed
 
     private void JmConsumosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmConsumosActionPerformed
@@ -1181,9 +1225,10 @@ public class Principal extends javax.swing.JFrame {
     private void JmetiqprodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmetiqprodActionPerformed
         LoadEtiqueta();
     }//GEN-LAST:event_JmetiqprodActionPerformed
- private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {                                            
-       LoadMaquina();
-    }  
+    private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {
+        LoadMaquina();
+    }
+
     /**
      * @param args the command line arguments
      */
