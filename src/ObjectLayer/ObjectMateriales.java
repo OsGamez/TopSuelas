@@ -13,7 +13,7 @@ public class ObjectMateriales {
 
     PreparedStatement st = null;
     ResultSet rs = null;
-    Connection c = Conexion.getCmpPhylon();
+    Connection c = Server.getCmpPhylon();
     Statement sta = null;
 
     public boolean addMaterial(Material mat) {

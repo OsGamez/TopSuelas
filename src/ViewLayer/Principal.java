@@ -36,6 +36,7 @@ public class Principal extends javax.swing.JFrame {
     double preciob;
     String id_usuario = "";
     String UsuarioChat = "";
+    String User = "";
     Moldes m;
     Proveedores pv;
     PlaneacionPhy phy;
@@ -685,13 +686,13 @@ public class Principal extends javax.swing.JFrame {
 
     private void LoadInFisico(){
         if (phy == null) {
-            phy = new PlaneacionPhy();
+            phy = new PlaneacionPhy(us);
             MainContent.add(phy);
             MainContent.getDesktopManager().maximizeFrame(phy);
             phy.setVisible(true);
         } else {
             phy.dispose();
-            phy = new PlaneacionPhy();
+            phy = new PlaneacionPhy(us);
             MainContent.add(phy);
             MainContent.getDesktopManager().maximizeFrame(phy);
             phy.setVisible(true);

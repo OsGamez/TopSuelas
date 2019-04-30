@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +12,7 @@ public class ObjectProveedores {
 
     PreparedStatement st = null;
     ResultSet rs = null;
-    Connection c = Conexion.getRcpt();
+    Connection c = Server.getRcpt();
 
     public boolean addProveedor(Proveedor p) {
         try {

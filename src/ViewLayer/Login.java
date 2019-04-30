@@ -37,7 +37,6 @@ public class Login extends javax.swing.JFrame {
         JbEntrar = new javax.swing.JButton();
         JbSalir = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         Jpassword = new javax.swing.JPasswordField();
         JtUsuario = new javax.swing.JTextField();
         btnMostrar = new javax.swing.JButton();
@@ -82,9 +81,6 @@ public class Login extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png"))); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel4.setText("BIENVENIDO!!!");
-
         Jpassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 JpasswordKeyPressed(evt);
@@ -104,10 +100,6 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(50, 50, 50))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(274, 274, 274))
             .addGroup(layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,9 +121,7 @@ public class Login extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGap(26, 26, 26)
+                .addGap(73, 73, 73)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -169,7 +159,9 @@ public class Login extends javax.swing.JFrame {
             } else if (obj.Login(us)) {
                 Principal inicio = new Principal(us);
                 inicio.id_usuario = String.valueOf(us.getId_Usuario());
+                inicio.User = us.getNombre();
                 inicio.UsuarioChat = usuario;
+                
                 inicio.setVisible(true);
                 dispose();
             } else {
@@ -228,13 +220,13 @@ public class Login extends javax.swing.JFrame {
        if(a){
          Jpassword.setEchoChar((char)0);
          a = false;
-         Jpassword.requestFocus();
+         //Jpassword.requestFocus();
          CambiarIcono();
        }
        else{
          Jpassword.setEchoChar(i);
          a = true;
-         Jpassword.requestFocus();
+         //Jpassword.requestFocus();
          CargarIcono();
        }
     }//GEN-LAST:event_btnMostrarActionPerformed
@@ -305,6 +297,5 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

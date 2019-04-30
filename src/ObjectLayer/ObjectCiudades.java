@@ -14,8 +14,8 @@ public class ObjectCiudades {
 
     PreparedStatement st = null;
     PreparedStatement copy = null;
-    Connection c = Conexion.getCobranza();
-    Connection rc = Conexion.getRcobranza();
+    Connection c = Server.getCobranza();
+    Connection rc = Server.getRcobranza();
     ResultSet rs = null;
 
     public boolean ciudadAdd(String Descripcion, boolean Activo) {

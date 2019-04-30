@@ -22,8 +22,8 @@ public class Precio {
     private String DesCli;
 
     PreparedStatement st = null;
-    //Connection c = Server.getRcpt();
-    Connection c = Conexion.getRcpt();
+    Connection c = Server.getRcpt();
+    //Connection c = Conexion.getRcpt();
     
     ResultSet rs = null;
 

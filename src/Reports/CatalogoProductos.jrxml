@@ -22,7 +22,7 @@ where p.Activo = 1]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="70" splitType="Stretch">
+		<band height="68" splitType="Stretch">
 			<staticText>
 				<reportElement mode="Transparent" x="214" y="41" width="145" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="8894d350-c569-48f4-a6b7-7c4bc1cc1cf7"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
@@ -32,13 +32,28 @@ where p.Activo = 1]]>
 				<text><![CDATA[CATALOGO DE SUELAS]]></text>
 			</staticText>
 			<image>
-				<reportElement x="1" y="41" width="131" height="28" uuid="ab4f6bb2-cb86-4884-aa8e-c983d8b2f223"/>
+				<reportElement x="1" y="40" width="131" height="28" uuid="ab4f6bb2-cb86-4884-aa8e-c983d8b2f223"/>
 				<imageExpression><![CDATA["C:\\Program Files\\logo.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="46" splitType="Stretch"/>
+		<band height="46" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="498" y="0" width="82" height="20" uuid="5d2473c2-e0d8-48bd-bb3d-1ca71c262856"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH.mm.ss">
+				<reportElement x="540" y="26" width="47" height="20" uuid="ecc18ab9-9dcc-4aac-9fdb-547bb2771ee9"/>
+				<textElement>
+					<font fontName="Serif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="23" splitType="Stretch">
@@ -132,6 +147,23 @@ where p.Activo = 1]]>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="17"/>
+		<band height="21">
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="541" y="1" width="32" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="a32e2ff5-4225-4a04-a930-bf3773fd27ac"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="494" y="1" width="58" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="8d234879-01b6-467d-881f-2bf8724b8363"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 </jasperReport>

@@ -14,8 +14,8 @@ public class ObjectZonas {
 
     PreparedStatement st = null;
     PreparedStatement copy = null;
-    Connection c = Conexion.getCobranza();
-    Connection rc = Conexion.getRcobranza();
+    Connection c = Server.getCobranza();
+    Connection rc = Server.getRcobranza();
     ResultSet rs = null;
 
     public boolean zonaAdd(String Descripcion, boolean Activo) {

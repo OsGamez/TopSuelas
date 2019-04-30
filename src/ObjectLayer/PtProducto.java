@@ -13,7 +13,7 @@ import java.util.Vector;
 public class PtProducto {
 
     PreparedStatement st = null;
-    Connection c = Conexion.getServer();
+    Connection c = Server.getServer();
     ResultSet rs = null;
     Statement sta = null;
 
@@ -22,9 +22,37 @@ public class PtProducto {
     private int Corrida;
     private int Estilo;
     private int Combinacion;
+    
+    private int Almacen;
+    private String DescripcionAlmacen;
+    private String Estatus;
 
     public PtProducto() {
     }
+
+    public int getAlmacen() {
+        return Almacen;
+    }
+
+    public void setAlmacen(int Almacen) {
+        this.Almacen = Almacen;
+    }
+
+    public String getDescripcionAlmacen() {
+        return DescripcionAlmacen;
+    }
+
+    public void setDescripcionAlmacen(String DescripcionAlmacen) {
+        this.DescripcionAlmacen = DescripcionAlmacen;
+    }
+
+    public String getEstatus() {
+        return Estatus;
+    }
+
+    public void setEstatus(String Estatus) {
+        this.Estatus = Estatus;
+    }   
 
     public int getProducto() {
         return Producto;
@@ -72,8 +100,6 @@ public class PtProducto {
     public String toString() {
         return this.Descripcion;
     }
-
-    
     
     public Vector<PtProducto> getProductos() {
         Vector<PtProducto> datos = new Vector<PtProducto>();

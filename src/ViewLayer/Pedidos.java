@@ -891,6 +891,47 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtCorrida.setText("");
             } else {
                 switch (JtCorrida.getText()) {
+                    case "[10-12]":
+                        JtCant.setText("");
+                        L1.setVisible(true);
+                        L2.setVisible(true);
+                        L3.setVisible(true);
+                        L1.setText("10");
+                        L2.setText("11");
+                        L3.setText("12");
+                        JtC1.setVisible(true);
+                        JtC2.setVisible(true);
+                        JtC3.setVisible(true);
+                        JtC1.setText("");
+                        JtC2.setText("");
+                        JtC3.setText("");
+                        JtC4.setText("0");
+                        JtC5.setText("0");
+                        JtC6.setText("0");
+                        HideBack();
+                        break;
+                    case "[13-16]":
+                        JtCant.setText("");
+                        L1.setVisible(true);
+                        L2.setVisible(true);
+                        L3.setVisible(true);
+                        L4.setVisible(true);
+                        L1.setText("13");
+                        L2.setText("14");
+                        L3.setText("15");
+                        L4.setText("16");
+                        JtC1.setVisible(true);
+                        JtC2.setVisible(true);
+                        JtC3.setVisible(true);
+                        JtC4.setVisible(true);
+                        JtC1.setText("");
+                        JtC2.setText("");
+                        JtC3.setText("");
+                        JtC4.setText("");
+                        JtC5.setText("0");
+                        JtC6.setText("0");
+                        HideBack2();
+                        break;
                     case "[11-14]":
                         JtCant.setText("");
                         L1.setVisible(true);
@@ -913,6 +954,26 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         JtC6.setText("0");
                         HideBack2();
                         break;
+
+                    case "[12-14]":
+                        JtCant.setText("");
+                        L1.setVisible(true);
+                        L2.setVisible(true);
+                        L3.setVisible(true);
+                        L1.setText("12");
+                        L2.setText("13");
+                        L3.setText("14");
+                        JtC1.setVisible(true);
+                        JtC2.setVisible(true);
+                        JtC3.setVisible(true);
+                        JtC1.setText("");
+                        JtC2.setText("");
+                        JtC3.setText("");
+                        JtC4.setText("0");
+                        JtC5.setText("0");
+                        JtC6.setText("0");
+                        HideBack();
+                        break;
                     case "[15-17]":
                         JtCant.setText("");
                         L1.setVisible(true);
@@ -932,6 +993,33 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         JtC6.setText("0");
                         HideBack();
                         break;
+
+                    case "[17-21]":
+                        JtCant.setText("");
+                        L1.setVisible(true);
+                        L2.setVisible(true);
+                        L3.setVisible(true);
+                        L4.setVisible(true);
+                        L5.setVisible(true);
+                        L1.setText("17");
+                        L2.setText("18");
+                        L3.setText("19");
+                        L4.setText("20");
+                        L5.setText("21");
+                        JtC1.setVisible(true);
+                        JtC2.setVisible(true);
+                        JtC3.setVisible(true);
+                        JtC4.setVisible(true);
+                        JtC5.setVisible(true);
+                        JtC1.setText("");
+                        JtC2.setText("");
+                        JtC3.setText("");
+                        JtC4.setText("");
+                        JtC5.setText("");
+                        JtC6.setText("0");
+                        HideBack3();
+                        break;
+
                     case "[18-21]":
                         JtCant.setText("");
                         L1.setVisible(true);
@@ -954,6 +1042,33 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         JtC6.setText("0");
                         HideBack2();
                         break;
+
+                    case "[21-25]":
+                        JtCant.setText("");
+                        L1.setVisible(true);
+                        L2.setVisible(true);
+                        L3.setVisible(true);
+                        L4.setVisible(true);
+                        L5.setVisible(true);
+                        L1.setText("21");
+                        L2.setText("22");
+                        L3.setText("23");
+                        L4.setText("24");
+                        L5.setText("25");
+                        JtC1.setVisible(true);
+                        JtC2.setVisible(true);
+                        JtC3.setVisible(true);
+                        JtC4.setVisible(true);
+                        JtC5.setVisible(true);
+                        JtC1.setText("");
+                        JtC2.setText("");
+                        JtC3.setText("");
+                        JtC4.setText("");
+                        JtC5.setText("");
+                        JtC6.setText("0");
+                        HideBack3();
+                        break;
+
                     case "[22-24]":
                         JtCant.setText("");
                         L1.setVisible(true);
@@ -973,6 +1088,61 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         JtC6.setText("0");
                         HideBack();
                         break;
+
+                    case "[22-27]":
+                        JtCant.setText("");
+                        L1.setVisible(true);
+                        L2.setVisible(true);
+                        L3.setVisible(true);
+                        L4.setVisible(true);
+                        L5.setVisible(true);
+                        L6.setVisible(true);
+                        L1.setText("22");
+                        L2.setText("23");
+                        L3.setText("24");
+                        L4.setText("25");
+                        L5.setText("26");
+                        L6.setText("27");
+                        JtC1.setVisible(true);
+                        JtC2.setVisible(true);
+                        JtC3.setVisible(true);
+                        JtC4.setVisible(true);
+                        JtC5.setVisible(true);
+                        JtC6.setVisible(true);
+                        JtC1.setText("");
+                        JtC2.setText("");
+                        JtC3.setText("");
+                        JtC4.setText("");
+                        JtC5.setText("");
+                        JtC6.setText("");
+                        break;
+
+                    case "[23-27]":
+                        JtCant.setText("");
+                        L1.setVisible(true);
+                        L2.setVisible(true);
+                        L3.setVisible(true);
+                        L4.setVisible(true);
+                        L5.setVisible(true);
+                        L1.setText("23");
+                        L2.setText("24");
+                        L3.setText("25");
+                        L4.setText("26");
+                        L5.setText("27");
+                        JtC1.setVisible(true);
+                        JtC2.setVisible(true);
+                        JtC3.setVisible(true);
+                        JtC4.setVisible(true);
+                        JtC5.setVisible(true);
+                        JtC1.setText("");
+                        JtC2.setText("");
+                        JtC3.setText("");
+                        JtC4.setText("");
+                        JtC5.setText("");
+                        JtC6.setText("0");
+                        HideBack3();
+                        break;
+
                     case "[23-26]":
                         JtCant.setText("");
                         L1.setVisible(true);
@@ -1074,6 +1244,76 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         JtC5.setText("");
                         JtC6.setText("");
                         break;
+                    case "[25-29]":
+                        JtCant.setText("");
+                        L1.setVisible(true);
+                        L2.setVisible(true);
+                        L3.setVisible(true);
+                        L4.setVisible(true);
+                        L5.setVisible(true);
+                        L6.setVisible(true);
+                        L1.setText("25");
+                        L2.setText("26");
+                        L3.setText("27");
+                        L4.setText("28");
+                        L5.setText("29");
+                        L6.setText("30");
+                        JtC1.setVisible(true);
+                        JtC2.setVisible(true);
+                        JtC3.setVisible(true);
+                        JtC4.setVisible(true);
+                        JtC5.setVisible(true);
+                        JtC6.setVisible(true);
+                        JtC1.setText("");
+                        JtC2.setText("");
+                        JtC3.setText("");
+                        JtC4.setText("");
+                        JtC5.setText("");
+                        JtC6.setText("");
+                        break;    
+                    case "[27-29]":
+                        JtCant.setText("");
+                        L1.setVisible(true);
+                        L2.setVisible(true);
+                        L3.setVisible(true);
+                        L1.setText("27");
+                        L2.setText("28");
+                        L3.setText("29");
+                        JtC1.setVisible(true);
+                        JtC2.setVisible(true);
+                        JtC3.setVisible(true);
+                        JtC1.setText("");
+                        JtC2.setText("");
+                        JtC3.setText("");
+                        JtC4.setText("0");
+                        JtC5.setText("0");
+                        JtC6.setText("0");
+                        HideBack();
+                        break;
+
+                    case "[30-33]":
+                        JtCant.setText("");
+                        L1.setVisible(true);
+                        L2.setVisible(true);
+                        L3.setVisible(true);
+                        L4.setVisible(true);
+                        L1.setText("30");
+                        L2.setText("31");
+                        L3.setText("32");
+                        L4.setText("33");
+                        JtC1.setVisible(true);
+                        JtC2.setVisible(true);
+                        JtC3.setVisible(true);
+                        JtC4.setVisible(true);
+                        JtC1.setText("");
+                        JtC2.setText("");
+                        JtC3.setText("");
+                        JtC4.setText("");
+                        JtC5.setText("0");
+                        JtC6.setText("0");
+                        HideBack2();
+                        break;
+
                     default:
                         break;
                 }
@@ -2007,15 +2247,15 @@ public class Pedidos extends javax.swing.JInternalFrame {
             int TotalPares = Integer.parseInt(par);
             String costo = lblTotal.getText();
             double costoPedido = Double.parseDouble(costo);
-            int id_dt = Integer.parseInt((String) JtPedido.getValueAt(row, 1));
-            int cs1 = Integer.parseInt((String) JtPedido.getValueAt(row, 5));
-            int cs2 = Integer.parseInt((String) JtPedido.getValueAt(row, 6));
-            int cs3 = Integer.parseInt((String) JtPedido.getValueAt(row, 7));
-            int cs4 = Integer.parseInt((String) JtPedido.getValueAt(row, 8));
-            int cs5 = Integer.parseInt((String) JtPedido.getValueAt(row, 9));
-            int cs6 = Integer.parseInt((String) JtPedido.getValueAt(row, 10));
-            int cant = Integer.parseInt((String) JtPedido.getValueAt(row, 11));
-            Double imp = Double.parseDouble((String) JtPedido.getValueAt(row, 13));
+            int id_dt = Integer.parseInt((String)JtPedido.getValueAt(row, 1));
+            int cs1 = Integer.parseInt((String)JtPedido.getValueAt(row, 5));
+            int cs2 = Integer.parseInt((String)JtPedido.getValueAt(row, 6));
+            int cs3 = Integer.parseInt((String)JtPedido.getValueAt(row, 7));
+            int cs4 = Integer.parseInt((String)JtPedido.getValueAt(row, 8));
+            int cs5 = Integer.parseInt((String)JtPedido.getValueAt(row, 9));
+            int cs6 = Integer.parseInt((String)JtPedido.getValueAt(row, 10));
+            int cant = Integer.parseInt((String)JtPedido.getValueAt(row, 11));
+            Double imp = Double.parseDouble((String)JtPedido.getValueAt(row, 13));
 
             Dpedido det = new Dpedido();
             det.setC1(cs1);
@@ -2056,7 +2296,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     } else {
                         JOptionPane.showMessageDialog(this, "Este pedido no se puede modificar!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         JbAlerta.setEnabled(true);
-
                         OcultarCampos();
                         Limpiar();
                         CleanTable();

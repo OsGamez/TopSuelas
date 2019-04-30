@@ -5,26 +5,16 @@ import DataAccesLayer.Server;
 import ObjectLayer.Cliente;
 import ObjectLayer.ObjectPrecios;
 import ObjectLayer.Precio;
-import ObjectLayer.Producto;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.sql.Connection;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
+
+
 
 public class Precios extends javax.swing.JInternalFrame {
 

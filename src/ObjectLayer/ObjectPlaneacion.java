@@ -16,8 +16,8 @@ public class ObjectPlaneacion {
     ObjectDetalle obj = new ObjectDetalle();
     ObjectDprograma detalle = new ObjectDprograma();
 
-    Connection pa = Conexion.getRcpt();
-    Connection c = Conexion.getRpt();
+    Connection pa = Server.getRcpt();
+    Connection c = Server.getRpt();
     ResultSet rs = null;
 
     public ArrayList<Planeacion> obtenerPlaneacion(int año, int semana) {

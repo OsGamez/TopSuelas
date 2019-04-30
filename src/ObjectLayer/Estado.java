@@ -15,7 +15,7 @@ public class Estado {
     private boolean Activo;
 
     PreparedStatement st = null;
-    Connection c = Conexion.getCobranza();
+    Connection c = Server.getCobranza();
     ResultSet rs = null;
 
     public Estado() {
