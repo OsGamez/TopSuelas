@@ -35,7 +35,7 @@ order by l.descripcion]]>
 			</staticText>
 			<image>
 				<reportElement x="1" y="51" width="131" height="28" uuid="3f038f18-b2de-4494-b74f-66d883dd72f1"/>
-				<imageExpression><![CDATA["C:\\Program Files\\logo.png"]]></imageExpression>
+				<imageExpression><![CDATA["C:\\tsmanager\\imagenes\\logo.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
