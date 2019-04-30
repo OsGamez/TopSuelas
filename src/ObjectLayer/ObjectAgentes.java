@@ -14,11 +14,11 @@ public class ObjectAgentes {
 
     PreparedStatement st = null;
     PreparedStatement copy = null;
-    //Connection c = Server.getCobranza();
-    //Connection rc = Server.getRcobranza();
+    Connection c = Server.getCobranza();
+    Connection rc = Server.getRcobranza();
 
-    Connection c = Conexion.getCobranza();
-    Connection rc = Conexion.getRcobranza();
+    //Connection c = Conexion.getCobranza();
+    //Connection rc = Conexion.getRcobranza();
     ResultSet rs = null;
 
     public boolean agenteAdd(String Descripcion, boolean Activo) {

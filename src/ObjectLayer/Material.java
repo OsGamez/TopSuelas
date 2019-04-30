@@ -26,7 +26,7 @@ public class Material {
     private String TipoCosto;
     private String divisa;
     PreparedStatement st = null;
-    Connection c = Conexion.getCmpPhylon();
+    Connection c = Server.getCmpPhylon();
     ResultSet rs = null;
 
     public Material() {

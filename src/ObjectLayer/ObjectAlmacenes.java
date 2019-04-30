@@ -7,19 +7,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 public class ObjectAlmacenes {
 
     PreparedStatement st = null;
     ResultSet rs = null;
-    Connection c = Conexion.getCmpPhylon();
+    Connection c = Server.getCmpPhylon();
 
     public boolean almacenAdd(int am, String Desc) {
             try {
                 st = c.prepareStatement("INSERT INTO Almacenes(Almacen,Descripcion)"
-                        + "VALUES(?,?)");
+                       + "VALUES(?,?)");
                 st.setInt(1, am);
                 st.setString(2, Desc);
                 st.executeUpdate();

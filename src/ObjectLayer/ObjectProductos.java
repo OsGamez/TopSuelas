@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class ObjectProductos {
 
-    public Connection c = Conexion.getProduccion();
+    public Connection c = Server.getProduccion();
     PreparedStatement st, prod = null;
     ResultSet rs = null;
     Statement sta = null;

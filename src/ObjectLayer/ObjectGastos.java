@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 public class ObjectGastos {
 
     PreparedStatement st = null;
-    Connection c = Conexion.getProduccion();
+    Connection c = Server.getProduccion();
     ResultSet rs = null;
 
     public boolean gastoAdd(Gasto g) {

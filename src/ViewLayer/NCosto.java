@@ -21,7 +21,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 public class NCosto extends javax.swing.JDialog {
-    
+
     String informacion = "";
     Corrida cr = new Corrida();
     ObjectCostos obj = new ObjectCostos();
@@ -33,11 +33,11 @@ public class NCosto extends javax.swing.JDialog {
     double Colada = 0;
     double PesoTotal = 0;
     double CostoTotal = 0;
-    
+
     DefaultListModel<Producto> modeloListaProductos = new DefaultListModel<Producto>();
     DefaultListModel<PtProducto> modeloListaRCPT = new DefaultListModel<PtProducto>();
     DefaultListModel<Material> modeloListaMat = new DefaultListModel<Material>();
-    
+
     public NCosto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -56,11 +56,11 @@ public class NCosto extends javax.swing.JDialog {
         JtPesoT.setForeground(Color.blue);
         Jtid.setVisible(false);
     }
-    
+
     public String getInformacion() {
         return this.informacion;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -426,9 +426,9 @@ public class NCosto extends javax.swing.JDialog {
             }
         } else {
             Editar();
-        }        
+        }
     }//GEN-LAST:event_JbGuardarActionPerformed
-    
+
     private void Guardar() {
         Costo ct = new Costo();
         ct.setId_Producto(Integer.parseInt(JbIdProd.getText()));
@@ -458,7 +458,7 @@ public class NCosto extends javax.swing.JDialog {
             JtPunto.requestFocus();
         }
     }
-    
+
     private void Editar() {
         Costo ct = new Costo();
         ct.setId_Producto(Integer.parseInt(Jtid.getText()));
@@ -474,7 +474,7 @@ public class NCosto extends javax.swing.JDialog {
             this.dispose();
         }
     }
-    
+
     private void Limpiar() {
         JtPunto.setText("");
         JtPeso.setText("");
@@ -501,18 +501,65 @@ public class NCosto extends javax.swing.JDialog {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         Cerrar();
     }//GEN-LAST:event_formWindowClosing
-    
+
     private boolean ValidarCorrida() {
         switch (JbCorrida.getText()) {
+            case "[10-12]":
+                if (JtPunto.getText().equals("10") || JtPunto.getText().equals("11") || JtPunto.getText().equals("12")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            case "[11-14]":
+                if (JtPunto.getText().equals("11") || JtPunto.getText().equals("12") || JtPunto.getText().equals("13")
+                        || JtPunto.getText().equals("14")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            case "[12-14]":
+                if (JtPunto.getText().equals("12") || JtPunto.getText().equals("13") || JtPunto.getText().equals("14")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            case "[13-16]":
+                if (JtPunto.getText().equals("13") || JtPunto.getText().equals("14") || JtPunto.getText().equals("15")
+                        || JtPunto.getText().equals("16")) {
+                    return true;
+                } else {
+                    return false;
+                }
             case "[15-17]":
                 if (JtPunto.getText().equals("15") || JtPunto.getText().equals("16") || JtPunto.getText().equals("17")) {
                     return true;
                 } else {
                     return false;
                 }
-            case "[25-30]":
-                if (JtPunto.getText().equals("25") || JtPunto.getText().equals("26") || JtPunto.getText().equals("27")
-                        || JtPunto.getText().equals("28") || JtPunto.getText().equals("29") || JtPunto.getText().equals("30")) {
+            case "[17-21]":
+                if (JtPunto.getText().equals("17") || JtPunto.getText().equals("18") || JtPunto.getText().equals("19")
+                        || JtPunto.getText().equals("20") || JtPunto.getText().equals("21")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            case "[21-25]":
+                if (JtPunto.getText().equals("21") || JtPunto.getText().equals("22") || JtPunto.getText().equals("23")
+                        || JtPunto.getText().equals("24") || JtPunto.getText().equals("25")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            case "[22-27]":
+                if (JtPunto.getText().equals("22") || JtPunto.getText().equals("23") || JtPunto.getText().equals("24")
+                        || JtPunto.getText().equals("25") || JtPunto.getText().equals("26") || JtPunto.getText().equals("27")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            case "[23-27]":
+                if (JtPunto.getText().equals("23") || JtPunto.getText().equals("24") || JtPunto.getText().equals("25")
+                        || JtPunto.getText().equals("26") || JtPunto.getText().equals("27")) {
                     return true;
                 } else {
                     return false;
@@ -520,6 +567,36 @@ public class NCosto extends javax.swing.JDialog {
             case "[18-21]":
                 if (JtPunto.getText().equals("18") || JtPunto.getText().equals("19") || JtPunto.getText().equals("20")
                         || JtPunto.getText().equals("21")) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            case "[25-30]":
+                if (JtPunto.getText().equals("25") || JtPunto.getText().equals("26") || JtPunto.getText().equals("27")
+                        || JtPunto.getText().equals("28") || JtPunto.getText().equals("29") || JtPunto.getText().equals("30")) {
+                    return true;
+                } else {
+                    return false;
+                }
+                
+            case "[25-29]":
+                if (JtPunto.getText().equals("25") || JtPunto.getText().equals("26") || JtPunto.getText().equals("27")
+                        || JtPunto.getText().equals("28") || JtPunto.getText().equals("29") || JtPunto.getText().equals("30")) {
+                    return true;
+                } else {
+                    return false;
+                }    
+            case "[27-29]":
+                if (JtPunto.getText().equals("27") || JtPunto.getText().equals("28") || JtPunto.getText().equals("29")
+                        || JtPunto.getText().equals("21")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            case "[30-33]":
+                if (JtPunto.getText().equals("30") || JtPunto.getText().equals("31") || JtPunto.getText().equals("32")
+                        || JtPunto.getText().equals("33")) {
                     return true;
                 } else {
                     return false;
@@ -605,7 +682,7 @@ public class NCosto extends javax.swing.JDialog {
             limpiarListaProductos();
         } else {
             ArrayList<Producto> listaProductos = ObjP.GetByCosto(JtProducto.getText());
-            
+
             for (Producto prod : listaProductos) {
                 modeloListaProductos.addElement(prod);
             }
@@ -623,7 +700,7 @@ public class NCosto extends javax.swing.JDialog {
 
     private void listaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaProductosMouseClicked
         JList lis = (JList) evt.getSource();
-        
+
         if (evt.getClickCount() == 1) {
             Producto prod = (Producto) lis.getSelectedValue();
             JbCorrida.setText(String.valueOf(cr.getCorridas(prod.getId_Producto())));
@@ -640,7 +717,7 @@ public class NCosto extends javax.swing.JDialog {
             limpiarRCPT();
         } else {
             ArrayList<PtProducto> listaProd = pt.GetByRCPT(JtPt.getText());
-            
+
             for (PtProducto prod : listaProd) {
                 modeloListaRCPT.addElement(prod);
             }
@@ -700,19 +777,19 @@ public class NCosto extends javax.swing.JDialog {
             JbPrecio.setText(var.format(mat.getCostoCosteo()));
         }
     }//GEN-LAST:event_listaMatMouseClicked
-    
+
     private void limpiarListaProductos() {
         modeloListaProductos.clear();
     }
-    
+
     private void limpiarRCPT() {
         modeloListaRCPT.clear();
     }
-    
+
     private void limpiarMaterial() {
         modeloListaMat.clear();
     }
-    
+
     private void Cerrar() {
         String botones[] = {"SI", "NO"};
         int eleccion = JOptionPane.showOptionDialog(this, "¿Deseas cerrar esta ventana?", "TOP-SUELAS",

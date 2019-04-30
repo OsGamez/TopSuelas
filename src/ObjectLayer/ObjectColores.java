@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class ObjectColores {
 
     PreparedStatement st = null;
-    public Connection c = Conexion.getProduccion();
+    public Connection c = Server.getProduccion();
     public ResultSet rs = null;
 
     public boolean colorAdd(String Descripcion, boolean Activo) {

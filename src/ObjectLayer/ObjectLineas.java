@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 public class ObjectLineas {
 
     PreparedStatement st = null;
-    public Connection c = Conexion.getProduccion();
+    public Connection c = Server.getProduccion();
     ResultSet rs = null;
 
     public boolean lineaAdd(String Descripcion, boolean Activo) {

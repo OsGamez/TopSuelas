@@ -25,6 +25,9 @@ public class ObjectRCPT {
                 PtProducto producto = new PtProducto();
                 producto.setProducto(rs.getInt("Producto"));
                 producto.setDescripcion(rs.getString("Descripcion"));
+                producto.setEstilo(rs.getInt("Estilo"));
+                producto.setCombinacion(rs.getInt("Combinacion"));
+                producto.setCorrida(rs.getInt("Corrida"));
                 listaProductos.add(producto);
             }
         } catch (Exception e) {
@@ -54,6 +57,24 @@ public class ObjectRCPT {
             e.printStackTrace();
         }
         return listaProductos;
+    }
+    
+    public ArrayList<PtProducto> getPhyAlmacen(String id) {
+        ArrayList<PtProducto> listaAlmacen = new ArrayList<PtProducto>();
+        try {
+            st = c.prepareStatement("SELECT Almacen  FROM Almacenes WHERE Almacen =?");
+            st.setString(1, id);
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                PtProducto producto = new PtProducto();
+                producto.setAlmacen(rs.getInt("Almacen"));
+                listaAlmacen.add(producto);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listaAlmacen;
     }
 
 }
