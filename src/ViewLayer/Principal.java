@@ -58,7 +58,8 @@ public class Principal extends javax.swing.JFrame {
     public Principal(Usuario us) {
         initComponents();
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-
+        warning.setToolTipText("Error al actualizar archivos, es posible que no pueda ejecutar ciertas funciones.\n"
+                + "Causa mas probable: error al intentar abrir directorio de origen para su copia.");
         this.setLocationRelativeTo(null);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/programa.png"));
@@ -170,6 +171,7 @@ public class Principal extends javax.swing.JFrame {
         JbUser = new javax.swing.JLabel();
         JbRol = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        warning = new javax.swing.JLabel();
         cpt = new javax.swing.JLabel();
         cobranza = new javax.swing.JLabel();
         nominas = new javax.swing.JLabel();
@@ -606,6 +608,8 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        warning.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1486564410-chat_81504.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -615,6 +619,8 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(JbUser)
                 .addGap(44, 44, 44)
                 .addComponent(JbRol)
+                .addGap(27, 27, 27)
+                .addComponent(warning)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
@@ -623,11 +629,12 @@ public class Principal extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(JbUser)
-                        .addComponent(JbRol)))
+                        .addComponent(JbRol))
+                    .addComponent(warning, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -1070,6 +1077,7 @@ public class Principal extends javax.swing.JFrame {
             PrintWriter pw;
             if (!archivo.exists()) {// si no existe se ejecuta aplicacion con archivos y se crea el archivo de version
                 Process p = Runtime.getRuntime().exec("h:\\sistemas\\tsmanager.exe");//ejecuta aplicacion de copia de archivos
+                
                 fichero = new FileWriter("c:\\tsmanager\\conf.dat");//instancia ruta de archivo
                 pw = new PrintWriter(fichero);
                 pw.println(ov.validarVersion());
@@ -1091,8 +1099,11 @@ public class Principal extends javax.swing.JFrame {
                     fichero.close();
                 }
             }
+            warning.setVisible(false);
         } catch (Exception e) {
+            warning.setVisible(true);
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error en el uso de un directorio para copia de archivos \n"+e.getMessage(), "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
         }
     }
     private void JmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmSalirActionPerformed
@@ -1335,5 +1346,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu popopciones;
     private javax.swing.JPopupMenu popprod;
     private javax.swing.JLabel prod;
+    private javax.swing.JLabel warning;
     // End of variables declaration//GEN-END:variables
 }
