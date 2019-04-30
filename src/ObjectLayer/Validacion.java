@@ -25,6 +25,17 @@ public class Validacion {
         return resp;
     }
 
+        public boolean verificaflotantes(String cad) {
+        boolean resp = false;
+        String patt = "[0-9]+.[0-9]*";
+        Pattern pat = Pattern.compile(patt);
+        Matcher match = pat.matcher(cad);
+        if (match.matches()) {
+            resp = true;
+        }
+        return resp;
+    }
+    
     public boolean verificapunto(String cad) {
         boolean resp = false;
         String patt = "[0-9]+[0-9]*";

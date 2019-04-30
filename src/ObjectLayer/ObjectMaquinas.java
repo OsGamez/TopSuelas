@@ -86,7 +86,7 @@ public class ObjectMaquinas {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return true;
+        return resp;
     }
 
     public void MaquinaDelete(int maquina) {

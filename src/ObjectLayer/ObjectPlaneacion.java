@@ -14,7 +14,6 @@ public class ObjectPlaneacion {
 
     PreparedStatement st = null, dp = null;
     ObjectDetalle obj = new ObjectDetalle();
-    ObjectDprograma detalle = new ObjectDprograma();
 
     Connection pa = Server.getRcpt();
     Connection c = Server.getRpt();

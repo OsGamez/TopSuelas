@@ -2,7 +2,6 @@ package ViewLayer;
 
 import DataAccesLayer.Conexion;
 import DataAccesLayer.Server;
-import ObjectLayer.Dprograma;
 import ObjectLayer.ObjectPlaneacion;
 import ObjectLayer.Pedido;
 import ObjectLayer.Planeacion;
@@ -334,7 +333,7 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbLimpiarActionPerformed
 
     private void JbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbGuardarActionPerformed
-        ArrayList<Dprograma> dt = new ArrayList<Dprograma>();
+
         int Est = 20;
         String A = "A";
 
