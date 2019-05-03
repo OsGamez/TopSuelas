@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="38efd44b-8d84-4735-ad21-6dfbddf156e2">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8cde0fd5-8108-45a3-ba32-fdba043a71e0">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -18,159 +18,159 @@ SELECT
 	WHEN i.Corrida = '94' THEN sum(TotalPares) WHEN i.Corrida = '82' THEN sum(TotalPares)
 	WHEN i.Corrida = '96' THEN sum(TotalPares) END AS TotalPares,
 
-	CASE WHEN i.Corrida = '80' THEN sum(Pto1) WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
+	CASE WHEN i.Corrida = '80' THEN sum(Punto1) WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
 	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
 	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
 	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN @v1 END AS '10',
 
-	CASE WHEN i.Corrida = '80' THEN sum(Pto2) WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
+	CASE WHEN i.Corrida = '80' THEN sum(Punto2) WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
 	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
 	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
 	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN @v1 END AS '10.5',
 
 
-	CASE WHEN i.Corrida = '80' THEN sum(Pto3) WHEN i.Corrida = '85' THEN sum(Pto1) WHEN i.Corrida = '89' THEN @v1
+	CASE WHEN i.Corrida = '80' THEN sum(Punto3) WHEN i.Corrida = '85' THEN sum(Punto1) WHEN i.Corrida = '89' THEN @v1
 	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
 	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
 	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN @v1 END AS '11',
 
-	CASE WHEN i.Corrida = '80' THEN sum(Pto4) WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
+	CASE WHEN i.Corrida = '80' THEN sum(Punto4) WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
 	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
 	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
 	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN @v1 END AS '11.5',
 
-	CASE WHEN i.Corrida = '80' THEN sum(Pto5) WHEN i.Corrida = '85' THEN sum(Pto2) WHEN i.Corrida = '89' THEN sum(Pto1)
+	CASE WHEN i.Corrida = '80' THEN sum(Punto5) WHEN i.Corrida = '85' THEN sum(Punto2) WHEN i.Corrida = '89' THEN sum(Punto1)
 	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
 	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
 	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN @v1 END AS '12',
 
-	CASE WHEN i.Corrida = '80' THEN sum(Pto6) WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
+	CASE WHEN i.Corrida = '80' THEN sum(Punto6) WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
 	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
 	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
 	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN @v1 END AS '12.5',
 
-	CASE WHEN i.Corrida = '80' THEN @v1 WHEN i.Corrida = '85' THEN sum(Pto3) WHEN i.Corrida = '89' THEN sum(Pto2)
-	WHEN i.Corrida = '81' THEN sum(Pto1) WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
+	CASE WHEN i.Corrida = '80' THEN @v1 WHEN i.Corrida = '85' THEN sum(Punto3) WHEN i.Corrida = '89' THEN sum(Punto2)
+	WHEN i.Corrida = '81' THEN sum(Punto1) WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
 	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
 	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN @v1 END AS '13',
 
-	CASE WHEN i.Corrida = '80' THEN @v1 WHEN i.Corrida = '85' THEN sum(Pto4) WHEN i.Corrida = '89' THEN sum(Pto3)
-	WHEN i.Corrida = '81' THEN sum(Pto2) WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
+	CASE WHEN i.Corrida = '80' THEN @v1 WHEN i.Corrida = '85' THEN sum(Punto4) WHEN i.Corrida = '89' THEN sum(Punto3)
+	WHEN i.Corrida = '81' THEN sum(Punto2) WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
 	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
 	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN @v1 END AS '14',
 
 	CASE WHEN i.Corrida = '80' THEN @v1 WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
-	WHEN i.Corrida = '81' THEN sum(Pto3) WHEN i.Corrida = '90' THEN sum(Pto1) WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
+	WHEN i.Corrida = '81' THEN sum(Punto3) WHEN i.Corrida = '90' THEN sum(Punto1) WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
 	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
 	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN @v1 END AS '15',
 
 	CASE WHEN i.Corrida = '80' THEN @v1 WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
-	WHEN i.Corrida = '81' THEN sum(Pto4) WHEN i.Corrida = '90' THEN sum(Pto2) WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
+	WHEN i.Corrida = '81' THEN sum(Punto4) WHEN i.Corrida = '90' THEN sum(Punto2) WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
 	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
 	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN @v1 END AS '16',
 
 	CASE WHEN i.Corrida = '80' THEN @v1 WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
-	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN sum(Pto3) WHEN i.Corrida = '97' THEN sum(Pto1) WHEN i.Corrida = '91' THEN sum(@v1) WHEN i.Corrida = '95' 
+	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN sum(Punto3) WHEN i.Corrida = '97' THEN sum(Punto1) WHEN i.Corrida = '91' THEN sum(@v1) WHEN i.Corrida = '95' 
 	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN sum(@v1) 
 	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN @v1 END AS '17',
 
 	CASE WHEN i.Corrida = '80' THEN @v1 WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
-	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN sum(Pto2) WHEN i.Corrida = '91' THEN sum(Pto1) WHEN i.Corrida = '95' 
+	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN sum(Punto2) WHEN i.Corrida = '91' THEN sum(Punto1) WHEN i.Corrida = '95' 
 	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
 	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN @v1 END AS '18',
 
 	CASE WHEN i.Corrida = '80' THEN @v1 WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
-	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN sum(Pto3) WHEN i.Corrida = '91' THEN sum(Pto2) WHEN i.Corrida = '95' 
+	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN sum(Punto3) WHEN i.Corrida = '91' THEN sum(Punto2) WHEN i.Corrida = '95' 
 	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
 	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN @v1 END AS '19',
 
 	CASE WHEN i.Corrida = '80' THEN @v1 WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
-	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN sum(Pto4) WHEN i.Corrida = '91' THEN sum(Pto3) WHEN i.Corrida = '95' 
+	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN sum(Punto4) WHEN i.Corrida = '91' THEN sum(Punto3) WHEN i.Corrida = '95' 
 	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
 	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN @v1 END AS '20',
 
 	CASE WHEN i.Corrida = '80' THEN @v1 WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
-	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN sum(Pto5) WHEN i.Corrida = '91' THEN sum(Pto4) WHEN i.Corrida = '95' 
-	THEN sum(Pto1) WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
+	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN sum(Punto5) WHEN i.Corrida = '91' THEN sum(Punto4) WHEN i.Corrida = '95' 
+	THEN sum(Punto1) WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
 	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN @v1 END AS '21',
 
 	CASE WHEN i.Corrida = '80' THEN @v1 WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
 	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
-	THEN sum(Pto2) WHEN i.Corrida = '92' THEN sum(Pto1) WHEN i.Corrida = '93' THEN sum(Pto1) WHEN i.Corrida = '88' THEN sum(Pto1) WHEN i.Corrida = '98' THEN @v1 
+	THEN sum(Punto2) WHEN i.Corrida = '92' THEN sum(Punto1) WHEN i.Corrida = '93' THEN sum(Punto1) WHEN i.Corrida = '88' THEN sum(Punto1) WHEN i.Corrida = '98' THEN @v1 
 	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN @v1 END AS '22',
 
 	CASE WHEN i.Corrida = '80' THEN @v1  WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
 	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
-	THEN sum(Pto3) WHEN i.Corrida = '92' THEN sum(Pto2) WHEN i.Corrida = '93' THEN sum(Pto2) WHEN i.Corrida = '88' THEN sum(Pto2) WHEN i.Corrida = '98' THEN sum(Pto1)
+	THEN sum(Punto3) WHEN i.Corrida = '92' THEN sum(Punto2) WHEN i.Corrida = '93' THEN sum(Punto2) WHEN i.Corrida = '88' THEN sum(Punto2) WHEN i.Corrida = '98' THEN sum(Punto1)
 	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN @v1 END AS '23',
 
 	CASE WHEN i.Corrida = '80' THEN @v1  WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
 	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
-	THEN sum(Pto4) WHEN i.Corrida = '92' THEN sum(Pto3) WHEN i.Corrida = '93' THEN sum(Pto3) WHEN i.Corrida = '88' THEN sum(Pto3) WHEN i.Corrida = '98' THEN sum(Pto2)
+	THEN sum(Punto4) WHEN i.Corrida = '92' THEN sum(Punto3) WHEN i.Corrida = '93' THEN sum(Punto3) WHEN i.Corrida = '88' THEN sum(Punto3) WHEN i.Corrida = '98' THEN sum(Punto2)
 	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN @v1 END AS '24',
 
 	CASE WHEN i.Corrida = '80' THEN @v1  WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
 	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
-	THEN sum(Pto5) WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN sum(Pto4) WHEN i.Corrida = '88' THEN sum(Pto4) WHEN i.Corrida = '98' THEN sum(Pto3) 
-	WHEN i.Corrida = '94' THEN sum(Pto1) WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN @v1 END AS '25',
+	THEN sum(Punto5) WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN sum(Punto4) WHEN i.Corrida = '88' THEN sum(Punto4) WHEN i.Corrida = '98' THEN sum(Punto3) 
+	WHEN i.Corrida = '94' THEN sum(Punto1) WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN @v1 END AS '25',
 
 	CASE WHEN i.Corrida = '80' THEN @v1 WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
 	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
-	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN sum(Pto5) WHEN i.Corrida = '88' THEN sum(Pto5) WHEN i.Corrida = '98' THEN sum(Pto4)
-	WHEN i.Corrida = '94' THEN sum(Pto2) WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN @v1 END AS '26',
+	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN sum(Punto5) WHEN i.Corrida = '88' THEN sum(Punto5) WHEN i.Corrida = '98' THEN sum(Punto4)
+	WHEN i.Corrida = '94' THEN sum(Punto2) WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN @v1 END AS '26',
 
 	CASE WHEN i.Corrida = '80' THEN @v1 WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
 	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
-	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN sum(Pto6) WHEN i.Corrida = '98' THEN sum(Pto5)
-	WHEN i.Corrida = '94' THEN sum(Pto3) WHEN i.Corrida = '82' THEN sum(Pto1) WHEN i.Corrida = '96' THEN @v1 END AS '27',
-
-	CASE WHEN i.Corrida = '80' THEN @v1 WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
-	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
-	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
-	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN sum(Pto2) WHEN i.Corrida = '96' THEN @v1 END AS '27.5',
-
-	CASE WHEN i.Corrida = '80' THEN @v1  WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
-	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
-	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
-	WHEN i.Corrida = '94' THEN sum(Pto4) WHEN i.Corrida = '82' THEN sum(Pto3) WHEN i.Corrida = '96' THEN @v1 END AS '28',
+	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN sum(Punto6) WHEN i.Corrida = '98' THEN sum(Punto5)
+	WHEN i.Corrida = '94' THEN sum(Punto3) WHEN i.Corrida = '82' THEN sum(Punto1) WHEN i.Corrida = '96' THEN @v1 END AS '27',
 
 	CASE WHEN i.Corrida = '80' THEN @v1 WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
 	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
 	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
-	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN sum(Pto4) WHEN i.Corrida = '96' THEN @v1 END AS '28.5',
+	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN sum(Punto2) WHEN i.Corrida = '96' THEN @v1 END AS '27.5',
 
 	CASE WHEN i.Corrida = '80' THEN @v1  WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
 	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
 	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
-	WHEN i.Corrida = '94' THEN sum(Pto5) WHEN i.Corrida = '82' THEN sum(Pto5) WHEN i.Corrida = '96' THEN @v1 END AS '29',
+	WHEN i.Corrida = '94' THEN sum(Punto4) WHEN i.Corrida = '82' THEN sum(Punto3) WHEN i.Corrida = '96' THEN @v1 END AS '28',
 
 	CASE WHEN i.Corrida = '80' THEN @v1 WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
 	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
 	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
-	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN sum(Pto6) WHEN i.Corrida = '96' THEN @v1 END AS '29.5',
+	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN sum(Punto4) WHEN i.Corrida = '96' THEN @v1 END AS '28.5',
 
 	CASE WHEN i.Corrida = '80' THEN @v1  WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
 	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
 	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
-	WHEN i.Corrida = '94' THEN sum(Pto6) WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN sum(Pto1) END AS '30',
+	WHEN i.Corrida = '94' THEN sum(Punto5) WHEN i.Corrida = '82' THEN sum(Punto5) WHEN i.Corrida = '96' THEN @v1 END AS '29',
+
+	CASE WHEN i.Corrida = '80' THEN @v1 WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
+	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
+	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
+	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN sum(Punto6) WHEN i.Corrida = '96' THEN @v1 END AS '29.5',
 
 	CASE WHEN i.Corrida = '80' THEN @v1  WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
 	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
 	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
-	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN sum(Pto2) END AS '31',
+	WHEN i.Corrida = '94' THEN sum(Punto6) WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN sum(Punto1) END AS '30',
 
 	CASE WHEN i.Corrida = '80' THEN @v1  WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
 	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
 	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
-	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN sum(Pto3) END AS '32',
+	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN sum(Punto2) END AS '31',
 
 	CASE WHEN i.Corrida = '80' THEN @v1  WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
 	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
 	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
-	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN sum(Pto4) END AS '33'
+	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN sum(Punto3) END AS '32',
+
+	CASE WHEN i.Corrida = '80' THEN @v1  WHEN i.Corrida = '85' THEN @v1 WHEN i.Corrida = '89' THEN @v1
+	WHEN i.Corrida = '81' THEN @v1 WHEN i.Corrida = '90' THEN @v1 WHEN i.Corrida = '97' THEN @v1 WHEN i.Corrida = '91' THEN @v1 WHEN i.Corrida = '95' 
+	THEN @v1 WHEN i.Corrida = '92' THEN @v1 WHEN i.Corrida = '93' THEN @v1 WHEN i.Corrida = '88' THEN @v1 WHEN i.Corrida = '98' THEN @v1 
+	WHEN i.Corrida = '94' THEN @v1 WHEN i.Corrida = '82' THEN @v1 WHEN i.Corrida = '96' THEN sum(Punto4) END AS '33'
 
 	FROM RCPTPhylon.dbo.Productos p
-	inner join InCopy i
+	inner join InvFisico i
 	on p.Producto = i.Producto
 	group by i.Producto,p.Descripcion,i.Corrida,i.Almacen,i.Corrida
 	order by p.Descripcion]]>
@@ -216,34 +216,34 @@ SELECT
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="70" splitType="Stretch">
+		<band height="79" splitType="Stretch">
 			<image>
-				<reportElement x="0" y="42" width="131" height="28" uuid="87376961-3da9-4733-b70c-44e36a7fb8f4"/>
+				<reportElement x="0" y="51" width="131" height="28" uuid="ae7d43ea-9d06-43b0-9396-c732df605e8f"/>
 				<imageExpression><![CDATA["C:\\Program Files\\logo.png"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement mode="Transparent" x="320" y="33" width="122" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="7619d1fc-5ae4-4cf5-b140-ab6eb95f1529"/>
+				<reportElement mode="Transparent" x="319" y="42" width="187" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="afe09692-90a8-477a-b66e-2b0dd123792a"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[INVENTARIO FISICO]]></text>
+				<text><![CDATA[CONCENTRADO INVENTARIO FISICO]]></text>
 			</staticText>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="46" splitType="Stretch">
-			<textField pattern="HH.mm.ss">
-				<reportElement x="720" y="26" width="47" height="20" uuid="aa0d0de8-d721-439e-805a-e9e5f951d9e1"/>
+		<band height="47" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="676" y="0" width="82" height="20" uuid="27dcd9e1-7aa4-4f9f-99c1-dcb4d29ab7db"/>
 				<textElement>
-					<font fontName="Serif" size="8"/>
+					<font fontName="SansSerif" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="679" y="0" width="82" height="20" uuid="c8e5b8bb-bee9-498d-ab88-dbb7f9f30cc3"/>
+			<textField pattern="HH.mm.ss">
+				<reportElement x="717" y="26" width="47" height="20" uuid="5ddfa03d-ed86-43e3-a404-e604ef26c5bc"/>
 				<textElement>
-					<font fontName="SansSerif" size="8"/>
+					<font fontName="Serif" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
@@ -252,10 +252,10 @@ SELECT
 	<columnHeader>
 		<band height="21" splitType="Stretch">
 			<rectangle>
-				<reportElement x="1" y="1" width="765" height="20" backcolor="#000066" uuid="f872d56a-7018-496a-ba11-87ab6edc80e4"/>
+				<reportElement x="0" y="0" width="765" height="20" backcolor="#000066" uuid="8ea95775-f259-45ea-a059-9f531c41ecc8"/>
 			</rectangle>
 			<staticText>
-				<reportElement mode="Transparent" x="145" y="6" width="39" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="7e5b44b1-b211-4264-a724-ab548fa1efa6"/>
+				<reportElement mode="Transparent" x="144" y="5" width="39" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="a7193afc-327b-4b00-b004-689f44c44e23"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -263,7 +263,7 @@ SELECT
 				<text><![CDATA[PARES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="1" y="6" width="45" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="dd62a4a0-c9ed-496d-9458-73b5aa269aa3"/>
+				<reportElement mode="Transparent" x="0" y="5" width="45" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="55b43bba-6262-45de-aa00-c2e1fc80ef4f"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -271,7 +271,7 @@ SELECT
 				<text><![CDATA[ALMACÉN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="49" y="6" width="34" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="ae2273c6-23e6-4fb2-9415-1a08372760d4"/>
+				<reportElement mode="Transparent" x="48" y="5" width="34" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="f87a70eb-4c91-4dee-bd14-dd5c8d807752"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -279,7 +279,7 @@ SELECT
 				<text><![CDATA[SUELA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="448" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="ff0d3cf5-6ed0-44f0-a187-ed90d6be5412"/>
+				<reportElement mode="Transparent" x="447" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="e901236f-49d2-4729-bf92-e43b963050bc"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -287,7 +287,7 @@ SELECT
 				<text><![CDATA[20]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="531" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="82cbf910-f65e-4f08-932b-1cd7493dd871"/>
+				<reportElement mode="Transparent" x="530" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="9a392fcb-5365-4a05-8021-90df94b62e25"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -295,7 +295,7 @@ SELECT
 				<text><![CDATA[24]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="490" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="0e3eaff4-5bb0-4f09-868f-286284222bd3"/>
+				<reportElement mode="Transparent" x="489" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="5e1b82eb-1f6e-40f6-af18-8b3d6c01e53b"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -303,7 +303,7 @@ SELECT
 				<text><![CDATA[22]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="718" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="76b090fd-f494-4d8a-b9f2-5f67049f289c"/>
+				<reportElement mode="Transparent" x="717" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="2f362f19-35fd-459e-8561-ee7fce3cc594"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -311,7 +311,7 @@ SELECT
 				<text><![CDATA[31]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="368" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="3b7b520e-b842-4454-8160-08e1dabe51f1"/>
+				<reportElement mode="Transparent" x="367" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="6d2b29ef-d10c-443c-9927-f7bc01db4214"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -319,7 +319,7 @@ SELECT
 				<text><![CDATA[16]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="569" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="641fc31f-d854-4511-9ce6-deb4d811274c"/>
+				<reportElement mode="Transparent" x="568" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="f458de38-324a-467b-b20a-5b27fa3ac7fb"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -327,7 +327,7 @@ SELECT
 				<text><![CDATA[26]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="550" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="db1c6464-53b0-46ab-9ee1-bffc32097f4e"/>
+				<reportElement mode="Transparent" x="549" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="4a8d5177-ebfd-4de8-ae6b-923b9246a833"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -335,7 +335,7 @@ SELECT
 				<text><![CDATA[25]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="701" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="1eca184c-c172-454b-9e2a-fc70a1b0b347"/>
+				<reportElement mode="Transparent" x="700" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="dbf86997-ef25-4397-bc23-bca4ce5d956e"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -343,7 +343,7 @@ SELECT
 				<text><![CDATA[30]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="587" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="d2785f9b-6afc-4e6d-a77d-8e38f4a245dd"/>
+				<reportElement mode="Transparent" x="586" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="9942066c-c996-44fc-97ee-6fde60aade2d"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -351,7 +351,7 @@ SELECT
 				<text><![CDATA[27]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="326" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="dcdf955b-bf2e-460c-b779-50b12abce832"/>
+				<reportElement mode="Transparent" x="325" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="22389aa7-b5f4-4244-b9b3-afb5e48f6129"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -359,7 +359,7 @@ SELECT
 				<text><![CDATA[14]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="469" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="96cd710e-3120-472f-abd5-ee35e0b350e2"/>
+				<reportElement mode="Transparent" x="468" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="82fadb1b-c7b4-48eb-8040-1a1282109e2e"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -367,7 +367,7 @@ SELECT
 				<text><![CDATA[21]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="408" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="ae02b882-56b3-404b-ba75-2fbece796c64"/>
+				<reportElement mode="Transparent" x="407" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="dea8353d-f3bf-4e18-bf62-004ba110f3e7"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -375,7 +375,7 @@ SELECT
 				<text><![CDATA[18]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="753" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="45888356-801c-4c3a-92cf-a0d039f7fa3d"/>
+				<reportElement mode="Transparent" x="752" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="c088e2ec-9fea-4ed5-afec-96ec9b6518e2"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -383,7 +383,7 @@ SELECT
 				<text><![CDATA[33]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="307" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="83b5c974-5428-48c8-8208-2b7a4f8b6c8d"/>
+				<reportElement mode="Transparent" x="306" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="1c0f4ba3-8a28-4de7-a995-d5095e24a029"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -391,7 +391,7 @@ SELECT
 				<text><![CDATA[13]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="736" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="40437e94-34ac-4952-8a8e-c11da82217bf"/>
+				<reportElement mode="Transparent" x="735" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="78bb159d-5e30-43d8-bce0-9fea0e264cb9"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -399,7 +399,7 @@ SELECT
 				<text><![CDATA[32]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="388" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="c58ee6a1-f607-43e0-9bb1-6a46860f31af"/>
+				<reportElement mode="Transparent" x="387" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="3fd436f0-96c4-4357-bc97-30c165745a40"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -407,7 +407,7 @@ SELECT
 				<text><![CDATA[17]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="624" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="e76675ec-3f41-499f-92fa-eadd0b703ec6"/>
+				<reportElement mode="Transparent" x="623" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="bc57757a-c175-44dc-abc1-0217e5c98332"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -415,7 +415,7 @@ SELECT
 				<text><![CDATA[28]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="268" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="4e4b2a55-e16e-47eb-81be-d4443330170f"/>
+				<reportElement mode="Transparent" x="267" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="d6ee0fad-0494-4737-879a-07640926adc4"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -423,7 +423,7 @@ SELECT
 				<text><![CDATA[12]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="663" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="f2fc8169-7cac-49ca-b8ac-b8d810659a6e"/>
+				<reportElement mode="Transparent" x="662" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="7a9ae577-7a3f-4370-9e7d-109ac6afe32a"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -431,7 +431,7 @@ SELECT
 				<text><![CDATA[29]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="188" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="e9dcaf6b-7205-4585-9aa2-a556ba4e0b46"/>
+				<reportElement mode="Transparent" x="187" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="e51c09b9-7da1-4e23-b88e-64cc102cede4"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -439,7 +439,7 @@ SELECT
 				<text><![CDATA[10]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="228" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="85585564-451f-4ed8-9253-2849318b21fb"/>
+				<reportElement mode="Transparent" x="227" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="642e570a-ed24-47a6-93e2-a0bf7f2cec4f"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -447,7 +447,7 @@ SELECT
 				<text><![CDATA[11]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="428" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="d3c7dfd3-ea49-4283-b7cc-49a0571a8ba4"/>
+				<reportElement mode="Transparent" x="427" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="da397f34-1300-4675-9274-8b5aa2bdcf53"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -455,7 +455,7 @@ SELECT
 				<text><![CDATA[19]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="347" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="1b66b204-7241-4cdc-91cf-9c415b6b066b"/>
+				<reportElement mode="Transparent" x="346" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="4a8909bb-ad56-4aa0-98b3-a332cad15b5f"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -463,7 +463,7 @@ SELECT
 				<text><![CDATA[15]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="511" y="5" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="c5ba5ef6-3307-48e9-ad4a-5fe72cae14f3"/>
+				<reportElement mode="Transparent" x="510" y="4" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="fef15ab2-f1cc-4f31-81ab-4153f29c7703"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -471,7 +471,7 @@ SELECT
 				<text><![CDATA[23]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="604" y="5" width="16" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="e7a163e0-d8e0-452d-a795-62861edd94c4"/>
+				<reportElement mode="Transparent" x="603" y="4" width="16" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="65f4d214-abfc-4f50-bdbb-9c97fc152424"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -479,7 +479,7 @@ SELECT
 				<text><![CDATA[27.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="205" y="5" width="17" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="e0b393f2-645f-4113-bee9-0a3ed845ffde"/>
+				<reportElement mode="Transparent" x="204" y="4" width="17" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="393abd7b-a5a5-4785-b14d-2759491e1ce5"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -487,7 +487,7 @@ SELECT
 				<text><![CDATA[10.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="245" y="5" width="19" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="d0ccf3a1-050e-4e85-98bf-4057301ff861"/>
+				<reportElement mode="Transparent" x="244" y="4" width="19" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="bd87b3c1-6d2f-4f06-b0a8-f95dfe68abaf"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -495,7 +495,7 @@ SELECT
 				<text><![CDATA[11.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="285" y="5" width="18" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="678a9edd-3d2a-4b9f-86e6-933a67b15cba"/>
+				<reportElement mode="Transparent" x="284" y="4" width="18" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="f5910362-9d8f-484f-a42e-53ea11147b2e"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -503,19 +503,27 @@ SELECT
 				<text><![CDATA[12.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="641" y="5" width="17" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="af5921b3-9ca0-44cf-818f-cd29fdeb15fe"/>
+				<reportElement mode="Transparent" x="640" y="4" width="17" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="d19a3152-abc8-4f8b-b8a0-278db8492f29"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[28.5]]></text>
 			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="679" y="4" width="18" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="3437ff9d-919d-4e37-9f04-7bcb0682e4c5"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[29.5]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="16" splitType="Stretch">
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="1" y="2" width="25" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="12762394-2e5a-46d0-affb-88a8b4850250"/>
+				<reportElement mode="Transparent" x="-1" y="2" width="25" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="a7975bc1-f5c3-4ed1-a891-7d94abe02756"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -523,7 +531,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{Almacen}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="49" y="2" width="93" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="a6e829f1-5cb2-4588-910a-00d464c8001d"/>
+				<reportElement mode="Transparent" x="47" y="2" width="93" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="65a82a7b-f9cb-48d8-8ac3-44a17cb29824"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -531,7 +539,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{Suela}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="146" y="2" width="31" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="5148627c-3fd5-4a3e-9f2c-debadee2367e"/>
+				<reportElement mode="Transparent" x="144" y="2" width="31" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="731b5923-2312-48ff-939e-1c541eaedc51"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -539,7 +547,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{TotalPares}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="188" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="f64d0bcd-89a2-4881-b3a7-8111c6b5dbfe"/>
+				<reportElement mode="Transparent" x="186" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="379e8c63-9a09-4965-8458-3372365f68c7"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -547,7 +555,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{10}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="228" y="2" width="16" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="3934daea-00ea-4171-9ad6-e02f50eb20f1"/>
+				<reportElement mode="Transparent" x="226" y="2" width="16" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="1707e70d-d0cd-4b18-bea4-63a8c333cb41"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -555,7 +563,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{11}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="268" y="2" width="15" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="2fa4140b-1d2a-4fe1-a35a-1be61cbec412"/>
+				<reportElement mode="Transparent" x="266" y="2" width="15" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="a6dd1998-77d6-492d-bd8f-d7fd49f06b66"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -563,7 +571,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{12}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="307" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="a4381a64-8350-4be2-b5b7-fb9fb20df015"/>
+				<reportElement mode="Transparent" x="305" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="8ed606dd-a49c-4ecd-bbd5-fef775cf921e"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -571,7 +579,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{13}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="326" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="d8c54da2-1e8f-4b0d-a502-ca78a2a1f60c"/>
+				<reportElement mode="Transparent" x="324" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="6f3085b6-e46a-4d09-b633-5f61f71784d6"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -579,7 +587,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{14}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="347" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="866da46f-4375-450d-838f-bcf98b8a7b39"/>
+				<reportElement mode="Transparent" x="345" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="9e69ea5e-2302-4c76-b106-aecbbe5547d1"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -587,7 +595,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{15}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="369" y="2" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="9ffca26a-8384-4f5b-9411-cb87478dfb15"/>
+				<reportElement mode="Transparent" x="367" y="2" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="f482deaa-4277-4ea0-b4f5-c175e0cee538"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -595,7 +603,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{16}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="388" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="9b4f7aa7-69a5-4be1-896a-3eaf5193989d"/>
+				<reportElement mode="Transparent" x="386" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="0f9a046b-0922-4702-8a49-81d32ea2800e"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -603,7 +611,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{17}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="408" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="8d593fe4-37c2-49c2-8336-01c06c8ab8ef"/>
+				<reportElement mode="Transparent" x="406" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="db8dba6e-0ffa-453b-a775-b8b17e1181df"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -611,7 +619,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{18}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="428" y="2" width="11" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="7eea2640-f8dc-4317-adf9-1ba430682b0b"/>
+				<reportElement mode="Transparent" x="426" y="2" width="11" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="4d9c9397-1bd9-466e-901c-4dca20e8ddcf"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -619,7 +627,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{19}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="448" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="73ff827f-e89a-4fdf-8df4-3b404daf2c46"/>
+				<reportElement mode="Transparent" x="446" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="2c520d27-2db7-4438-94ae-709abf223091"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -627,7 +635,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{20}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="469" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="1b1e7c6c-7e2d-4c87-a546-41df441f84f9"/>
+				<reportElement mode="Transparent" x="467" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="44f92a6a-877c-435c-855c-09ec2e849010"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -635,7 +643,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{21}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="490" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="b168c35e-d3d0-4185-a335-8b0d3d5d4cff"/>
+				<reportElement mode="Transparent" x="488" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="48d06da6-fa78-4ccd-8d38-e6d32e975c90"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -643,7 +651,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{22}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="511" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="eebc5fbc-af06-4e23-aa76-8d5f40b9c217"/>
+				<reportElement mode="Transparent" x="509" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="6060995e-0fb6-4227-ad06-6c650cdf3dcd"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -651,7 +659,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{23}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="531" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="c6e772bf-3b31-4d91-890a-e69235edbca6"/>
+				<reportElement mode="Transparent" x="529" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="aec90791-0bdd-4511-b132-7e752d7b4ec6"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -659,7 +667,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{24}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="550" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="aa2e548b-4cda-4435-bfe7-164c7c83a138"/>
+				<reportElement mode="Transparent" x="548" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="04168f6b-977b-4176-a5b9-80caf2b67b95"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -667,7 +675,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{25}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="569" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="0e9ec06c-2926-40c8-8623-55790605c8d3"/>
+				<reportElement mode="Transparent" x="567" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="ca23b45b-6d32-4065-98cd-ded55476261d"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -675,7 +683,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{26}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="587" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="4620c14b-6491-4234-a3b9-ccf495c1f27b"/>
+				<reportElement mode="Transparent" x="585" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="3d30d46f-70c9-43e6-b2d6-8844887226a3"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -683,7 +691,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{27}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="624" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="a0c100c0-e0a7-4a69-8a99-034df28cfae6"/>
+				<reportElement mode="Transparent" x="622" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="e0196658-aef6-4159-bf0a-9413a27f8ee2"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -691,7 +699,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{28}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="663" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="fdc9f362-c772-4581-8df8-783bd8f3729b"/>
+				<reportElement mode="Transparent" x="661" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="bdea03be-d4e1-4216-a130-a950b75ea61a"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -699,7 +707,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{29}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="701" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="f3f1383f-734a-4461-aba1-578c7088996a"/>
+				<reportElement mode="Transparent" x="699" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="c2e2b5dc-0bb3-4320-9735-3333b80ba8e4"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -707,7 +715,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{30}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="719" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="558a7ca7-2a4b-4b32-b168-f1d286d574a1"/>
+				<reportElement mode="Transparent" x="717" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="f2c13f2e-e5c2-4e57-8c57-139bfa207a27"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -715,7 +723,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{31}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="735" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="cb364c28-a422-4f4d-ab86-1fb31338e0d7"/>
+				<reportElement mode="Transparent" x="733" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="f8a9c2d5-8b96-4656-a354-ec44b6959cc3"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -723,7 +731,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{32}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="753" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="d29d4f10-c1c8-4437-9b99-cc45ffcda81b"/>
+				<reportElement mode="Transparent" x="751" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="c1fc77bf-cc23-45f1-8cb7-1fcdd9be7753"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -731,7 +739,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{33}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="207" y="2" width="15" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="3519308a-a685-4938-8162-aa4ba2dda14d"/>
+				<reportElement mode="Transparent" x="205" y="2" width="15" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="c82586b1-bf62-47f7-94e9-4c5c36f0d977"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -739,7 +747,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{10.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="247" y="2" width="17" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="35064eec-0c4f-421f-bbfa-6bf468208830"/>
+				<reportElement mode="Transparent" x="245" y="2" width="17" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="1057b571-f1ce-4f74-ba8f-dae2c26520eb"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -747,7 +755,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{11.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="288" y="2" width="15" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="fe3680a0-545d-4934-b22a-6db9b97c0ca5"/>
+				<reportElement mode="Transparent" x="286" y="2" width="15" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="a65f0243-6b1b-4f9c-9c9d-e7681de6ee96"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -755,7 +763,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{12.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="604" y="2" width="15" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="2bb63c3a-2dd9-448f-b86f-92cc65b5feeb"/>
+				<reportElement mode="Transparent" x="602" y="2" width="15" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="cc7b7f20-b187-42e3-a03c-ceb491d2995a"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -763,7 +771,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{27.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="642" y="2" width="14" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="45ef3bc2-4f18-4cab-925e-ed6f033c7a5c"/>
+				<reportElement mode="Transparent" x="640" y="2" width="14" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="a814c4c6-369b-4dfc-93d5-efe7d2d41098"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -771,7 +779,7 @@ SELECT
 				<textFieldExpression><![CDATA[$F{28.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="683" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="b71baba0-38d7-49ed-9ad6-a17a61a6ca62"/>
+				<reportElement mode="Transparent" x="681" y="2" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="fe547581-2e63-4548-be50-cd883dd54f09"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -781,9 +789,9 @@ SELECT
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="20" splitType="Stretch">
+		<band height="21" splitType="Stretch">
 			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="720" y="0" width="32" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="b9c987ad-510c-44b6-a513-2520705bb2cf"/>
+				<reportElement mode="Transparent" x="720" y="0" width="32" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="95802aa9-2398-4114-8cad-acb5a07c5daa"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -791,7 +799,7 @@ SELECT
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="673" y="0" width="58" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="ada61e68-42c9-4dba-a9da-c51a4a4237c0"/>
+				<reportElement mode="Transparent" x="673" y="0" width="58" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="e5b6ed47-0a27-40ff-9181-f7cc36cbbdbf"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -801,18 +809,18 @@ SELECT
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="50">
+		<band height="42" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="30" width="76" height="20" uuid="f4838444-324a-4dcf-b717-534e0ee8e3cf"/>
+				<reportElement x="0" y="22" width="76" height="20" uuid="5911852a-53c8-455c-9e83-cc5c80feda8b"/>
 				<textElement>
-					<font size="7"/>
+					<font size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TOTAL DE PARES:]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="76" y="30" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="55d48971-fe38-4151-96eb-9c949fbb276a"/>
+				<reportElement mode="Transparent" x="75" y="22" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="d21ef76a-5de6-43e6-bd2d-4df6e3c4ef4c"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="7" isBold="true" isItalic="false" isUnderline="true" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{suma}]]></textFieldExpression>
