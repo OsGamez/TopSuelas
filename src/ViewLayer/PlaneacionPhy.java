@@ -590,9 +590,9 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
             int opcion = JOptionPane.showConfirmDialog(this, "¿Estas seguro de limpiar los registros?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
             if (opcion == JOptionPane.YES_OPTION) {
-                EliminarRegistro();
-                CleanTable();
-                VaciarDatos();
+                //EliminarRegistro();
+                //CleanTable();
+                //VaciarDatos();
                 JOptionPane.showMessageDialog(null, "Se han limpiado los registros");
                 JtAm.requestFocus();
             }
@@ -2080,8 +2080,8 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
                 if ("OK".equals(ms)) {
                     JOptionPane.showMessageDialog(this, "Se han agregado los registros al inventario!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                     CleanTable();
-                    Borrar();
-                    VaciarDatos();
+                    //Borrar();
+                    //VaciarDatos();
                 } else if ("ERROR".equals(ms)) {
                     JOptionPane.showMessageDialog(this, "Ocurrio un error!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                     //CleanTable();
@@ -2108,7 +2108,7 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
                     VaciarDatos();
                 } else if ("ERROR".equals(ms)) {
                     JOptionPane.showMessageDialog(this, "Ocurrio un error!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                    //CleanTable();
+                    CleanTable();
                     //BorrarK();
                 }
                 break;
@@ -2120,7 +2120,7 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
                     VaciarDatos();
                 } else if ("ERROR".equals(ms)) {
                     JOptionPane.showMessageDialog(this, "Ocurrio un error!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                    //CleanTable();
+                    CleanTable();
                     //Borrar();
                 }
             default:
