@@ -182,6 +182,22 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
         Jt4 = new javax.swing.JTextField();
         Jt3 = new javax.swing.JTextField();
         Jt6 = new javax.swing.JTextField();
+        Jt7 = new javax.swing.JTextField();
+        Jb7 = new javax.swing.JLabel();
+        Jt8 = new javax.swing.JTextField();
+        Jb8 = new javax.swing.JLabel();
+        Jt9 = new javax.swing.JTextField();
+        Jb9 = new javax.swing.JLabel();
+        Jt10 = new javax.swing.JTextField();
+        Jb10 = new javax.swing.JLabel();
+        Jt11 = new javax.swing.JTextField();
+        Jb11 = new javax.swing.JLabel();
+        Jt12 = new javax.swing.JTextField();
+        Jb12 = new javax.swing.JLabel();
+        Jt13 = new javax.swing.JTextField();
+        Jb13 = new javax.swing.JLabel();
+        Jt14 = new javax.swing.JTextField();
+        Jb14 = new javax.swing.JLabel();
 
         setClosable(true);
         setMaximizable(true);
@@ -289,104 +305,147 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
 
         JbPt.setText("jLabel3");
 
+        Psuelas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         Jb1.setText("L1");
+        Psuelas.add(Jb1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 12, -1, -1));
 
         Jb6.setText("L1");
+        Psuelas.add(Jb6, new org.netbeans.lib.awtextra.AbsoluteConstraints(526, 12, -1, -1));
 
         Jb2.setText("L1");
+        Psuelas.add(Jb2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 12, -1, -1));
 
         Jb3.setText("L1");
+        Psuelas.add(Jb3, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 12, -1, -1));
 
         Jb4.setText("L1");
+        Psuelas.add(Jb4, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 12, -1, -1));
 
         Jb5.setText("L1");
+        Psuelas.add(Jb5, new org.netbeans.lib.awtextra.AbsoluteConstraints(422, 12, -1, -1));
 
         Jt2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 Jt2KeyPressed(evt);
             }
         });
+        Psuelas.add(Jt2, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 6, 54, -1));
 
         Jt1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 Jt1KeyPressed(evt);
             }
         });
+        Psuelas.add(Jt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 6, 54, -1));
 
         Jt5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 Jt5KeyPressed(evt);
             }
         });
+        Psuelas.add(Jt5, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 6, 54, -1));
 
         Jt4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 Jt4KeyPressed(evt);
             }
         });
+        Psuelas.add(Jt4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 6, 54, -1));
 
         Jt3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 Jt3KeyPressed(evt);
             }
         });
+        Psuelas.add(Jt3, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 6, 54, -1));
 
         Jt6.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 Jt6KeyPressed(evt);
             }
         });
+        Psuelas.add(Jt6, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 6, 54, -1));
 
-        javax.swing.GroupLayout PsuelasLayout = new javax.swing.GroupLayout(Psuelas);
-        Psuelas.setLayout(PsuelasLayout);
-        PsuelasLayout.setHorizontalGroup(
-            PsuelasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PsuelasLayout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
-                .addComponent(Jb1)
-                .addGap(18, 18, 18)
-                .addComponent(Jt1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Jb2)
-                .addGap(18, 18, 18)
-                .addComponent(Jt2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Jb3)
-                .addGap(18, 18, 18)
-                .addComponent(Jt3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Jb4)
-                .addGap(18, 18, 18)
-                .addComponent(Jt4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Jb5)
-                .addGap(18, 18, 18)
-                .addComponent(Jt5, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Jb6)
-                .addGap(30, 30, 30)
-                .addComponent(Jt6, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        PsuelasLayout.setVerticalGroup(
-            PsuelasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PsuelasLayout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
-                .addGroup(PsuelasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Jt2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Jt3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Jt4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Jt5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Jt6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Jt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Jb6)
-                    .addComponent(Jb5)
-                    .addComponent(Jb4)
-                    .addComponent(Jb3)
-                    .addComponent(Jb2)
-                    .addComponent(Jb1))
-                .addContainerGap())
-        );
+        Jt7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Jt7KeyPressed(evt);
+            }
+        });
+        Psuelas.add(Jt7, new org.netbeans.lib.awtextra.AbsoluteConstraints(686, 6, 54, -1));
+
+        Jb7.setText("L1");
+        Psuelas.add(Jb7, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 12, -1, -1));
+
+        Jt8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Jt8KeyPressed(evt);
+            }
+        });
+        Psuelas.add(Jt8, new org.netbeans.lib.awtextra.AbsoluteConstraints(802, 6, 54, -1));
+
+        Jb8.setText("L1");
+        Psuelas.add(Jb8, new org.netbeans.lib.awtextra.AbsoluteConstraints(758, 12, -1, -1));
+
+        Jt9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Jt9KeyPressed(evt);
+            }
+        });
+        Psuelas.add(Jt9, new org.netbeans.lib.awtextra.AbsoluteConstraints(918, 6, 54, -1));
+
+        Jb9.setText("L1");
+        Psuelas.add(Jb9, new org.netbeans.lib.awtextra.AbsoluteConstraints(874, 12, -1, -1));
+
+        Jt10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Jt10KeyPressed(evt);
+            }
+        });
+        Psuelas.add(Jt10, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 55, 54, -1));
+
+        Jb10.setText("L1");
+        Psuelas.add(Jb10, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 61, -1, -1));
+
+        Jt11.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Jt11KeyPressed(evt);
+            }
+        });
+        Psuelas.add(Jt11, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 55, 54, -1));
+
+        Jb11.setText("L1");
+        Psuelas.add(Jb11, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 61, -1, -1));
+
+        Jt12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Jt12KeyPressed(evt);
+            }
+        });
+        Psuelas.add(Jt12, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 55, 54, -1));
+
+        Jb12.setText("L1");
+        Psuelas.add(Jb12, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 61, -1, -1));
+
+        Jt13.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Jt13KeyPressed(evt);
+            }
+        });
+        Psuelas.add(Jt13, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 55, 54, -1));
+
+        Jb13.setText("L1");
+        Psuelas.add(Jb13, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 61, -1, -1));
+
+        Jt14.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Jt14KeyPressed(evt);
+            }
+        });
+        Psuelas.add(Jt14, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 55, 54, -1));
+
+        Jb14.setText("L1");
+        Psuelas.add(Jb14, new org.netbeans.lib.awtextra.AbsoluteConstraints(422, 61, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -394,46 +453,47 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(JbRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(JbClean, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(JbGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(JbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
+                        .addComponent(jLabel2)
+                        .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(37, 37, 37)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(JtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(25, 25, 25)
-                                .addComponent(Psuelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(JtAm, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(240, 240, 240)
-                                .addComponent(JlPares)
-                                .addGap(12, 12, 12)
-                                .addComponent(JtPares, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(140, 140, 140)
-                                .addComponent(JbPt)
-                                .addGap(29, 29, 29)
-                                .addComponent(JlEstilo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(25, 25, 25)
-                                .addComponent(JtCorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(JlCombinacion)
-                                .addGap(42, 42, 42)
-                                .addComponent(JlDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(JtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(JtAm, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(240, 240, 240)
+                        .addComponent(JlPares)
+                        .addGap(12, 12, 12)
+                        .addComponent(JtPares, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(140, 140, 140)
+                        .addComponent(JbPt)
+                        .addGap(29, 29, 29)
+                        .addComponent(JlEstilo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
+                        .addComponent(JtCorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(JlCombinacion)
+                        .addGap(42, 42, 42)
+                        .addComponent(JlDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 78, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Psuelas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(JbRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(JbClean, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(JbGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(JbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -456,24 +516,21 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
                             .addComponent(JlCombinacion)
                             .addComponent(JlDescripcion))))
                 .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(12, 12, 12)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(Psuelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(70, 70, 70)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Psuelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JbRemove)
                     .addComponent(JbClean)
                     .addComponent(JbGenerar)
                     .addComponent(JbGuardar))
-                .addGap(13, 13, 13)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
         );
 
         pack();
@@ -931,7 +988,7 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
                 break;
             case "kim":
                 GenerarK();
-                break;    
+                break;
             case "lupita":
                 Generar();
             default:
@@ -1494,6 +1551,54 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_Jt2KeyPressed
 
+    private void Jt7KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Jt7KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Agregar();
+        }
+    }//GEN-LAST:event_Jt7KeyPressed
+
+    private void Jt8KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Jt8KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Agregar();
+        }
+    }//GEN-LAST:event_Jt8KeyPressed
+
+    private void Jt9KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Jt9KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Agregar();
+        }
+    }//GEN-LAST:event_Jt9KeyPressed
+
+    private void Jt10KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Jt10KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Agregar();
+        }
+    }//GEN-LAST:event_Jt10KeyPressed
+
+    private void Jt11KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Jt11KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Agregar();
+        }
+    }//GEN-LAST:event_Jt11KeyPressed
+
+    private void Jt12KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Jt12KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Agregar();
+        }
+    }//GEN-LAST:event_Jt12KeyPressed
+
+    private void Jt13KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Jt13KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Agregar();
+        }
+    }//GEN-LAST:event_Jt13KeyPressed
+
+    private void Jt14KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Jt14KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Agregar();
+        }
+    }//GEN-LAST:event_Jt14KeyPressed
+
     private void Agregar() {
         int cantidad = Integer.parseInt(JtPares.getText());
         String Tipo = "S";
@@ -1504,6 +1609,14 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
         c4 = Integer.parseInt(Jt4.getText());
         c5 = Integer.parseInt(Jt5.getText());
         c6 = Integer.parseInt(Jt6.getText());
+        c7 = Integer.parseInt(Jt7.getText());
+        c8 = Integer.parseInt(Jt8.getText());
+        c9 = Integer.parseInt(Jt9.getText());
+        c10 = Integer.parseInt(Jt10.getText());
+        c11 = Integer.parseInt(Jt11.getText());
+        c12 = Integer.parseInt(Jt12.getText());
+        c13 = Integer.parseInt(Jt13.getText());
+        c14 = Integer.parseInt(Jt14.getText());
 
         String datos[] = new String[23];
 
@@ -1522,14 +1635,14 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
             datos[11] = Jt4.getText();
             datos[12] = Jt5.getText();
             datos[13] = Jt6.getText();
-            datos[14] = "0";
-            datos[15] = "0";
-            datos[16] = "0";
-            datos[17] = "0";
-            datos[18] = "0";
-            datos[19] = "0";
-            datos[20] = "0";
-            datos[21] = "0";
+            datos[14] = Jt7.getText();
+            datos[15] = Jt8.getText();
+            datos[16] = Jt9.getText();
+            datos[17] = Jt10.getText();
+            datos[18] = Jt11.getText();
+            datos[19] = Jt12.getText();
+            datos[20] = Jt13.getText();
+            datos[21] = Jt14.getText();
             datos[22] = JtPares.getText();
         } else {
             int index = modelPhylon.getRowCount() - 1;
@@ -1549,14 +1662,14 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
             datos[11] = Jt4.getText();
             datos[12] = Jt5.getText();
             datos[13] = Jt6.getText();
-            datos[14] = "0";
-            datos[15] = "0";
-            datos[16] = "0";
-            datos[17] = "0";
-            datos[18] = "0";
-            datos[19] = "0";
-            datos[20] = "0";
-            datos[21] = "0";
+            datos[14] = Jt7.getText();
+            datos[15] = Jt8.getText();
+            datos[16] = Jt9.getText();
+            datos[17] = Jt10.getText();
+            datos[18] = Jt11.getText();
+            datos[19] = Jt12.getText();
+            datos[20] = Jt13.getText();
+            datos[21] = Jt14.getText();
             datos[22] = JtPares.getText();
         }
 
@@ -1568,7 +1681,7 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
             case "80":
                 if (Jt1.getText().isEmpty() || Jt2.getText().isEmpty() || Jt3.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
-                } else if (cantidad == c1 + c2 + c3) {
+                } else if (cantidad == c1 + c2 + c3 + c4 + c5 + c6) {
                     modelPhylon.addRow(datos);
                     cont++;
                     Limpiar();
@@ -1579,9 +1692,10 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
                 }
                 break;
             case "81":
-                if (Jt1.getText().isEmpty() || Jt2.getText().isEmpty() || Jt3.getText().isEmpty() || Jt4.getText().isEmpty()) {
+                if (Jt1.getText().isEmpty() || Jt2.getText().isEmpty() || Jt3.getText().isEmpty() || Jt4.getText().isEmpty()
+                        || Jt5.getText().isEmpty() || Jt6.getText().isEmpty() || Jt7.getText().isEmpty() || Jt8.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
-                } else if (cantidad == c1 + c2 + c3 + c4) {
+                } else if (cantidad == c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8) {
                     modelPhylon.addRow(datos);
                     cont++;
                     Limpiar();
@@ -1592,9 +1706,10 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
                 }
                 break;
             case "82":
-                if (Jt1.getText().isEmpty() || Jt2.getText().isEmpty() || Jt3.getText().isEmpty()) {
+                if (Jt1.getText().isEmpty() || Jt2.getText().isEmpty() || Jt3.getText().isEmpty()
+                        || Jt4.getText().isEmpty() || Jt5.getText().isEmpty() || Jt6.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
-                } else if (cantidad == c1 + c2 + c3) {
+                } else if (cantidad == c1 + c2 + c3 + c4 + c5 + c6) {
                     modelPhylon.addRow(datos);
                     cont++;
                     Limpiar();
@@ -1605,9 +1720,10 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
                 }
                 break;
             case "85":
-                if (Jt1.getText().isEmpty() || Jt2.getText().isEmpty() || Jt3.getText().isEmpty() || Jt4.getText().isEmpty()) {
+                if (Jt1.getText().isEmpty() || Jt2.getText().isEmpty() || Jt3.getText().isEmpty() || Jt4.getText().isEmpty()
+                        || Jt5.getText().isEmpty() || Jt6.getText().isEmpty() || Jt7.getText().isEmpty() || Jt8.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
-                } else if (cantidad == c1 + c2 + c3 + c4) {
+                } else if (cantidad == c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8) {
                     modelPhylon.addRow(datos);
                     cont++;
                     Jt1.requestFocus();
@@ -1622,7 +1738,7 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
                 if (Jt1.getText().isEmpty() || Jt2.getText().isEmpty() || Jt3.getText().isEmpty() || Jt4.getText().isEmpty()
                         || Jt5.getText().isEmpty() || Jt6.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
-                } else if (cantidad == c1 + c2 + c3 + c4 + c5 + c6) {
+                } else if (cantidad == c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8 + c9 + c10 + c11 + c12) {
                     modelPhylon.addRow(datos);
                     cont++;
                     Limpiar();
@@ -1635,7 +1751,7 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
             case "89":
                 if (Jt1.getText().isEmpty() || Jt2.getText().isEmpty() || Jt3.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
-                } else if (cantidad == c1 + c2 + c3) {
+                } else if (cantidad == c1 + c2 + c3 + c4 + c5 + c6) {
                     modelPhylon.addRow(datos);
                     cont++;
                     Limpiar();
@@ -1648,7 +1764,7 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
             case "90":
                 if (Jt1.getText().isEmpty() || Jt2.getText().isEmpty() || Jt3.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
-                } else if (cantidad == c1 + c2 + c3) {
+                } else if (cantidad == c1 + c2 + c3 + c4 + c5 + c6) {
                     modelPhylon.addRow(datos);
                     cont++;
                     Limpiar();
@@ -1661,7 +1777,7 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
             case "91":
                 if (Jt1.getText().isEmpty() || Jt2.getText().isEmpty() || Jt3.getText().isEmpty() || Jt4.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
-                } else if (cantidad == c1 + c2 + c3 + c4) {
+                } else if (cantidad == c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8) {
                     modelPhylon.addRow(datos);
                     cont++;
                     Limpiar();
@@ -1674,7 +1790,7 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
             case "92":
                 if (Jt1.getText().isEmpty() || Jt2.getText().isEmpty() || Jt3.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
-                } else if (cantidad == c1 + c2 + c3) {
+                } else if (cantidad == c1 + c2 + c3 + c4 + c5 + c6) {
                     modelPhylon.addRow(datos);
                     cont++;
                     Limpiar();
@@ -1688,7 +1804,7 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
                 if (Jt1.getText().isEmpty() || Jt2.getText().isEmpty() || Jt3.getText().isEmpty() || Jt4.getText().isEmpty()
                         || Jt5.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
-                } else if (cantidad == c1 + c2 + c3 + c4 + c5) {
+                } else if (cantidad == c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8 + c9 + c10) {
                     modelPhylon.addRow(datos);
                     cont++;
                     Limpiar();
@@ -1702,7 +1818,7 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
                 if (Jt1.getText().isEmpty() || Jt2.getText().isEmpty() || Jt3.getText().isEmpty() || Jt4.getText().isEmpty()
                         || Jt5.getText().isEmpty() || Jt6.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
-                } else if (cantidad == c1 + c2 + c3 + c4 + c5 + c6) {
+                } else if (cantidad == c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8 + c9 + c10 + c11 + c12) {
                     modelPhylon.addRow(datos);
                     cont++;
                     Limpiar();
@@ -1716,7 +1832,7 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
                 if (Jt1.getText().isEmpty() || Jt2.getText().isEmpty() || Jt3.getText().isEmpty() || Jt4.getText().isEmpty()
                         || Jt5.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
-                } else if (cantidad == c1 + c2 + c3 + c4 + c5) {
+                } else if (cantidad == c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8 + c9 + c10) {
                     modelPhylon.addRow(datos);
                     cont++;
                     Limpiar();
@@ -1729,7 +1845,7 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
             case "96":
                 if (Jt1.getText().isEmpty() || Jt2.getText().isEmpty() || Jt3.getText().isEmpty() || Jt4.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
-                } else if (cantidad == c1 + c2 + c3 + c4) {
+                } else if (cantidad == c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8) {
                     modelPhylon.addRow(datos);
                     cont++;
                     Limpiar();
@@ -1743,7 +1859,7 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
                 if (Jt1.getText().isEmpty() || Jt2.getText().isEmpty() || Jt3.getText().isEmpty() || Jt4.getText().isEmpty()
                         || Jt5.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
-                } else if (cantidad == c1 + c2 + c3 + c4 + c5) {
+                } else if (cantidad == c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8 + c9 + c10) {
                     modelPhylon.addRow(datos);
                     cont++;
                     Limpiar();
@@ -1757,7 +1873,7 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
                 if (Jt1.getText().isEmpty() || Jt2.getText().isEmpty() || Jt3.getText().isEmpty() || Jt4.getText().isEmpty()
                         || Jt5.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
-                } else if (cantidad == c1 + c2 + c3 + c4 + c5) {
+                } else if (cantidad == c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8 + c9 + c10) {
                     modelPhylon.addRow(datos);
                     cont++;
                     Limpiar();
@@ -1779,12 +1895,24 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
         Jt4.setVisible(false);
         Jt5.setVisible(false);
         Jt6.setVisible(false);
+        Jt7.setVisible(false);
+        Jt8.setVisible(false);
+        Jt9.setVisible(false);
+        Jt10.setVisible(false);
+        Jt11.setVisible(false);
+        Jt12.setVisible(false);
         Jb1.setVisible(false);
         Jb2.setVisible(false);
         Jb3.setVisible(false);
         Jb4.setVisible(false);
         Jb5.setVisible(false);
         Jb6.setVisible(false);
+        Jb7.setVisible(false);
+        Jb8.setVisible(false);
+        Jb9.setVisible(false);
+        Jb10.setVisible(false);
+        Jb11.setVisible(false);
+        Jb12.setVisible(false);
     }
 
     private void limpiarRCPT() {
@@ -2115,6 +2243,14 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
         Jt4.setText("0");
         Jt5.setText("0");
         Jt6.setText("0");
+        Jt7.setText("0");
+        Jt8.setText("0");
+        Jt9.setText("0");
+        Jt10.setText("0");
+        Jt11.setText("0");
+        Jt12.setText("0");
+        Jt13.setText("0");
+        Jt14.setText("0");
     }
 
     private void OcultarCampos() {
@@ -2129,12 +2265,28 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
         Jt4.setVisible(false);
         Jt5.setVisible(false);
         Jt6.setVisible(false);
+        Jt7.setVisible(false);
+        Jt8.setVisible(false);
+        Jt9.setVisible(false);
+        Jt10.setVisible(false);
+        Jt11.setVisible(false);
+        Jt12.setVisible(false);
+        Jt13.setVisible(false);
+        Jt14.setVisible(false);
         Jb1.setVisible(false);
         Jb2.setVisible(false);
         Jb3.setVisible(false);
         Jb4.setVisible(false);
         Jb5.setVisible(false);
         Jb6.setVisible(false);
+        Jb7.setVisible(false);
+        Jb8.setVisible(false);
+        Jb9.setVisible(false);
+        Jb10.setVisible(false);
+        Jb11.setVisible(false);
+        Jb12.setVisible(false);
+        Jb13.setVisible(false);
+        Jb14.setVisible(false);
     }
 
     private void ValidarCorrida() {
@@ -2145,89 +2297,166 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
         Jt4.setText("0");
         Jt5.setText("0");
         Jt6.setText("0");
+        Jt7.setText("0");
+        Jt8.setText("0");
+        Jt9.setText("0");
+        Jt10.setText("0");
+        Jt11.setText("0");
+        Jt12.setText("0");
+        Jt13.setText("0");
+        Jt14.setText("0");
 
         switch (JtCorrida.getText()) {
             case "80":
                 Jb1.setText("10:");
-                Jb2.setText("11:");
-                Jb3.setText("12:");
+                Jb2.setText("10.5:");
+                Jb3.setText("11:");
+                Jb4.setText("11.5:");
+                Jb5.setText("12:");
+                Jb6.setText("12.5:");
                 Jb1.setVisible(true);
                 Jb2.setVisible(true);
                 Jb3.setVisible(true);
+                Jb4.setVisible(true);
+                Jb5.setVisible(true);
+                Jb6.setVisible(true);
                 Jt1.requestFocus();
                 Jt1.setSelectionStart(0);
                 Jt2.setSelectionStart(0);
                 Jt3.setSelectionStart(0);
+                Jt4.setSelectionStart(0);
+                Jt5.setSelectionStart(0);
+                Jt6.setSelectionStart(0);
                 Jt1.setVisible(true);
                 Jt2.setVisible(true);
                 Jt3.setVisible(true);
+                Jt4.setVisible(true);
+                Jt5.setVisible(true);
+                Jt6.setVisible(true);
                 break;
             case "81":
                 Jb1.setText("13:");
-                Jb2.setText("14:");
-                Jb3.setText("15:");
-                Jb4.setText("16:");
+                Jb2.setText("13.5:");
+                Jb3.setText("14:");
+                Jb4.setText("14.5:");
+                Jb5.setText("15:");
+                Jb6.setText("15.5:");
+                Jb7.setText("16:");
+                Jb8.setText("16.5:");
                 Jb1.setVisible(true);
                 Jb2.setVisible(true);
                 Jb3.setVisible(true);
                 Jb4.setVisible(true);
+                Jb5.setVisible(true);
+                Jb6.setVisible(true);
+                Jb7.setVisible(true);
+                Jb8.setVisible(true);
                 Jt1.requestFocus();
                 Jt1.setSelectionStart(0);
                 Jt2.setSelectionStart(0);
                 Jt3.setSelectionStart(0);
                 Jt4.setSelectionStart(0);
+                Jt5.setSelectionStart(0);
+                Jt6.setSelectionStart(0);
+                Jt7.setSelectionStart(0);
+                Jt8.setSelectionStart(0);
                 Jt1.setVisible(true);
                 Jt2.setVisible(true);
                 Jt3.setVisible(true);
                 Jt4.setVisible(true);
+                Jt5.setVisible(true);
+                Jt6.setVisible(true);
+                Jt7.setVisible(true);
+                Jt8.setVisible(true);
                 break;
             case "82":
                 Jb1.setText("27:");
-                Jb2.setText("28:");
-                Jb3.setText("29:");
+                Jb2.setText("27.5:");
+                Jb3.setText("28:");
+                Jb4.setText("28.5:");
+                Jb5.setText("29:");
+                Jb6.setText("29.5:");
                 Jb1.setVisible(true);
                 Jb2.setVisible(true);
+                Jb3.setVisible(true);
+                Jb4.setVisible(true);
+                Jb5.setVisible(true);
+                Jb6.setVisible(true);
                 Jb3.setVisible(true);
                 Jt1.requestFocus();
                 Jt1.setSelectionStart(0);
                 Jt2.setSelectionStart(0);
                 Jt3.setSelectionStart(0);
+                Jt4.setSelectionStart(0);
+                Jt5.setSelectionStart(0);
+                Jt6.setSelectionStart(0);
                 Jt1.setVisible(true);
                 Jt2.setVisible(true);
                 Jt3.setVisible(true);
+                Jt4.setVisible(true);
+                Jt5.setVisible(true);
+                Jt6.setVisible(true);
                 break;
             case "85":
                 Jb1.setText("11:");
-                Jb2.setText("12:");
-                Jb3.setText("13:");
+                Jb2.setText("11.5:");
+                Jb3.setText("12:");
+                Jb4.setText("12.5:");
+                Jb4.setText("13:");
+                Jb4.setText("13.5:");
                 Jb4.setText("14:");
+                Jb4.setText("14.5:");
                 Jb1.setVisible(true);
                 Jb2.setVisible(true);
                 Jb3.setVisible(true);
                 Jb4.setVisible(true);
+                Jb5.setVisible(true);
+                Jb6.setVisible(true);
+                Jb7.setVisible(true);
+                Jb8.setVisible(true);
                 Jt1.requestFocus();
                 Jt1.setSelectionStart(0);
                 Jt2.setSelectionStart(0);
                 Jt3.setSelectionStart(0);
                 Jt4.setSelectionStart(0);
+                Jt5.setSelectionStart(0);
+                Jt6.setSelectionStart(0);
+                Jt7.setSelectionStart(0);
+                Jt8.setSelectionStart(0);
                 Jt1.setVisible(true);
                 Jt2.setVisible(true);
                 Jt3.setVisible(true);
                 Jt4.setVisible(true);
+                Jt5.setVisible(true);
+                Jt6.setVisible(true);
+                Jt7.setVisible(true);
+                Jt8.setVisible(true);
                 break;
             case "88":
                 Jb1.setText("22:");
-                Jb2.setText("23:");
-                Jb3.setText("24:");
-                Jb4.setText("25:");
-                Jb5.setText("26:");
-                Jb6.setText("27:");
+                Jb2.setText("22.5:");
+                Jb3.setText("23:");
+                Jb4.setText("23.5:");
+                Jb5.setText("24:");
+                Jb6.setText("24.5:");
+                Jb7.setText("25:");
+                Jb8.setText("25.5:");
+                Jb9.setText("26:");
+                Jb10.setText("26.5:");
+                Jb11.setText("27:");
+                Jb12.setText("27.5:");
                 Jb1.setVisible(true);
                 Jb2.setVisible(true);
                 Jb3.setVisible(true);
                 Jb4.setVisible(true);
                 Jb5.setVisible(true);
                 Jb6.setVisible(true);
+                Jb7.setVisible(true);
+                Jb8.setVisible(true);
+                Jb9.setVisible(true);
+                Jb10.setVisible(true);
+                Jb11.setVisible(true);
+                Jb12.setVisible(true);
                 Jt1.requestFocus();
                 Jt1.setSelectionStart(0);
                 Jt2.setSelectionStart(0);
@@ -2235,107 +2464,32 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
                 Jt4.setSelectionStart(0);
                 Jt5.setSelectionStart(0);
                 Jt6.setSelectionStart(0);
+                Jt7.setSelectionStart(0);
+                Jt8.setSelectionStart(0);
+                Jt9.setSelectionStart(0);
+                Jt10.setSelectionStart(0);
+                Jt11.setSelectionStart(0);
+                Jt12.setSelectionStart(0);
                 Jt1.setVisible(true);
                 Jt2.setVisible(true);
                 Jt3.setVisible(true);
                 Jt4.setVisible(true);
                 Jt5.setVisible(true);
                 Jt6.setVisible(true);
+                Jt7.setVisible(true);
+                Jt8.setVisible(true);
+                Jt9.setVisible(true);
+                Jt10.setVisible(true);
+                Jt11.setVisible(true);
+                Jt12.setVisible(true);
                 break;
             case "89":
                 Jb1.setText("12:");
-                Jb2.setText("13:");
-                Jb3.setText("14:");
-                Jb1.setVisible(true);
-                Jb2.setVisible(true);
-                Jb3.setVisible(true);
-                Jt1.requestFocus();
-                Jt1.setSelectionStart(0);
-                Jt2.setSelectionStart(0);
-                Jt3.setSelectionStart(0);
-                Jt1.setVisible(true);
-                Jt2.setVisible(true);
-                Jt3.setVisible(true);
-                break;
-            case "90":
-                Jb1.setText("15:");
-                Jb2.setText("16:");
-                Jb3.setText("17:");
-                Jb1.setVisible(true);
-                Jb2.setVisible(true);
-                Jb3.setVisible(true);
-                Jt1.requestFocus();
-                Jt1.setSelectionStart(0);
-                Jt2.setSelectionStart(0);
-                Jt3.setSelectionStart(0);
-                Jt1.setVisible(true);
-                Jt2.setVisible(true);
-                Jt3.setVisible(true);
-                break;
-            case "91":
-                Jb1.setText("18:");
-                Jb2.setText("19:");
-                Jb3.setText("20:");
-                Jb4.setText("21:");
-                Jb1.setVisible(true);
-                Jb2.setVisible(true);
-                Jb3.setVisible(true);
-                Jb4.setVisible(true);
-                Jt1.requestFocus();
-                Jt1.setSelectionStart(0);
-                Jt2.setSelectionStart(0);
-                Jt3.setSelectionStart(0);
-                Jt4.setSelectionStart(0);
-                Jt1.setVisible(true);
-                Jt2.setVisible(true);
-                Jt3.setVisible(true);
-                Jt4.setVisible(true);
-                break;
-            case "92":
-                Jb1.setText("22:");
-                Jb2.setText("23:");
-                Jb3.setText("24:");
-                Jb1.setVisible(true);
-                Jb2.setVisible(true);
-                Jb3.setVisible(true);
-                Jt1.requestFocus();
-                Jt1.setSelectionStart(0);
-                Jt2.setSelectionStart(0);
-                Jt3.setSelectionStart(0);
-                Jt1.setVisible(true);
-                Jt2.setVisible(true);
-                Jt3.setVisible(true);
-                break;
-            case "93":
-                Jb1.setText("22:");
-                Jb2.setText("23:");
-                Jb3.setText("24:");
-                Jb4.setText("25:");
-                Jb5.setText("26:");
-                Jt1.requestFocus();
-                Jb1.setVisible(true);
-                Jb2.setVisible(true);
-                Jb3.setVisible(true);
-                Jb4.setVisible(true);
-                Jb5.setVisible(true);
-                Jt1.setSelectionStart(0);
-                Jt2.setSelectionStart(0);
-                Jt3.setSelectionStart(0);
-                Jt4.setSelectionStart(0);
-                Jt5.setSelectionStart(0);
-                Jt1.setVisible(true);
-                Jt2.setVisible(true);
-                Jt3.setVisible(true);
-                Jt4.setVisible(true);
-                Jt5.setVisible(true);
-                break;
-            case "94":
-                Jb1.setText("25:");
-                Jb2.setText("26:");
-                Jb3.setText("27:");
-                Jb4.setText("28:");
-                Jb5.setText("29:");
-                Jb6.setText("30:");
+                Jb2.setText("12.5:");
+                Jb3.setText("13:");
+                Jb4.setText("13.5:");
+                Jb5.setText("14:");
+                Jb6.setText("14.5:");
                 Jb1.setVisible(true);
                 Jb2.setVisible(true);
                 Jb3.setVisible(true);
@@ -2356,93 +2510,352 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
                 Jt5.setVisible(true);
                 Jt6.setVisible(true);
                 break;
-            case "95":
-                Jb1.setText("21:");
-                Jb2.setText("22:");
-                Jb3.setText("23:");
-                Jb4.setText("24:");
-                Jb5.setText("25:");
+            case "90":
+                Jb1.setText("15:");
+                Jb2.setText("15.5:");
+                Jb3.setText("16:");
+                Jb4.setText("16.5:");
+                Jb5.setText("17:");
+                Jb6.setText("17.5:");
                 Jb1.setVisible(true);
                 Jb2.setVisible(true);
                 Jb3.setVisible(true);
                 Jb4.setVisible(true);
                 Jb5.setVisible(true);
+                Jb6.setVisible(true);
                 Jt1.requestFocus();
                 Jt1.setSelectionStart(0);
                 Jt2.setSelectionStart(0);
                 Jt3.setSelectionStart(0);
                 Jt4.setSelectionStart(0);
                 Jt5.setSelectionStart(0);
+                Jt6.setSelectionStart(0);
                 Jt1.setVisible(true);
                 Jt2.setVisible(true);
                 Jt3.setVisible(true);
                 Jt4.setVisible(true);
                 Jt5.setVisible(true);
+                Jt6.setVisible(true);
+                break;
+            case "91":
+                Jb1.setText("18:");
+                Jb2.setText("18.5:");
+                Jb3.setText("19:");
+                Jb4.setText("19.5:");
+                Jb5.setText("20:");
+                Jb6.setText("20.5:");
+                Jb7.setText("21:");
+                Jb8.setText("21.5:");
+                Jb1.setVisible(true);
+                Jb2.setVisible(true);
+                Jb3.setVisible(true);
+                Jb4.setVisible(true);
+                Jb5.setVisible(true);
+                Jb6.setVisible(true);
+                Jb7.setVisible(true);
+                Jb8.setVisible(true);
+                Jt1.requestFocus();
+                Jt1.setSelectionStart(0);
+                Jt2.setSelectionStart(0);
+                Jt3.setSelectionStart(0);
+                Jt4.setSelectionStart(0);
+                Jt5.setSelectionStart(0);
+                Jt6.setSelectionStart(0);
+                Jt7.setSelectionStart(0);
+                Jt8.setSelectionStart(0);
+                Jt1.setVisible(true);
+                Jt2.setVisible(true);
+                Jt3.setVisible(true);
+                Jt4.setVisible(true);
+                Jt5.setVisible(true);
+                Jt6.setVisible(true);
+                Jt7.setVisible(true);
+                Jt8.setVisible(true);
+                break;
+            case "92":
+                Jb1.setText("22:");
+                Jb2.setText("22.5:");
+                Jb3.setText("23:");
+                Jb4.setText("23.5:");
+                Jb5.setText("24:");
+                Jb6.setText("24.5:");
+                Jb1.setVisible(true);
+                Jb2.setVisible(true);
+                Jb3.setVisible(true);
+                Jb4.setVisible(true);
+                Jb5.setVisible(true);
+                Jb6.setVisible(true);
+                Jt1.requestFocus();
+                Jt1.setSelectionStart(0);
+                Jt2.setSelectionStart(0);
+                Jt3.setSelectionStart(0);
+                Jt4.setSelectionStart(0);
+                Jt5.setSelectionStart(0);
+                Jt6.setSelectionStart(0);
+                Jt1.setVisible(true);
+                Jt2.setVisible(true);
+                Jt3.setVisible(true);
+                Jt4.setVisible(true);
+                Jt5.setVisible(true);
+                Jt6.setVisible(true);
+                break;
+            case "93":
+                Jb1.setText("22:");
+                Jb2.setText("22.5:");
+                Jb3.setText("23:");
+                Jb4.setText("23.5:");
+                Jb5.setText("24:");
+                Jb6.setText("24.5:");
+                Jb7.setText("25:");
+                Jb8.setText("25.5:");
+                Jb9.setText("26:");
+                Jb10.setText("26.5:");
+                Jt1.requestFocus();
+                Jb1.setVisible(true);
+                Jb2.setVisible(true);
+                Jb3.setVisible(true);
+                Jb4.setVisible(true);
+                Jb5.setVisible(true);
+                Jb6.setVisible(true);
+                Jb7.setVisible(true);
+                Jb8.setVisible(true);
+                Jb9.setVisible(true);
+                Jb10.setVisible(true);
+                Jt1.setSelectionStart(0);
+                Jt2.setSelectionStart(0);
+                Jt3.setSelectionStart(0);
+                Jt4.setSelectionStart(0);
+                Jt5.setSelectionStart(0);
+                Jt6.setSelectionStart(0);
+                Jt7.setSelectionStart(0);
+                Jt8.setSelectionStart(0);
+                Jt9.setSelectionStart(0);
+                Jt10.setSelectionStart(0);
+                Jt1.setVisible(true);
+                Jt2.setVisible(true);
+                Jt3.setVisible(true);
+                Jt4.setVisible(true);
+                Jt5.setVisible(true);
+                Jt6.setVisible(true);
+                Jt7.setVisible(true);
+                Jt8.setVisible(true);
+                Jt9.setVisible(true);
+                Jt10.setVisible(true);
+                break;
+            case "94":
+                Jb1.setText("25:");
+                Jb2.setText("25.5:");
+                Jb3.setText("26:");
+                Jb4.setText("26.5:");
+                Jb5.setText("27:");
+                Jb6.setText("27.5:");
+                Jb7.setText("28:");
+                Jb8.setText("28.5:");
+                Jb9.setText("29:");
+                Jb10.setText("29.5:");
+                Jb11.setText("30:");
+                Jb12.setText("30.5:");
+                Jb1.setVisible(true);
+                Jb2.setVisible(true);
+                Jb3.setVisible(true);
+                Jb4.setVisible(true);
+                Jb5.setVisible(true);
+                Jb6.setVisible(true);
+                Jb7.setVisible(true);
+                Jb8.setVisible(true);
+                Jb9.setVisible(true);
+                Jb10.setVisible(true);
+                Jb11.setVisible(true);
+                Jb12.setVisible(true);
+                Jt1.requestFocus();
+                Jt1.setSelectionStart(0);
+                Jt2.setSelectionStart(0);
+                Jt3.setSelectionStart(0);
+                Jt4.setSelectionStart(0);
+                Jt5.setSelectionStart(0);
+                Jt6.setSelectionStart(0);
+                Jt7.setSelectionStart(0);
+                Jt8.setSelectionStart(0);
+                Jt9.setSelectionStart(0);
+                Jt10.setSelectionStart(0);
+                Jt11.setSelectionStart(0);
+                Jt12.setSelectionStart(0);
+                Jt1.setVisible(true);
+                Jt2.setVisible(true);
+                Jt3.setVisible(true);
+                Jt4.setVisible(true);
+                Jt5.setVisible(true);
+                Jt6.setVisible(true);
+                Jt7.setVisible(true);
+                Jt8.setVisible(true);
+                Jt9.setVisible(true);
+                Jt10.setVisible(true);
+                Jt11.setVisible(true);
+                Jt12.setVisible(true);
+                break;
+            case "95":
+                Jb1.setText("21:");
+                Jb2.setText("21.5:");
+                Jb3.setText("22:");
+                Jb4.setText("22.5:");
+                Jb5.setText("23:");
+                Jb6.setText("23.5:");
+                Jb7.setText("24:");
+                Jb8.setText("24.5:");
+                Jb9.setText("25:");
+                Jb10.setText("25.5:");
+                Jb1.setVisible(true);
+                Jb2.setVisible(true);
+                Jb3.setVisible(true);
+                Jb4.setVisible(true);
+                Jb5.setVisible(true);
+                Jb6.setVisible(true);
+                Jb7.setVisible(true);
+                Jb8.setVisible(true);
+                Jb9.setVisible(true);
+                Jb10.setVisible(true);
+                Jt1.requestFocus();
+                Jt1.setSelectionStart(0);
+                Jt2.setSelectionStart(0);
+                Jt3.setSelectionStart(0);
+                Jt4.setSelectionStart(0);
+                Jt5.setSelectionStart(0);
+                Jt6.setSelectionStart(0);
+                Jt7.setSelectionStart(0);
+                Jt8.setSelectionStart(0);
+                Jt9.setSelectionStart(0);
+                Jt10.setSelectionStart(0);
+                Jt1.setVisible(true);
+                Jt2.setVisible(true);
+                Jt3.setVisible(true);
+                Jt4.setVisible(true);
+                Jt5.setVisible(true);
+                Jt6.setVisible(true);
+                Jt7.setVisible(true);
+                Jt8.setVisible(true);
+                Jt9.setVisible(true);
+                Jt10.setVisible(true);
                 break;
             case "96":
                 Jb1.setText("30:");
-                Jb2.setText("31:");
-                Jb3.setText("32:");
-                Jb4.setText("33:");
+                Jb2.setText("30.5:");
+                Jb3.setText("31:");
+                Jb4.setText("31.5:");
+                Jb5.setText("32:");
+                Jb6.setText("32.5:");
+                Jb7.setText("33:");
+                Jb8.setText("33.5:");
                 Jb1.setVisible(true);
                 Jb2.setVisible(true);
                 Jb3.setVisible(true);
                 Jb4.setVisible(true);
+                Jb5.setVisible(true);
+                Jb6.setVisible(true);
+                Jb7.setVisible(true);
+                Jb8.setVisible(true);
                 Jt1.requestFocus();
                 Jt1.setSelectionStart(0);
                 Jt2.setSelectionStart(0);
                 Jt3.setSelectionStart(0);
                 Jt4.setSelectionStart(0);
+                Jt5.setSelectionStart(0);
+                Jt6.setSelectionStart(0);
+                Jt7.setSelectionStart(0);
+                Jt8.setSelectionStart(0);
                 Jt1.setVisible(true);
                 Jt2.setVisible(true);
                 Jt3.setVisible(true);
                 Jt4.setVisible(true);
+                Jt5.setVisible(true);
+                Jt6.setVisible(true);
+                Jt7.setVisible(true);
+                Jt8.setVisible(true);
                 break;
             case "97":
                 Jb1.setText("17:");
-                Jb2.setText("18:");
-                Jb3.setText("19:");
-                Jb4.setText("20:");
-                Jb5.setText("21:");
+                Jb2.setText("17.5:");
+                Jb3.setText("18:");
+                Jb4.setText("18.5:");
+                Jb5.setText("19:");
+                Jb6.setText("19.5:");
+                Jb7.setText("20:");
+                Jb8.setText("20.5:");
+                Jb9.setText("21:");
+                Jb10.setText("21.5:");
                 Jb1.setVisible(true);
                 Jb2.setVisible(true);
                 Jb3.setVisible(true);
                 Jb4.setVisible(true);
                 Jb5.setVisible(true);
+                Jb6.setVisible(true);
+                Jb7.setVisible(true);
+                Jb8.setVisible(true);
+                Jb9.setVisible(true);
+                Jb10.setVisible(true);
                 Jt1.requestFocus();
                 Jt1.setSelectionStart(0);
                 Jt2.setSelectionStart(0);
                 Jt3.setSelectionStart(0);
                 Jt4.setSelectionStart(0);
                 Jt5.setSelectionStart(0);
+                Jt6.setSelectionStart(0);
+                Jt7.setSelectionStart(0);
+                Jt8.setSelectionStart(0);
+                Jt9.setSelectionStart(0);
+                Jt10.setSelectionStart(0);
                 Jt1.setVisible(true);
                 Jt2.setVisible(true);
                 Jt3.setVisible(true);
                 Jt4.setVisible(true);
                 Jt5.setVisible(true);
+                Jt6.setVisible(true);
+                Jt7.setVisible(true);
+                Jt8.setVisible(true);
+                Jt9.setVisible(true);
+                Jt10.setVisible(true);
                 break;
             case "98":
                 Jb1.setText("23:");
-                Jb2.setText("24:");
-                Jb3.setText("25:");
-                Jb4.setText("26:");
-                Jb5.setText("27:");
+                Jb2.setText("23.5:");
+                Jb3.setText("24:");
+                Jb4.setText("24.5:");
+                Jb5.setText("25:");
+                Jb6.setText("25.5:");
+                Jb7.setText("26:");
+                Jb8.setText("26.5:");
+                Jb9.setText("27:");
+                Jb10.setText("27.5:");
                 Jb1.setVisible(true);
                 Jb2.setVisible(true);
                 Jb3.setVisible(true);
                 Jb4.setVisible(true);
                 Jb5.setVisible(true);
+                Jb6.setVisible(true);
+                Jb7.setVisible(true);
+                Jb8.setVisible(true);
+                Jb9.setVisible(true);
+                Jb10.setVisible(true);
                 Jt1.requestFocus();
                 Jt1.setSelectionStart(0);
                 Jt2.setSelectionStart(0);
                 Jt3.setSelectionStart(0);
                 Jt4.setSelectionStart(0);
                 Jt5.setSelectionStart(0);
+                Jt6.setSelectionStart(0);
+                Jt7.setSelectionStart(0);
+                Jt8.setSelectionStart(0);
+                Jt9.setSelectionStart(0);
+                Jt10.setSelectionStart(0);
                 Jt1.setVisible(true);
                 Jt2.setVisible(true);
                 Jt3.setVisible(true);
                 Jt4.setVisible(true);
                 Jt5.setVisible(true);
+                Jt6.setVisible(true);
+                Jt7.setVisible(true);
+                Jt8.setVisible(true);
+                Jt9.setVisible(true);
+                Jt10.setVisible(true);
                 break;
             default:
                 break;
@@ -2462,12 +2875,24 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
         Jt4.setVisible(false);
         Jt5.setVisible(false);
         Jt6.setVisible(false);
+        Jt7.setVisible(false);
+        Jt8.setVisible(false);
+        Jt9.setVisible(false);
+        Jt10.setVisible(false);
+        Jt11.setVisible(false);
+        Jt12.setVisible(false);
         Jb1.setVisible(false);
         Jb2.setVisible(false);
         Jb3.setVisible(false);
         Jb4.setVisible(false);
         Jb5.setVisible(false);
         Jb6.setVisible(false);
+        Jb7.setVisible(false);
+        Jb8.setVisible(false);
+        Jb9.setVisible(false);
+        Jb10.setVisible(false);
+        Jb11.setVisible(false);
+        Jb12.setVisible(false);
     }
 
     private void CleanTable() {
@@ -2649,11 +3074,19 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Jb1;
+    private javax.swing.JLabel Jb10;
+    private javax.swing.JLabel Jb11;
+    private javax.swing.JLabel Jb12;
+    private javax.swing.JLabel Jb13;
+    private javax.swing.JLabel Jb14;
     private javax.swing.JLabel Jb2;
     private javax.swing.JLabel Jb3;
     private javax.swing.JLabel Jb4;
     private javax.swing.JLabel Jb5;
     private javax.swing.JLabel Jb6;
+    private javax.swing.JLabel Jb7;
+    private javax.swing.JLabel Jb8;
+    private javax.swing.JLabel Jb9;
     private javax.swing.JButton JbClean;
     private javax.swing.JButton JbGenerar;
     private javax.swing.JButton JbGuardar;
@@ -2664,11 +3097,19 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
     private javax.swing.JLabel JlEstilo;
     private javax.swing.JLabel JlPares;
     private javax.swing.JTextField Jt1;
+    private javax.swing.JTextField Jt10;
+    private javax.swing.JTextField Jt11;
+    private javax.swing.JTextField Jt12;
+    private javax.swing.JTextField Jt13;
+    private javax.swing.JTextField Jt14;
     private javax.swing.JTextField Jt2;
     private javax.swing.JTextField Jt3;
     private javax.swing.JTextField Jt4;
     private javax.swing.JTextField Jt5;
     private javax.swing.JTextField Jt6;
+    private javax.swing.JTextField Jt7;
+    private javax.swing.JTextField Jt8;
+    private javax.swing.JTextField Jt9;
     private javax.swing.JTextField JtAm;
     private javax.swing.JTextField JtCorrida;
     private javax.swing.JTextField JtPares;
