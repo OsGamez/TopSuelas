@@ -34,7 +34,7 @@ join Linea l on p.id_linea=l.id_linea where l.descripcion like '%$P!{linea}%'
 			</staticText>
 			<image>
 				<reportElement x="2" y="39" width="131" height="28" uuid="66321ef5-1091-471a-92ac-7c8866ee9989"/>
-				<imageExpression><![CDATA["C:\\Program Files\\logo.png"]]></imageExpression>
+				<imageExpression><![CDATA["C:\\tsmanager\\imagenes\\logo.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

@@ -1,5 +1,6 @@
 package ViewLayer;
 
+import ObjectLayer.Copiaarchivo;
 import ObjectLayer.Hora;
 import ObjectLayer.ObjectVersioning;
 import ObjectLayer.Usuario;
@@ -58,7 +59,6 @@ public class Principal extends javax.swing.JFrame {
     public Principal(Usuario us) {
         initComponents();
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-
         this.setLocationRelativeTo(null);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/programa.png"));
@@ -623,9 +623,9 @@ public class Principal extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(JbUser)
                         .addComponent(JbRol)))
                 .addContainerGap())
@@ -1063,36 +1063,13 @@ public class Principal extends javax.swing.JFrame {
 
     }
     private void LoadVersion(){
-         File archivo = new File("c:\\tsmanager\\conf.dat");
-        ObjectVersioning ov = new ObjectVersioning();
         try {
-            FileWriter fichero;
-            PrintWriter pw;
-            if (!archivo.exists()) {// si no existe se ejecuta aplicacion con archivos y se crea el archivo de version
-                Process p = Runtime.getRuntime().exec("h:\\sistemas\\tsmanager.exe");//ejecuta aplicacion de copia de archivos
-                fichero = new FileWriter("c:\\tsmanager\\conf.dat");//instancia ruta de archivo
-                pw = new PrintWriter(fichero);
-                pw.println(ov.validarVersion());
-                fichero.close();// cerrar archivo
-            } else {//si existe el archivo
-                String version;
-                try (FileReader fr = new FileReader(archivo)) {
-                    BufferedReader br = new BufferedReader(fr);
-                    version=br.readLine();//lectura y guardar primer linea
-//                    while ((version=br.readLine()) != null) {//lectura del archivo
-//                        System.out.println("-"+version+"-");
-//                    }
-                }
-                //System.out.println(version);
-                if (!version.equals(ov.validarVersion())) {//si lo que encontro con lo de la bd son diferentes
-                    fichero = new FileWriter("c:\\tsmanager\\conf.dat");
-                    pw = new PrintWriter(fichero);
-                    pw.println(ov.validarVersion());
-                    fichero.close();
-                }
-            }
+                Copiaarchivo ca= new Copiaarchivo();
+                ca.start();
         } catch (Exception e) {
+            
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error en el uso de un directorio para copia de archivos \n"+e.getMessage(), "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
         }
     }
     private void JmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmSalirActionPerformed
