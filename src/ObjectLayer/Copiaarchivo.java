@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
@@ -31,8 +32,16 @@ public class Copiaarchivo extends Thread {
     public void run() {
         try {
             File archivo = new File("c:\\tsmanager\\conf.dat");
+            File carpeta = new File("h:\\");
+            if(!carpeta.exists()){// valida si la unidad de red existe
+                // si la unidad no existe se intentara crear mediante el metodo con el string ya definido con usuario y contraseña
+                nuevaunidad("net use H: \\\\192.168.6.14\\general /USER:Workgroup\\general general");
+                // si da falso se intentara crear la unidad pero sin grupo de usuario y contraseña    
+                    nuevaunidad("net use H: \\\\192.168.6.14\\general ");
+                
+            }
+//          ****** Comienza copia de carpetas y archivos *******           
             ObjectVersioning ov = new ObjectVersioning();
-
             FileWriter fichero;
             PrintWriter pw;
             if (!archivo.exists()) {// si no existe se ejecuta aplicacion con archivos y se crea el archivo de version
@@ -129,6 +138,24 @@ public class Copiaarchivo extends Thread {
             JOptionPane.showMessageDialog(null, "Unidades para dar de alta: \n H:/sistemas/dist/reloj \n q:/reloj/casmovre", "ATHLETIC", JOptionPane.INFORMATION_MESSAGE);
         }
 
+    }
+    
+    private boolean nuevaunidad(String comando){
+        try {
+            Process process = Runtime.getRuntime().exec(comando);
+            InputStream br = process.getInputStream();
+            int i = br.read();
+            String out = "";
+            while (i != -1) {
+                out = out + (char) i;
+                //System.out.print((char) i);
+                i = br.read();
+            }
+            return !out.contains("The command completed successfully") || !out.contains("Se ha completado el comando correctamente");
+        } catch (IOException ex) {
+            Logger.getLogger(Copiaarchivo.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
     }
 
 }
