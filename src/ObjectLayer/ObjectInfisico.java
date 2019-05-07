@@ -122,7 +122,7 @@ public class ObjectInfisico {
 
     public boolean AddInventario(Infisico inv) {
         try {
-            st = server.prepareStatement("INSERT INTO InvFisico(Almacen,Producto,Estilo,corrida,Combinacion,Tipo,Punto1,"
+            st = c.prepareStatement("INSERT INTO InvFisico(Almacen,Producto,Estilo,corrida,Combinacion,Tipo,Punto1,"
                     + "Punto2,Punto3,Punto4,Punto5,Punto6,Punto7,Punto8,Punto9,Punto10,Punto11,Punto12,Punto13,Punto14,TotalPares)"
                     + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             st.setInt(1, inv.getAlmacen());
