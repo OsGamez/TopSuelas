@@ -66,6 +66,7 @@ public class Copiaarchivo extends Thread {
                     pw = new PrintWriter(fichero);
                     pw.println(ov.validarVersion());
                     fichero.close();
+                    data();
                 }
             }
         } catch (Exception ex) {
