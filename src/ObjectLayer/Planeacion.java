@@ -17,18 +17,18 @@ public class Planeacion {
     private int Id_Producto;
     private int Id_Color;
     private int Id_Corrida;
-    private int Pto1;
-    private int Pto2;
-    private int Pto3;
-    private int Pto4;
-    private int Pto5;
-    private int Pto6;
-    private int Pto7;
-    private int Pto8;
-    private int Pto9;
-    private int Pto10;
-    private int Pto11;
-    private int Pto12;
+    private String Pto1;
+    private String Pto2;
+    private String Pto3;
+    private String Pto4;
+    private String Pto5;
+    private String Pto6;
+    private String Pto7;
+    private String Pto8;
+    private String Pto9;
+    private String Pto10;
+    private String Pto11;
+    private String Pto12;
     private int C1;
     private int C2;
     private int C3;
@@ -185,101 +185,103 @@ public class Planeacion {
         this.Id_Corrida = Id_Corrida;
     }
 
-    public int getPto1() {
+    public String getPto1() {
         return Pto1;
     }
 
-    public void setPto1(int Pto1) {
+    public void setPto1(String Pto1) {
         this.Pto1 = Pto1;
     }
 
-    public int getPto2() {
+    public String getPto2() {
         return Pto2;
     }
 
-    public void setPto2(int Pto2) {
+    public void setPto2(String Pto2) {
         this.Pto2 = Pto2;
     }
 
-    public int getPto3() {
+    public String getPto3() {
         return Pto3;
     }
 
-    public void setPto3(int Pto3) {
+    public void setPto3(String Pto3) {
         this.Pto3 = Pto3;
     }
 
-    public int getPto4() {
+    public String getPto4() {
         return Pto4;
     }
 
-    public void setPto4(int Pto4) {
+    public void setPto4(String Pto4) {
         this.Pto4 = Pto4;
     }
 
-    public int getPto5() {
+    public String getPto5() {
         return Pto5;
     }
 
-    public void setPto5(int Pto5) {
+    public void setPto5(String Pto5) {
         this.Pto5 = Pto5;
     }
 
-    public int getPto6() {
+    public String getPto6() {
         return Pto6;
     }
 
-    public void setPto6(int Pto6) {
+    public void setPto6(String Pto6) {
         this.Pto6 = Pto6;
     }
 
-    public int getPto7() {
+    public String getPto7() {
         return Pto7;
     }
 
-    public void setPto7(int Pto7) {
+    public void setPto7(String Pto7) {
         this.Pto7 = Pto7;
     }
 
-    public int getPto8() {
+    public String getPto8() {
         return Pto8;
     }
 
-    public void setPto8(int Pto8) {
+    public void setPto8(String Pto8) {
         this.Pto8 = Pto8;
     }
 
-    public int getPto9() {
+    public String getPto9() {
         return Pto9;
     }
 
-    public void setPto9(int Pto9) {
+    public void setPto9(String Pto9) {
         this.Pto9 = Pto9;
     }
 
-    public int getPto10() {
+    public String getPto10() {
         return Pto10;
     }
 
-    public void setPto10(int Pto10) {
+    public void setPto10(String Pto10) {
         this.Pto10 = Pto10;
     }
 
-    public int getPto11() {
+    public String getPto11() {
         return Pto11;
     }
 
-    public void setPto11(int Pto11) {
+    public void setPto11(String Pto11) {
         this.Pto11 = Pto11;
     }
 
-    public int getPto12() {
+    public String getPto12() {
         return Pto12;
     }
 
-    public void setPto12(int Pto12) {
+    public void setPto12(String Pto12) {
         this.Pto12 = Pto12;
     }
+
+    
 
     public int getC1() {
         return C1;

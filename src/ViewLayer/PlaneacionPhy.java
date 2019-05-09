@@ -1674,7 +1674,7 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
         }
 
         if (User.equals("")) {
-            System.out.println("USUARIO");
+            
         }
 
         switch (JtCorrida.getText()) {

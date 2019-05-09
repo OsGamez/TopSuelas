@@ -42,6 +42,12 @@ public class Pedido {
     private int C4;
     private int C5;
     private int C6;
+    private int C7;
+    private int C8;
+    private int C9;
+    private int C10;
+    private int C11;
+    private int C12;
     private int CSurt1;
     private int CSurt2;
     private int CSurt3;
@@ -421,8 +427,58 @@ public class Pedido {
     public void setFecha_Captura(Date Fecha_Captura) {
         this.Fecha_Captura = Fecha_Captura;
     }
+    
+    
     /*@Override
     public String toString(){
         return String.valueOf(this.Id_Detalle);
     }*/
+
+    public int getC7() {
+        return C7;
+    }
+
+    public void setC7(int C7) {
+        this.C7 = C7;
+    }
+
+    public int getC8() {
+        return C8;
+    }
+
+    public void setC8(int C8) {
+        this.C8 = C8;
+    }
+
+    public int getC9() {
+        return C9;
+    }
+
+    public void setC9(int C9) {
+        this.C9 = C9;
+    }
+
+    public int getC10() {
+        return C10;
+    }
+
+    public void setC10(int C10) {
+        this.C10 = C10;
+    }
+
+    public int getC11() {
+        return C11;
+    }
+
+    public void setC11(int C11) {
+        this.C11 = C11;
+    }
+
+    public int getC12() {
+        return C12;
+    }
+
+    public void setC12(int C12) {
+        this.C12 = C12;
+    }
 }

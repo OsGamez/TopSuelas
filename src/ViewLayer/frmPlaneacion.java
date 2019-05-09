@@ -75,6 +75,12 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
         Table.addColumn("C4");
         Table.addColumn("C5");
         Table.addColumn("C6");
+        Table.addColumn("C7");
+        Table.addColumn("C8");
+        Table.addColumn("C9");
+        Table.addColumn("C10");
+        Table.addColumn("C11");
+        Table.addColumn("C12");
         Table.addColumn("PARES");
         Table.addColumn("OBSV");
         Table.addColumn("O.COMPRA");
@@ -85,6 +91,12 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
         Table.addColumn("Pto4");
         Table.addColumn("Pto5");
         Table.addColumn("Pto6");
+        Table.addColumn("Pto7");
+        Table.addColumn("Pto8");
+        Table.addColumn("Pto9");
+        Table.addColumn("Pto10");
+        Table.addColumn("Pto11");
+        Table.addColumn("Pto12");
         Table.addColumn("Serie");
 
         Tb.getColumnModel().getColumn(3).setMaxWidth(0);
@@ -107,37 +119,57 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
         Tb.getColumnModel().getColumn(10).setMinWidth(0);
         Tb.getColumnModel().getColumn(10).setPreferredWidth(0);
 
-        Tb.getColumnModel().getColumn(20).setMaxWidth(0);
-        Tb.getColumnModel().getColumn(20).setMinWidth(0);
-        Tb.getColumnModel().getColumn(20).setPreferredWidth(0);
-
-        Tb.getColumnModel().getColumn(21).setMaxWidth(0);
-        Tb.getColumnModel().getColumn(21).setMinWidth(0);
-        Tb.getColumnModel().getColumn(21).setPreferredWidth(0);
-
-        Tb.getColumnModel().getColumn(22).setMaxWidth(0);
-        Tb.getColumnModel().getColumn(22).setMinWidth(0);
-        Tb.getColumnModel().getColumn(22).setPreferredWidth(0);
-
-        Tb.getColumnModel().getColumn(23).setMaxWidth(0);
-        Tb.getColumnModel().getColumn(23).setMinWidth(0);
-        Tb.getColumnModel().getColumn(23).setPreferredWidth(0);
-
-        Tb.getColumnModel().getColumn(24).setMaxWidth(0);
-        Tb.getColumnModel().getColumn(24).setMinWidth(0);
-        Tb.getColumnModel().getColumn(24).setPreferredWidth(0);
-
-        Tb.getColumnModel().getColumn(25).setMaxWidth(0);
-        Tb.getColumnModel().getColumn(25).setMinWidth(0);
-        Tb.getColumnModel().getColumn(25).setPreferredWidth(0);
-
         Tb.getColumnModel().getColumn(26).setMaxWidth(0);
         Tb.getColumnModel().getColumn(26).setMinWidth(0);
         Tb.getColumnModel().getColumn(26).setPreferredWidth(0);
 
-        /*Tb.getColumnModel().getColumn(27).setMaxWidth(0);
+        Tb.getColumnModel().getColumn(27).setMaxWidth(0);
         Tb.getColumnModel().getColumn(27).setMinWidth(0);
-        Tb.getColumnModel().getColumn(27).setPreferredWidth(0);*/
+        Tb.getColumnModel().getColumn(27).setPreferredWidth(0);
+
+        Tb.getColumnModel().getColumn(28).setMaxWidth(0);
+        Tb.getColumnModel().getColumn(28).setMinWidth(0);
+        Tb.getColumnModel().getColumn(28).setPreferredWidth(0);
+
+        Tb.getColumnModel().getColumn(29).setMaxWidth(0);
+        Tb.getColumnModel().getColumn(29).setMinWidth(0);
+        Tb.getColumnModel().getColumn(29).setPreferredWidth(0);
+
+        Tb.getColumnModel().getColumn(30).setMaxWidth(0);
+        Tb.getColumnModel().getColumn(30).setMinWidth(0);
+        Tb.getColumnModel().getColumn(30).setPreferredWidth(0);
+
+        Tb.getColumnModel().getColumn(31).setMaxWidth(0);
+        Tb.getColumnModel().getColumn(31).setMinWidth(0);
+        Tb.getColumnModel().getColumn(31).setPreferredWidth(0);
+
+        Tb.getColumnModel().getColumn(32).setMaxWidth(0);
+        Tb.getColumnModel().getColumn(32).setMinWidth(0);
+        Tb.getColumnModel().getColumn(32).setPreferredWidth(0);
+
+        Tb.getColumnModel().getColumn(33).setMaxWidth(0);
+        Tb.getColumnModel().getColumn(33).setMinWidth(0);
+        Tb.getColumnModel().getColumn(33).setPreferredWidth(0);
+
+        Tb.getColumnModel().getColumn(34).setMaxWidth(0);
+        Tb.getColumnModel().getColumn(34).setMinWidth(0);
+        Tb.getColumnModel().getColumn(34).setPreferredWidth(0);
+
+        Tb.getColumnModel().getColumn(35).setMaxWidth(0);
+        Tb.getColumnModel().getColumn(35).setMinWidth(0);
+        Tb.getColumnModel().getColumn(35).setPreferredWidth(0);
+
+        Tb.getColumnModel().getColumn(36).setMaxWidth(0);
+        Tb.getColumnModel().getColumn(36).setMinWidth(0);
+        Tb.getColumnModel().getColumn(36).setPreferredWidth(0);
+
+        Tb.getColumnModel().getColumn(37).setMaxWidth(0);
+        Tb.getColumnModel().getColumn(37).setMinWidth(0);
+        Tb.getColumnModel().getColumn(37).setPreferredWidth(0);
+
+        Tb.getColumnModel().getColumn(38).setMaxWidth(0);
+        Tb.getColumnModel().getColumn(38).setMinWidth(0);
+        Tb.getColumnModel().getColumn(38).setPreferredWidth(0);
     }
 
     private void LoadModelP() {
@@ -149,7 +181,7 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
 
         if (listP.size() > 0) {
             for (Planeacion pn : listP) {
-                String arreglo[] = new String[28];
+                String arreglo[] = new String[40];
 
                 arreglo[0] = String.valueOf(pn.getNumero());
                 arreglo[1] = pn.getNpedido();
@@ -168,17 +200,29 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
                 arreglo[14] = String.valueOf(pn.getC4());
                 arreglo[15] = String.valueOf(pn.getC5());
                 arreglo[16] = String.valueOf(pn.getC6());
-                arreglo[17] = String.valueOf(pn.getPares());
-                arreglo[18] = pn.getObservaciones();
-                arreglo[19] = pn.getOrdenCompra();
-                arreglo[20] = pn.getEstatus();
-                arreglo[21] = String.valueOf(pn.getPto1());
-                arreglo[22] = String.valueOf(pn.getPto2());
-                arreglo[23] = String.valueOf(pn.getPto3());
-                arreglo[24] = String.valueOf(pn.getPto4());
-                arreglo[25] = String.valueOf(pn.getPto5());
-                arreglo[26] = String.valueOf(pn.getPto6());
-                arreglo[27] = pn.getSerie();
+                arreglo[17] = String.valueOf(pn.getC7());
+                arreglo[18] = String.valueOf(pn.getC8());
+                arreglo[19] = String.valueOf(pn.getC9());
+                arreglo[20] = String.valueOf(pn.getC10());
+                arreglo[21] = String.valueOf(pn.getC11());
+                arreglo[22] = String.valueOf(pn.getC12());
+                arreglo[23] = String.valueOf(pn.getPares());
+                arreglo[24] = pn.getObservaciones();
+                arreglo[25] = pn.getOrdenCompra();
+                arreglo[26] = pn.getEstatus();
+                arreglo[27] = pn.getPto1();
+                arreglo[28] = pn.getPto2();
+                arreglo[29] = pn.getPto3();
+                arreglo[30] = pn.getPto4();
+                arreglo[31] = pn.getPto5();
+                arreglo[32] = pn.getPto6();
+                arreglo[33] = pn.getPto7();
+                arreglo[34] = pn.getPto8();
+                arreglo[35] = pn.getPto9();
+                arreglo[36] = pn.getPto10();
+                arreglo[37] = pn.getPto11();
+                arreglo[38] = pn.getPto12();
+                arreglo[39] = pn.getSerie();
                 Table.addRow(arreglo);
             }
         } else {
@@ -333,16 +377,14 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbLimpiarActionPerformed
 
     private void JbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbGuardarActionPerformed
-
         int Est = 20;
         String A = "A";
-
         Date Entrega = JdFecha.getDate();
         long e = Entrega.getTime();
         java.sql.Date Fecha = new java.sql.Date(e);
 
         String var = "";
-        String var2 = null;
+        String var2 = "";
         int Mes = Jmes.getMonth() + 1;
         int row = Table.getRowCount();
         int Programa = (int) Jsemana.getValue();
@@ -364,13 +406,25 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
                 int Cant4 = Integer.parseInt((String) Table.getValueAt(i, 14));
                 int Cant5 = Integer.parseInt((String) Table.getValueAt(i, 15));
                 int Cant6 = Integer.parseInt((String) Table.getValueAt(i, 16));
-                int Pto1 = Integer.parseInt((String) Table.getValueAt(i, 21));
-                int Pto2 = Integer.parseInt((String) Table.getValueAt(i, 22));
-                int Pto3 = Integer.parseInt((String) Table.getValueAt(i, 23));
-                int Pto4 = Integer.parseInt((String) Table.getValueAt(i, 24));
-                int Pto5 = Integer.parseInt((String) Table.getValueAt(i, 25));
-                int Pto6 = Integer.parseInt((String) Table.getValueAt(i, 26));
-                String Serie = Table.getValueAt(i, 27).toString();
+                int Cant7 = Integer.parseInt((String) Table.getValueAt(i, 17));
+                int Cant8 = Integer.parseInt((String) Table.getValueAt(i, 18));
+                int Cant9 = Integer.parseInt((String) Table.getValueAt(i, 19));
+                int Cant10 = Integer.parseInt((String) Table.getValueAt(i, 20));
+                int Cant11 = Integer.parseInt((String) Table.getValueAt(i, 21));
+                int Cant12 = Integer.parseInt((String) Table.getValueAt(i, 22));
+                String Pto1 = Table.getValueAt(i, 27).toString();
+                String Pto2 = Table.getValueAt(i, 28).toString();
+                String Pto3 = Table.getValueAt(i, 29).toString();
+                String Pto4 = Table.getValueAt(i, 30).toString();
+                String Pto5 = Table.getValueAt(i, 31).toString();
+                String Pto6 = Table.getValueAt(i, 32).toString();
+                String Pto7 = Table.getValueAt(i, 33).toString();
+                String Pto8 = Table.getValueAt(i, 34).toString();
+                String Pto9 = Table.getValueAt(i, 35).toString();
+                String Pto10 = Table.getValueAt(i, 36).toString();
+                String Pto11 = Table.getValueAt(i, 37).toString();
+                String Pto12 = Table.getValueAt(i, 38).toString();
+                String Serie = Table.getValueAt(i, 39).toString();
 
                 Planeacion p = new Planeacion();
                 p.setPrograma(Programa);
@@ -390,50 +444,48 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
                 p.setPto4(Pto4);
                 p.setPto5(Pto5);
                 p.setPto6(Pto6);
-                p.setPto7(0);
-                p.setPto8(0);
-                p.setPto9(0);
-                p.setPto10(0);
-                p.setPto11(0);
-                p.setPto12(0);
+                p.setPto7(Pto7);
+                p.setPto8(Pto8);
+                p.setPto9(Pto9);
+                p.setPto10(Pto10);
+                p.setPto11(Pto11);
+                p.setPto12(Pto12);
                 p.setC1(Cant1);
                 p.setC2(Cant2);
                 p.setC3(Cant3);
                 p.setC4(Cant4);
                 p.setC5(Cant5);
                 p.setC6(Cant6);
-                p.setC7(0);
-                p.setC8(0);
-                p.setC9(0);
-                p.setC10(0);
-                p.setC11(0);
-                p.setC12(0);
+                p.setC7(Cant7);
+                p.setC8(Cant8);
+                p.setC9(Cant9);
+                p.setC10(Cant10);
+                p.setC11(Cant11);
+                p.setC12(Cant12);
                 p.setSerie(Serie);
-                
-                
-                if (Serie == "A") {
-                if (obj.AddPlaneacionA(p, String.valueOf(Est), String.valueOf(var)) && obj.CambiarEstatus(String.valueOf(Est), String.valueOf(var))) {
-                    var = "ok";
-                   
+
+                /*if(obj.AddPlaneacionA(p,String.valueOf(Est), pedido)){
+                        var2 = "ok";     
+                }else{
+                    var2 = "error";
+                }*/
+                obj.AddPlaneacionA(p, String.valueOf(Est), pedido);
+                obj.CambiarEstatus(String.valueOf(Est), pedido);
+                var2 = "ok";
+                //FUNCIONA
+                /*if (obj.AddPlaneacionA(p,String.valueOf(Est), pedido)) {
+                    var2 = "ok";
                 } else {
-                    var = "error";
-                }
-            } else {
-                if (obj.AddPlaneacionA(p, String.valueOf(Est), String.valueOf(var))) {
-                   var = "ok";
-                } else {
-                    var = "error";
-                }
-            } 
+                    var2 = "error";
+                }*/
             }
         }
-        
-        if(var == "ok"){
-           JOptionPane.showMessageDialog(this, "Programa Guardado!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-        }else if(var == "error"){
-           JOptionPane.showMessageDialog(this, "Ocurrio un error!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-        }
+        if (var2 == "ok") {
+            JOptionPane.showMessageDialog(this, "Programa Guardado!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
 
+        } else if (var2 == "error") {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_JbGuardarActionPerformed
 
     private boolean ValidarDatos() {
@@ -457,12 +509,10 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
                 try {
                     JasperPrint jprint = JasperFillManager.fillReport(reporte, par, c);
                     JasperViewer view = new JasperViewer(jprint, false);
-
                     view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                     view.setIconImage(getImage());
                     view.setTitle("TOP-SUELAS");
                     view.setVisible(true);
-
                 } catch (JRException ex) {
                     Logger.getLogger(ReporteProductos.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -484,7 +534,7 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
                 int row = Table.getRowCount();
                 int pares = 0;
                 for (int i = 0; i < row; i++) {
-                    String tpares = (String) Table.getValueAt(i, 17);
+                    String tpares = (String) Table.getValueAt(i, 23);
                     pares += Integer.parseInt(tpares);
                     System.out.println(pares);
                 }

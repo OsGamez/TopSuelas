@@ -24,7 +24,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 
 public class RPedido extends javax.swing.JFrame {
-    Connection c = Server.getRcpt();
+    Connection c = Conexion.getRcpt();
     ObjectPedidos pedido = new ObjectPedidos();
     public RPedido() {
         initComponents();
