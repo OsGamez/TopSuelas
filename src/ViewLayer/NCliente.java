@@ -624,7 +624,7 @@ public class NCliente extends javax.swing.JDialog {
     private void JbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbGuardarActionPerformed
 
         if (JtRs.getText().isEmpty() || JtRFC.getText().isEmpty() || JtCta.getText().isEmpty()
-                || JtCod.getText().isEmpty() || JtContacto.getText().isEmpty()
+                || JtContacto.getText().isEmpty()
                 || JtCf.getText().isEmpty() || JtTel.getText().isEmpty() || JcAgente.getSelectedIndex() == 0
                 || JcCiudad.getSelectedIndex() == 0 || JcBanco.getSelectedIndex() == 0 || JcEstado.getSelectedIndex() == 0
                 || JcPais.getSelectedIndex() == 0 || JcZona.getSelectedIndex() == 0) {

@@ -499,7 +499,8 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
 
     private void JbReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbReporteActionPerformed
         if (this.Tb.getRowCount() == 0 && this.Tb.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(null, "No hay datos para exportar", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No hay datos para ex"
+                    + "portar", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
         } else {
             try {
                 Map par = new HashMap();
@@ -536,7 +537,6 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
                 for (int i = 0; i < row; i++) {
                     String tpares = (String) Table.getValueAt(i, 23);
                     pares += Integer.parseInt(tpares);
-                    System.out.println(pares);
                 }
                 lblPares.setText(String.valueOf(pares));
             }

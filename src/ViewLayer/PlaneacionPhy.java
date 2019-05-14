@@ -558,7 +558,6 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
         ArrayList<PtProducto> listaA = obj.getPhyAlmacen(JtAm.getText());
 
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-
             if (JtAm.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "No ingresaste un numero de almacén");
             } else {
@@ -588,7 +587,6 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
 
         if (row > 0) {
             int opcion = JOptionPane.showConfirmDialog(this, "¿Estas seguro de limpiar los registros?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
             if (opcion == JOptionPane.YES_OPTION) {
                 //EliminarRegistro();
                 //CleanTable();
@@ -640,7 +638,6 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
 
     private void JtPhylonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtPhylonKeyReleased
         if (evt.getExtendedKeyCode() == KeyEvent.VK_F12) {
-
             int row = JtPhylon.getSelectedRow();
             String Cant1 = (String) modelPhylon.getValueAt(row, 6);
             String Cant2 = (String) modelPhylon.getValueAt(row, 7);

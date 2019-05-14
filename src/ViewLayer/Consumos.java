@@ -38,7 +38,6 @@ public class Consumos extends javax.swing.JInternalFrame {
         JbSalir = new javax.swing.JButton();
         JbEliminar = new javax.swing.JButton();
         JbEditar = new javax.swing.JButton();
-        JbActualizar = new javax.swing.JButton();
         JbSeleccion = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         JtBuscar = new javax.swing.JTextField();
@@ -92,14 +91,6 @@ public class Consumos extends javax.swing.JInternalFrame {
             }
         });
 
-        JbActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1491313940-repeat_82991.png"))); // NOI18N
-        JbActualizar.setText("REFRESCAR");
-        JbActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JbActualizarActionPerformed(evt);
-            }
-        });
-
         JbSeleccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/seleccion.png"))); // NOI18N
         JbSeleccion.setText("DESPERDICIOS");
         JbSeleccion.addActionListener(new java.awt.event.ActionListener() {
@@ -120,8 +111,7 @@ public class Consumos extends javax.swing.JInternalFrame {
                     .addComponent(JbEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JbEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JbNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JbSeleccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JbActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(JbSeleccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -133,15 +123,13 @@ public class Consumos extends javax.swing.JInternalFrame {
                 .addComponent(JbEliminar)
                 .addGap(29, 29, 29)
                 .addComponent(JbEditar)
-                .addGap(31, 31, 31)
-                .addComponent(JbActualizar)
-                .addGap(26, 26, 26)
+                .addGap(35, 35, 35)
                 .addComponent(JbReporte)
-                .addGap(18, 18, 18)
-                .addComponent(JbSalir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
                 .addComponent(JbSeleccion)
-                .addContainerGap())
+                .addGap(30, 30, 30)
+                .addComponent(JbSalir)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -307,11 +295,6 @@ public class Consumos extends javax.swing.JInternalFrame {
         p.setAlwaysOnTop(true);
     }//GEN-LAST:event_JbReporteActionPerformed
 
-    private void JbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbActualizarActionPerformed
-        CleanTable();
-        LoadModelConsumo();
-    }//GEN-LAST:event_JbActualizarActionPerformed
-
     private void JtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyTyped
         char c = evt.getKeyChar();
         if (Character.isLowerCase(c)) {
@@ -349,7 +332,6 @@ public class Consumos extends javax.swing.JInternalFrame {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JbActualizar;
     private javax.swing.JButton JbEditar;
     private javax.swing.JButton JbEliminar;
     private javax.swing.JButton JbNuevo;

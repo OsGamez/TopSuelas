@@ -41,7 +41,6 @@ public class Moldes extends javax.swing.JInternalFrame {
         JbSalir = new javax.swing.JButton();
         JbEliminar = new javax.swing.JButton();
         JbEditar = new javax.swing.JButton();
-        JbActualizar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         JtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -94,14 +93,6 @@ public class Moldes extends javax.swing.JInternalFrame {
             }
         });
 
-        JbActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1491313940-repeat_82991.png"))); // NOI18N
-        JbActualizar.setText("REFRESCAR");
-        JbActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JbActualizarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -110,10 +101,7 @@ public class Moldes extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JbSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(JbActualizar))
-                    .addComponent(JbReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JbReporte, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                     .addComponent(JbEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JbEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JbNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -130,9 +118,7 @@ public class Moldes extends javax.swing.JInternalFrame {
                 .addComponent(JbEditar)
                 .addGap(31, 31, 31)
                 .addComponent(JbReporte)
-                .addGap(29, 29, 29)
-                .addComponent(JbActualizar)
-                .addGap(27, 27, 27)
+                .addGap(33, 33, 33)
                 .addComponent(JbSalir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -305,11 +291,6 @@ public class Moldes extends javax.swing.JInternalFrame {
         p.setAlwaysOnTop(true); 
     }//GEN-LAST:event_JbReporteActionPerformed
 
-    private void JbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbActualizarActionPerformed
-        CleanTable();
-        LoadModelMolde();
-    }//GEN-LAST:event_JbActualizarActionPerformed
-
     private void JtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyTyped
       char c = evt.getKeyChar();
       if(Character.isLowerCase(c)){
@@ -334,7 +315,6 @@ public class Moldes extends javax.swing.JInternalFrame {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JbActualizar;
     private javax.swing.JButton JbEditar;
     private javax.swing.JButton JbEliminar;
     private javax.swing.JButton JbNuevo;
