@@ -1,5 +1,7 @@
 package ObjectLayer;
 
+import java.io.File;
+
 public class Usuario {
 
     private int Id_Usuario;
@@ -8,6 +10,7 @@ public class Usuario {
     private String Password;
     private String Departamento;
     private boolean Activo;
+    private File Foto;
 
     public Usuario() {
     }
@@ -59,6 +62,16 @@ public class Usuario {
     public void setActivo(boolean Activo) {
         this.Activo = Activo;
     }
+
+    public File getFoto() {
+        return Foto;
+    }
+
+    public void setFoto(File Foto) {
+        this.Foto = Foto;
+    }
+    
+    
 
     @Override
     public String toString() {

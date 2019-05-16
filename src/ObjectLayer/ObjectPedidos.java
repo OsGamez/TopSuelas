@@ -12,10 +12,10 @@ import java.util.ArrayList;
 
 public class ObjectPedidos {
 
-    Connection c = Server.getRpt();
-    Connection pa = Server.getRcpt();
-    //Connection c = Conexion.getRpt();
-    //Connection pa = Conexion.getRcpt();
+    //Connection c = Server.getRpt();
+    //Connection pa = Server.getRcpt();
+    Connection c = Conexion.getRpt();
+    Connection pa = Conexion.getRcpt();
 
     PreparedStatement st, dp = null;
     ResultSet rs, ra = null;
@@ -56,7 +56,7 @@ public class ObjectPedidos {
                     rpta = obj.insertDetalle(det);
 
                     if (!rpta) {
-                        break;
+                        c.rollback();
                     }
                 }
                 pam.setNpedido(p.getNpedido());
@@ -64,10 +64,10 @@ public class ObjectPedidos {
                 if (rpta) {
                     c.commit();
                 } else {
-                    Conexion.rollback(c);
+                    c.rollback();
                 }
             } else {
-                Conexion.rollback(c);
+                c.rollback();
             }
             Conexion.cerrarPrep(st);
         } catch (SQLException ex) {
@@ -117,7 +117,7 @@ public class ObjectPedidos {
                     dt.setNpedido(p.getNpedido());
                     rpta = obj.insertDetalleA(dt);
                     if (!rpta) {
-                        break;
+                       pa.rollback();
                     }
                 }
                 pam.setNpedido(p.getNpedido());
@@ -125,10 +125,10 @@ public class ObjectPedidos {
                 if (rpta) {
                     pa.commit();
                 } else {
-                    Conexion.rollbackA(pa);
+                    pa.rollback();
                 }
             } else {
-                Conexion.rollbackA(pa);
+                pa.rollback();
             }
             Conexion.cerrarPhylonA(dp);
         } catch (SQLException ex) {

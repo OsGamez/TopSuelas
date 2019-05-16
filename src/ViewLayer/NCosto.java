@@ -505,8 +505,8 @@ public class NCosto extends javax.swing.JDialog {
     private boolean ValidarCorrida() {
         switch (JbCorrida.getText()) {
             case "[10-12]":
-                if (JtPunto.getText().equals("10") || JtPunto.getText().equals("10.55") || JtPunto.getText().equals("11")
-                    || JtPunto.getText().equals("11.5") || JtPunto.getText().equals("12") || JtPunto.getText().equals("12.5")    ) {
+                if (JtPunto.getText().equals("10") || JtPunto.getText().equals("105") || JtPunto.getText().equals("11")
+                    || JtPunto.getText().equals("115") || JtPunto.getText().equals("12") || JtPunto.getText().equals("125")    ) {
                     return true;
                 } else {
                     return false;
@@ -514,8 +514,8 @@ public class NCosto extends javax.swing.JDialog {
             case "[11-14]":
                 if (JtPunto.getText().equals("11") || JtPunto.getText().equals("12") || JtPunto.getText().equals("13")
                         || JtPunto.getText().equals("14")
-                    || JtPunto.getText().equals("11.5") || JtPunto.getText().equals("12.5") || JtPunto.getText().equals("13.5")
-                        || JtPunto.getText().equals("14.5")    ) {
+                    || JtPunto.getText().equals("115") || JtPunto.getText().equals("125") || JtPunto.getText().equals("135")
+                        || JtPunto.getText().equals("145")    ) {
                     return true;
                 } else {
                     return false;
@@ -530,8 +530,8 @@ public class NCosto extends javax.swing.JDialog {
             case "[13-16]":
                 if (JtPunto.getText().equals("13") || JtPunto.getText().equals("14") || JtPunto.getText().equals("15")
                         || JtPunto.getText().equals("16")
-                    || JtPunto.getText().equals("13.5") || JtPunto.getText().equals("14.5") || JtPunto.getText().equals("15.5")
-                        || JtPunto.getText().equals("16.5")    ) {
+                    || JtPunto.getText().equals("135") || JtPunto.getText().equals("145") || JtPunto.getText().equals("155")
+                        || JtPunto.getText().equals("165")    ) {
                     return true;
                 } else {
                     return false;
@@ -610,7 +610,7 @@ public class NCosto extends javax.swing.JDialog {
                 }    
             case "[27-29]":
                 if (JtPunto.getText().equals("27") || JtPunto.getText().equals("28") || JtPunto.getText().equals("29")
-                || JtPunto.getText().equals("27.5") || JtPunto.getText().equals("28.5") || JtPunto.getText().equals("29.5")        ) {
+                || JtPunto.getText().equals("275") || JtPunto.getText().equals("285") || JtPunto.getText().equals("295")        ) {
                     return true;
                 } else {
                     return false;

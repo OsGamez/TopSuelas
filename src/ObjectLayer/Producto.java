@@ -24,7 +24,7 @@ public class Producto {
     private double PrecioB;
     private int Id_Lista;
     PreparedStatement st = null;
-    Connection c = Server.getProduccion();
+    Connection c = Conexion.getProduccion();
     ResultSet rs = null;
 
     public Producto() {

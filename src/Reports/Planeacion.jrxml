@@ -16,10 +16,11 @@ SELECT
  ROW_NUMBER() OVER(ORDER BY p.Npedido) AS Numero, 
  dp.Npedido as Pedido,
  c.RazonSocial as Cliente,
- CASE WHEN a.Descripcion = 'JUAN LOPEZ' THEN 'J'
-	WHEN a.Descripcion = 'GERARDO' THEN 'G'
-	WHEN a.Descripcion = 'HORACIO H' THEN 'H'
-	WHEN a.Descripcion = 'IVAN GARCIA' THEN 'I' END AS Agente,
+ CASE WHEN a.Descripcion = 'JOSE CARLOS' THEN 'J'
+	WHEN a.Descripcion = 'GERARDO PEDROZA' THEN 'G'
+	WHEN a.Descripcion = 'HORACIO HERNANDEZ' THEN 'H'
+	WHEN a.Descripcion = 'ROBERTO OLIVA' THEN 'R'
+	WHEN a.Descripcion = 'FRANCISCO VALLEJO' THEN 'F' END AS Agente,
  l.Descripcion as Modelo,cr.Descripcion as Color
 ,
 CASE WHEN Corrida = '[10-12]' THEN C1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1

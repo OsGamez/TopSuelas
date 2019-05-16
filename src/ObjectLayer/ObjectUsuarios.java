@@ -1,14 +1,13 @@
 package ObjectLayer;
 
-import DataAccesLayer.Conexion;
 import DataAccesLayer.Server;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 public class ObjectUsuarios {
 
@@ -18,31 +17,19 @@ public class ObjectUsuarios {
 
     public boolean registrarUsuario(Usuario usuario) {
         try {
-            us.setAutoCommit(false);
-            try {
-                st = us.prepareStatement("INSERT INTO Usuarios (Nombre,Usuario,Password,Departamento,Activo)"
-                        + "VALUES(?,?,?,?,?)");
+            st = us.prepareStatement("INSERT INTO Usuarios (Nombre,Usuario,Password,Departamento,Activo)"
+                    + "VALUES(?,?,?,?,?,?)");
 
-                st.setString(1, usuario.getNombre());
-                st.setString(2, usuario.getUsuario());
-                st.setString(3, usuario.getPassword());
-                st.setString(4, usuario.getDepartamento());
-                st.setBoolean(5, usuario.getActivo());
-
-                st.execute();
-                us.commit();
-                return true;
-            } catch (SQLException ex) {
-                us.rollback();
-                ex.printStackTrace();
-                return false;
-            } finally {
-                if (st != null) {
-                    st.close();
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ObjectUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            st.setString(1, usuario.getNombre());
+            st.setString(2, usuario.getUsuario());
+            st.setString(3, usuario.getPassword());
+            st.setString(4, usuario.getDepartamento());
+            st.setBoolean(5, usuario.getActivo());
+            st.executeUpdate();
+            st.close();
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
             return false;
         }
     }
@@ -112,7 +99,7 @@ public class ObjectUsuarios {
         ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
 
         try {
-            st = us.prepareStatement("SELECT Id_Usuario,Nombre,Usuario,Password,Departamento\n"
+            st = us.prepareStatement("SELECT Id_Usuario,Nombre,Usuario,Password,Departamento,Imagen\n"
                     + "FROM Usuarios WHERE Activo=1 ORDER BY Nombre");
 
             rs = st.executeQuery();
@@ -122,6 +109,7 @@ public class ObjectUsuarios {
                 String usuario = rs.getString("Usuario");
                 String pass = rs.getString("Password");
                 String Dep = rs.getString("Departamento");
+                InputStream Img = rs.getBinaryStream("Imagen");
 
                 Usuario us = new Usuario();
                 us.setId_Usuario(id);
@@ -129,6 +117,7 @@ public class ObjectUsuarios {
                 us.setUsuario(usuario);
                 us.setPassword(pass);
                 us.setDepartamento(Dep);
+                
                 listaUsuarios.add(us);
             }
         } catch (SQLException ex) {
@@ -175,5 +164,21 @@ public class ObjectUsuarios {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+    
+    public InputStream buscarFoto(Usuario usuario){
+        InputStream streamFoto = null;
+        try {
+            st = us.prepareStatement("SELECT Imagen FROM Usuarios WHERE Id_Usuario = ?");
+            st.setInt(1, usuario.getId_Usuario());
+            rs = st.executeQuery();
+            
+            while(rs.next()){
+                streamFoto = rs.getBinaryStream("Imagen");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return streamFoto;
     }
 }

@@ -54,6 +54,8 @@ public class Almacenes extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         JtAlmacen = new javax.swing.JTable();
 
+        setClosable(true);
+        setMaximizable(true);
         setTitle("ALMACENES");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/ForkliftTruck_Loaded_Black_icon-icons.com_54893.png"))); // NOI18N
 

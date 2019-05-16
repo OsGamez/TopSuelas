@@ -53,6 +53,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
     int cont = 1;
     int cc = 0;
     public int Id_Usuario;
+    public String Estado;
     DefaultTableModel modelPedido = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int row, int column) {
@@ -92,7 +93,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JtPedido.getTableHeader().setReorderingAllowed(false);
         JbActualizar.setEnabled(false);
         JbSerie.setText("A");
-        JbSerie.setVisible(false);
+        //JbSerie.setVisible(false);
         JtRenglon.setVisible(false);
         JdCaptura.setEnabled(false);
         JcCliente.requestFocus();
@@ -165,7 +166,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JtCliente = new javax.swing.JTextField();
         JtRenglon = new javax.swing.JTextField();
         JbSerie = new javax.swing.JLabel();
-        JcColor = new javax.swing.JCheckBox();
+        JcPrecio = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         JtCant = new javax.swing.JTextField();
@@ -538,10 +539,10 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
         JbSerie.setText("A");
 
-        JcColor.setText("PREMIER");
-        JcColor.addItemListener(new java.awt.event.ItemListener() {
+        JcPrecio.setText("PREMIER");
+        JcPrecio.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                JcColorItemStateChanged(evt);
+                JcPrecioItemStateChanged(evt);
             }
         });
 
@@ -781,7 +782,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(JcColor)
+                .addComponent(JcPrecio)
                 .addGap(65, 65, 65)
                 .addComponent(JbAlerta)
                 .addGap(37, 37, 37))
@@ -945,7 +946,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(JbAlerta, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(JcColor)
+                                .addComponent(JcPrecio)
                                 .addGap(14, 14, 14)))
                         .addGap(31, 31, 31)))
                 .addComponent(JtabDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2000,7 +2001,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
         } else {
             AddItem();
             JbAlerta.setEnabled(false);
-            JcColor.setEnabled(false);
+            JcPrecio.setEnabled(false);
         }
     }
     
@@ -2278,7 +2279,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
             JbSerie.setText("A");
 
-            if (JcColor.isSelected() == false) {
+            if (JcPrecio.isSelected() == false) {
                 for (Precio p : lista) {
                     double precio = p.getPrecioA();
                     JtprecioA.setText(precioA.format(precio));
@@ -2293,7 +2294,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
             JbAlerta.setBackground(java.awt.Color.yellow);
             JbSerie.setText("B");
 
-            if (JcColor.isSelected() == false) {
+            if (JcPrecio.isSelected() == false) {
                 for (Precio p : lista) {
                     double precio = p.getPrecioB();
                     JtprecioA.setText(precioA.format(precio));
@@ -2313,22 +2314,22 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
         ArrayList<Precio> lista = pc.GetByID(prod.getId_Producto(), cli.getId_Cliente());
 
-        if (JbAlerta.getBackground().equals(java.awt.Color.gray) && JcColor.isSelected() == false) {
+        if (JbSerie.getText().equals("A") && JcPrecio.isSelected() == false) {
             for (Precio p : lista) {
                 double precio = p.getPrecioA();
                 JtprecioA.setText(precioA.format(precio));
             }
-        } else if (JbAlerta.getBackground().equals(java.awt.Color.gray) && JcColor.isSelected() == true) {
+        } else if (JbSerie.getText().equals("A") && JcPrecio.isSelected() == true) {
             for (Precio p : lista) {
                 double precio = p.getPrecioAP();
                 JtprecioA.setText(precioA.format(precio));
             }
-        } else if (JbAlerta.getBackground().equals(java.awt.Color.yellow) && JcColor.isSelected() == false) {
+        } else if (JbSerie.getText().equals("B") && JcPrecio.isSelected() == false) {
             for (Precio p : lista) {
                 double precio = p.getPrecioB();
                 JtprecioA.setText(precioA.format(precio));
             }
-        } else if (JbAlerta.getBackground().equals(java.awt.Color.yellow) && JcColor.isSelected() == true) {
+        } else if (JbSerie.getText().equals("B") && JcPrecio.isSelected() == true) {
             for (Precio p : lista) {
                 double precio = p.getPrecioBP();
                 JtprecioA.setText(precioA.format(precio));
@@ -2437,6 +2438,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                             Dt.setCSurt3(0);
                             Dt.setCSurt4(0);
                             Dt.setCSurt5(0);
+                            Dt.setCSurt6(0);
                             Dt.setCSurt7(0);
                             Dt.setCSurt8(0);
                             Dt.setCSurt9(0);
@@ -2982,7 +2984,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     if (pedido.actualizarPedido(pd, det, id_dt) && pedido.actualizarPedidoA(pd, det, id_dt)) {
                         JOptionPane.showMessageDialog(this, "Se actualizo el pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         JbAlerta.setEnabled(true);
-                        JcColor.setEnabled(true);
+                        JcPrecio.setEnabled(true);
                     } else {
                         JOptionPane.showMessageDialog(this, "Este pedido no se puede modificar!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         JbAlerta.setEnabled(true);
@@ -2995,7 +2997,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     if (pedido.actualizarPedidoA(pd, det, id_dt)) {
                         JOptionPane.showMessageDialog(this, "Se actualizo el pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         JbAlerta.setEnabled(true);
-                        JcColor.setEnabled(true);
+                        JcPrecio.setEnabled(true);
                         OcultarCampos();
                         Limpiar();
                     } else {
@@ -3021,7 +3023,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
         Pro.setDescripcion(JtPedido.getValueAt(row, 2).toString());
         JcSuela.getModel().setSelectedItem(Pro);
         JtprecioA.setText(JtPedido.getValueAt(row, 18).toString());
-        JcColor.setEnabled(false);
+        JcPrecio.setEnabled(false);
     }//GEN-LAST:event_JtPedidoMouseClicked
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
@@ -3037,38 +3039,38 @@ public class Pedidos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_JbAlertaActionPerformed
 
-    private void JcColorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JcColorItemStateChanged
+    private void JcPrecioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JcPrecioItemStateChanged
         Producto prod = (Producto) JcSuela.getSelectedItem();
         Cliente cli = (Cliente) JcCliente.getSelectedItem();
         ArrayList<Precio> lista = pc.GetByID(prod.getId_Producto(), cli.getId_Cliente());
 
         if (evt.getStateChange() == ItemEvent.SELECTED) {
 
-            if (JbAlerta.getBackground().equals(java.awt.Color.gray)) {
+            if (JbSerie.getText().equals("A")) {
                 for (Precio p : lista) {
                     double precio = p.getPrecioAP();
                     JtprecioA.setText(precioA.format(precio));
                 }
-            } else if (JbAlerta.getBackground().equals(java.awt.Color.yellow)) {
+            } else if (JbSerie.getText().equals("B")) {
                 for (Precio p : lista) {
                     double precio = p.getPrecioBP();
                     JtprecioA.setText(precioA.format(precio));
                 }
             }
         } else {
-            if (JbAlerta.getBackground().equals(java.awt.Color.gray)) {
+            if (JbSerie.getText().equals("A")) {
                 for (Precio p : lista) {
                     double precio = p.getPrecioA();
                     JtprecioA.setText(precioA.format(precio));
                 }
-            } else if (JbAlerta.getBackground().equals(java.awt.Color.yellow)) {
+            } else if (JbSerie.getText().equals("B")) {
                 for (Precio p : lista) {
                     double precio = p.getPrecioB();
                     JtprecioA.setText(precioA.format(precio));
                 }
             }
         }
-    }//GEN-LAST:event_JcColorItemStateChanged
+    }//GEN-LAST:event_JcPrecioItemStateChanged
 
     private void JtCantKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtCantKeyPressed
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
@@ -3179,7 +3181,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JdEntrega.setCalendar(fechaActual);
         JdRecibido.setCalendar(fechaActual);
         JbAlerta.setEnabled(true);
-        JcColor.setEnabled(true);
+        JcPrecio.setEnabled(true);
     }
 
     private void LimpiarCliente() {
@@ -3572,9 +3574,9 @@ public class Pedidos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel JbPlazo;
     private javax.swing.JButton JbQuitar;
     private javax.swing.JButton JbSalir;
-    private javax.swing.JLabel JbSerie;
+    public javax.swing.JLabel JbSerie;
     private javax.swing.JComboBox<String> JcCliente;
-    private javax.swing.JCheckBox JcColor;
+    private javax.swing.JCheckBox JcPrecio;
     private javax.swing.JComboBox<String> JcSuela;
     private com.toedter.calendar.JDateChooser JdCaptura;
     private com.toedter.calendar.JDateChooser JdEntrega;

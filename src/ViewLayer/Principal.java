@@ -4,6 +4,7 @@ import ObjectLayer.Copiaarchivo;
 import ObjectLayer.Hora;
 import ObjectLayer.ObjectVersioning;
 import ObjectLayer.Usuario;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
@@ -49,6 +50,7 @@ public class Principal extends javax.swing.JFrame {
     PlaneacionPhy phy;
     Consumos sumos;
     Etiquetas etiq;
+    public String Estado = "A";
 
     Maquinas maq;
 
@@ -73,6 +75,7 @@ public class Principal extends javax.swing.JFrame {
         JbRol.setText(us.getDepartamento());
         this.us = us;
         LoadVersion();
+        verificarEstado();
         if (us.getDepartamento().equals("ADMIN")) {
 
         } else if (us.getUsuario().equals("kim")) {
@@ -86,6 +89,16 @@ public class Principal extends javax.swing.JFrame {
             JmCPT.setVisible(false);
             JmConfig.setVisible(false);
         }
+    }
+
+    public void verificarEstado() {
+        /*if(JbAlerta.equals("A")){
+            JbAlerta.setForeground(Color.green);
+            System.out.println("A");
+        }else if(JbAlerta.equals("B")){
+            JbAlerta.setForeground(Color.red);
+            System.out.println("B");
+        }*/
     }
 
     private void Cerrar() {
@@ -170,6 +183,8 @@ public class Principal extends javax.swing.JFrame {
         JbUser = new javax.swing.JLabel();
         JbRol = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        JbAlerta = new javax.swing.JLabel();
         cpt = new javax.swing.JLabel();
         cobranza = new javax.swing.JLabel();
         nominas = new javax.swing.JLabel();
@@ -592,7 +607,6 @@ public class Principal extends javax.swing.JFrame {
 
         JbUser.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         JbUser.setForeground(new java.awt.Color(255, 255, 255));
-        JbUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/females_female_avatar_woman_people_faces_18406.png"))); // NOI18N
         JbUser.setText("jLabel2");
 
         JbRol.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -606,29 +620,48 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/females_female_avatar_woman_people_faces_18406.png"))); // NOI18N
+
+        JbAlerta.setForeground(new java.awt.Color(0, 255, 0));
+        JbAlerta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/62794bell_109308.png"))); // NOI18N
+        JbAlerta.setText("A");
+        JbAlerta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                JbAlertaMousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
                 .addComponent(JbUser)
                 .addGap(44, 44, 44)
                 .addComponent(JbRol)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
+                .addComponent(JbAlerta, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1041, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(JbUser)
-                        .addComponent(JbRol)))
-                .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JbUser)
+                            .addComponent(JbRol)
+                            .addComponent(JbAlerta)))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         cpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/cpt.png"))); // NOI18N
@@ -663,22 +696,24 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(nominas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(prod, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
+                    .addComponent(prod, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(127, 127, 127)
-                .addComponent(cpt, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                .addComponent(cpt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(138, 138, 138)
-                .addComponent(cobranza, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))
+                .addComponent(cobranza, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(prod, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
                     .addComponent(cobranza, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -700,7 +735,7 @@ public class Principal extends javax.swing.JFrame {
         );
         MainContentLayout.setVerticalGroup(
             MainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -979,12 +1014,14 @@ public class Principal extends javax.swing.JFrame {
             pedidos = new Pedidos();
             MainContent.add(pedidos);
             pedidos.Id_Usuario = Integer.parseInt(id_usuario);
+            pedidos.JbSerie.setText(Estado);
             MainContent.getDesktopManager().maximizeFrame(pedidos);
             pedidos.setVisible(true);
         } else {
             pedidos.dispose();
             pedidos = new Pedidos();
             pedidos.Id_Usuario = Integer.parseInt(id_usuario);
+            pedidos.JbSerie.setText(Estado);
             MainContent.add(pedidos);
             MainContent.getDesktopManager().maximizeFrame(pedidos);
             pedidos.setVisible(true);
@@ -1062,14 +1099,15 @@ public class Principal extends javax.swing.JFrame {
         etiq.setVisible(true);
 
     }
-    private void LoadVersion(){
+
+    private void LoadVersion() {
         try {
-                Copiaarchivo ca= new Copiaarchivo();
-                ca.start();
+            Copiaarchivo ca = new Copiaarchivo();
+            ca.start();
         } catch (Exception e) {
-            
+
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error en el uso de un directorio para copia de archivos \n"+e.getMessage(), "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error en el uso de un directorio para copia de archivos \n" + e.getMessage(), "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
         }
     }
     private void JmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmSalirActionPerformed
@@ -1203,6 +1241,19 @@ public class Principal extends javax.swing.JFrame {
     private void JmetiqprodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmetiqprodActionPerformed
         LoadEtiqueta();
     }//GEN-LAST:event_JmetiqprodActionPerformed
+
+    private void JbAlertaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JbAlertaMousePressed
+
+        if (evt.getClickCount() > 1) {
+            JbAlerta.setText("B");
+            JbAlerta.setForeground(Color.red);
+            Estado = "B";
+        } else {
+            JbAlerta.setText("A");
+            JbAlerta.setForeground(Color.green);
+            Estado = "A";
+        }
+    }//GEN-LAST:event_JbAlertaMousePressed
     private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {
         LoadMaquina();
     }
@@ -1243,6 +1294,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel JbAlerta;
     public javax.swing.JLabel JbRol;
     private javax.swing.JLabel JbUser;
     private javax.swing.JMenuItem JmAgente;
@@ -1302,6 +1354,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel cobranza;
     private javax.swing.JLabel cpt;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

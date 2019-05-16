@@ -12,8 +12,8 @@ import java.util.logging.Logger;
 
 public class ObjectClientes {
 
-    Connection c = Server.getCobranza();
-    Connection rc = Server.getRcobranza();
+    Connection c = Conexion.getCobranza();
+    Connection rc = Conexion.getRcobranza();
     PreparedStatement st = null;
     PreparedStatement copy = null;
     ResultSet rs = null;
