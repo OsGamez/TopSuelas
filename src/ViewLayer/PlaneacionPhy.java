@@ -286,7 +286,6 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
         JlEstilo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         JlEstilo.setText("1");
 
-        JtPhylon.setBorder(null);
         JtPhylon.setModel(modelPhylon);
         JtPhylon.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
