@@ -12,10 +12,10 @@ import java.util.ArrayList;
 
 public class ObjectPedidos {
 
-    Connection c = Server.getRpt();
-    Connection pa = Server.getRcpt();
-    //Connection c = Conexion.getRpt();
-    //Connection pa = Conexion.getRcpt();
+    //Connection c = Server.getRpt();
+    //Connection pa = Server.getRcpt();
+    Connection c = Conexion.getRpt();
+    Connection pa = Conexion.getRcpt();
 
     PreparedStatement st, dp = null;
     ResultSet rs, ra = null;
@@ -56,7 +56,7 @@ public class ObjectPedidos {
                     rpta = obj.insertDetalle(det);
 
                     if (!rpta) {
-                        break;
+                        c.rollback();
                     }
                 }
                 pam.setNpedido(p.getNpedido());
@@ -64,10 +64,10 @@ public class ObjectPedidos {
                 if (rpta) {
                     c.commit();
                 } else {
-                    Conexion.rollback(c);
+                    c.rollback();
                 }
             } else {
-                Conexion.rollback(c);
+                c.rollback();
             }
             Conexion.cerrarPrep(st);
         } catch (SQLException ex) {
@@ -117,7 +117,7 @@ public class ObjectPedidos {
                     dt.setNpedido(p.getNpedido());
                     rpta = obj.insertDetalleA(dt);
                     if (!rpta) {
-                        break;
+                       pa.rollback();
                     }
                 }
                 pam.setNpedido(p.getNpedido());
@@ -125,10 +125,10 @@ public class ObjectPedidos {
                 if (rpta) {
                     pa.commit();
                 } else {
-                    Conexion.rollbackA(pa);
+                    pa.rollback();
                 }
             } else {
-                Conexion.rollbackA(pa);
+                pa.rollback();
             }
             Conexion.cerrarPhylonA(dp);
         } catch (SQLException ex) {
@@ -172,7 +172,7 @@ public class ObjectPedidos {
                     + "pd.Importe,p.Fecha_Pedido,p.Fecha_Captura,p.Fecha_Entrega,p.Fecha_Recibido,pd.Pares,\n"
                     + "p.Serie,pd.Estatus,prod.Id_Producto,prod.Descripcion as Suela,pd.Corrida,cl.Descripcion as Color,\n"
                     + "pd.Precio,\n"
-                    + "pd.C1,pd.C2,pd.C3,pd.C4,pd.C5,pd.C6,pd.CSurt1,pd.CSurt2,pd.CSurt3,pd.CSurt4,pd.CSurt5,pd.CSurt6 \n"
+                    + "pd.C1,pd.C2,pd.C3,pd.C4,pd.C5,pd.C6,pd.C7,pd.C8,pd.C9,pd.C10,pd.C11,pd.C12,pd.CSurt1,pd.CSurt2,pd.CSurt3,pd.CSurt4,pd.CSurt5,pd.CSurt6 \n"
                     + "from Pedidos p inner join Dpedido pd\n"
                     + "on p.Npedido = pd.Npedido \n"
                     + "inner join  CobranzaPhy.dbo.Clientes as c on p.Id_Cliente = c.Id_Cliente\n"
@@ -223,6 +223,12 @@ public class ObjectPedidos {
                 p.setC4(ra.getInt("C4"));
                 p.setC5(ra.getInt("C5"));
                 p.setC6(ra.getInt("C6"));
+                p.setC6(ra.getInt("C7"));
+                p.setC6(ra.getInt("C8"));
+                p.setC6(ra.getInt("C9"));
+                p.setC6(ra.getInt("C10"));
+                p.setC6(ra.getInt("C11"));
+                p.setC6(ra.getInt("C12"));
                 p.setCSurt1(ra.getInt("CSurt1"));
                 p.setCSurt2(ra.getInt("CSurt2"));
                 p.setCSurt3(ra.getInt("CSurt3"));

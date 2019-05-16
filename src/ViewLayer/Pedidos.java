@@ -53,6 +53,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
     int cont = 1;
     int cc = 0;
     public int Id_Usuario;
+    public String Estado;
     DefaultTableModel modelPedido = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int row, int column) {
@@ -61,7 +62,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
     };
     Connection c = Server.getRpt();
     int Id_Producto;
-    int cantidad, c1, c2, c3, c4, c5, c6, c7;
+    int cantidad, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12;
     DecimalFormat precioA = new DecimalFormat("#.00");
     DecimalFormat precioB = new DecimalFormat("#.00");
     SimpleDateFormat sm = new SimpleDateFormat("dd/MM/yyyy");
@@ -92,9 +93,10 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JtPedido.getTableHeader().setReorderingAllowed(false);
         JbActualizar.setEnabled(false);
         JbSerie.setText("A");
-        JbSerie.setVisible(false);
+        //JbSerie.setVisible(false);
         JtRenglon.setVisible(false);
         JdCaptura.setEnabled(false);
+        JcCliente.requestFocus();
     }
 
     @SuppressWarnings("unchecked")
@@ -150,20 +152,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         JcCliente = new javax.swing.JComboBox<>();
         JcSuela = new javax.swing.JComboBox<>();
-        jLabel13 = new javax.swing.JLabel();
-        JtCant = new javax.swing.JTextField();
-        L1 = new javax.swing.JLabel();
-        JtC1 = new javax.swing.JTextField();
-        L2 = new javax.swing.JLabel();
-        JtC2 = new javax.swing.JTextField();
-        L3 = new javax.swing.JLabel();
-        JtC3 = new javax.swing.JTextField();
-        L4 = new javax.swing.JLabel();
-        JtC4 = new javax.swing.JTextField();
-        L5 = new javax.swing.JLabel();
-        JtC5 = new javax.swing.JTextField();
-        L6 = new javax.swing.JLabel();
-        JtC6 = new javax.swing.JTextField();
         JbAgregar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         JtCorrida = new javax.swing.JTextField();
@@ -178,7 +166,34 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JtCliente = new javax.swing.JTextField();
         JtRenglon = new javax.swing.JTextField();
         JbSerie = new javax.swing.JLabel();
-        JcColor = new javax.swing.JCheckBox();
+        JcPrecio = new javax.swing.JCheckBox();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        JtCant = new javax.swing.JTextField();
+        L1 = new javax.swing.JLabel();
+        JtC1 = new javax.swing.JTextField();
+        L2 = new javax.swing.JLabel();
+        JtC2 = new javax.swing.JTextField();
+        L3 = new javax.swing.JLabel();
+        JtC3 = new javax.swing.JTextField();
+        L4 = new javax.swing.JLabel();
+        JtC4 = new javax.swing.JTextField();
+        L5 = new javax.swing.JLabel();
+        JtC5 = new javax.swing.JTextField();
+        L6 = new javax.swing.JLabel();
+        JtC6 = new javax.swing.JTextField();
+        JtC7 = new javax.swing.JTextField();
+        L7 = new javax.swing.JLabel();
+        JtC8 = new javax.swing.JTextField();
+        L8 = new javax.swing.JLabel();
+        JtC9 = new javax.swing.JTextField();
+        L9 = new javax.swing.JLabel();
+        L10 = new javax.swing.JLabel();
+        JtC10 = new javax.swing.JTextField();
+        L11 = new javax.swing.JLabel();
+        JtC11 = new javax.swing.JTextField();
+        L12 = new javax.swing.JLabel();
+        JtC12 = new javax.swing.JTextField();
 
         setClosable(true);
         setMaximizable(true);
@@ -469,27 +484,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel13.setText("Cantidad:");
-
-        L1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        L1.setText("C1");
-
-        L2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        L2.setText("C2");
-
-        L3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        L3.setText("C3");
-
-        L4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        L4.setText("C4");
-
-        L5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        L5.setText("C5");
-
-        L6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        L6.setText("C6");
-
         JbAgregar.setText("Agregar >>>");
         JbAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -545,12 +539,238 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
         JbSerie.setText("A");
 
-        JcColor.setText("PREMIER");
-        JcColor.addItemListener(new java.awt.event.ItemListener() {
+        JcPrecio.setText("PREMIER");
+        JcPrecio.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                JcColorItemStateChanged(evt);
+                JcPrecioItemStateChanged(evt);
             }
         });
+
+        jPanel1.setBorder(null);
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel13.setText("Cantidad:");
+
+        JtCant.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JtCantKeyPressed(evt);
+            }
+        });
+
+        L1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        L1.setText("C1");
+
+        JtC1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JtC1KeyPressed(evt);
+            }
+        });
+
+        L2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        L2.setText("C2");
+
+        JtC2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JtC2KeyPressed(evt);
+            }
+        });
+
+        L3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        L3.setText("C3");
+
+        JtC3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JtC3KeyPressed(evt);
+            }
+        });
+
+        L4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        L4.setText("C4");
+
+        JtC4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JtC4KeyPressed(evt);
+            }
+        });
+
+        L5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        L5.setText("C5");
+
+        JtC5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JtC5KeyPressed(evt);
+            }
+        });
+
+        L6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        L6.setText("C6");
+
+        JtC6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JtC6KeyPressed(evt);
+            }
+        });
+
+        JtC7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JtC7KeyPressed(evt);
+            }
+        });
+
+        L7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        L7.setText("C7");
+
+        JtC8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JtC8KeyPressed(evt);
+            }
+        });
+
+        L8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        L8.setText("C8");
+
+        JtC9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JtC9KeyPressed(evt);
+            }
+        });
+
+        L9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        L9.setText("C9");
+
+        L10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        L10.setText("C10");
+
+        JtC10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JtC10KeyPressed(evt);
+            }
+        });
+
+        L11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        L11.setText("C11");
+
+        JtC11.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JtC11KeyPressed(evt);
+            }
+        });
+
+        L12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        L12.setText("C12");
+
+        JtC12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JtC12KeyPressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(JtCant, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(L1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JtC1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(L2)
+                        .addGap(18, 18, 18)
+                        .addComponent(JtC2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(L3)
+                        .addGap(18, 18, 18)
+                        .addComponent(JtC3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(L4)
+                        .addGap(18, 18, 18)
+                        .addComponent(JtC4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(L5)
+                        .addGap(18, 18, 18)
+                        .addComponent(JtC5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(L6)
+                        .addGap(18, 18, 18)
+                        .addComponent(JtC6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(L7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JtC7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(L8)
+                        .addGap(18, 18, 18)
+                        .addComponent(JtC8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(L9)
+                        .addGap(18, 18, 18)
+                        .addComponent(JtC9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(L10)
+                        .addGap(18, 18, 18)
+                        .addComponent(JtC10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(L11)
+                        .addGap(18, 18, 18)
+                        .addComponent(JtC11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(L12)
+                        .addGap(18, 18, 18)
+                        .addComponent(JtC12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(L4)
+                        .addComponent(JtC4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(JtC1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(L1))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(L6)
+                        .addComponent(JtC6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(L5)
+                        .addComponent(JtC5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(JtC2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(L3)
+                        .addComponent(JtC3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(L2))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(JtCant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel13)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(L12)
+                        .addComponent(JtC12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(L11)
+                        .addComponent(JtC11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(L10)
+                        .addComponent(JtC10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(L7)
+                        .addComponent(JtC7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(L8)
+                        .addComponent(JtC8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(L9)
+                        .addComponent(JtC9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -562,7 +782,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(JcColor)
+                .addComponent(JcPrecio)
                 .addGap(65, 65, 65)
                 .addComponent(JbAlerta)
                 .addGap(37, 37, 37))
@@ -649,37 +869,10 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(JtCant, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(15, 15, 15)
-                                .addComponent(L1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(JtC1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(L2)
-                                .addGap(18, 18, 18)
-                                .addComponent(JtC2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(L3)
-                                .addGap(18, 18, 18)
-                                .addComponent(JtC3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(L4)
-                                .addGap(18, 18, 18)
-                                .addComponent(JtC4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(L5)
-                                .addGap(18, 18, 18)
-                                .addComponent(JtC5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(L6)
-                                .addGap(18, 18, 18)
-                                .addComponent(JtC6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(JbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JbQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(JbQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -724,41 +917,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JbAgregar)
-                            .addComponent(JbQuitar)
-                            .addComponent(jLabel8)
-                            .addComponent(JtCorrida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(L4)
-                                .addComponent(JtC4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(JtC1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(L1))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(L6)
-                                .addComponent(JtC6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(L5)
-                                .addComponent(JtC5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(JtC2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(L3)
-                                .addComponent(JtC3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(L2))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(JtCant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel13)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JbAlerta, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(JcColor)
-                                .addGap(14, 14, 14))))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(JbCalle, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(JbCP, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -774,9 +932,24 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         .addComponent(JbPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JbAgente, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)))
-                .addComponent(JtabDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JbAgregar)
+                            .addComponent(JbQuitar)
+                            .addComponent(jLabel8)
+                            .addComponent(JtCorrida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(49, 49, 49)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JbAlerta, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(JcPrecio)
+                                .addGap(14, 14, 14)))
+                        .addGap(31, 31, 31)))
+                .addComponent(JtabDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -827,7 +1000,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         JtBuscar.requestFocus();
                     }
                 }
-
             }
         }
     }//GEN-LAST:event_JbEliminarActionPerformed
@@ -890,439 +1062,725 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtColor.setText("");
                 JtCorrida.setText("");
             } else {
-                switch (JtCorrida.getText()) {
-                    case "[10-12]":
-                        JtCant.setText("");
-                        L1.setVisible(true);
-                        L2.setVisible(true);
-                        L3.setVisible(true);
-                        L1.setText("10");
-                        L2.setText("11");
-                        L3.setText("12");
-                        JtC1.setVisible(true);
-                        JtC2.setVisible(true);
-                        JtC3.setVisible(true);
-                        JtC1.setText("");
-                        JtC2.setText("");
-                        JtC3.setText("");
-                        JtC4.setText("0");
-                        JtC5.setText("0");
-                        JtC6.setText("0");
-                        HideBack();
-                        break;
-                    case "[13-16]":
-                        JtCant.setText("");
-                        L1.setVisible(true);
-                        L2.setVisible(true);
-                        L3.setVisible(true);
-                        L4.setVisible(true);
-                        L1.setText("13");
-                        L2.setText("14");
-                        L3.setText("15");
-                        L4.setText("16");
-                        JtC1.setVisible(true);
-                        JtC2.setVisible(true);
-                        JtC3.setVisible(true);
-                        JtC4.setVisible(true);
-                        JtC1.setText("");
-                        JtC2.setText("");
-                        JtC3.setText("");
-                        JtC4.setText("");
-                        JtC5.setText("0");
-                        JtC6.setText("0");
-                        HideBack2();
-                        break;
-                    case "[11-14]":
-                        JtCant.setText("");
-                        L1.setVisible(true);
-                        L2.setVisible(true);
-                        L3.setVisible(true);
-                        L4.setVisible(true);
-                        L1.setText("11");
-                        L2.setText("12");
-                        L3.setText("13");
-                        L4.setText("14");
-                        JtC1.setVisible(true);
-                        JtC2.setVisible(true);
-                        JtC3.setVisible(true);
-                        JtC4.setVisible(true);
-                        JtC1.setText("");
-                        JtC2.setText("");
-                        JtC3.setText("");
-                        JtC4.setText("");
-                        JtC5.setText("0");
-                        JtC6.setText("0");
-                        HideBack2();
-                        break;
-
-                    case "[12-14]":
-                        JtCant.setText("");
-                        L1.setVisible(true);
-                        L2.setVisible(true);
-                        L3.setVisible(true);
-                        L1.setText("12");
-                        L2.setText("13");
-                        L3.setText("14");
-                        JtC1.setVisible(true);
-                        JtC2.setVisible(true);
-                        JtC3.setVisible(true);
-                        JtC1.setText("");
-                        JtC2.setText("");
-                        JtC3.setText("");
-                        JtC4.setText("0");
-                        JtC5.setText("0");
-                        JtC6.setText("0");
-                        HideBack();
-                        break;
-                    case "[15-17]":
-                        JtCant.setText("");
-                        L1.setVisible(true);
-                        L2.setVisible(true);
-                        L3.setVisible(true);
-                        L1.setText("15");
-                        L2.setText("16");
-                        L3.setText("17");
-                        JtC1.setVisible(true);
-                        JtC2.setVisible(true);
-                        JtC3.setVisible(true);
-                        JtC1.setText("");
-                        JtC2.setText("");
-                        JtC3.setText("");
-                        JtC4.setText("0");
-                        JtC5.setText("0");
-                        JtC6.setText("0");
-                        HideBack();
-                        break;
-
-                    case "[17-21]":
-                        JtCant.setText("");
-                        L1.setVisible(true);
-                        L2.setVisible(true);
-                        L3.setVisible(true);
-                        L4.setVisible(true);
-                        L5.setVisible(true);
-                        L1.setText("17");
-                        L2.setText("18");
-                        L3.setText("19");
-                        L4.setText("20");
-                        L5.setText("21");
-                        JtC1.setVisible(true);
-                        JtC2.setVisible(true);
-                        JtC3.setVisible(true);
-                        JtC4.setVisible(true);
-                        JtC5.setVisible(true);
-                        JtC1.setText("");
-                        JtC2.setText("");
-                        JtC3.setText("");
-                        JtC4.setText("");
-                        JtC5.setText("");
-                        JtC6.setText("0");
-                        HideBack3();
-                        break;
-
-                    case "[18-21]":
-                        JtCant.setText("");
-                        L1.setVisible(true);
-                        L2.setVisible(true);
-                        L3.setVisible(true);
-                        L4.setVisible(true);
-                        L1.setText("18");
-                        L2.setText("19");
-                        L3.setText("20");
-                        L4.setText("21");
-                        JtC1.setVisible(true);
-                        JtC2.setVisible(true);
-                        JtC3.setVisible(true);
-                        JtC4.setVisible(true);
-                        JtC1.setText("");
-                        JtC2.setText("");
-                        JtC3.setText("");
-                        JtC4.setText("");
-                        JtC5.setText("0");
-                        JtC6.setText("0");
-                        HideBack2();
-                        break;
-
-                    case "[21-25]":
-                        JtCant.setText("");
-                        L1.setVisible(true);
-                        L2.setVisible(true);
-                        L3.setVisible(true);
-                        L4.setVisible(true);
-                        L5.setVisible(true);
-                        L1.setText("21");
-                        L2.setText("22");
-                        L3.setText("23");
-                        L4.setText("24");
-                        L5.setText("25");
-                        JtC1.setVisible(true);
-                        JtC2.setVisible(true);
-                        JtC3.setVisible(true);
-                        JtC4.setVisible(true);
-                        JtC5.setVisible(true);
-                        JtC1.setText("");
-                        JtC2.setText("");
-                        JtC3.setText("");
-                        JtC4.setText("");
-                        JtC5.setText("");
-                        JtC6.setText("0");
-                        HideBack3();
-                        break;
-
-                    case "[22-24]":
-                        JtCant.setText("");
-                        L1.setVisible(true);
-                        L2.setVisible(true);
-                        L3.setVisible(true);
-                        L1.setText("22");
-                        L2.setText("23");
-                        L3.setText("24");
-                        JtC1.setVisible(true);
-                        JtC2.setVisible(true);
-                        JtC3.setVisible(true);
-                        JtC1.setText("");
-                        JtC2.setText("");
-                        JtC3.setText("");
-                        JtC4.setText("0");
-                        JtC5.setText("0");
-                        JtC6.setText("0");
-                        HideBack();
-                        break;
-
-                    case "[22-27]":
-                        JtCant.setText("");
-                        L1.setVisible(true);
-                        L2.setVisible(true);
-                        L3.setVisible(true);
-                        L4.setVisible(true);
-                        L5.setVisible(true);
-                        L6.setVisible(true);
-                        L1.setText("22");
-                        L2.setText("23");
-                        L3.setText("24");
-                        L4.setText("25");
-                        L5.setText("26");
-                        L6.setText("27");
-                        JtC1.setVisible(true);
-                        JtC2.setVisible(true);
-                        JtC3.setVisible(true);
-                        JtC4.setVisible(true);
-                        JtC5.setVisible(true);
-                        JtC6.setVisible(true);
-                        JtC1.setText("");
-                        JtC2.setText("");
-                        JtC3.setText("");
-                        JtC4.setText("");
-                        JtC5.setText("");
-                        JtC6.setText("");
-                        break;
-
-                    case "[23-27]":
-                        JtCant.setText("");
-                        L1.setVisible(true);
-                        L2.setVisible(true);
-                        L3.setVisible(true);
-                        L4.setVisible(true);
-                        L5.setVisible(true);
-                        L1.setText("23");
-                        L2.setText("24");
-                        L3.setText("25");
-                        L4.setText("26");
-                        L5.setText("27");
-                        JtC1.setVisible(true);
-                        JtC2.setVisible(true);
-                        JtC3.setVisible(true);
-                        JtC4.setVisible(true);
-                        JtC5.setVisible(true);
-                        JtC1.setText("");
-                        JtC2.setText("");
-                        JtC3.setText("");
-                        JtC4.setText("");
-                        JtC5.setText("");
-                        JtC6.setText("0");
-                        HideBack3();
-                        break;
-
-                    case "[23-26]":
-                        JtCant.setText("");
-                        L1.setVisible(true);
-                        L2.setVisible(true);
-                        L3.setVisible(true);
-                        L4.setVisible(true);
-                        L1.setText("23");
-                        L2.setText("24");
-                        L3.setText("25");
-                        L4.setText("26");
-                        JtC1.setVisible(true);
-                        JtC2.setVisible(true);
-                        JtC3.setVisible(true);
-                        JtC4.setVisible(true);
-                        JtC1.setText("");
-                        JtC2.setText("");
-                        JtC3.setText("");
-                        JtC4.setText("");
-                        JtC5.setText("0");
-                        JtC6.setText("0");
-                        HideBack4();
-                        break;
-                    case "[22-26]":
-                        JtCant.setText("");
-                        L1.setVisible(true);
-                        L2.setVisible(true);
-                        L3.setVisible(true);
-                        L4.setVisible(true);
-                        L5.setVisible(true);
-                        L1.setText("22");
-                        L2.setText("23");
-                        L3.setText("24");
-                        L4.setText("25");
-                        L5.setText("26");
-                        JtC1.setVisible(true);
-                        JtC2.setVisible(true);
-                        JtC3.setVisible(true);
-                        JtC4.setVisible(true);
-                        JtC5.setVisible(true);
-                        JtC1.setText("");
-                        JtC2.setText("");
-                        JtC3.setText("");
-                        JtC4.setText("");
-                        JtC5.setText("");
-                        JtC6.setText("0");
-                        HideBack3();
-                        break;
-                    case "[23-29]":
-                        JtCant.setText("");
-                        L1.setVisible(true);
-                        L2.setVisible(true);
-                        L3.setVisible(true);
-                        L4.setVisible(true);
-                        L5.setVisible(true);
-                        L6.setVisible(true);
-                        L1.setText("25");
-                        L2.setText("26");
-                        L3.setText("27");
-                        L4.setText("28");
-                        L5.setText("29");
-                        L6.setText("30");
-                        JtC1.setVisible(true);
-                        JtC2.setVisible(true);
-                        JtC3.setVisible(true);
-                        JtC4.setVisible(true);
-                        JtC5.setVisible(true);
-                        JtC6.setVisible(true);
-                        JtC1.setText("");
-                        JtC2.setText("");
-                        JtC3.setText("");
-                        JtC4.setText("");
-                        JtC5.setText("");
-                        JtC6.setText("");
-                        break;
-                    case "[25-30]":
-                        JtCant.setText("");
-                        L1.setVisible(true);
-                        L2.setVisible(true);
-                        L3.setVisible(true);
-                        L4.setVisible(true);
-                        L5.setVisible(true);
-                        L6.setVisible(true);
-                        L1.setText("25");
-                        L2.setText("26");
-                        L3.setText("27");
-                        L4.setText("28");
-                        L5.setText("29");
-                        L6.setText("30");
-                        JtC1.setVisible(true);
-                        JtC2.setVisible(true);
-                        JtC3.setVisible(true);
-                        JtC4.setVisible(true);
-                        JtC5.setVisible(true);
-                        JtC6.setVisible(true);
-                        JtC1.setText("");
-                        JtC2.setText("");
-                        JtC3.setText("");
-                        JtC4.setText("");
-                        JtC5.setText("");
-                        JtC6.setText("");
-                        break;
-                    case "[25-29]":
-                        JtCant.setText("");
-                        L1.setVisible(true);
-                        L2.setVisible(true);
-                        L3.setVisible(true);
-                        L4.setVisible(true);
-                        L5.setVisible(true);
-                        L6.setVisible(true);
-                        L1.setText("25");
-                        L2.setText("26");
-                        L3.setText("27");
-                        L4.setText("28");
-                        L5.setText("29");
-                        L6.setText("30");
-                        JtC1.setVisible(true);
-                        JtC2.setVisible(true);
-                        JtC3.setVisible(true);
-                        JtC4.setVisible(true);
-                        JtC5.setVisible(true);
-                        JtC6.setVisible(true);
-                        JtC1.setText("");
-                        JtC2.setText("");
-                        JtC3.setText("");
-                        JtC4.setText("");
-                        JtC5.setText("");
-                        JtC6.setText("");
-                        break;    
-                    case "[27-29]":
-                        JtCant.setText("");
-                        L1.setVisible(true);
-                        L2.setVisible(true);
-                        L3.setVisible(true);
-                        L1.setText("27");
-                        L2.setText("28");
-                        L3.setText("29");
-                        JtC1.setVisible(true);
-                        JtC2.setVisible(true);
-                        JtC3.setVisible(true);
-                        JtC1.setText("");
-                        JtC2.setText("");
-                        JtC3.setText("");
-                        JtC4.setText("0");
-                        JtC5.setText("0");
-                        JtC6.setText("0");
-                        HideBack();
-                        break;
-
-                    case "[30-33]":
-                        JtCant.setText("");
-                        L1.setVisible(true);
-                        L2.setVisible(true);
-                        L3.setVisible(true);
-                        L4.setVisible(true);
-                        L1.setText("30");
-                        L2.setText("31");
-                        L3.setText("32");
-                        L4.setText("33");
-                        JtC1.setVisible(true);
-                        JtC2.setVisible(true);
-                        JtC3.setVisible(true);
-                        JtC4.setVisible(true);
-                        JtC1.setText("");
-                        JtC2.setText("");
-                        JtC3.setText("");
-                        JtC4.setText("");
-                        JtC5.setText("0");
-                        JtC6.setText("0");
-                        HideBack2();
-                        break;
-
-                    default:
-                        break;
-                }
+                ValidarCorridas();
+                JtCant.requestFocus();
                 cargarPrecio();
             }
         }
     }//GEN-LAST:event_JcSuelaItemStateChanged
 
+    private void ValidarCorridas() {
+        JtC1.setText("0");
+        JtC2.setText("0");
+        JtC3.setText("0");
+        JtC4.setText("0");
+        JtC5.setText("0");
+        JtC6.setText("0");
+        JtC7.setText("0");
+        JtC8.setText("0");
+        JtC9.setText("0");
+        JtC10.setText("0");
+        JtC11.setText("0");
+        JtC12.setText("0");
+
+        switch (JtCorrida.getText()) {
+            case "[10-12]":
+                L1.setText("10:");
+                L2.setText("10.5:");
+                L3.setText("11:");
+                L4.setText("11.5:");
+                L5.setText("12:");
+                L6.setText("12.5:");
+                L1.setVisible(true);
+                L2.setVisible(true);
+                L3.setVisible(true);
+                L4.setVisible(true);
+                L5.setVisible(true);
+                L6.setVisible(true);
+                JtC1.requestFocus();
+                JtC1.setSelectionStart(0);
+                JtC2.setSelectionStart(0);
+                JtC3.setSelectionStart(0);
+                JtC4.setSelectionStart(0);
+                JtC5.setSelectionStart(0);
+                JtC6.setSelectionStart(0);
+                JtC1.setVisible(true);
+                JtC2.setVisible(true);
+                JtC3.setVisible(true);
+                JtC4.setVisible(true);
+                JtC5.setVisible(true);
+                JtC6.setVisible(true);
+                break;
+            case "[13-16]":
+                L1.setText("13:");
+                L2.setText("13.5:");
+                L3.setText("14:");
+                L4.setText("14.5:");
+                L5.setText("15:");
+                L6.setText("15.5:");
+                L7.setText("16:");
+                L8.setText("16.5:");
+                L1.setVisible(true);
+                L2.setVisible(true);
+                L3.setVisible(true);
+                L4.setVisible(true);
+                L5.setVisible(true);
+                L6.setVisible(true);
+                L7.setVisible(true);
+                L8.setVisible(true);
+                JtC1.requestFocus();
+                JtC1.setSelectionStart(0);
+                JtC2.setSelectionStart(0);
+                JtC3.setSelectionStart(0);
+                JtC4.setSelectionStart(0);
+                JtC5.setSelectionStart(0);
+                JtC6.setSelectionStart(0);
+                JtC7.setSelectionStart(0);
+                JtC8.setSelectionStart(0);
+                JtC1.setVisible(true);
+                JtC2.setVisible(true);
+                JtC3.setVisible(true);
+                JtC4.setVisible(true);
+                JtC5.setVisible(true);
+                JtC6.setVisible(true);
+                JtC7.setVisible(true);
+                JtC8.setVisible(true);
+                break;
+            case "[27-29]":
+                L1.setText("27:");
+                L2.setText("27.5:");
+                L3.setText("28:");
+                L4.setText("28.5:");
+                L5.setText("29:");
+                L6.setText("29.5:");
+                L1.setVisible(true);
+                L2.setVisible(true);
+                L3.setVisible(true);
+                L4.setVisible(true);
+                L5.setVisible(true);
+                L6.setVisible(true);
+                L3.setVisible(true);
+                JtC1.requestFocus();
+                JtC1.setSelectionStart(0);
+                JtC2.setSelectionStart(0);
+                JtC3.setSelectionStart(0);
+                JtC4.setSelectionStart(0);
+                JtC5.setSelectionStart(0);
+                JtC6.setSelectionStart(0);
+                JtC1.setVisible(true);
+                JtC2.setVisible(true);
+                JtC3.setVisible(true);
+                JtC4.setVisible(true);
+                JtC5.setVisible(true);
+                JtC6.setVisible(true);
+                break;
+            case "[11-14]":
+                L1.setText("11:");
+                L2.setText("11.5:");
+                L3.setText("12:");
+                L4.setText("12.5:");
+                L4.setText("13:");
+                L4.setText("13.5:");
+                L4.setText("14:");
+                L4.setText("14.5:");
+                L1.setVisible(true);
+                L2.setVisible(true);
+                L3.setVisible(true);
+                L4.setVisible(true);
+                L5.setVisible(true);
+                L6.setVisible(true);
+                L7.setVisible(true);
+                L8.setVisible(true);
+                JtC1.requestFocus();
+                JtC1.setSelectionStart(0);
+                JtC2.setSelectionStart(0);
+                JtC3.setSelectionStart(0);
+                JtC4.setSelectionStart(0);
+                JtC5.setSelectionStart(0);
+                JtC6.setSelectionStart(0);
+                JtC7.setSelectionStart(0);
+                JtC8.setSelectionStart(0);
+                JtC1.setVisible(true);
+                JtC2.setVisible(true);
+                JtC3.setVisible(true);
+                JtC4.setVisible(true);
+                JtC5.setVisible(true);
+                JtC6.setVisible(true);
+                JtC7.setVisible(true);
+                JtC8.setVisible(true);
+                break;
+            case "[22-27]":
+                L1.setText("22:");
+                L2.setText("22.5:");
+                L3.setText("23:");
+                L4.setText("23.5:");
+                L5.setText("24:");
+                L6.setText("24.5:");
+                L7.setText("25:");
+                L8.setText("25.5:");
+                L9.setText("26:");
+                L10.setText("26.5:");
+                L11.setText("27:");
+                L12.setText("27.5:");
+                L1.setVisible(true);
+                L2.setVisible(true);
+                L3.setVisible(true);
+                L4.setVisible(true);
+                L5.setVisible(true);
+                L6.setVisible(true);
+                L7.setVisible(true);
+                L8.setVisible(true);
+                L9.setVisible(true);
+                L10.setVisible(true);
+                L11.setVisible(true);
+                L12.setVisible(true);
+                JtC1.requestFocus();
+                JtC1.setSelectionStart(0);
+                JtC2.setSelectionStart(0);
+                JtC3.setSelectionStart(0);
+                JtC4.setSelectionStart(0);
+                JtC5.setSelectionStart(0);
+                JtC6.setSelectionStart(0);
+                JtC7.setSelectionStart(0);
+                JtC8.setSelectionStart(0);
+                JtC9.setSelectionStart(0);
+                JtC10.setSelectionStart(0);
+                JtC11.setSelectionStart(0);
+                JtC12.setSelectionStart(0);
+                JtC1.setVisible(true);
+                JtC2.setVisible(true);
+                JtC3.setVisible(true);
+                JtC4.setVisible(true);
+                JtC5.setVisible(true);
+                JtC6.setVisible(true);
+                JtC7.setVisible(true);
+                JtC8.setVisible(true);
+                JtC9.setVisible(true);
+                JtC10.setVisible(true);
+                JtC11.setVisible(true);
+                JtC12.setVisible(true);
+                break;
+            case "[12-14]":
+                L1.setText("12:");
+                L2.setText("12.5:");
+                L3.setText("13:");
+                L4.setText("13.5:");
+                L5.setText("14:");
+                L6.setText("14.5:");
+                L1.setVisible(true);
+                L2.setVisible(true);
+                L3.setVisible(true);
+                L4.setVisible(true);
+                L5.setVisible(true);
+                L6.setVisible(true);
+                JtC1.requestFocus();
+                JtC1.setSelectionStart(0);
+                JtC2.setSelectionStart(0);
+                JtC3.setSelectionStart(0);
+                JtC4.setSelectionStart(0);
+                JtC5.setSelectionStart(0);
+                JtC6.setSelectionStart(0);
+                JtC1.setVisible(true);
+                JtC2.setVisible(true);
+                JtC3.setVisible(true);
+                JtC4.setVisible(true);
+                JtC5.setVisible(true);
+                JtC6.setVisible(true);
+                break;
+            case "[15-17]":
+                L1.setText("15:");
+                L2.setText("15.5:");
+                L3.setText("16:");
+                L4.setText("16.5:");
+                L5.setText("17:");
+                L6.setText("17.5:");
+                L1.setVisible(true);
+                L2.setVisible(true);
+                L3.setVisible(true);
+                L4.setVisible(true);
+                L5.setVisible(true);
+                L6.setVisible(true);
+                JtC1.requestFocus();
+                JtC1.setSelectionStart(0);
+                JtC2.setSelectionStart(0);
+                JtC3.setSelectionStart(0);
+                JtC4.setSelectionStart(0);
+                JtC5.setSelectionStart(0);
+                JtC6.setSelectionStart(0);
+                JtC1.setVisible(true);
+                JtC2.setVisible(true);
+                JtC3.setVisible(true);
+                JtC4.setVisible(true);
+                JtC5.setVisible(true);
+                JtC6.setVisible(true);
+                break;
+            case "[18-21]":
+                L1.setText("18:");
+                L2.setText("18.5:");
+                L3.setText("19:");
+                L4.setText("19.5:");
+                L5.setText("20:");
+                L6.setText("20.5:");
+                L7.setText("21:");
+                L8.setText("21.5:");
+                L1.setVisible(true);
+                L2.setVisible(true);
+                L3.setVisible(true);
+                L4.setVisible(true);
+                L5.setVisible(true);
+                L6.setVisible(true);
+                L7.setVisible(true);
+                L8.setVisible(true);
+                JtC1.requestFocus();
+                JtC1.setSelectionStart(0);
+                JtC2.setSelectionStart(0);
+                JtC3.setSelectionStart(0);
+                JtC4.setSelectionStart(0);
+                JtC5.setSelectionStart(0);
+                JtC6.setSelectionStart(0);
+                JtC7.setSelectionStart(0);
+                JtC8.setSelectionStart(0);
+                JtC1.setVisible(true);
+                JtC2.setVisible(true);
+                JtC3.setVisible(true);
+                JtC4.setVisible(true);
+                JtC5.setVisible(true);
+                JtC6.setVisible(true);
+                JtC7.setVisible(true);
+                JtC8.setVisible(true);
+                break;
+            case "[22-24]":
+                L1.setText("22:");
+                L2.setText("22.5:");
+                L3.setText("23:");
+                L4.setText("23.5:");
+                L5.setText("24:");
+                L6.setText("24.5:");
+                L1.setVisible(true);
+                L2.setVisible(true);
+                L3.setVisible(true);
+                L4.setVisible(true);
+                L5.setVisible(true);
+                L6.setVisible(true);
+                JtC1.requestFocus();
+                JtC1.setSelectionStart(0);
+                JtC2.setSelectionStart(0);
+                JtC3.setSelectionStart(0);
+                JtC4.setSelectionStart(0);
+                JtC5.setSelectionStart(0);
+                JtC6.setSelectionStart(0);
+                JtC1.setVisible(true);
+                JtC2.setVisible(true);
+                JtC3.setVisible(true);
+                JtC4.setVisible(true);
+                JtC5.setVisible(true);
+                JtC6.setVisible(true);
+                break;
+            case "[22-26]":
+                L1.setText("22:");
+                L2.setText("22.5:");
+                L3.setText("23:");
+                L4.setText("23.5:");
+                L5.setText("24:");
+                L6.setText("24.5:");
+                L7.setText("25:");
+                L8.setText("25.5:");
+                L9.setText("26:");
+                L10.setText("26.5:");
+                JtC1.requestFocus();
+                L1.setVisible(true);
+                L2.setVisible(true);
+                L3.setVisible(true);
+                L4.setVisible(true);
+                L5.setVisible(true);
+                L6.setVisible(true);
+                L7.setVisible(true);
+                L8.setVisible(true);
+                L9.setVisible(true);
+                L10.setVisible(true);
+                JtC1.setSelectionStart(0);
+                JtC2.setSelectionStart(0);
+                JtC3.setSelectionStart(0);
+                JtC4.setSelectionStart(0);
+                JtC5.setSelectionStart(0);
+                JtC6.setSelectionStart(0);
+                JtC7.setSelectionStart(0);
+                JtC8.setSelectionStart(0);
+                JtC9.setSelectionStart(0);
+                JtC10.setSelectionStart(0);
+                JtC1.setVisible(true);
+                JtC2.setVisible(true);
+                JtC3.setVisible(true);
+                JtC4.setVisible(true);
+                JtC5.setVisible(true);
+                JtC6.setVisible(true);
+                JtC7.setVisible(true);
+                JtC8.setVisible(true);
+                JtC9.setVisible(true);
+                JtC10.setVisible(true);
+                break;
+            case "[23-26]":
+                L1.setText("22:");
+                L2.setText("22.5:");
+                L3.setText("23:");
+                L4.setText("23.5:");
+                L5.setText("24:");
+                L6.setText("24.5:");
+                L7.setText("25:");
+                L8.setText("25.5:");
+                L9.setText("26:");
+                L10.setText("26.5:");
+                JtC1.requestFocus();
+                L1.setVisible(true);
+                L2.setVisible(true);
+                L3.setVisible(true);
+                L4.setVisible(true);
+                L5.setVisible(true);
+                L6.setVisible(true);
+                L7.setVisible(true);
+                L8.setVisible(true);
+                L9.setVisible(true);
+                L10.setVisible(true);
+                JtC1.setSelectionStart(0);
+                JtC2.setSelectionStart(0);
+                JtC3.setSelectionStart(0);
+                JtC4.setSelectionStart(0);
+                JtC5.setSelectionStart(0);
+                JtC6.setSelectionStart(0);
+                JtC7.setSelectionStart(0);
+                JtC8.setSelectionStart(0);
+                JtC9.setSelectionStart(0);
+                JtC10.setSelectionStart(0);
+                JtC1.setVisible(true);
+                JtC2.setVisible(true);
+                JtC3.setVisible(true);
+                JtC4.setVisible(true);
+                JtC5.setVisible(true);
+                JtC6.setVisible(true);
+                JtC7.setVisible(true);
+                JtC8.setVisible(true);
+                JtC9.setVisible(true);
+                JtC10.setVisible(true);
+                break;
+             case "[23-29]":
+                L1.setText("22:");
+                L2.setText("22.5:");
+                L3.setText("23:");
+                L4.setText("23.5:");
+                L5.setText("24:");
+                L6.setText("24.5:");
+                L7.setText("25:");
+                L8.setText("25.5:");
+                L9.setText("26:");
+                L10.setText("26.5:");
+                JtC1.requestFocus();
+                L1.setVisible(true);
+                L2.setVisible(true);
+                L3.setVisible(true);
+                L4.setVisible(true);
+                L5.setVisible(true);
+                L6.setVisible(true);
+                L7.setVisible(true);
+                L8.setVisible(true);
+                L9.setVisible(true);
+                L10.setVisible(true);
+                JtC1.setSelectionStart(0);
+                JtC2.setSelectionStart(0);
+                JtC3.setSelectionStart(0);
+                JtC4.setSelectionStart(0);
+                JtC5.setSelectionStart(0);
+                JtC6.setSelectionStart(0);
+                JtC7.setSelectionStart(0);
+                JtC8.setSelectionStart(0);
+                JtC9.setSelectionStart(0);
+                JtC10.setSelectionStart(0);
+                JtC1.setVisible(true);
+                JtC2.setVisible(true);
+                JtC3.setVisible(true);
+                JtC4.setVisible(true);
+                JtC5.setVisible(true);
+                JtC6.setVisible(true);
+                JtC7.setVisible(true);
+                JtC8.setVisible(true);
+                JtC9.setVisible(true);
+                JtC10.setVisible(true);
+                break;    
+            case "[25-30]":
+                L1.setText("25:");
+                L2.setText("25.5:");
+                L3.setText("26:");
+                L4.setText("26.5:");
+                L5.setText("27:");
+                L6.setText("27.5:");
+                L7.setText("28:");
+                L8.setText("28.5:");
+                L9.setText("29:");
+                L10.setText("29.5:");
+                L11.setText("30:");
+                L12.setText("30.5:");
+                L1.setVisible(true);
+                L2.setVisible(true);
+                L3.setVisible(true);
+                L4.setVisible(true);
+                L5.setVisible(true);
+                L6.setVisible(true);
+                L7.setVisible(true);
+                L8.setVisible(true);
+                L9.setVisible(true);
+                L10.setVisible(true);
+                L11.setVisible(true);
+                L12.setVisible(true);
+                JtC1.requestFocus();
+                JtC1.setSelectionStart(0);
+                JtC2.setSelectionStart(0);
+                JtC3.setSelectionStart(0);
+                JtC4.setSelectionStart(0);
+                JtC5.setSelectionStart(0);
+                JtC6.setSelectionStart(0);
+                JtC7.setSelectionStart(0);
+                JtC8.setSelectionStart(0);
+                JtC9.setSelectionStart(0);
+                JtC10.setSelectionStart(0);
+                JtC11.setSelectionStart(0);
+                JtC12.setSelectionStart(0);
+                JtC1.setVisible(true);
+                JtC2.setVisible(true);
+                JtC3.setVisible(true);
+                JtC4.setVisible(true);
+                JtC5.setVisible(true);
+                JtC6.setVisible(true);
+                JtC7.setVisible(true);
+                JtC8.setVisible(true);
+                JtC9.setVisible(true);
+                JtC10.setVisible(true);
+                JtC11.setVisible(true);
+                JtC12.setVisible(true);
+                break;
+             case "[25-29]":
+                L1.setText("25:");
+                L2.setText("25.5:");
+                L3.setText("26:");
+                L4.setText("26.5:");
+                L5.setText("27:");
+                L6.setText("27.5:");
+                L7.setText("28:");
+                L8.setText("28.5:");
+                L9.setText("29:");
+                L10.setText("29.5:");
+                L11.setText("30:");
+                L12.setText("30.5:");
+                L1.setVisible(true);
+                L2.setVisible(true);
+                L3.setVisible(true);
+                L4.setVisible(true);
+                L5.setVisible(true);
+                L6.setVisible(true);
+                L7.setVisible(true);
+                L8.setVisible(true);
+                L9.setVisible(true);
+                L10.setVisible(true);
+                L11.setVisible(true);
+                L12.setVisible(true);
+                JtC1.requestFocus();
+                JtC1.setSelectionStart(0);
+                JtC2.setSelectionStart(0);
+                JtC3.setSelectionStart(0);
+                JtC4.setSelectionStart(0);
+                JtC5.setSelectionStart(0);
+                JtC6.setSelectionStart(0);
+                JtC7.setSelectionStart(0);
+                JtC8.setSelectionStart(0);
+                JtC9.setSelectionStart(0);
+                JtC10.setSelectionStart(0);
+                JtC11.setSelectionStart(0);
+                JtC12.setSelectionStart(0);
+                JtC1.setVisible(true);
+                JtC2.setVisible(true);
+                JtC3.setVisible(true);
+                JtC4.setVisible(true);
+                JtC5.setVisible(true);
+                JtC6.setVisible(true);
+                JtC7.setVisible(true);
+                JtC8.setVisible(true);
+                JtC9.setVisible(true);
+                JtC10.setVisible(true);
+                JtC11.setVisible(true);
+                JtC12.setVisible(true);
+                break;    
+            case "[21-25]":
+                L1.setText("21:");
+                L2.setText("21.5:");
+                L3.setText("22:");
+                L4.setText("22.5:");
+                L5.setText("23:");
+                L6.setText("23.5:");
+                L7.setText("24:");
+                L8.setText("24.5:");
+                L9.setText("25:");
+                L10.setText("25.5:");
+                L1.setVisible(true);
+                L2.setVisible(true);
+                L3.setVisible(true);
+                L4.setVisible(true);
+                L5.setVisible(true);
+                L6.setVisible(true);
+                L7.setVisible(true);
+                L8.setVisible(true);
+                L9.setVisible(true);
+                L10.setVisible(true);
+                JtC1.requestFocus();
+                JtC1.setSelectionStart(0);
+                JtC2.setSelectionStart(0);
+                JtC3.setSelectionStart(0);
+                JtC4.setSelectionStart(0);
+                JtC5.setSelectionStart(0);
+                JtC6.setSelectionStart(0);
+                JtC7.setSelectionStart(0);
+                JtC8.setSelectionStart(0);
+                JtC9.setSelectionStart(0);
+                JtC10.setSelectionStart(0);
+                JtC1.setVisible(true);
+                JtC2.setVisible(true);
+                JtC3.setVisible(true);
+                JtC4.setVisible(true);
+                JtC5.setVisible(true);
+                JtC6.setVisible(true);
+                JtC7.setVisible(true);
+                JtC8.setVisible(true);
+                JtC9.setVisible(true);
+                JtC10.setVisible(true);
+                break;
+            case "[30-33]":
+                L1.setText("30:");
+                L2.setText("30.5:");
+                L3.setText("31:");
+                L4.setText("31.5:");
+                L5.setText("32:");
+                L6.setText("32.5:");
+                L7.setText("33:");
+                L8.setText("33.5:");
+                L1.setVisible(true);
+                L2.setVisible(true);
+                L3.setVisible(true);
+                L4.setVisible(true);
+                L5.setVisible(true);
+                L6.setVisible(true);
+                L7.setVisible(true);
+                L8.setVisible(true);
+                JtC1.requestFocus();
+                JtC1.setSelectionStart(0);
+                JtC2.setSelectionStart(0);
+                JtC3.setSelectionStart(0);
+                JtC4.setSelectionStart(0);
+                JtC5.setSelectionStart(0);
+                JtC6.setSelectionStart(0);
+                JtC7.setSelectionStart(0);
+                JtC8.setSelectionStart(0);
+                JtC1.setVisible(true);
+                JtC2.setVisible(true);
+                JtC3.setVisible(true);
+                JtC4.setVisible(true);
+                JtC5.setVisible(true);
+                JtC6.setVisible(true);
+                JtC7.setVisible(true);
+                JtC8.setVisible(true);
+                break;
+            case "[17-21]":
+                L1.setText("17:");
+                L2.setText("17.5:");
+                L3.setText("18:");
+                L4.setText("18.5:");
+                L5.setText("19:");
+                L6.setText("19.5:");
+                L7.setText("20:");
+                L8.setText("20.5:");
+                L9.setText("21:");
+                L10.setText("21.5:");
+                L1.setVisible(true);
+                L2.setVisible(true);
+                L3.setVisible(true);
+                L4.setVisible(true);
+                L5.setVisible(true);
+                L6.setVisible(true);
+                L7.setVisible(true);
+                L8.setVisible(true);
+                L9.setVisible(true);
+                L10.setVisible(true);
+                JtC1.requestFocus();
+                JtC1.setSelectionStart(0);
+                JtC2.setSelectionStart(0);
+                JtC3.setSelectionStart(0);
+                JtC4.setSelectionStart(0);
+                JtC5.setSelectionStart(0);
+                JtC6.setSelectionStart(0);
+                JtC7.setSelectionStart(0);
+                JtC8.setSelectionStart(0);
+                JtC9.setSelectionStart(0);
+                JtC10.setSelectionStart(0);
+                JtC1.setVisible(true);
+                JtC2.setVisible(true);
+                JtC3.setVisible(true);
+                JtC4.setVisible(true);
+                JtC5.setVisible(true);
+                JtC6.setVisible(true);
+                JtC7.setVisible(true);
+                JtC8.setVisible(true);
+                JtC9.setVisible(true);
+                JtC10.setVisible(true);
+                break;
+            case "[23-27]":
+                L1.setText("23:");
+                L2.setText("23.5:");
+                L3.setText("24:");
+                L4.setText("24.5:");
+                L5.setText("25:");
+                L6.setText("25.5:");
+                L7.setText("26:");
+                L8.setText("26.5:");
+                L9.setText("27:");
+                L10.setText("27.5:");
+                L1.setVisible(true);
+                L2.setVisible(true);
+                L3.setVisible(true);
+                L4.setVisible(true);
+                L5.setVisible(true);
+                L6.setVisible(true);
+                L7.setVisible(true);
+                L8.setVisible(true);
+                L9.setVisible(true);
+                L10.setVisible(true);
+                JtC1.requestFocus();
+                JtC1.setSelectionStart(0);
+                JtC2.setSelectionStart(0);
+                JtC3.setSelectionStart(0);
+                JtC4.setSelectionStart(0);
+                JtC5.setSelectionStart(0);
+                JtC6.setSelectionStart(0);
+                JtC7.setSelectionStart(0);
+                JtC8.setSelectionStart(0);
+                JtC9.setSelectionStart(0);
+                JtC10.setSelectionStart(0);
+                JtC1.setVisible(true);
+                JtC2.setVisible(true);
+                JtC3.setVisible(true);
+                JtC4.setVisible(true);
+                JtC5.setVisible(true);
+                JtC6.setVisible(true);
+                JtC7.setVisible(true);
+                JtC8.setVisible(true);
+                JtC9.setVisible(true);
+                JtC10.setVisible(true);
+                break;
+            default:
+                break;
+        }
+    }
+
     private void JbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbAgregarActionPerformed
+        AgregarDetalle();
+    }//GEN-LAST:event_JbAgregarActionPerformed
+    
+    private void AgregarDetalle(){
         ArrayList<Dpedido> detalles = new ArrayList<Dpedido>();
         ArrayList<Pedido> list = pedido.pedidoGetByID(JtBuscar.getText());
         int index = modelPedido.getRowCount() - 1;
@@ -1365,9 +1823,15 @@ public class Pedidos extends javax.swing.JInternalFrame {
             int cr4 = Integer.parseInt(JtC4.getText());
             int cr5 = Integer.parseInt(JtC5.getText());
             int cr6 = Integer.parseInt(JtC6.getText());
+            int cr7 = Integer.parseInt(JtC7.getText());
+            int cr8 = Integer.parseInt(JtC8.getText());
+            int cr9 = Integer.parseInt(JtC9.getText());
+            int cr10 = Integer.parseInt(JtC10.getText());
+            int cr11 = Integer.parseInt(JtC11.getText());
+            int cr12 = Integer.parseInt(JtC12.getText());
 
             boolean aviso = false;
-            String datos[] = new String[15];
+            String datos[] = new String[21];
             datos[0] = String.valueOf(Id_Producto);
             datos[1] = String.valueOf(cont);
             datos[2] = Desc;
@@ -1379,15 +1843,21 @@ public class Pedidos extends javax.swing.JInternalFrame {
             datos[8] = String.valueOf(cr4);
             datos[9] = String.valueOf(cr5);
             datos[10] = String.valueOf(cr6);
-            datos[11] = Cantidad;
-            datos[12] = precioA.format(precioa);
-            datos[13] = impt.format(importe);
-            datos[14] = Est;
+            datos[11] = String.valueOf(cr7);
+            datos[12] = String.valueOf(cr8);
+            datos[13] = String.valueOf(cr9);
+            datos[14] = String.valueOf(cr10);
+            datos[15] = String.valueOf(cr11);
+            datos[16] = String.valueOf(cr12);
+            datos[17] = Cantidad;
+            datos[18] = precioA.format(precioa);
+            datos[19] = impt.format(importe);
+            datos[20] = Est;
             for (int i = 0; i < JtPedido.getRowCount(); i++) {
                 if (JtPedido.getValueAt(i, 0).equals(String.valueOf(Id_Producto))) {
                     aviso = true;
                     String cant = JtCant.getText();
-                    String ct = JtPedido.getValueAt(i, 11).toString();
+                    String ct = JtPedido.getValueAt(i, 17).toString();
                     int canti = Integer.parseInt(cant) + Integer.parseInt(ct);
                     String cn1 = JtC1.getText();
                     String corrida = JtPedido.getValueAt(i, 5).toString();
@@ -1407,6 +1877,24 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     String cn6 = JtC6.getText();
                     String corrida6 = JtPedido.getValueAt(i, 10).toString();
                     int cor6 = Integer.parseInt(cn6) + Integer.parseInt(corrida6);
+                    String cn7 = JtC7.getText();
+                    String corrida7 = JtPedido.getValueAt(i, 11).toString();
+                    int cor7 = Integer.parseInt(cn7) + Integer.parseInt(corrida7);
+                    String cn8 = JtC8.getText();
+                    String corrida8 = JtPedido.getValueAt(i, 12).toString();
+                    int cor8 = Integer.parseInt(cn8) + Integer.parseInt(corrida8);
+                    String cn9 = JtC9.getText();
+                    String corrida9 = JtPedido.getValueAt(i, 13).toString();
+                    int cor9 = Integer.parseInt(cn9) + Integer.parseInt(corrida9);
+                    String cn10 = JtC10.getText();
+                    String corrida10 = JtPedido.getValueAt(i, 14).toString();
+                    int cor10 = Integer.parseInt(cn10) + Integer.parseInt(corrida10);
+                    String cn11 = JtC11.getText();
+                    String corrida11 = JtPedido.getValueAt(i, 15).toString();
+                    int cor11 = Integer.parseInt(cn11) + Integer.parseInt(corrida11);
+                    String cn12 = JtC12.getText();
+                    String corrida12 = JtPedido.getValueAt(i, 16).toString();
+                    int cor12 = Integer.parseInt(cn12) + Integer.parseInt(corrida12);
 
                     Double precios = Double.parseDouble(JtprecioA.getText());
                     double impor = Integer.valueOf(canti) * precio;
@@ -1416,9 +1904,15 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     modelPedido.setValueAt(String.valueOf(cor4), i, 8);
                     modelPedido.setValueAt(String.valueOf(cor5), i, 9);
                     modelPedido.setValueAt(String.valueOf(cor6), i, 10);
-                    modelPedido.setValueAt(String.valueOf(canti), i, 11);
-                    modelPedido.setValueAt(precioA.format(precios), i, 12);
-                    modelPedido.setValueAt(impt.format(impor), i, 13);
+                    modelPedido.setValueAt(String.valueOf(cor7), i, 11);
+                    modelPedido.setValueAt(String.valueOf(cor8), i, 12);
+                    modelPedido.setValueAt(String.valueOf(cor9), i, 13);
+                    modelPedido.setValueAt(String.valueOf(cor10), i, 14);
+                    modelPedido.setValueAt(String.valueOf(cor11), i, 15);
+                    modelPedido.setValueAt(String.valueOf(cor12), i, 16);
+                    modelPedido.setValueAt(String.valueOf(canti), i, 17);
+                    modelPedido.setValueAt(precioA.format(precios), i, 18);
+                    modelPedido.setValueAt(impt.format(impor), i, 19);
                     Limpiar();
                     OcultarCampos();
                 }
@@ -1441,7 +1935,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 Dt.setNpedido(Npedido);
                 Dt.setId_Cliente(cli.getId_Cliente());
                 Dt.setFecha_Pedido(fechaPed);
-                Dt.setFecha_Entrega(fechaRec);
+                Dt.setFecha_Entrega(fechaEn);
                 Dt.setId_Producto(Id_Producto);
                 Dt.setCorrida(Corrida);
                 Dt.setC1(cr1);
@@ -1450,6 +1944,12 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 Dt.setC4(cr4);
                 Dt.setC5(cr5);
                 Dt.setC6(cr6);
+                Dt.setC7(cr7);
+                Dt.setC8(cr8);
+                Dt.setC9(cr9);
+                Dt.setC10(cr10);
+                Dt.setC11(cr11);
+                Dt.setC12(cr12);
                 Dt.setPares(Pares);
                 Dt.setImporte(importe);
                 Dt.setSerie(Serie);
@@ -1459,6 +1959,12 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 Dt.setCSurt4(0);
                 Dt.setCSurt5(0);
                 Dt.setCSurt6(0);
+                Dt.setCSurt7(0);
+                Dt.setCSurt8(0);
+                Dt.setCSurt9(0);
+                Dt.setCSurt10(0);
+                Dt.setCSurt11(0);
+                Dt.setCSurt12(0);
                 Dt.setParesSurt(0);
                 Dt.setStatus(Est);
                 Dt.setPrecio(precio);
@@ -1495,14 +2001,47 @@ public class Pedidos extends javax.swing.JInternalFrame {
         } else {
             AddItem();
             JbAlerta.setEnabled(false);
-            JcColor.setEnabled(false);
+            JcPrecio.setEnabled(false);
         }
-    }//GEN-LAST:event_JbAgregarActionPerformed
+    }
+    
     private void AddItem() {
         switch (JtCorrida.getText()) {
+            case "[10-12]":
+                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
+                        || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
+                } else if (ValidarC1()) {
+                    AddProducto();
+                    Limpiar();
+                    OcultarCampos();
+                }
+                break;
             case "[11-14]":
                 if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
-                        || JtC4.getText().isEmpty()) {
+                        || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
+                        || JtC7.getText().isEmpty() || JtC8.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
+                } else if (ValidarC2()) {
+                    AddProducto();
+                    Limpiar();
+                    OcultarCampos();
+                }
+                break;
+            case "[12-14]":
+                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
+                        || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
+                } else if (ValidarC1()) {
+                    AddProducto();
+                    Limpiar();
+                    OcultarCampos();
+                }
+                break;
+            case "[13-16]":
+                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
+                        || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
+                        || JtC7.getText().isEmpty() || JtC8.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
                 } else if (ValidarC2()) {
                     AddProducto();
@@ -1511,7 +2050,8 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 }
                 break;
             case "[15-17]":
-                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()) {
+                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
+                        || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
                 } else if (ValidarC1()) {
                     AddProducto();
@@ -1519,8 +2059,21 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     OcultarCampos();
                 }
                 break;
+            case "[17-21]":
+                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
+                        || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
+                        || JtC7.getText().isEmpty() || JtC8.getText().isEmpty() || JtC9.getText().isEmpty() || JtC10.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
+                } else if (ValidarC3()) {
+                    AddProducto();
+                    Limpiar();
+                    OcultarCampos();
+                }
+                break;
             case "[18-21]":
-                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty() || JtC4.getText().isEmpty()) {
+                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
+                        || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
+                        || JtC7.getText().isEmpty() || JtC8.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
                 } else if (ValidarC2()) {
                     AddProducto();
@@ -1528,8 +2081,20 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     OcultarCampos();
                 }
                 break;
+            case "[21-25]":
+                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
+                        || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
+                        || JtC7.getText().isEmpty() || JtC8.getText().isEmpty() || JtC9.getText().isEmpty() || JtC10.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
+                } else if (ValidarC3()) {
+                    AddProducto();
+                    Limpiar();
+                    OcultarCampos();
+                }
+                break;
             case "[22-24]":
-                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()) {
+                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
+                        || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
                 } else if (ValidarC1()) {
                     AddProducto();
@@ -1538,8 +2103,9 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 }
                 break;
             case "[22-26]":
-                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty() || JtC4.getText().isEmpty()
-                        || JtC5.getText().isEmpty()) {
+                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
+                        || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
+                        || JtC7.getText().isEmpty() || JtC8.getText().isEmpty() || JtC9.getText().isEmpty() || JtC10.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
                 } else if (ValidarC3()) {
                     AddProducto();
@@ -1547,28 +2113,53 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     OcultarCampos();
                 }
                 break;
-            case "[23-26]":
-                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty() || JtC4.getText().isEmpty()) {
+            case "[22-27]":
+                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
+                        || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
+                        || JtC7.getText().isEmpty() || JtC8.getText().isEmpty() || JtC9.getText().isEmpty() || JtC10.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
-                } else if (ValidarC2()) {
+                } else if (ValidarC4()) {
                     AddProducto();
                     Limpiar();
                     OcultarCampos();
                 }
                 break;
-            case "[23-29]":
-                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty() || JtC4.getText().isEmpty()
-                        || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()) {
+            case "[23-26]":
+                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
+                        || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
+                        || JtC7.getText().isEmpty() || JtC8.getText().isEmpty() || JtC9.getText().isEmpty() || JtC10.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
-                } else if (ValidarC4()) {
+                } else if (ValidarC3()) {
+                    AddProducto();
+                    Limpiar();
+                    OcultarCampos();
+                }
+                break;
+            case "[23-27]":
+                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
+                        || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
+                        || JtC7.getText().isEmpty() || JtC8.getText().isEmpty() || JtC9.getText().isEmpty() || JtC10.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
+                } else if (ValidarC3()) {
+                    AddProducto();
+                    Limpiar();
+                    OcultarCampos();
+                }
+            case "[23-29]":
+                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
+                        || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
+                        || JtC7.getText().isEmpty() || JtC8.getText().isEmpty() || JtC9.getText().isEmpty() || JtC10.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
+                } else if (ValidarC3()) {
                     AddProducto();
                     Limpiar();
                     OcultarCampos();
                 }
                 break;
             case "[25-30]":
-                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty() || JtC4.getText().isEmpty()
-                        || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()) {
+                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
+                        || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
+                        || JtC7.getText().isEmpty() || JtC8.getText().isEmpty() || JtC9.getText().isEmpty() || JtC10.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
                 } else if (ValidarC4()) {
                     AddProducto();
@@ -1576,6 +2167,37 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     OcultarCampos();
                 }
                 break;
+             case "[25-29]":
+                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
+                        || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
+                        || JtC7.getText().isEmpty() || JtC8.getText().isEmpty() || JtC9.getText().isEmpty() || JtC10.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
+                } else if (ValidarC4()) {
+                    AddProducto();
+                    Limpiar();
+                    OcultarCampos();
+                }
+                break;    
+            case "[27-29]":
+                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
+                        || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
+                } else if (ValidarC1()) {
+                    AddProducto();
+                    Limpiar();
+                    OcultarCampos();
+                }
+                break;
+            case "[30-33]":
+                if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
+                        || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
+                        || JtC7.getText().isEmpty() || JtC8.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
+                } else if (ValidarC2()) {
+                    AddProducto();
+                    Limpiar();
+                    OcultarCampos();
+                }
             default:
                 break;
         }
@@ -1657,7 +2279,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
             JbSerie.setText("A");
 
-            if (JcColor.isSelected() == false) {
+            if (JcPrecio.isSelected() == false) {
                 for (Precio p : lista) {
                     double precio = p.getPrecioA();
                     JtprecioA.setText(precioA.format(precio));
@@ -1672,7 +2294,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
             JbAlerta.setBackground(java.awt.Color.yellow);
             JbSerie.setText("B");
 
-            if (JcColor.isSelected() == false) {
+            if (JcPrecio.isSelected() == false) {
                 for (Precio p : lista) {
                     double precio = p.getPrecioB();
                     JtprecioA.setText(precioA.format(precio));
@@ -1692,22 +2314,22 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
         ArrayList<Precio> lista = pc.GetByID(prod.getId_Producto(), cli.getId_Cliente());
 
-        if (JbAlerta.getBackground().equals(java.awt.Color.gray) && JcColor.isSelected() == false) {
+        if (JbSerie.getText().equals("A") && JcPrecio.isSelected() == false) {
             for (Precio p : lista) {
                 double precio = p.getPrecioA();
                 JtprecioA.setText(precioA.format(precio));
             }
-        } else if (JbAlerta.getBackground().equals(java.awt.Color.gray) && JcColor.isSelected() == true) {
+        } else if (JbSerie.getText().equals("A") && JcPrecio.isSelected() == true) {
             for (Precio p : lista) {
                 double precio = p.getPrecioAP();
                 JtprecioA.setText(precioA.format(precio));
             }
-        } else if (JbAlerta.getBackground().equals(java.awt.Color.yellow) && JcColor.isSelected() == false) {
+        } else if (JbSerie.getText().equals("B") && JcPrecio.isSelected() == false) {
             for (Precio p : lista) {
                 double precio = p.getPrecioB();
                 JtprecioA.setText(precioA.format(precio));
             }
-        } else if (JbAlerta.getBackground().equals(java.awt.Color.yellow) && JcColor.isSelected() == true) {
+        } else if (JbSerie.getText().equals("B") && JcPrecio.isSelected() == true) {
             for (Precio p : lista) {
                 double precio = p.getPrecioBP();
                 JtprecioA.setText(precioA.format(precio));
@@ -1772,22 +2394,28 @@ public class Pedidos extends javax.swing.JInternalFrame {
                             int idprod = Integer.parseInt((String) modelPedido.getValueAt(i, 0));
                             int rn = Integer.parseInt((String) modelPedido.getValueAt(i, 1));
                             String corrida = (String) modelPedido.getValueAt(i, 4);
-                            double precio = Double.parseDouble((String) modelPedido.getValueAt(i, 12));
-                            double importe = Double.parseDouble((String) modelPedido.getValueAt(i, 13));
-                            String Status = (String) modelPedido.getValueAt(i, 14);
-                            int Pares = Integer.parseInt((String) modelPedido.getValueAt(i, 11));
+                            double precio = Double.parseDouble((String) modelPedido.getValueAt(i, 18));
+                            double importe = Double.parseDouble((String) modelPedido.getValueAt(i, 19));
+                            String Status = (String) modelPedido.getValueAt(i, 20);
+                            int Pares = Integer.parseInt((String) modelPedido.getValueAt(i, 17));
                             int cr1 = Integer.parseInt((String) modelPedido.getValueAt(i, 5));
                             int cr2 = Integer.parseInt((String) modelPedido.getValueAt(i, 6));
                             int cr3 = Integer.parseInt((String) modelPedido.getValueAt(i, 7));
                             int cr4 = Integer.parseInt((String) modelPedido.getValueAt(i, 8));
                             int cr5 = Integer.parseInt((String) modelPedido.getValueAt(i, 9));
                             int cr6 = Integer.parseInt((String) modelPedido.getValueAt(i, 10));
+                            int cr7 = Integer.parseInt((String) modelPedido.getValueAt(i, 11));
+                            int cr8 = Integer.parseInt((String) modelPedido.getValueAt(i, 12));
+                            int cr9 = Integer.parseInt((String) modelPedido.getValueAt(i, 13));
+                            int cr10 = Integer.parseInt((String) modelPedido.getValueAt(i, 14));
+                            int cr11 = Integer.parseInt((String) modelPedido.getValueAt(i, 15));
+                            int cr12 = Integer.parseInt((String) modelPedido.getValueAt(i, 16));
                             Dpedido Dt = new Dpedido();
                             Dt.setRenglon(rn);
                             Dt.setNpedido(Npedido);
                             Dt.setId_Cliente(cli.getId_Cliente());
                             Dt.setFecha_Pedido(fechaPed);
-                            Dt.setFecha_Entrega(fechaRec);
+                            Dt.setFecha_Entrega(fechaEn);
                             Dt.setId_Producto(idprod);
                             Dt.setCorrida(corrida);
                             Dt.setC1(cr1);
@@ -1796,6 +2424,12 @@ public class Pedidos extends javax.swing.JInternalFrame {
                             Dt.setC4(cr4);
                             Dt.setC5(cr5);
                             Dt.setC6(cr6);
+                            Dt.setC7(cr7);
+                            Dt.setC8(cr8);
+                            Dt.setC9(cr9);
+                            Dt.setC10(cr10);
+                            Dt.setC11(cr11);
+                            Dt.setC12(cr12);
                             Dt.setPares(Pares);
                             Dt.setImporte(importe);
                             Dt.setSerie(Serie);
@@ -1805,6 +2439,12 @@ public class Pedidos extends javax.swing.JInternalFrame {
                             Dt.setCSurt4(0);
                             Dt.setCSurt5(0);
                             Dt.setCSurt6(0);
+                            Dt.setCSurt7(0);
+                            Dt.setCSurt8(0);
+                            Dt.setCSurt9(0);
+                            Dt.setCSurt10(0);
+                            Dt.setCSurt11(0);
+                            Dt.setCSurt12(0);
                             Dt.setParesSurt(0);
                             Dt.setStatus(Status);
                             Dt.setPrecio(precio);
@@ -1859,22 +2499,28 @@ public class Pedidos extends javax.swing.JInternalFrame {
                             int idprod = Integer.parseInt((String) modelPedido.getValueAt(i, 0));
                             int rn = Integer.parseInt((String) modelPedido.getValueAt(i, 1));
                             String corrida = (String) modelPedido.getValueAt(i, 4);
-                            double precio = Double.parseDouble((String) modelPedido.getValueAt(i, 12));
-                            double importe = Double.parseDouble((String) modelPedido.getValueAt(i, 13));
-                            String Status = (String) modelPedido.getValueAt(i, 14);
-                            int Pares = Integer.parseInt((String) modelPedido.getValueAt(i, 11));
+                            double precio = Double.parseDouble((String) modelPedido.getValueAt(i, 18));
+                            double importe = Double.parseDouble((String) modelPedido.getValueAt(i, 19));
+                            String Status = (String) modelPedido.getValueAt(i, 20);
+                            int Pares = Integer.parseInt((String) modelPedido.getValueAt(i, 17));
                             int cr1 = Integer.parseInt((String) modelPedido.getValueAt(i, 5));
                             int cr2 = Integer.parseInt((String) modelPedido.getValueAt(i, 6));
                             int cr3 = Integer.parseInt((String) modelPedido.getValueAt(i, 7));
                             int cr4 = Integer.parseInt((String) modelPedido.getValueAt(i, 8));
                             int cr5 = Integer.parseInt((String) modelPedido.getValueAt(i, 9));
                             int cr6 = Integer.parseInt((String) modelPedido.getValueAt(i, 10));
+                            int cr7 = Integer.parseInt((String) modelPedido.getValueAt(i, 11));
+                            int cr8 = Integer.parseInt((String) modelPedido.getValueAt(i, 12));
+                            int cr9 = Integer.parseInt((String) modelPedido.getValueAt(i, 13));
+                            int cr10 = Integer.parseInt((String) modelPedido.getValueAt(i, 14));
+                            int cr11 = Integer.parseInt((String) modelPedido.getValueAt(i, 15));
+                            int cr12 = Integer.parseInt((String) modelPedido.getValueAt(i, 16));
                             Dpedido Dt = new Dpedido();
                             Dt.setRenglon(rn);
                             Dt.setNpedido(Npedido);
                             Dt.setId_Cliente(cli.getId_Cliente());
                             Dt.setFecha_Pedido(fechaPed);
-                            Dt.setFecha_Entrega(fechaRec);
+                            Dt.setFecha_Entrega(fechaEn);
                             Dt.setId_Producto(idprod);
                             Dt.setCorrida(corrida);
                             Dt.setC1(cr1);
@@ -1883,6 +2529,12 @@ public class Pedidos extends javax.swing.JInternalFrame {
                             Dt.setC4(cr4);
                             Dt.setC5(cr5);
                             Dt.setC6(cr6);
+                            Dt.setC7(cr7);
+                            Dt.setC8(cr8);
+                            Dt.setC9(cr9);
+                            Dt.setC10(cr10);
+                            Dt.setC11(cr11);
+                            Dt.setC12(cr12);
                             Dt.setPares(Pares);
                             Dt.setImporte(importe);
                             Dt.setSerie(Serie);
@@ -1892,6 +2544,12 @@ public class Pedidos extends javax.swing.JInternalFrame {
                             Dt.setCSurt4(0);
                             Dt.setCSurt5(0);
                             Dt.setCSurt6(0);
+                            Dt.setCSurt7(0);
+                            Dt.setCSurt8(0);
+                            Dt.setCSurt9(0);
+                            Dt.setCSurt10(0);
+                            Dt.setCSurt11(0);
+                            Dt.setCSurt12(0);
                             Dt.setParesSurt(0);
                             Dt.setStatus(Status);
                             Dt.setPrecio(precio);
@@ -1951,22 +2609,28 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         int idprod = Integer.parseInt((String) modelPedido.getValueAt(i, 0));
                         int rn = Integer.parseInt((String) modelPedido.getValueAt(i, 1));
                         String corrida = (String) modelPedido.getValueAt(i, 4);
-                        double precio = Double.parseDouble((String) modelPedido.getValueAt(i, 12));
-                        double importe = Double.parseDouble((String) modelPedido.getValueAt(i, 13));
-                        String Status = (String) modelPedido.getValueAt(i, 14);
-                        int Pares = Integer.parseInt((String) modelPedido.getValueAt(i, 11));
+                        double precio = Double.parseDouble((String) modelPedido.getValueAt(i, 18));
+                        double importe = Double.parseDouble((String) modelPedido.getValueAt(i, 19));
+                        String Status = (String) modelPedido.getValueAt(i, 20);
+                        int Pares = Integer.parseInt((String) modelPedido.getValueAt(i, 17));
                         int cr1 = Integer.parseInt((String) modelPedido.getValueAt(i, 5));
                         int cr2 = Integer.parseInt((String) modelPedido.getValueAt(i, 6));
                         int cr3 = Integer.parseInt((String) modelPedido.getValueAt(i, 7));
                         int cr4 = Integer.parseInt((String) modelPedido.getValueAt(i, 8));
                         int cr5 = Integer.parseInt((String) modelPedido.getValueAt(i, 9));
                         int cr6 = Integer.parseInt((String) modelPedido.getValueAt(i, 10));
+                        int cr7 = Integer.parseInt((String) modelPedido.getValueAt(i, 11));
+                        int cr8 = Integer.parseInt((String) modelPedido.getValueAt(i, 12));
+                        int cr9 = Integer.parseInt((String) modelPedido.getValueAt(i, 13));
+                        int cr10 = Integer.parseInt((String) modelPedido.getValueAt(i, 14));
+                        int cr11 = Integer.parseInt((String) modelPedido.getValueAt(i, 15));
+                        int cr12 = Integer.parseInt((String) modelPedido.getValueAt(i, 16));
                         Dpedido Dt = new Dpedido();
                         Dt.setRenglon(rn);
                         Dt.setNpedido(Npedido);
                         Dt.setId_Cliente(cli.getId_Cliente());
                         Dt.setFecha_Pedido(fechaPed);
-                        Dt.setFecha_Entrega(fechaRec);
+                        Dt.setFecha_Entrega(fechaEn);
                         Dt.setId_Producto(idprod);
                         Dt.setCorrida(corrida);
                         Dt.setC1(cr1);
@@ -1975,6 +2639,12 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         Dt.setC4(cr4);
                         Dt.setC5(cr5);
                         Dt.setC6(cr6);
+                        Dt.setC7(cr7);
+                        Dt.setC8(cr8);
+                        Dt.setC9(cr9);
+                        Dt.setC10(cr10);
+                        Dt.setC11(cr11);
+                        Dt.setC12(cr12);
                         Dt.setPares(Pares);
                         Dt.setImporte(importe);
                         Dt.setSerie(Serie);
@@ -1984,6 +2654,12 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         Dt.setCSurt4(0);
                         Dt.setCSurt5(0);
                         Dt.setCSurt6(0);
+                        Dt.setCSurt7(0);
+                        Dt.setCSurt8(0);
+                        Dt.setCSurt9(0);
+                        Dt.setCSurt10(0);
+                        Dt.setCSurt11(0);
+                        Dt.setCSurt12(0);
                         Dt.setParesSurt(0);
                         Dt.setStatus(Status);
                         Dt.setPrecio(precio);
@@ -2035,7 +2711,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
         if (list.size() > 0) {
             for (Pedido ls : list) {
                 DecimalFormat impo = new DecimalFormat("#.00");
-                String arreglo[] = new String[15];
+                String arreglo[] = new String[21];
                 arreglo[0] = String.valueOf(ls.getId_Producto());
                 arreglo[1] = String.valueOf(ls.getRenglon());
                 arreglo[2] = ls.getSuela();
@@ -2047,10 +2723,16 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 arreglo[8] = String.valueOf(ls.getC4());
                 arreglo[9] = String.valueOf(ls.getC5());
                 arreglo[10] = String.valueOf(ls.getC6());
-                arreglo[11] = String.valueOf(ls.getPares());
-                arreglo[12] = precioA.format(ls.getPrecio());
-                arreglo[13] = impo.format(ls.getImporte());
-                arreglo[14] = ls.getStatus();
+                arreglo[11] = String.valueOf(ls.getC7());
+                arreglo[12] = String.valueOf(ls.getC8());
+                arreglo[13] = String.valueOf(ls.getC9());
+                arreglo[14] = String.valueOf(ls.getC10());
+                arreglo[15] = String.valueOf(ls.getC11());
+                arreglo[16] = String.valueOf(ls.getC12());
+                arreglo[17] = String.valueOf(ls.getPares());
+                arreglo[18] = precioA.format(ls.getPrecio());
+                arreglo[19] = impo.format(ls.getImporte());
+                arreglo[20] = ls.getStatus();
                 modelPedido.addRow(arreglo);
             }
         }
@@ -2117,11 +2799,16 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 datos[8] = String.valueOf(p.getC4());
                 datos[9] = String.valueOf(p.getC5());
                 datos[10] = String.valueOf(p.getC6());
-                datos[11] = String.valueOf(p.getPares());
-                datos[12] = precioA.format(p.getPrecio());
-                datos[13] = impt.format(p.getImporte());
-                datos[14] = p.getStatus();
-                modelPedido.addRow(datos);
+                datos[11] = String.valueOf(p.getC7());
+                datos[12] = String.valueOf(p.getC8());
+                datos[13] = String.valueOf(p.getC9());
+                datos[14] = String.valueOf(p.getC10());
+                datos[15] = String.valueOf(p.getC11());
+                datos[16] = String.valueOf(p.getC12());
+                datos[17] = String.valueOf(p.getPares());
+                datos[18] = precioA.format(p.getPrecio());
+                datos[19] = impt.format(p.getImporte());
+                datos[20] = p.getStatus();
             }
             /*int index = modelPedido.getRowCount()-1;
             String var = modelPedido.getValueAt(index, 1).toString();
@@ -2170,7 +2857,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
                 JbActualizar.setEnabled(true);
                 JbEliminar.setEnabled(true);
-                String datos[] = new String[15];
+                String datos[] = new String[21];
                 for (Pedido p : lista) {
                     Cliente cli = new Cliente();
                     JtCliente.setText(String.valueOf(p.getId_Cliente()));
@@ -2214,10 +2901,16 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     datos[8] = String.valueOf(p.getC4());
                     datos[9] = String.valueOf(p.getC5());
                     datos[10] = String.valueOf(p.getC6());
-                    datos[11] = String.valueOf(p.getPares());
-                    datos[12] = precioA.format(p.getPrecio());
-                    datos[13] = impt.format(p.getImporte());
-                    datos[14] = p.getStatus();
+                    datos[11] = String.valueOf(p.getC7());
+                    datos[12] = String.valueOf(p.getC8());
+                    datos[13] = String.valueOf(p.getC9());
+                    datos[14] = String.valueOf(p.getC10());
+                    datos[15] = String.valueOf(p.getC11());
+                    datos[16] = String.valueOf(p.getC12());
+                    datos[17] = String.valueOf(p.getPares());
+                    datos[18] = precioA.format(p.getPrecio());
+                    datos[19] = impt.format(p.getImporte());
+                    datos[20] = p.getStatus();
                     modelPedido.addRow(datos);
                 }
                 /*int index = modelPedido.getRowCount()-1;
@@ -2247,15 +2940,21 @@ public class Pedidos extends javax.swing.JInternalFrame {
             int TotalPares = Integer.parseInt(par);
             String costo = lblTotal.getText();
             double costoPedido = Double.parseDouble(costo);
-            int id_dt = Integer.parseInt((String)JtPedido.getValueAt(row, 1));
-            int cs1 = Integer.parseInt((String)JtPedido.getValueAt(row, 5));
-            int cs2 = Integer.parseInt((String)JtPedido.getValueAt(row, 6));
-            int cs3 = Integer.parseInt((String)JtPedido.getValueAt(row, 7));
-            int cs4 = Integer.parseInt((String)JtPedido.getValueAt(row, 8));
-            int cs5 = Integer.parseInt((String)JtPedido.getValueAt(row, 9));
-            int cs6 = Integer.parseInt((String)JtPedido.getValueAt(row, 10));
-            int cant = Integer.parseInt((String)JtPedido.getValueAt(row, 11));
-            Double imp = Double.parseDouble((String)JtPedido.getValueAt(row, 13));
+            int id_dt = Integer.parseInt((String) JtPedido.getValueAt(row, 1));
+            int cs1 = Integer.parseInt((String) JtPedido.getValueAt(row, 5));
+            int cs2 = Integer.parseInt((String) JtPedido.getValueAt(row, 6));
+            int cs3 = Integer.parseInt((String) JtPedido.getValueAt(row, 7));
+            int cs4 = Integer.parseInt((String) JtPedido.getValueAt(row, 8));
+            int cs5 = Integer.parseInt((String) JtPedido.getValueAt(row, 9));
+            int cs6 = Integer.parseInt((String) JtPedido.getValueAt(row, 10));
+            int cs7 = Integer.parseInt((String) JtPedido.getValueAt(row, 11));
+            int cs8 = Integer.parseInt((String) JtPedido.getValueAt(row, 12));
+            int cs9 = Integer.parseInt((String) JtPedido.getValueAt(row, 13));
+            int cs10 = Integer.parseInt((String) JtPedido.getValueAt(row, 14));
+            int cs11 = Integer.parseInt((String) JtPedido.getValueAt(row, 15));
+            int cs12 = Integer.parseInt((String) JtPedido.getValueAt(row, 16));
+            int cant = Integer.parseInt((String) JtPedido.getValueAt(row, 17));
+            Double imp = Double.parseDouble((String) JtPedido.getValueAt(row, 19));
 
             Dpedido det = new Dpedido();
             det.setC1(cs1);
@@ -2264,6 +2963,12 @@ public class Pedidos extends javax.swing.JInternalFrame {
             det.setC4(cs4);
             det.setC5(cs5);
             det.setC6(cs6);
+            det.setC7(cs7);
+            det.setC8(cs8);
+            det.setC9(cs9);
+            det.setC10(cs10);
+            det.setC11(cs11);
+            det.setC12(cs12);
             det.setPares(cant);
             det.setImporte(imp);
             det.setRenglon(id_dt);
@@ -2279,6 +2984,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     if (pedido.actualizarPedido(pd, det, id_dt) && pedido.actualizarPedidoA(pd, det, id_dt)) {
                         JOptionPane.showMessageDialog(this, "Se actualizo el pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         JbAlerta.setEnabled(true);
+                        JcPrecio.setEnabled(true);
                     } else {
                         JOptionPane.showMessageDialog(this, "Este pedido no se puede modificar!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         JbAlerta.setEnabled(true);
@@ -2291,6 +2997,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     if (pedido.actualizarPedidoA(pd, det, id_dt)) {
                         JOptionPane.showMessageDialog(this, "Se actualizo el pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         JbAlerta.setEnabled(true);
+                        JcPrecio.setEnabled(true);
                         OcultarCampos();
                         Limpiar();
                     } else {
@@ -2315,7 +3022,8 @@ public class Pedidos extends javax.swing.JInternalFrame {
         Pro.setId_Producto(Integer.parseInt(JtPedido.getValueAt(row, 0).toString()));
         Pro.setDescripcion(JtPedido.getValueAt(row, 2).toString());
         JcSuela.getModel().setSelectedItem(Pro);
-        JtprecioA.setText(JtPedido.getValueAt(row, 12).toString());
+        JtprecioA.setText(JtPedido.getValueAt(row, 18).toString());
+        JcPrecio.setEnabled(false);
     }//GEN-LAST:event_JtPedidoMouseClicked
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
@@ -2331,38 +3039,116 @@ public class Pedidos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_JbAlertaActionPerformed
 
-    private void JcColorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JcColorItemStateChanged
+    private void JcPrecioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JcPrecioItemStateChanged
         Producto prod = (Producto) JcSuela.getSelectedItem();
         Cliente cli = (Cliente) JcCliente.getSelectedItem();
         ArrayList<Precio> lista = pc.GetByID(prod.getId_Producto(), cli.getId_Cliente());
 
         if (evt.getStateChange() == ItemEvent.SELECTED) {
 
-            if (JbAlerta.getBackground().equals(java.awt.Color.gray)) {
+            if (JbSerie.getText().equals("A")) {
                 for (Precio p : lista) {
                     double precio = p.getPrecioAP();
                     JtprecioA.setText(precioA.format(precio));
                 }
-            } else if (JbAlerta.getBackground().equals(java.awt.Color.yellow)) {
+            } else if (JbSerie.getText().equals("B")) {
                 for (Precio p : lista) {
                     double precio = p.getPrecioBP();
                     JtprecioA.setText(precioA.format(precio));
                 }
             }
         } else {
-            if (JbAlerta.getBackground().equals(java.awt.Color.gray)) {
+            if (JbSerie.getText().equals("A")) {
                 for (Precio p : lista) {
                     double precio = p.getPrecioA();
                     JtprecioA.setText(precioA.format(precio));
                 }
-            } else if (JbAlerta.getBackground().equals(java.awt.Color.yellow)) {
+            } else if (JbSerie.getText().equals("B")) {
                 for (Precio p : lista) {
                     double precio = p.getPrecioB();
                     JtprecioA.setText(precioA.format(precio));
                 }
             }
         }
-    }//GEN-LAST:event_JcColorItemStateChanged
+    }//GEN-LAST:event_JcPrecioItemStateChanged
+
+    private void JtCantKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtCantKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            JtC1.requestFocus();
+        }
+    }//GEN-LAST:event_JtCantKeyPressed
+
+    private void JtC1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtC1KeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            AgregarDetalle();
+        }
+    }//GEN-LAST:event_JtC1KeyPressed
+
+    private void JtC2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtC2KeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            AgregarDetalle();
+        }
+    }//GEN-LAST:event_JtC2KeyPressed
+
+    private void JtC3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtC3KeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            AgregarDetalle();
+        }
+    }//GEN-LAST:event_JtC3KeyPressed
+
+    private void JtC4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtC4KeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            AgregarDetalle();
+        }
+    }//GEN-LAST:event_JtC4KeyPressed
+
+    private void JtC5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtC5KeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            AgregarDetalle();
+        }
+    }//GEN-LAST:event_JtC5KeyPressed
+
+    private void JtC6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtC6KeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            AgregarDetalle();
+        }
+    }//GEN-LAST:event_JtC6KeyPressed
+
+    private void JtC7KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtC7KeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            AgregarDetalle();
+        }
+    }//GEN-LAST:event_JtC7KeyPressed
+
+    private void JtC8KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtC8KeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            AgregarDetalle();
+        }
+    }//GEN-LAST:event_JtC8KeyPressed
+
+    private void JtC9KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtC9KeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            AgregarDetalle();
+        }
+    }//GEN-LAST:event_JtC9KeyPressed
+
+    private void JtC10KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtC10KeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            AgregarDetalle();
+        }
+    }//GEN-LAST:event_JtC10KeyPressed
+
+    private void JtC11KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtC11KeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            AgregarDetalle();
+        }
+    }//GEN-LAST:event_JtC11KeyPressed
+
+    private void JtC12KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtC12KeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            AgregarDetalle();
+        }
+    }//GEN-LAST:event_JtC12KeyPressed
     private boolean ValidarDatos() {
         if (this.JtPedido.getRowCount() == 0 && this.JtPedido.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(null, "No hay productos para el pedido", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
@@ -2395,7 +3181,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JdEntrega.setCalendar(fechaActual);
         JdRecibido.setCalendar(fechaActual);
         JbAlerta.setEnabled(true);
-        JcColor.setEnabled(true);
+        JcPrecio.setEnabled(true);
     }
 
     private void LimpiarCliente() {
@@ -2416,7 +3202,10 @@ public class Pedidos extends javax.swing.JInternalFrame {
         c1 = Integer.parseInt(JtC1.getText());
         c2 = Integer.parseInt(JtC2.getText());
         c3 = Integer.parseInt(JtC3.getText());
-        if (cantidad == c1 + c2 + c3) {
+        c4 = Integer.parseInt(JtC4.getText());
+        c5 = Integer.parseInt(JtC5.getText());
+        c6 = Integer.parseInt(JtC6.getText());
+        if (cantidad == c1 + c2 + c3 + c4 + c5 + c6) {
             return true;
         } else {
             JOptionPane.showMessageDialog(this, "Las cantidades no coinciden", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
@@ -2430,7 +3219,12 @@ public class Pedidos extends javax.swing.JInternalFrame {
         c2 = Integer.parseInt(JtC2.getText());
         c3 = Integer.parseInt(JtC3.getText());
         c4 = Integer.parseInt(JtC4.getText());
-        if (cantidad == c1 + c2 + c3 + c4) {
+        c5 = Integer.parseInt(JtC5.getText());
+        c6 = Integer.parseInt(JtC6.getText());
+        c7 = Integer.parseInt(JtC7.getText());
+        c8 = Integer.parseInt(JtC8.getText());
+
+        if (cantidad == c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8) {
             return true;
         } else {
             JOptionPane.showMessageDialog(this, "Las cantidades no coinciden", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
@@ -2445,7 +3239,12 @@ public class Pedidos extends javax.swing.JInternalFrame {
         c3 = Integer.parseInt(JtC3.getText());
         c4 = Integer.parseInt(JtC4.getText());
         c5 = Integer.parseInt(JtC5.getText());
-        if (cantidad == c1 + c2 + c3 + c4 + c5) {
+        c6 = Integer.parseInt(JtC6.getText());
+        c7 = Integer.parseInt(JtC7.getText());
+        c8 = Integer.parseInt(JtC8.getText());
+        c9 = Integer.parseInt(JtC9.getText());
+        c10 = Integer.parseInt(JtC10.getText());
+        if (cantidad == c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8 + c9 + c10) {
             return true;
         } else {
             JOptionPane.showMessageDialog(this, "Las cantidades no coinciden", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
@@ -2462,7 +3261,14 @@ public class Pedidos extends javax.swing.JInternalFrame {
         c5 = Integer.parseInt(JtC5.getText());
         c6 = Integer.parseInt(JtC6.getText());
 
-        if (cantidad == c1 + c2 + c3 + c4 + c5 + c6) {
+        c7 = Integer.parseInt(JtC7.getText());
+        c8 = Integer.parseInt(JtC8.getText());
+        c9 = Integer.parseInt(JtC9.getText());
+        c10 = Integer.parseInt(JtC10.getText());
+        c11 = Integer.parseInt(JtC11.getText());
+        c12 = Integer.parseInt(JtC12.getText());
+
+        if (cantidad == c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8 + c9 + c10 + c11 + c12) {
             return true;
         } else {
             JOptionPane.showMessageDialog(this, "Las cantidades no coinciden", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
@@ -2477,12 +3283,24 @@ public class Pedidos extends javax.swing.JInternalFrame {
         L4.setVisible(false);
         L5.setVisible(false);
         L6.setVisible(false);
+        L7.setVisible(false);
+        L8.setVisible(false);
+        L9.setVisible(false);
+        L10.setVisible(false);
+        L11.setVisible(false);
+        L12.setVisible(false);
         JtC1.setVisible(false);
         JtC2.setVisible(false);
         JtC3.setVisible(false);
         JtC4.setVisible(false);
         JtC5.setVisible(false);
         JtC6.setVisible(false);
+        JtC7.setVisible(false);
+        JtC8.setVisible(false);
+        JtC9.setVisible(false);
+        JtC10.setVisible(false);
+        JtC11.setVisible(false);
+        JtC12.setVisible(false);
         JtprecioA.setVisible(false);
         JtCliente.setVisible(false);
     }
@@ -2525,7 +3343,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
         this.Id_Producto = prod.getId_Producto();
         DecimalFormat impt = new DecimalFormat("#.00");
         boolean aviso = false;
-        String datos[] = new String[15];
+        String datos[] = new String[21];
 
         datos[0] = String.valueOf(Id_Producto);
         datos[1] = String.valueOf(cont);
@@ -2538,16 +3356,22 @@ public class Pedidos extends javax.swing.JInternalFrame {
         datos[8] = JtC4.getText();
         datos[9] = JtC5.getText();
         datos[10] = JtC6.getText();
-        datos[11] = JtCant.getText();
-        datos[12] = precioA.format(precioa);
-        datos[13] = impt.format(importe);
-        datos[14] = Est;
+        datos[11] = JtC7.getText();
+        datos[12] = JtC8.getText();
+        datos[13] = JtC9.getText();
+        datos[14] = JtC10.getText();
+        datos[15] = JtC11.getText();
+        datos[16] = JtC12.getText();
+        datos[17] = JtCant.getText();
+        datos[18] = precioA.format(precioa);
+        datos[19] = impt.format(importe);
+        datos[20] = Est;
 
         for (int i = 0; i < JtPedido.getRowCount(); i++) {
             if (JtPedido.getValueAt(i, 0).equals(String.valueOf(Id_Producto))) {
                 aviso = true;
                 String cant = JtCant.getText();
-                String ct = JtPedido.getValueAt(i, 11).toString();
+                String ct = JtPedido.getValueAt(i, 17).toString();
                 int canti = Integer.parseInt(cant) + Integer.parseInt(ct);
                 String cn1 = JtC1.getText();
                 String corrida = JtPedido.getValueAt(i, 5).toString();
@@ -2567,6 +3391,24 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 String cn6 = JtC6.getText();
                 String corrida6 = JtPedido.getValueAt(i, 10).toString();
                 int cor6 = Integer.parseInt(cn6) + Integer.parseInt(corrida6);
+                String cn7 = JtC7.getText();
+                String corrida7 = JtPedido.getValueAt(i, 11).toString();
+                int cor7 = Integer.parseInt(cn7) + Integer.parseInt(corrida7);
+                String cn8 = JtC8.getText();
+                String corrida8 = JtPedido.getValueAt(i, 12).toString();
+                int cor8 = Integer.parseInt(cn8) + Integer.parseInt(corrida8);
+                String cn9 = JtC9.getText();
+                String corrida9 = JtPedido.getValueAt(i, 13).toString();
+                int cor9 = Integer.parseInt(cn9) + Integer.parseInt(corrida9);
+                String cn10 = JtC10.getText();
+                String corrida10 = JtPedido.getValueAt(i, 14).toString();
+                int cor10 = Integer.parseInt(cn10) + Integer.parseInt(corrida10);
+                String cn11 = JtC11.getText();
+                String corrida11 = JtPedido.getValueAt(i, 15).toString();
+                int cor11 = Integer.parseInt(cn11) + Integer.parseInt(corrida11);
+                String cn12 = JtC12.getText();
+                String corrida12 = JtPedido.getValueAt(i, 16).toString();
+                int cor12 = Integer.parseInt(cn12) + Integer.parseInt(corrida12);
 
                 Double precio = Double.parseDouble(JtprecioA.getText());
                 double impor = Integer.valueOf(canti) * precio;
@@ -2576,9 +3418,15 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 modelPedido.setValueAt(String.valueOf(cor4), i, 8);
                 modelPedido.setValueAt(String.valueOf(cor5), i, 9);
                 modelPedido.setValueAt(String.valueOf(cor6), i, 10);
-                modelPedido.setValueAt(String.valueOf(canti), i, 11);
-                modelPedido.setValueAt(precioA.format(precio), i, 12);
-                modelPedido.setValueAt(impt.format(impor), i, 13);
+                modelPedido.setValueAt(String.valueOf(cor7), i, 11);
+                modelPedido.setValueAt(String.valueOf(cor8), i, 12);
+                modelPedido.setValueAt(String.valueOf(cor9), i, 13);
+                modelPedido.setValueAt(String.valueOf(cor10), i, 14);
+                modelPedido.setValueAt(String.valueOf(cor11), i, 15);
+                modelPedido.setValueAt(String.valueOf(cor12), i, 16);
+                modelPedido.setValueAt(String.valueOf(canti), i, 17);
+                modelPedido.setValueAt(precioA.format(precio), i, 18);
+                modelPedido.setValueAt(impt.format(impor), i, 19);
             }
         }
         if (aviso == false) {
@@ -2602,9 +3450,16 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JtC4.setText("");
         JtC5.setText("");
         JtC6.setText("");
+        JtC7.setText("");
+        JtC8.setText("");
+        JtC9.setText("");
+        JtC10.setText("");
+        JtC11.setText("");
+        JtC12.setText("");
         JtCorrida.setText("");
         JtColor.setText("");
         JtprecioA.setText("");
+        cont = 1;
         //JtRenglon.setText("");
     }
 
@@ -2620,6 +3475,12 @@ public class Pedidos extends javax.swing.JInternalFrame {
         modelPedido.addColumn("C4");
         modelPedido.addColumn("C5");
         modelPedido.addColumn("C6");
+        modelPedido.addColumn("C7");
+        modelPedido.addColumn("C8");
+        modelPedido.addColumn("C9");
+        modelPedido.addColumn("C10");
+        modelPedido.addColumn("C11");
+        modelPedido.addColumn("C12");
         modelPedido.addColumn("CANTIDAD");
         modelPedido.addColumn("PRECIO");
         modelPedido.addColumn("IMPORTE");
@@ -2664,6 +3525,12 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JtC4.setText("");
         JtC5.setText("");
         JtC6.setText("");
+        JtC7.setText("");
+        JtC8.setText("");
+        JtC9.setText("");
+        JtC10.setText("");
+        JtC11.setText("");
+        JtC12.setText("");
         JtCant.setText("");
     }
 
@@ -2676,8 +3543,8 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 int pares = 0;
                 DecimalFormat total = new DecimalFormat("#.00");
                 for (int i = 0; i < row; i++) {
-                    String importe = (String) modelPedido.getValueAt(i, 13);
-                    String tpares = (String) modelPedido.getValueAt(i, 11);
+                    String importe = (String) modelPedido.getValueAt(i, 19);
+                    String tpares = (String) modelPedido.getValueAt(i, 17);
                     sumatoria += Double.parseDouble(importe);
                     pares += Integer.parseInt(tpares);
                 }
@@ -2707,9 +3574,9 @@ public class Pedidos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel JbPlazo;
     private javax.swing.JButton JbQuitar;
     private javax.swing.JButton JbSalir;
-    private javax.swing.JLabel JbSerie;
+    public javax.swing.JLabel JbSerie;
     private javax.swing.JComboBox<String> JcCliente;
-    private javax.swing.JCheckBox JcColor;
+    private javax.swing.JCheckBox JcPrecio;
     private javax.swing.JComboBox<String> JcSuela;
     private com.toedter.calendar.JDateChooser JdCaptura;
     private com.toedter.calendar.JDateChooser JdEntrega;
@@ -2720,11 +3587,17 @@ public class Pedidos extends javax.swing.JInternalFrame {
     private javax.swing.JPanel JpObservaciones;
     private javax.swing.JTextField JtBuscar;
     private javax.swing.JTextField JtC1;
+    private javax.swing.JTextField JtC10;
+    private javax.swing.JTextField JtC11;
+    private javax.swing.JTextField JtC12;
     private javax.swing.JTextField JtC2;
     private javax.swing.JTextField JtC3;
     private javax.swing.JTextField JtC4;
     private javax.swing.JTextField JtC5;
     private javax.swing.JTextField JtC6;
+    private javax.swing.JTextField JtC7;
+    private javax.swing.JTextField JtC8;
+    private javax.swing.JTextField JtC9;
     private javax.swing.JTextField JtCancelar;
     private javax.swing.JTextField JtCant;
     private javax.swing.JTextField JtCliente;
@@ -2740,11 +3613,17 @@ public class Pedidos extends javax.swing.JInternalFrame {
     private javax.swing.JTabbedPane JtabDatos;
     private javax.swing.JTextField JtprecioA;
     private javax.swing.JLabel L1;
+    private javax.swing.JLabel L10;
+    private javax.swing.JLabel L11;
+    private javax.swing.JLabel L12;
     private javax.swing.JLabel L2;
     private javax.swing.JLabel L3;
     private javax.swing.JLabel L4;
     private javax.swing.JLabel L5;
     private javax.swing.JLabel L6;
+    private javax.swing.JLabel L7;
+    private javax.swing.JLabel L8;
+    private javax.swing.JLabel L9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2762,6 +3641,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;

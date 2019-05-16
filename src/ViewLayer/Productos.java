@@ -100,7 +100,6 @@ public class Productos extends javax.swing.JInternalFrame {
         JbSalir = new javax.swing.JButton();
         JbEliminar = new javax.swing.JButton();
         JbEditar = new javax.swing.JButton();
-        JbActualizar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         JtBuscar = new javax.swing.JTextField();
 
@@ -154,14 +153,6 @@ public class Productos extends javax.swing.JInternalFrame {
             }
         });
 
-        JbActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1491313940-repeat_82991.png"))); // NOI18N
-        JbActualizar.setText("REFRESCAR");
-        JbActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JbActualizarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout JpMenuLayout = new javax.swing.GroupLayout(JpMenu);
         JpMenu.setLayout(JpMenuLayout);
         JpMenuLayout.setHorizontalGroup(
@@ -169,11 +160,10 @@ public class Productos extends javax.swing.JInternalFrame {
             .addGroup(JpMenuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(JpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(JbReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JbReporte, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                     .addComponent(JbNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JbEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JbEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JbActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JbSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -189,10 +179,8 @@ public class Productos extends javax.swing.JInternalFrame {
                 .addGap(31, 31, 31)
                 .addComponent(JbReporte)
                 .addGap(31, 31, 31)
-                .addComponent(JbActualizar)
-                .addGap(29, 29, 29)
                 .addComponent(JbSalir)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -232,8 +220,8 @@ public class Productos extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
 
         pack();
@@ -346,12 +334,6 @@ public class Productos extends javax.swing.JInternalFrame {
        p.setAlwaysOnTop(true); 
     }//GEN-LAST:event_JbReporteActionPerformed
 
-    private void JbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbActualizarActionPerformed
-       JtBuscar.setText("");
-       CleanTable();
-       LoadModelProducto();
-    }//GEN-LAST:event_JbActualizarActionPerformed
-
     private void JtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyTyped
         char c = evt.getKeyChar();
         if(Character.isLowerCase(c)){
@@ -365,7 +347,6 @@ public class Productos extends javax.swing.JInternalFrame {
         return icon;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JbActualizar;
     private javax.swing.JButton JbEditar;
     private javax.swing.JButton JbEliminar;
     private javax.swing.JButton JbNuevo;

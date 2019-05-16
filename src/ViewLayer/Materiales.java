@@ -51,7 +51,6 @@ public class Materiales extends javax.swing.JInternalFrame {
         JbSalir = new javax.swing.JButton();
         JbEliminar = new javax.swing.JButton();
         JbEditar = new javax.swing.JButton();
-        JbActualizar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         JtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -104,14 +103,6 @@ public class Materiales extends javax.swing.JInternalFrame {
             }
         });
 
-        JbActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1491313940-repeat_82991.png"))); // NOI18N
-        JbActualizar.setText("REFRESCAR");
-        JbActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JbActualizarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -119,9 +110,8 @@ public class Materiales extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(JbReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JbReporte, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                     .addComponent(JbSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JbActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JbEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JbEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JbNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -138,9 +128,7 @@ public class Materiales extends javax.swing.JInternalFrame {
                 .addComponent(JbEditar)
                 .addGap(29, 29, 29)
                 .addComponent(JbReporte)
-                .addGap(32, 32, 32)
-                .addComponent(JbActualizar)
-                .addGap(33, 33, 33)
+                .addGap(31, 31, 31)
                 .addComponent(JbSalir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -294,11 +282,6 @@ public class Materiales extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_JbEditarActionPerformed
 
-    private void JbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbActualizarActionPerformed
-        CleanTable();
-        LoadModelMaterial();
-    }//GEN-LAST:event_JbActualizarActionPerformed
-
     private void JtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyReleased
         CleanTable();
         ArrayList<Material> listaMat = obj.materialSearch(JtBuscar.getText());
@@ -383,7 +366,6 @@ public class Materiales extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JbActualizar;
     private javax.swing.JButton JbEditar;
     private javax.swing.JButton JbEliminar;
     private javax.swing.JButton JbNuevo;

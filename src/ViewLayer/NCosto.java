@@ -505,68 +505,85 @@ public class NCosto extends javax.swing.JDialog {
     private boolean ValidarCorrida() {
         switch (JbCorrida.getText()) {
             case "[10-12]":
-                if (JtPunto.getText().equals("10") || JtPunto.getText().equals("11") || JtPunto.getText().equals("12")) {
+                if (JtPunto.getText().equals("10") || JtPunto.getText().equals("105") || JtPunto.getText().equals("11")
+                    || JtPunto.getText().equals("115") || JtPunto.getText().equals("12") || JtPunto.getText().equals("125")    ) {
                     return true;
                 } else {
                     return false;
                 }
             case "[11-14]":
                 if (JtPunto.getText().equals("11") || JtPunto.getText().equals("12") || JtPunto.getText().equals("13")
-                        || JtPunto.getText().equals("14")) {
+                        || JtPunto.getText().equals("14")
+                    || JtPunto.getText().equals("115") || JtPunto.getText().equals("125") || JtPunto.getText().equals("135")
+                        || JtPunto.getText().equals("145")    ) {
                     return true;
                 } else {
                     return false;
                 }
             case "[12-14]":
-                if (JtPunto.getText().equals("12") || JtPunto.getText().equals("13") || JtPunto.getText().equals("14")) {
+                if (JtPunto.getText().equals("12") || JtPunto.getText().equals("13") || JtPunto.getText().equals("14")
+                    || JtPunto.getText().equals("12.5") || JtPunto.getText().equals("13.5") || JtPunto.getText().equals("14.5")    ) {
                     return true;
                 } else {
                     return false;
                 }
             case "[13-16]":
                 if (JtPunto.getText().equals("13") || JtPunto.getText().equals("14") || JtPunto.getText().equals("15")
-                        || JtPunto.getText().equals("16")) {
+                        || JtPunto.getText().equals("16")
+                    || JtPunto.getText().equals("135") || JtPunto.getText().equals("145") || JtPunto.getText().equals("155")
+                        || JtPunto.getText().equals("165")    ) {
                     return true;
                 } else {
                     return false;
                 }
             case "[15-17]":
-                if (JtPunto.getText().equals("15") || JtPunto.getText().equals("16") || JtPunto.getText().equals("17")) {
+                if (JtPunto.getText().equals("15") || JtPunto.getText().equals("16") || JtPunto.getText().equals("17")
+                    || JtPunto.getText().equals("15.5") || JtPunto.getText().equals("16.5") || JtPunto.getText().equals("17.5")    ) {
                     return true;
                 } else {
                     return false;
                 }
             case "[17-21]":
                 if (JtPunto.getText().equals("17") || JtPunto.getText().equals("18") || JtPunto.getText().equals("19")
-                        || JtPunto.getText().equals("20") || JtPunto.getText().equals("21")) {
+                        || JtPunto.getText().equals("20") || JtPunto.getText().equals("21")
+                || JtPunto.getText().equals("17.5") || JtPunto.getText().equals("18.5") || JtPunto.getText().equals("19.5")
+                        || JtPunto.getText().equals("20.5") || JtPunto.getText().equals("21.5")        ) {
                     return true;
                 } else {
                     return false;
                 }
             case "[21-25]":
                 if (JtPunto.getText().equals("21") || JtPunto.getText().equals("22") || JtPunto.getText().equals("23")
-                        || JtPunto.getText().equals("24") || JtPunto.getText().equals("25")) {
+                        || JtPunto.getText().equals("24") || JtPunto.getText().equals("25")
+                || JtPunto.getText().equals("21.5") || JtPunto.getText().equals("22.5") || JtPunto.getText().equals("23.5")
+                        || JtPunto.getText().equals("24.5") || JtPunto.getText().equals("25.5")        ) {
                     return true;
                 } else {
                     return false;
                 }
             case "[22-27]":
                 if (JtPunto.getText().equals("22") || JtPunto.getText().equals("23") || JtPunto.getText().equals("24")
-                        || JtPunto.getText().equals("25") || JtPunto.getText().equals("26") || JtPunto.getText().equals("27")) {
+                        || JtPunto.getText().equals("25") || JtPunto.getText().equals("26") || JtPunto.getText().equals("27")
+                    || JtPunto.getText().equals("22.5") || JtPunto.getText().equals("23.5") || JtPunto.getText().equals("24.5")
+                        || JtPunto.getText().equals("25.5") || JtPunto.getText().equals("26.5") || JtPunto.getText().equals("27.5")    ) {
                     return true;
                 } else {
                     return false;
                 }
             case "[23-27]":
                 if (JtPunto.getText().equals("23") || JtPunto.getText().equals("24") || JtPunto.getText().equals("25")
-                        || JtPunto.getText().equals("26") || JtPunto.getText().equals("27")) {
+                        || JtPunto.getText().equals("26") || JtPunto.getText().equals("27")
+                || JtPunto.getText().equals("23.5") || JtPunto.getText().equals("24.5") || JtPunto.getText().equals("25.5")
+                        || JtPunto.getText().equals("26.5") || JtPunto.getText().equals("27.5")        ) {
                     return true;
                 } else {
                     return false;
                 }
             case "[18-21]":
                 if (JtPunto.getText().equals("18") || JtPunto.getText().equals("19") || JtPunto.getText().equals("20")
-                        || JtPunto.getText().equals("21")) {
+                        || JtPunto.getText().equals("21")
+                || JtPunto.getText().equals("18.5") || JtPunto.getText().equals("19.5") || JtPunto.getText().equals("20.5")
+                        || JtPunto.getText().equals("21.5")        ) {
                     return true;
                 } else {
                     return false;
@@ -574,7 +591,9 @@ public class NCosto extends javax.swing.JDialog {
 
             case "[25-30]":
                 if (JtPunto.getText().equals("25") || JtPunto.getText().equals("26") || JtPunto.getText().equals("27")
-                        || JtPunto.getText().equals("28") || JtPunto.getText().equals("29") || JtPunto.getText().equals("30")) {
+                        || JtPunto.getText().equals("28") || JtPunto.getText().equals("29") || JtPunto.getText().equals("30")
+                    || JtPunto.getText().equals("25.5") || JtPunto.getText().equals("26.5") || JtPunto.getText().equals("27.5")
+                        || JtPunto.getText().equals("28.5") || JtPunto.getText().equals("29.5") || JtPunto.getText().equals("30.5")    ) {
                     return true;
                 } else {
                     return false;
@@ -582,50 +601,62 @@ public class NCosto extends javax.swing.JDialog {
                 
             case "[25-29]":
                 if (JtPunto.getText().equals("25") || JtPunto.getText().equals("26") || JtPunto.getText().equals("27")
-                        || JtPunto.getText().equals("28") || JtPunto.getText().equals("29") || JtPunto.getText().equals("30")) {
+                        || JtPunto.getText().equals("28") || JtPunto.getText().equals("29") || JtPunto.getText().equals("30")
+                    || JtPunto.getText().equals("25.5") || JtPunto.getText().equals("26.5") || JtPunto.getText().equals("27.5")
+                        || JtPunto.getText().equals("28.5") || JtPunto.getText().equals("29.5") || JtPunto.getText().equals("30.5")    ) {
                     return true;
                 } else {
                     return false;
                 }    
             case "[27-29]":
                 if (JtPunto.getText().equals("27") || JtPunto.getText().equals("28") || JtPunto.getText().equals("29")
-                        || JtPunto.getText().equals("21")) {
+                || JtPunto.getText().equals("275") || JtPunto.getText().equals("285") || JtPunto.getText().equals("295")        ) {
                     return true;
                 } else {
                     return false;
                 }
             case "[30-33]":
                 if (JtPunto.getText().equals("30") || JtPunto.getText().equals("31") || JtPunto.getText().equals("32")
-                        || JtPunto.getText().equals("33")) {
+                        || JtPunto.getText().equals("33") ||
+                    JtPunto.getText().equals("30.5") || JtPunto.getText().equals("31.5") || JtPunto.getText().equals("32.5")
+                        || JtPunto.getText().equals("33.5")    ) {
                     return true;
                 } else {
                     return false;
                 }
             case "[22-24]":
-                if (JtPunto.getText().equals("22") || JtPunto.getText().equals("23") || JtPunto.getText().equals("24")) {
+                if (JtPunto.getText().equals("22") || JtPunto.getText().equals("23") || JtPunto.getText().equals("24")
+                || JtPunto.getText().equals("22.5") || JtPunto.getText().equals("23.5") || JtPunto.getText().equals("24.5")        ) {
                     return true;
                 } else {
                     return false;
                 }
             case "[22-26]":
                 if (JtPunto.getText().equals("22") || JtPunto.getText().equals("23") || JtPunto.getText().equals("24")
-                        || JtPunto.getText().equals("25") || JtPunto.getText().equals("26")) {
+                        || JtPunto.getText().equals("25") || JtPunto.getText().equals("26")
+                || JtPunto.getText().equals("22.5") || JtPunto.getText().equals("23.5") || JtPunto.getText().equals("24.5")
+                        || JtPunto.getText().equals("25.5") || JtPunto.getText().equals("26.5")        ) {
                     return true;
                 } else {
                     return false;
                 }
             case "[23-26]":
-                if (JtPunto.getText().equals("23") || JtPunto.getText().equals("24")
-                        || JtPunto.getText().equals("25") || JtPunto.getText().equals("26")) {
+                if (JtPunto.getText().equals("22") || JtPunto.getText().equals("23")
+                        || JtPunto.getText().equals("24") || JtPunto.getText().equals("25")
+                        ||JtPunto.getText().equals("26")
+                || JtPunto.getText().equals("22.5") || JtPunto.getText().equals("23.5")
+                        || JtPunto.getText().equals("24.5") || JtPunto.getText().equals("25.5")
+                        ||JtPunto.getText().equals("26.5")        ) {
                     return true;
                 } else {
                     return false;
                 }
             case "[23-29]":
-                if (JtPunto.getText().equals("23") || JtPunto.getText().equals("24")
-                        || JtPunto.getText().equals("25") || JtPunto.getText().equals("26")
-                        || JtPunto.getText().equals("27") || JtPunto.getText().equals("28")
-                        || JtPunto.getText().equals("29")) {
+                if (JtPunto.getText().equals("22") || JtPunto.getText().equals("23")
+                        || JtPunto.getText().equals("24") || JtPunto.getText().equals("25")
+                        || JtPunto.getText().equals("26") || JtPunto.getText().equals("22.5")
+                        || JtPunto.getText().equals("23.5") || JtPunto.getText().equals("24.5")
+                        || JtPunto.getText().equals("25.5") || JtPunto.getText().equals("26.5")) {
                     return true;
                 } else {
                     return false;

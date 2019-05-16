@@ -1,4 +1,3 @@
-
 package ViewLayer;
 
 import ObjectLayer.Encrypt;
@@ -8,24 +7,30 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class NUsuario extends javax.swing.JDialog {
 
     ObjectUsuarios obj = new ObjectUsuarios();
     String informacion = "";
+
     public NUsuario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/pluscircleregular_106319.png"));
         setIconImage(icon);
         setLocationRelativeTo(null);
+        JtId.setVisible(false);
     }
-     public String getInformacion(){
+
+    public String getInformacion() {
         return this.informacion;
     }
-   
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -42,10 +47,12 @@ public class NUsuario extends javax.swing.JDialog {
         JcDep = new javax.swing.JComboBox<>();
         JbNombre = new javax.swing.JLabel();
         JtNombre = new javax.swing.JTextField();
+        JtId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("REGISTRAR USUARIO");
         setLocation(new java.awt.Point(0, 0));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -99,34 +106,39 @@ public class NUsuario extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
                         .addComponent(JbGuardar)
                         .addGap(50, 50, 50)
-                        .addComponent(JbCancelar)
-                        .addGap(30, 30, 30))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JbNombre)
+                        .addComponent(JbCancelar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JbNombre)
+                                    .addComponent(JbDes))
+                                .addGap(52, 52, 52)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JtUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(JtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(JbCpass, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(JbPass)
-                                        .addComponent(JbTipo))
+                                    .addComponent(JbTipo)
+                                    .addGap(277, 277, 277))
+                                .addComponent(JcDep, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(JbCpass, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(JtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(JtConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(JbDes)
+                                    .addComponent(JtConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(JbPass)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(JtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                                        .addComponent(JcDep, 0, 265, Short.MAX_VALUE)
-                                        .addComponent(JtNombre)))))
-                        .addContainerGap())))
+                                    .addComponent(JtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(53, 53, 53)
+                        .addComponent(JtId, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,72 +147,112 @@ public class NUsuario extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbNombre)
                     .addComponent(JtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbDes)
                     .addComponent(JtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbTipo)
                     .addComponent(JcDep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JbPass))
-                .addGap(28, 28, 28)
+                    .addComponent(JbPass)
+                    .addComponent(JtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(JbCpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JtConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void JbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbGuardarActionPerformed
+        if (JtUsuario.getText().isEmpty() || JtNombre.getText().isEmpty() || JtPassword.getPassword().length == 0 || JtConfirmar.getPassword().length == 0) {
+            JOptionPane.showMessageDialog(this, "Faltan datos de ingresar", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+        } else if (JtId.getText().isEmpty()) {
+            if (obj.validarUsuario(JtUsuario.getText()) == 0) {
+                Guardar();
+            } else {
+                JOptionPane.showMessageDialog(this, "El usuario ya existe", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            Editar();
+        }
+    }//GEN-LAST:event_JbGuardarActionPerformed
+
+    private void Guardar() {
         String pass = new String(JtPassword.getPassword());
         String passcon = new String(JtConfirmar.getPassword());
         String nombre = JtNombre.getText();
         String Dep = JcDep.getSelectedItem().toString();
         String Us = JtUsuario.getText();
-        
-        if(JtUsuario.getText().isEmpty() || JtPassword.getPassword().length==0 || JtConfirmar.getPassword().length==0){
-            JOptionPane.showMessageDialog(this, "Faltan datos de ingresar","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE); 
-        }else if(pass.equals(passcon)){
-            
-            if(obj.validarUsuario(JtUsuario.getText()) ==0){
+
+        if (pass.equals(passcon)) {
+
+            if (obj.validarUsuario(JtUsuario.getText()) == 0) {
+                String nuevoPass = Encrypt.sha1(pass);
+                Usuario us = new Usuario();
+                us.setUsuario(Us);
+                us.setNombre(nombre);
+                us.setPassword(nuevoPass);
+                us.setDepartamento(Dep);
+                us.setActivo(true);
+
+                if (obj.registrarUsuario(us)) {
+                    JOptionPane.showMessageDialog(this, "Usuario registrado", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                    Limpiar();
+                    informacion = "1";
+                } else {
+                    JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                    Limpiar();
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Las contraseñas no coiciden", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            JbPass.requestFocus();
+            JtPassword.setText("");
+            JtConfirmar.setText("");
+            JbPass.setForeground(Color.red);
+            JbCpass.setForeground(Color.red);
+        }
+    }
+
+    private void Editar() {
+        String pass = new String(JtPassword.getPassword());
+        String passcon = new String(JtConfirmar.getPassword());
+        String nombre = JtNombre.getText();
+        String Usuario = JtUsuario.getText();
+        String Dep = JcDep.getSelectedItem().toString();
+        int Id = Integer.parseInt(JtId.getText());
+
+        if (pass.equals(passcon)) {
             String nuevoPass = Encrypt.sha1(pass);
             Usuario us = new Usuario();
-            us.setUsuario(Us);
+            us.setId_Usuario(Id);
+            us.setUsuario(Usuario);
             us.setNombre(nombre);
             us.setPassword(nuevoPass);
             us.setDepartamento(Dep);
-            us.setActivo(true);
-            
-            if(obj.registrarUsuario(us)){
-                 JOptionPane.showMessageDialog(this, "Usuario registrado","TOP-SUELAS" ,JOptionPane.INFORMATION_MESSAGE);
-                 Limpiar();
-                 informacion = "1";
-            }else{
-                JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-                Limpiar();
+
+            if (obj.usuarioUpdate(us)) {
+                JOptionPane.showMessageDialog(this, "Usuario Modificado", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+                informacion = "1";
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al Actualizar", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
             }
-            }else{
-                JOptionPane.showMessageDialog(this, "El usuario ya existe","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-            }
-        }else{
-                 JOptionPane.showMessageDialog(this, "Las contraseñas no coiciden","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-                 JbPass.requestFocus();
-                 JtPassword.setText("");
-                 JtConfirmar.setText("");
-                 JbPass.setForeground(Color.red);
-                 JbCpass.setForeground(Color.red);
+        } else {
+            JOptionPane.showMessageDialog(this, "Las contraseñas no coiciden", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_JbGuardarActionPerformed
+    }
 
     private void JbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbCancelarActionPerformed
         Cerrar();
@@ -211,26 +263,26 @@ public class NUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowClosing
 
     private void JtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtNombreKeyReleased
-          if (!Character.isLetter(evt.getKeyChar())
+        if (!Character.isLetter(evt.getKeyChar())
                 && !(evt.getKeyChar() == KeyEvent.VK_SPACE)
                 && !(evt.getKeyChar() == KeyEvent.VK_BACK_SPACE)
-                && !(evt.getKeyChar()== KeyEvent.VK_ENTER)
+                && !(evt.getKeyChar() == KeyEvent.VK_ENTER)
                 && !(evt.getKeyCode() == KeyEvent.VK_CAPS_LOCK)) {
-      evt.consume();
-       JOptionPane.showMessageDialog(null,"Escribe solo letras");
-       JtNombre.setText("");
-       } 
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Escribe solo letras");
+            JtNombre.setText("");
+        }
     }//GEN-LAST:event_JtNombreKeyReleased
 
     private void JtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtNombreKeyTyped
         char c = evt.getKeyChar();
-        if(Character.isLowerCase(c)){
-            String cad = (""+c).toUpperCase();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
     }//GEN-LAST:event_JtNombreKeyTyped
-    private void Limpiar(){
+    private void Limpiar() {
         JtNombre.requestFocus();
         this.JtNombre.setText("");
         this.JtUsuario.setText("");
@@ -238,16 +290,18 @@ public class NUsuario extends javax.swing.JDialog {
         this.JtPassword.setText("");
         this.JcDep.setSelectedIndex(0);
     }
-    private void Cerrar(){
+
+    private void Cerrar() {
         String botones[] = {"SI", "NO"};
-        int eleccion = JOptionPane.showOptionDialog(this,"¿Deseas cerrar esta ventana?", "TOP-SUELAS", 
+        int eleccion = JOptionPane.showOptionDialog(this, "¿Deseas cerrar esta ventana?", "TOP-SUELAS",
                 0, 0, null, botones, this);
-        if(eleccion == JOptionPane.YES_OPTION){
+        if (eleccion == JOptionPane.YES_OPTION) {
             dispose();
-        }else if(eleccion == JOptionPane.NO_OPTION){
-            
+        } else if (eleccion == JOptionPane.NO_OPTION) {
+
         }
     }
+
     /**
      * @param args the command line arguments
      */
@@ -298,10 +352,11 @@ public class NUsuario extends javax.swing.JDialog {
     private javax.swing.JLabel JbNombre;
     private javax.swing.JLabel JbPass;
     private javax.swing.JLabel JbTipo;
-    private javax.swing.JComboBox<String> JcDep;
-    private javax.swing.JPasswordField JtConfirmar;
+    public javax.swing.JComboBox<String> JcDep;
+    public javax.swing.JPasswordField JtConfirmar;
+    public javax.swing.JTextField JtId;
     public javax.swing.JTextField JtNombre;
-    private javax.swing.JPasswordField JtPassword;
-    private javax.swing.JTextField JtUsuario;
+    public javax.swing.JPasswordField JtPassword;
+    public javax.swing.JTextField JtUsuario;
     // End of variables declaration//GEN-END:variables
 }

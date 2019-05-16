@@ -1,4 +1,3 @@
-
 package ViewLayer;
 
 import DataAccesLayer.Conexion;
@@ -7,13 +6,19 @@ import ObjectLayer.ObjectUsuarios;
 import ObjectLayer.Usuario;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -22,26 +27,25 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
-
 public class Usuarios extends javax.swing.JInternalFrame {
-     ObjectUsuarios obj = new ObjectUsuarios();
-     Connection c = Server.getUsuario();
-     public int IdUs;
-     DefaultTableModel modelUsuario = new DefaultTableModel(){
-      @Override
-      public boolean isCellEditable(int row, int column){
-          return false;
-      }  
+
+    ObjectUsuarios obj = new ObjectUsuarios();
+    Connection c = Server.getUsuario();
+    public int IdUs;
+    DefaultTableModel modelUsuario = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }        
     };
-   
+    
     public Usuarios() {
         initComponents();
         LoadColumnas();
         LoadModelUsuario();
         JtDatosUsuario.getTableHeader().setReorderingAllowed(false);
     }
-
-   
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -52,7 +56,6 @@ public class Usuarios extends javax.swing.JInternalFrame {
         JbSalir = new javax.swing.JButton();
         JbEliminar = new javax.swing.JButton();
         JbEditar = new javax.swing.JButton();
-        JbActualizar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         JtDatosUsuario = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -105,14 +108,6 @@ public class Usuarios extends javax.swing.JInternalFrame {
             }
         });
 
-        JbActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1491313940-repeat_82991.png"))); // NOI18N
-        JbActualizar.setText("REFRESCAR");
-        JbActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JbActualizarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -120,8 +115,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(JbActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JbReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JbReporte, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                     .addComponent(JbSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JbNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JbEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -139,8 +133,6 @@ public class Usuarios extends javax.swing.JInternalFrame {
                 .addComponent(JbEditar)
                 .addGap(31, 31, 31)
                 .addComponent(JbReporte)
-                .addGap(30, 30, 30)
-                .addComponent(JbActualizar)
                 .addGap(31, 31, 31)
                 .addComponent(JbSalir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -198,7 +190,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
         nuevo.setVisible(true);
         nuevo.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         nuevo.setAlwaysOnTop(true);
-        if(nuevo.getInformacion()!=""){
+        if (nuevo.getInformacion() != "") {
             CleanTable();
             LoadModelUsuario();
         }
@@ -207,11 +199,11 @@ public class Usuarios extends javax.swing.JInternalFrame {
     private void JbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbSalirActionPerformed
         dispose();
     }//GEN-LAST:event_JbSalirActionPerformed
-    private void LoadModelUsuario(){
-         ArrayList<Usuario>listaUsuarios = obj.usuariosGetAll();
-         
-          modelUsuario.setNumRows(listaUsuarios.size());
-          for(int i =0; i <listaUsuarios.size(); i++){
+    private void LoadModelUsuario() {
+        ArrayList<Usuario> listaUsuarios = obj.usuariosGetAll();
+        
+        modelUsuario.setNumRows(listaUsuarios.size());
+        for (int i = 0; i < listaUsuarios.size(); i++) {
             Usuario us = listaUsuarios.get(i);
             
             modelUsuario.setValueAt(us.getId_Usuario(), i, 0);
@@ -219,10 +211,10 @@ public class Usuarios extends javax.swing.JInternalFrame {
             modelUsuario.setValueAt(us.getUsuario(), i, 2);
             modelUsuario.setValueAt(us.getDepartamento(), i, 3);
             modelUsuario.setValueAt(us.getPassword(), i, 4);
-            
-          }
+        }
     }
-    private void LoadColumnas(){
+
+    private void LoadColumnas() {
         modelUsuario.addColumn("Código");
         modelUsuario.addColumn("NOMBRE");
         modelUsuario.addColumn("USUARIO");
@@ -235,46 +227,45 @@ public class Usuarios extends javax.swing.JInternalFrame {
     }
     private void JbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEliminarActionPerformed
         int row = JtDatosUsuario.getSelectedRow();
-        try{
-            if(row >=0){
-              int opcion = JOptionPane.showConfirmDialog(this,"¿Estas seguro de borrar este registro?","TOP-SUELAS",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-              if(opcion ==JOptionPane.YES_OPTION){
-              String Id =  JtDatosUsuario.getValueAt(row, 0).toString();
-              if(IdUs == Integer.parseInt(Id)){
-              JOptionPane.showMessageDialog(null,"No puedes elimar tu usuario","TOP-SUELAS" ,JOptionPane.INFORMATION_MESSAGE); 
-              }else{
-              obj.usuarioDelete(Integer.parseInt(JtDatosUsuario.getValueAt(row, 0).toString()));
-              modelUsuario.removeRow(row);
-              JOptionPane.showMessageDialog(null,"Registro eliminado","TOP-SUELAS" ,JOptionPane.INFORMATION_MESSAGE);  
-              }
-            }
-        }else{
-             JOptionPane.showMessageDialog(null,"No se ha selecionado ningun registro","TOP-SUELAS" ,JOptionPane.INFORMATION_MESSAGE);   
-            } 
-    }
-        catch(Exception ex){
+        try {
+            if (row >= 0) {
+                int opcion = JOptionPane.showConfirmDialog(this, "¿Estas seguro de borrar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (opcion == JOptionPane.YES_OPTION) {
+                    String Id = JtDatosUsuario.getValueAt(row, 0).toString();
+                    if (IdUs == Integer.parseInt(Id)) {
+                        JOptionPane.showMessageDialog(null, "No puedes elimar tu usuario", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);                        
+                    } else {
+                        obj.usuarioDelete(Integer.parseInt(JtDatosUsuario.getValueAt(row, 0).toString()));
+                        modelUsuario.removeRow(row);
+                        JOptionPane.showMessageDialog(null, "Registro eliminado", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);                        
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha selecionado ningun registro", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);                
+            }            
+        } catch (Exception ex) {
             
             ex.printStackTrace();
-}
+        }
     }//GEN-LAST:event_JbEliminarActionPerformed
 
     private void JbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEditarActionPerformed
-        MUsuario editar = new MUsuario(null, true);
+        NUsuario editar = new NUsuario(null, true);
         int fila = JtDatosUsuario.getSelectedRow();
         
-          try{
-              if(fila >=0){
+        try {
+            if (fila >= 0) {
                 Usuario us = new Usuario();
-                int opcion = JOptionPane.showConfirmDialog(this,"¿Quieres editar este registro?","TOP-SUELAS",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);   
-                if(opcion ==JOptionPane.YES_OPTION){
-                
+                int opcion = JOptionPane.showConfirmDialog(this, "¿Quires editar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);                
+                if (opcion == JOptionPane.YES_OPTION) {
+
                 editar.JtId.setText(JtDatosUsuario.getValueAt(fila, 0).toString());
                 editar.JtNombre.setText(JtDatosUsuario.getValueAt(fila, 1).toString());
                 editar.JtUsuario.setText(JtDatosUsuario.getValueAt(fila, 2).toString());
                 us.setDepartamento(JtDatosUsuario.getValueAt(fila, 3).toString());
                 editar.JcDep.setSelectedItem(JtDatosUsuario.getValueAt(fila, 3).toString());
-                //editar.JtConfirmar.setText(JtDatosUsuario.getValueAt(fila, 4).toString());
-                //editar.JtPassword.setText(JtDatosUsuario.getValueAt(fila, 4).toString());
+                editar.JtNombre.setEnabled(false);
+                editar.JtUsuario.setEnabled(false);
                 editar.setVisible(true);
                 editar.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                 editar.setAlwaysOnTop(true);
@@ -282,26 +273,25 @@ public class Usuarios extends javax.swing.JInternalFrame {
                     CleanTable();
                     LoadModelUsuario();
                 }
-            }
-        }else{
-              JOptionPane.showMessageDialog(null,"No se ha seleccionado ningun registro");   
-              }    
-    }
-        catch(Exception ex){
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");                
+            }            
+        } catch (Exception ex) {
             
             ex.printStackTrace();
         }
     }//GEN-LAST:event_JbEditarActionPerformed
 
     private void JtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyReleased
-       CleanTable();
-       JtBuscar.getText();
-       
-        ArrayList<Usuario>listaUsuarios = obj.usuarioSearch(JtBuscar.getText());
+        CleanTable();
+        JtBuscar.getText();
+        
+        ArrayList<Usuario> listaUsuarios = obj.usuarioSearch(JtBuscar.getText());
         listaUsuarios.size();
         modelUsuario.setNumRows(listaUsuarios.size());
         
-        for(int i=0; i<listaUsuarios.size(); i++){
+        for (int i = 0; i < listaUsuarios.size(); i++) {
             Usuario us = listaUsuarios.get(i);
             
             modelUsuario.setValueAt(us.getId_Usuario(), i, 0);
@@ -313,11 +303,11 @@ public class Usuarios extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JtBuscarKeyReleased
 
     private void JbReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbReporteActionPerformed
-       try {                                                     
-        JasperReport reporte = (JasperReport)JRLoader.loadObject(getClass().getResource("/Reports/CatalogoUsuarios.jasper"));
+        try {            
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reports/CatalogoUsuarios.jasper"));
             try {
-                JasperPrint jprint = JasperFillManager.fillReport(reporte, null,c);
-                JasperViewer view = new  JasperViewer(jprint,false);
+                JasperPrint jprint = JasperFillManager.fillReport(reporte, null, c);
+                JasperViewer view = new JasperViewer(jprint, false);
                 view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                 view.setVisible(true);
                 view.setIconImage(getImage());
@@ -330,34 +320,31 @@ public class Usuarios extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_JbReporteActionPerformed
 
-    private void JbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbActualizarActionPerformed
-        JtBuscar.setText("");
-        CleanTable();
-        LoadModelUsuario();
-    }//GEN-LAST:event_JbActualizarActionPerformed
-
     private void JtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyTyped
-      char c = evt.getKeyChar();
-      if(Character.isLowerCase(c)){
-        String cad = (""+c).toUpperCase();
-        c = cad.charAt(0);
-        evt.setKeyChar(c);
-      }
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
+        }
     }//GEN-LAST:event_JtBuscarKeyTyped
-    public Image getImage(){
+
+    
+    public Image getImage() {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/PhotoPrint_11187.png"));
         return icon;
     }
-    private void CleanTable(){
+
+    private void CleanTable() {
         int numFilas = modelUsuario.getRowCount();
-        if(numFilas > 0){
-            for(int i = numFilas - 1; i >=0; i--){
-                modelUsuario.removeRow(i);            }
+        if (numFilas > 0) {
+            for (int i = numFilas - 1; i >= 0; i--) {
+                modelUsuario.removeRow(i);
+            }
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JbActualizar;
     private javax.swing.JButton JbEditar;
     private javax.swing.JButton JbEliminar;
     private javax.swing.JButton JbNuevo;

@@ -12,8 +12,8 @@ public class ObjectParametros {
     //Connection c = Server.getRpt();
     //Connection pa = Server.getRcpt();
     
-    Connection c = Server.getRpt();
-    Connection pa = Server.getRcpt();
+    Connection c = Conexion.getRpt();
+    Connection pa = Conexion.getRcpt();
     
     PreparedStatement st, dp = null;
     ResultSet rs = null;
