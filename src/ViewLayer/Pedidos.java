@@ -84,8 +84,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
         LoadColumns();
         LoadModelCliente();
         OcultarCampos();
-        JbAlerta.setBackground(java.awt.Color.gray);
-        JbAlerta.setToolTipText("REMICIÓN");
         cargarListenerPedido();
         CargarPedido();
         JtNpedido.setEditable(false);
@@ -93,7 +91,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JtPedido.getTableHeader().setReorderingAllowed(false);
         JbActualizar.setEnabled(false);
         JbSerie.setText("A");
-        //JbSerie.setVisible(false);
+        JbSerie.setVisible(false);
         JtRenglon.setVisible(false);
         JdCaptura.setEnabled(false);
         JcCliente.requestFocus();
@@ -116,10 +114,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JpDpedido = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         JtPedido = new javax.swing.JTable();
-        jLabel9 = new javax.swing.JLabel();
-        lblTotal = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        lblPares = new javax.swing.JLabel();
         JpObservaciones = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         JtCobranza = new javax.swing.JTextField();
@@ -158,7 +152,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JtColor = new javax.swing.JTextField();
         JtprecioA = new javax.swing.JTextField();
         JbQuitar = new javax.swing.JButton();
-        JbAlerta = new javax.swing.JButton();
         JbCalle = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         JtBuscar = new javax.swing.JTextField();
@@ -194,6 +187,10 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JtC11 = new javax.swing.JTextField();
         L12 = new javax.swing.JLabel();
         JtC12 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        lblPares = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
 
         setClosable(true);
         setMaximizable(true);
@@ -233,53 +230,21 @@ public class Pedidos extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(JtPedido);
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(51, 153, 0));
-        jLabel9.setText("Costo:");
-
-        lblTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblTotal.setForeground(new java.awt.Color(51, 153, 0));
-        lblTotal.setText("0.00");
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(51, 153, 0));
-        jLabel10.setText("Pares:");
-
-        lblPares.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblPares.setForeground(new java.awt.Color(51, 153, 0));
-        lblPares.setText("0");
-
         javax.swing.GroupLayout JpDpedidoLayout = new javax.swing.GroupLayout(JpDpedido);
         JpDpedido.setLayout(JpDpedidoLayout);
         JpDpedidoLayout.setHorizontalGroup(
             JpDpedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpDpedidoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(JpDpedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1305, Short.MAX_VALUE)
-                    .addGroup(JpDpedidoLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblPares)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1321, Short.MAX_VALUE)
                 .addGap(19, 19, 19))
         );
         JpDpedidoLayout.setVerticalGroup(
             JpDpedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpDpedidoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(JpDpedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(lblTotal)
-                    .addComponent(jLabel10)
-                    .addComponent(lblPares))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
         JtabDatos.addTab("Detalle del Pedido", JpDpedido);
@@ -313,7 +278,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     .addComponent(JtCobranza, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
                     .addComponent(jLabel15)
                     .addComponent(JtCancelar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 423, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 439, Short.MAX_VALUE)
                 .addGroup(JpObservacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(JpObservacionesLayout.createSequentialGroup()
                         .addGap(2, 2, 2)
@@ -364,7 +329,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         .addGroup(JpObservacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel19)
                             .addComponent(JdEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
         JtabDatos.addTab("Observaciones", JpObservaciones);
@@ -405,7 +370,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     .addGroup(JpFacturasLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 918, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(397, Short.MAX_VALUE))
+                .addContainerGap(409, Short.MAX_VALUE))
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         JpFacturasLayout.setVerticalGroup(
@@ -413,7 +378,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpFacturasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel24)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -504,18 +469,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JbQuitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JbQuitarActionPerformed(evt);
-            }
-        });
-
-        JbAlerta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/iconfinder-bellnotificationsnoticenotifyalert-3993856_112639.png"))); // NOI18N
-        JbAlerta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JbAlertaMouseClicked(evt);
-            }
-        });
-        JbAlerta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JbAlertaActionPerformed(evt);
             }
         });
 
@@ -772,20 +725,26 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(51, 153, 0));
+        jLabel10.setText("Pares:");
+
+        lblPares.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblPares.setForeground(new java.awt.Color(51, 153, 0));
+        lblPares.setText("0");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(51, 153, 0));
+        jLabel9.setText("Costo:");
+
+        lblTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblTotal.setForeground(new java.awt.Color(51, 153, 0));
+        lblTotal.setText("0.00");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(JtabDatos)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(JcPrecio)
-                .addGap(65, 65, 65)
-                .addComponent(JbAlerta)
-                .addGap(37, 37, 37))
             .addGroup(layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -872,8 +831,19 @@ public class Pedidos extends javax.swing.JInternalFrame {
                                 .addComponent(JbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(JbQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JcPrecio)
+                                .addGap(48, 48, 48)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblPares)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(JtabDatos)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -931,8 +901,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JbPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JbAgente, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(JbAgente, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(JbAgregar)
@@ -941,15 +910,17 @@ public class Pedidos extends javax.swing.JInternalFrame {
                             .addComponent(JtCorrida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(JtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(49, 49, 49)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JbAlerta, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(JcPrecio)
-                                .addGap(14, 14, 14)))
-                        .addGap(31, 31, 31)))
-                .addComponent(JtabDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JcPrecio)
+                    .addComponent(jLabel9)
+                    .addComponent(lblTotal)
+                    .addComponent(jLabel10)
+                    .addComponent(lblPares))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addComponent(JtabDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -1462,7 +1433,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtC9.setVisible(true);
                 JtC10.setVisible(true);
                 break;
-             case "[23-29]":
+            case "[23-29]":
                 L1.setText("22:");
                 L2.setText("22.5:");
                 L3.setText("23:");
@@ -1504,7 +1475,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtC8.setVisible(true);
                 JtC9.setVisible(true);
                 JtC10.setVisible(true);
-                break;    
+                break;
             case "[25-30]":
                 L1.setText("25:");
                 L2.setText("25.5:");
@@ -1556,7 +1527,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtC11.setVisible(true);
                 JtC12.setVisible(true);
                 break;
-             case "[25-29]":
+            case "[25-29]":
                 L1.setText("25:");
                 L2.setText("25.5:");
                 L3.setText("26:");
@@ -1606,7 +1577,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtC10.setVisible(true);
                 JtC11.setVisible(true);
                 JtC12.setVisible(true);
-                break;    
+                break;
             case "[21-25]":
                 L1.setText("21:");
                 L2.setText("21.5:");
@@ -1779,8 +1750,8 @@ public class Pedidos extends javax.swing.JInternalFrame {
     private void JbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbAgregarActionPerformed
         AgregarDetalle();
     }//GEN-LAST:event_JbAgregarActionPerformed
-    
-    private void AgregarDetalle(){
+
+    private void AgregarDetalle() {
         ArrayList<Dpedido> detalles = new ArrayList<Dpedido>();
         ArrayList<Pedido> list = pedido.pedidoGetByID(JtBuscar.getText());
         int index = modelPedido.getRowCount() - 1;
@@ -1970,11 +1941,12 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 Dt.setPrecio(precio);
                 detalles.add(Dt);
                 if (JbSerie.getText().equals("A")) {
-                    if (pedido.agregarPedido(pd, detalles, Npedido) && pedido.agregarPedidoA(pd, detalles, Npedido)) {
-                        JOptionPane.showMessageDialog(this, "Se agrego la suela al pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                        Limpiar();
-                        OcultarCampos();
-
+                    if (pedido.agregarPedido(pd, detalles, Npedido)) {
+                        if (pedido.agregarPedidoA(pd, detalles, Npedido)) {
+                            JOptionPane.showMessageDialog(this, "Se agrego la suela al pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                            Limpiar();
+                            OcultarCampos();
+                        }
                     } else {
                         JOptionPane.showMessageDialog(this, "Este pedido no se puede actualizar!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         Limpiar();
@@ -1987,10 +1959,8 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         JOptionPane.showMessageDialog(this, "Se agrego la suela al pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         Limpiar();
                         OcultarCampos();
-
                     } else {
                         JOptionPane.showMessageDialog(this, "Este pedido no se puede actualizar!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-
                         Limpiar();
                         OcultarCampos();
                         CleanTable();
@@ -2000,11 +1970,10 @@ public class Pedidos extends javax.swing.JInternalFrame {
             }
         } else {
             AddItem();
-            JbAlerta.setEnabled(false);
             JcPrecio.setEnabled(false);
         }
     }
-    
+
     private void AddItem() {
         switch (JtCorrida.getText()) {
             case "[10-12]":
@@ -2167,7 +2136,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     OcultarCampos();
                 }
                 break;
-             case "[25-29]":
+            case "[25-29]":
                 if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
                         || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
                         || JtC7.getText().isEmpty() || JtC8.getText().isEmpty() || JtC9.getText().isEmpty() || JtC10.getText().isEmpty()) {
@@ -2177,7 +2146,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     Limpiar();
                     OcultarCampos();
                 }
-                break;    
+                break;
             case "[27-29]":
                 if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
                         || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()) {
@@ -2269,45 +2238,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_JbQuitarActionPerformed
 
-    private void JbAlertaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JbAlertaMouseClicked
-        Producto prod = (Producto) JcSuela.getSelectedItem();
-        Cliente cli = (Cliente) JcCliente.getSelectedItem();
-        ArrayList<Precio> lista = pc.GetByID(prod.getId_Producto(), cli.getId_Cliente());
-
-        if (evt.getClickCount() == 1) {
-            JbAlerta.setBackground(java.awt.Color.gray);
-
-            JbSerie.setText("A");
-
-            if (JcPrecio.isSelected() == false) {
-                for (Precio p : lista) {
-                    double precio = p.getPrecioA();
-                    JtprecioA.setText(precioA.format(precio));
-                }
-            } else {
-                for (Precio p : lista) {
-                    double precio = p.getPrecioAP();
-                    JtprecioA.setText(precioA.format(precio));
-                }
-            }
-        } else {
-            JbAlerta.setBackground(java.awt.Color.yellow);
-            JbSerie.setText("B");
-
-            if (JcPrecio.isSelected() == false) {
-                for (Precio p : lista) {
-                    double precio = p.getPrecioB();
-                    JtprecioA.setText(precioA.format(precio));
-                }
-            } else {
-                for (Precio p : lista) {
-                    double precio = p.getPrecioBP();
-                    JtprecioA.setText(precioA.format(precio));
-                }
-            }
-        }
-    }//GEN-LAST:event_JbAlertaMouseClicked
-
     private void cargarPrecio() {
         Producto prod = (Producto) JcSuela.getSelectedItem();
         Cliente cli = (Cliente) JcCliente.getSelectedItem();
@@ -2335,7 +2265,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtprecioA.setText(precioA.format(precio));
             }
         }
-
     }
 
     private void JbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbNuevoActionPerformed
@@ -2452,8 +2381,10 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         }
                         //SI ES PRECIO A
                         if (JbSerie.getText().equals("A")) {
-                            if (pedido.insertarVenta(pd, detalles, pam) && pedido.insertarVentaA(pd, detalles, pam)) {
-                                JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                            if (pedido.insertarVenta(pd, detalles, pam)) {
+                                if (pedido.insertarVentaA(pd, detalles, pam)) {
+                                    JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                                }
                             } else {
                                 JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
                             }
@@ -2780,12 +2711,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JdRecibido.setDate(p.getFecha_Recibido());
                 JtOcompra.setText(p.getOrdenCompra());
                 JbSerie.setText(p.getSerie());
-                JbAlerta.setEnabled(false);
-                /*if(JbSerie.getText().equals("A")){
-            JbAlerta.setBackground(java.awt.Color.gray);
-    }else{
-        JbAlerta.setBackground(java.awt.Color.yellow);
-    }*/
 
                 DecimalFormat impt = new DecimalFormat("#.00");
                 datos[0] = String.valueOf(p.getId_Producto());
@@ -2835,7 +2760,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
             JdPedido.setEnabled(true);
             JdRecibido.setEnabled(true);
             JtCliente.setText("");
-            JbAlerta.setEnabled(true);
             JbActualizar.setEnabled(false);
             JbEliminar.setEnabled(false);
             JtprecioA.setText("");
@@ -2882,7 +2806,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     JdRecibido.setDate(p.getFecha_Recibido());
                     JtOcompra.setText(p.getOrdenCompra());
                     JbSerie.setText(p.getSerie());
-                    JbAlerta.setEnabled(false);
                     /*if(JbSerie.getText().equals("A")){
             JbAlerta.setBackground(java.awt.Color.gray);
     }else{
@@ -2983,11 +2906,9 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 if (JbSerie.getText().equals("A")) {
                     if (pedido.actualizarPedido(pd, det, id_dt) && pedido.actualizarPedidoA(pd, det, id_dt)) {
                         JOptionPane.showMessageDialog(this, "Se actualizo el pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                        JbAlerta.setEnabled(true);
                         JcPrecio.setEnabled(true);
                     } else {
                         JOptionPane.showMessageDialog(this, "Este pedido no se puede modificar!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                        JbAlerta.setEnabled(true);
                         OcultarCampos();
                         Limpiar();
                         CleanTable();
@@ -2996,13 +2917,11 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 } else {
                     if (pedido.actualizarPedidoA(pd, det, id_dt)) {
                         JOptionPane.showMessageDialog(this, "Se actualizo el pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                        JbAlerta.setEnabled(true);
                         JcPrecio.setEnabled(true);
                         OcultarCampos();
                         Limpiar();
                     } else {
                         JOptionPane.showMessageDialog(this, "Este pedido no se puede modificar!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                        JbAlerta.setEnabled(true);
                         OcultarCampos();
                         Limpiar();
                         CleanTable();
@@ -3034,10 +2953,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Presionaste F12");
         }
     }//GEN-LAST:event_formKeyPressed
-
-    private void JbAlertaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbAlertaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JbAlertaActionPerformed
 
     private void JcPrecioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JcPrecioItemStateChanged
         Producto prod = (Producto) JcSuela.getSelectedItem();
@@ -3180,7 +3095,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JdPedido.setCalendar(fechaActual);
         JdEntrega.setCalendar(fechaActual);
         JdRecibido.setCalendar(fechaActual);
-        JbAlerta.setEnabled(true);
         JcPrecio.setEnabled(true);
     }
 
@@ -3513,7 +3427,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JdPedido.setEnabled(true);
         JdRecibido.setEnabled(true);
         JtCliente.setText("");
-        JbAlerta.setEnabled(true);
         JtBuscar.setText("");
         JtprecioA.setText("");
     }
@@ -3559,7 +3472,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
     private javax.swing.JButton JbActualizar;
     private javax.swing.JLabel JbAgente;
     private javax.swing.JButton JbAgregar;
-    private javax.swing.JButton JbAlerta;
     private javax.swing.JButton JbBuscar;
     private javax.swing.JLabel JbCD;
     private javax.swing.JLabel JbCP;

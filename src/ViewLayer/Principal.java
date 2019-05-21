@@ -7,13 +7,7 @@ import ObjectLayer.Usuario;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 import javax.swing.ImageIcon;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -39,6 +33,7 @@ public class Principal extends javax.swing.JFrame {
     Costos costo;
     Materiales material;
     Almacenes almacen;
+    AlmacenesRcpt almacenR;
     frmPlaneacion pr;
     double precioa;
     double preciob;
@@ -50,9 +45,13 @@ public class Principal extends javax.swing.JFrame {
     PlaneacionPhy phy;
     Consumos sumos;
     Etiquetas etiq;
+    Entradas entrada;
     public String Estado = "A";
 
     Maquinas maq;
+    
+    ImageIcon notificacion = new ImageIcon("C:\\tsmanager\\imagenes\\push.png");
+    ImageIcon campana = new ImageIcon("C:\\tsmanager\\imagenes\\bell.png");
 
     public Principal() {
         initComponents();
@@ -75,7 +74,6 @@ public class Principal extends javax.swing.JFrame {
         JbRol.setText(us.getDepartamento());
         this.us = us;
         LoadVersion();
-        verificarEstado();
         if (us.getDepartamento().equals("ADMIN")) {
 
         } else if (us.getUsuario().equals("kim")) {
@@ -98,16 +96,6 @@ public class Principal extends javax.swing.JFrame {
             cobranza.setVisible(false);
             nominas.setVisible(false);
         }
-    }
-
-    public void verificarEstado() {
-        /*if(JbAlerta.equals("A")){
-            JbAlerta.setForeground(Color.green);
-            System.out.println("A");
-        }else if(JbAlerta.equals("B")){
-            JbAlerta.setForeground(Color.red);
-            System.out.println("B");
-        }*/
     }
 
     private void Cerrar() {
@@ -305,6 +293,11 @@ public class Principal extends javax.swing.JFrame {
         JmAlmacenescpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmAlmacenescpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/package_box_10801.png"))); // NOI18N
         JmAlmacenescpt.setText("Almacénes");
+        JmAlmacenescpt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmAlmacenescptActionPerformed(evt);
+            }
+        });
         Jmcatcpt.add(JmAlmacenescpt);
 
         JmConceptoscpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -352,6 +345,11 @@ public class Principal extends javax.swing.JFrame {
         JmEntradascpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmEntradascpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/BagOK_icon-icons.com_51210.png"))); // NOI18N
         JmEntradascpt.setText("Entradas");
+        JmEntradascpt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmEntradascptActionPerformed(evt);
+            }
+        });
         Jmmovcpt.add(JmEntradascpt);
 
         JmSalidascpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -719,7 +717,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(prod, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
@@ -771,6 +769,36 @@ public class Principal extends javax.swing.JFrame {
             MainContent.add(phy);
             MainContent.getDesktopManager().maximizeFrame(phy);
             phy.setVisible(true);
+        }
+    }
+    
+    private void LoadInAlmacenRcpt() {
+        if (almacenR == null) {
+            almacenR = new AlmacenesRcpt();
+            MainContent.add(almacenR);
+            MainContent.getDesktopManager().maximizeFrame(almacenR);
+            almacenR.setVisible(true);
+        } else {
+            almacenR.dispose();
+            almacenR = new AlmacenesRcpt();
+            MainContent.add(almacenR);
+            MainContent.getDesktopManager().maximizeFrame(almacenR);
+            almacenR.setVisible(true);
+        }
+    }
+    
+    private void LoadEntradas(){
+        if(entrada == null){
+            entrada = new Entradas();
+            MainContent.add(entrada);
+            MainContent.getDesktopManager().maximizeFrame(entrada);
+            entrada.setVisible(true);
+        }else {
+            entrada.dispose();
+            entrada = new Entradas();
+            MainContent.add(entrada);
+            MainContent.getDesktopManager().maximizeFrame(entrada);
+            entrada.setVisible(true);
         }
     }
 
@@ -1255,12 +1283,22 @@ public class Principal extends javax.swing.JFrame {
             JbAlerta.setText("B");
             JbAlerta.setForeground(Color.red);
             Estado = "B";
+            JbAlerta.setIcon(notificacion);
         } else {
             JbAlerta.setText("A");
             JbAlerta.setForeground(Color.green);
+            JbAlerta.setIcon(campana);
             Estado = "A";
         }
     }//GEN-LAST:event_JbAlertaMousePressed
+
+    private void JmEntradascptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmEntradascptActionPerformed
+        LoadEntradas();
+    }//GEN-LAST:event_JmEntradascptActionPerformed
+
+    private void JmAlmacenescptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmAlmacenescptActionPerformed
+       LoadInAlmacenRcpt();
+    }//GEN-LAST:event_JmAlmacenescptActionPerformed
     private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {
         LoadMaquina();
     }
