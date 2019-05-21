@@ -17,8 +17,8 @@ public class Login extends javax.swing.JFrame {
     ObjectUsuarios obj = new ObjectUsuarios();
     Usuario us = new Usuario();
     boolean a = true;
-    ImageIcon mostrar = new ImageIcon("C:\\Program Files\\ojo2.png");
-    ImageIcon ocultar = new ImageIcon("C:\\Program Files\\ojo.png");
+    ImageIcon mostrar = new ImageIcon("C:\\tsmanager\\imagenes\\ojo2.png");
+    ImageIcon ocultar = new ImageIcon("C:\\tsmanager\\imagenes\\ojo.png");
     
     public Login() {
         initComponents();

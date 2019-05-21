@@ -136,7 +136,7 @@ public class ObjectProductos {
     public ArrayList<Producto> GetByCosto(String filtro) {
         ArrayList<Producto> listaProductos = new ArrayList<Producto>();
         try {
-            String sql = "SELECT * FROM Producto WHERE Descripcion LIKE '%" + filtro + "%'"
+            String sql = "SELECT * FROM Producto WHERE Activo = 1 AND  Descripcion LIKE '%" + filtro + "%'"
                     + "ORDER BY Descripcion";
             sta = c.createStatement();
             rs = sta.executeQuery(sql);
