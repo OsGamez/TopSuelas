@@ -88,6 +88,15 @@ public class Principal extends javax.swing.JFrame {
             JmCobranza.setVisible(false);
             JmCPT.setVisible(false);
             JmConfig.setVisible(false);
+        }else if(us.getDepartamento().equals("PRODUCCIONCPT")){
+            JmCobranza.setVisible(false);
+            JmConfig.setVisible(false);
+            Jmcatcpt.setVisible(false);
+            Jmfaccpt.setVisible(false);
+            Jmpedcpt.setVisible(false);
+            Jmcatprod.setVisible(false);
+            cobranza.setVisible(false);
+            nominas.setVisible(false);
         }
     }
 

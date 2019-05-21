@@ -51,16 +51,16 @@
 	<detail>
 		<band height="211" splitType="Stretch">
 			<staticText>
-				<reportElement x="9" y="98" width="52" height="14" uuid="c501919f-ddb3-4471-ac3e-77dfb9f7ac48"/>
+				<reportElement x="9" y="100" width="52" height="14" uuid="c501919f-ddb3-4471-ac3e-77dfb9f7ac48"/>
 				<textElement>
 					<font size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[MODELO:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="70" y="98" width="129" height="14" uuid="fc8a5d55-d0d4-4ac9-ba4b-83033d7b079e"/>
+				<reportElement x="70" y="98" width="129" height="16" uuid="fc8a5d55-d0d4-4ac9-ba4b-83033d7b079e"/>
 				<textElement>
-					<font size="9" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
 			</textField>
@@ -72,23 +72,23 @@
 				<text><![CDATA[TALLA:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="114" width="52" height="14" uuid="ce8b178e-4608-4e81-b51c-1bc73e512e67"/>
+				<reportElement x="9" y="116" width="52" height="14" uuid="ce8b178e-4608-4e81-b51c-1bc73e512e67"/>
 				<textElement>
 					<font size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[COLOR:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="89" y="130" width="49" height="23" uuid="9b0d481f-12f9-42ee-a704-fd35fba1e11f"/>
+				<reportElement x="89" y="130" width="54" height="28" uuid="9b0d481f-12f9-42ee-a704-fd35fba1e11f"/>
 				<textElement textAlignment="Center">
-					<font size="18" isBold="true"/>
+					<font size="22" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{punto}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="70" y="114" width="52" height="14" uuid="567d2f36-540b-47e6-8f04-ef4ec56245df"/>
+				<reportElement x="70" y="114" width="52" height="16" uuid="567d2f36-540b-47e6-8f04-ef4ec56245df"/>
 				<textElement>
-					<font size="9" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{color}]]></textFieldExpression>
 			</textField>
@@ -100,9 +100,9 @@
 				<text><![CDATA[PARES:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="209" y="130" width="50" height="23" uuid="ea16625d-68b9-4a27-a9ac-761d8ce0a700"/>
+				<reportElement x="209" y="130" width="56" height="28" uuid="ea16625d-68b9-4a27-a9ac-761d8ce0a700"/>
 				<textElement textAlignment="Center">
-					<font size="18" isBold="true"/>
+					<font size="22" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{pares}]]></textFieldExpression>
 			</textField>
@@ -114,24 +114,24 @@
 				<text><![CDATA[FECHA]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="209" y="76" width="56" height="14" uuid="445cfca9-b04b-45b9-bbcf-b3d3ff2206da"/>
+				<reportElement x="209" y="76" width="66" height="16" uuid="445cfca9-b04b-45b9-bbcf-b3d3ff2206da"/>
 				<textElement textAlignment="Center">
-					<font size="9" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="26" y="67" width="63" height="18" uuid="60fad133-928a-4927-86dc-1a27377037b6"/>
+				<reportElement x="26" y="67" width="70" height="19" uuid="60fad133-928a-4927-86dc-1a27377037b6"/>
 				<imageExpression><![CDATA["C:\\tsmanager\\imagenes\\logo.png"]]></imageExpression>
 			</image>
 			<componentElement>
-				<reportElement stretchType="RelativeToBandHeight" x="71" y="163" width="152" height="37" uuid="48213cab-4323-4890-8dea-5d323d54f735"/>
-				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128B" drawText="false" checksumRequired="false" barHeight="50">
-					<jr:codeExpression><![CDATA["123456789123"]]></jr:codeExpression>
+				<reportElement stretchType="RelativeToBandHeight" x="71" y="163" width="169" height="48" uuid="48213cab-4323-4890-8dea-5d323d54f735"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128B" drawText="true" checksumRequired="false" barHeight="50">
+					<jr:codeExpression><![CDATA[$F{codigo}]]></jr:codeExpression>
 				</jr:barbecue>
 			</componentElement>
 			<line>
-				<reportElement x="8" y="96" width="283" height="1" uuid="a8064277-9392-4557-857e-b832d1b5f7bc"/>
+				<reportElement x="8" y="92" width="283" height="1" uuid="a8064277-9392-4557-857e-b832d1b5f7bc"/>
 			</line>
 			<line>
 				<reportElement x="9" y="158" width="282" height="1" uuid="42a63695-e49e-4300-af55-d77d65fe866d"/>
