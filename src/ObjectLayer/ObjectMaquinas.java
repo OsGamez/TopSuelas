@@ -95,14 +95,19 @@ public class ObjectMaquinas {
             st = c.prepareStatement("UPDATE Maquinas set stat ='0' where maquina=" + maquina);
             st.executeUpdate();
             c.commit();
-            st.close();
-
         } catch (SQLException ex) {
             try {
                 c.rollback();
                 ex.printStackTrace();
             } catch (SQLException ex1) {
                 Logger.getLogger(ObjectMaquinas.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }finally {
+            try {
+                st.close();
+                c.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ObjectMaquinas.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -125,7 +130,6 @@ public class ObjectMaquinas {
                 }
             }
             c.commit();
-            st.close();
             return true;
         } catch (SQLException ex) {
             try {
@@ -133,6 +137,13 @@ public class ObjectMaquinas {
                 ex.printStackTrace();
             } catch (SQLException ex1) {
                 Logger.getLogger(ObjectMaquinas.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }finally {
+            try {
+                st.close();
+                c.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ObjectMaquinas.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return false;
@@ -153,15 +164,20 @@ public class ObjectMaquinas {
                     st.execute();
                 }
                 c.commit();
-                st.close();
                 return true;
             } catch (SQLException ex) {
                 c.rollback();
-                st.close();
                 ex.printStackTrace();
             }
         } catch (SQLException ex) {
             Logger.getLogger(ObjectMaquinas.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            try {
+                st.close();
+                c.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ObjectMaquinas.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return false;
     }

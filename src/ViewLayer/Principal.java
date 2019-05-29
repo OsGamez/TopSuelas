@@ -2,7 +2,6 @@ package ViewLayer;
 
 import ObjectLayer.Copiaarchivo;
 import ObjectLayer.Hora;
-import ObjectLayer.ObjectVersioning;
 import ObjectLayer.Usuario;
 import java.awt.Color;
 import java.awt.Image;
@@ -87,7 +86,12 @@ public class Principal extends javax.swing.JFrame {
             JmCPT.setVisible(false);
             JmConfig.setVisible(false);
         }else if(us.getDepartamento().equals("PRODUCCIONCPT")){
-            JmCobranza.setVisible(false);
+            JmAgente.setVisible(false);
+            JmBanco.setVisible(false);
+            JmCiudad.setVisible(false);
+            JmEstados.setVisible(false);
+            JmPais.setVisible(false);
+            JmZona.setVisible(false);
             JmConfig.setVisible(false);
             Jmcatcpt.setVisible(false);
             Jmfaccpt.setVisible(false);

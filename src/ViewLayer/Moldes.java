@@ -1,13 +1,10 @@
 
 package ViewLayer;
 
-import DataAccesLayer.Server;
 import ObjectLayer.Molde;
 import ObjectLayer.ObjectMoldes;
-import ObjectLayer.ObjectPrecios;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.sql.Connection;
 import java.util.ArrayList;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -25,11 +22,10 @@ public class Moldes extends javax.swing.JInternalFrame {
     ObjectMoldes obm = new ObjectMoldes();
     public Moldes() {
         initComponents();
-        LoadColumns();
-        LoadModelMolde();
+        LoadColumns();// carga las columnas de la tabla
+        LoadModelMolde();// carga el modelo
         JtDatosMolde.getTableHeader().setReorderingAllowed(false);
     }
-
   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -176,8 +172,8 @@ public class Moldes extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbNuevoActionPerformed
-        NMolde nuevo = new NMolde(null, true);
-        nuevo.setVisible(true);
+        NMolde nuevo = new NMolde(null, true);// instanciar nuevo
+        nuevo.setVisible(true);// desplgar nuevo
         nuevo.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         nuevo.setAlwaysOnTop(true);
         if(nuevo.getInformacion()!=""){
@@ -185,7 +181,7 @@ public class Moldes extends javax.swing.JInternalFrame {
             LoadModelMolde();
         }
     }//GEN-LAST:event_JbNuevoActionPerformed
-    private void LoadColumns(){
+    private void LoadColumns(){// columnas de la tabla
         modelMolde.addColumn("Molde");
         modelMolde.addColumn("Punto");
         modelMolde.addColumn("Cantidad");
@@ -210,24 +206,23 @@ public class Moldes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbSalirActionPerformed
 
     private void JbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEliminarActionPerformed
-        int row = JtDatosMolde.getSelectedRow();
-        int column = JtDatosMolde.getColumnCount();
+        int row = JtDatosMolde.getSelectedRow();//asigna a variable el numero de linea el cual esta seleccionado
          try{
-            if(row >=0){
+            if(row >=0){//si no se ha seleccionado nada, desplegara una leyenda de error
               int opcion = JOptionPane.showConfirmDialog(this,"¿Estas seguro de borrar este registro?","TOP-SUELAS",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
               if(opcion ==JOptionPane.YES_OPTION){
-                  obm.MoldeDelete((int)JtDatosMolde.getValueAt(row,0));
-                  modelMolde.removeRow(row); 
+                  obm.MoldeDelete((int)JtDatosMolde.getValueAt(row,0)); //se manda la el valor de la linea seleccionada a la base de datos
+                  modelMolde.removeRow(row); // se elimina la linea seleccionada de la tabla
                        JOptionPane.showMessageDialog(null,"Registro eliminado");
                 }
         }else{
              JOptionPane.showMessageDialog(null,"No se ha selecionado ningun registro");   
             } 
-    }
+        }   
         catch(Exception ex){
             
             ex.printStackTrace();
-}
+        }
     }//GEN-LAST:event_JbEliminarActionPerformed
 
     private void JbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEditarActionPerformed
@@ -272,9 +267,9 @@ public class Moldes extends javax.swing.JInternalFrame {
 
     private void JtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyReleased
         CleanTable();
-        listaMolde = obm.BuscaMolde(JtBuscar.getText());
-        modelMolde.setNumRows(listaMolde.size());
-        
+        listaMolde = obm.BuscaMolde(JtBuscar.getText());// busca texto en la bd
+        modelMolde.setNumRows(listaMolde.size());// asigna numero de columnas
+        //despliega informacion en la tabla
         for(int i =0; i <listaMolde.size(); i++){
             modelMolde.setValueAt(listaMolde.get(i).getMolde(), i, 0);
             modelMolde.setValueAt(listaMolde.get(i).getPunto(), i, 1);

@@ -190,17 +190,19 @@ public class NMolde extends javax.swing.JDialog {
     }//GEN-LAST:event_JtlItemStateChanged
 
     private void nuevomolde() {
-        Validacion v = new Validacion();
+        Validacion v = new Validacion();// instancia objeto para validar campos
         Molde m = new Molde();
-        if (Jtl.getSelectedIndex() == 0 && Jtc.equals("") && Jtp.equals("")) {
+        if (Jtl.getSelectedIndex() == 0 && Jtc.equals("") && Jtp.equals("")) {//si son vacios regresar mensaje
             JOptionPane.showMessageDialog(this, "Falta datos de ingresar verifica", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
             Jtp.requestFocus();
-        } else if (v.verificapunto(Jtp.getText()) && v.verificanumeros(Jtc.getText())) {
+        }//verifica el campo de punto y el campo de cantidad 
+        else if (v.verificapunto(Jtp.getText()) && v.verificanumeros(Jtc.getText())) {
+            //se añaden los datos al objeto 'molde'
             m.setCantidad(Integer.parseInt(Jtc.getText()));
             m.setLinea((datos.get(Jtl.getSelectedIndex()).getId_Linea()));
             m.setPunto(Integer.parseInt(Jtp.getText()));
             ObjectMoldes obm = new ObjectMoldes();
-            if (obm.MoldeAdd(m)) {
+            if (obm.MoldeAdd(m)) {// se ejecuta insercion, si todo esta bien regresa true
                 JOptionPane.showMessageDialog(this, "Molde Guardado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                 informacion = "1";
                 Limpiar();
