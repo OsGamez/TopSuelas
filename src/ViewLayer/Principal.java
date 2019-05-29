@@ -96,8 +96,6 @@ public class Principal extends javax.swing.JFrame {
             Jmcatcpt.setVisible(false);
             Jmfaccpt.setVisible(false);
             Jmpedcpt.setVisible(false);
-            Jmcatprod.setVisible(false);
-            cobranza.setVisible(false);
             nominas.setVisible(false);
         }
     }
