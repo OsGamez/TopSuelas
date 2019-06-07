@@ -7,16 +7,17 @@
 		<defaultValueExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select distinct RazonSocial from Clientes]]>
+		<![CDATA[select distinct Nombre from Clientes
+order by Nombre]]>
 	</queryString>
-	<field name="RazonSocial" class="java.lang.String"/>
+	<field name="Nombre" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="74" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Transparent" x="206" y="43" width="189" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="35df6064-1c24-4a9d-b81f-dc7af014ab47"/>
+				<reportElement mode="Transparent" x="205" y="43" width="189" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="35df6064-1c24-4a9d-b81f-dc7af014ab47"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -48,25 +49,26 @@
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="52" splitType="Stretch">
-			<textField>
-				<reportElement x="13" y="3" width="100" height="20" uuid="a64df3c3-f494-47e5-9f6c-c814330fbef8"/>
-				<textElement>
-					<font fontName="SansSerif" size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{RazonSocial}]]></textFieldExpression>
-			</textField>
-			<subreport>
-				<reportElement x="26" y="9" width="234" height="41" uuid="ab088b01-10db-42f9-88f7-7815903c8423"/>
-				<subreportParameter name="nombre">
-					<subreportParameterExpression><![CDATA[$F{RazonSocial}]]></subreportParameterExpression>
-				</subreportParameter>
-				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\SubPrecios.jasper"]]></subreportExpression>
-			</subreport>
+		<band height="70" splitType="Stretch">
 			<line>
 				<reportElement x="14" y="15" width="100" height="1" uuid="2ccd8ef6-7bc3-414c-9a4d-bf2a3a37d777"/>
 			</line>
+			<textField>
+				<reportElement mode="Transparent" x="14" y="0" width="177" height="16" forecolor="#000000" backcolor="#FFFFFF" uuid="7014ba31-0540-4516-95c9-d25ba04b292c"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="30" y="16" width="218" height="51" uuid="9b8a5d4d-4c8c-40b1-bd8c-d4c80903caa4"/>
+				<subreportParameter name="nombre">
+					<subreportParameterExpression><![CDATA[$F{Nombre}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\SubPreciosCliente.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</detail>
 	<columnFooter>

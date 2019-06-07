@@ -1,6 +1,7 @@
 
 package ObjectLayer;
 
+import DataAccesLayer.Conexion;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,8 +20,9 @@ public class AlmacenRcpt {
     ResultSet rs = null;
   
     public AlmacenRcpt() {
+        
     }
-
+    
     public int getAlmacen() {
         return Almacen;
     }
@@ -42,13 +44,12 @@ public class AlmacenRcpt {
         return this.Descripcion;
     }
 
-    public Vector<AlmacenRcpt>getAlmacenes() {
-
+    public Vector<AlmacenRcpt>getAm() {
         Vector<AlmacenRcpt> datos = new Vector<AlmacenRcpt>();
         AlmacenRcpt a = null;
 
         try {
-            st = c.prepareStatement("SELECT * FROM Almacenes  ORDER BY Descripcion");
+            st = c.prepareStatement("SELECT * FROM Almacenes ORDER BY Descripcion");
             rs = st.executeQuery();
 
             a = new AlmacenRcpt();
@@ -61,10 +62,13 @@ public class AlmacenRcpt {
                 a.setAlmacen(rs.getInt("Almacen"));
                 a.setDescripcion(rs.getString("Descripcion"));
                 datos.add(a);
+               
             }
-            rs.close();
+             rs.close();
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
+            //rs.close();
         }
         return datos;
     }

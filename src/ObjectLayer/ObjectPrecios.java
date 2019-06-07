@@ -10,10 +10,10 @@ import java.util.ArrayList;
 
 public class ObjectPrecios {
 
-    //Connection c = Server.getRpt();
-    //Connection pa = Server.getRcpt();
-    Connection c = Conexion.getRpt();
-    Connection pa = Conexion.getRcpt();
+    Connection c = Server.getRpt();
+    Connection pa = Server.getRcpt();
+    //Connection c = Conexion.getRpt();
+    //Connection pa = Conexion.getRcpt();
 
     PreparedStatement st, st2 = null;
     ResultSet rs = null;
@@ -21,9 +21,9 @@ public class ObjectPrecios {
     public boolean precioAdd(Precio pc) {
         boolean rpta = false;
         try {
+            pa.setAutoCommit(false);
             st2 = pa.prepareStatement("INSERT INTO Precios (Id_Cliente,Id_Producto,PrecioA,PrecioB,PrecioAP,PrecioBP,Activo)"
                     + "VALUES(?,?,?,?,?,?,?)");
-            pa.setAutoCommit(false);
             st2.setInt(1, pc.getId_Cliente());
             st2.setInt(2, pc.getId_Producto());
             st2.setDouble(3, pc.getPrecioA());
@@ -38,13 +38,16 @@ public class ObjectPrecios {
                 rpta = precioAddCopy(pc);
                 if (rpta) {
                     pa.commit();
+                    st2.close();
                 } else {
-                    Conexion.rollback(pa);
+                    pa.rollback();
+                    st2.close();
                 }
             } else {
-                Conexion.rollback(pa);
+                pa.rollback();
+                st2.close();
             }
-            Conexion.cerrarPrep(st2);
+           st2.close();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -85,10 +88,10 @@ public class ObjectPrecios {
         ArrayList<Precio> listaPrecios = new ArrayList<Precio>();
         try {
             st2 = pa.prepareStatement("select p.Id_Lista,p.PrecioA,p.PrecioB,p.PrecioAP,p.PrecioBP,p.Id_Cliente,p.Id_Producto\n"
-                    + ",c.RazonSocial as Cliente,pd.Descripcion as Producto from\n"
+                    + ",c.Nombre as Cliente,pd.Descripcion as Producto from\n"
                     + "Precios p inner join CobranzaPhy.dbo.Clientes as c on p.Id_Cliente = c.Id_Cliente\n"
                     + "inner join ProduccionPhy.dbo.Producto as pd on p.Id_Producto = pd.Id_Producto\n"
-                    + "where p.Activo = 1   order by c.RazonSocial");
+                    + "where p.Activo = 1   order by c.Nombre");
 
             rs = st2.executeQuery();
             while (rs.next()) {
@@ -131,10 +134,10 @@ public class ObjectPrecios {
         ArrayList<Precio> listaPrecios = new ArrayList<Precio>();
         try {
             st2 = pa.prepareStatement("SELECT p.Id_Lista,p.PrecioA,p.PrecioB,p.PrecioAP,p.PrecioBP,\n"
-                    + "c.RazonSocial as Cliente,pd.Descripcion as Producto ,p.Id_Cliente,p.Id_Producto\n"
+                    + "c.Nombre as Cliente,pd.Descripcion as Producto ,p.Id_Cliente,p.Id_Producto\n"
                     + "FROM Precios p INNER JOIN CobranzaPhy.dbo.Clientes as c on p.Id_Cliente = c.Id_Cliente\n"
-                    + "INNER JOIN ProduccionPhy.dbo.Producto pd on p.Id_Producto = pd.Id_Producto WHERE p.Activo =1 AND c.RazonSocial LIKE'%" + filtro + "%'"
-                    + "ORDER BY c.RazonSocial");
+                    + "INNER JOIN ProduccionPhy.dbo.Producto pd on p.Id_Producto = pd.Id_Producto WHERE p.Activo =1 AND c.Nombre LIKE'%" + filtro + "%'"
+                    + "ORDER BY c.Nombre");
 
             rs = st2.executeQuery();
             while (rs.next()) {
@@ -233,7 +236,6 @@ public class ObjectPrecios {
             pa.setAutoCommit(false);
             st2.setInt(1, Id_Prod);
             st2.setInt(2, Id_Cli);
-
             rpta = st2.executeUpdate() == 1 ? true : false;
              
             if (rpta) {

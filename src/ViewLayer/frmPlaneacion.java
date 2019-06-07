@@ -34,7 +34,7 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
 
     ObjectPlaneacion obj = new ObjectPlaneacion();
     SimpleDateFormat fecha = new SimpleDateFormat();
-    Connection c = Conexion.getRcpt();
+    Connection c = Server.getRcpt();
 
     DefaultTableModel Table = new DefaultTableModel() {
         @Override

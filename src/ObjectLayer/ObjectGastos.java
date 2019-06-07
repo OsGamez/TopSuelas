@@ -18,6 +18,7 @@ public class ObjectGastos {
 
     public boolean gastoAdd(Gasto g) {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("INSERT INTO Gastos(Mes,Año,Mo,Gf,Ga,Mi)"
                     + "VALUES(?,?,?,?,?,?)");
             st.setString(1, g.getMes());
@@ -27,6 +28,7 @@ public class ObjectGastos {
             st.setDouble(5, g.getGa());
             st.setDouble(6, g.getMi());
             st.executeUpdate();
+            c.commit();
             st.close();
             return true;
         } catch (SQLException ex) {
@@ -126,6 +128,7 @@ public class ObjectGastos {
 
     public boolean gastoUpdate(Gasto g) {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("UPDATE Gastos SET Mo=?,Gf=?,Ga=?,Mi=? WHERE Mes=? AND Año = ?");
 
             st.setDouble(1, g.getMo());
@@ -136,6 +139,7 @@ public class ObjectGastos {
             st.setInt(6, g.getAño());
 
             st.executeUpdate();
+            c.commit();
             st.close();
             return true;
         } catch (SQLException ex) {
@@ -146,10 +150,13 @@ public class ObjectGastos {
 
     public boolean gastoDelete(String Mes, int Año) {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("DELETE FROM Gastos WHERE Mes = ? AND Año = ?");
             st.setString(1, Mes);
             st.setInt(2, Año);
             st.executeUpdate();
+            c.commit();
+            st.close();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();

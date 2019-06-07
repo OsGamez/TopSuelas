@@ -18,11 +18,13 @@ public class ObjectLineas {
 
     public boolean lineaAdd(String Descripcion, boolean Activo) {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("INSERT INTO Linea (Descripcion ,Activo)"
                     + "values(?,?)");
             st.setString(1, Descripcion);
             st.setBoolean(2, Activo);
             st.executeUpdate();
+            c.commit();
             st.close();
             return true;
         } catch (SQLException ex) {
@@ -83,6 +85,7 @@ public class ObjectLineas {
 
     public boolean lineaDelete(int Id_Linea) {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("select p.Descripcion,l.Id_Linea from Producto p\n"
                     + "inner join Linea l \n"
                     + "on p.Id_Linea = l.Id_Linea\n"
@@ -96,6 +99,8 @@ public class ObjectLineas {
                 st = c.prepareStatement("UPDATE Linea SET Activo = 0 WHERE Id_Linea = ?");
                 st.setInt(1, Id_Linea);
                 st.execute();
+                c.commit();
+                st.close();
                 return true;
             }
         } catch (SQLException ex) {
@@ -106,12 +111,14 @@ public class ObjectLineas {
 
     public boolean lineaUpdate(String Descripcion, int id) {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("UPDATE Linea SET Descripcion = ? WHERE Id_Linea = ?");
 
             st.setString(1, Descripcion);
             st.setInt(2, id);
 
             st.executeUpdate();
+            c.commit();
             st.close();
             return true;
         } catch (SQLException ex) {

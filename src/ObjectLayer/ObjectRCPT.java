@@ -1,5 +1,6 @@
 package ObjectLayer;
 
+import DataAccesLayer.Conexion;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 
 public class ObjectRCPT {
 
-    Connection c = Server.getServer();
+    Connection c = Conexion.getLocal();
     ResultSet rs = null;
     Statement sta = null;
     PreparedStatement st = null;
@@ -36,7 +37,7 @@ public class ObjectRCPT {
         return listaProductos;
     }
 
-    public ArrayList<PtProducto> getPhylon(String id) {
+    public ArrayList<PtProducto>getPhylon(String id) {
         ArrayList<PtProducto> listaProductos = new ArrayList<PtProducto>();
         try {
             st = c.prepareStatement("SELECT Producto,Descripcion,Estilo, Combinacion, Corrida FROM Productos WHERE Producto = ?");

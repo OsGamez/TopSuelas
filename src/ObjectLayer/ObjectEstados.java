@@ -21,6 +21,7 @@ public class ObjectEstados {
     public boolean estadoAdd(String Descripcion, boolean Activo) {
         boolean rpta = false;
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("INSERT INTO Estados (Descripcion ,Activo)"
                     + "values(?,?)");
             c.setAutoCommit(false);
@@ -32,13 +33,16 @@ public class ObjectEstados {
                 rpta = estadoAddCopy(Descripcion, Activo);
                 if (rpta) {
                     c.commit();
+                    st.close();
                 } else {
-                    Conexion.rollbackA(c);
+                    c.rollback();
+                    st.close();
                 }
             } else {
-                Conexion.rollbackA(c);
+                c.rollback();
+                st.close();
             }
-            Conexion.cerrarPhylonA(st);
+             st.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
             Conexion.cerrarPhylonA(st);
@@ -52,6 +56,7 @@ public class ObjectEstados {
     public boolean estadoAddCopy(String Descripcion, boolean Activo) {
         boolean rpta = false;
         try {
+            rc.setAutoCommit(false);
             copy = rc.prepareStatement("INSERT INTO Estados (Descripcion ,Activo)"
                     + "values(?,?)");
             rc.setAutoCommit(false);
@@ -61,11 +66,12 @@ public class ObjectEstados {
 
             if (rpta) {
                 rc.commit();
+                copy.close();
             } else {
-                Conexion.rollbackA(rc);
+                rc.rollback();
+                copy.close();
             }
-
-            Conexion.cerrarPrep(copy);
+            rc.rollback();
         } catch (SQLException e) {
             e.printStackTrace();
             Conexion.cerrarPrep(copy);
@@ -130,6 +136,7 @@ public class ObjectEstados {
     public boolean estadoDelete(int Id_Estado, String Descripcion) {
         boolean rpta = false;
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("select c.RazonSocial,e.Id_Estado from Clientes c\n"
                     + "inner join Estados e \n"
                     + "on c.Id_Pais = e.Id_Estado\n"
@@ -145,11 +152,19 @@ public class ObjectEstados {
                 rpta = st.executeUpdate() == 1 ? true : false;
                 if (rpta) {
                     rpta = estadoDeleteCopy(Descripcion);
-                    c.commit();
+                    if (!rpta) {
+                        c.rollback();
+                        c.close();
+                    } else {
+                        c.commit();
+                        c.close();
+                    }
+                    
                 } else {
-                    Conexion.rollbackA(c);
+                    c.rollback();
+                    st.close();
                 }
-                Conexion.cerrarPhylonA(st);
+                st.close();
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -164,6 +179,7 @@ public class ObjectEstados {
     public boolean estadoDeleteCopy(String Descripcion) {
         boolean rpta = false;
         try {
+            rc.setAutoCommit(false);
             copy = rc.prepareStatement("UPDATE Estados SET Activo = 0 WHERE Descripcion = ?");
             rc.setAutoCommit(false);
             copy.setString(1, Descripcion);
@@ -172,10 +188,12 @@ public class ObjectEstados {
 
             if (rpta) {
                 rc.commit();
+                copy.close();
             } else {
-                Conexion.rollbackA(rc);
+                rc.rollback();
+                copy.close();
             }
-            Conexion.cerrarPrep(copy);
+            copy.close();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -217,8 +235,8 @@ public class ObjectEstados {
         }
         return rpta;
     }
-    
-    public boolean estadoUpdateCopy(String Descripcion, String Nombre){
+
+    public boolean estadoUpdateCopy(String Descripcion, String Nombre) {
         boolean rpta = false;
         try {
             copy = rc.prepareStatement("UPDATE Estados SET Descripcion = ? WHERE Descripcion = ?");
@@ -243,5 +261,5 @@ public class ObjectEstados {
         }
         return rpta;
     }
-            
+
 }

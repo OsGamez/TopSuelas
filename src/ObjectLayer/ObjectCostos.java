@@ -16,6 +16,7 @@ public class ObjectCostos {
 
     public boolean CostoAdd(Costo costo) {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("INSERT INTO Costos(Id_Producto,Id_ProductoRCPT,Punto,PesoGr,Ptolerancia,"
                     + "Pcolada,CveMat,Tolerancia,Colada,PesoTotal,Costo,Precio)"
                     + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -32,6 +33,7 @@ public class ObjectCostos {
             st.setDouble(11, costo.getCosto());
             st.setDouble(12, costo.getPrecio());
             st.executeUpdate();
+            c.commit();
             st.close();
             return true;
         } catch (SQLException ex) {
@@ -96,12 +98,14 @@ public class ObjectCostos {
 
     public boolean costoUpdate(Costo ct) {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("UPDATE Costos SET Ptolerancia=?,Pcolada=? WHERE Id_Producto=? AND Punto = ?");
             st.setDouble(1, ct.getPtolerancia());
             st.setDouble(2, ct.getPcolada());
             st.setInt(3, ct.getId_Producto());
             st.setInt(4, ct.getPunto());
             st.executeUpdate();
+            c.commit();
             st.close();
             return true;
         } catch (SQLException ex) {
@@ -112,10 +116,12 @@ public class ObjectCostos {
 
     public boolean UpdateRegistro(Costo ct) {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("UPDATE Costos SET Ptolerancia = ?,Pcolada=?");
             st.setDouble(1, ct.getPtolerancia());
             st.setDouble(2, ct.getPcolada());
             st.executeUpdate();
+            c.commit();
             st.close();
             return true;
         } catch (SQLException ex) {
@@ -126,6 +132,7 @@ public class ObjectCostos {
 
     public boolean UpdateByLinea(Costo ct) {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("UPDATE C\n"
                     + "SET C.Ptolerancia = ?,\n"
                     + "C.Pcolada = ?\n"
@@ -138,6 +145,7 @@ public class ObjectCostos {
             st.setDouble(2, ct.getPcolada());
             st.setInt(3, ct.getLinea());
             st.executeUpdate();
+            c.commit();
             st.close();
             return true;
         } catch (Exception e) {
@@ -148,11 +156,13 @@ public class ObjectCostos {
     
     public boolean UpdateCve(double precio,String cve){
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("update Costos set Precio = ?\n" +
             "where CveMat = ?");
             st.setDouble(1, precio);
             st.setString(2, cve);
             st.executeUpdate();
+            c.commit();
             st.close();
             return true;
         } catch (Exception e) {
@@ -161,7 +171,6 @@ public class ObjectCostos {
         return false;
     }
             
-
     public ArrayList<Costo> costoSearch(String filtro) {
         ArrayList<Costo> listaCostos = new ArrayList<Costo>();
         try {
@@ -205,10 +214,12 @@ public class ObjectCostos {
 
     public boolean costoDelete(int Id_Producto, int Punto) {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("DELETE FROM Costos WHERE Id_Producto = ? AND Punto=?");
             st.setInt(1, Id_Producto);
             st.setInt(2, Punto);
             st.executeUpdate();
+            c.commit();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();

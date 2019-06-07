@@ -264,20 +264,17 @@ public class Precios extends javax.swing.JInternalFrame {
             if (fila >= 0) {
                 int opcion = JOptionPane.showConfirmDialog(this, "¿Quieres editar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (opcion == JOptionPane.YES_OPTION) {
-                    Cliente cl = new Cliente();
-
-                    editar.JcCliente.setEnabled(false);
                     editar.JtProducto.setEnabled(false);
+                    editar.JtCliente.setEnabled(false);
                     editar.Jtid.setText(JtDatosPrecio.getValueAt(fila, 4).toString());
-                    cl.setRazonSocial(JtDatosPrecio.getValueAt(fila, 1).toString());
-                    cl.setId_Cliente((int) JtDatosPrecio.getValueAt(fila, 2));
                     editar.JtProducto.setText(JtDatosPrecio.getValueAt(fila, 3).toString());
                     editar.JbIdProd.setText(JtDatosPrecio.getValueAt(fila, 4).toString());
                     editar.Jta.setText(JtDatosPrecio.getValueAt(fila, 5).toString());
                     editar.Jtb.setText(JtDatosPrecio.getValueAt(fila, 6).toString());
                     editar.JtaP.setText(JtDatosPrecio.getValueAt(fila, 7).toString());
                     editar.JtbP.setText(JtDatosPrecio.getValueAt(fila, 8).toString());
-                    editar.JcCliente.getModel().setSelectedItem(cl);
+                    editar.JtCliente.setText(JtDatosPrecio.getValueAt(fila, 1).toString());
+                    editar.JbIdCliente.setText(JtDatosPrecio.getValueAt(fila, 2).toString());
 
                     editar.setVisible(true);
                     editar.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);

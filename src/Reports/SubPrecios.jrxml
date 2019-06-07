@@ -7,17 +7,19 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select pd.Descripcion as SUELA,p.PrecioA AS PRECIOA,p.PrecioB AS PRECIOB,
+		<![CDATA[select pd.Descripcion as SUELA,p.PrecioA AS PRECIOA,p.PrecioB AS PRECIOB,p.PrecioAP,p.PrecioBP,
 case p.Activo when 1 then 'A' else 'I' end as ESTATUS
 from
 RcptPhylonA.dbo.Precios p inner join ProduccionPhy.dbo.Producto as pd on p.Id_Producto = pd.Id_Producto
 inner join Clientes c on
 p.Id_Cliente = c.Id_Cliente
-where  c.RazonSocial = $P{nombre}]]>
+where  c.Nombre = $P{nombre}]]>
 	</queryString>
 	<field name="SUELA" class="java.lang.String"/>
 	<field name="PRECIOA" class="java.math.BigDecimal"/>
 	<field name="PRECIOB" class="java.math.BigDecimal"/>
+	<field name="PrecioAP" class="java.math.BigDecimal"/>
+	<field name="PrecioBP" class="java.math.BigDecimal"/>
 	<field name="ESTATUS" class="java.lang.String"/>
 	<columnHeader>
 		<band height="20" splitType="Stretch">
@@ -45,7 +47,7 @@ where  c.RazonSocial = $P{nombre}]]>
 				<text><![CDATA[PRECIO  B]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="235" y="1" width="55" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="14976336-18ab-40e5-bb3f-18355d261267"/>
+				<reportElement mode="Transparent" x="376" y="1" width="55" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="14976336-18ab-40e5-bb3f-18355d261267"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -53,8 +55,24 @@ where  c.RazonSocial = $P{nombre}]]>
 				<text><![CDATA[ESTATUS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="2" y="5" width="319" height="14" uuid="d67012d8-8a69-4a07-a920-f94c088a7e69"/>
-				<text><![CDATA[- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -]]></text>
+				<reportElement x="2" y="5" width="440" height="14" uuid="d67012d8-8a69-4a07-a920-f94c088a7e69"/>
+				<text><![CDATA[- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="304" y="1" width="72" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="7902b54c-3767-4cf0-b623-bf1005ae1aeb"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[PRECIO B PRIME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="232" y="1" width="75" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="a393ba09-86aa-455d-8fee-13dfa072511a"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[PRECIO A PRIME]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -85,12 +103,28 @@ where  c.RazonSocial = $P{nombre}]]>
 				<textFieldExpression><![CDATA[$F{PRECIOB}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="235" y="4" width="33" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="197bf808-dd00-4ff6-8ca4-20ed73c7f6ed"/>
+				<reportElement mode="Transparent" x="379" y="4" width="33" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="197bf808-dd00-4ff6-8ca4-20ed73c7f6ed"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ESTATUS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="306" y="4" width="39" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="c87c8fbd-96a1-40d1-999b-60df4f21250d"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PrecioBP}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="234" y="4" width="42" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="3d700779-3c30-4f12-b213-ab2230ba438d"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PrecioAP}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

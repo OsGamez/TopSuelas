@@ -12,7 +12,7 @@ public class ObjectProveedores {
 
     PreparedStatement st = null;
     ResultSet rs = null;
-    Connection c = Server.getRcpt();
+    Connection c = Server.getPhylon();
 
     public boolean addProveedor(Proveedor p) {
         try {
@@ -28,7 +28,7 @@ public class ObjectProveedores {
             st.setString(8, p.getCorreoE());
             st.setString(9, p.getContacto());
             st.setString(10, p.getEstatus());
-            st.execute();
+            st.executeUpdate();
             st.close();
             return true;
 

@@ -24,7 +24,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 public class AlmacenesRcpt extends javax.swing.JInternalFrame {
 
-    Connection c = Conexion.getRcpt();
+    Connection c = Server.getRcpt();
     ObjectAlmacenRcpt obj = new ObjectAlmacenRcpt();
     
     DefaultTableModel modelAlmacen = new DefaultTableModel() {
@@ -62,10 +62,8 @@ public class AlmacenesRcpt extends javax.swing.JInternalFrame {
         for (int i = 0; i < listaAlmacen.size(); i++) {
             AlmacenRcpt a = listaAlmacen.get(i);
 
-            int Alm = a.getAlmacen();
-            String Desc = a.getDescripcion();
-            modelAlmacen.setValueAt(Alm, i, 0);
-            modelAlmacen.setValueAt(Desc, i, 1);
+            modelAlmacen.setValueAt(a.getAlmacen(), i, 0);
+            modelAlmacen.setValueAt(a.getDescripcion(), i, 1);
         }
     }
     @SuppressWarnings("unchecked")
@@ -86,6 +84,7 @@ public class AlmacenesRcpt extends javax.swing.JInternalFrame {
         setClosable(true);
         setMaximizable(true);
         setTitle("ALMACENES");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/package_box_10801.png"))); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 102)));
 
@@ -271,7 +270,7 @@ public class AlmacenesRcpt extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbEliminarActionPerformed
 
     private void JbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEditarActionPerformed
-        NAlmacen editar = new NAlmacen(null, true);
+        NAlmacenRcpt editar = new NAlmacenRcpt(null, true);
         int row = JtAlmacen.getSelectedRow();
         try {
             if (row >= 0) {

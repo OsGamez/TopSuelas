@@ -20,19 +20,21 @@ public class ObjectProductos {
         try {
             st = c.prepareStatement("INSERT INTO Producto (Id_Linea,Descripcion, Observaciones, Id_Color, Id_Corrida, Activo)"
                     + "values(?,?,?,?,?,?)");
-
+            c.setAutoCommit(false);
             st.setInt(1, producto.getId_Linea());
             st.setString(2, producto.getDescripcion());
             st.setString(3, producto.getObservaciones());
             st.setInt(4, producto.getId_Color());
             st.setInt(5, producto.getId_Corrida());
             st.setBoolean(6, producto.getActivo());
-
             st.executeUpdate();
+            c.commit();
             st.close();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
+            Conexion.rollbackA(c);
+            Conexion.cerrarPrep(st);
         }
         return false;
     }
@@ -160,15 +162,15 @@ public class ObjectProductos {
         try {
             st = c.prepareStatement("UPDATE Producto SET Descripcion=?,Observaciones=?,"
                     + "Id_Color=?, Id_Corrida=?,Id_Linea=?  WHERE Id_Producto=?");
-
+            c.setAutoCommit(false);
             st.setString(1, producto.getDescripcion());
             st.setString(2, producto.getObservaciones());
             st.setInt(3, producto.getId_Color());
             st.setInt(4, producto.getId_Corrida());
             st.setInt(5, producto.getId_Linea());
             st.setInt(6, producto.getId_Producto());
-
             st.executeUpdate();
+            c.commit();
             st.close();
             return true;
         } catch (SQLException ex) {
@@ -188,6 +190,7 @@ public class ObjectProductos {
             st = c.prepareStatement("select d.Estatus,p.Id_Producto from RCPTPhylonA.dbo.Dpedido d\n"
                     + "inner join ProduccionPhy.dbo.Producto p on p.Id_Producto = d.Id_Producto\n"
                     + "where p.Id_Producto =? and d.Estatus<>30");
+            c.setAutoCommit(false);
             st.setInt(1, Id_Producto);
             rs = st.executeQuery();
             if (rs.next()) {
@@ -197,6 +200,7 @@ public class ObjectProductos {
                 st = c.prepareStatement("UPDATE Producto set Activo = 0 where Id_Producto=?");
                 st.setInt(1, Id_Producto);
                 st.execute();
+                c.commit();
                 return true;
             }
         } catch (SQLException ex) {

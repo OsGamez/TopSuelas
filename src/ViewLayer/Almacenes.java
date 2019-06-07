@@ -229,7 +229,7 @@ public class Almacenes extends javax.swing.JInternalFrame {
                         modelAlmacen.removeRow(row);
                         JOptionPane.showMessageDialog(null, "Registro eliminado");
                     } else {
-                        JOptionPane.showMessageDialog(null, "Este almacen esta asociado a un material");
+                        JOptionPane.showMessageDialog(null, "Ocurrio un error contacta con sistemas");
                     }
                 }
             } else {

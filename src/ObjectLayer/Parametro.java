@@ -6,10 +6,19 @@ public class Parametro {
     private int Entrada;
     private int Salida;
     private int Factura;
-
+    private String Mes;
+    
     public Parametro() {
     }
 
+    public String getMes() {
+        return Mes;
+    }
+
+    public void setMes(String Mes) {
+        this.Mes = Mes;
+    }
+    
     public String getNpedido() {
         return Npedido;
     }

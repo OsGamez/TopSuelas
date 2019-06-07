@@ -18,6 +18,7 @@ public class ObjectCorridas {
 
     public boolean corridaAdd(Corrida corrida) {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("INSERT INTO Corrida (Descripcion,Punto_Inicial,Punto_Final,Observaciones ,Activo)"
                     + "values(?,?,?,?,?)");
             st.setString(1, corrida.getDescripcion());
@@ -26,6 +27,7 @@ public class ObjectCorridas {
             st.setString(4, corrida.getObservaciones());
             st.setBoolean(5, corrida.getActivo());
             st.executeUpdate();
+            c.commit();
             st.close();
             return true;
         } catch (SQLException ex) {
@@ -99,6 +101,7 @@ public class ObjectCorridas {
 
     public boolean corridaUpdate(Corrida corrida) {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("UPDATE Corrida SET Descripcion = ?,Punto_Inicial=?,Punto_Final=?,Observaciones=?  WHERE Id_Corrida = ?");
 
             st.setString(1, corrida.getDescripcion());
@@ -108,6 +111,7 @@ public class ObjectCorridas {
             st.setInt(5, corrida.getId_Corrida());
             
             st.executeUpdate();
+            c.commit();
             st.close();
             return true;
         } catch (SQLException ex) {
@@ -118,6 +122,7 @@ public class ObjectCorridas {
 
     public boolean corridaDelete(int Id_Corrida) {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("select p.Descripcion,c.Id_Corrida from Producto p\n"
                     + "inner join Corrida c \n"
                     + "on p.Id_Corrida = c.Id_Corrida\n"
@@ -131,6 +136,8 @@ public class ObjectCorridas {
                 st = c.prepareStatement("UPDATE Corrida SET Activo = 0 WHERE Id_Corrida = ?");
                 st.setInt(1, Id_Corrida);
                 st.execute();
+                c.commit();
+                st.close();
                 return true;
             }
         } catch (SQLException ex) {

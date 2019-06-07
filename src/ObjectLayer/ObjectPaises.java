@@ -21,6 +21,7 @@ public class ObjectPaises {
     public boolean paisAdd(String Descripcion, boolean Activo) {
         boolean rpta = false;
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("INSERT INTO Paises (Descripcion ,Activo)"
                     + "values(?,?)");
             c.setAutoCommit(false);
@@ -32,13 +33,16 @@ public class ObjectPaises {
                 rpta = paisAddCopy(Descripcion, Activo);
                 if (rpta) {
                     c.commit();
+                    st.close();
                 } else {
-                    Conexion.rollbackA(c);
+                    c.rollback();
+                    st.close();
                 }
             } else {
-                Conexion.rollbackA(c);
+                c.rollback();
+                st.close();
             }
-            Conexion.cerrarPhylonA(st);
+            st.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
             Conexion.cerrarPhylonA(st);
@@ -61,11 +65,12 @@ public class ObjectPaises {
 
             if (rpta) {
                 rc.commit();
+                copy.close();
             } else {
-                Conexion.rollbackA(rc);
+                rc.rollback();
+                copy.close();
             }
-
-            Conexion.cerrarPrep(copy);
+            copy.close();
         } catch (SQLException e) {
             e.printStackTrace();
             Conexion.cerrarPrep(copy);
@@ -130,6 +135,7 @@ public class ObjectPaises {
     public boolean paisDelete(int Id_Pais, String Descripcion) {
         boolean rpta = false;
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("select c.RazonSocial,p.Id_Pais from Clientes c\n"
                     + "inner join Paises p \n"
                     + "on c.Id_Pais = p.Id_Pais\n"
@@ -145,11 +151,18 @@ public class ObjectPaises {
                 rpta = st.executeUpdate() == 1 ? true : false;
                 if (rpta) {
                     rpta = paisDeleteCopy(Descripcion);
-                    c.commit();
+                    if (!rpta) {
+                        c.rollback();
+                        c.close();
+                    } else {
+                        c.commit();
+                        c.close();
+                    }
                 } else {
-                    Conexion.rollbackA(c);
+                    c.rollback();
+                    c.close();
                 }
-                Conexion.cerrarPhylonA(st);
+                 c.close();
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -164,18 +177,20 @@ public class ObjectPaises {
     public boolean paisDeleteCopy(String Descripcion) {
         boolean rpta = false;
         try {
-            copy = rc.prepareStatement("UPDATE Paises SET Activo = 0 WHERE Descripcion = ?");
             rc.setAutoCommit(false);
+            copy = rc.prepareStatement("UPDATE Paises SET Activo = 0 WHERE Descripcion = ?");
             copy.setString(1, Descripcion);
 
             rpta = copy.executeUpdate() == 1 ? true : false;
 
             if (rpta) {
                 rc.commit();
+                copy.close();
             } else {
-                Conexion.rollbackA(rc);
+                rc.rollback();
+                copy.close();
             }
-            Conexion.cerrarPrep(copy);
+           copy.close();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -190,6 +205,7 @@ public class ObjectPaises {
     public boolean paisUpdate(String Descripcion, String Nombre) {
         boolean rpta = false;
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("UPDATE Paises SET Descripcion = ? WHERE Descripcion = ?");
             c.setAutoCommit(false);
             st.setString(1, Descripcion);
@@ -200,13 +216,16 @@ public class ObjectPaises {
                 rpta = paisUpdateCopy(Descripcion, Nombre);
                 if (rpta) {
                     c.commit();
+                    st.close();
                 } else {
-                    Conexion.rollbackA(c);
+                    c.rollback();
+                    st.close();
                 }
             } else {
-                Conexion.rollbackA(c);
+               c.rollback();
+               st.close();
             }
-            Conexion.cerrarPhylonA(st);
+           st.close();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -221,18 +240,20 @@ public class ObjectPaises {
     public boolean paisUpdateCopy(String Descripcion, String Nombre) {
         boolean rpta = false;
         try {
-            copy = rc.prepareStatement("UPDATE Paises SET Descripcion = ? WHERE Descripcion = ?");
             rc.setAutoCommit(false);
+            copy = rc.prepareStatement("UPDATE Paises SET Descripcion = ? WHERE Descripcion = ?");
             copy.setString(1, Descripcion);
             copy.setString(2, Nombre);
             rpta = copy.executeUpdate() == 1 ? true : false;
 
             if (rpta) {
                 rc.commit();
+                copy.close();
             } else {
-                Conexion.rollbackA(rc);
+                rc.rollback();
+                copy.close();
             }
-            Conexion.cerrarPrep(copy);
+            copy.close();
 
         } catch (SQLException ex) {
             ex.printStackTrace();

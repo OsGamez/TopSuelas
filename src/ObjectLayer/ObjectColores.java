@@ -17,11 +17,13 @@ public class ObjectColores {
 
     public boolean colorAdd(String Descripcion, boolean Activo) {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("INSERT INTO Color (Descripcion ,Activo)"
                     + "values(?,?)");
             st.setString(1, Descripcion);
             st.setBoolean(2, Activo);
             st.executeUpdate();
+            c.commit();
             st.close();
             return true;
         } catch (SQLException ex) {
@@ -82,6 +84,7 @@ public class ObjectColores {
 
     public boolean colorDelete(int Id_Color) {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("select p.Descripcion,c.Id_Color from Producto p\n"
                     + "inner join Color c \n"
                     + "on p.Id_Color = c.Id_Color\n"
@@ -94,6 +97,8 @@ public class ObjectColores {
                 st = c.prepareStatement("UPDATE Color SET Activo = 0 WHERE Id_Color = ?");
                 st.setInt(1, Id_Color);
                 st.execute();
+                c.commit();
+                st.close();
                 return true;
             }
         } catch (SQLException ex) {
@@ -104,10 +109,12 @@ public class ObjectColores {
 
     public boolean colorUpdate(String Descripcion, int id) {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("UPDATE Color SET Descripcion = ? WHERE Id_Color = ?");
             st.setString(1, Descripcion);
             st.setInt(2, id);
             st.executeUpdate();
+            c.commit();
             st.close();
             return true;
         } catch (SQLException ex) {
