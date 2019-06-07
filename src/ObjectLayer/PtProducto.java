@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 public class PtProducto {
-
     PreparedStatement st = null;
     Connection c = Server.getServer();
     ResultSet rs = null;

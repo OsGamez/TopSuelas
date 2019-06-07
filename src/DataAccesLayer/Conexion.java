@@ -21,6 +21,7 @@ private static Connection Rc = null;
 private static Connection pa = null;
 private static Connection cm = null;
 private static Connection sv = null;
+private static Connection local = null;
  
 public static Connection getConnection(){
      try{
@@ -100,6 +101,7 @@ public static Connection getRcpt(){
             String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
             Class.forName(driver);
             pa = DriverManager.getConnection("jdbc:sqlserver://DESKTOP-FHVBC8N:1433;databaseName=RCPTPhylonA", "sa", "123");
+            System.out.println("BIEN");
         }
     }catch(ClassNotFoundException | SQLException ex){
         ex.printStackTrace();
@@ -129,6 +131,19 @@ public static Connection getServer(){
         ex.printStackTrace();
     }
     return sv;
+}
+
+public static Connection getLocal(){
+    try{
+        if(local == null){
+            String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+            Class.forName(driver);
+            local = DriverManager.getConnection("jdbc:sqlserver://DESKTOP-FHVBC8N:1433;databaseName=RCPTPhylon", "sa", "123");
+        }
+    }catch(ClassNotFoundException | SQLException ex){
+        ex.printStackTrace();
+    }
+    return local;
 }
 public static synchronized void cerrarCall(CallableStatement cl){
         try{cl.close();}catch(Exception e){e.printStackTrace();}

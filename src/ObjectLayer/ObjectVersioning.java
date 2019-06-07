@@ -1,5 +1,6 @@
 package ObjectLayer;
 
+import DataAccesLayer.Conexion;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +9,7 @@ import java.sql.SQLException;
 
 public class ObjectVersioning {
 
-    Connection us = Server.getUsuario();
+    Connection us = Conexion.getUsuario();
     PreparedStatement st = null;
     ResultSet rs = null;
 

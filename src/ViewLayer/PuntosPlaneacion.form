@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="location" type="java.awt.Point" editor="org.netbeans.beaninfo.editors.PointEditor">
+      <Point value="[200, 200]"/>
+    </Property>
+    <Property name="resizable" type="boolean" value="false"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="null"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="Jb1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="Jt1" min="-2" pref="51" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="Jb2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="Jt2" min="-2" pref="50" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="Jb7" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="Jt7" min="-2" pref="50" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="Jb8" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="Jt8" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="Jb3" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="Jb9" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="Jt3" min="-2" pref="50" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="Jb4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="Jt4" min="-2" pref="50" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="Jt9" min="-2" pref="50" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="Jb10" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="Jt10" min="-2" pref="50" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="Jb5" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="Jt5" min="-2" pref="50" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="Jb11" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="Jt11" min="-2" pref="50" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="Jb12" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="Jt12" min="-2" pref="50" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="Jb14" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="Jt14" min="-2" pref="51" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="Jb6" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="Jt6" min="-2" pref="50" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="Jb13" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="Jt13" min="-2" pref="51" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="47" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="Jb13" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jt13" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Jb1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jb2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jt1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jt2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jb3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jt3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jb4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jt4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jb5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jt5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jb6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jt6" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="Jb14" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jt14" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Jb7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jt7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jb8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jt8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jb9" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jt9" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jb10" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jt10" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jb11" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jt11" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jb12" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jt12" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JTextField" name="Jt4">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Jt4KeyPressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Jb10">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="L1:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Jb5">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="L5:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="Jt10">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Jt10KeyPressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="Jt5">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Jt5KeyPressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Jb11">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="L1:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Jb6">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="L6:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="Jt11">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Jt11KeyPressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="Jt6">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Jt6KeyPressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Jb12">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="L1:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Jb7">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="L7:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="Jt12">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Jt12KeyPressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="Jt7">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Jt7KeyPressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Jb8">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="L8:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="Jt8">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Jt8KeyPressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Jb1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="L1:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Jb2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="L2:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="Jt1">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Jt1KeyPressed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JTextField" name="Jt2">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Jt2KeyPressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Jb3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="L3:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="Jt3">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Jt3KeyPressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Jb9">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="L9:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Jb4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="L4:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="Jt9">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Jt9KeyPressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Jb13">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="L1:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="Jt13">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Jt13KeyPressed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Jb14">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="L1:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="Jt14">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Jt14KeyPressed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

@@ -1,6 +1,7 @@
 
 package ObjectLayer;
 
+import DataAccesLayer.Conexion;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,15 +14,17 @@ public class ObjectAlmacenRcpt {
     
     PreparedStatement st = null;
     ResultSet rs = null;
-    Connection c = Server.getRcpt();
+    Connection c = Server.getPhylon();
     
     public boolean almacenAdd(int am, String Desc) {
             try {
+                c.setAutoCommit(false);
                 st = c.prepareStatement("INSERT INTO Almacenes(Almacen,Descripcion)"
                        + "VALUES(?,?)");
                 st.setInt(1, am);
                 st.setString(2, Desc);
                 st.executeUpdate();
+                c.commit();
                 st.close();
                 return true;
             } catch (SQLException ex) {
@@ -102,10 +105,12 @@ public class ObjectAlmacenRcpt {
 
     public boolean almacenUpdate(String Desc, int am) {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("UPDATE Almacenes SET Descripcion =? WHERE Almacen = ?");
             st.setString(1, Desc);
             st.setInt(2, am);
             st.executeUpdate();
+            c.commit();
             st.close();
             return true;
         } catch (SQLException ex) {
@@ -116,10 +121,13 @@ public class ObjectAlmacenRcpt {
 
     public boolean almacenDelete(int Id, String Des) {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("DELETE FROM Almacenes WHERE Almacen = ? AND Descripcion = ?");
             st.setInt(1, Id);
             st.setString(2, Des);
             st.execute();
+            c.commit();
+            st.close();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();

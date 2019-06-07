@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -46,10 +47,11 @@ public class Principal extends javax.swing.JFrame {
     Consumos sumos;
     Etiquetas etiq;
     Entradas entrada;
+    Conceptos concepto;
     public String Estado = "A";
 
     Maquinas maq;
-    
+
     ImageIcon notificacion = new ImageIcon("C:\\tsmanager\\imagenes\\push.png");
     ImageIcon campana = new ImageIcon("C:\\tsmanager\\imagenes\\bell.png");
 
@@ -64,10 +66,10 @@ public class Principal extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/programa.png"));
         setIconImage(icon);
+        
         popprod.add(JmProduccion);
         popcpt.add(JmCPT);
         popcobranza.add(JmCobranza);
-
         popopciones.add(JmConfig);
         popopciones.add(JmSalir);
         JbUser.setText(us.getNombre());
@@ -279,6 +281,11 @@ public class Principal extends javax.swing.JFrame {
         JmClientescpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmClientescpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/User_Group-80_icon-icons.com_57247.png"))); // NOI18N
         JmClientescpt.setText("Clientes");
+        JmClientescpt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmClientescptActionPerformed(evt);
+            }
+        });
         Jmcatcpt.add(JmClientescpt);
 
         JmAlmacenescpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -294,11 +301,21 @@ public class Principal extends javax.swing.JFrame {
         JmConceptoscpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmConceptoscpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/courses_letters_blackboard_board_staff_book_1475.png"))); // NOI18N
         JmConceptoscpt.setText("Conceptos");
+        JmConceptoscpt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmConceptoscptActionPerformed(evt);
+            }
+        });
         Jmcatcpt.add(JmConceptoscpt);
 
         JmProductoscpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmProductoscpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/zapato.png"))); // NOI18N
         JmProductoscpt.setText("Productos");
+        JmProductoscpt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmProductoscptActionPerformed(evt);
+            }
+        });
         Jmcatcpt.add(JmProductoscpt);
 
         JmProveedor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -622,7 +639,6 @@ public class Principal extends javax.swing.JFrame {
 
         JbAlerta.setForeground(new java.awt.Color(0, 255, 0));
         JbAlerta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/62794bell_109308.png"))); // NOI18N
-        JbAlerta.setText("A");
         JbAlerta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 JbAlertaMousePressed(evt);
@@ -653,12 +669,13 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(5, 5, 5)
+                        .addComponent(JbAlerta))
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(JbUser)
-                            .addComponent(JbRol)
-                            .addComponent(JbAlerta)))
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
+                            .addComponent(JbRol))
+                        .addComponent(jLabel2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -752,19 +769,34 @@ public class Principal extends javax.swing.JFrame {
 
     private void LoadInFisico() {
         if (phy == null) {
-            phy = new PlaneacionPhy(us);
+            phy = new PlaneacionPhy();
             MainContent.add(phy);
             MainContent.getDesktopManager().maximizeFrame(phy);
             phy.setVisible(true);
         } else {
             phy.dispose();
-            phy = new PlaneacionPhy(us);
+            phy = new PlaneacionPhy();
             MainContent.add(phy);
             MainContent.getDesktopManager().maximizeFrame(phy);
             phy.setVisible(true);
         }
     }
-    
+
+    private void LoadConceptos() {
+        if (concepto == null) {
+            concepto = new Conceptos();
+            MainContent.add(concepto);
+            MainContent.getDesktopManager().maximizeFrame(concepto);
+            concepto.setVisible(true);
+        } else {
+            concepto.dispose();
+            concepto = new Conceptos();
+            MainContent.add(concepto);
+            MainContent.getDesktopManager().maximizeFrame(concepto);
+            concepto.setVisible(true);
+        }
+    }
+
     private void LoadInAlmacenRcpt() {
         if (almacenR == null) {
             almacenR = new AlmacenesRcpt();
@@ -779,17 +811,19 @@ public class Principal extends javax.swing.JFrame {
             almacenR.setVisible(true);
         }
     }
-    
-    private void LoadEntradas(){
-        if(entrada == null){
+
+    private void LoadEntradas() {
+        if (entrada == null) {
             entrada = new Entradas();
             MainContent.add(entrada);
+            entrada.JbSerie.setText(Estado);
             MainContent.getDesktopManager().maximizeFrame(entrada);
             entrada.setVisible(true);
-        }else {
+        } else {
             entrada.dispose();
             entrada = new Entradas();
             MainContent.add(entrada);
+            entrada.JbSerie.setText(Estado);
             MainContent.getDesktopManager().maximizeFrame(entrada);
             entrada.setVisible(true);
         }
@@ -904,12 +938,14 @@ public class Principal extends javax.swing.JFrame {
         if (cliente == null) {
             cliente = new Clientes();
             MainContent.add(cliente);
+            cliente.Serie = Estado;
             MainContent.getDesktopManager().maximizeFrame(cliente);
             cliente.setVisible(true);
         } else {
             cliente.dispose();
             cliente = new Clientes();
             MainContent.add(cliente);
+            cliente.Serie = Estado;
             MainContent.getDesktopManager().maximizeFrame(cliente);
             cliente.setVisible(true);
         }
@@ -1039,7 +1075,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void LoadPedido() {
         if (pedidos == null) {
-            pedidos = new Pedidos();
+            pedidos = new Pedidos(Estado);
             MainContent.add(pedidos);
             pedidos.Id_Usuario = Integer.parseInt(id_usuario);
             pedidos.JbSerie.setText(Estado);
@@ -1047,7 +1083,7 @@ public class Principal extends javax.swing.JFrame {
             pedidos.setVisible(true);
         } else {
             pedidos.dispose();
-            pedidos = new Pedidos();
+            pedidos = new Pedidos(Estado);
             pedidos.Id_Usuario = Integer.parseInt(id_usuario);
             pedidos.JbSerie.setText(Estado);
             MainContent.add(pedidos);
@@ -1273,12 +1309,12 @@ public class Principal extends javax.swing.JFrame {
     private void JbAlertaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JbAlertaMousePressed
 
         if (evt.getClickCount() > 1) {
-            JbAlerta.setText("B");
+            //JbAlerta.setText("B");
             JbAlerta.setForeground(Color.red);
             Estado = "B";
             JbAlerta.setIcon(notificacion);
         } else {
-            JbAlerta.setText("A");
+            //JbAlerta.setText("A");
             JbAlerta.setForeground(Color.green);
             JbAlerta.setIcon(campana);
             Estado = "A";
@@ -1290,8 +1326,24 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_JmEntradascptActionPerformed
 
     private void JmAlmacenescptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmAlmacenescptActionPerformed
-       LoadInAlmacenRcpt();
+        LoadInAlmacenRcpt();
     }//GEN-LAST:event_JmAlmacenescptActionPerformed
+
+    private void JmConceptoscptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmConceptoscptActionPerformed
+        LoadConceptos();
+    }//GEN-LAST:event_JmConceptoscptActionPerformed
+
+    private void JmClientescptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmClientescptActionPerformed
+        ClientesPhy nuevo = new ClientesPhy(null, true);
+        nuevo.setVisible(true);
+        nuevo.setAlwaysOnTop(true);
+    }//GEN-LAST:event_JmClientescptActionPerformed
+
+    private void JmProductoscptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmProductoscptActionPerformed
+        ProductosPhy nuevo = new ProductosPhy(null, true);
+        nuevo.setVisible(true);
+        nuevo.setAlwaysOnTop(true);
+    }//GEN-LAST:event_JmProductoscptActionPerformed
     private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {
         LoadMaquina();
     }

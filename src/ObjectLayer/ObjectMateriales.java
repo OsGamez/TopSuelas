@@ -18,6 +18,7 @@ public class ObjectMateriales {
 
     public boolean addMaterial(Material mat) {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("INSERT INTO Materiales(Almacen,CveMat,Descripcion,CodigoSat,UdeC,Fcompra,UdeCs,Fconsumo,UltimoCosto,"
                     + "CostoCosteo,CantidadMinima,CantidadMaxima,TipoCosto,Divisa)"
                     + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -36,6 +37,7 @@ public class ObjectMateriales {
             st.setString(13, mat.getTipoCosto());
             st.setString(14, mat.getDivisa());
             st.executeUpdate();
+            c.commit();
             st.close();
             return true;
         } catch (SQLException ex) {
@@ -152,6 +154,7 @@ public class ObjectMateriales {
 
     public boolean materialUpdate(Material mat) {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("UPDATE Materiales SET Descripcion=?, CodigoSat=?, UdeC=?,Fcompra=?,UdeCs=?,Fconsumo=?,UltimoCosto=?,"
                     + "CostoCosteo=?,CantidadMinima=?,CantidadMaxima=?,TipoCosto=?,Divisa=? WHERE Almacen=? AND CveMat=?");
 
@@ -170,6 +173,7 @@ public class ObjectMateriales {
             st.setInt(13, mat.getAlmacen());
             st.setString(14, mat.getCveMat());
             st.executeUpdate();
+            c.commit();
             st.close();
             return true;
 
@@ -181,10 +185,13 @@ public class ObjectMateriales {
 
     public boolean materialDelete(int Almacen, String Cv) {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("DELETE Materiales WHERE Almacen=? AND CveMat=?");
             st.setInt(1, Almacen);
             st.setString(2, Cv);
             st.executeUpdate();
+            c.commit();
+            st.close();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();

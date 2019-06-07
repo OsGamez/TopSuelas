@@ -252,8 +252,7 @@ SELECT
 	,i.TotalPares
 	FROM RCPTPhylon.dbo.Productos p
 	inner join InCopy i
-	on p.Producto = i.Producto
-where i.Almacen = 2]]>
+	on p.Producto = i.Producto]]>
 	</queryString>
 	<field name="Almacen" class="java.lang.Short"/>
 	<field name="Suela" class="java.lang.String"/>
@@ -315,7 +314,7 @@ where i.Almacen = 2]]>
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Transparent" x="320" y="42" width="122" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="8ad628fd-82d1-41b4-bae5-e3ccbfcd0697"/>
+				<reportElement mode="Transparent" x="319" y="42" width="122" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="8ad628fd-82d1-41b4-bae5-e3ccbfcd0697"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>

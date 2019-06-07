@@ -1,5 +1,6 @@
 package ObjectLayer;
 
+import DataAccesLayer.Conexion;
 import DataAccesLayer.Server;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -18,7 +19,7 @@ public class ObjectUsuarios {
     public boolean registrarUsuario(Usuario usuario) {
         try {
             st = us.prepareStatement("INSERT INTO Usuarios (Nombre,Usuario,Password,Departamento,Activo)"
-                    + "VALUES(?,?,?,?,?,?)");
+                    + "VALUES(?,?,?,?,?)");
 
             st.setString(1, usuario.getNombre());
             st.setString(2, usuario.getUsuario());
@@ -99,7 +100,7 @@ public class ObjectUsuarios {
         ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
 
         try {
-            st = us.prepareStatement("SELECT Id_Usuario,Nombre,Usuario,Password,Departamento,Imagen\n"
+            st = us.prepareStatement("SELECT Id_Usuario,Nombre,Usuario,Password,Departamento\n"
                     + "FROM Usuarios WHERE Activo=1 ORDER BY Nombre");
 
             rs = st.executeQuery();
@@ -109,7 +110,6 @@ public class ObjectUsuarios {
                 String usuario = rs.getString("Usuario");
                 String pass = rs.getString("Password");
                 String Dep = rs.getString("Departamento");
-                InputStream Img = rs.getBinaryStream("Imagen");
 
                 Usuario us = new Usuario();
                 us.setId_Usuario(id);

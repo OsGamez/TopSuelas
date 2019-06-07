@@ -7,10 +7,10 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select RazonSocial from Clientes
+		<![CDATA[select Nombre from Clientes
 where Id_Cliente = $P{Id_Cliente}]]>
 	</queryString>
-	<field name="RazonSocial" class="java.lang.String"/>
+	<field name="Nombre" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -49,25 +49,26 @@ where Id_Cliente = $P{Id_Cliente}]]>
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="65" splitType="Stretch">
+		<band height="74" splitType="Stretch">
+			<line>
+				<reportElement x="14" y="19" width="118" height="1" uuid="ad0e3c4c-6c13-4258-95e2-f01ae294f42d"/>
+			</line>
 			<textField>
-				<reportElement x="13" y="6" width="119" height="20" uuid="934c6e3b-e092-4c54-9b2e-db5b8a48b3d7"/>
-				<textElement>
-					<font fontName="SansSerif" size="8"/>
+				<reportElement mode="Transparent" x="14" y="6" width="230" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="6d3c8a86-dd9d-4e51-a9de-aa8accb4314a"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{RazonSocial}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="27" y="14" width="235" height="49" uuid="28da0efb-c823-44af-a461-2c8d58c9e631"/>
+				<reportElement x="33" y="21" width="218" height="51" uuid="984a681f-12e8-4ce0-857e-726642cf1422"/>
 				<subreportParameter name="nombre">
-					<subreportParameterExpression><![CDATA[$F{RazonSocial}]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA[$F{Nombre}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\SubPreciosCliente.jasper"]]></subreportExpression>
 			</subreport>
-			<line>
-				<reportElement x="14" y="19" width="118" height="1" uuid="ad0e3c4c-6c13-4258-95e2-f01ae294f42d"/>
-			</line>
 		</band>
 	</detail>
 	<columnFooter>

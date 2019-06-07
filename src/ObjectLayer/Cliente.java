@@ -11,7 +11,10 @@ import java.util.Vector;
 public class Cliente {
 
     private int Id_Cliente;
+    private String Nombre;
     private String RazonSocial;
+    private String NumCliente;
+    private String Serie;
     private String Codigo;
     private int Id_Ciudad;
     private String RFC;
@@ -46,12 +49,38 @@ public class Cliente {
     
 
     PreparedStatement st = null;
-    Connection c = Conexion.getCobranza();
+    Connection c = Server.getCobranza();
     ResultSet rs = null;
 
     public Cliente(Usuario us) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public String getNumCliente() {
+        return NumCliente;
+    }
+
+    public void setNumCliente(String NumCliente) {
+        this.NumCliente = NumCliente;
+    }
+
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
+    }
+
+    public String getSerie() {
+        return Serie;
+    }
+
+    public void setSerie(String Serie) {
+        this.Serie = Serie;
+    }
+    
+    
 
     public String getAgente() {
         return Agente;
@@ -312,27 +341,52 @@ public class Cliente {
         this.Telefono3 = Telefono3;
     }
     
-    
-
     @Override
     public String toString() {
-        return this.RazonSocial;
+        return this.Nombre;
     }
-
+    
+            
+    
     public Vector<Cliente> getClientes() {
 
         Vector<Cliente> datos = new Vector<Cliente>();
         Cliente cl = null;
 
         try {
-            st = c.prepareStatement("SELECT * FROM Clientes WHERE Activo = 1 ORDER BY RazonSocial");
+            st = c.prepareStatement("SELECT * FROM Clientes WHERE Activo = 1 ORDER BY Nombre");
+            rs = st.executeQuery();
+
+            cl = new Cliente();
+            cl.setId_Cliente(0);
+            cl.setNombre("Seleciona un cliente");
+            datos.add(cl);
+            while (rs.next()) {
+                cl = new Cliente();
+                cl.setId_Cliente(rs.getInt("Id_Cliente"));
+                cl.setNombre(rs.getString("Nombre"));
+                datos.add(cl);
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return datos;
+    }
+    
+    public Vector<Cliente> getClientesR() {
+
+        Vector<Cliente> datos = new Vector<Cliente>();
+        Cliente cl = null;
+
+        try {
+            st = c.prepareStatement("SELECT * FROM Clientes WHERE Activo = 1 AND RazonSocial<>'' ORDER BY RazonSocial");
             rs = st.executeQuery();
 
             cl = new Cliente();
             cl.setId_Cliente(0);
             cl.setRazonSocial("Seleciona un cliente");
             datos.add(cl);
-
             while (rs.next()) {
                 cl = new Cliente();
                 cl.setId_Cliente(rs.getInt("Id_Cliente"));

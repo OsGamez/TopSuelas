@@ -17,6 +17,7 @@ private static Connection Rc = null;
 private static Connection pa = null;
 private static Connection cm = null;
 private static Connection sv = null;
+private static Connection Phylon = null;
  
 public static Connection getCobranza(){
     try{
@@ -89,6 +90,19 @@ public static Connection getRcpt(){
         ex.printStackTrace();
     }
     return pa;
+}
+
+public static Connection getPhylon(){
+        try{
+        if(Phylon == null){
+            String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+            Class.forName(driver);
+            Phylon = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;databaseName=RCPTPhylonA", "sa", "Admin1305");
+        }
+    }catch(ClassNotFoundException | SQLException ex){
+        ex.printStackTrace();
+    }
+    return Phylon;
 }
 public static Connection getCmpPhylon(){
         try{

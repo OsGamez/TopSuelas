@@ -23,7 +23,7 @@ public class Precio {
 
     PreparedStatement st = null;
     //Connection c = Conexion.getRcpt();
-    Connection c = Conexion.getRcpt();
+    Connection c = Server.getRcpt();
     
     ResultSet rs = null;
 

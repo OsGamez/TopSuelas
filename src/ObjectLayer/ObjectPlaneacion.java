@@ -13,8 +13,11 @@ public class ObjectPlaneacion {
     PreparedStatement st = null, dp = null;
     ObjectDetalle obj = new ObjectDetalle();
 
-    Connection pa = Conexion.getRcpt();
-    Connection c = Conexion.getRpt();
+    //Connection pa = Conexion.getRcpt();
+    //Connection c = Conexion.getRpt();
+    
+    Connection pa = Server.getRcpt();
+    Connection c = Server.getRpt();
     ResultSet rs = null;
 
     public ArrayList<Planeacion> obtenerPlaneacion(int año, int semana) {
@@ -343,9 +346,8 @@ public class ObjectPlaneacion {
             String query2 = "UPDATE Pedidos SET Estatus ="+Estatus+" WHERE Npedido ="+ Npedido;
             
             String query3 = "UPDATE Dpedido SET Estatus ="+Estatus+" WHERE Npedido ="+ Npedido;
-            
-            dp = pa.prepareStatement(query1);
             pa.setAutoCommit(false);
+            dp = pa.prepareStatement(query1);
             dp.setInt(1, p.getPrograma());
             dp.setString(2, p.getMes());
             dp.setDate(3, p.getFecha());
@@ -393,13 +395,16 @@ public class ObjectPlaneacion {
                     dp = pa.prepareStatement(query3);
                     rpta = dp.executeUpdate() == 1 ? true : false;
                     pa.commit();
+                    dp.close();
                 } else {
-                    Conexion.rollbackA(pa);
+                    pa.rollback();
+                    dp.close();
                 }
             } else {
-                Conexion.rollbackA(pa);
+                pa.rollback();
+                dp.close();
             }
-            Conexion.cerrarPhylonA(dp);
+           dp.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
             Conexion.cerrarPhylonA(dp);
@@ -423,6 +428,7 @@ public class ObjectPlaneacion {
     public boolean CambiarEstatusA(String Estatus, String Npedido) {
         boolean rpta = false;
         try {
+            pa.setAutoCommit(false);
             dp = pa.prepareStatement("UPDATE Pedidos SET Estatus = ? WHERE Npedido = ?");
             pa.setAutoCommit(false);
             dp.setString(1, Estatus);
@@ -436,16 +442,21 @@ public class ObjectPlaneacion {
                 rpta = obj.cambiarEstatusA(Npedido, Estatus);
                 if (rpta) {
                     pa.commit();
+                    dp.close();
                 } else {
-                    Conexion.rollbackA(pa);
+                    pa.rollback();
+                    dp.close();
                 }
             } else {
-                Conexion.rollbackA(pa);
+                pa.rollback();
+                dp.close();
             }
-            Conexion.cerrarPhylonA(dp);
+            dp.close();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
+            Conexion.rollback(pa);
+            Conexion.cerrarPrep(dp);
             //return false;
         }
         return rpta;
@@ -454,6 +465,7 @@ public class ObjectPlaneacion {
     public boolean CambiarEstatus(String Estatus, String Npedido) {
         boolean rpta = false;
         try {
+            c.setAutoCommit(false);
             String query = "UPDATE Pedidos SET Estatus ="+Estatus+" WHERE Npedido ="+ Npedido;
             String query2 = "UPDATE Dpedido SET Estatus ="+Estatus+" WHERE Npedido ="+ Npedido;
             st = c.prepareStatement("UPDATE Pedidos SET Estatus = ? WHERE Npedido = ?");
@@ -471,17 +483,20 @@ public class ObjectPlaneacion {
                 st = c.prepareStatement(query2);
                 rpta = st.executeUpdate() == 1 ? true : false;
                 c.commit();
+                st.close();
                 /*if (rpta) {
                     c.commit();
                 } else {
                     Conexion.rollback(c);
                 }*/
             } else {
-                Conexion.rollback(c);
+                c.rollback();
+                st.close();
             }
-            Conexion.cerrarPrep(st);
+           st.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
+            Conexion.rollback(c);
             Conexion.cerrarPrep(st);
         }
         return rpta;

@@ -1,6 +1,13 @@
 
 package ObjectLayer;
 
+import DataAccesLayer.Server;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+
 
 public class Proveedor {
     
@@ -16,6 +23,11 @@ public class Proveedor {
     private String Contacto;
     private String Estatus;
 
+    PreparedStatement st = null;
+    ResultSet rs = null;
+    Connection c = Server.getPhylon();
+    
+    
     public int getProveedor() {
         return Proveedor;
     }
@@ -104,7 +116,36 @@ public class Proveedor {
         this.Estatus = Estatus;
     }
     
+    @Override
+    public String toString(){
+        return this.Nombre;
+    }
     
-    
-    
+    public Vector<Proveedor>getProveedores() {
+        Vector<Proveedor> datos = new Vector<Proveedor>();
+        Proveedor p = null;
+
+        try {
+            st = c.prepareStatement("SELECT * FROM Proveedores WHERE Estatus = 'A' ORDER BY Nombre");
+            rs = st.executeQuery();
+
+            p = new Proveedor();
+            p.setProveedor(0);
+            p.setNombre("Seleciona un proveedor");
+            datos.add(p);
+
+            while (rs.next()) {
+                p = new Proveedor();
+                p.setProveedor(rs.getInt("Proveedor"));
+                p.setNombre(rs.getString("Nombre"));
+                datos.add(p);
+            }
+            rs.close();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            //rs.close();
+        }
+        return datos;
+    }
 }

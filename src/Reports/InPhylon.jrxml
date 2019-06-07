@@ -264,7 +264,8 @@ SELECT
 	FROM RCPTPhylon.dbo.Productos p
 	inner join InCopy i
 	on p.Producto = i.Producto
-	group by i.Producto,p.Descripcion,i.Corrida,i.Almacen,i.Corrida]]>
+	group by i.Producto,p.Descripcion,i.Corrida,i.Almacen,i.Corrida
+	order by i.Almacen]]>
 	</queryString>
 	<field name="Almacen" class="java.lang.Short"/>
 	<field name="Suela" class="java.lang.String"/>
@@ -331,7 +332,7 @@ SELECT
 				<imageExpression><![CDATA["C:\\Program Files\\logo.png"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement mode="Transparent" x="320" y="33" width="183" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="7619d1fc-5ae4-4cf5-b140-ab6eb95f1529"/>
+				<reportElement mode="Transparent" x="319" y="33" width="183" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="7619d1fc-5ae4-4cf5-b140-ab6eb95f1529"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -926,14 +927,14 @@ SELECT
 				</textElement>
 				<text><![CDATA[TOTAL DE PARES:]]></text>
 			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="76" y="30" width="101" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="dd1a6136-1e47-436c-a043-0e65374c676b"/>
+			<textField>
+				<reportElement mode="Transparent" x="76" y="30" width="89" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="bd4aa584-4c8f-4da4-98a6-8d108b5b2bcd"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[100152]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA[$V{suma}]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>

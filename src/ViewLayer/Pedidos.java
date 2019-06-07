@@ -17,6 +17,7 @@ import ObjectLayer.Parametro;
 import ObjectLayer.Pedido;
 import ObjectLayer.Precio;
 import ObjectLayer.Producto;
+import ObjectLayer.RazonSocial;
 import com.sun.glass.events.KeyEvent;
 import java.awt.event.ItemEvent;
 import java.sql.Connection;
@@ -53,7 +54,11 @@ public class Pedidos extends javax.swing.JInternalFrame {
     int cont = 1;
     int cc = 0;
     public int Id_Usuario;
-    public String Estado;
+    public String Serie = "";
+    int client, clientR;
+    ArrayList<Cliente> listC = new ArrayList<>();
+    ArrayList<Cliente> listCR = new ArrayList<>();
+    ArrayList<Producto> listP = new ArrayList<>();
     DefaultTableModel modelPedido = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int row, int column) {
@@ -67,9 +72,11 @@ public class Pedidos extends javax.swing.JInternalFrame {
     DecimalFormat precioB = new DecimalFormat("#.00");
     SimpleDateFormat sm = new SimpleDateFormat("dd/MM/yyyy");
     String codigo;
+    DefaultComboBoxModel modelCliente = new DefaultComboBoxModel();
 
-    public Pedidos() {
+    public Pedidos(String Estado) {
         initComponents();
+        Serie = Estado;
         JbNuevo.setToolTipText("Realizar Pedido");
         JbEliminar.setToolTipText("Cancelar Pedido");
         JbBuscar.setToolTipText("Buscar Pedido");
@@ -153,8 +160,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JtprecioA = new javax.swing.JTextField();
         JbQuitar = new javax.swing.JButton();
         JbCalle = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        JtBuscar = new javax.swing.JTextField();
         JbActualizar = new javax.swing.JButton();
         JtCliente = new javax.swing.JTextField();
         JtRenglon = new javax.swing.JTextField();
@@ -206,6 +211,12 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("No. Pedido:");
+
+        JtNpedido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JtNpedidoKeyPressed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Cliente:");
@@ -474,15 +485,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
         JbCalle.setForeground(new java.awt.Color(0, 51, 102));
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel11.setText("Buscar:");
-
-        JtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                JtBuscarKeyPressed(evt);
-            }
-        });
-
         JbActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1491313940-repeat_82991.png"))); // NOI18N
         JbActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -749,83 +751,42 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JcCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(JtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(343, 343, 343)
+                                .addComponent(JbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(77, 77, 77)
+                                .addComponent(JbBuscar)
+                                .addGap(27, 27, 27)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JbNuevo)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(266, 266, 266)
-                                        .addComponent(JbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(23, 23, 23))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(JbBuscar)
-                                        .addGap(27, 27, 27)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(JbNuevo)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(91, 91, 91)
-                                                .addComponent(JbEliminar)))
-                                        .addGap(106, 106, 106)))
-                                .addComponent(JbImprimir)
-                                .addGap(28, 28, 28)
-                                .addComponent(JbSalir))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(JtNpedido, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel3)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(JtNpc, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel4)
-                                        .addGap(0, 0, 0)
-                                        .addComponent(JtOcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(221, 221, 221)
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(JcSuela, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(21, 21, 21)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(JtCorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(JtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(JtprecioA, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(JtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(JtRenglon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(JbSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addComponent(jLabel11)
+                                        .addGap(91, 91, 91)
+                                        .addComponent(JbEliminar)))
+                                .addGap(106, 106, 106)))
+                        .addComponent(JbImprimir)
+                        .addGap(28, 28, 28)
+                        .addComponent(JbSalir))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(JbCD, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(JbAgente, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(JbPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(JbPais, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(JbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(JbColonia, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(JbCP, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(104, 104, 104))
-                                .addComponent(JbCalle, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(JbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(157, 157, 157)))
-                        .addGap(14, 14, 14)
+                                    .addGap(221, 221, 221))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(JbCD, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(JbAgente, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(JbPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(JbPais, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(JbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(JbColonia, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(117, 117, 117)))
+                            .addComponent(JbCalle, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(69, 69, 69)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(JbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -841,30 +802,62 @@ public class Pedidos extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(JbCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(JcCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JtNpedido, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(JtNpc, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel4)
+                                .addGap(0, 0, 0)
+                                .addComponent(JtOcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(221, 221, 221)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(JcSuela, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(JtCorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(JtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JtprecioA, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(JtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(JtRenglon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(JbSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(JtabDatos)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(JtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(19, 19, 19))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(JbNuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JbEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JbBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JbSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JbImprimir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JbActualizar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(JbNuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JbEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JbBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JbSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JbImprimir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JbActualizar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(JtNpedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -887,6 +880,16 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JbAgregar)
+                            .addComponent(JbQuitar)
+                            .addComponent(jLabel8)
+                            .addComponent(JtCorrida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(49, 49, 49)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addComponent(JbCalle, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(JbCP, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -901,16 +904,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JbPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JbAgente, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JbAgregar)
-                            .addComponent(JbQuitar)
-                            .addComponent(jLabel8)
-                            .addComponent(JtCorrida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(49, 49, 49)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(JbAgente, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JcPrecio)
@@ -928,7 +922,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
 
     private void JbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEliminarActionPerformed
-        if (JtBuscar.getText().equals("")) {
+        if (JtNpedido.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "No has seleccionado un pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
         } else {
             String Np = JtNpedido.getText();
@@ -944,15 +938,19 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         LimpiarPedido();
                         LimpiarCliente();
                         CleanTable();
-                        JtBuscar.setText("");
-                        JtBuscar.requestFocus();
+                        JtNpedido.setText("");
+                        JtNpc.requestFocus();
+                        CargarPedido();
+                        JtNpedido.setEditable(false);
                     } else {
                         JOptionPane.showMessageDialog(null, "No se puede cancelar este pedido", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         LimpiarPedido();
                         LimpiarCliente();
                         CleanTable();
-                        JtBuscar.setText("");
-                        JtBuscar.requestFocus();
+                        JtNpedido.setText("");
+                        JtNpc.requestFocus();
+                        CargarPedido();
+                        JtNpedido.setEditable(false);
                     }
                 } else {
                     if (pedido.cancelarPedidoA(Np, pam)) {
@@ -960,15 +958,19 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         LimpiarPedido();
                         LimpiarCliente();
                         CleanTable();
-                        JtBuscar.setText("");
-                        JtBuscar.requestFocus();
+                        JtNpc.setText("");
+                        JtNpc.requestFocus();
+                        CargarPedido();
+                        JtNpedido.setEditable(false);
                     } else {
                         JOptionPane.showMessageDialog(null, "No se puede cancelar este pedido", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         LimpiarPedido();
                         LimpiarCliente();
                         CleanTable();
-                        JtBuscar.setText("");
-                        JtBuscar.requestFocus();
+                        JtNpc.setText("");
+                        JtNpc.requestFocus();
+                        CargarPedido();
+                        JtNpedido.setEditable(false);
                     }
                 }
             }
@@ -993,22 +995,32 @@ public class Pedidos extends javax.swing.JInternalFrame {
     private void JcClienteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JcClienteItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             OcultarCampos();
-            Cliente cl = (Cliente) JcCliente.getSelectedItem();
             Producto prod = new Producto();
-            DefaultComboBoxModel modelProd = new DefaultComboBoxModel(prod.getProd(cl.getId_Cliente()));
+            client = listC.get(JcCliente.getSelectedIndex()).getId_Cliente();
+            DefaultComboBoxModel modelProd = new DefaultComboBoxModel(prod.getProd(client));
             JcSuela.setModel(modelProd);
-            if (JcCliente.getSelectedIndex() == 0) {
-                LimpiarCliente();
-                JcSuela.setModel(modelProd);
-                JtColor.setText("");
-                JtCorrida.setText("");
-            } else {
-                ArrayList<Cliente> lista = obj.clienteGetByID(cl.getId_Cliente());
-                if (lista.size() > 0) {
-                    for (Cliente cn : lista) {
-                        JbCliente.setText(cn.getRazonSocial());
-                        JbCalle.setText(cn.getCalle());
-                        JbColonia.setText(cn.getColonia());
+
+            ArrayList<Cliente> lista = obj.clienteGetByID(client);
+            //ArrayList<Cliente> listaR = obj.clienteGetByIDR(client);
+
+            if (Serie.equals("A")) {
+                for (Cliente cn : lista) {
+                    JbCliente.setText(cn.getRazonSocial());
+                    JbCalle.setText(cn.getCalle());
+                    JbColonia.setText(cn.getColonia());
+                    JbCD.setText(cn.getCiudad());
+                    JbEstado.setText(cn.getEstado());
+                    JbCP.setText(cn.getCP());
+                    JbPais.setText(cn.getPais());
+                    JbPlazo.setText("Plazo" + " " + String.valueOf(cn.getDiasCredito()) + " " + "Días");
+                    JbAgente.setText("Agente" + " " + String.valueOf(cn.getId_Agente()));
+                    JtCobranza.setText(cn.getObservaciones());
+                }
+            } else if (Serie.equals("B")) {
+                for (Cliente cn : lista) {
+                    JbCliente.setText(cn.getNombre());
+                    JbCalle.setText(cn.getCalle());
+                          JbColonia.setText(cn.getColonia());
                         JbCD.setText(cn.getCiudad());
                         JbEstado.setText(cn.getEstado());
                         JbCP.setText(cn.getCP());
@@ -1016,15 +1028,15 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         JbPlazo.setText("Plazo" + " " + String.valueOf(cn.getDiasCredito()) + " " + "Días");
                         JbAgente.setText("Agente" + " " + String.valueOf(cn.getId_Agente()));
                         JtCobranza.setText(cn.getObservaciones());
-                    }
                 }
             }
+
         }
     }//GEN-LAST:event_JcClienteItemStateChanged
     private void JcSuelaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JcSuelaItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             Producto prod = (Producto) JcSuela.getSelectedItem();
-            Cliente cli = (Cliente) JcCliente.getSelectedItem();
+            //Cliente cli = (Cliente) JcCliente.getSelectedItem();
             JtCorrida.setText(String.valueOf(cr.getCorridas(prod.getId_Producto())));
             JtColor.setText(String.valueOf(cl.getColor(prod.getId_Producto())));
             if (JcSuela.getSelectedIndex() == 0) {
@@ -1753,7 +1765,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
     private void AgregarDetalle() {
         ArrayList<Dpedido> detalles = new ArrayList<Dpedido>();
-        ArrayList<Pedido> list = pedido.pedidoGetByID(JtBuscar.getText());
+        ArrayList<Pedido> list = pedido.pedidoGetByID(JtNpedido.getText());
         int index = modelPedido.getRowCount() - 1;
         if (JtCant.getText().isEmpty() || JcSuela.getSelectedIndex() == 0) {
             JtCant.requestFocus();
@@ -2172,7 +2184,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
         }
     }
     private void JbQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbQuitarActionPerformed
-        ArrayList<Pedido> list = pedido.pedidoGetByID(JtBuscar.getText());
+        ArrayList<Pedido> list = pedido.pedidoGetByID(JtNpedido.getText());
         int row = JtPedido.getSelectedRow();
         String Npedido = JtNpedido.getText();
         try {
@@ -2240,9 +2252,9 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
     private void cargarPrecio() {
         Producto prod = (Producto) JcSuela.getSelectedItem();
-        Cliente cli = (Cliente) JcCliente.getSelectedItem();
+        //Cliente cli = (Cliente) JcCliente.getSelectedItem();
 
-        ArrayList<Precio> lista = pc.GetByID(prod.getId_Producto(), cli.getId_Cliente());
+        ArrayList<Precio> lista = pc.GetByID(prod.getId_Producto(), client);
 
         if (JbSerie.getText().equals("A") && JcPrecio.isSelected() == false) {
             for (Precio p : lista) {
@@ -2267,10 +2279,15 @@ public class Pedidos extends javax.swing.JInternalFrame {
         }
     }
 
-    private void JbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbNuevoActionPerformed
+    private void NuevoPedido() {
         ArrayList<Dpedido> detalles = new ArrayList<Dpedido>();
+        ArrayList<Parametro> listP = pedido.getParametro();
+        int row = modelPedido.getRowCount();
         String Condicion = "Nada";
+        String Mes = "0";
         String Npedido = JtNpedido.getText();
+        int restarParametro = 1;
+        int Nped = Integer.parseInt(Npedido);
         String Serie = JbSerie.getText();
         String Npc = JtNpc.getText();
         String Orden = JtOcompra.getText();
@@ -2291,323 +2308,166 @@ public class Pedidos extends javax.swing.JInternalFrame {
         java.sql.Date fechaRec = new java.sql.Date(r);
         double costoPedido = Double.parseDouble(lblTotal.getText());
 
+        Pedido pd = new Pedido();
+        pd.setNpedido(Npedido);
+        pd.setNpedidoCl(Npedido);
+        pd.setId_Cliente(cli.getId_Cliente());
+        pd.setFecha_Pedido(fechaPed);
+        pd.setFecha_Entrega(fechaEn);
+        pd.setCondiciones(Condicion);
+        pd.setObservaciones(Obv);
+        pd.setId_Usuario(Id_Usuario);
+        pd.setSerie(Serie);
+        pd.setTotalPares(TotalPares);
+        pd.setCostoTotal(costoPedido);
+        pd.setStatus(Est);
+        pd.setParesSurt(0);
+        pd.setOrdenCompra(Orden);
+        pd.setFecha_Recibido(fechaRec);
+        pd.setFecha_Captura(fechaCap);
+        Parametro pam = new Parametro();
+        pam.setNpedido(Npedido);
+        pam.setEntrada(0);
+        pam.setFcatura(0);
+        pam.setSalida(0);
+        pam.setMes(Mes);
+
+        for (int i = 0; i < row; i++) {
+            int idprod = Integer.parseInt((String) modelPedido.getValueAt(i, 0));
+            int rn = Integer.parseInt((String) modelPedido.getValueAt(i, 1));
+            String corrida = (String) modelPedido.getValueAt(i, 4);
+            double precio = Double.parseDouble((String) modelPedido.getValueAt(i, 18));
+            double importe = Double.parseDouble((String) modelPedido.getValueAt(i, 19));
+            String Status = (String) modelPedido.getValueAt(i, 20);
+            int Pares = Integer.parseInt((String) modelPedido.getValueAt(i, 17));
+            int cr1 = Integer.parseInt((String) modelPedido.getValueAt(i, 5));
+            int cr2 = Integer.parseInt((String) modelPedido.getValueAt(i, 6));
+            int cr3 = Integer.parseInt((String) modelPedido.getValueAt(i, 7));
+            int cr4 = Integer.parseInt((String) modelPedido.getValueAt(i, 8));
+            int cr5 = Integer.parseInt((String) modelPedido.getValueAt(i, 9));
+            int cr6 = Integer.parseInt((String) modelPedido.getValueAt(i, 10));
+            int cr7 = Integer.parseInt((String) modelPedido.getValueAt(i, 11));
+            int cr8 = Integer.parseInt((String) modelPedido.getValueAt(i, 12));
+            int cr9 = Integer.parseInt((String) modelPedido.getValueAt(i, 13));
+            int cr10 = Integer.parseInt((String) modelPedido.getValueAt(i, 14));
+            int cr11 = Integer.parseInt((String) modelPedido.getValueAt(i, 15));
+            int cr12 = Integer.parseInt((String) modelPedido.getValueAt(i, 16));
+            Dpedido Dt = new Dpedido();
+            Dt.setRenglon(rn);
+            Dt.setNpedido(Npedido);
+            Dt.setId_Cliente(cli.getId_Cliente());
+            Dt.setFecha_Pedido(fechaPed);
+            Dt.setFecha_Entrega(fechaEn);
+            Dt.setId_Producto(idprod);
+            Dt.setCorrida(corrida);
+            Dt.setC1(cr1);
+            Dt.setC2(cr2);
+            Dt.setC3(cr3);
+            Dt.setC4(cr4);
+            Dt.setC5(cr5);
+            Dt.setC6(cr6);
+            Dt.setC7(cr7);
+            Dt.setC8(cr8);
+            Dt.setC9(cr9);
+            Dt.setC10(cr10);
+            Dt.setC11(cr11);
+            Dt.setC12(cr12);
+            Dt.setPares(Pares);
+            Dt.setImporte(importe);
+            Dt.setSerie(Serie);
+            Dt.setCSurt1(0);
+            Dt.setCSurt2(0);
+            Dt.setCSurt3(0);
+            Dt.setCSurt4(0);
+            Dt.setCSurt5(0);
+            Dt.setCSurt6(0);
+            Dt.setCSurt7(0);
+            Dt.setCSurt8(0);
+            Dt.setCSurt9(0);
+            Dt.setCSurt10(0);
+            Dt.setCSurt11(0);
+            Dt.setCSurt12(0);
+            Dt.setParesSurt(0);
+            Dt.setStatus(Status);
+            Dt.setPrecio(precio);
+            detalles.add(Dt);
+
+        }
+        //VALIDAR QUE LA TABLA NO ESTE VACIA
         if (ValidarDatos()) {
-            int var = Integer.parseInt(JtNpedido.getText());
-            if (pedido.validarPedido(var) == 0) {
-                if (ValidarFecha()) {
-                    if (JtNpc.getText().isEmpty()) {
-                        int row = modelPedido.getRowCount();
-                        Pedido pd = new Pedido();
-                        pd.setNpedido(Npedido);
-                        pd.setNpedidoCl(Npedido);
-                        pd.setId_Cliente(cli.getId_Cliente());
-                        pd.setFecha_Pedido(fechaPed);
-                        pd.setFecha_Entrega(fechaEn);
-                        pd.setCondiciones(Condicion);
-                        pd.setObservaciones(Obv);
-                        pd.setId_Usuario(Id_Usuario);
-                        pd.setSerie(Serie);
-                        pd.setTotalPares(TotalPares);
-                        pd.setCostoTotal(costoPedido);
-                        pd.setStatus(Est);
-                        pd.setParesSurt(0);
-                        pd.setOrdenCompra(Orden);
-                        pd.setFecha_Recibido(fechaRec);
-                        pd.setFecha_Captura(fechaCap);
-                        Parametro pam = new Parametro();
-                        pam.setNpedido(Npedido);
-                        pam.setEntrada(0);
-                        pam.setFcatura(0);
-                        pam.setSalida(0);
-                        for (int i = 0; i < row; i++) {
-                            int idprod = Integer.parseInt((String) modelPedido.getValueAt(i, 0));
-                            int rn = Integer.parseInt((String) modelPedido.getValueAt(i, 1));
-                            String corrida = (String) modelPedido.getValueAt(i, 4);
-                            double precio = Double.parseDouble((String) modelPedido.getValueAt(i, 18));
-                            double importe = Double.parseDouble((String) modelPedido.getValueAt(i, 19));
-                            String Status = (String) modelPedido.getValueAt(i, 20);
-                            int Pares = Integer.parseInt((String) modelPedido.getValueAt(i, 17));
-                            int cr1 = Integer.parseInt((String) modelPedido.getValueAt(i, 5));
-                            int cr2 = Integer.parseInt((String) modelPedido.getValueAt(i, 6));
-                            int cr3 = Integer.parseInt((String) modelPedido.getValueAt(i, 7));
-                            int cr4 = Integer.parseInt((String) modelPedido.getValueAt(i, 8));
-                            int cr5 = Integer.parseInt((String) modelPedido.getValueAt(i, 9));
-                            int cr6 = Integer.parseInt((String) modelPedido.getValueAt(i, 10));
-                            int cr7 = Integer.parseInt((String) modelPedido.getValueAt(i, 11));
-                            int cr8 = Integer.parseInt((String) modelPedido.getValueAt(i, 12));
-                            int cr9 = Integer.parseInt((String) modelPedido.getValueAt(i, 13));
-                            int cr10 = Integer.parseInt((String) modelPedido.getValueAt(i, 14));
-                            int cr11 = Integer.parseInt((String) modelPedido.getValueAt(i, 15));
-                            int cr12 = Integer.parseInt((String) modelPedido.getValueAt(i, 16));
-                            Dpedido Dt = new Dpedido();
-                            Dt.setRenglon(rn);
-                            Dt.setNpedido(Npedido);
-                            Dt.setId_Cliente(cli.getId_Cliente());
-                            Dt.setFecha_Pedido(fechaPed);
-                            Dt.setFecha_Entrega(fechaEn);
-                            Dt.setId_Producto(idprod);
-                            Dt.setCorrida(corrida);
-                            Dt.setC1(cr1);
-                            Dt.setC2(cr2);
-                            Dt.setC3(cr3);
-                            Dt.setC4(cr4);
-                            Dt.setC5(cr5);
-                            Dt.setC6(cr6);
-                            Dt.setC7(cr7);
-                            Dt.setC8(cr8);
-                            Dt.setC9(cr9);
-                            Dt.setC10(cr10);
-                            Dt.setC11(cr11);
-                            Dt.setC12(cr12);
-                            Dt.setPares(Pares);
-                            Dt.setImporte(importe);
-                            Dt.setSerie(Serie);
-                            Dt.setCSurt1(0);
-                            Dt.setCSurt2(0);
-                            Dt.setCSurt3(0);
-                            Dt.setCSurt4(0);
-                            Dt.setCSurt5(0);
-                            Dt.setCSurt6(0);
-                            Dt.setCSurt7(0);
-                            Dt.setCSurt8(0);
-                            Dt.setCSurt9(0);
-                            Dt.setCSurt10(0);
-                            Dt.setCSurt11(0);
-                            Dt.setCSurt12(0);
-                            Dt.setParesSurt(0);
-                            Dt.setStatus(Status);
-                            Dt.setPrecio(precio);
-                            detalles.add(Dt);
-                        }
-                        //SI ES PRECIO A
-                        if (JbSerie.getText().equals("A")) {
-                            if (pedido.insertarVenta(pd, detalles, pam)) {
-                                if (pedido.insertarVentaA(pd, detalles, pam)) {
-                                    JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                                }
-                            } else {
-                                JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-                            }
-                            CleanTable();
-                            LimpiarPedido();
-                            CargarPedido();
-                        }// SI ES PRECIO B
-                        else {
-                            if (pedido.insertarVentaA(pd, detalles, pam) && pedido.insertarParametro(pam)) {
-                                JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                            } else {
-                                JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-                            }
-                            CleanTable();
-                            LimpiarPedido();
-                            CargarPedido();
-                        }
-                    } else {
-                        int row = modelPedido.getRowCount();
-                        Pedido pd = new Pedido();
-                        pd.setNpedido(Npedido);
-                        pd.setNpedidoCl(Npedido);
-                        pd.setId_Cliente(cli.getId_Cliente());
-                        pd.setFecha_Pedido(fechaPed);
-                        pd.setFecha_Entrega(fechaEn);
-                        pd.setCondiciones(Condicion);
-                        pd.setObservaciones(Obv);
-                        pd.setId_Usuario(Id_Usuario);
-                        pd.setSerie(Serie);
-                        pd.setTotalPares(TotalPares);
-                        pd.setCostoTotal(costoPedido);
-                        pd.setStatus(Est);
-                        pd.setParesSurt(0);
-                        pd.setOrdenCompra(Orden);
-                        pd.setFecha_Recibido(fechaRec);
-                        pd.setFecha_Captura(fechaCap);
-                        Parametro pam = new Parametro();
-                        pam.setNpedido(Npedido);
-                        pam.setEntrada(0);
-                        pam.setFcatura(0);
-                        pam.setSalida(0);
-                        for (int i = 0; i < row; i++) {
-                            int idprod = Integer.parseInt((String) modelPedido.getValueAt(i, 0));
-                            int rn = Integer.parseInt((String) modelPedido.getValueAt(i, 1));
-                            String corrida = (String) modelPedido.getValueAt(i, 4);
-                            double precio = Double.parseDouble((String) modelPedido.getValueAt(i, 18));
-                            double importe = Double.parseDouble((String) modelPedido.getValueAt(i, 19));
-                            String Status = (String) modelPedido.getValueAt(i, 20);
-                            int Pares = Integer.parseInt((String) modelPedido.getValueAt(i, 17));
-                            int cr1 = Integer.parseInt((String) modelPedido.getValueAt(i, 5));
-                            int cr2 = Integer.parseInt((String) modelPedido.getValueAt(i, 6));
-                            int cr3 = Integer.parseInt((String) modelPedido.getValueAt(i, 7));
-                            int cr4 = Integer.parseInt((String) modelPedido.getValueAt(i, 8));
-                            int cr5 = Integer.parseInt((String) modelPedido.getValueAt(i, 9));
-                            int cr6 = Integer.parseInt((String) modelPedido.getValueAt(i, 10));
-                            int cr7 = Integer.parseInt((String) modelPedido.getValueAt(i, 11));
-                            int cr8 = Integer.parseInt((String) modelPedido.getValueAt(i, 12));
-                            int cr9 = Integer.parseInt((String) modelPedido.getValueAt(i, 13));
-                            int cr10 = Integer.parseInt((String) modelPedido.getValueAt(i, 14));
-                            int cr11 = Integer.parseInt((String) modelPedido.getValueAt(i, 15));
-                            int cr12 = Integer.parseInt((String) modelPedido.getValueAt(i, 16));
-                            Dpedido Dt = new Dpedido();
-                            Dt.setRenglon(rn);
-                            Dt.setNpedido(Npedido);
-                            Dt.setId_Cliente(cli.getId_Cliente());
-                            Dt.setFecha_Pedido(fechaPed);
-                            Dt.setFecha_Entrega(fechaEn);
-                            Dt.setId_Producto(idprod);
-                            Dt.setCorrida(corrida);
-                            Dt.setC1(cr1);
-                            Dt.setC2(cr2);
-                            Dt.setC3(cr3);
-                            Dt.setC4(cr4);
-                            Dt.setC5(cr5);
-                            Dt.setC6(cr6);
-                            Dt.setC7(cr7);
-                            Dt.setC8(cr8);
-                            Dt.setC9(cr9);
-                            Dt.setC10(cr10);
-                            Dt.setC11(cr11);
-                            Dt.setC12(cr12);
-                            Dt.setPares(Pares);
-                            Dt.setImporte(importe);
-                            Dt.setSerie(Serie);
-                            Dt.setCSurt1(0);
-                            Dt.setCSurt2(0);
-                            Dt.setCSurt3(0);
-                            Dt.setCSurt4(0);
-                            Dt.setCSurt5(0);
-                            Dt.setCSurt6(0);
-                            Dt.setCSurt7(0);
-                            Dt.setCSurt8(0);
-                            Dt.setCSurt9(0);
-                            Dt.setCSurt10(0);
-                            Dt.setCSurt11(0);
-                            Dt.setCSurt12(0);
-                            Dt.setParesSurt(0);
-                            Dt.setStatus(Status);
-                            Dt.setPrecio(precio);
-                            detalles.add(Dt);
-                        }
-                        if (JbSerie.getText().equals("A")) {
-                            if (pedido.insertarVenta(pd, detalles, pam) && pedido.insertarVentaA(pd, detalles, pam)) {
-                                JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                            } else {
-                                JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-                            }
-                            CleanTable();
-                            LimpiarPedido();
-                            CargarPedido();
-                        } else {
-                            if (pedido.insertarVentaA(pd, detalles, pam) && pedido.insertarParametro(pam)) {
-                                JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                            } else {
-                                JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-                            }
-                            CleanTable();
-                            LimpiarPedido();
-                            CargarPedido();
-                        }
-                    }
-                }
+            //VALIDAR QUE EL # DE PEDIDO DEL CLIENTE NO ESTE VACIO        
+            if (JtNpc.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "El numero de pedido del cliente es obligatorio!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Este pedido ya existe!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-                CargarPedido();
-                String Nped = JtNpedido.getText();
-                int row = modelPedido.getRowCount();
-                int opcion = JOptionPane.showConfirmDialog(this, "¿Este pedido ya esta registrado desea continuar con el siguiente?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                if (opcion == JOptionPane.YES_OPTION) {
-                    Pedido pd = new Pedido();
-                    pd.setNpedido(Npedido);
-                    pd.setNpedidoCl(Npedido);
-                    pd.setId_Cliente(cli.getId_Cliente());
-                    pd.setFecha_Pedido(fechaPed);
-                    pd.setFecha_Entrega(fechaEn);
-                    pd.setCondiciones(Condicion);
-                    pd.setObservaciones(Obv);
-                    pd.setId_Usuario(Id_Usuario);
-                    pd.setSerie(Serie);
-                    pd.setTotalPares(TotalPares);
-                    pd.setCostoTotal(costoPedido);
-                    pd.setStatus(Est);
-                    pd.setParesSurt(0);
-                    pd.setOrdenCompra(Orden);
-                    pd.setFecha_Recibido(fechaRec);
-                    pd.setFecha_Captura(fechaCap);
-                    Parametro pam = new Parametro();
-                    pam.setNpedido(Npedido);
-                    pam.setEntrada(0);
-                    pam.setFcatura(0);
-                    pam.setSalida(0);
-                    for (int i = 0; i < row; i++) {
-                        int idprod = Integer.parseInt((String) modelPedido.getValueAt(i, 0));
-                        int rn = Integer.parseInt((String) modelPedido.getValueAt(i, 1));
-                        String corrida = (String) modelPedido.getValueAt(i, 4);
-                        double precio = Double.parseDouble((String) modelPedido.getValueAt(i, 18));
-                        double importe = Double.parseDouble((String) modelPedido.getValueAt(i, 19));
-                        String Status = (String) modelPedido.getValueAt(i, 20);
-                        int Pares = Integer.parseInt((String) modelPedido.getValueAt(i, 17));
-                        int cr1 = Integer.parseInt((String) modelPedido.getValueAt(i, 5));
-                        int cr2 = Integer.parseInt((String) modelPedido.getValueAt(i, 6));
-                        int cr3 = Integer.parseInt((String) modelPedido.getValueAt(i, 7));
-                        int cr4 = Integer.parseInt((String) modelPedido.getValueAt(i, 8));
-                        int cr5 = Integer.parseInt((String) modelPedido.getValueAt(i, 9));
-                        int cr6 = Integer.parseInt((String) modelPedido.getValueAt(i, 10));
-                        int cr7 = Integer.parseInt((String) modelPedido.getValueAt(i, 11));
-                        int cr8 = Integer.parseInt((String) modelPedido.getValueAt(i, 12));
-                        int cr9 = Integer.parseInt((String) modelPedido.getValueAt(i, 13));
-                        int cr10 = Integer.parseInt((String) modelPedido.getValueAt(i, 14));
-                        int cr11 = Integer.parseInt((String) modelPedido.getValueAt(i, 15));
-                        int cr12 = Integer.parseInt((String) modelPedido.getValueAt(i, 16));
-                        Dpedido Dt = new Dpedido();
-                        Dt.setRenglon(rn);
-                        Dt.setNpedido(Npedido);
-                        Dt.setId_Cliente(cli.getId_Cliente());
-                        Dt.setFecha_Pedido(fechaPed);
-                        Dt.setFecha_Entrega(fechaEn);
-                        Dt.setId_Producto(idprod);
-                        Dt.setCorrida(corrida);
-                        Dt.setC1(cr1);
-                        Dt.setC2(cr2);
-                        Dt.setC3(cr3);
-                        Dt.setC4(cr4);
-                        Dt.setC5(cr5);
-                        Dt.setC6(cr6);
-                        Dt.setC7(cr7);
-                        Dt.setC8(cr8);
-                        Dt.setC9(cr9);
-                        Dt.setC10(cr10);
-                        Dt.setC11(cr11);
-                        Dt.setC12(cr12);
-                        Dt.setPares(Pares);
-                        Dt.setImporte(importe);
-                        Dt.setSerie(Serie);
-                        Dt.setCSurt1(0);
-                        Dt.setCSurt2(0);
-                        Dt.setCSurt3(0);
-                        Dt.setCSurt4(0);
-                        Dt.setCSurt5(0);
-                        Dt.setCSurt6(0);
-                        Dt.setCSurt7(0);
-                        Dt.setCSurt8(0);
-                        Dt.setCSurt9(0);
-                        Dt.setCSurt10(0);
-                        Dt.setCSurt11(0);
-                        Dt.setCSurt12(0);
-                        Dt.setParesSurt(0);
-                        Dt.setStatus(Status);
-                        Dt.setPrecio(precio);
-                        detalles.add(Dt);
-                    }
+
+                //VALIDAR SI NO HAY UN REGISTRO EN PARAMETRO            
+                if (listP.size() <= 0) {
+                    //SI ES PRECIO A
                     if (JbSerie.getText().equals("A")) {
-                        if (pedido.insertarVenta(pd, detalles, pam) && pedido.insertarVentaA(pd, detalles, pam)) {
-                            JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                        if (pedido.insertarVentaA(pd, detalles, pam)) {
+                            if (pedido.insertarVenta(pd, detalles, pam)) {
+                                JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+                                JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                                pedido.anularPedidoA(Npedido);
+                                pedido.actualizarParametroA("");
+                            }
                         } else {
                             JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
                         }
                         CleanTable();
                         LimpiarPedido();
                         CargarPedido();
+                        //SI ES PRECIO B    
                     } else {
-                        if (pedido.insertarVentaA(pd, detalles, pam) && pedido.insertarParametro(pam)) {
-                            JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                        if (pedido.insertarVentaA(pd, detalles, pam)) {
+                            if (pedido.insertarParametro(pam)) {
+                                JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+                                JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                                pedido.actualizarParametroA("");
+                                pedido.anularPedidoA(Npedido);
+                            }
+
+                        } else {
+                            JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                        }
+                        CleanTable();
+                        LimpiarPedido();
+                        CargarPedido();
+                    }
+                    //SI  HAY DATOS EN PARAMETROS    
+                } else {
+                    //SI ES PRECIO A
+                    if (JbSerie.getText().equals("A")) {
+                        if (pedido.insertarVentaAPam(pd, detalles, Npedido)) {
+                            if (pedido.insertarVentaPam(pd, detalles, Npedido)) {
+                                JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+                                JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                                pedido.anularPedidoA(Npedido);
+                                int regresarParametro = Nped - restarParametro;
+                                pedido.actualizarParametroA(String.valueOf(regresarParametro));
+
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                        }
+                        CleanTable();
+                        LimpiarPedido();
+                        CargarPedido();
+                        //SI ES PRECIO B    
+                    } else {
+                        if (pedido.insertarVentaAPam(pd, detalles, Npedido)) {
+                            if (pedido.actualizarParametro(Npedido)) {
+                                JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+                                JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                                pedido.anularPedidoA(Npedido);
+                                int regresarParametro = Nped - restarParametro;
+                                pedido.actualizarParametro(String.valueOf(regresarParametro));
+                                pedido.actualizarParametroA(String.valueOf(regresarParametro));
+                            }
                         } else {
                             JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
                         }
@@ -2618,7 +2478,26 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 }
             }
         }
+    }
+
+
+    private void JbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbNuevoActionPerformed
+        int var = Integer.parseInt(JtNpedido.getText());
+        //VALIDAR LA FECHA DE ENTREGA 
+        if (ValidarFecha()) {
+            //VALIDAR QUE NO EXISTA EL PEDIDO
+            if (pedido.validarPedido(var) == 0) {
+                NuevoPedido();
+            } else {
+                CargarPedido();
+                int opcion = JOptionPane.showConfirmDialog(this, "¿Continuar con el pedido?", JtPedido.getToolTipText(), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (opcion == JOptionPane.YES_OPTION) {
+                    NuevoPedido();
+                }
+            }
+        }
     }//GEN-LAST:event_JbNuevoActionPerformed
+
     private boolean ValidarFecha() {
         if (JdEntrega.getDate().equals(JdCaptura.getDate())) {
             int opcion = JOptionPane.showConfirmDialog(this, "¿La fecha de entrega es igual a la de captura deseas continuar?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -2638,7 +2517,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
         nuevo.setAlwaysOnTop(true);
     }//GEN-LAST:event_JbImprimirActionPerformed
     private void CargarDetalle() {
-        ArrayList<Pedido> list = pedido.pedidoGetByID(JtBuscar.getText());
+        ArrayList<Pedido> list = pedido.pedidoGetByID(JtNpedido.getText());
         if (list.size() > 0) {
             for (Pedido ls : list) {
                 DecimalFormat impo = new DecimalFormat("#.00");
@@ -2669,183 +2548,11 @@ public class Pedidos extends javax.swing.JInternalFrame {
         }
     }
     private void JbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbBuscarActionPerformed
-        ArrayList<Pedido> lista = pedido.pedidoGetByID(JtBuscar.getText());
-        if (JtBuscar.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No introduciste un numero de pedido", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-            JtBuscar.requestFocus();
-        } else if (lista.size() > 0) {
-            CleanTable();
-            JcCliente.setEnabled(false);
-            JbNuevo.setEnabled(false);
-            JtNpc.setEditable(false);
-            JtOcompra.setEditable(false);
-            JdCaptura.setEnabled(false);
-            JdEntrega.setEnabled(false);
-            JdPedido.setEnabled(false);
-            JdRecibido.setEnabled(false);
-
-            JbActualizar.setEnabled(true);
-            JbEliminar.setEnabled(true);
-            String datos[] = new String[15];
-            for (Pedido p : lista) {
-                Cliente cli = new Cliente();
-                JtCliente.setText(String.valueOf(p.getId_Cliente()));
-                JbCliente.setText(p.getRsocial());
-                cli.setId_Cliente(Integer.parseInt(JtCliente.getText()));
-                cli.setRazonSocial(JbCliente.getText());
-                JcCliente.getModel().setSelectedItem(cli);
-                JbCalle.setText(p.getCalle());
-                JbColonia.setText(p.getColonia());
-                JbCD.setText(p.getCiudad());
-                JbEstado.setText(p.getEstado());
-                JbCP.setText(p.getCp());
-                JbPais.setText(p.getPais());
-                JtNpc.setText(p.getNpedidoCl());
-                JtNpedido.setText(p.getNpedido());
-                JbPlazo.setText("Plazo" + " " + String.valueOf(p.getCred()) + " " + "Días");
-                JbAgente.setText("Agente" + " " + String.valueOf(p.getAgente()));
-                JtCobranza.setText(p.getObservaciones());
-                JdPedido.setDate(p.getFecha_Pedido());
-                JdCaptura.setDate(p.getFecha_Captura());
-                JdEntrega.setDate(p.getFecha_Entrega());
-                JdRecibido.setDate(p.getFecha_Recibido());
-                JtOcompra.setText(p.getOrdenCompra());
-                JbSerie.setText(p.getSerie());
-
-                DecimalFormat impt = new DecimalFormat("#.00");
-                datos[0] = String.valueOf(p.getId_Producto());
-                datos[1] = String.valueOf(p.getRenglon());
-                datos[2] = p.getSuela();
-                datos[3] = p.getColor();
-                datos[4] = p.getCorrida();
-                datos[5] = String.valueOf(p.getC1());
-                datos[6] = String.valueOf(p.getC2());
-                datos[7] = String.valueOf(p.getC3());
-                datos[8] = String.valueOf(p.getC4());
-                datos[9] = String.valueOf(p.getC5());
-                datos[10] = String.valueOf(p.getC6());
-                datos[11] = String.valueOf(p.getC7());
-                datos[12] = String.valueOf(p.getC8());
-                datos[13] = String.valueOf(p.getC9());
-                datos[14] = String.valueOf(p.getC10());
-                datos[15] = String.valueOf(p.getC11());
-                datos[16] = String.valueOf(p.getC12());
-                datos[17] = String.valueOf(p.getPares());
-                datos[18] = precioA.format(p.getPrecio());
-                datos[19] = impt.format(p.getImporte());
-                datos[20] = p.getStatus();
-            }
-            /*int index = modelPedido.getRowCount()-1;
-            String var = modelPedido.getValueAt(index, 1).toString();
-            cc = Integer.parseInt(var) + 1;*/
-        } else {
-            JOptionPane.showMessageDialog(this, "No existe este pedido", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-            JtBuscar.setText("");
-            JtBuscar.requestFocus();
-        }
+        JtNpedido.setEditable(true);
+        JtNpedido.setText("");
+        JtNpedido.requestFocus();
     }//GEN-LAST:event_JbBuscarActionPerformed
 
-    private void JtBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyPressed
-        int codigo = evt.getKeyCode();
-        if (codigo == KeyEvent.VK_BACKSPACE) {
-            LimpiarPedido();
-            CleanTable();
-            CargarPedido();
-            JcCliente.setEnabled(true);
-            JbNuevo.setEnabled(true);
-            JtNpc.setEditable(true);
-            JtOcompra.setEditable(true);
-            JdCaptura.setEnabled(true);
-            JdEntrega.setEnabled(true);
-            JdPedido.setEnabled(true);
-            JdRecibido.setEnabled(true);
-            JtCliente.setText("");
-            JbActualizar.setEnabled(false);
-            JbEliminar.setEnabled(false);
-            JtprecioA.setText("");
-        } else if (codigo == KeyEvent.VK_ENTER) {
-            ArrayList<Pedido> lista = pedido.pedidoGetByID(JtBuscar.getText());
-            if (JtBuscar.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "No introduciste un numero de pedido", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-                JtBuscar.requestFocus();
-            } else if (lista.size() > 0) {
-                CleanTable();
-                JcCliente.setEnabled(false);
-                JbNuevo.setEnabled(false);
-                JtNpc.setEditable(false);
-                JtOcompra.setEditable(false);
-                JdCaptura.setEnabled(false);
-                JdEntrega.setEnabled(false);
-                JdPedido.setEnabled(false);
-                JdRecibido.setEnabled(false);
-
-                JbActualizar.setEnabled(true);
-                JbEliminar.setEnabled(true);
-                String datos[] = new String[21];
-                for (Pedido p : lista) {
-                    Cliente cli = new Cliente();
-                    JtCliente.setText(String.valueOf(p.getId_Cliente()));
-                    JbCliente.setText(p.getRsocial());
-                    cli.setId_Cliente(Integer.parseInt(JtCliente.getText()));
-                    cli.setRazonSocial(JbCliente.getText());
-                    JcCliente.getModel().setSelectedItem(cli);
-                    JbCalle.setText(p.getCalle());
-                    JbColonia.setText(p.getColonia());
-                    JbCD.setText(p.getCiudad());
-                    JbEstado.setText(p.getEstado());
-                    JbCP.setText(p.getCp());
-                    JbPais.setText(p.getPais());
-                    JtNpc.setText(p.getNpedidoCl());
-                    JtNpedido.setText(p.getNpedido());
-                    JbPlazo.setText("Plazo" + " " + String.valueOf(p.getCred()) + " " + "Días");
-                    JbAgente.setText("Agente" + " " + String.valueOf(p.getAgente()));
-                    JtCobranza.setText(p.getObservaciones());
-                    JdPedido.setDate(p.getFecha_Pedido());
-                    JdCaptura.setDate(p.getFecha_Captura());
-                    JdEntrega.setDate(p.getFecha_Entrega());
-                    JdRecibido.setDate(p.getFecha_Recibido());
-                    JtOcompra.setText(p.getOrdenCompra());
-                    JbSerie.setText(p.getSerie());
-                    /*if(JbSerie.getText().equals("A")){
-            JbAlerta.setBackground(java.awt.Color.gray);
-    }else{
-        JbAlerta.setBackground(java.awt.Color.yellow);
-    }*/
-
-                    DecimalFormat impt = new DecimalFormat("#.00");
-                    datos[0] = String.valueOf(p.getId_Producto());
-                    datos[1] = String.valueOf(p.getRenglon());
-                    datos[2] = p.getSuela();
-                    datos[3] = p.getColor();
-                    datos[4] = p.getCorrida();
-                    datos[5] = String.valueOf(p.getC1());
-                    datos[6] = String.valueOf(p.getC2());
-                    datos[7] = String.valueOf(p.getC3());
-                    datos[8] = String.valueOf(p.getC4());
-                    datos[9] = String.valueOf(p.getC5());
-                    datos[10] = String.valueOf(p.getC6());
-                    datos[11] = String.valueOf(p.getC7());
-                    datos[12] = String.valueOf(p.getC8());
-                    datos[13] = String.valueOf(p.getC9());
-                    datos[14] = String.valueOf(p.getC10());
-                    datos[15] = String.valueOf(p.getC11());
-                    datos[16] = String.valueOf(p.getC12());
-                    datos[17] = String.valueOf(p.getPares());
-                    datos[18] = precioA.format(p.getPrecio());
-                    datos[19] = impt.format(p.getImporte());
-                    datos[20] = p.getStatus();
-                    modelPedido.addRow(datos);
-                }
-                /*int index = modelPedido.getRowCount()-1;
-            String var = modelPedido.getValueAt(index, 1).toString();
-            cc = Integer.parseInt(var) + 1;*/
-            } else {
-                JOptionPane.showMessageDialog(this, "No existe este pedido", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-                JtBuscar.setText("");
-                JtBuscar.requestFocus();
-            }
-        }
-    }//GEN-LAST:event_JtBuscarKeyPressed
     private void CleanTable() {
         int row = modelPedido.getRowCount();
         if (row > 0) {
@@ -3064,6 +2771,113 @@ public class Pedidos extends javax.swing.JInternalFrame {
             AgregarDetalle();
         }
     }//GEN-LAST:event_JtC12KeyPressed
+
+    private void JtNpedidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtNpedidoKeyPressed
+        int codigo = evt.getKeyCode();
+        if (codigo == KeyEvent.VK_BACKSPACE) {
+            LimpiarPedido();
+            JtNpedido.setEditable(false);
+            JtNpc.requestFocus();
+            CleanTable();
+            CargarPedido();
+            JcCliente.setEnabled(true);
+            JbNuevo.setEnabled(true);
+            JtNpc.setEditable(true);
+            JtOcompra.setEditable(true);
+            JdCaptura.setEnabled(true);
+            JdEntrega.setEnabled(true);
+            JdPedido.setEnabled(true);
+            JdRecibido.setEnabled(true);
+            JtCliente.setText("");
+            JbActualizar.setEnabled(false);
+            JbEliminar.setEnabled(false);
+            JtprecioA.setText("");
+        } else if (codigo == KeyEvent.VK_ENTER) {
+            ArrayList<Pedido> lista = pedido.pedidoGetByID(JtNpedido.getText());
+            if (JtNpedido.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No introduciste un numero de pedido", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                JtNpedido.requestFocus();
+            } else if (lista.size() > 0) {
+                CleanTable();
+                JcCliente.setEnabled(false);
+                JbNuevo.setEnabled(false);
+                JtNpc.setEditable(false);
+                JtOcompra.setEditable(false);
+                JdCaptura.setEnabled(false);
+                JdEntrega.setEnabled(false);
+                JdPedido.setEnabled(false);
+                JdRecibido.setEnabled(false);
+                JcPrecio.setEnabled(false);
+                JbActualizar.setEnabled(true);
+                JbEliminar.setEnabled(true);
+                String datos[] = new String[21];
+                for (Pedido p : lista) {
+                    Cliente cli = new Cliente();
+                    //client = listC.get(p.getId_Cliente()).getId_Cliente();
+                    JtCliente.setText(String.valueOf(p.getId_Cliente()));
+                    JbCliente.setText(p.getRsocial());
+                    //JcCliente.getModel().setSelectedItem(cli);
+                    cli.setId_Cliente(Integer.parseInt(JtCliente.getText()));
+                    cli.setNombre(JbCliente.getText());
+                    //JcCliente.setSelectedIndex(Integer.parseInt(JtCliente.getText()));
+                    JbCalle.setText(p.getCalle());
+                    JbColonia.setText(p.getColonia());
+                    JbCD.setText(p.getCiudad());
+                    JbEstado.setText(p.getEstado());
+                    JbCP.setText(p.getCp());
+                    JbPais.setText(p.getPais());
+                    JtNpc.setText(p.getNpedidoCl());
+                    JtNpedido.setText(p.getNpedido());
+                    JbPlazo.setText("Plazo" + " " + String.valueOf(p.getCred()) + " " + "Días");
+                    JbAgente.setText("Agente" + " " + String.valueOf(p.getAgente()));
+                    JtCobranza.setText(p.getObservaciones());
+                    JdPedido.setDate(p.getFecha_Pedido());
+                    JdCaptura.setDate(p.getFecha_Captura());
+                    JdEntrega.setDate(p.getFecha_Entrega());
+                    JdRecibido.setDate(p.getFecha_Recibido());
+                    JtOcompra.setText(p.getOrdenCompra());
+                    JbSerie.setText(p.getSerie());
+                    /*if(JbSerie.getText().equals("A")){
+            JbAlerta.setBackground(java.awt.Color.gray);
+    }else{
+        JbAlerta.setBackground(java.awt.Color.yellow);
+    }*/
+
+                    DecimalFormat impt = new DecimalFormat("#.00");
+                    datos[0] = String.valueOf(p.getId_Producto());
+                    datos[1] = String.valueOf(p.getRenglon());
+                    datos[2] = p.getSuela();
+                    datos[3] = p.getColor();
+                    datos[4] = p.getCorrida();
+                    datos[5] = String.valueOf(p.getC1());
+                    datos[6] = String.valueOf(p.getC2());
+                    datos[7] = String.valueOf(p.getC3());
+                    datos[8] = String.valueOf(p.getC4());
+                    datos[9] = String.valueOf(p.getC5());
+                    datos[10] = String.valueOf(p.getC6());
+                    datos[11] = String.valueOf(p.getC7());
+                    datos[12] = String.valueOf(p.getC8());
+                    datos[13] = String.valueOf(p.getC9());
+                    datos[14] = String.valueOf(p.getC10());
+                    datos[15] = String.valueOf(p.getC11());
+                    datos[16] = String.valueOf(p.getC12());
+                    datos[17] = String.valueOf(p.getPares());
+                    datos[18] = precioA.format(p.getPrecio());
+                    datos[19] = impt.format(p.getImporte());
+                    datos[20] = p.getStatus();
+                    modelPedido.addRow(datos);
+                }
+                /*int index = modelPedido.getRowCount()-1;
+            String var = modelPedido.getValueAt(index, 1).toString();
+            cc = Integer.parseInt(var) + 1;*/
+            } else {
+                JOptionPane.showMessageDialog(this, "No existe este pedido", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                JtNpedido.setText("");
+                JtNpedido.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_JtNpedidoKeyPressed
+
     private boolean ValidarDatos() {
         if (this.JtPedido.getRowCount() == 0 && this.JtPedido.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(null, "No hay productos para el pedido", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
@@ -3350,9 +3164,21 @@ public class Pedidos extends javax.swing.JInternalFrame {
     }
 
     private void LoadModelCliente() {
-        Cliente cl = new Cliente();
-        DefaultComboBoxModel modelCliente = new DefaultComboBoxModel(cl.getClientes());
+        //DefaultComboBoxModel modelCliente = new DefaultComboBoxModel();
+        listC = obj.clientesGetAll();
+        //listCR = obj.getClientesR();
         JcCliente.setModel(modelCliente);
+
+        if (Serie.equals("A")) {
+            for (int i = 0; i < listC.size(); i++) {
+                JcCliente.addItem(listC.get(i).getRazonSocial());
+            }
+        } else if (Serie.equals("B")) {
+            for (int i = 0; i < listC.size(); i++) {
+                JcCliente.addItem(listC.get(i).getNombre());
+            }
+        }
+        JcCliente.setSelectedIndex(0);
     }
 
     private void Limpiar() {
@@ -3427,7 +3253,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JdPedido.setEnabled(true);
         JdRecibido.setEnabled(true);
         JtCliente.setText("");
-        JtBuscar.setText("");
         JtprecioA.setText("");
     }
 
@@ -3497,7 +3322,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
     private javax.swing.JPanel JpDpedido;
     private javax.swing.JPanel JpFacturas;
     private javax.swing.JPanel JpObservaciones;
-    private javax.swing.JTextField JtBuscar;
     private javax.swing.JTextField JtC1;
     private javax.swing.JTextField JtC10;
     private javax.swing.JTextField JtC11;
@@ -3538,7 +3362,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel L9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
