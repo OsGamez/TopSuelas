@@ -10,11 +10,11 @@ import java.util.ArrayList;
 
 public class ObjectParametros {
 
-    Connection c = Server.getRpt();
-    Connection pa = Server.getRcpt();
+    //Connection c = Server.getRpt();
+    //Connection pa = Server.getRcpt();
 
-    //Connection c = Conexion.getRpt();
-    //Connection pa = Conexion.getRcpt();
+    Connection c = Conexion.getRpt();
+    Connection pa = Conexion.getRcpt();
     PreparedStatement st, dp = null;
     ResultSet rs = null;
 
@@ -53,8 +53,8 @@ public class ObjectParametros {
     public boolean actualizarPam(String Np) {
         boolean rpta = false;
         try {
-            c.setAutoCommit(false);
             st = c.prepareStatement("UPDATE Parametros SET Npedido = ?");
+
             st.setString(1, Np);
 
             rpta = st.executeUpdate() == 1 ? true : false;

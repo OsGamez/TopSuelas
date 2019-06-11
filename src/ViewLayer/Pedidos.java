@@ -55,7 +55,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
     int cc = 0;
     public int Id_Usuario;
     public String Serie = "";
-    int client, clientR;
+    int client, clientR, Id_Cliente;
     ArrayList<Cliente> listC = new ArrayList<>();
     ArrayList<Cliente> listCR = new ArrayList<>();
     ArrayList<Producto> listP = new ArrayList<>();
@@ -630,31 +630,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(JtCant, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(L1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JtC1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(L2)
-                        .addGap(18, 18, 18)
-                        .addComponent(JtC2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(L3)
-                        .addGap(18, 18, 18)
-                        .addComponent(JtC3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(L4)
-                        .addGap(18, 18, 18)
-                        .addComponent(JtC4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(L5)
-                        .addGap(18, 18, 18)
-                        .addComponent(JtC5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(L6)
-                        .addGap(18, 18, 18)
-                        .addComponent(JtC6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(L7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -674,8 +650,34 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(L11)
                         .addGap(18, 18, 18)
-                        .addComponent(JtC11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JtC11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(L1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JtC1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(L2)
                         .addGap(18, 18, 18)
+                        .addComponent(JtC2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(L3)
+                        .addGap(18, 18, 18)
+                        .addComponent(JtC3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(L4)
+                        .addGap(24, 24, 24)
+                        .addComponent(JtC4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(L5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JtC5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(L6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JtC6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(L12)
                         .addGap(18, 18, 18)
                         .addComponent(JtC12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -687,22 +689,20 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(L4)
-                        .addComponent(JtC4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(JtC1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(L1))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(L6)
-                        .addComponent(JtC6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JtC6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(L5)
-                        .addComponent(JtC5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(JtC5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(L6)
+                        .addComponent(JtC4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(JtC2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(L3)
                         .addComponent(JtC3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(L2))
+                        .addComponent(L2)
+                        .addComponent(L4))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(JtCant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel13)))
@@ -813,6 +813,17 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         .addGap(89, 89, 89)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(221, 221, 221)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(JcSuela, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(JtCorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(JtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(JtNpedido, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel3)
@@ -820,22 +831,9 @@ public class Pedidos extends javax.swing.JInternalFrame {
                                 .addComponent(JtNpc, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel4)
-                                .addGap(0, 0, 0)
-                                .addComponent(JtOcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(221, 221, 221)
-                                .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(JcSuela, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(JtCorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(JtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JtOcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(21, 21, 21)
                                 .addComponent(JtprecioA, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(JtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -877,7 +875,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     .addComponent(JcCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(JbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -912,7 +909,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     .addComponent(lblTotal)
                     .addComponent(jLabel10)
                     .addComponent(lblPares))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(JtabDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1020,14 +1017,14 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 for (Cliente cn : lista) {
                     JbCliente.setText(cn.getNombre());
                     JbCalle.setText(cn.getCalle());
-                          JbColonia.setText(cn.getColonia());
-                        JbCD.setText(cn.getCiudad());
-                        JbEstado.setText(cn.getEstado());
-                        JbCP.setText(cn.getCP());
-                        JbPais.setText(cn.getPais());
-                        JbPlazo.setText("Plazo" + " " + String.valueOf(cn.getDiasCredito()) + " " + "Días");
-                        JbAgente.setText("Agente" + " " + String.valueOf(cn.getId_Agente()));
-                        JtCobranza.setText(cn.getObservaciones());
+                    JbColonia.setText(cn.getColonia());
+                    JbCD.setText(cn.getCiudad());
+                    JbEstado.setText(cn.getEstado());
+                    JbCP.setText(cn.getCP());
+                    JbPais.setText(cn.getPais());
+                    JbPlazo.setText("Plazo" + " " + String.valueOf(cn.getDiasCredito()) + " " + "Días");
+                    JbAgente.setText("Agente" + " " + String.valueOf(cn.getId_Agente()));
+                    JtCobranza.setText(cn.getObservaciones());
                 }
             }
 
@@ -1781,7 +1778,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
             this.Id_Producto = prod.getId_Producto();
             String Npedido = JtNpedido.getText();
 
-            Cliente cli = (Cliente) JcCliente.getSelectedItem();
+            //Cliente cli = (Cliente) JcCliente.getSelectedItem();
             Date Captura = JdCaptura.getDate();
             long c = Captura.getTime();
             java.sql.Date fechaCap = new java.sql.Date(c);
@@ -1916,7 +1913,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 Dpedido Dt = new Dpedido();
                 Dt.setRenglon(cc);
                 Dt.setNpedido(Npedido);
-                Dt.setId_Cliente(cli.getId_Cliente());
+                Dt.setId_Cliente(Integer.parseInt(JtCliente.getText()));
                 Dt.setFecha_Pedido(fechaPed);
                 Dt.setFecha_Entrega(fechaEn);
                 Dt.setId_Producto(Id_Producto);
@@ -2293,7 +2290,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
         String Orden = JtOcompra.getText();
         String Obv = JtCobranza.getText();
         int TotalPares = Integer.parseInt(lblPares.getText());
-        Cliente cli = (Cliente) JcCliente.getSelectedItem();
+        //Cliente cli = (Cliente) JcCliente.getSelectedItem();
         Date Captura = JdCaptura.getDate();
         long c = Captura.getTime();
         java.sql.Date fechaCap = new java.sql.Date(c);
@@ -2311,7 +2308,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
         Pedido pd = new Pedido();
         pd.setNpedido(Npedido);
         pd.setNpedidoCl(Npedido);
-        pd.setId_Cliente(cli.getId_Cliente());
+        pd.setId_Cliente(client);
         pd.setFecha_Pedido(fechaPed);
         pd.setFecha_Entrega(fechaEn);
         pd.setCondiciones(Condicion);
@@ -2355,7 +2352,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
             Dpedido Dt = new Dpedido();
             Dt.setRenglon(rn);
             Dt.setNpedido(Npedido);
-            Dt.setId_Cliente(cli.getId_Cliente());
+            Dt.setId_Cliente(client);
             Dt.setFecha_Pedido(fechaPed);
             Dt.setFecha_Entrega(fechaEn);
             Dt.setId_Producto(idprod);
@@ -2405,13 +2402,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     //SI ES PRECIO A
                     if (JbSerie.getText().equals("A")) {
                         if (pedido.insertarVentaA(pd, detalles, pam)) {
-                            if (pedido.insertarVenta(pd, detalles, pam)) {
-                                JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                            } else {
-                                JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-                                pedido.anularPedidoA(Npedido);
-                                pedido.actualizarParametroA("");
-                            }
+                            JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         } else {
                             JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
                         }
@@ -2420,14 +2411,8 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         CargarPedido();
                         //SI ES PRECIO B    
                     } else {
-                        if (pedido.insertarVentaA(pd, detalles, pam)) {
-                            if (pedido.insertarParametro(pam)) {
-                                JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                            } else {
-                                JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-                                pedido.actualizarParametroA("");
-                                pedido.anularPedidoA(Npedido);
-                            }
+                        if (pedido.insertarVentaRPT(pd, detalles, pam)) {
+                            JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
 
                         } else {
                             JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
@@ -2441,15 +2426,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     //SI ES PRECIO A
                     if (JbSerie.getText().equals("A")) {
                         if (pedido.insertarVentaAPam(pd, detalles, Npedido)) {
-                            if (pedido.insertarVentaPam(pd, detalles, Npedido)) {
-                                JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                            } else {
-                                JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-                                pedido.anularPedidoA(Npedido);
-                                int regresarParametro = Nped - restarParametro;
-                                pedido.actualizarParametroA(String.valueOf(regresarParametro));
-
-                            }
+                            JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         } else {
                             JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
                         }
@@ -2458,16 +2435,8 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         CargarPedido();
                         //SI ES PRECIO B    
                     } else {
-                        if (pedido.insertarVentaAPam(pd, detalles, Npedido)) {
-                            if (pedido.actualizarParametro(Npedido)) {
-                                JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                            } else {
-                                JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-                                pedido.anularPedidoA(Npedido);
-                                int regresarParametro = Nped - restarParametro;
-                                pedido.actualizarParametro(String.valueOf(regresarParametro));
-                                pedido.actualizarParametroA(String.valueOf(regresarParametro));
-                            }
+                        if (pedido.insertarVentaPhylon(pd, detalles, Npedido)) {
+                            JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         } else {
                             JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
                         }
@@ -2479,7 +2448,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
             }
         }
     }
-
 
     private void JbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbNuevoActionPerformed
         int var = Integer.parseInt(JtNpedido.getText());
@@ -2516,6 +2484,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
         nuevo.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         nuevo.setAlwaysOnTop(true);
     }//GEN-LAST:event_JbImprimirActionPerformed
+
     private void CargarDetalle() {
         ArrayList<Pedido> list = pedido.pedidoGetByID(JtNpedido.getText());
         if (list.size() > 0) {
@@ -2663,8 +2632,8 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
     private void JcPrecioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JcPrecioItemStateChanged
         Producto prod = (Producto) JcSuela.getSelectedItem();
-        Cliente cli = (Cliente) JcCliente.getSelectedItem();
-        ArrayList<Precio> lista = pc.GetByID(prod.getId_Producto(), cli.getId_Cliente());
+        //Cliente cli = (Cliente) JcCliente.getSelectedItem();
+        ArrayList<Precio> lista = pc.GetByID(prod.getId_Producto(), client);
 
         if (evt.getStateChange() == ItemEvent.SELECTED) {
 
@@ -2813,6 +2782,10 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 String datos[] = new String[21];
                 for (Pedido p : lista) {
                     Cliente cli = new Cliente();
+                    Producto prod = new Producto();
+                    //client = listC.get(JcCliente.getSelectedIndex()).getId_Cliente();
+                    DefaultComboBoxModel modelProd = new DefaultComboBoxModel(prod.getProd(p.getId_Cliente()));
+                    JcSuela.setModel(modelProd);
                     //client = listC.get(p.getId_Cliente()).getId_Cliente();
                     JtCliente.setText(String.valueOf(p.getId_Cliente()));
                     JbCliente.setText(p.getRsocial());
@@ -2837,11 +2810,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     JdRecibido.setDate(p.getFecha_Recibido());
                     JtOcompra.setText(p.getOrdenCompra());
                     JbSerie.setText(p.getSerie());
-                    /*if(JbSerie.getText().equals("A")){
-            JbAlerta.setBackground(java.awt.Color.gray);
-    }else{
-        JbAlerta.setBackground(java.awt.Color.yellow);
-    }*/
 
                     DecimalFormat impt = new DecimalFormat("#.00");
                     datos[0] = String.valueOf(p.getId_Producto());
@@ -2867,9 +2835,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     datos[20] = p.getStatus();
                     modelPedido.addRow(datos);
                 }
-                /*int index = modelPedido.getRowCount()-1;
-            String var = modelPedido.getValueAt(index, 1).toString();
-            cc = Integer.parseInt(var) + 1;*/
             } else {
                 JOptionPane.showMessageDialog(this, "No existe este pedido", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
                 JtNpedido.setText("");

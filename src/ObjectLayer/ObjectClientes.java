@@ -15,13 +15,15 @@ import javax.swing.JOptionPane;
 
 public class ObjectClientes {
 
-    Connection c = Server.getCobranza();
-    Connection rc = Server.getRcobranza();
+    //Connection c = Server.getCobranza();
+    //Connection rc = Server.getRcobranza();
+    Connection c = Conexion.getCobranza();
+    Connection rc = Conexion.getRcobranza();
     PreparedStatement st = null;
     Statement sta = null;
     PreparedStatement copy = null;
     ResultSet rs = null;
-
+    
     public boolean clientesAdd(Cliente cliente) {
         try {
             c.setAutoCommit(false);
@@ -311,7 +313,7 @@ public class ObjectClientes {
         return listaC;
     }
     
-     public ArrayList<Cliente> getClientesR() {
+    public ArrayList<Cliente> getClientesR() {
         ArrayList<Cliente> listaC = new ArrayList<Cliente>();
         try {
             String sql = "SELECT  c.Id_Cliente,c.NumCliente,c.Nombre,c.RazonSocial,c.Codigo,c.CP,c.Colonia,c.Calle,"
@@ -468,7 +470,7 @@ public class ObjectClientes {
         return listaClientes;
     }
     
-     public ArrayList<Cliente> clienteGetByIDR(int filtro) {
+    public ArrayList<Cliente> clienteGetByIDR(int filtro) {
         ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
         try {
             st = c.prepareStatement("SELECT  c.Id_Cliente,c.RazonSocial,c.RFC,c.Codigo,c.CP,c.Colonia,c.Calle,\n"
