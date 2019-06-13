@@ -48,6 +48,7 @@ public class Principal extends javax.swing.JFrame {
     Entradas entrada;
     Conceptos concepto;
     ConceptosMPrima conceptom;
+    ProvedoresMPrima conceptomp;
     public String Estado = "A";
 
     Maquinas maq;
@@ -158,6 +159,7 @@ public class Principal extends javax.swing.JFrame {
         JmProduccion = new javax.swing.JMenu();
         Jmcatprod = new javax.swing.JMenu();
         JmAlmacenes = new javax.swing.JMenuItem();
+        JmAlmacenesPrima = new javax.swing.JMenuItem();
         JmColores = new javax.swing.JMenuItem();
         JmCorridas = new javax.swing.JMenuItem();
         JmCostos = new javax.swing.JMenuItem();
@@ -487,6 +489,16 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         Jmcatprod.add(JmAlmacenes);
+
+        JmAlmacenesPrima.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmAlmacenesPrima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/delivery.png"))); // NOI18N
+        JmAlmacenesPrima.setText("Proveedor de materia prima");
+        JmAlmacenesPrima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmAlmacenesPrimaActionPerformed(evt);
+            }
+        });
+        Jmcatprod.add(JmAlmacenesPrima);
 
         JmColores.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmColores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/RGB_Circle_1-80_icon-icons.com_57282.png"))); // NOI18N
@@ -1372,6 +1384,13 @@ public class Principal extends javax.swing.JFrame {
             MainContent.getDesktopManager().maximizeFrame(conceptom);
             conceptom.setVisible(true);
     }//GEN-LAST:event_JmConceptosActionPerformed
+
+    private void JmAlmacenesPrimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmAlmacenesPrimaActionPerformed
+                conceptomp = new ProvedoresMPrima();
+        MainContent.add(conceptomp);
+        MainContent.getDesktopManager().maximizeFrame(conceptomp);
+        conceptomp.setVisible(true);
+    }//GEN-LAST:event_JmAlmacenesPrimaActionPerformed
     private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {
         LoadMaquina();
     }
@@ -1417,6 +1436,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel JbUser;
     private javax.swing.JMenuItem JmAgente;
     private javax.swing.JMenuItem JmAlmacenes;
+    private javax.swing.JMenuItem JmAlmacenesPrima;
     private javax.swing.JMenuItem JmAlmacenescpt;
     private javax.swing.JMenuItem JmAyuda;
     private javax.swing.JMenuItem JmBanco;

@@ -3,9 +3,12 @@ package ViewLayer;
 import ObjectLayer.Almacen;
 import ObjectLayer.Material;
 import ObjectLayer.ObjectMateriales;
+import ObjectLayer.ObjectProveedoresMPrima;
+import ObjectLayer.ProveedorMPrima;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
@@ -14,6 +17,8 @@ public class NMaterial extends javax.swing.JDialog {
 
     String informacion = "";
     ObjectMateriales obj = new ObjectMateriales();
+    ObjectProveedoresMPrima objPMP = new ObjectProveedoresMPrima();
+    ArrayList<ProveedorMPrima> pmp = new ArrayList<>();
 
     public NMaterial(java.awt.Frame parent, boolean modal) {
 
@@ -23,6 +28,7 @@ public class NMaterial extends javax.swing.JDialog {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/pluscircleregular_106319.png"));
         setIconImage(icon);
         LoadAlmacen();
+        LoadProveedorprima();
         setLocationRelativeTo(null);
         JtUcosto.setText("0.00");
         JtCostoC.setText("0.00");
@@ -43,7 +49,15 @@ public class NMaterial extends javax.swing.JDialog {
     public String getInformacion() {
         return this.informacion;
     }
-
+    private void LoadProveedorprima(){
+    ProveedorMPrima p = new ProveedorMPrima();
+    DefaultComboBoxModel modelprov = new DefaultComboBoxModel();
+    pmp=objPMP.ProveedorMPrimaGetAll();
+    JcProveedor.setModel(modelprov);
+    for(int i =0;i<pmp.size();i++){
+        modelprov.addElement(pmp.get(i).getNombre());
+    }
+    }
     private void LoadAlmacen() {
         Almacen am = new Almacen();
         DefaultComboBoxModel modelAlmacen = new DefaultComboBoxModel(am.getAlmacenes());
@@ -87,6 +101,8 @@ public class NMaterial extends javax.swing.JDialog {
         JcDivisa = new javax.swing.JComboBox<>();
         JcAlm = new javax.swing.JComboBox<>();
         JtId = new javax.swing.JTextField();
+        JcProveedor = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -183,6 +199,11 @@ public class NMaterial extends javax.swing.JDialog {
 
         JcDivisa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MNX", "USD", " " }));
 
+        JcProveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Proveedor M. Prima");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -225,12 +246,12 @@ public class NMaterial extends javax.swing.JDialog {
                                         .addGap(48, 48, 48)
                                         .addComponent(JtFcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(36, 36, 36)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(JbGuardar)
                                 .addGap(18, 18, 18)
                                 .addComponent(JbCancelar))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -240,18 +261,21 @@ public class NMaterial extends javax.swing.JDialog {
                                         .addComponent(JbCminima))
                                     .addComponent(JbCmaxima)
                                     .addComponent(JbDivisa)
-                                    .addComponent(JbTipo))
+                                    .addComponent(JbTipo)
+                                    .addComponent(jLabel1))
                                 .addGap(17, 17, 17)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(JcDivisa, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(JtTcosto)
-                                            .addComponent(JtCantidadMa, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                                            .addComponent(JtCantidadM)
-                                            .addComponent(JtUcosto))
-                                        .addComponent(JtCostoC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(JtId, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(JtTcosto)
+                                        .addComponent(JtCantidadMa)
+                                        .addComponent(JtCantidadM)
+                                        .addComponent(JtUcosto)
+                                        .addComponent(JtCostoC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(JcProveedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(JtId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -302,7 +326,9 @@ public class NMaterial extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbConsumo)
                     .addComponent(JcConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JcProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbFconsumo)
@@ -352,6 +378,7 @@ public class NMaterial extends javax.swing.JDialog {
         double CostoC = Double.parseDouble(JtCostoC.getText());
         double CnMaxima = Double.parseDouble(JtCantidadM.getText());
         double CnMinima = Double.parseDouble(JtCantidadMa.getText());
+        int ClvProveedor = pmp.get(JcProveedor.getSelectedIndex()).getProveedor();
 
         Material m = new Material();
         m.setAlmacen(am.getAlmacen());
@@ -368,6 +395,7 @@ public class NMaterial extends javax.swing.JDialog {
         m.setCantidadMinima(CnMinima);
         m.setTipoCosto(Tipo);
         m.setDivisa(Divisa);
+        m.setCveproveedor(ClvProveedor);
 
         if (obj.addMaterial(m)) {
             JOptionPane.showMessageDialog(this, "Registro Guardado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
@@ -402,6 +430,7 @@ public class NMaterial extends javax.swing.JDialog {
         double CnMinima = Double.parseDouble(JtCantidadMa.getText());
         
         Material m = new Material();
+        m.setCveproveedor(pmp.get(JcProveedor.getSelectedIndex()).getProveedor());
         m.setAlmacen(am.getAlmacen());
         m.setCveMat(Cv);
         m.setDescripcion(Nombre);
@@ -537,6 +566,7 @@ public class NMaterial extends javax.swing.JDialog {
     public javax.swing.JComboBox<String> JcAlm;
     public javax.swing.JComboBox<String> JcConsumo;
     public javax.swing.JComboBox<String> JcDivisa;
+    public javax.swing.JComboBox<String> JcProveedor;
     public javax.swing.JComboBox<String> JcUdc;
     public javax.swing.JTextField JtCantidadM;
     public javax.swing.JTextField JtCantidadMa;
@@ -549,6 +579,7 @@ public class NMaterial extends javax.swing.JDialog {
     public javax.swing.JTextField JtSat;
     public javax.swing.JTextField JtTcosto;
     public javax.swing.JTextField JtUcosto;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables

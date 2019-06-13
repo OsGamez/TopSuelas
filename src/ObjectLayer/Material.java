@@ -10,8 +10,48 @@ import java.util.Vector;
 
 public class Material {
 
-    private int Almacen;
-    private String DesAlm;
+    private int Almacen,cveproveedor;
+
+    public int getCveproveedor() {
+        return cveproveedor;
+    }
+
+    public void setCveproveedor(int cveproveedor) {
+        this.cveproveedor = cveproveedor;
+    }
+    private String DesAlm,descproveedor;
+
+    public String getDescproveedor() {
+        return descproveedor;
+    }
+
+    public void setDescproveedor(String descproveedor) {
+        this.descproveedor = descproveedor;
+    }
+
+    public PreparedStatement getSt() {
+        return st;
+    }
+
+    public void setSt(PreparedStatement st) {
+        this.st = st;
+    }
+
+    public Connection getC() {
+        return c;
+    }
+
+    public void setC(Connection c) {
+        this.c = c;
+    }
+
+    public ResultSet getRs() {
+        return rs;
+    }
+
+    public void setRs(ResultSet rs) {
+        this.rs = rs;
+    }
     private String CveMat;
     private String Descripcion;
     private String CodigoSat;

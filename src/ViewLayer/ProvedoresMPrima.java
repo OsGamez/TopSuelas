@@ -1,51 +1,72 @@
 package ViewLayer;
 
-import ObjectLayer.Concepto;
-import ObjectLayer.ObjectConceptosPrima;
+import DataAccesLayer.Server;
+import ObjectLayer.ObjectProveedoresMPrima;
+import ObjectLayer.ProveedorMPrima;
+import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
-public class ConceptosMPrima extends javax.swing.JInternalFrame {
-
-    ObjectConceptosPrima obj = new ObjectConceptosPrima();
-    DefaultTableModel modelConcepto = new DefaultTableModel() {
+public class ProvedoresMPrima extends javax.swing.JInternalFrame {
+     ArrayList<ProveedorMPrima> listaProveedorMPrima;
+    ObjectProveedoresMPrima obj = new ObjectProveedoresMPrima();
+    DefaultTableModel modelProvedorPrima = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int row, int column) {
             return false;
         }
     };
 
-    public ConceptosMPrima() {
+    public ProvedoresMPrima() {
         initComponents();
         LoadColumns();
-        LoadModelConcepto();
-        JbReporte.setVisible(false);
+        LoadmodelProvedorPrima();
     }
 
     private void LoadColumns() {
-        modelConcepto.addColumn("CUENTA");
-        modelConcepto.addColumn("SUBCUENTA");
-        modelConcepto.addColumn("DESCRIPCION");
+        modelProvedorPrima.addColumn("NOMBRE");
+        modelProvedorPrima.addColumn("RFC");
+        modelProvedorPrima.addColumn("DIRECCION");
+        modelProvedorPrima.addColumn("ESTADO");
+        modelProvedorPrima.addColumn("CIUDAD");
+        modelProvedorPrima.addColumn("TELEFONO");
+        modelProvedorPrima.addColumn("EMAIL");
+        
     }
 
-    private void LoadModelConcepto() {
-        ArrayList<Concepto> listaConcepto = obj.conceptoGetAll();
-        modelConcepto.setNumRows(listaConcepto.size());
-        for (int i = 0; i < listaConcepto.size(); i++) {
-            Concepto c = listaConcepto.get(i);
-            modelConcepto.setValueAt(c.getCuenta(), i, 0);
-            modelConcepto.setValueAt(c.getSubCuenta(), i, 1);
-            modelConcepto.setValueAt(c.getDescripcion(), i, 2);
+    private void LoadmodelProvedorPrima() {
+       listaProveedorMPrima = obj.ProveedorMPrimaGetAll();
+        modelProvedorPrima.setNumRows(listaProveedorMPrima.size());
+        for (int i = 0; i < listaProveedorMPrima.size(); i++) {
+            ProveedorMPrima p = listaProveedorMPrima.get(i);
+            modelProvedorPrima.setValueAt(p.getNombre(), i, 0);
+            modelProvedorPrima.setValueAt(p.getRfc(), i, 1);
+            modelProvedorPrima.setValueAt(p.getCalle(), i, 2);
+            modelProvedorPrima.setValueAt(p.getEstado(), i, 3);
+            modelProvedorPrima.setValueAt(p.getCiudad(), i, 4);
+            modelProvedorPrima.setValueAt(p.getTelefono(), i, 5);
+            modelProvedorPrima.setValueAt(p.getEmail(), i, 6);
         }
     }
 
     private void CleanTable() {
-        int numFilas = modelConcepto.getRowCount();
+        int numFilas = modelProvedorPrima.getRowCount();
         if (numFilas > 0) {
             for (int i = numFilas - 1; i >= 0; i--) {
-                modelConcepto.removeRow(i);
+                modelProvedorPrima.removeRow(i);
             }
         }
     }
@@ -63,12 +84,12 @@ public class ConceptosMPrima extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         JtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        JtConcepto = new javax.swing.JTable();
+        JtProveedorMPrima = new javax.swing.JTable();
 
         setClosable(true);
         setMaximizable(true);
-        setTitle("CONCEPTOS");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/courses_letters_blackboard_board_staff_book_1475.png"))); // NOI18N
+        setTitle("Proveedores Materia Prima");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/delivery.png"))); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 102)));
 
@@ -159,8 +180,8 @@ public class ConceptosMPrima extends javax.swing.JInternalFrame {
             }
         });
 
-        JtConcepto.setModel(modelConcepto);
-        jScrollPane1.setViewportView(JtConcepto);
+        JtProveedorMPrima.setModel(modelProvedorPrima);
+        jScrollPane1.setViewportView(JtProveedorMPrima);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -201,28 +222,28 @@ public class ConceptosMPrima extends javax.swing.JInternalFrame {
         nuevo.setAlwaysOnTop(true);
         if (nuevo.getInformacion() != "") {
             CleanTable();
-            LoadModelConcepto();
+            LoadmodelProvedorPrima();
         }
     }//GEN-LAST:event_JbNuevoActionPerformed
 
     private void JbReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbReporteActionPerformed
-        /*try {
-            JasperReport reporte = null;
-            reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reports/ReporteAlmacenes.jasper"));
-            try {
-                JasperPrint jprint = JasperFillManager.fillReport(reporte, null, c);
-                JasperViewer view = new JasperViewer(jprint, false);
-
-                view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                view.setVisible(true);
-                view.setIconImage(getImage());
-                view.setTitle("TOP-SUELAS");
+         try {
+             Connection c = Server.getCmpPhylon();
+                Map par = new HashMap();
+                par.put("nombre", JtBuscar.getText());
+                JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reports/CatalogoProveedorMPrima.jasper"));
+                try {
+                    JasperPrint jprint = JasperFillManager.fillReport(reporte, par, c);
+                    JasperViewer view = new JasperViewer(jprint, false);
+                    view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    view.setVisible(true);
+                    view.setTitle("TOP-SUELAS");
+                } catch (JRException ex) {
+                    Logger.getLogger(ReporteConsumos.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } catch (JRException ex) {
-                Logger.getLogger(Almacenes.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ReporteConsumos.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (JRException ex) {
-            Logger.getLogger(Almacenes.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
     }//GEN-LAST:event_JbReporteActionPerformed
 
     private void JbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbSalirActionPerformed
@@ -230,25 +251,13 @@ public class ConceptosMPrima extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbSalirActionPerformed
 
     private void JbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEliminarActionPerformed
-        int row = JtConcepto.getSelectedRow();
-
+        int row = JtProveedorMPrima.getSelectedRow();
+        int id=listaProveedorMPrima.get(row).getProveedor();
+        if(obj.ProveedorMPrimaDelete(id)){
+            modelProvedorPrima.removeRow(row);
+        }else
+            JOptionPane.showMessageDialog(null, "Ocurrio un error contacta con sistemas");
         try {
-            if (row >= 0) {
-                int opcion = JOptionPane.showConfirmDialog(this, "¿Estas seguro de borrar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                if (opcion == JOptionPane.YES_OPTION) {
-                    String Cuenta = JtConcepto.getValueAt(row, 0).toString();
-                    String Subcuenta = JtConcepto.getValueAt(row, 1).toString();
-                   
-                    if (obj.conceptoDelete(Cuenta,Subcuenta)) {
-                        modelConcepto.removeRow(row);
-                        JOptionPane.showMessageDialog(null, "Registro eliminado");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Ocurrio un error contacta con sistemas");
-                    }
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
-            }
         } catch (Exception ex) {
 
             ex.printStackTrace();
@@ -256,25 +265,34 @@ public class ConceptosMPrima extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbEliminarActionPerformed
 
     private void JbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEditarActionPerformed
-        NConceptoPrima editar = new NConceptoPrima(null, true);
-        int row = JtConcepto.getSelectedRow();
+        NProveedorMPrima editar = new NProveedorMPrima(null, true);
+        int row = JtProveedorMPrima.getSelectedRow();
         try {
             if (row >= 0) {
                 int opcion = JOptionPane.showConfirmDialog(this, "¿Quieres editar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (opcion == JOptionPane.YES_OPTION) {
-                    editar.JtCuenta.setEnabled(false);
-                    editar.JtSubCuenta.setEnabled(false);
-                    editar.JtCuenta.setText(JtConcepto.getValueAt(row, 0).toString());
-                    editar.Jtid.setText(JtConcepto.getValueAt(row, 0).toString());
-                    editar.JtSubCuenta.setText(JtConcepto.getValueAt(row, 1).toString());
-                    editar.JtDes.setText(JtConcepto.getValueAt(row, 2).toString());
-
+                    editar.Jtid.setText(String.valueOf(listaProveedorMPrima.get(row).getProveedor()));
+                    editar.JtNombre.setText(listaProveedorMPrima.get(row).getNombre());
+                    editar.JtRfc.setText(listaProveedorMPrima.get(row).getRfc());
+                    editar.JtDir.setText(listaProveedorMPrima.get(row).getCalle());
+                    editar.JtCol.setText(listaProveedorMPrima.get(row).getColonia());
+                    editar.JtCiudad.setText(listaProveedorMPrima.get(row).getCiudad());
+                    editar.JtEstado.setText(listaProveedorMPrima.get(row).getEstado());
+                    editar.Jtpais.setText(listaProveedorMPrima.get(row).getPais());
+                    editar.JtCp.setText(listaProveedorMPrima.get(row).getCp());
+                    editar.JtEmbarque.setText(listaProveedorMPrima.get(row).getEmbarque());
+                    editar.JtCorreo.setText(listaProveedorMPrima.get(row).getEmail());
+                    editar.JtContacto.setText(listaProveedorMPrima.get(row).getContacto());
+                    editar.JtCredito.setText(String.valueOf(listaProveedorMPrima.get(row).getDiascredito()));
+                    editar.JtLcredito.setText(listaProveedorMPrima.get(row).getLimitecredito());
+                    editar.JtTel.setText(listaProveedorMPrima.get(row).getTelefono());
+                    editar.JtTelaux.setText(listaProveedorMPrima.get(row).getTelefono2());
                     editar.setVisible(true);
                     editar.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                     editar.setAlwaysOnTop(true);
                     if (editar.getInformacion() != "") {
                         CleanTable();
-                        LoadModelConcepto();
+                        LoadmodelProvedorPrima();
                     }
                 }
             } else {
@@ -287,16 +305,17 @@ public class ConceptosMPrima extends javax.swing.JInternalFrame {
 
     private void JtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyReleased
         CleanTable();
-        ArrayList<Concepto> listaConcepto = obj.ConceptoSearch(JtBuscar.getText());
-
-        modelConcepto.setNumRows(listaConcepto.size());
-
-        for (int i = 0; i < listaConcepto.size(); i++) {
-            Concepto cs = listaConcepto.get(i);
-
-            modelConcepto.setValueAt(cs.getCuenta(), i, 0);
-            modelConcepto.setValueAt(cs.getSubCuenta(), i, 1);
-            modelConcepto.setValueAt(cs.getDescripcion(), i, 2);
+        ArrayList<ProveedorMPrima> listaProveedorMPrima = obj.ProveedorMPrimaSearch(JtBuscar.getText());
+        modelProvedorPrima.setNumRows(listaProveedorMPrima.size());
+        for (int i = 0; i < listaProveedorMPrima.size(); i++) {
+            ProveedorMPrima p = listaProveedorMPrima.get(i);
+            modelProvedorPrima.setValueAt(p.getNombre(), i, 0);
+            modelProvedorPrima.setValueAt(p.getRfc(), i, 1);
+            modelProvedorPrima.setValueAt(p.getCalle(), i, 2);
+            modelProvedorPrima.setValueAt(p.getEstado(), i, 3);
+            modelProvedorPrima.setValueAt(p.getCiudad(), i, 4);
+            modelProvedorPrima.setValueAt(p.getTelefono(), i, 5);
+            modelProvedorPrima.setValueAt(p.getEmail(), i, 6);
         }
     }//GEN-LAST:event_JtBuscarKeyReleased
 
@@ -321,7 +340,7 @@ public class ConceptosMPrima extends javax.swing.JInternalFrame {
     private javax.swing.JButton JbReporte;
     private javax.swing.JButton JbSalir;
     private javax.swing.JTextField JtBuscar;
-    private javax.swing.JTable JtConcepto;
+    private javax.swing.JTable JtProveedorMPrima;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
