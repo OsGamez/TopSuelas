@@ -10,10 +10,10 @@ import java.util.ArrayList;
 
 public class ObjectPrecios {
 
-    //Connection c = Server.getRpt();
-    //Connection pa = Server.getRcpt();
-    Connection c = Conexion.getRpt();
-    Connection pa = Conexion.getRcpt();
+    Connection c = Server.getRpt();
+    Connection pa = Server.getRcpt();
+    //Connection c = Conexion.getRpt();
+    //Connection pa = Conexion.getRcpt();
 
     PreparedStatement st, st2 = null;
     ResultSet rs = null;
@@ -47,8 +47,7 @@ public class ObjectPrecios {
                 pa.rollback();
                 st2.close();
             }
-           st2.close();
-
+            st2.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -73,11 +72,12 @@ public class ObjectPrecios {
 
             if (rpta) {
                 c.commit();
+                st.close();
             } else {
-                Conexion.rollback(c);
+                c.rollback();
+                st.close();
             }
-            Conexion.cerrarPrep(st);
-
+            st.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -161,7 +161,7 @@ public class ObjectPrecios {
     }
 
     public boolean precioUpdate(Precio pc) {
-        boolean rpta = false;
+        //boolean rpta = false;
         try {
             st2 = pa.prepareStatement("UPDATE Precios SET PrecioA = ?,PrecioB = ?,PrecioAP = ?,\n"
                     + "PrecioBP = ? WHERE Id_Producto = ? AND Id_Cliente = ?");
@@ -173,29 +173,38 @@ public class ObjectPrecios {
             st2.setDouble(4, pc.getPrecioBP());
             st2.setInt(5, pc.getId_Producto());
             st2.setInt(6, pc.getId_Cliente());
-
             st2.executeUpdate();
+            pa.commit();
+            st2.close();
 
-            rpta = st2.executeUpdate() == 1 ? true : false;
+            /*rpta = st2.executeUpdate() == 1 ? true : false;
 
             if (rpta) {
                 rpta = precioUpdateCopy(pc);
                 if (rpta) {
                     pa.commit();
                 } else {
-                    Conexion.rollback(pa);
+                    pa.rollback();
+                    st2.close();
                 }
             } else {
-                Conexion.rollback(pa);
+                pa.rollback();
+                st2.close();
             }
-            Conexion.cerrarPrep(st2);
+            st2.close();*/
 
         } catch (SQLException ex) {
+            Conexion.rollback(pa);
+            Conexion.cerrarPrep(st2);
             ex.printStackTrace();
+
         } catch (Exception e) {
+            Conexion.rollback(pa);
             e.printStackTrace();
+            Conexion.cerrarPrep(st2);
         }
-        return rpta;
+        //return rpta;
+        return true;
     }
 
     public boolean precioUpdateCopy(Precio pc) {
@@ -237,9 +246,9 @@ public class ObjectPrecios {
             st2.setInt(1, Id_Prod);
             st2.setInt(2, Id_Cli);
             rpta = st2.executeUpdate() == 1 ? true : false;
-             
+
             if (rpta) {
-                rpta = precioDeleteCopy(Id_Prod,Id_Cli);
+                rpta = precioDeleteCopy(Id_Prod, Id_Cli);
                 if (rpta) {
                     pa.commit();
                 } else {
@@ -251,7 +260,7 @@ public class ObjectPrecios {
             Conexion.cerrarPrep(st2);
         } catch (SQLException ex) {
             ex.printStackTrace();
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return rpta;
@@ -264,9 +273,9 @@ public class ObjectPrecios {
             c.setAutoCommit(false);
             st.setInt(1, Id_Prod);
             st.setInt(2, Id_Cli);
-            
+
             rpta = st.executeUpdate() == 1 ? true : false;
-            
+
             if (rpta) {
                 c.commit();
             } else {
@@ -300,7 +309,7 @@ public class ObjectPrecios {
                 pc.setPrecioB(rs.getDouble("PrecioB"));
                 pc.setPrecioAP(rs.getDouble("PrecioAP"));
                 pc.setPrecioBP(rs.getDouble("PrecioBP"));
-                
+
                 lista.add(pc);
             }
         } catch (SQLException ex) {
