@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b27d703e-d88f-4e75-825a-7eee08d13c38">
+	<property name="ireport.zoom" value="1.9487171000000019"/>
+	<property name="ireport.x" value="22"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="nombre" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM CmpPhylon.dbo.ProvedoresMPrima WHERE stat='1' and (nombre LIKE '%$P!{nombre}%' or rfc like '%$P!{nombre}%') ORDER BY Nombre]]>
+	</queryString>
+	<field name="Proveedor" class="java.lang.Short"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="calle" class="java.lang.String"/>
+	<field name="colonia" class="java.lang.String"/>
+	<field name="Ciudad" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String"/>
+	<field name="pais" class="java.lang.String"/>
+	<field name="cp" class="java.lang.String"/>
+	<field name="rfc" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.String"/>
+	<field name="telefono2" class="java.lang.String"/>
+	<field name="contacto" class="java.lang.String"/>
+	<field name="tipo" class="java.lang.String"/>
+	<field name="embarque" class="java.lang.String"/>
+	<field name="diascredito" class="java.lang.Short"/>
+	<field name="limitecredito" class="java.lang.String"/>
+	<field name="fechaultimacompra" class="java.sql.Timestamp"/>
+	<field name="stat" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="69" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="133" y="13" width="317" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="cce16269-c7cd-4bba-ba1b-3351c9c9e0b5"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[CATALOGO DE PROVEEDORES DE MATERIA PRIMA]]></text>
+			</staticText>
+			<image>
+				<reportElement x="2" y="39" width="131" height="28" uuid="66321ef5-1091-471a-92ac-7c8866ee9989"/>
+				<imageExpression><![CDATA["C:\\tsmanager\\imagenes\\logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="47" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="489" y="0" width="82" height="20" uuid="a4296d20-fc44-47dd-bb97-56af7b4774c4"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH.mm.ss">
+				<reportElement x="524" y="27" width="47" height="20" uuid="909a26b2-f548-423e-82b0-9df3bfb06195"/>
+				<textElement>
+					<font fontName="Serif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="6" width="572" height="14" backcolor="#000066" uuid="f71e960e-a3fc-413c-88f0-7d624d939709"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="6" width="24" height="15" forecolor="#FFFFFF" uuid="282190e5-7385-4e03-a35a-84dae5c17f84"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Clave]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="6" width="100" height="15" forecolor="#FFFFFF" uuid="df32799a-0b6c-4833-9c6b-95aa097e96ec"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="6" width="66" height="15" forecolor="#FFFFFF" uuid="78a313be-6533-4ec0-981c-218a22a55b05"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[RFC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="6" width="200" height="15" forecolor="#FFFFFF" uuid="16ed3637-d2c2-4b8e-b9f0-4b9153e16a10"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Direccion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="6" width="41" height="15" forecolor="#FFFFFF" uuid="c2e9a457-faff-44b4-94c1-64d2ff174e54"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Telefono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="431" y="5" width="100" height="15" forecolor="#FFFFFF" uuid="1390592a-ef9a-4aaa-9ed7-13fb2f3b52d2"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[email]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField>
+				<reportElement x="24" y="0" width="100" height="12" uuid="7742c119-67a2-440b-93bd-49b5ef75f76a"/>
+				<textElement textAlignment="Center">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="0" width="66" height="12" uuid="e979059e-44e7-4449-baea-c490b306ee3f"/>
+				<textElement textAlignment="Center">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rfc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="0" width="41" height="12" uuid="d87f162c-367f-4411-9f4b-cc7d0fa5d6e4"/>
+				<textElement textAlignment="Center">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="0" width="200" height="12" uuid="136a076b-9d56-4468-89e2-94b4564b38c9"/>
+				<textElement textAlignment="Center">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{calle}+ " "+$F{colonia}+", "+$F{Ciudad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="24" height="12" uuid="9217b36c-4569-48e5-aead-ac51dddaf49c"/>
+				<textElement textAlignment="Center">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Proveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="431" y="0" width="100" height="12" uuid="5bb41768-48a1-4645-a84f-9f96a27be3b6"/>
+				<textElement textAlignment="Center">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="22" splitType="Stretch">
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="539" y="2" width="32" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="e345b47d-9f08-4342-acae-56991b85de71"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="492" y="2" width="58" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="638d20a9-826a-4772-9e8b-fcc1b6943ae5"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

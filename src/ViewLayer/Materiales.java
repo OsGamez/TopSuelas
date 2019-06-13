@@ -25,6 +25,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 public class Materiales extends javax.swing.JInternalFrame {
 
+    ArrayList<Material> listaMaterial;
     Connection c = Server.getCmpPhylon();
     DefaultTableModel modelMat = new DefaultTableModel() {
         @Override
@@ -143,6 +144,11 @@ public class Materiales extends javax.swing.JInternalFrame {
         });
 
         JtMaterial.setModel(modelMat);
+        JtMaterial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JtMaterialMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(JtMaterial);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -265,7 +271,8 @@ public class Materiales extends javax.swing.JInternalFrame {
                     editar.JtCantidadMa.setText(String.valueOf(JtMaterial.getValueAt(row, 12)));
                     editar.JtTcosto.setText(String.valueOf(JtMaterial.getValueAt(row, 13)));
                     editar.JcDivisa.setSelectedItem(String.valueOf(JtMaterial.getValueAt(row, 14)));
-
+                    editar.JcProveedor.setSelectedItem(listaMaterial.get(JtMaterial.getSelectedRow()).getDescproveedor());
+//                    System.out.println(listaMaterial.get(JtMaterial.getSelectedRow()).getDescproveedor());
                     editar.setVisible(true);
                     editar.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                     editar.setAlwaysOnTop(true);
@@ -285,7 +292,7 @@ public class Materiales extends javax.swing.JInternalFrame {
     private void JtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyReleased
         CleanTable();
         ArrayList<Material> listaMat = obj.materialSearch(JtBuscar.getText());
-
+        listaMaterial=listaMat;
         listaMat.size();
         modelMat.setNumRows(listaMat.size());
         for (int i = 0; i < listaMat.size(); i++) {
@@ -310,16 +317,17 @@ public class Materiales extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_JtBuscarKeyReleased
 
+    private void JtMaterialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JtMaterialMouseClicked
+                  
+    }//GEN-LAST:event_JtMaterialMouseClicked
+
     private void LoadModelMaterial() {
         ArrayList<Material> listaMat = obj.materialGetAll();
-
+        listaMaterial=listaMat;
         modelMat.setNumRows(listaMat.size());
-
         for (int i = 0; i < listaMat.size(); i++) {
             Material m = listaMat.get(i);
-
             DecimalFormat var = new DecimalFormat("#.00");
-
             modelMat.setValueAt(m.getAlmacen(), i, 0);
             modelMat.setValueAt(m.getDesAlm(), i, 1);
             modelMat.setValueAt(m.getCveMat(), i, 2);

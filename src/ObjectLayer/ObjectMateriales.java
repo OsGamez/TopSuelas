@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ObjectMateriales {
 
@@ -20,8 +22,8 @@ public class ObjectMateriales {
         try {
             c.setAutoCommit(false);
             st = c.prepareStatement("INSERT INTO Materiales(Almacen,CveMat,Descripcion,CodigoSat,UdeC,Fcompra,UdeCs,Fconsumo,UltimoCosto,"
-                    + "CostoCosteo,CantidadMinima,CantidadMaxima,TipoCosto,Divisa)"
-                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    + "CostoCosteo,CantidadMinima,CantidadMaxima,TipoCosto,Divisa,Proveedor)"
+                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             st.setInt(1, mat.getAlmacen());
             st.setString(2, mat.getCveMat());
             st.setString(3, mat.getDescripcion());
@@ -36,12 +38,18 @@ public class ObjectMateriales {
             st.setDouble(12, mat.getCantidadMaxima());
             st.setString(13, mat.getTipoCosto());
             st.setString(14, mat.getDivisa());
+            st.setInt(15, mat.getCveproveedor());
             st.executeUpdate();
             c.commit();
             st.close();
             return true;
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            try {
+                c.rollback();
+                ex.printStackTrace();
+            } catch (SQLException ex1) {
+                Logger.getLogger(ObjectMateriales.class.getName()).log(Level.SEVERE, null, ex1);
+            }
         }
 
         return false;
@@ -50,10 +58,11 @@ public class ObjectMateriales {
     public ArrayList<Material> materialGetAll() {
         ArrayList<Material> listaMat = new ArrayList<Material>();
         try {
-            st = c.prepareStatement("SELECT m.Almacen as #,a.Descripcion as Almacen,m.CveMat,m.Descripcion,m.CodigoSat,\n" +
-"                    m.UdeC,m.Fcompra,m.UdeCs,m.Fconsumo,m.UltimoCosto,m.CostoCosteo,m.CantidadMinima,\n" +
-"                    m.CantidadMaxima,m.TipoCosto,m.Divisa\n" +
-"                    FROM Materiales m INNER JOIN Almacenes a ON m.Almacen = a.Almacen");
+            st = c.prepareStatement("SELECT m.Almacen as #,a.Descripcion as Almacen,m.CveMat,m.Descripcion,m.CodigoSat,\n"
+                    + "                    m.UdeC,m.Fcompra,m.UdeCs,m.Fconsumo,m.UltimoCosto,m.CostoCosteo,m.CantidadMinima,\n"
+                    + "                    m.CantidadMaxima,m.TipoCosto,m.Divisa,m.proveedor as 'proveedor', pmp.nombre as 'nombre'\n"
+                    + "                    FROM Materiales m INNER JOIN Almacenes a ON m.Almacen = a.Almacen"
+                    + "                    join ProvedoresMPrima pmp on pmp.proveedor=m.proveedor");
             rs = st.executeQuery();
 
             while (rs.next()) {
@@ -73,6 +82,8 @@ public class ObjectMateriales {
                 mat.setCantidadMaxima(rs.getDouble("CantidadMaxima"));
                 mat.setTipoCosto(rs.getString("TipoCosto"));
                 mat.setDivisa(rs.getString("Divisa"));
+                mat.setCveproveedor(rs.getInt("proveedor"));
+                mat.setDescproveedor(rs.getString("nombre"));
                 listaMat.add(mat);
             }
         } catch (SQLException ex) {
@@ -84,10 +95,12 @@ public class ObjectMateriales {
     public ArrayList<Material> materialSearch(String filtro) {
         ArrayList<Material> listaMat = new ArrayList<Material>();
         try {
-            st = c.prepareStatement("SELECT m.Almacen as #,a.Descripcion as Almacen,m.CveMat,m.Descripcion,m.CodigoSat,\n" +
-"                    m.UdeC,m.Fcompra,m.UdeCs,m.Fconsumo,m.UltimoCosto,m.CostoCosteo,m.CantidadMinima,\n" +
-"                    m.CantidadMaxima,m.TipoCosto,m.Divisa\n" +
-"                    FROM Materiales m INNER JOIN Almacenes a ON m.Almacen = a.Almacen WHERE m.Descripcion LIKE'%"+ filtro + "%'");
+            st = c.prepareStatement("SELECT m.Almacen as #,a.Descripcion as Almacen,m.CveMat,m.Descripcion,m.CodigoSat,\n"
+                    + "                    m.UdeC,m.Fcompra,m.UdeCs,m.Fconsumo,m.UltimoCosto,m.CostoCosteo,m.CantidadMinima,\n"
+                    + "                    m.CantidadMaxima,m.TipoCosto,m.Divisa,m.proveedor as 'proveedor', pmp.nombre as 'nombre'\n"
+                    + "                    FROM Materiales m INNER JOIN Almacenes a ON m.Almacen = a.Almacen \n"
+                    + "                    join ProvedoresMPrima pmp on pmp.proveedor=m.proveedor"
+                    + " WHERE m.Descripcion LIKE'%" + filtro + "%'");
             rs = st.executeQuery();
 
             while (rs.next()) {
@@ -107,6 +120,8 @@ public class ObjectMateriales {
                 mat.setCantidadMaxima(rs.getDouble("CantidadMaxima"));
                 mat.setTipoCosto(rs.getString("TipoCosto"));
                 mat.setDivisa(rs.getString("Divisa"));
+                mat.setCveproveedor(rs.getInt("proveedor"));
+                mat.setDescproveedor(rs.getString("nombre"));
                 listaMat.add(mat);
             }
         } catch (SQLException ex) {
@@ -156,7 +171,7 @@ public class ObjectMateriales {
         try {
             c.setAutoCommit(false);
             st = c.prepareStatement("UPDATE Materiales SET Descripcion=?, CodigoSat=?, UdeC=?,Fcompra=?,UdeCs=?,Fconsumo=?,UltimoCosto=?,"
-                    + "CostoCosteo=?,CantidadMinima=?,CantidadMaxima=?,TipoCosto=?,Divisa=? WHERE Almacen=? AND CveMat=?");
+                    + "CostoCosteo=?,CantidadMinima=?,CantidadMaxima=?,TipoCosto=?,Divisa=?,Proveedor=? WHERE Almacen=? AND CveMat=?");
 
             st.setString(1, mat.getDescripcion());
             st.setString(2, mat.getCodigoSat());
@@ -170,8 +185,9 @@ public class ObjectMateriales {
             st.setDouble(10, mat.getCantidadMaxima());
             st.setString(11, mat.getTipoCosto());
             st.setString(12, mat.getDivisa());
-            st.setInt(13, mat.getAlmacen());
-            st.setString(14, mat.getCveMat());
+            st.setInt(13, mat.getCveproveedor());
+            st.setInt(14, mat.getAlmacen());
+            st.setString(15, mat.getCveMat());
             st.executeUpdate();
             c.commit();
             st.close();

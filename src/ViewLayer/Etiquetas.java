@@ -2,6 +2,8 @@ package ViewLayer;
 
 import ObjectLayer.Almacen;
 import ObjectLayer.ObjectEtiquetas;
+import ObjectLayer.ObjectProductos;
+import ObjectLayer.Producto;
 import ObjectLayer.Validacion;
 import ObjectLayer.etiqueta;
 import java.awt.Image;
@@ -18,6 +20,8 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -28,11 +32,12 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class Etiquetas extends javax.swing.JDialog {
-
     String informacion = "";
+    ObjectProductos ObjP = new ObjectProductos();
     ArrayList<etiqueta> listaetiqueta = new ArrayList<>();
     Vector<Almacen> listaalmacen = new Vector<>();
-    ObjectEtiquetas obetq = new ObjectEtiquetas();
+    
+    DefaultListModel<Producto> modeloListaProductos= new DefaultListModel<Producto>();
 
     public Etiquetas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -45,17 +50,20 @@ public class Etiquetas extends javax.swing.JDialog {
         LoadModelAlmacen();
         Calendar fecha = new GregorianCalendar();
         JeFecha.setCalendar(fecha);
+        JbIdProd.setVisible(false);
+        Jtp.setVisible(false);
+
     }
 
     private void LoadModelEtiqueta() {
-        ObjectEtiquetas e = new ObjectEtiquetas();
-        DefaultComboBoxModel modelEtiqueta = new DefaultComboBoxModel();
-        listaetiqueta = e.EtiquetaGetAll();
-        Jtp.setModel(modelEtiqueta);
-        for (int i = 0; i < listaetiqueta.size(); i++) {
-            Jtp.addItem(listaetiqueta.get(i).getDescripcion());
-        }
-        Jtp.setSelectedIndex(0);
+//        ObjectEtiquetas e = new ObjectEtiquetas();
+//        DefaultComboBoxModel modelEtiqueta = new DefaultComboBoxModel();
+//        listaetiqueta = e.EtiquetaGetAll();
+//        Jtp.setModel(modelEtiqueta);
+//        for (int i = 0; i < listaetiqueta.size(); i++) {
+//            Jtp.addItem(listaetiqueta.get(i).getDescripcion());
+//        }
+//        Jtp.setSelectedIndex(0);
     }
 
     private void LoadModelAlmacen() {
@@ -77,17 +85,19 @@ public class Etiquetas extends javax.swing.JDialog {
         Jtlc = new javax.swing.JLabel();
         Jtp = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        Jemodelo = new javax.swing.JLabel();
         JeAlm = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         JeTalla = new javax.swing.JTextField();
         JePares = new javax.swing.JTextField();
         JeAlmacen = new javax.swing.JComboBox<>();
-        JeColor = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         JeFecha = new com.toedter.calendar.JDateChooser();
+        JtProducto = new javax.swing.JTextField();
+        JbIdProd = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listaProductos = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("GENERAR ETIQUETAS");
@@ -107,14 +117,17 @@ public class Etiquetas extends javax.swing.JDialog {
 
         jLabel1.setText("Seleccione Producto");
 
-        Jemodelo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
         JeAlm.setText("Almacen:");
 
         jLabel4.setText("TALLA:");
 
         jLabel5.setText("PARES:");
 
+        JeTalla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JeTallaMouseClicked(evt);
+            }
+        });
         JeTalla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JeTallaActionPerformed(evt);
@@ -126,6 +139,11 @@ public class Etiquetas extends javax.swing.JDialog {
             }
         });
 
+        JePares.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JeParesMouseClicked(evt);
+            }
+        });
         JePares.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JeParesActionPerformed(evt);
@@ -133,8 +151,6 @@ public class Etiquetas extends javax.swing.JDialog {
         });
 
         JeAlmacen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        JeColor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/labelprint.png"))); // NOI18N
         jButton1.setText("Generar Etiqueta");
@@ -148,6 +164,36 @@ public class Etiquetas extends javax.swing.JDialog {
 
         JeFecha.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
 
+        JtProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JtProductoMouseClicked(evt);
+            }
+        });
+        JtProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtProductoActionPerformed(evt);
+            }
+        });
+        JtProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                JtProductoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                JtProductoKeyTyped(evt);
+            }
+        });
+
+        JbIdProd.setText("jLabel2");
+
+        listaProductos.setModel(modeloListaProductos);
+        listaProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        listaProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listaProductosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(listaProductos);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -155,45 +201,47 @@ public class Etiquetas extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(Jemodelo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(JeColor, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
+                                .addGap(86, 86, 86)
                                 .addComponent(JeAlm)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JeAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(JeTalla, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(JePares, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(JeFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(58, 58, 58)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(130, 130, 130)
-                                    .addComponent(Jtlc, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(Jtp, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(22, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(JeAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(125, 125, 125)
+                                .addComponent(jButton1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(JeTalla, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(JePares, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JeFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Jtlc, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Jtp, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(230, 230, 230)
+                                .addComponent(JbIdProd))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(78, 78, 78)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 12, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,12 +251,13 @@ public class Etiquetas extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Jtp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Jemodelo, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JeColor, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                    .addComponent(jLabel1)
+                    .addComponent(JtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(JbIdProd)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -223,7 +272,7 @@ public class Etiquetas extends javax.swing.JDialog {
                     .addComponent(JeAlm, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addComponent(jButton1)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
@@ -234,8 +283,7 @@ public class Etiquetas extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowClosing
 
     private void JtpItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JtpItemStateChanged
-        Jemodelo.setText(listaetiqueta.get(Jtp.getSelectedIndex()).getModelo());
-        JeColor.setText(listaetiqueta.get(Jtp.getSelectedIndex()).getColor());
+
     }//GEN-LAST:event_JtpItemStateChanged
 
     private void JeTallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JeTallaActionPerformed
@@ -247,7 +295,7 @@ public class Etiquetas extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void JeParesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JeParesActionPerformed
-        JeFecha.requestFocus();
+        JeAlmacen.requestFocus();
     }//GEN-LAST:event_JeParesActionPerformed
 
     private void JeTallaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JeTallaKeyPressed
@@ -256,6 +304,60 @@ public class Etiquetas extends javax.swing.JDialog {
             JeTalla.setText("");
         }
     }//GEN-LAST:event_JeTallaKeyPressed
+
+    private void JtProductoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtProductoKeyReleased
+        limpiarListaProductos();
+        if (JtProducto.getText().isEmpty()) {
+            limpiarListaProductos();
+        } else {
+            ArrayList<Producto> listaProductos = ObjP.GetByCosto(JtProducto.getText());
+
+            for (Producto prod : listaProductos) {
+                modeloListaProductos.addElement(prod);
+            }
+        }
+    }//GEN-LAST:event_JtProductoKeyReleased
+
+    private void JtProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtProductoKeyTyped
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
+        }
+    }//GEN-LAST:event_JtProductoKeyTyped
+ private void limpiarListaProductos() {
+        modeloListaProductos.clear();
+    }
+ 
+    private void listaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaProductosMouseClicked
+        JList lis = (JList) evt.getSource();
+
+        if (evt.getClickCount() == 1) {
+            Producto prod = (Producto) lis.getSelectedValue();
+            //JbCorrida.setText(String.valueOf(cr.getCorridas(prod.getId_Producto())));
+            JtProducto.setText(prod.getDescripcion());
+            JbIdProd.setText(String.valueOf(prod.getId_Producto()));
+            limpiarListaProductos();
+          //  JtPt.requestFocus();
+        }
+    }//GEN-LAST:event_listaProductosMouseClicked
+
+    private void JtProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtProductoActionPerformed
+        
+    }//GEN-LAST:event_JtProductoActionPerformed
+
+    private void JtProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JtProductoMouseClicked
+        JtProducto.setText("");
+    }//GEN-LAST:event_JtProductoMouseClicked
+
+    private void JeTallaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JeTallaMouseClicked
+        JeTalla.setText("");
+    }//GEN-LAST:event_JeTallaMouseClicked
+
+    private void JeParesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JeParesMouseClicked
+        JePares.setText("");
+    }//GEN-LAST:event_JeParesMouseClicked
     private void Cerrar() {
 //        String botones[] = {"SI", "NO"};
 //        int eleccion = JOptionPane.showOptionDialog(this,"¿Deseas cerrar esta ventana?", "TOP-SUELAS", 
@@ -276,27 +378,25 @@ public class Etiquetas extends javax.swing.JDialog {
 
     public void setEtiqueta() {
         try {
+            ObjectEtiquetas obje = new ObjectEtiquetas();
+            listaetiqueta=obje.EtiquetaBusca(Integer.parseInt(JbIdProd.getText()));
             Map parametros = new HashMap();
             parametros.put("a", "a");
-            //List<Object> reports = new LinkedList<Object>();
             ArrayList<Object> reports = new ArrayList<>();
             Validacion v = new Validacion();
-            int rowprod = Jtp.getSelectedIndex();
+            int rowprod = 1;
             int rowalm = JeAlmacen.getSelectedIndex();
-            if (Jtp.getSelectedIndex() == 0
-                    || JeAlmacen.getSelectedIndex() == 0 || JeTalla.getText().equals("") || JePares.getText().equals("")) {
+            if (JeAlmacen.getSelectedIndex() == 0 || JeTalla.getText().equals("") || JePares.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Faltan datos por introducir o seleccionar!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-            } else if ((!v.verificaflotantes(JeTalla.getText()) || !v.verificanumeros(JeTalla.getText()))
-                    && !v.verificanumeros(JePares.getText())) {
+            } else if ( !v.verificanumeros(JePares.getText())) {
                 JOptionPane.showMessageDialog(this, "Datos introducidos no validos", "TOP-SUELAS", JOptionPane.ERROR_MESSAGE);
                 JeTalla.requestFocus();
             } else if (Float.parseFloat(JeTalla.getText()) >= listaetiqueta.get(rowprod).getPi()
                     && Float.parseFloat(JeTalla.getText()) <= listaetiqueta.get(rowprod).getPf()) {
-                
                 etiqueta e = new etiqueta();
                 DateFormat df = DateFormat.getDateInstance();
                 e.setAlmacen(listaalmacen.get(rowalm).getAlmacen());
-                e.setProducto(String.valueOf(listaetiqueta.get(rowprod).getProducto()));
+                e.setProducto(JbIdProd.getText());
                 e.setColor(listaetiqueta.get(rowprod).getColor());
                 e.setFecha(df.format(JeFecha.getDate()));
                 e.setPunto(JeTalla.getText());
@@ -317,10 +417,6 @@ public class Etiquetas extends javax.swing.JDialog {
                 } );
                 ver.setTitle("ETIQUETAS");
                 ver.setVisible(true);
-                
-                
-                
-                
             } else {
                 JOptionPane.showMessageDialog(this, "La talla especificada no es parte de la corrida del producto", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                 JeTalla.requestFocus();
@@ -331,7 +427,7 @@ public class Etiquetas extends javax.swing.JDialog {
         }
     }
 
-    public String CreaCodigo(etiqueta e) {
+    private String CreaCodigo(etiqueta e) {
         String codigo = (e.getAlmacen() < 10) ? "0" + e.getAlmacen() : e.getAlmacen() + "";//01
         for (int i = e.getProducto().length(); i < 5; i++) {
             codigo += "0";
@@ -342,7 +438,7 @@ public class Etiquetas extends javax.swing.JDialog {
             codigo += "0";
         }
         codigo += e.getPares();//01,00128,265,050 {13 numeros}
-        System.out.println(codigo);
+        //System.out.println(codigo);
         return codigo;
     }
 
@@ -392,13 +488,13 @@ public class Etiquetas extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel JbIdProd;
     private javax.swing.JLabel JeAlm;
     private javax.swing.JComboBox<String> JeAlmacen;
-    private javax.swing.JLabel JeColor;
     private com.toedter.calendar.JDateChooser JeFecha;
     private javax.swing.JTextField JePares;
     private javax.swing.JTextField JeTalla;
-    private javax.swing.JLabel Jemodelo;
+    public javax.swing.JTextField JtProducto;
     public javax.swing.JLabel Jtlc;
     private javax.swing.JComboBox<String> Jtp;
     private javax.swing.JButton jButton1;
@@ -406,5 +502,7 @@ public class Etiquetas extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JList<Producto> listaProductos;
     // End of variables declaration//GEN-END:variables
 }

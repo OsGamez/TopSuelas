@@ -95,14 +95,19 @@ public class ObjectConsumos {
             st = c.prepareStatement("UPDATE Consumos set stat ='0' where id_producto=" + sumos.getProducto() + " and punto=" + sumos.getPunto());
             st.executeUpdate();
             c.commit();
-            st.close();
         } catch (SQLException ex) {
             try {
                 c.rollback();
-                st.close();
                 ex.printStackTrace();
             } catch (SQLException ex1) {
                 Logger.getLogger(ObjectConsumos.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }finally {
+            try {
+                st.close();
+                c.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ObjectMaquinas.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -115,7 +120,6 @@ public class ObjectConsumos {
             st = c.prepareStatement(q);
             st.executeUpdate();
             c.commit();
-            st.close();
             return true;
         } catch (SQLException ex) {
             try {
@@ -123,6 +127,13 @@ public class ObjectConsumos {
                 ex.printStackTrace();
             } catch (SQLException ex1) {
                 Logger.getLogger(ObjectConsumos.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }finally {
+            try {
+                st.close();
+                c.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ObjectMaquinas.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return false;
@@ -169,19 +180,25 @@ public class ObjectConsumos {
             c.setAutoCommit(false);
             String q = "insert into Consumos values(" + sumos.getProducto() + "," + sumos.getPunto() + "," + sumos.getPeso() + ","
                     + sumos.getDesperdicio() + ",'1')";
-            try {
                 st = c.prepareStatement(q);
                 st.execute();
                 c.commit();
-                st.close();
                 return true;
-            } catch (SQLException ex) {
-                c.rollback();
-                st.close();
-                ex.printStackTrace();
-            }
         } catch (SQLException ex) {
-            Logger.getLogger(ObjectConsumos.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                c.rollback();
+                ex.printStackTrace();
+                Logger.getLogger(ObjectConsumos.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex1) {
+                Logger.getLogger(ObjectConsumos.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }finally {
+            try {
+                st.close();
+                c.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ObjectMaquinas.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return false;
     }

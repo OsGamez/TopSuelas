@@ -2,7 +2,6 @@ package ViewLayer;
 
 import ObjectLayer.Copiaarchivo;
 import ObjectLayer.Hora;
-import ObjectLayer.ObjectVersioning;
 import ObjectLayer.Usuario;
 import java.awt.Color;
 import java.awt.Image;
@@ -48,6 +47,8 @@ public class Principal extends javax.swing.JFrame {
     Etiquetas etiq;
     Entradas entrada;
     Conceptos concepto;
+    ConceptosMPrima conceptom;
+    ProvedoresMPrima conceptomp;
     public String Estado = "A";
 
     Maquinas maq;
@@ -88,6 +89,18 @@ public class Principal extends javax.swing.JFrame {
             JmCobranza.setVisible(false);
             JmCPT.setVisible(false);
             JmConfig.setVisible(false);
+        }else if(us.getDepartamento().equals("PRODUCCIONCPT")){
+            JmAgente.setVisible(false);
+            JmBanco.setVisible(false);
+            JmCiudad.setVisible(false);
+            JmEstados.setVisible(false);
+            JmPais.setVisible(false);
+            JmZona.setVisible(false);
+            JmConfig.setVisible(false);
+            Jmcatcpt.setVisible(false);
+            Jmfaccpt.setVisible(false);
+            Jmpedcpt.setVisible(false);
+            nominas.setVisible(false);
         }
     }
 
@@ -146,6 +159,7 @@ public class Principal extends javax.swing.JFrame {
         JmProduccion = new javax.swing.JMenu();
         Jmcatprod = new javax.swing.JMenu();
         JmAlmacenes = new javax.swing.JMenuItem();
+        JmAlmacenesPrima = new javax.swing.JMenuItem();
         JmColores = new javax.swing.JMenuItem();
         JmCorridas = new javax.swing.JMenuItem();
         JmCostos = new javax.swing.JMenuItem();
@@ -156,6 +170,7 @@ public class Principal extends javax.swing.JFrame {
         JmMoldes = new javax.swing.JMenuItem();
         JmMaquinas = new javax.swing.JMenuItem();
         JmConsumos = new javax.swing.JMenuItem();
+        JmConceptos = new javax.swing.JMenuItem();
         Jmutilprod = new javax.swing.JMenu();
         Jmetiqprod = new javax.swing.JMenuItem();
         JmOpciones = new javax.swing.JMenu();
@@ -475,6 +490,16 @@ public class Principal extends javax.swing.JFrame {
         });
         Jmcatprod.add(JmAlmacenes);
 
+        JmAlmacenesPrima.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmAlmacenesPrima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/delivery.png"))); // NOI18N
+        JmAlmacenesPrima.setText("Proveedor de materia prima");
+        JmAlmacenesPrima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmAlmacenesPrimaActionPerformed(evt);
+            }
+        });
+        Jmcatprod.add(JmAlmacenesPrima);
+
         JmColores.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmColores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/RGB_Circle_1-80_icon-icons.com_57282.png"))); // NOI18N
         JmColores.setText("Colores");
@@ -575,6 +600,16 @@ public class Principal extends javax.swing.JFrame {
         });
         Jmcatprod.add(JmConsumos);
 
+        JmConceptos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmConceptos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/courses_letters_blackboard_board_staff_book_1475.png"))); // NOI18N
+        JmConceptos.setText("Conceptos E/S");
+        JmConceptos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmConceptosActionPerformed(evt);
+            }
+        });
+        Jmcatprod.add(JmConceptos);
+
         JmProduccion.add(Jmcatprod);
 
         Jmutilprod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/utileria.png"))); // NOI18N
@@ -658,7 +693,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(JbRol)
                 .addGap(31, 31, 31)
                 .addComponent(JbAlerta, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1041, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(20, 20, 20))
         );
@@ -714,15 +749,13 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(nominas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nominas, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                     .addComponent(prod, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(127, 127, 127)
-                .addComponent(cpt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cpt, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                 .addGap(138, 138, 138)
-                .addComponent(cobranza, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(cobranza, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -746,7 +779,7 @@ public class Principal extends javax.swing.JFrame {
         MainContent.setLayout(MainContentLayout);
         MainContentLayout.setHorizontalGroup(
             MainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 994, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1439, Short.MAX_VALUE)
         );
         MainContentLayout.setVerticalGroup(
             MainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1344,6 +1377,20 @@ public class Principal extends javax.swing.JFrame {
         nuevo.setVisible(true);
         nuevo.setAlwaysOnTop(true);
     }//GEN-LAST:event_JmProductoscptActionPerformed
+
+    private void JmConceptosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmConceptosActionPerformed
+        conceptom = new ConceptosMPrima();
+            MainContent.add(conceptom);
+            MainContent.getDesktopManager().maximizeFrame(conceptom);
+            conceptom.setVisible(true);
+    }//GEN-LAST:event_JmConceptosActionPerformed
+
+    private void JmAlmacenesPrimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmAlmacenesPrimaActionPerformed
+                conceptomp = new ProvedoresMPrima();
+        MainContent.add(conceptomp);
+        MainContent.getDesktopManager().maximizeFrame(conceptomp);
+        conceptomp.setVisible(true);
+    }//GEN-LAST:event_JmAlmacenesPrimaActionPerformed
     private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {
         LoadMaquina();
     }
@@ -1389,6 +1436,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel JbUser;
     private javax.swing.JMenuItem JmAgente;
     private javax.swing.JMenuItem JmAlmacenes;
+    private javax.swing.JMenuItem JmAlmacenesPrima;
     private javax.swing.JMenuItem JmAlmacenescpt;
     private javax.swing.JMenuItem JmAyuda;
     private javax.swing.JMenuItem JmBanco;
@@ -1400,6 +1448,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JmClientescpt;
     private javax.swing.JMenu JmCobranza;
     private javax.swing.JMenuItem JmColores;
+    private javax.swing.JMenuItem JmConceptos;
     private javax.swing.JMenuItem JmConceptoscpt;
     private javax.swing.JMenu JmConfig;
     private javax.swing.JMenuItem JmConsumos;

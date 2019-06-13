@@ -78,8 +78,6 @@ public class ObjectMoldes {
             st = c.prepareStatement("UPDATE Moldes set stat ='0' where molde=" + molde);
             st.executeUpdate();
             c.commit();
-            st.close();
-
         } catch (SQLException ex) {
             try {
                 c.rollback();
@@ -87,16 +85,23 @@ public class ObjectMoldes {
             } catch (SQLException ex1) {
                 Logger.getLogger(ObjectMoldes.class.getName()).log(Level.SEVERE, null, ex1);
             }
+        } finally {
+            try {
+                st.close();
+                c.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ObjectMoldes.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
+
     public boolean MoldeUpdate(Molde m) {
         try {
             c.setAutoCommit(false);
-            String q="UPDATE moldes SET cant="+m.getCantidad()+", punto="+m.getPunto()+", suela="+m.getLinea()+" WHERE molde="+m.getMolde();
+            String q = "UPDATE moldes SET cant=" + m.getCantidad() + ", punto=" + m.getPunto() + ", suela=" + m.getLinea() + " WHERE molde=" + m.getMolde();
             st = c.prepareStatement(q);
             st.executeUpdate();
             c.commit();
-            st.close();
             return true;
         } catch (SQLException ex) {
             try {
@@ -105,26 +110,40 @@ public class ObjectMoldes {
             } catch (SQLException ex1) {
                 Logger.getLogger(ObjectMoldes.class.getName()).log(Level.SEVERE, null, ex1);
             }
+        } finally {
+            try {
+                st.close();
+                c.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ObjectMoldes.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return false;
     }
-        public boolean MoldeAdd(Molde m) {
+
+    public boolean MoldeAdd(Molde m) {
         try {
             c.setAutoCommit(false);
-            String q="insert into Moldes(punto,cant,stat,suela) values("+m.getPunto()+","+m.getCantidad()+",'1',"+m.getLinea()+")";
-           try {
-                st = c.prepareStatement(q);
-                st.execute();
-                c.commit();
-                st.close();
-                return true;
-            } catch (SQLException ex) {
-                c.rollback();
-                st.close();
-                ex.printStackTrace();
-            } 
+            String q = "insert into Moldes(punto,cant,stat,suela) values(" + m.getPunto() + "," + m.getCantidad() + ",'1'," + m.getLinea() + ")";
+            st = c.prepareStatement(q);
+            st.execute();
+            c.commit();
+            return true;
         } catch (SQLException ex) {
-            Logger.getLogger(ObjectPrecios.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                c.rollback();
+                ex.printStackTrace();
+                Logger.getLogger(ObjectPrecios.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex1) {
+                Logger.getLogger(ObjectMoldes.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        } finally {
+            try {
+                st.close();
+                c.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ObjectMoldes.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return false;
     }

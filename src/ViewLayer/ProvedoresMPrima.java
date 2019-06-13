@@ -1,32 +1,76 @@
-
 package ViewLayer;
 
-import ObjectLayer.Molde;
-import ObjectLayer.ObjectMoldes;
-import java.awt.Image;
-import java.awt.Toolkit;
+import DataAccesLayer.Server;
+import ObjectLayer.ObjectProveedoresMPrima;
+import ObjectLayer.ProveedorMPrima;
+import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
- 
-public class Moldes extends javax.swing.JInternalFrame {
-    ArrayList<Molde>listaMolde;
-    
-    DefaultTableModel modelMolde = new DefaultTableModel(){
-      @Override
-      public boolean isCellEditable(int row, int column){
-          return false;
-      }  
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
+public class ProvedoresMPrima extends javax.swing.JInternalFrame {
+     ArrayList<ProveedorMPrima> listaProveedorMPrima;
+    ObjectProveedoresMPrima obj = new ObjectProveedoresMPrima();
+    DefaultTableModel modelProvedorPrima = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
     };
-    ObjectMoldes obm = new ObjectMoldes();
-    public Moldes() {
+
+    public ProvedoresMPrima() {
         initComponents();
-        LoadColumns();// carga las columnas de la tabla
-        LoadModelMolde();// carga el modelo
-        JtDatosMolde.getTableHeader().setReorderingAllowed(false);
+        LoadColumns();
+        LoadmodelProvedorPrima();
     }
-  
+
+    private void LoadColumns() {
+        modelProvedorPrima.addColumn("NOMBRE");
+        modelProvedorPrima.addColumn("RFC");
+        modelProvedorPrima.addColumn("DIRECCION");
+        modelProvedorPrima.addColumn("ESTADO");
+        modelProvedorPrima.addColumn("CIUDAD");
+        modelProvedorPrima.addColumn("TELEFONO");
+        modelProvedorPrima.addColumn("EMAIL");
+        
+    }
+
+    private void LoadmodelProvedorPrima() {
+       listaProveedorMPrima = obj.ProveedorMPrimaGetAll();
+        modelProvedorPrima.setNumRows(listaProveedorMPrima.size());
+        for (int i = 0; i < listaProveedorMPrima.size(); i++) {
+            ProveedorMPrima p = listaProveedorMPrima.get(i);
+            modelProvedorPrima.setValueAt(p.getNombre(), i, 0);
+            modelProvedorPrima.setValueAt(p.getRfc(), i, 1);
+            modelProvedorPrima.setValueAt(p.getCalle(), i, 2);
+            modelProvedorPrima.setValueAt(p.getEstado(), i, 3);
+            modelProvedorPrima.setValueAt(p.getCiudad(), i, 4);
+            modelProvedorPrima.setValueAt(p.getTelefono(), i, 5);
+            modelProvedorPrima.setValueAt(p.getEmail(), i, 6);
+        }
+    }
+
+    private void CleanTable() {
+        int numFilas = modelProvedorPrima.getRowCount();
+        if (numFilas > 0) {
+            for (int i = numFilas - 1; i >= 0; i--) {
+                modelProvedorPrima.removeRow(i);
+            }
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -40,12 +84,12 @@ public class Moldes extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         JtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        JtDatosMolde = new javax.swing.JTable();
+        JtProveedorMPrima = new javax.swing.JTable();
 
         setClosable(true);
         setMaximizable(true);
-        setTitle("MOLDES");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/suela.png"))); // NOI18N
+        setTitle("Proveedores Materia Prima");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/delivery.png"))); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 102)));
 
@@ -95,13 +139,13 @@ public class Moldes extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JbSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(JbReporte, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                     .addComponent(JbEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JbEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JbNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(JbNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JbSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,7 +158,7 @@ public class Moldes extends javax.swing.JInternalFrame {
                 .addComponent(JbEditar)
                 .addGap(31, 31, 31)
                 .addComponent(JbReporte)
-                .addGap(33, 33, 33)
+                .addGap(32, 32, 32)
                 .addComponent(JbSalir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -136,8 +180,8 @@ public class Moldes extends javax.swing.JInternalFrame {
             }
         });
 
-        JtDatosMolde.setModel(modelMolde);
-        jScrollPane1.setViewportView(JtDatosMolde);
+        JtProveedorMPrima.setModel(modelProvedorPrima);
+        jScrollPane1.setViewportView(JtProveedorMPrima);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,7 +208,7 @@ public class Moldes extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -172,143 +216,123 @@ public class Moldes extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbNuevoActionPerformed
-        NMolde nuevo = new NMolde(null, true);// instanciar nuevo
-        nuevo.setVisible(true);// desplgar nuevo
+        NProveedorMPrima nuevo = new NProveedorMPrima(null, true);
+        nuevo.setVisible(true);
         nuevo.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         nuevo.setAlwaysOnTop(true);
-        if(nuevo.getInformacion()!=""){
+        if (nuevo.getInformacion() != "") {
             CleanTable();
-            LoadModelMolde();
+            LoadmodelProvedorPrima();
         }
     }//GEN-LAST:event_JbNuevoActionPerformed
-    private void LoadColumns(){// columnas de la tabla
-        modelMolde.addColumn("Molde");
-        modelMolde.addColumn("Punto");
-        modelMolde.addColumn("Cantidad");
-        modelMolde.addColumn("Status");
-        modelMolde.addColumn("Suela");
-    }
-    
-    private void LoadModelMolde(){
-           listaMolde=obm.MoldeGetAll();
-          modelMolde.setNumRows(listaMolde.size());
-          for(int i =0; i <listaMolde.size(); i++){
-            Molde m = new Molde();
-            modelMolde.setValueAt(listaMolde.get(i).getMolde(), i, 0);
-            modelMolde.setValueAt(listaMolde.get(i).getPunto(), i, 1);
-            modelMolde.setValueAt(listaMolde.get(i).getCantidad(), i, 2);
-            modelMolde.setValueAt(listaMolde.get(i).getStatus(), i, 3);
-            modelMolde.setValueAt(listaMolde.get(i).getCharlinea(), i, 4);      
-          }
-    }
+
+    private void JbReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbReporteActionPerformed
+         try {
+             Connection c = Server.getCmpPhylon();
+                Map par = new HashMap();
+                par.put("nombre", JtBuscar.getText());
+                JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reports/CatalogoProveedorMPrima.jasper"));
+                try {
+                    JasperPrint jprint = JasperFillManager.fillReport(reporte, par, c);
+                    JasperViewer view = new JasperViewer(jprint, false);
+                    view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    view.setVisible(true);
+                    view.setTitle("TOP-SUELAS");
+                } catch (JRException ex) {
+                    Logger.getLogger(ReporteConsumos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (JRException ex) {
+                Logger.getLogger(ReporteConsumos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_JbReporteActionPerformed
+
     private void JbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbSalirActionPerformed
         dispose();
     }//GEN-LAST:event_JbSalirActionPerformed
 
     private void JbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEliminarActionPerformed
-        int row = JtDatosMolde.getSelectedRow();//asigna a variable el numero de linea el cual esta seleccionado
-         try{
-            if(row >=0){//si no se ha seleccionado nada, desplegara una leyenda de error
-              int opcion = JOptionPane.showConfirmDialog(this,"¿Estas seguro de borrar este registro?","TOP-SUELAS",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-              if(opcion ==JOptionPane.YES_OPTION){
-                  obm.MoldeDelete((int)JtDatosMolde.getValueAt(row,0)); //se manda la el valor de la linea seleccionada a la base de datos
-                  modelMolde.removeRow(row); // se elimina la linea seleccionada de la tabla
-                       JOptionPane.showMessageDialog(null,"Registro eliminado");
-                }
-        }else{
-             JOptionPane.showMessageDialog(null,"No se ha selecionado ningun registro");   
-            } 
-        }   
-        catch(Exception ex){
-            
+        int row = JtProveedorMPrima.getSelectedRow();
+        int id=listaProveedorMPrima.get(row).getProveedor();
+        if(obj.ProveedorMPrimaDelete(id)){
+            modelProvedorPrima.removeRow(row);
+        }else
+            JOptionPane.showMessageDialog(null, "Ocurrio un error contacta con sistemas");
+        try {
+        } catch (Exception ex) {
+
             ex.printStackTrace();
         }
     }//GEN-LAST:event_JbEliminarActionPerformed
 
     private void JbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEditarActionPerformed
-            MMolde editar = new MMolde(null, true);
-            int fila = JtDatosMolde.getSelectedRow();
-          
-            try{
-                if(fila>=0){
-                    int opcion = JOptionPane.showConfirmDialog(this,"¿Quieres editar este registro?","TOP-SUELAS",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-                    if(opcion ==JOptionPane.YES_OPTION){
-                        Molde m = new Molde();
-                        m.setMolde((int)JtDatosMolde.getValueAt(fila, 0));
-                        m.setPunto((int)JtDatosMolde.getValueAt(fila, 1));
-                        m.setCantidad((int)JtDatosMolde.getValueAt(fila, 2));
-                        m.setStatus(JtDatosMolde.getValueAt(fila, 3).toString());
-                        m.setCharlinea(JtDatosMolde.getValueAt(fila, 4).toString());
-                        
-                    editar.Jtp.setText(String.valueOf(m.getPunto()));
-                    editar.Jtc.setText(String.valueOf(m.getCantidad()));
-                    editar.Jts.setText(m.getStatus());
-                    editar.Jtlc.setText(m.getCharlinea());
-                    editar.m=m;
-                    //editar.Jtl.getModel().setSelectedItem(m.getCharlinea());
-                    //editar.JtId.setText(JtDatosMolde.getValueAt(fila, 0).toString());
+        NProveedorMPrima editar = new NProveedorMPrima(null, true);
+        int row = JtProveedorMPrima.getSelectedRow();
+        try {
+            if (row >= 0) {
+                int opcion = JOptionPane.showConfirmDialog(this, "¿Quieres editar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (opcion == JOptionPane.YES_OPTION) {
+                    editar.Jtid.setText(String.valueOf(listaProveedorMPrima.get(row).getProveedor()));
+                    editar.JtNombre.setText(listaProveedorMPrima.get(row).getNombre());
+                    editar.JtRfc.setText(listaProveedorMPrima.get(row).getRfc());
+                    editar.JtDir.setText(listaProveedorMPrima.get(row).getCalle());
+                    editar.JtCol.setText(listaProveedorMPrima.get(row).getColonia());
+                    editar.JtCiudad.setText(listaProveedorMPrima.get(row).getCiudad());
+                    editar.JtEstado.setText(listaProveedorMPrima.get(row).getEstado());
+                    editar.Jtpais.setText(listaProveedorMPrima.get(row).getPais());
+                    editar.JtCp.setText(listaProveedorMPrima.get(row).getCp());
+                    editar.JtEmbarque.setText(listaProveedorMPrima.get(row).getEmbarque());
+                    editar.JtCorreo.setText(listaProveedorMPrima.get(row).getEmail());
+                    editar.JtContacto.setText(listaProveedorMPrima.get(row).getContacto());
+                    editar.JtCredito.setText(String.valueOf(listaProveedorMPrima.get(row).getDiascredito()));
+                    editar.JtLcredito.setText(listaProveedorMPrima.get(row).getLimitecredito());
+                    editar.JtTel.setText(listaProveedorMPrima.get(row).getTelefono());
+                    editar.JtTelaux.setText(listaProveedorMPrima.get(row).getTelefono2());
                     editar.setVisible(true);
                     editar.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                     editar.setAlwaysOnTop(true);
-                 if(editar.getInformacion()!=""){ 
-                    CleanTable();
-                    LoadModelMolde();
+                    if (editar.getInformacion() != "") {
+                        CleanTable();
+                        LoadmodelProvedorPrima();
+                    }
                 }
-              }
-            }else{
-                  JOptionPane.showMessageDialog(null,"No se ha seleccionado ningun registro");  
-                }
-        }
-        catch(Exception ex){
-            
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
+            }
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_JbEditarActionPerformed
 
     private void JtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyReleased
         CleanTable();
-        listaMolde = obm.BuscaMolde(JtBuscar.getText());// busca texto en la bd
-        modelMolde.setNumRows(listaMolde.size());// asigna numero de columnas
-        //despliega informacion en la tabla
-        for(int i =0; i <listaMolde.size(); i++){
-            modelMolde.setValueAt(listaMolde.get(i).getMolde(), i, 0);
-            modelMolde.setValueAt(listaMolde.get(i).getPunto(), i, 1);
-            modelMolde.setValueAt(listaMolde.get(i).getCantidad(), i, 2);
-            modelMolde.setValueAt(listaMolde.get(i).getStatus(), i, 3);
-            modelMolde.setValueAt(listaMolde.get(i).getLinea(), i, 4);
+        ArrayList<ProveedorMPrima> listaProveedorMPrima = obj.ProveedorMPrimaSearch(JtBuscar.getText());
+        modelProvedorPrima.setNumRows(listaProveedorMPrima.size());
+        for (int i = 0; i < listaProveedorMPrima.size(); i++) {
+            ProveedorMPrima p = listaProveedorMPrima.get(i);
+            modelProvedorPrima.setValueAt(p.getNombre(), i, 0);
+            modelProvedorPrima.setValueAt(p.getRfc(), i, 1);
+            modelProvedorPrima.setValueAt(p.getCalle(), i, 2);
+            modelProvedorPrima.setValueAt(p.getEstado(), i, 3);
+            modelProvedorPrima.setValueAt(p.getCiudad(), i, 4);
+            modelProvedorPrima.setValueAt(p.getTelefono(), i, 5);
+            modelProvedorPrima.setValueAt(p.getEmail(), i, 6);
         }
     }//GEN-LAST:event_JtBuscarKeyReleased
 
-    private void JbReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbReporteActionPerformed
-        ReporteMoldes p = new ReporteMoldes(null,true);
-        p.setVisible(true);
-        p.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        p.setAlwaysOnTop(true); 
-    }//GEN-LAST:event_JbReporteActionPerformed
-
     private void JtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyTyped
-      char c = evt.getKeyChar();
-      if(Character.isLowerCase(c)){
-        String cad = (""+c).toUpperCase();
-        c = cad.charAt(0);
-        evt.setKeyChar(c);
-      }
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
+        }
     }//GEN-LAST:event_JtBuscarKeyTyped
 
     private void JtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JtBuscarActionPerformed
-     public Image getImage(){
-        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/PhotoPrint_11187.png"));
-        return icon;
-    } 
-    private void CleanTable(){
-        int numFilas = modelMolde.getRowCount();
-        if(numFilas > 0){
-            for(int i = numFilas - 1; i >=0; i--){
-                modelMolde.removeRow(i);            }
-        }
-    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbEditar;
     private javax.swing.JButton JbEliminar;
@@ -316,7 +340,7 @@ public class Moldes extends javax.swing.JInternalFrame {
     private javax.swing.JButton JbReporte;
     private javax.swing.JButton JbSalir;
     private javax.swing.JTextField JtBuscar;
-    private javax.swing.JTable JtDatosMolde;
+    private javax.swing.JTable JtProveedorMPrima;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

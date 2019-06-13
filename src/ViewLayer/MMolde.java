@@ -1,21 +1,22 @@
-
 package ViewLayer;
 
 import ObjectLayer.Linea;
 import ObjectLayer.Molde;
 import ObjectLayer.ObjectMoldes;
+import ObjectLayer.Validacion;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
-
 public class MMolde extends javax.swing.JDialog {
+
     Vector<Linea> datos = new Vector<Linea>();
     ObjectMoldes obm = new ObjectMoldes();
-   public Molde m;
+    public Molde m;
     String informacion = "";
+
     public MMolde(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -24,23 +25,26 @@ public class MMolde extends javax.swing.JDialog {
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/edit-validated_40458.png"));
         setIconImage(icon);
-        
+
         setLocationRelativeTo(null);
-        
+
     }
+
     public MMolde() {
-       
-        
+
     }
-    public String getInformacion(){
+
+    public String getInformacion() {
         return this.informacion;
     }
-     private void LoadModelMolde(){
+
+    private void LoadModelMolde() {
         Linea ln = new Linea();
         DefaultComboBoxModel modelLinea = new DefaultComboBoxModel(ln.getLinea());
-        datos=ln.getLinea();
+        datos = ln.getLinea();
         Jtl.setModel(modelLinea);
-   }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -190,24 +194,29 @@ public class MMolde extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbGuardarActionPerformed
-            if(Jtp.getText().equals("") || Jtc.getText().equals("") || Jtl.getSelectedIndex()==0 ){
-                JOptionPane.showMessageDialog(this, "Falta datos de ingresar verifica","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-            }else {
-                Molde mol = new Molde();
-                mol.setLinea(datos.get(Jtl.getSelectedIndex()).getId_Linea());
-                mol.setPunto(Integer.parseInt(Jtp.getText()));
-                mol.setCantidad(Integer.parseInt(Jtc.getText()));
-                mol.setMolde(m.getMolde());                
-              if(obm.MoldeUpdate(mol)){
-                 
-                JOptionPane.showMessageDialog(this, "Registro modificado Correctamente!!!","TOP-SUELAS" ,JOptionPane.INFORMATION_MESSAGE);
+        Validacion v = new Validacion();// instancia objeto para validar campos
+        //verifica si los campos estan vacios    
+        if (Jtp.getText().equals("") || Jtc.getText().equals("") || Jtl.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Falta datos de ingresar verifica", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+        } else if (v.verificapunto(Jtp.getText()) && v.verificanumeros(Jtc.getText())) {
+            Molde mol = new Molde();
+            //añade informacion al objeto molde
+            mol.setLinea(datos.get(Jtl.getSelectedIndex()).getId_Linea());
+            mol.setPunto(Integer.parseInt(Jtp.getText()));
+            mol.setCantidad(Integer.parseInt(Jtc.getText()));
+            mol.setMolde(m.getMolde());
+            if (obm.MoldeUpdate(mol)) {//actualiza el molde especificado con el objeto molde
+                JOptionPane.showMessageDialog(this, "Registro modificado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                 informacion = "1";
-                dispose(); 
-              }else{
-                JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-                dispose();     
-              } 
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                dispose();
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Datos introducidos no validos, Intentelo de nuevo", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            Jtp.requestFocus();
+        }
     }//GEN-LAST:event_JbGuardarActionPerformed
 
     private void JbCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbCerrarActionPerformed
@@ -223,7 +232,7 @@ public class MMolde extends javax.swing.JDialog {
     }//GEN-LAST:event_JtpActionPerformed
 
     private void JtpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JtpMouseClicked
-        
+
     }//GEN-LAST:event_JtpMouseClicked
 
     private void JtcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JtcMouseClicked
@@ -233,15 +242,16 @@ public class MMolde extends javax.swing.JDialog {
     private void JtcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtcActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JtcActionPerformed
-    private void Cerrar(){
+    private void Cerrar() {
         String botones[] = {"SI", "NO"};
-        int eleccion = JOptionPane.showOptionDialog(this,"¿Deseas cerrar esta ventana?", "TOP-SUELAS", 
+        int eleccion = JOptionPane.showOptionDialog(this, "¿Deseas cerrar esta ventana?", "TOP-SUELAS",
                 0, 0, null, botones, this);
-        if(eleccion == JOptionPane.YES_OPTION){
+        if (eleccion == JOptionPane.YES_OPTION) {
             dispose();
-        }else if(eleccion == JOptionPane.NO_OPTION){       
+        } else if (eleccion == JOptionPane.NO_OPTION) {
         }
     }
+
     /**
      * @param args the command line arguments
      */

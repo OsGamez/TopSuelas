@@ -14,7 +14,7 @@ import ObjectLayer.Validacion;
 public class testvalidar {
     public static void main(String [] ar){
         Validacion v = new Validacion();
-        System.out.println(v.verificanumeros("0h1"));
+        System.out.println(v.verificanumeros("3"));
         
     }
 }

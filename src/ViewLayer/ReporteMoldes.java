@@ -142,15 +142,16 @@ public class ReporteMoldes extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JbImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbImprimirActionPerformed
-        String l = datos.get(Jtl.getSelectedIndex()).getDescripcion();
-        if (Jts.isSelected() == false && Jtt.isSelected() == false) {
+        String l = datos.get(Jtl.getSelectedIndex()).getDescripcion();// se toma el dato del combobox
+        if (Jts.isSelected() == false && Jtt.isSelected() == false) {// verifica que las opciones esten seleccionadas
             JOptionPane.showMessageDialog(this, "Selecciona una opcion", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
         } else if (Jts.isSelected() == true && Jtt.isSelected() == true) {
+            //verifica que alguna de las opciones este marcada
             JOptionPane.showMessageDialog(this, "Solo debes de seleccionar una opcion", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-        } else if (Jts.isSelected() == true && Jtl.getSelectedIndex() == 0) {
+        } else if (Jts.isSelected() == true && Jtl.getSelectedIndex() == 0) {// verifica que las opciones esten seleccionadas
             JOptionPane.showMessageDialog(this, "Selecciona una suela", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
         } else {
-            String select = (Jtt.isSelected()) ? "" : l;
+            String select = (Jtt.isSelected()) ? "" : l;// asigna de la suela para la posterior comparacion en el reporte
             try {
                 Map par = new HashMap();
                 par.put("linea", select);
@@ -170,7 +171,6 @@ public class ReporteMoldes extends javax.swing.JDialog {
                 Logger.getLogger(ReporteMoldes.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
     }//GEN-LAST:event_JbImprimirActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

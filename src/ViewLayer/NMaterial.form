@@ -96,13 +96,13 @@
                               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Component id="JbGuardar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="JbCancelar" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
@@ -115,22 +115,25 @@
                                   <Component id="JbCmaxima" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="JbDivisa" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="JbTipo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="JcDivisa" min="-2" pref="125" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="JtTcosto" max="32767" attributes="0"/>
-                                          <Component id="JtCantidadMa" pref="195" max="32767" attributes="0"/>
-                                          <Component id="JtCantidadM" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="JtUcosto" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="JtTcosto" max="32767" attributes="0"/>
+                                      <Component id="JtCantidadMa" max="32767" attributes="0"/>
+                                      <Component id="JtCantidadM" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="JtUcosto" alignment="0" max="32767" attributes="0"/>
                                       <Component id="JtCostoC" alignment="1" min="-2" pref="195" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="JcProveedor" max="32767" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="JtId" min="-2" pref="40" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
-                          <Component id="JtId" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -197,6 +200,8 @@
                   <Component id="JbConsumo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="JcConsumo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="JtId" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JcProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -464,6 +469,30 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="JcProveedor">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Proveedor M. Prima"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
