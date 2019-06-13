@@ -17,7 +17,6 @@ import ObjectLayer.Parametro;
 import ObjectLayer.Pedido;
 import ObjectLayer.Precio;
 import ObjectLayer.Producto;
-import ObjectLayer.RazonSocial;
 import com.sun.glass.events.KeyEvent;
 import java.awt.event.ItemEvent;
 import java.sql.Connection;
