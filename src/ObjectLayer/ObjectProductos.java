@@ -103,6 +103,37 @@ public class ObjectProductos {
         return listaProductos;
     }
 
+    public ArrayList<Producto>GetByC(String filtro) {
+        ArrayList<Producto> listaProductos = new ArrayList<Producto>();
+        try {
+            st = c.prepareStatement("select  p.Descripcion,p.Id_Producto,\n"
+                    + "p.Id_Color, p.Id_Corrida,c.Descripcion as Color,cr.Descripcion as Corrida,\n"
+                    + "cr.Punto_Inicial,cr.Punto_Final\n"
+                    + "from Producto p inner join Color c on p.Id_Color = c.Id_Color\n"
+                    + "inner join Corrida cr on p.Id_Corrida = cr.Id_Corrida\n"
+                    + "WHERE p.Activo = 1  and p.Descripcion LIKE'" + filtro + "%' ORDER BY p.Descripcion");
+
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                Producto producto = new Producto();
+                producto.setId_Color(rs.getInt("Id_Color"));
+                producto.setId_Corrida(rs.getInt("Id_Corrida"));
+                producto.setDescripcionColor(rs.getString("Color"));
+                producto.setDescripcionCorrida(rs.getString("Corrida"));
+                producto.setId_Producto(rs.getInt("Id_Producto"));
+                producto.setDescripcion(rs.getString("Descripcion"));
+                producto.setPti(rs.getFloat("Punto_Inicial"));
+                producto.setPtf(rs.getFloat("Punto_Final"));
+
+                listaProductos.add(producto);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listaProductos;
+    }
+    
     public ArrayList<Producto> productoSearch(String filtro) {
         ArrayList<Producto> listaProductos = new ArrayList<Producto>();
         try {

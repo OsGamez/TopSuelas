@@ -3,6 +3,7 @@ package ViewLayer;
 import ObjectLayer.Corrida;
 import ObjectLayer.Costo;
 import ObjectLayer.Material;
+import ObjectLayer.ObjectCorridas;
 import ObjectLayer.ObjectCostos;
 import ObjectLayer.ObjectMateriales;
 import ObjectLayer.ObjectProductos;
@@ -27,6 +28,7 @@ public class NCosto extends javax.swing.JDialog {
     ObjectCostos obj = new ObjectCostos();
     ObjectProductos ObjP = new ObjectProductos();
     ObjectMateriales ObjM = new ObjectMateriales();
+    ObjectCorridas ObjC = new ObjectCorridas();
     ObjectRCPT pt = new ObjectRCPT();
     Material m = new Material();
     double Tolerancia = 0;
@@ -37,7 +39,7 @@ public class NCosto extends javax.swing.JDialog {
     DefaultListModel<Producto> modeloListaProductos = new DefaultListModel<Producto>();
     DefaultListModel<PtProducto> modeloListaRCPT = new DefaultListModel<PtProducto>();
     DefaultListModel<Material> modeloListaMat = new DefaultListModel<Material>();
-
+    
     public NCosto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -55,6 +57,8 @@ public class NCosto extends javax.swing.JDialog {
         JbPrecio.setForeground(Color.blue);
         JtPesoT.setForeground(Color.blue);
         Jtid.setVisible(false);
+        JbPi.setVisible(false);
+        JbPf.setVisible(false);
     }
 
     public String getInformacion() {
@@ -100,6 +104,8 @@ public class NCosto extends javax.swing.JDialog {
         listaMat = new javax.swing.JList<>();
         JbCvet = new javax.swing.JLabel();
         Jtid = new javax.swing.JTextField();
+        JbPi = new javax.swing.JLabel();
+        JbPf = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("COSTO");
@@ -256,6 +262,10 @@ public class NCosto extends javax.swing.JDialog {
 
         JbCvet.setText("jLabel2");
 
+        JbPi.setText("jLabel2");
+
+        JbPf.setText("jLabel3");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -314,6 +324,15 @@ public class NCosto extends javax.swing.JDialog {
                                 .addComponent(JbC)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(JbCostoT))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGap(120, 120, 120)
+                                    .addComponent(JtPcol, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(71, 71, 71))
+                                .addComponent(JbCol))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(236, 236, 236)
+                                .addComponent(JbColada))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(JbPunto)
@@ -329,17 +348,12 @@ public class NCosto extends javax.swing.JDialog {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(JtPunto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(38, 38, 38)
-                                        .addComponent(Jtid))))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGap(120, 120, 120)
-                                    .addComponent(JtPcol, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(71, 71, 71))
-                                .addComponent(JbCol))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(236, 236, 236)
-                                .addComponent(JbColada)))))
-                .addGap(119, 119, 119))
+                                        .addComponent(Jtid)))
+                                .addGap(77, 77, 77)
+                                .addComponent(JbPi)
+                                .addGap(34, 34, 34)
+                                .addComponent(JbPf)))))
+                .addGap(59, 59, 59))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,7 +372,9 @@ public class NCosto extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(JbPunto)
                             .addComponent(JtPunto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Jtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Jtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JbPi)
+                            .addComponent(JbPf))
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(JtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -427,6 +443,8 @@ public class NCosto extends javax.swing.JDialog {
         } else {
             Editar();
         }
+        
+       
     }//GEN-LAST:event_JbGuardarActionPerformed
 
     private void Guardar() {
@@ -503,166 +521,11 @@ public class NCosto extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowClosing
 
     private boolean ValidarCorrida() {
-        switch (JbCorrida.getText()) {
-            case "[10-12]":
-                if (JtPunto.getText().equals("10") || JtPunto.getText().equals("105") || JtPunto.getText().equals("11")
-                    || JtPunto.getText().equals("115") || JtPunto.getText().equals("12") || JtPunto.getText().equals("125")    ) {
-                    return true;
-                } else {
-                    return false;
-                }
-            case "[11-14]":
-                if (JtPunto.getText().equals("11") || JtPunto.getText().equals("12") || JtPunto.getText().equals("13")
-                        || JtPunto.getText().equals("14")
-                    || JtPunto.getText().equals("115") || JtPunto.getText().equals("125") || JtPunto.getText().equals("135")
-                        || JtPunto.getText().equals("145")    ) {
-                    return true;
-                } else {
-                    return false;
-                }
-            case "[12-14]":
-                if (JtPunto.getText().equals("12") || JtPunto.getText().equals("13") || JtPunto.getText().equals("14")
-                    || JtPunto.getText().equals("12.5") || JtPunto.getText().equals("13.5") || JtPunto.getText().equals("14.5")    ) {
-                    return true;
-                } else {
-                    return false;
-                }
-            case "[13-16]":
-                if (JtPunto.getText().equals("13") || JtPunto.getText().equals("14") || JtPunto.getText().equals("15")
-                        || JtPunto.getText().equals("16")
-                    || JtPunto.getText().equals("135") || JtPunto.getText().equals("145") || JtPunto.getText().equals("155")
-                        || JtPunto.getText().equals("165")    ) {
-                    return true;
-                } else {
-                    return false;
-                }
-            case "[15-17]":
-                if (JtPunto.getText().equals("15") || JtPunto.getText().equals("16") || JtPunto.getText().equals("17")
-                    || JtPunto.getText().equals("15.5") || JtPunto.getText().equals("16.5") || JtPunto.getText().equals("17.5")    ) {
-                    return true;
-                } else {
-                    return false;
-                }
-            case "[17-21]":
-                if (JtPunto.getText().equals("17") || JtPunto.getText().equals("18") || JtPunto.getText().equals("19")
-                        || JtPunto.getText().equals("20") || JtPunto.getText().equals("21")
-                || JtPunto.getText().equals("17.5") || JtPunto.getText().equals("18.5") || JtPunto.getText().equals("19.5")
-                        || JtPunto.getText().equals("20.5") || JtPunto.getText().equals("21.5")        ) {
-                    return true;
-                } else {
-                    return false;
-                }
-            case "[21-25]":
-                if (JtPunto.getText().equals("21") || JtPunto.getText().equals("22") || JtPunto.getText().equals("23")
-                        || JtPunto.getText().equals("24") || JtPunto.getText().equals("25")
-                || JtPunto.getText().equals("21.5") || JtPunto.getText().equals("22.5") || JtPunto.getText().equals("23.5")
-                        || JtPunto.getText().equals("24.5") || JtPunto.getText().equals("25.5")        ) {
-                    return true;
-                } else {
-                    return false;
-                }
-            case "[22-27]":
-                if (JtPunto.getText().equals("22") || JtPunto.getText().equals("23") || JtPunto.getText().equals("24")
-                        || JtPunto.getText().equals("25") || JtPunto.getText().equals("26") || JtPunto.getText().equals("27")
-                    || JtPunto.getText().equals("22.5") || JtPunto.getText().equals("23.5") || JtPunto.getText().equals("24.5")
-                        || JtPunto.getText().equals("25.5") || JtPunto.getText().equals("26.5") || JtPunto.getText().equals("27.5")    ) {
-                    return true;
-                } else {
-                    return false;
-                }
-            case "[23-27]":
-                if (JtPunto.getText().equals("23") || JtPunto.getText().equals("24") || JtPunto.getText().equals("25")
-                        || JtPunto.getText().equals("26") || JtPunto.getText().equals("27")
-                || JtPunto.getText().equals("23.5") || JtPunto.getText().equals("24.5") || JtPunto.getText().equals("25.5")
-                        || JtPunto.getText().equals("26.5") || JtPunto.getText().equals("27.5")        ) {
-                    return true;
-                } else {
-                    return false;
-                }
-            case "[18-21]":
-                if (JtPunto.getText().equals("18") || JtPunto.getText().equals("19") || JtPunto.getText().equals("20")
-                        || JtPunto.getText().equals("21")
-                || JtPunto.getText().equals("18.5") || JtPunto.getText().equals("19.5") || JtPunto.getText().equals("20.5")
-                        || JtPunto.getText().equals("21.5")        ) {
-                    return true;
-                } else {
-                    return false;
-                }
-
-            case "[25-30]":
-                if (JtPunto.getText().equals("25") || JtPunto.getText().equals("26") || JtPunto.getText().equals("27")
-                        || JtPunto.getText().equals("28") || JtPunto.getText().equals("29") || JtPunto.getText().equals("30")
-                    || JtPunto.getText().equals("25.5") || JtPunto.getText().equals("26.5") || JtPunto.getText().equals("27.5")
-                        || JtPunto.getText().equals("28.5") || JtPunto.getText().equals("29.5") || JtPunto.getText().equals("30.5")    ) {
-                    return true;
-                } else {
-                    return false;
-                }
-                
-            case "[25-29]":
-                if (JtPunto.getText().equals("25") || JtPunto.getText().equals("26") || JtPunto.getText().equals("27")
-                        || JtPunto.getText().equals("28") || JtPunto.getText().equals("29") || JtPunto.getText().equals("30")
-                    || JtPunto.getText().equals("25.5") || JtPunto.getText().equals("26.5") || JtPunto.getText().equals("27.5")
-                        || JtPunto.getText().equals("28.5") || JtPunto.getText().equals("29.5") || JtPunto.getText().equals("30.5")    ) {
-                    return true;
-                } else {
-                    return false;
-                }    
-            case "[27-29]":
-                if (JtPunto.getText().equals("27") || JtPunto.getText().equals("28") || JtPunto.getText().equals("29")
-                || JtPunto.getText().equals("275") || JtPunto.getText().equals("285") || JtPunto.getText().equals("295")        ) {
-                    return true;
-                } else {
-                    return false;
-                }
-            case "[30-33]":
-                if (JtPunto.getText().equals("30") || JtPunto.getText().equals("31") || JtPunto.getText().equals("32")
-                        || JtPunto.getText().equals("33") ||
-                    JtPunto.getText().equals("30.5") || JtPunto.getText().equals("31.5") || JtPunto.getText().equals("32.5")
-                        || JtPunto.getText().equals("33.5")    ) {
-                    return true;
-                } else {
-                    return false;
-                }
-            case "[22-24]":
-                if (JtPunto.getText().equals("22") || JtPunto.getText().equals("23") || JtPunto.getText().equals("24")
-                || JtPunto.getText().equals("22.5") || JtPunto.getText().equals("23.5") || JtPunto.getText().equals("24.5")        ) {
-                    return true;
-                } else {
-                    return false;
-                }
-            case "[22-26]":
-                if (JtPunto.getText().equals("22") || JtPunto.getText().equals("23") || JtPunto.getText().equals("24")
-                        || JtPunto.getText().equals("25") || JtPunto.getText().equals("26")
-                || JtPunto.getText().equals("22.5") || JtPunto.getText().equals("23.5") || JtPunto.getText().equals("24.5")
-                        || JtPunto.getText().equals("25.5") || JtPunto.getText().equals("26.5")        ) {
-                    return true;
-                } else {
-                    return false;
-                }
-            case "[23-26]":
-                if (JtPunto.getText().equals("22") || JtPunto.getText().equals("23")
-                        || JtPunto.getText().equals("24") || JtPunto.getText().equals("25")
-                        ||JtPunto.getText().equals("26")
-                || JtPunto.getText().equals("22.5") || JtPunto.getText().equals("23.5")
-                        || JtPunto.getText().equals("24.5") || JtPunto.getText().equals("25.5")
-                        ||JtPunto.getText().equals("26.5")        ) {
-                    return true;
-                } else {
-                    return false;
-                }
-            case "[23-29]":
-                if (JtPunto.getText().equals("22") || JtPunto.getText().equals("23")
-                        || JtPunto.getText().equals("24") || JtPunto.getText().equals("25")
-                        || JtPunto.getText().equals("26") || JtPunto.getText().equals("22.5")
-                        || JtPunto.getText().equals("23.5") || JtPunto.getText().equals("24.5")
-                        || JtPunto.getText().equals("25.5") || JtPunto.getText().equals("26.5")) {
-                    return true;
-                } else {
-                    return false;
-                }
-            default:
-                return false;
+        if(Float.parseFloat(JtPunto.getText()) >= Float.parseFloat(JbPi.getText()) && 
+                Float.parseFloat(JtPunto.getText())<= Float.parseFloat(JbPf.getText())){
+            return true;
+        }else{
+            return false;
         }
     }
     private void JtPtolKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtPtolKeyPressed
@@ -712,7 +575,7 @@ public class NCosto extends javax.swing.JDialog {
         if (JtProducto.getText().isEmpty()) {
             limpiarListaProductos();
         } else {
-            ArrayList<Producto> listaProductos = ObjP.GetByCosto(JtProducto.getText());
+            ArrayList<Producto> listaProductos = ObjP.GetByC(JtProducto.getText());
 
             for (Producto prod : listaProductos) {
                 modeloListaProductos.addElement(prod);
@@ -731,12 +594,14 @@ public class NCosto extends javax.swing.JDialog {
 
     private void listaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaProductosMouseClicked
         JList lis = (JList) evt.getSource();
-
+       
         if (evt.getClickCount() == 1) {
             Producto prod = (Producto) lis.getSelectedValue();
-            JbCorrida.setText(String.valueOf(cr.getCorridas(prod.getId_Producto())));
+            JbCorrida.setText(prod.getDescripcionCorrida());
             JtProducto.setText(prod.getDescripcion());
             JbIdProd.setText(String.valueOf(prod.getId_Producto()));
+            JbPi.setText(String.valueOf(prod.getPti()));
+            JbPf.setText(String.valueOf(prod.getPtf()));
             limpiarListaProductos();
             JtPt.requestFocus();
         }
@@ -887,6 +752,8 @@ public class NCosto extends javax.swing.JDialog {
     private javax.swing.JLabel JbP;
     private javax.swing.JLabel JbPc;
     private javax.swing.JLabel JbPeso;
+    private javax.swing.JLabel JbPf;
+    private javax.swing.JLabel JbPi;
     public javax.swing.JLabel JbPrecio;
     private javax.swing.JLabel JbPunto;
     public javax.swing.JLabel JbRCPT;

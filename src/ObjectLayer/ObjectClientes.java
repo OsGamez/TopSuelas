@@ -15,10 +15,10 @@ import javax.swing.JOptionPane;
 
 public class ObjectClientes {
 
-    //Connection c = Server.getCobranza();
-    //Connection rc = Server.getRcobranza();
-    Connection c = Conexion.getCobranza();
-    Connection rc = Conexion.getRcobranza();
+    Connection c = Server.getCobranza();
+    Connection rc = Server.getRcobranza();
+    //Connection c = Conexion.getCobranza();
+    //Connection rc = Conexion.getRcobranza();
     PreparedStatement st = null;
     Statement sta = null;
     PreparedStatement copy = null;

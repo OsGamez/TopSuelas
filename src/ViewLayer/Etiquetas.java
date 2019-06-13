@@ -10,6 +10,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -41,7 +43,8 @@ public class Etiquetas extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         LoadModelEtiqueta();
         LoadModelAlmacen();
-
+        Calendar fecha = new GregorianCalendar();
+        JeFecha.setCalendar(fecha);
     }
 
     private void LoadModelEtiqueta() {

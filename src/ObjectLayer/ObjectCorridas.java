@@ -76,6 +76,28 @@ public class ObjectCorridas {
         return listaCorridas;
     }
 
+     public ArrayList<Corrida>getById(int Id) {
+        ArrayList<Corrida> listaCorridas = new ArrayList<Corrida>();
+        try {
+            st = c.prepareStatement("SELECT * FROM Corrida WHERE Id_Corrida = ? AND Activo = 1");
+            st.setInt(1, Id);
+
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                Corrida corrida = new Corrida();
+                corrida.setId_Corrida(rs.getInt("Id_Corrida"));
+                corrida.setPunto_Inicial(rs.getFloat("Punto_Inicial"));
+                corrida.setPunto_Final(rs.getFloat("Punto_Final"));
+
+                listaCorridas.add(corrida);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listaCorridas;
+    }
+    
     public ArrayList<Corrida> corridaSearch(String criterio) {
         ArrayList<Corrida> listaCorridas = new ArrayList<Corrida>();
         try {

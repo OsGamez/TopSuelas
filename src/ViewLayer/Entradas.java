@@ -45,6 +45,8 @@ public class Entradas extends javax.swing.JInternalFrame {
         JbIdProd.setVisible(false);
         JbAm.setVisible(false);
         CargarCodigo();
+        cargarListenerPedido();
+        JbTpares.setVisible(false);
     }
 
     private void LoadModelAm() {
@@ -124,12 +126,12 @@ public class Entradas extends javax.swing.JInternalFrame {
         Jp = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         JlSuela = new javax.swing.JList<>();
-        JbTpares = new javax.swing.JLabel();
         JcAm = new javax.swing.JComboBox<>();
         JbCorrida = new javax.swing.JLabel();
         JbIdProd = new javax.swing.JLabel();
         JbAm = new javax.swing.JLabel();
         JcCuenta = new javax.swing.JComboBox<>();
+        JbTpares = new javax.swing.JLabel();
 
         setClosable(true);
         setMaximizable(true);
@@ -202,8 +204,6 @@ public class Entradas extends javax.swing.JInternalFrame {
         });
         jScrollPane3.setViewportView(JlSuela);
 
-        JbTpares.setText("jLabel11");
-
         javax.swing.GroupLayout JpLayout = new javax.swing.GroupLayout(Jp);
         Jp.setLayout(JpLayout);
         JpLayout.setHorizontalGroup(
@@ -211,19 +211,13 @@ public class Entradas extends javax.swing.JInternalFrame {
             .addGroup(JpLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(JbTpares)
-                .addContainerGap())
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         JpLayout.setVerticalGroup(
             JpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpLayout.createSequentialGroup()
                 .addContainerGap(13, Short.MAX_VALUE)
-                .addGroup(JpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpLayout.createSequentialGroup()
-                        .addComponent(JbTpares)
-                        .addContainerGap())))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         JcAm.addItemListener(new java.awt.event.ItemListener() {
@@ -243,6 +237,8 @@ public class Entradas extends javax.swing.JInternalFrame {
                 JcCuentaItemStateChanged(evt);
             }
         });
+
+        JbTpares.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -280,7 +276,10 @@ public class Entradas extends javax.swing.JInternalFrame {
                             .addComponent(jLabel7))
                         .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JbSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JbSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(JbTpares, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(JdFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(JtDoc)
@@ -333,7 +332,8 @@ public class Entradas extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel7)
-                                    .addComponent(JbSerie))
+                                    .addComponent(JbSerie)
+                                    .addComponent(JbTpares))
                                 .addGap(28, 28, 28)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -483,7 +483,7 @@ public class Entradas extends javax.swing.JInternalFrame {
     }
 
     private void cargarListenerPedido() {
-        /*modelEntrada.addTableModelListener(new TableModelListener() {
+        modelEntrada.addTableModelListener(new TableModelListener() {
             @Override
             public void tableChanged(TableModelEvent e) {
                 int row = modelEntrada.getRowCount();
@@ -491,15 +491,15 @@ public class Entradas extends javax.swing.JInternalFrame {
                 int pares = 0;
                // DecimalFormat total = new DecimalFormat("#.00");
                 for (int i = 0; i < row; i++) {
-                    String importe = (String) modelEntrada.getValueAt(i, 19);
-                    String tpares = (String) modelPedido.getValueAt(i, 17);
-                    sumatoria += Double.parseDouble(importe);
+                    //String importe = (String) modelEntrada.getValueAt(i, 19);
+                    String tpares = (String) modelEntrada.getValueAt(i, 15);
+                    //sumatoria += Double.parseDouble(importe);
                     pares += Integer.parseInt(tpares);
                 }
-                lblTotal.setText(total.format(sumatoria));
-                lblPares.setText(String.valueOf(pares));
+                //lblTotal.setText(total.format(sumatoria));
+                JbTpares.setText(String.valueOf(pares));
             }
-        });*/
+        });
     }
     
     
