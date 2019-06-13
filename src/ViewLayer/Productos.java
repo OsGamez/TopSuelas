@@ -246,7 +246,6 @@ public class Productos extends javax.swing.JInternalFrame {
         CleanTable();
         JtBuscar.getText();
         ArrayList<Producto>listaProductos = obj.productoSearch(JtBuscar.getText());
-       
         modelProducto.setNumRows(listaProductos.size());
         
         for(int i = 0; i < listaProductos.size(); i++){
@@ -268,9 +267,9 @@ public class Productos extends javax.swing.JInternalFrame {
     NProducto editar = new NProducto(null, true);
     int fila = JtDatosProducto.getSelectedRow();       
     try{
-        if(fila>=0){
+        if(fila >=0){
         int opcion = JOptionPane.showConfirmDialog(this,"¿Quieres editar este registro?","TOP-SUELAS",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-        if(opcion ==JOptionPane.YES_OPTION){
+        if(opcion == JOptionPane.YES_OPTION){
         Color cl = new Color();
         Corrida cr = new Corrida();
         Linea ln = new Linea();
@@ -296,13 +295,12 @@ public class Productos extends javax.swing.JInternalFrame {
               }
             }else{
                   JOptionPane.showMessageDialog(null,"No se ha seleccionado ningun registro");  
-                }
+            }
         }
         catch(Exception ex){
             
             ex.printStackTrace();
         }
-            
     }//GEN-LAST:event_JbEditarActionPerformed
   
     private void JbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEliminarActionPerformed

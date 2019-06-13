@@ -17,6 +17,8 @@ public class Producto {
     private String DescripcionColor;
     private String DescripcionCorrida;
     private String DescripcionLinea;
+    private Float Pti;
+    private Float Ptf;
     private int Id_Color;
     private int Id_Corrida;
     private boolean Activo;
@@ -30,6 +32,23 @@ public class Producto {
     public Producto() {
     }
 
+    public Float getPti() {
+        return Pti;
+    }
+
+    public void setPti(Float Pti) {
+        this.Pti = Pti;
+    }
+
+    public Float getPtf() {
+        return Ptf;
+    }
+
+    public void setPtf(Float Ptf) {
+        this.Ptf = Ptf;
+    }
+
+    
     public int getId_Lista() {
         return Id_Lista;
     }

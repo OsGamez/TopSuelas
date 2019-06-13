@@ -136,7 +136,6 @@ public class Copiaarchivo extends Thread {
         } catch (HeadlessException | IOException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "No se pudo copiar debido a:\n" + e, "ATHLETIC", JOptionPane.ERROR_MESSAGE);
-            JOptionPane.showMessageDialog(null, "Unidades para dar de alta: \n H:/sistemas/dist/reloj \n q:/reloj/casmovre", "ATHLETIC", JOptionPane.INFORMATION_MESSAGE);
         }
 
     }

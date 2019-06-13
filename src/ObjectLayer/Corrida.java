@@ -95,6 +95,8 @@ public class Corrida {
                 cr = new Corrida();
                 cr.setId_Corrida(rs.getInt("Id_Corrida"));
                 cr.setDescripcion(rs.getString("Descripcion"));
+                cr.setPunto_Inicial(rs.getFloat("Punto_Inicial"));
+                cr.setPunto_Final(rs.getFloat("Punto_Final"));
                 datos.add(cr);
             }
             st.close();

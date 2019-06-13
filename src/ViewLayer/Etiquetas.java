@@ -12,6 +12,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -46,6 +48,8 @@ public class Etiquetas extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         LoadModelEtiqueta();
         LoadModelAlmacen();
+        Calendar fecha = new GregorianCalendar();
+        JeFecha.setCalendar(fecha);
         JbIdProd.setVisible(false);
         Jtp.setVisible(false);
 
@@ -119,6 +123,11 @@ public class Etiquetas extends javax.swing.JDialog {
 
         jLabel5.setText("PARES:");
 
+        JeTalla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JeTallaMouseClicked(evt);
+            }
+        });
         JeTalla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JeTallaActionPerformed(evt);
@@ -130,6 +139,11 @@ public class Etiquetas extends javax.swing.JDialog {
             }
         });
 
+        JePares.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JeParesMouseClicked(evt);
+            }
+        });
         JePares.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JeParesActionPerformed(evt);
@@ -150,6 +164,16 @@ public class Etiquetas extends javax.swing.JDialog {
 
         JeFecha.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
 
+        JtProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JtProductoMouseClicked(evt);
+            }
+        });
+        JtProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtProductoActionPerformed(evt);
+            }
+        });
         JtProducto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 JtProductoKeyReleased(evt);
@@ -271,7 +295,7 @@ public class Etiquetas extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void JeParesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JeParesActionPerformed
-        JeFecha.requestFocus();
+        JeAlmacen.requestFocus();
     }//GEN-LAST:event_JeParesActionPerformed
 
     private void JeTallaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JeTallaKeyPressed
@@ -318,6 +342,22 @@ public class Etiquetas extends javax.swing.JDialog {
           //  JtPt.requestFocus();
         }
     }//GEN-LAST:event_listaProductosMouseClicked
+
+    private void JtProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtProductoActionPerformed
+        
+    }//GEN-LAST:event_JtProductoActionPerformed
+
+    private void JtProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JtProductoMouseClicked
+        JtProducto.setText("");
+    }//GEN-LAST:event_JtProductoMouseClicked
+
+    private void JeTallaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JeTallaMouseClicked
+        JeTalla.setText("");
+    }//GEN-LAST:event_JeTallaMouseClicked
+
+    private void JeParesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JeParesMouseClicked
+        JePares.setText("");
+    }//GEN-LAST:event_JeParesMouseClicked
     private void Cerrar() {
 //        String botones[] = {"SI", "NO"};
 //        int eleccion = JOptionPane.showOptionDialog(this,"¿Deseas cerrar esta ventana?", "TOP-SUELAS", 
@@ -387,7 +427,7 @@ public class Etiquetas extends javax.swing.JDialog {
         }
     }
 
-    public String CreaCodigo(etiqueta e) {
+    private String CreaCodigo(etiqueta e) {
         String codigo = (e.getAlmacen() < 10) ? "0" + e.getAlmacen() : e.getAlmacen() + "";//01
         for (int i = e.getProducto().length(); i < 5; i++) {
             codigo += "0";

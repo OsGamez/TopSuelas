@@ -18,12 +18,14 @@ public class ObjectConceptos {
     
     public boolean conceptoAdd(String Cuenta, String SubCuenta, String Des) {
             try {
+                c.setAutoCommit(false);
                 st = c.prepareStatement("INSERT INTO Conceptoses(Cuenta,SubCuenta,Descripcion)"
                        + "VALUES(?,?,?)");
                 st.setString(1, Cuenta);
                 st.setString(2, SubCuenta);
                 st.setString(3, Des);
                 st.executeUpdate();
+                c.commit();
                 st.close();
                 return true;
             } catch (SQLException ex) {
@@ -45,6 +47,7 @@ public class ObjectConceptos {
             } 
         return false;
     }
+    
     public ArrayList<Concepto> conceptoGetAll() {
         ArrayList<Concepto> listaConcepto = new ArrayList<Concepto>();
         try {

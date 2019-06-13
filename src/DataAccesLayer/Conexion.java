@@ -88,7 +88,7 @@ public static Connection getUsuario(){
         if(us == null){
             String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
             Class.forName(driver);
-            us = DriverManager.getConnection("jdbc:sqlserver://DESKTOP-FHVBC8N:1433;databaseName=UsuariosPhy", "sa", "123");
+            us = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;databaseName=UsuariosPhy", "sa", "Admin1305");
         }
     }catch(ClassNotFoundException | SQLException ex){
         ex.printStackTrace();
