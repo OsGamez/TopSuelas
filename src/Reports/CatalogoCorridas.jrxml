@@ -4,13 +4,15 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
-		<![CDATA[SELECT Id_Corrida as CODIGO, Descripcion as CORRIDA,
+		<![CDATA[SELECT Id_Corrida as CODIGO, Descripcion as CORRIDA,Punto_Inicial,Punto_Final,
 case Activo when 1 then 'A' else 'I' end as ESTATUS
 FROM Corrida
 where Activo = 1]]>
 	</queryString>
 	<field name="CODIGO" class="java.lang.Short"/>
 	<field name="CORRIDA" class="java.lang.String"/>
+	<field name="Punto_Inicial" class="java.lang.Double"/>
+	<field name="Punto_Final" class="java.lang.Double"/>
 	<field name="ESTATUS" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -63,17 +65,33 @@ where Activo = 1]]>
 				<text><![CDATA[CORRIDA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="70" y="5" width="64" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="53133b0b-184a-4d25-af16-e7c8d0ac9a07"/>
+				<reportElement mode="Transparent" x="159" y="5" width="64" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="53133b0b-184a-4d25-af16-e7c8d0ac9a07"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[ESTATUS]]></text>
 			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="66" y="5" width="41" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="ec52b83d-088f-4772-95e0-58d3782e3bf4"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[P. INICIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="114" y="5" width="36" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="70d6b33b-2a2f-46c8-b7c3-10defaf694cb"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[P. FINAL]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="11" splitType="Stretch">
+		<band height="12" splitType="Stretch">
 			<textField pattern="" isBlankWhenNull="false">
 				<reportElement mode="Transparent" x="5" y="2" width="54" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="27bca684-cb6b-4775-b6c9-814498e1d8d6"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
@@ -83,12 +101,28 @@ where Activo = 1]]>
 				<textFieldExpression><![CDATA[$F{CORRIDA}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="75" y="2" width="41" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="6396cfce-6299-455c-bd2e-ad809edbe7c0"/>
+				<reportElement mode="Transparent" x="164" y="2" width="41" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="6396cfce-6299-455c-bd2e-ad809edbe7c0"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ESTATUS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="69" y="3" width="41" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="f592fae3-7c6b-45ea-9e5b-37c10f6e0f0c"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Punto_Inicial}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="116" y="3" width="36" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="785f8d99-d7e7-4eaf-a779-ce299e3ef5fe"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Punto_Final}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
