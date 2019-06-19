@@ -58,7 +58,7 @@
 				<text><![CDATA[MODELO:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="70" y="98" width="129" height="16" uuid="fc8a5d55-d0d4-4ac9-ba4b-83033d7b079e"/>
+				<reportElement x="70" y="98" width="205" height="16" uuid="fc8a5d55-d0d4-4ac9-ba4b-83033d7b079e"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -86,7 +86,7 @@
 				<textFieldExpression><![CDATA[$F{punto}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="70" y="114" width="52" height="16" uuid="567d2f36-540b-47e6-8f04-ef4ec56245df"/>
+				<reportElement x="70" y="114" width="139" height="16" uuid="567d2f36-540b-47e6-8f04-ef4ec56245df"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
