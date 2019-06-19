@@ -264,8 +264,8 @@ public class Precios extends javax.swing.JInternalFrame {
             if (fila >= 0) {
                 int opcion = JOptionPane.showConfirmDialog(this, "¿Quieres editar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (opcion == JOptionPane.YES_OPTION) {
-                    editar.JtProducto.setEnabled(false);
-                    editar.JtCliente.setEnabled(false);
+                    editar.JtProducto.setEditable(false);
+                    editar.JtCliente.setEditable(false);
                     editar.Jtid.setText(JtDatosPrecio.getValueAt(fila, 4).toString());
                     editar.JtProducto.setText(JtDatosPrecio.getValueAt(fila, 3).toString());
                     editar.JbIdProd.setText(JtDatosPrecio.getValueAt(fila, 4).toString());
@@ -275,7 +275,6 @@ public class Precios extends javax.swing.JInternalFrame {
                     editar.JtbP.setText(JtDatosPrecio.getValueAt(fila, 8).toString());
                     editar.JtCliente.setText(JtDatosPrecio.getValueAt(fila, 1).toString());
                     editar.JbIdCliente.setText(JtDatosPrecio.getValueAt(fila, 2).toString());
-
                     editar.setVisible(true);
                     editar.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                     editar.setAlwaysOnTop(true);
