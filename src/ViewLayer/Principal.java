@@ -50,6 +50,7 @@ public class Principal extends javax.swing.JFrame {
     Conceptos concepto;
     ConceptosMPrima conceptom;
     ProvedoresMPrima conceptomp;
+    OrdenCompra ordenc;
     public String Estado = "A";
     String Tb = "";
 
@@ -77,6 +78,8 @@ public class Principal extends javax.swing.JFrame {
         popopciones.add(JmSalir);
         JbUser.setText(us.getNombre());
         JbRol.setText(us.getDepartamento());
+        popCMP.add(JmCMP);
+//        popCMP.add(JmOrdenc);
         this.us = us;
         LoadVersion();
         if (us.getDepartamento().equals("ADMIN")) {
@@ -102,7 +105,7 @@ public class Principal extends javax.swing.JFrame {
             Jmcatcpt.setVisible(false);
             Jmfaccpt.setVisible(false);
             Jmpedcpt.setVisible(false);
-            nominas.setVisible(false);
+            cmo.setVisible(false);
         }
     }
 
@@ -160,14 +163,11 @@ public class Principal extends javax.swing.JFrame {
         JmUsuario = new javax.swing.JMenuItem();
         JmProduccion = new javax.swing.JMenu();
         Jmcatprod = new javax.swing.JMenu();
-        JmAlmacenes = new javax.swing.JMenuItem();
-        JmAlmacenesPrima = new javax.swing.JMenuItem();
         JmColores = new javax.swing.JMenuItem();
         JmCorridas = new javax.swing.JMenuItem();
         JmCostos = new javax.swing.JMenuItem();
         JmLineas = new javax.swing.JMenuItem();
         JmGastos = new javax.swing.JMenuItem();
-        JmMateriales = new javax.swing.JMenuItem();
         JmProductos = new javax.swing.JMenuItem();
         JmMoldes = new javax.swing.JMenuItem();
         JmMaquinas = new javax.swing.JMenuItem();
@@ -183,6 +183,13 @@ public class Principal extends javax.swing.JFrame {
         popcobranza = new javax.swing.JPopupMenu();
         popnomina = new javax.swing.JPopupMenu();
         popopciones = new javax.swing.JPopupMenu();
+        popCMP = new javax.swing.JPopupMenu();
+        JmCMP = new javax.swing.JMenu();
+        JmCatalogocmp = new javax.swing.JMenu();
+        JmAlmacenesPrima = new javax.swing.JMenuItem();
+        JmMateriales = new javax.swing.JMenuItem();
+        JmAlmacenes = new javax.swing.JMenuItem();
+        JmOrdenc = new javax.swing.JMenuItem();
         MainContent = new javax.swing.JDesktopPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
@@ -194,8 +201,9 @@ public class Principal extends javax.swing.JFrame {
         JbAlerta = new javax.swing.JLabel();
         cpt = new javax.swing.JLabel();
         cobranza = new javax.swing.JLabel();
-        nominas = new javax.swing.JLabel();
+        cmo = new javax.swing.JLabel();
         prod = new javax.swing.JLabel();
+        nominas = new javax.swing.JLabel();
 
         JmCobranza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/propagation_calculator_calc_6110.png"))); // NOI18N
         JmCobranza.setText("Cobranza");
@@ -482,26 +490,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        JmAlmacenes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        JmAlmacenes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/ForkliftTruck_Loaded_Black_icon-icons.com_54893.png"))); // NOI18N
-        JmAlmacenes.setText("Almacenes");
-        JmAlmacenes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JmAlmacenesActionPerformed(evt);
-            }
-        });
-        Jmcatprod.add(JmAlmacenes);
-
-        JmAlmacenesPrima.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        JmAlmacenesPrima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/delivery.png"))); // NOI18N
-        JmAlmacenesPrima.setText("Proveedor de materia prima");
-        JmAlmacenesPrima.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JmAlmacenesPrimaActionPerformed(evt);
-            }
-        });
-        Jmcatprod.add(JmAlmacenesPrima);
-
         JmColores.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmColores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/RGB_Circle_1-80_icon-icons.com_57282.png"))); // NOI18N
         JmColores.setText("Colores");
@@ -551,16 +539,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         Jmcatprod.add(JmGastos);
-
-        JmMateriales.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        JmMateriales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/box_full_products_14639.png"))); // NOI18N
-        JmMateriales.setText("Materiales");
-        JmMateriales.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JmMaterialesActionPerformed(evt);
-            }
-        });
-        Jmcatprod.add(JmMateriales);
 
         JmProductos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Vans_Sundown_Black_37299.png"))); // NOI18N
@@ -644,6 +622,53 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         JmOpciones.add(JmSalir);
+
+        JmCMP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Documents_43884.png"))); // NOI18N
+        JmCMP.setText("jMenu1");
+
+        JmCatalogocmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/catalog256_24878.png"))); // NOI18N
+        JmCatalogocmp.setText("Catalogo");
+
+        JmAlmacenesPrima.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmAlmacenesPrima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/delivery.png"))); // NOI18N
+        JmAlmacenesPrima.setText("Proveedor de materia prima");
+        JmAlmacenesPrima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmAlmacenesPrimaActionPerformed(evt);
+            }
+        });
+        JmCatalogocmp.add(JmAlmacenesPrima);
+
+        JmMateriales.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmMateriales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/box_full_products_14639.png"))); // NOI18N
+        JmMateriales.setText("Materiales");
+        JmMateriales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmMaterialesActionPerformed(evt);
+            }
+        });
+        JmCatalogocmp.add(JmMateriales);
+
+        JmAlmacenes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmAlmacenes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/ForkliftTruck_Loaded_Black_icon-icons.com_54893.png"))); // NOI18N
+        JmAlmacenes.setText("Almacenes");
+        JmAlmacenes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmAlmacenesActionPerformed(evt);
+            }
+        });
+        JmCatalogocmp.add(JmAlmacenes);
+
+        JmCMP.add(JmCatalogocmp);
+
+        JmOrdenc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Ordering_25406.png"))); // NOI18N
+        JmOrdenc.setText("Ordenes de Compra");
+        JmOrdenc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmOrdencActionPerformed(evt);
+            }
+        });
+        JmCMP.add(JmOrdenc);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TOP-SUELAS");
@@ -730,10 +755,10 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        nominas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/nomina.png"))); // NOI18N
-        nominas.addMouseListener(new java.awt.event.MouseAdapter() {
+        cmo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/cmp.png"))); // NOI18N
+        cmo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nominasMouseClicked(evt);
+                cmoMouseClicked(evt);
             }
         });
 
@@ -744,20 +769,29 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        nominas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/nomina.png"))); // NOI18N
+        nominas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nominasMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(nominas, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
-                    .addComponent(prod, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cmo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(prod, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE))
                 .addGap(127, 127, 127)
-                .addComponent(cpt, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cpt, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                    .addComponent(nominas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(138, 138, 138)
                 .addComponent(cobranza, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -768,9 +802,15 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(prod, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
                     .addComponent(cobranza, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cpt, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(26, 26, 26)
-                .addComponent(nominas, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmo, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                        .addGap(31, 31, 31))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(nominas, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -1320,9 +1360,10 @@ public class Principal extends javax.swing.JFrame {
         popcobranza.show(evt.getComponent(), evt.getX(), evt.getY());
     }//GEN-LAST:event_cobranzaMouseClicked
 
-    private void nominasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nominasMouseClicked
-        popnomina.show(evt.getComponent(), evt.getX(), evt.getY());
-    }//GEN-LAST:event_nominasMouseClicked
+    private void cmoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmoMouseClicked
+       popCMP.show(evt.getComponent(), evt.getX(), evt.getY());
+        
+    }//GEN-LAST:event_cmoMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         popopciones.show(evt.getComponent(), evt.getX(), evt.getY());
@@ -1392,6 +1433,17 @@ public class Principal extends javax.swing.JFrame {
         MainContent.getDesktopManager().maximizeFrame(conceptomp);
         conceptomp.setVisible(true);
     }//GEN-LAST:event_JmAlmacenesPrimaActionPerformed
+
+    private void JmOrdencActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmOrdencActionPerformed
+                    ordenc = new OrdenCompra(null, true);
+        ordenc.setVisible(true);
+        ordenc.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        ordenc.setAlwaysOnTop(true);
+    }//GEN-LAST:event_JmOrdencActionPerformed
+
+    private void nominasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nominasMouseClicked
+        popnomina.show(evt.getComponent(), evt.getX(), evt.getY());
+    }//GEN-LAST:event_nominasMouseClicked
     private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {
         LoadMaquina();
     }
@@ -1441,8 +1493,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JmAlmacenescpt;
     private javax.swing.JMenuItem JmAyuda;
     private javax.swing.JMenuItem JmBanco;
+    private javax.swing.JMenu JmCMP;
     private javax.swing.JMenu JmCPT;
     private javax.swing.JMenuItem JmCancelación;
+    private javax.swing.JMenu JmCatalogocmp;
     private javax.swing.JMenu JmCatalogocobranza;
     private javax.swing.JMenuItem JmCiudad;
     private javax.swing.JMenuItem JmClientes;
@@ -1469,6 +1523,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JmMateriales;
     private javax.swing.JMenuItem JmMoldes;
     private javax.swing.JMenu JmOpciones;
+    private javax.swing.JMenuItem JmOrdenc;
     private javax.swing.JMenuItem JmPais;
     private javax.swing.JMenuItem JmPedidos;
     private javax.swing.JMenuItem JmPrecios;
@@ -1491,6 +1546,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu Jmrepcpt;
     private javax.swing.JMenu Jmutilprod;
     private javax.swing.JDesktopPane MainContent;
+    private javax.swing.JLabel cmo;
     private javax.swing.JLabel cobranza;
     private javax.swing.JLabel cpt;
     private javax.swing.JLabel jLabel1;
@@ -1499,6 +1555,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nominas;
+    private javax.swing.JPopupMenu popCMP;
     private javax.swing.JPopupMenu popcobranza;
     private javax.swing.JPopupMenu popcpt;
     private javax.swing.JPopupMenu popnomina;
