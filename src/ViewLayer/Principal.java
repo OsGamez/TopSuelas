@@ -624,7 +624,7 @@ public class Principal extends javax.swing.JFrame {
         JmOpciones.add(JmSalir);
 
         JmCMP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Documents_43884.png"))); // NOI18N
-        JmCMP.setText("jMenu1");
+        JmCMP.setText("CMP");
 
         JmCatalogocmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/catalog256_24878.png"))); // NOI18N
         JmCatalogocmp.setText("Catalogo");
