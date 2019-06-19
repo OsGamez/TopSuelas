@@ -43,7 +43,6 @@ import net.sf.jasperreports.view.JasperViewer;
 public class PlaneacionPhy extends javax.swing.JInternalFrame {
 
     ObjectRCPT obj = new ObjectRCPT();
-    //ObjectAlmacenes am = new ObjectAlmacenes();
     ObjectInfisico objF = new ObjectInfisico();
     Connection c = Conexion.getRcpt();
     int cont = 1, cc = 0;
@@ -775,7 +774,7 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbGenerarActionPerformed
 
     private void Generar() {
-        String tipo = "S";
+        /*String tipo = "S";
         String ms = "";
         int row = JtPhylon.getRowCount();
 
@@ -891,7 +890,7 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
             Reporte();
         } else if (ms == "ERROR") {
             JOptionPane.showMessageDialog(this, "Ocurrio un error!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-        }
+        }*/
     }
 
     private void GenerarN() {
@@ -1320,14 +1319,14 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
     }
 
     private void JbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbGuardarActionPerformed
-        if (ValidarDetalle()) {
+        /*if (ValidarDetalle()) {
             if (objF.validarInv() == 0) {
                 JOptionPane.showMessageDialog(null, "Revisa el registro antes del concentrado");
             } else {
                 Save();
             }
 
-        }
+        }*/
 
 
     }//GEN-LAST:event_JbGuardarActionPerformed

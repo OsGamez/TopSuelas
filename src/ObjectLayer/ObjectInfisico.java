@@ -255,9 +255,9 @@ public class ObjectInfisico {
         return false;
     }
 
-    public int validarInv() {
+    public int validarInv(String nombre) {
         try {
-            st = c.prepareStatement("select count(*) from InCopy");
+            st = c.prepareStatement("select count(*) from " + nombre);
             rs = st.executeQuery();
             if (rs.next()) {
                 return rs.getInt(1);
@@ -500,4 +500,94 @@ public class ObjectInfisico {
         }
         return listaInv;
     }
+
+    public boolean CrearTb(String nombre) {
+        try {
+            c.setAutoCommit(false);
+            st = c.prepareStatement("CREATE TABLE " + nombre + "(\n"
+                    + "	[Almacen] [tinyint] NOT NULL,\n"
+                    + "	[Producto] [smallint] NOT NULL,\n"
+                    + "	[Estilo] [smallint] NULL,\n"
+                    + "	[Corrida] [tinyint] NULL,\n"
+                    + "	[Combinacion] [smallint] NULL,\n"
+                    + "	[Tipo] [char](1) NOT NULL,\n"
+                    + "	[Pto1] [int] NOT NULL,\n"
+                    + "	[Pto2] [int] NOT NULL,\n"
+                    + "	[Pto3] [int] NOT NULL,\n"
+                    + "	[Pto4] [int] NOT NULL,\n"
+                    + "	[Pto5] [int] NOT NULL,\n"
+                    + "	[Pto6] [int] NOT NULL,\n"
+                    + "	[Pto7] [int] NOT NULL,\n"
+                    + "	[Pto8] [int] NOT NULL,\n"
+                    + "	[Pto9] [int] NOT NULL,\n"
+                    + "	[Pto10] [int] NOT NULL,\n"
+                    + "	[Pto11] [int] NOT NULL,\n"
+                    + "	[Pto12] [int] NOT NULL,\n"
+                    + "	[Pto13] [int] NOT NULL,\n"
+                    + "	[Pto14] [int] NOT NULL,\n"
+                    + "	[TotalPares] [int] NOT NULL\n"
+                    + ") ON [PRIMARY]");
+            st.executeUpdate();
+            c.commit();
+            st.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public int VerificarTabla(String nombre) {
+        try {
+            st = c.prepareStatement("SELECT COUNT(*) FROM sysobjects  WHERE type = 'U' AND name = '"+nombre+"'");
+            rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+            return 1;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+             return 1;
+        }
+    }
+    
+    public boolean AddTemporal(Infisico inv, String nombre) {
+        try {
+            c.setAutoCommit(false);
+            st = c.prepareStatement("INSERT INTO "+ nombre + "(Almacen,Producto,Estilo,Corrida,Combinacion,Tipo,Pto1,"
+                    + "Pto2,Pto3,Pto4,Pto5,Pto6,Pto7,Pto8,Pto9,Pto10,Pto11,Pto12,Pto13,Pto14,TotalPares)"
+                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            st.setInt(1, inv.getAlmacen());
+            st.setInt(2, inv.getProducto());
+            st.setInt(3, inv.getEstilo());
+            st.setInt(4, inv.getCorrida());
+            st.setInt(5, inv.getCombinacion());
+            st.setString(6, inv.getTipo());
+            st.setInt(7, inv.getPto1());
+            st.setInt(8, inv.getPto2());
+            st.setInt(9, inv.getPto3());
+            st.setInt(10, inv.getPto4());
+            st.setInt(11, inv.getPto5());
+            st.setInt(12, inv.getPto6());
+            st.setInt(13, inv.getPto7());
+            st.setInt(14, inv.getPto8());
+            st.setInt(15, inv.getPto9());
+            st.setInt(16, inv.getPto10());
+            st.setInt(17, inv.getPto11());
+            st.setInt(18, inv.getPto12());
+            st.setInt(19, inv.getPto13());
+            st.setInt(20, inv.getPto14());
+            st.setInt(21, inv.getTotalPares());
+            st.execute();
+            st.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    
+
 }

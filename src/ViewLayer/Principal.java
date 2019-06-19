@@ -43,6 +43,7 @@ public class Principal extends javax.swing.JFrame {
     Moldes m;
     Proveedores pv;
     PlaneacionPhy phy;
+    CapturaInventario capturaIn;
     Consumos sumos;
     Etiquetas etiq;
     Entradas entrada;
@@ -51,6 +52,7 @@ public class Principal extends javax.swing.JFrame {
     ProvedoresMPrima conceptomp;
     OrdenCompra ordenc;
     public String Estado = "A";
+    String Tb = "";
 
     Maquinas maq;
 
@@ -68,7 +70,7 @@ public class Principal extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/programa.png"));
         setIconImage(icon);
-        
+
         popprod.add(JmProduccion);
         popcpt.add(JmCPT);
         popcobranza.add(JmCobranza);
@@ -90,7 +92,7 @@ public class Principal extends javax.swing.JFrame {
             JmCobranza.setVisible(false);
             JmCPT.setVisible(false);
             JmConfig.setVisible(false);
-        }else if(us.getDepartamento().equals("PRODUCCIONCPT")){
+        } else if (us.getDepartamento().equals("PRODUCCIONCPT")) {
             JmAgente.setVisible(false);
             JmBanco.setVisible(false);
             JmCiudad.setVisible(false);
@@ -812,17 +814,16 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoadInFisico() {
-        if (phy == null) {
-            phy = new PlaneacionPhy();
-            MainContent.add(phy);
-            MainContent.getDesktopManager().maximizeFrame(phy);
-            phy.setVisible(true);
+        Tb = us.getUsuario();
+        if (capturaIn == null) {
+            capturaIn = new CapturaInventario();
+            capturaIn.TbTemp = Tb;
+            capturaIn.setVisible(true);
         } else {
-            phy.dispose();
-            phy = new PlaneacionPhy();
-            MainContent.add(phy);
-            MainContent.getDesktopManager().maximizeFrame(phy);
-            phy.setVisible(true);
+            capturaIn.dispose();
+            capturaIn = new CapturaInventario();
+            capturaIn.TbTemp = Tb;
+            capturaIn.setVisible(true);
         }
     }
 
@@ -1391,13 +1392,13 @@ public class Principal extends javax.swing.JFrame {
 
     private void JmConceptosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmConceptosActionPerformed
         conceptom = new ConceptosMPrima();
-            MainContent.add(conceptom);
-            MainContent.getDesktopManager().maximizeFrame(conceptom);
-            conceptom.setVisible(true);
+        MainContent.add(conceptom);
+        MainContent.getDesktopManager().maximizeFrame(conceptom);
+        conceptom.setVisible(true);
     }//GEN-LAST:event_JmConceptosActionPerformed
 
     private void JmAlmacenesPrimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmAlmacenesPrimaActionPerformed
-                conceptomp = new ProvedoresMPrima();
+        conceptomp = new ProvedoresMPrima();
         MainContent.add(conceptomp);
         MainContent.getDesktopManager().maximizeFrame(conceptomp);
         conceptomp.setVisible(true);

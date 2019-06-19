@@ -1,4 +1,3 @@
-
 package ViewLayer;
 
 import ObjectLayer.Corrida;
@@ -8,11 +7,11 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
- 
 public class NCorrida extends javax.swing.JDialog {
 
-   ObjectCorridas obj = new ObjectCorridas();
-   String informacion = "";
+    ObjectCorridas obj = new ObjectCorridas();
+    String informacion = "";
+
     public NCorrida(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -22,9 +21,11 @@ public class NCorrida extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         Jtid.setVisible(false);
     }
-    public String getInformacion(){
+
+    public String getInformacion() {
         return this.informacion;
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -147,17 +148,17 @@ public class NCorrida extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-        private void Cerrar(){
+        private void Cerrar() {
         String botones[] = {"SI", "NO"};
-        int eleccion = JOptionPane.showOptionDialog(this,"¿Deseas cerrar esta ventana?", "TOP-SUELAS", 
+        int eleccion = JOptionPane.showOptionDialog(this, "¿Deseas cerrar esta ventana?", "TOP-SUELAS",
                 0, 0, null, botones, this);
-        if(eleccion == JOptionPane.YES_OPTION){
+        if (eleccion == JOptionPane.YES_OPTION) {
             dispose();
-        }else if(eleccion == JOptionPane.NO_OPTION){
+        } else if (eleccion == JOptionPane.NO_OPTION) {
         }
     }
     private void JbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbCancelarActionPerformed
-       Cerrar();
+        Cerrar();
     }//GEN-LAST:event_JbCancelarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -165,24 +166,20 @@ public class NCorrida extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowClosing
 
     private void JbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbGuardarActionPerformed
-      if(JtDescripcion.getText().equals("") || JtPf.getText().equals("") || JtPi.getText().equals("")){
-        JOptionPane.showMessageDialog(this, "Faltan datos de ingresar","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-      }else if(Jtid.getText().isEmpty()){
-          if(obj.validarCorrida(JtDescripcion.getText())==0){
-              Guardar();
-          }else{
-        JOptionPane.showMessageDialog(null,"Este registro ya existe","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-        }   
-      }else{
-          if(obj.validarCorrida(JtDescripcion.getText())==0){
-              Editar();
-          }else{
-        JOptionPane.showMessageDialog(null,"Este registro ya existe","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-        }    
-      }
+        if (JtDescripcion.getText().equals("") || JtPf.getText().equals("") || JtPi.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Faltan datos de ingresar", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+        } else if (Jtid.getText().isEmpty()) {
+            if (obj.validarCorrida(JtDescripcion.getText()) == 0) {
+                Guardar();
+            } else {
+                JOptionPane.showMessageDialog(null, "Este registro ya existe", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            Editar();
+        }
     }//GEN-LAST:event_JbGuardarActionPerformed
 
-    private void Guardar(){
+    private void Guardar() {
         float Pi = Float.parseFloat(JtPi.getText());
         float Pt = Float.parseFloat(JtPf.getText());
         Corrida corrida = new Corrida();
@@ -191,17 +188,17 @@ public class NCorrida extends javax.swing.JDialog {
         corrida.setPunto_Final(Pt);
         corrida.setObservaciones(JaObservacion.getText());
         corrida.setActivo(true);
-        if(obj.corridaAdd(corrida)){
-        JOptionPane.showMessageDialog(this, "Registro Guardado Correctamente!!!","TOP-SUELAS" ,JOptionPane.INFORMATION_MESSAGE);
-        informacion = "1";
-        Limpiar();
-        }else{
-        JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-        Limpiar();
-         }
+        if (obj.corridaAdd(corrida)) {
+            JOptionPane.showMessageDialog(this, "Registro Guardado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            informacion = "1";
+            Limpiar();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            Limpiar();
+        }
     }
-    
-    private void Editar(){
+
+    private void Editar() {
         float Pi = Float.parseFloat(JtPi.getText());
         float Pt = Float.parseFloat(JtPf.getText());
         Corrida corrida = new Corrida();
@@ -210,26 +207,26 @@ public class NCorrida extends javax.swing.JDialog {
         corrida.setPunto_Final(Pt);
         corrida.setObservaciones(JaObservacion.getText());
         corrida.setId_Corrida(Integer.parseInt(Jtid.getText()));
-      
-        if(obj.corridaUpdate(corrida)){
-        JOptionPane.showMessageDialog(this, "Corrida Editada Correctamente!!!","TOP-SUELAS" ,JOptionPane.INFORMATION_MESSAGE);
-        informacion = "1";
-        this.dispose();
-        }else{
-        JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-        this.dispose();
-         }
+
+        if (obj.corridaUpdate(corrida)) {
+            JOptionPane.showMessageDialog(this, "Corrida Editada Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            informacion = "1";
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            this.dispose();
+        }
     }
-    
+
     private void JaObservacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JaObservacionKeyTyped
         char c = evt.getKeyChar();
-        if(Character.isLowerCase(c)){
-            String cad = (""+c).toUpperCase();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
     }//GEN-LAST:event_JaObservacionKeyTyped
-    private void Limpiar(){
+    private void Limpiar() {
         JtDescripcion.setText("");
         JtPi.setText("");
         JtPf.setText("");
@@ -240,6 +237,7 @@ public class NCorrida extends javax.swing.JDialog {
         JbPt.setForeground(Color.BLACK);
         JbOb.setForeground(Color.BLACK);
     }
+
     /**
      * @param args the command line arguments
      */

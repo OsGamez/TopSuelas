@@ -21,12 +21,29 @@ public class PtProducto {
     private int Corrida;
     private int Estilo;
     private int Combinacion;
-    
     private int Almacen;
+    private int Pti;
+    private int Ptf;
     private String DescripcionAlmacen;
     private String Estatus;
 
     public PtProducto() {
+    }
+
+    public int getPti() {
+        return Pti;
+    }
+
+    public void setPti(int Pti) {
+        this.Pti = Pti;
+    }
+
+    public int getPtf() {
+        return Ptf;
+    }
+
+    public void setPtf(int Ptf) {
+        this.Ptf = Ptf;
     }
 
     public int getAlmacen() {
