@@ -427,7 +427,7 @@ public class Etiquetas extends javax.swing.JDialog {
             Validacion v = new Validacion();
             int rowprod = 1;
             int rowalm = JeAlmacen.getSelectedIndex();
-            String Rader = JcRadiado.isSelected() ? "RADIADO": "NO RADIADO";
+            String Rader = JcRadiado.isSelected() ? "R": "N";
             if (JeAlmacen.getSelectedIndex() == 0 || JeTalla.getText().equals("") || JePares.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Faltan datos por introducir o seleccionar!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
             } else if ( !v.verificanumeros(JePares.getText())) {
@@ -443,7 +443,8 @@ public class Etiquetas extends javax.swing.JDialog {
                 e.setFecha(df.format(JeFecha.getDate()));
                 e.setPunto(JeTalla.getText());
                 e.setPares(JePares.getText());
-                e.setModelo(listaetiqueta.get(rowprod).getModelo() + "          "+ Rader);
+                e.setModelo(listaetiqueta.get(rowprod).getModelo());
+                e.setDescripcion(Rader);
                 e.setCodigo(CreaCodigo(e));
                 reports.add(e);
                 this.dispose();
@@ -454,7 +455,7 @@ public class Etiquetas extends javax.swing.JDialog {
                     @Override
                     public void windowClosing(WindowEvent we) {
                         setVisible(true);
-                        limpiar();
+                        //limpiar();
                     }
                 } );
                 ver.setTitle("ETIQUETAS");

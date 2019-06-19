@@ -58,7 +58,7 @@
 				<text><![CDATA[MODELO:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="70" y="98" width="205" height="16" uuid="fc8a5d55-d0d4-4ac9-ba4b-83033d7b079e"/>
+				<reportElement x="70" y="98" width="139" height="16" uuid="fc8a5d55-d0d4-4ac9-ba4b-83033d7b079e"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -136,6 +136,13 @@
 			<line>
 				<reportElement x="9" y="158" width="282" height="1" uuid="42a63695-e49e-4300-af55-d77d65fe866d"/>
 			</line>
+			<textField>
+				<reportElement x="223" y="93" width="31" height="30" uuid="d8307c19-ca6f-4ead-85f6-6715d13dffeb"/>
+				<textElement>
+					<font size="22" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 </jasperReport>

@@ -83,7 +83,7 @@ public class OrdenCompra extends javax.swing.JDialog {
         JbCvet = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("GENERAR ETIQUETAS");
+        setTitle("Orden de compra");
         setLocation(new java.awt.Point(0, 0));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
