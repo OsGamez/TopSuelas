@@ -18,6 +18,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -64,8 +66,8 @@ public class CapturaInventario extends javax.swing.JFrame {
         OcultarCampos();
     }
 
-    private void BorrarTxt() {
-        objF.deleteDatos();
+    private void BorrarTabla() {
+        objF.dropTable(TbTemp);
     }
 
     private void LoadColumns() {
@@ -557,77 +559,77 @@ public class CapturaInventario extends javax.swing.JFrame {
         String ms = "";
         int row = JtPhylon.getRowCount();
 
-        
         if (ValidarDetalle()) {
             if (objF.VerificarTabla(TbTemp) == 0) {//Verifica si existe la tabla temporal 
                 if (objF.CrearTb(TbTemp)) {//Crea la tabla
                     //Inserta los datos
                     for (int i = 0; i < row; i++) {
-                    Infisico inv = new Infisico();
-                    inv.setProducto(Integer.parseInt((String) JtPhylon.getValueAt(i, 0)));
-                    inv.setAlmacen(Integer.parseInt((String) JtPhylon.getValueAt(i, 2)));
-                    inv.setEstilo(Integer.parseInt((String) JtPhylon.getValueAt(i, 3)));
-                    inv.setCorrida(Integer.parseInt((String) JtPhylon.getValueAt(i, 4)));
-                    inv.setCombinacion(Integer.parseInt((String) JtPhylon.getValueAt(i, 5)));
-                    inv.setTipo(tipo);
-                    inv.setPto1(Integer.parseInt((String) JtPhylon.getValueAt(i, 7)));
-                    inv.setPto2(Integer.parseInt((String) JtPhylon.getValueAt(i, 8)));
-                    inv.setPto3(Integer.parseInt((String) JtPhylon.getValueAt(i, 9)));
-                    inv.setPto4(Integer.parseInt((String) JtPhylon.getValueAt(i, 10)));
-                    inv.setPto5(Integer.parseInt((String) JtPhylon.getValueAt(i, 11)));
-                    inv.setPto6(Integer.parseInt((String) JtPhylon.getValueAt(i, 12)));
-                    inv.setPto7(Integer.parseInt((String) JtPhylon.getValueAt(i, 13)));
-                    inv.setPto8(Integer.parseInt((String) JtPhylon.getValueAt(i, 14)));
-                    inv.setPto9(Integer.parseInt((String) JtPhylon.getValueAt(i, 15)));
-                    inv.setPto10(Integer.parseInt((String) JtPhylon.getValueAt(i, 16)));
-                    inv.setPto11(Integer.parseInt((String) JtPhylon.getValueAt(i, 17)));
-                    inv.setPto12(Integer.parseInt((String) JtPhylon.getValueAt(i, 18)));
-                    inv.setPto13(Integer.parseInt((String) JtPhylon.getValueAt(i, 19)));
-                    inv.setPto14(Integer.parseInt((String) JtPhylon.getValueAt(i, 20)));
-                    inv.setTotalPares(Integer.parseInt((String) JtPhylon.getValueAt(i, 21)));
+                        Infisico inv = new Infisico();
+                        inv.setProducto(Integer.parseInt((String) JtPhylon.getValueAt(i, 0)));
+                        inv.setAlmacen(Integer.parseInt((String) JtPhylon.getValueAt(i, 2)));
+                        inv.setEstilo(Integer.parseInt((String) JtPhylon.getValueAt(i, 3)));
+                        inv.setCorrida(Integer.parseInt((String) JtPhylon.getValueAt(i, 4)));
+                        inv.setCombinacion(Integer.parseInt((String) JtPhylon.getValueAt(i, 5)));
+                        inv.setTipo(tipo);
+                        inv.setPto1(Integer.parseInt((String) JtPhylon.getValueAt(i, 7)));
+                        inv.setPto2(Integer.parseInt((String) JtPhylon.getValueAt(i, 8)));
+                        inv.setPto3(Integer.parseInt((String) JtPhylon.getValueAt(i, 9)));
+                        inv.setPto4(Integer.parseInt((String) JtPhylon.getValueAt(i, 10)));
+                        inv.setPto5(Integer.parseInt((String) JtPhylon.getValueAt(i, 11)));
+                        inv.setPto6(Integer.parseInt((String) JtPhylon.getValueAt(i, 12)));
+                        inv.setPto7(Integer.parseInt((String) JtPhylon.getValueAt(i, 13)));
+                        inv.setPto8(Integer.parseInt((String) JtPhylon.getValueAt(i, 14)));
+                        inv.setPto9(Integer.parseInt((String) JtPhylon.getValueAt(i, 15)));
+                        inv.setPto10(Integer.parseInt((String) JtPhylon.getValueAt(i, 16)));
+                        inv.setPto11(Integer.parseInt((String) JtPhylon.getValueAt(i, 17)));
+                        inv.setPto12(Integer.parseInt((String) JtPhylon.getValueAt(i, 18)));
+                        inv.setPto13(Integer.parseInt((String) JtPhylon.getValueAt(i, 19)));
+                        inv.setPto14(Integer.parseInt((String) JtPhylon.getValueAt(i, 20)));
+                        inv.setTotalPares(Integer.parseInt((String) JtPhylon.getValueAt(i, 21)));
 
-                    if (objF.AddTemporal(inv, TbTemp)) {
-                        ms = "OK";
-                    } else {
-                        ms = "ERROR";
+                        if (objF.AddTemporal(inv, TbTemp)) {
+                            ms = "OK";
+                        } else {
+                            ms = "ERROR";
+                        }
                     }
                 }
-            }
             } else {
                 //Si la tabla existe
-                for (int i = 0; i < row; i++) {
-                    Infisico inv = new Infisico();
-                    inv.setProducto(Integer.parseInt((String) JtPhylon.getValueAt(i, 0)));
-                    inv.setAlmacen(Integer.parseInt((String) JtPhylon.getValueAt(i, 2)));
-                    inv.setEstilo(Integer.parseInt((String) JtPhylon.getValueAt(i, 3)));
-                    inv.setCorrida(Integer.parseInt((String) JtPhylon.getValueAt(i, 4)));
-                    inv.setCombinacion(Integer.parseInt((String) JtPhylon.getValueAt(i, 5)));
-                    inv.setTipo(tipo);
-                    inv.setPto1(Integer.parseInt((String) JtPhylon.getValueAt(i, 7)));
-                    inv.setPto2(Integer.parseInt((String) JtPhylon.getValueAt(i, 8)));
-                    inv.setPto3(Integer.parseInt((String) JtPhylon.getValueAt(i, 9)));
-                    inv.setPto4(Integer.parseInt((String) JtPhylon.getValueAt(i, 10)));
-                    inv.setPto5(Integer.parseInt((String) JtPhylon.getValueAt(i, 11)));
-                    inv.setPto6(Integer.parseInt((String) JtPhylon.getValueAt(i, 12)));
-                    inv.setPto7(Integer.parseInt((String) JtPhylon.getValueAt(i, 13)));
-                    inv.setPto8(Integer.parseInt((String) JtPhylon.getValueAt(i, 14)));
-                    inv.setPto9(Integer.parseInt((String) JtPhylon.getValueAt(i, 15)));
-                    inv.setPto10(Integer.parseInt((String) JtPhylon.getValueAt(i, 16)));
-                    inv.setPto11(Integer.parseInt((String) JtPhylon.getValueAt(i, 17)));
-                    inv.setPto12(Integer.parseInt((String) JtPhylon.getValueAt(i, 18)));
-                    inv.setPto13(Integer.parseInt((String) JtPhylon.getValueAt(i, 19)));
-                    inv.setPto14(Integer.parseInt((String) JtPhylon.getValueAt(i, 20)));
-                    inv.setTotalPares(Integer.parseInt((String) JtPhylon.getValueAt(i, 21)));
+                if (objF.deleteTemp(TbTemp)) {
+                    for (int i = 0; i < row; i++) {
+                        Infisico inv = new Infisico();
+                        inv.setProducto(Integer.parseInt((String) JtPhylon.getValueAt(i, 0)));
+                        inv.setAlmacen(Integer.parseInt((String) JtPhylon.getValueAt(i, 2)));
+                        inv.setEstilo(Integer.parseInt((String) JtPhylon.getValueAt(i, 3)));
+                        inv.setCorrida(Integer.parseInt((String) JtPhylon.getValueAt(i, 4)));
+                        inv.setCombinacion(Integer.parseInt((String) JtPhylon.getValueAt(i, 5)));
+                        inv.setTipo(tipo);
+                        inv.setPto1(Integer.parseInt((String) JtPhylon.getValueAt(i, 7)));
+                        inv.setPto2(Integer.parseInt((String) JtPhylon.getValueAt(i, 8)));
+                        inv.setPto3(Integer.parseInt((String) JtPhylon.getValueAt(i, 9)));
+                        inv.setPto4(Integer.parseInt((String) JtPhylon.getValueAt(i, 10)));
+                        inv.setPto5(Integer.parseInt((String) JtPhylon.getValueAt(i, 11)));
+                        inv.setPto6(Integer.parseInt((String) JtPhylon.getValueAt(i, 12)));
+                        inv.setPto7(Integer.parseInt((String) JtPhylon.getValueAt(i, 13)));
+                        inv.setPto8(Integer.parseInt((String) JtPhylon.getValueAt(i, 14)));
+                        inv.setPto9(Integer.parseInt((String) JtPhylon.getValueAt(i, 15)));
+                        inv.setPto10(Integer.parseInt((String) JtPhylon.getValueAt(i, 16)));
+                        inv.setPto11(Integer.parseInt((String) JtPhylon.getValueAt(i, 17)));
+                        inv.setPto12(Integer.parseInt((String) JtPhylon.getValueAt(i, 18)));
+                        inv.setPto13(Integer.parseInt((String) JtPhylon.getValueAt(i, 19)));
+                        inv.setPto14(Integer.parseInt((String) JtPhylon.getValueAt(i, 20)));
+                        inv.setTotalPares(Integer.parseInt((String) JtPhylon.getValueAt(i, 21)));
 
-                    if (objF.AddTemporal(inv, TbTemp)) {
-                        ms = "OK";
-                    } else {
-                        ms = "ERROR";
+                        if (objF.AddTemporal(inv, TbTemp)) {
+                            ms = "OK";
+                        } else {
+                            ms = "ERROR";
+                        }
                     }
                 }
             }
         }
-        
         if (ms == "OK") {
             Reporte();
         } else if (ms == "ERROR") {
@@ -636,14 +638,18 @@ public class CapturaInventario extends javax.swing.JFrame {
     }
 
     private void JbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbGuardarActionPerformed
-        /* if (ValidarDetalle()) {
-            if (objF.validarInv() == 0) {
+        if (ValidarDetalle()) {
+            if (objF.VerificarTabla(TbTemp) == 0) {
                 JOptionPane.showMessageDialog(null, "Revisa el registro antes del concentrado");
             } else {
-                ReporteGroup();
+                if (objF.validarInv(TbTemp) == 0) {
+                    JOptionPane.showMessageDialog(null, "Revisa el registro antes del concentrado");
+                } else {
+                    ReporteGroup();
+                }
             }
 
-        }*/
+        }
     }//GEN-LAST:event_JbGuardarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -741,13 +747,13 @@ public class CapturaInventario extends javax.swing.JFrame {
         if ("OK".equals(ms)) {
             JOptionPane.showMessageDialog(this, "Se han agregado los registros al inventario!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
             CleanTable();
-            BorrarTxt();
-            VaciarDatos();
+            BorrarTabla();
+            //VaciarDatos();
         }
     }
 
     private void LoadModelPhy() {
-        ArrayList<Infisico> listaInv = objF.InvGetAll();
+        ArrayList<Infisico> listaInv = objF.InvGetTemp(TbTemp);
 
         modelP.setNumRows(listaInv.size());
 
@@ -783,7 +789,9 @@ public class CapturaInventario extends javax.swing.JFrame {
             JasperReport reporte = null;
             reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("/Reports/InPhylon.jasper"));
             try {
-                JasperPrint jprint = JasperFillManager.fillReport(reporte, null, c);
+                Map par = new HashMap();
+                par.put("tabla", TbTemp);
+                JasperPrint jprint = JasperFillManager.fillReport(reporte, par, c);
                 JasperViewer view = new JasperViewer(jprint, false);
 
                 view.setVisible(true);
@@ -811,7 +819,9 @@ public class CapturaInventario extends javax.swing.JFrame {
             JasperReport reporte = null;
             reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("/Reports/InPhylonS.jasper"));
             try {
-                JasperPrint jprint = JasperFillManager.fillReport(reporte, null, c);
+                Map par = new HashMap();
+                par.put("tabla", TbTemp);
+                JasperPrint jprint = JasperFillManager.fillReport(reporte, par, c);
                 JasperViewer view = new JasperViewer(jprint, false);
 
                 view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
