@@ -682,6 +682,17 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <MenuItem class="javax.swing.JMenuItem" name="JmOrdenc">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Resources/Ordering_25406.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Ordenes de Compra"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JmOrdencActionPerformed"/>
+          </Events>
+        </MenuItem>
         <Menu class="javax.swing.JMenu" name="Jmutilprod">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">

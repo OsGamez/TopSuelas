@@ -49,6 +49,7 @@ public class Principal extends javax.swing.JFrame {
     Conceptos concepto;
     ConceptosMPrima conceptom;
     ProvedoresMPrima conceptomp;
+    OrdenCompra ordenc;
     public String Estado = "A";
 
     Maquinas maq;
@@ -171,6 +172,7 @@ public class Principal extends javax.swing.JFrame {
         JmMaquinas = new javax.swing.JMenuItem();
         JmConsumos = new javax.swing.JMenuItem();
         JmConceptos = new javax.swing.JMenuItem();
+        JmOrdenc = new javax.swing.JMenuItem();
         Jmutilprod = new javax.swing.JMenu();
         Jmetiqprod = new javax.swing.JMenuItem();
         JmOpciones = new javax.swing.JMenu();
@@ -611,6 +613,15 @@ public class Principal extends javax.swing.JFrame {
         Jmcatprod.add(JmConceptos);
 
         JmProduccion.add(Jmcatprod);
+
+        JmOrdenc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Ordering_25406.png"))); // NOI18N
+        JmOrdenc.setText("Ordenes de Compra");
+        JmOrdenc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmOrdencActionPerformed(evt);
+            }
+        });
+        JmProduccion.add(JmOrdenc);
 
         Jmutilprod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/utileria.png"))); // NOI18N
         Jmutilprod.setText("Utilerias");
@@ -1391,6 +1402,13 @@ public class Principal extends javax.swing.JFrame {
         MainContent.getDesktopManager().maximizeFrame(conceptomp);
         conceptomp.setVisible(true);
     }//GEN-LAST:event_JmAlmacenesPrimaActionPerformed
+
+    private void JmOrdencActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmOrdencActionPerformed
+                    ordenc = new OrdenCompra(null, true);
+        ordenc.setVisible(true);
+        ordenc.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        ordenc.setAlwaysOnTop(true);
+    }//GEN-LAST:event_JmOrdencActionPerformed
     private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {
         LoadMaquina();
     }
@@ -1468,6 +1486,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JmMateriales;
     private javax.swing.JMenuItem JmMoldes;
     private javax.swing.JMenu JmOpciones;
+    private javax.swing.JMenuItem JmOrdenc;
     private javax.swing.JMenuItem JmPais;
     private javax.swing.JMenuItem JmPedidos;
     private javax.swing.JMenuItem JmPrecios;

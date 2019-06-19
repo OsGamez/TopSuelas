@@ -154,6 +154,10 @@ public class ProveedorMPrima implements java.io.Serializable{
     public void setFechaultima(String fechaultima) {
         this.fechaultima = fechaultima;
     }
+    @Override
+    public String toString() {
+        return this.nombre;
+    }
     private int proveedor,diascredito;
     private String nombre,calle,colonia,ciudad,estado,pais,rfc,email,telefono,telefono2,contacto,tpo,embarque,limitecredito,fechaultima,cp;
 }
