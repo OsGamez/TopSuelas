@@ -12,10 +12,10 @@ import java.util.ArrayList;
 
 public class ObjectPedidos {
 
-    Connection c = Conexion.getRpt();
-    Connection pa = Conexion.getRcpt();
     //Connection c = Conexion.getRpt();
     //Connection pa = Conexion.getRcpt();
+    Connection c = Server.getRpt();
+    Connection pa = Server.getRcpt();
 
     PreparedStatement st, dp = null;
     ResultSet rs, ra = null;
