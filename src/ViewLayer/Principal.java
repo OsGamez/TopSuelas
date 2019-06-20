@@ -50,6 +50,7 @@ public class Principal extends javax.swing.JFrame {
     Conceptos concepto;
     ConceptosMPrima conceptom;
     ProvedoresMPrima conceptomp;
+    Ped pd;
     OrdenCompra ordenc;
     public String Estado = "A";
     String Tb = "";
@@ -1155,15 +1156,15 @@ public class Principal extends javax.swing.JFrame {
             pedidos.JbSerie.setText(Estado);
             MainContent.getDesktopManager().maximizeFrame(pedidos);
             pedidos.setVisible(true);
-        } else {
+        }else{
             pedidos.dispose();
             pedidos = new Pedidos(Estado);
+            MainContent.add(pedidos);
             pedidos.Id_Usuario = Integer.parseInt(id_usuario);
             pedidos.JbSerie.setText(Estado);
-            MainContent.add(pedidos);
             MainContent.getDesktopManager().maximizeFrame(pedidos);
             pedidos.setVisible(true);
-        }
+        }       
     }
 
     private void LoadPrecio() {
@@ -1462,16 +1463,28 @@ public class Principal extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+                
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Principal.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Principal.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Principal.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
