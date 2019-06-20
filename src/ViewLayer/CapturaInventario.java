@@ -539,7 +539,7 @@ public class CapturaInventario extends javax.swing.JFrame {
         if (row > 0) {
             int opcion = JOptionPane.showConfirmDialog(this, "¿Estas seguro de limpiar los registros?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (opcion == JOptionPane.YES_OPTION) {
-                //BorrarTxt();
+                VaciarDatos();
                 CleanTable();
                 JOptionPane.showMessageDialog(null, "Se han limpiado los registros");
                 JtAm.requestFocus();
