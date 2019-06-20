@@ -14,9 +14,15 @@ public class Almacen {
     private String Descripcion;
 
     PreparedStatement st = null;
-    Connection c = Server.getCmpPhylon();
+    Connection c;
     ResultSet rs = null;
 
+    public void conRCPT(){
+        c=Server.getRcpt();
+    }
+    public void conCMP(){
+        c=Server.getCmpPhylon();
+    }
     public Almacen() {
     }
 

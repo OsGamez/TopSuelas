@@ -68,6 +68,7 @@ public class Etiquetas extends javax.swing.JDialog {
 
     private void LoadModelAlmacen() {
         Almacen e = new Almacen();
+        e.conRCPT();
         DefaultComboBoxModel modelEtiqueta = new DefaultComboBoxModel(e.getAlmacenes());
         listaalmacen = e.getAlmacenes();
         JeAlmacen.setModel(modelEtiqueta);
