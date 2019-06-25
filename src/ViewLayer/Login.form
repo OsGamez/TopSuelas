@@ -149,6 +149,9 @@
     </Component>
     <Component class="javax.swing.JPasswordField" name="Jpassword">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="df" green="d9" red="d6" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="sansserif" size="12" style="1"/>
         </Property>
@@ -192,6 +195,9 @@
           <Color blue="33" green="cc" red="ff" type="rgb"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JtUsuarioKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnMostrar">
       <Events>

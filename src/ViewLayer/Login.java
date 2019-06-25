@@ -95,6 +95,11 @@ public class Login extends javax.swing.JFrame {
         JtUsuario.setForeground(new java.awt.Color(255, 102, 51));
         JtUsuario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "USUARIO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("sansserif", 1, 14))); // NOI18N
         JtUsuario.setCaretColor(new java.awt.Color(255, 204, 51));
+        JtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JtUsuarioKeyPressed(evt);
+            }
+        });
 
         btnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,13 +239,11 @@ public class Login extends javax.swing.JFrame {
        if(a){
          Jpassword.setEchoChar((char)0);
          a = false;
-         //Jpassword.requestFocus();
          CambiarIcono();
        }
        else{
          Jpassword.setEchoChar(i);
          a = true;
-         //Jpassword.requestFocus();
          CargarIcono();
        }
     }//GEN-LAST:event_btnMostrarActionPerformed
@@ -248,6 +251,14 @@ public class Login extends javax.swing.JFrame {
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         
     }//GEN-LAST:event_formKeyPressed
+
+    private void JtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtUsuarioKeyPressed
+        int codigo = evt.getKeyCode();
+        
+        if(codigo == KeyEvent.VK_F12){
+            System.out.println("F12");
+        }
+    }//GEN-LAST:event_JtUsuarioKeyPressed
     private void CambiarIcono(){
         btnMostrar.setIcon(ocultar);
     }

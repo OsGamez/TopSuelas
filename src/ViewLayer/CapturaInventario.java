@@ -1,6 +1,7 @@
 package ViewLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.Server;
 import ObjectLayer.Infisico;
 import ObjectLayer.ObjectAlmacenes;
 import ObjectLayer.ObjectInfisico;
@@ -10,6 +11,7 @@ import ObjectLayer.PtProducto;
 import com.sun.glass.events.KeyEvent;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ItemEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -42,12 +44,14 @@ public class CapturaInventario extends javax.swing.JFrame {
     ObjectAlmacenes ObjA = new ObjectAlmacenes();
     ObjectInfisico objF = new ObjectInfisico();
     ObjectRCPT obj = new ObjectRCPT();
-    Connection c = Conexion.getRcpt();
-    int sum;
+    Connection c = Server.getRcpt();
+    String cadena = "";
+    int sum, CodigoSuela;
+    String am, prod, punto, cantidad;
     int var;
     String c1 = "0", c2 = "0", c3 = "0", c4 = "0", c5 = "0", c6 = "0", c7 = "0", c8 = "0", c9 = "0", c10 = "0", c11 = "0", c12 = "0";
     ArrayList<String> array = new ArrayList<String>();
-    File fichero = new File("C:\\InvFisico\\datos.txt");//Archivo usado para guardar y leer los datos, con ruta 
+    File fichero = new File("C:\\tsmanager\\datos.txt");//Archivo usado para guardar y leer los datos, con ruta 
     public String TbTemp = "";
     DefaultTableModel modelP = new DefaultTableModel() {
         @Override
@@ -64,19 +68,28 @@ public class CapturaInventario extends javax.swing.JFrame {
         LoadColumns();
         LeerDatos();
         OcultarCampos();
+        JtCod.setEnabled(false);
     }
 
     private void BorrarTabla() {
         objF.dropTable(TbTemp);
     }
 
+    private boolean LimpiarTabla() {
+        if (objF.deleteTemp(TbTemp)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private void LoadColumns() {
         modelP.addColumn("ID");
         modelP.addColumn("SUELA");
-        modelP.addColumn("ALMACEN");
+        modelP.addColumn("AM");
         modelP.addColumn("ESTILO");
         modelP.addColumn("CORRIDA");
-        modelP.addColumn("COMBINACIÓN");
+        modelP.addColumn("CBN");
         modelP.addColumn("TIPO");
         modelP.addColumn("C1");
         modelP.addColumn("C2");
@@ -143,6 +156,12 @@ public class CapturaInventario extends javax.swing.JFrame {
         JbClean = new javax.swing.JButton();
         JbGenerar = new javax.swing.JButton();
         JbGuardar = new javax.swing.JButton();
+        JcCódigo = new javax.swing.JCheckBox();
+        JtCod = new javax.swing.JTextField();
+        JbIdSuela = new javax.swing.JLabel();
+        JbAm = new javax.swing.JLabel();
+        JbPunto = new javax.swing.JLabel();
+        JbCantidad = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(100, 100));
@@ -153,6 +172,11 @@ public class CapturaInventario extends javax.swing.JFrame {
             }
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
+            }
+        });
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
             }
         });
 
@@ -261,57 +285,94 @@ public class CapturaInventario extends javax.swing.JFrame {
             }
         });
 
+        JcCódigo.setText("Leer Códigos");
+        JcCódigo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                JcCódigoItemStateChanged(evt);
+            }
+        });
+
+        JtCod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtCodActionPerformed(evt);
+            }
+        });
+
+        JbIdSuela.setText("jLabel2");
+
+        JbAm.setText("jLabel2");
+
+        JbPunto.setText("jLabel2");
+
+        JbCantidad.setText("jLabel2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(JbCorrida)
-                .addGap(18, 18, 18)
-                .addComponent(JbProducto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(JbIdProd)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(JbPi)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(JbPf)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(JtAm, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
-                        .addComponent(JlPares)
-                        .addGap(18, 18, 18)
+                        .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JtPares, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(JbEstilo)
+                                .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
-                                .addComponent(JbCombinacion)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(SUELA)
-                        .addGap(29, 29, 29))
+                                .addComponent(JtAm, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)
+                                .addComponent(JlPares)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JtPares, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(JbEstilo)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(JbCombinacion)
+                                        .addGap(22, 22, 22)
+                                        .addComponent(JbIdSuela))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JbRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40)
+                                .addComponent(JbClean, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)
+                                .addComponent(JbGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(JbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(JbRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(JbClean, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(JbGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(JbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap()
+                        .addComponent(JbCorrida)
+                        .addGap(18, 18, 18)
+                        .addComponent(JbProducto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JbIdProd)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JbPi)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JbPf)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(JtSuela, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Jpanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(165, 165, 165))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SUELA)
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Jpanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JtSuela, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)))
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JbPunto)
+                            .addComponent(JbCantidad))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JbAm)
+                        .addGap(55, 55, 55)
+                        .addComponent(JcCódigo)
+                        .addGap(46, 46, 46)
+                        .addComponent(JtCod, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,29 +384,41 @@ public class CapturaInventario extends javax.swing.JFrame {
                     .addComponent(JtAm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(JlPares)
-                    .addComponent(JtPares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JtPares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JbPunto))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Jpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(JbRemove)
                             .addComponent(JbClean)
                             .addComponent(JbGenerar)
                             .addComponent(JbGuardar))
-                        .addGap(43, 43, 43)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JbCorrida)
-                    .addComponent(JbProducto)
-                    .addComponent(JbIdProd)
-                    .addComponent(JbPi)
-                    .addComponent(JbPf)
-                    .addComponent(JbEstilo)
-                    .addComponent(JbCombinacion))
-                .addGap(18, 18, 18)
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JbCorrida)
+                            .addComponent(JbProducto)
+                            .addComponent(JbIdProd)
+                            .addComponent(JbPi)
+                            .addComponent(JbPf)
+                            .addComponent(JbEstilo)
+                            .addComponent(JbCombinacion)
+                            .addComponent(JbIdSuela)
+                            .addComponent(JbAm))
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Jpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(JbCantidad)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JcCódigo)
+                            .addComponent(JtCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -399,46 +472,53 @@ public class CapturaInventario extends javax.swing.JFrame {
         Object[] obj = array.toArray();
         String dt[] = new String[22];
 
-        if (obj.length == 12) {
-            c1 = (String) obj[0];
-            c2 = (String) obj[1];
-            c3 = (String) obj[2];
-            c4 = (String) obj[3];
-            c5 = (String) obj[4];
-            c6 = (String) obj[5];
-            c7 = (String) obj[6];
-            c8 = (String) obj[7];
-            c9 = (String) obj[8];
-            c10 = (String) obj[9];
-            c11 = (String) obj[10];
-            c12 = (String) obj[11];
-        } else if (obj.length == 10) {
-            c1 = (String) obj[0];
-            c2 = (String) obj[1];
-            c3 = (String) obj[2];
-            c4 = (String) obj[3];
-            c5 = (String) obj[4];
-            c6 = (String) obj[5];
-            c7 = (String) obj[6];
-            c8 = (String) obj[7];
-            c9 = (String) obj[8];
-            c10 = (String) obj[9];
-        } else if (obj.length == 8) {
-            c1 = (String) obj[0];
-            c2 = (String) obj[1];
-            c3 = (String) obj[2];
-            c4 = (String) obj[3];
-            c5 = (String) obj[4];
-            c6 = (String) obj[5];
-            c7 = (String) obj[6];
-            c8 = (String) obj[7];
-        } else if (obj.length == 6) {
-            c1 = (String) obj[0];
-            c2 = (String) obj[1];
-            c3 = (String) obj[2];
-            c4 = (String) obj[3];
-            c5 = (String) obj[4];
-            c6 = (String) obj[5];
+        switch (obj.length) {
+            case 12:
+                c1 = (String) obj[0];
+                c2 = (String) obj[1];
+                c3 = (String) obj[2];
+                c4 = (String) obj[3];
+                c5 = (String) obj[4];
+                c6 = (String) obj[5];
+                c7 = (String) obj[6];
+                c8 = (String) obj[7];
+                c9 = (String) obj[8];
+                c10 = (String) obj[9];
+                c11 = (String) obj[10];
+                c12 = (String) obj[11];
+                break;
+            case 10:
+                c1 = (String) obj[0];
+                c2 = (String) obj[1];
+                c3 = (String) obj[2];
+                c4 = (String) obj[3];
+                c5 = (String) obj[4];
+                c6 = (String) obj[5];
+                c7 = (String) obj[6];
+                c8 = (String) obj[7];
+                c9 = (String) obj[8];
+                c10 = (String) obj[9];
+                break;
+            case 8:
+                c1 = (String) obj[0];
+                c2 = (String) obj[1];
+                c3 = (String) obj[2];
+                c4 = (String) obj[3];
+                c5 = (String) obj[4];
+                c6 = (String) obj[5];
+                c7 = (String) obj[6];
+                c8 = (String) obj[7];
+                break;
+            case 6:
+                c1 = (String) obj[0];
+                c2 = (String) obj[1];
+                c3 = (String) obj[2];
+                c4 = (String) obj[3];
+                c5 = (String) obj[4];
+                c6 = (String) obj[5];
+                break;
+            default:
+                break;
         }
         dt[0] = JbIdProd.getText();
         dt[1] = JbProducto.getText();
@@ -465,6 +545,22 @@ public class CapturaInventario extends javax.swing.JFrame {
         modelP.addRow(dt);
         array.clear();
         LimpiarCampos();
+    }
+
+    private void DesabilitarCampos() {
+        JtAm.setEnabled(false);
+        JtPares.setEnabled(false);
+        JtSuela.setEnabled(false);
+        JtCod.setEnabled(true);
+        JtCod.requestFocus();
+    }
+
+    private void HabilitarCampos() {
+        JtAm.setEnabled(true);
+        JtPares.setEnabled(true);
+        JtSuela.setEnabled(true);
+        JtCod.setEnabled(false);
+        JtAm.requestFocus();
     }
 
     private void LimpiarCampos() {
@@ -539,10 +635,14 @@ public class CapturaInventario extends javax.swing.JFrame {
         if (row > 0) {
             int opcion = JOptionPane.showConfirmDialog(this, "¿Estas seguro de limpiar los registros?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (opcion == JOptionPane.YES_OPTION) {
-                VaciarDatos();
-                CleanTable();
-                JOptionPane.showMessageDialog(null, "Se han limpiado los registros");
-                JtAm.requestFocus();
+                if (LimpiarTabla()) {
+                    VaciarDatos();
+                    CleanTable();
+                    JOptionPane.showMessageDialog(null, "Se han limpiado los registros");
+                    JtAm.requestFocus();
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo limpiar el registro");
+                }
             }
         } else {
             JOptionPane.showMessageDialog(null, "No hay registros");
@@ -596,7 +696,7 @@ public class CapturaInventario extends javax.swing.JFrame {
                 }
             } else {
                 //Si la tabla existe
-                if (objF.deleteTemp(TbTemp)) {
+                if (LimpiarTabla()) {
                     for (int i = 0; i < row; i++) {
                         Infisico inv = new Infisico();
                         inv.setProducto(Integer.parseInt((String) JtPhylon.getValueAt(i, 0)));
@@ -663,6 +763,152 @@ public class CapturaInventario extends javax.swing.JFrame {
             Jpanel.setVisible(false);
         }
     }//GEN-LAST:event_JtSuelaMouseClicked
+
+    private void JcCódigoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JcCódigoItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            DesabilitarCampos();
+        } else {
+            HabilitarCampos();
+        }
+
+    }//GEN-LAST:event_JcCódigoItemStateChanged
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        int codigo = evt.getKeyCode();
+
+        if (codigo == KeyEvent.VK_ENTER) {
+            System.out.println("BIEN");
+        }
+    }//GEN-LAST:event_formKeyPressed
+
+    private void JtCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtCodActionPerformed
+        String cadena = JtCod.getText();
+
+        if (JtAm.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debes de elegir un almacén", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            JtCod.setText("");
+        } else {
+            if (cadena.length() != 13) {
+                JOptionPane.showMessageDialog(null, "El tamaño del código no es correcto", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                JtCod.setText("");
+            } else {
+                am = cadena.substring(0, 2);
+                prod = cadena.substring(2, 7);
+                CodigoSuela = Integer.parseInt(prod);
+                punto = cadena.substring(7, 10);
+                cantidad = cadena.substring(10, 13);
+                ObtenerProductoRCPT();
+                ComprobaroPuntos();
+            }
+        }
+    }//GEN-LAST:event_JtCodActionPerformed
+
+    private void ObtenerProductoRCPT() {
+        ArrayList<PtProducto> listaProd = obj.GetByInventario(CodigoSuela);
+
+        if (listaProd.size() > 0) {
+            for (PtProducto pt : listaProd) {
+                JbCorrida.setText(String.valueOf(pt.getCorrida()));
+                JbProducto.setText(pt.getDescripcion());
+                JbIdProd.setText(String.valueOf(pt.getSuelaPhy()));
+                JbPi.setText(String.valueOf(pt.getPti()));
+                JbPf.setText(String.valueOf(pt.getPtf()));
+                JbEstilo.setText(String.valueOf(pt.getEstilo()));
+                JbCombinacion.setText(String.valueOf(pt.getCombinacion()));
+                JbIdSuela.setText(String.valueOf(pt.getSuelaPhy()));
+                //JbAm.setText(am);
+                JbPunto.setText(punto);
+                JbCantidad.setText(cantidad);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Producto no encontrado", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            JtCod.setText("");
+        }
+    }
+
+    private void ComprobaroPuntos() {
+        String dt[] = new String[22];
+        float Pti = Float.parseFloat(JbPi.getText());
+        float pto = Float.parseFloat(punto) / 10;
+        int cant = Integer.parseInt(JbCantidad.getText());
+        //int almacen = Integer.parseInt(JbAm.getText());
+        float num = .5f;
+
+        for (float i = Pti; i <= pto; i++) {
+            array.add(String.valueOf(cant));
+        }
+
+        if (Pti != pto) {
+            for (float j = Pti + num; j <= pto; j++) {
+                array.add(String.valueOf(cant));
+            }
+        }
+
+        switch (array.size()) {
+            case 12:
+                c12 = String.valueOf(cant);
+                break;
+            case 11:
+                c11 = String.valueOf(cant);
+                break;
+            case 10:
+                c10 = String.valueOf(cant);
+                break;
+            case 9:
+                c9 = String.valueOf(cant);
+                break;
+            case 8:
+                c8 = String.valueOf(cant);
+                break;
+            case 7:
+                c7 = String.valueOf(cant);
+                break;
+            case 6:
+                c6 = String.valueOf(cant);
+                break;
+            case 5:
+                c5 = String.valueOf(cant);
+                break;
+            case 4:
+                c4 = String.valueOf(cant);
+                break;
+            case 3:
+                c3 = String.valueOf(cant);
+                break;
+            case 2:
+                c2 = String.valueOf(cant);
+                break;
+            case 1:
+                c1 = String.valueOf(cant);
+                break;
+            default:
+                break;
+        }
+        dt[0] = JbIdProd.getText();
+        dt[1] = JbProducto.getText();
+        dt[2] = JtAm.getText();
+        dt[3] = JbEstilo.getText();
+        dt[4] = JbCorrida.getText();
+        dt[5] = JbCombinacion.getText();
+        dt[6] = "E";
+        dt[7] = c1;
+        dt[8] = c2;
+        dt[9] = c3;
+        dt[10] = c4;
+        dt[11] = c5;
+        dt[12] = c6;
+        dt[13] = c7;
+        dt[14] = c8;
+        dt[15] = c9;
+        dt[16] = c10;
+        dt[17] = c11;
+        dt[18] = c12;
+        dt[19] = "0";
+        dt[20] = "0";
+        dt[21] = String.valueOf(cant);
+        modelP.addRow(dt);
+        LimpiarRegistro();
+    }
 
     private void Guardar() {
         String ms = "";
@@ -801,7 +1047,7 @@ public class CapturaInventario extends javax.swing.JFrame {
                 view.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     public void windowClosing(java.awt.event.WindowEvent evt) {
-                        if (JOptionPane.showConfirmDialog(null, new Object[]{"Quiere guardar las suelas en el inventario?"}, "JOPtion", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+                        if (JOptionPane.showConfirmDialog(null, new Object[]{"Quieres guardar las suelas en el inventario?"}, "JOPtion", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
                             Guardar();
                         }
                     }
@@ -870,7 +1116,6 @@ public class CapturaInventario extends javax.swing.JFrame {
                 p.modelP.addColumn(colums, datos);
             }
         }
-        // p.JbSuma.setText(String.valueOf(sum));
         p.SumaPuntos = sum;
         p.Pares = Integer.parseInt(JtPares.getText());
         p.Jtdatos.changeSelection(0, 0, true, false);
@@ -890,6 +1135,38 @@ public class CapturaInventario extends javax.swing.JFrame {
         JbPf.setVisible(false);
         JbEstilo.setVisible(false);
         JbCombinacion.setVisible(false);
+        JbIdSuela.setVisible(false);
+        JbPunto.setVisible(false);
+        JbCantidad.setVisible(false);
+        JbAm.setVisible(false);
+    }
+
+    private void LimpiarRegistro() {
+        JbCorrida.setText("");
+        JbProducto.setText("");
+        JbIdProd.setText("");
+        JbPi.setText("");
+        JbPf.setText("");
+        JbEstilo.setText("");
+        JbCombinacion.setText("");
+        JbIdSuela.setText("");
+        JbPunto.setText("");
+        JbCantidad.setText("");
+        JbAm.setText("");
+        JtCod.setText("");
+        array.clear();
+        c1 = "0";
+        c2 = "0";
+        c3 = "0";
+        c4 = "0";
+        c5 = "0";
+        c6 = "0";
+        c7 = "0";
+        c8 = "0";
+        c9 = "0";
+        c10 = "0";
+        c11 = "0";
+        c12 = "0";
     }
 
     private void GuardarFichero() {
@@ -1009,6 +1286,8 @@ public class CapturaInventario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel JbAm;
+    private javax.swing.JLabel JbCantidad;
     private javax.swing.JButton JbClean;
     private javax.swing.JLabel JbCombinacion;
     private javax.swing.JLabel JbCorrida;
@@ -1016,14 +1295,18 @@ public class CapturaInventario extends javax.swing.JFrame {
     private javax.swing.JButton JbGenerar;
     private javax.swing.JButton JbGuardar;
     private javax.swing.JLabel JbIdProd;
+    private javax.swing.JLabel JbIdSuela;
     private javax.swing.JLabel JbPf;
     private javax.swing.JLabel JbPi;
     private javax.swing.JLabel JbProducto;
+    private javax.swing.JLabel JbPunto;
     private javax.swing.JButton JbRemove;
+    private javax.swing.JCheckBox JcCódigo;
     private javax.swing.JLabel JlPares;
     private javax.swing.JList<PtProducto> JlistProductos;
     private javax.swing.JPanel Jpanel;
     public javax.swing.JTextField JtAm;
+    private javax.swing.JTextField JtCod;
     public javax.swing.JTextField JtPares;
     public javax.swing.JTable JtPhylon;
     private javax.swing.JTextField JtSuela;

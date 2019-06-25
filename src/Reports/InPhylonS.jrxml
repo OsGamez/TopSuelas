@@ -275,8 +275,8 @@ SET @v1 = 0
 				<text><![CDATA[INVENTARIO FISICO]]></text>
 			</staticText>
 			<image>
-				<reportElement x="0" y="51" width="131" height="28" uuid="1b28ba3f-8bdb-45f0-8e2c-a71b022390c5"/>
-				<imageExpression><![CDATA["C:\\Program Files\\logo.png"]]></imageExpression>
+				<reportElement x="0" y="40" width="148" height="39" uuid="5f0d8b72-d9ed-4717-9ce7-d59b16e2d4a0"/>
+				<imageExpression><![CDATA["C:\\tsmanager\\imagenes\\logo.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

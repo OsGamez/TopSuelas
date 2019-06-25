@@ -51,7 +51,7 @@ public class Principal extends javax.swing.JFrame {
     ConceptosMPrima conceptom;
     ProvedoresMPrima conceptomp;
     Ped pd;
-    OrdenCompra ordenc;
+    //OrdenCompra ordenc;
     public String Estado = "A";
     String Tb = "";
 
@@ -1436,10 +1436,10 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_JmAlmacenesPrimaActionPerformed
 
     private void JmOrdencActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmOrdencActionPerformed
-                    ordenc = new OrdenCompra(null, true);
+    /*                ordenc = new NOrdenCompra(null, true);
         ordenc.setVisible(true);
         ordenc.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        ordenc.setAlwaysOnTop(true);
+        ordenc.setAlwaysOnTop(true);*/
     }//GEN-LAST:event_JmOrdencActionPerformed
 
     private void nominasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nominasMouseClicked

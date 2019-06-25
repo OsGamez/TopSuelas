@@ -330,10 +330,6 @@ SELECT
 	</background>
 	<title>
 		<band height="70" splitType="Stretch">
-			<image>
-				<reportElement x="0" y="42" width="131" height="28" uuid="87376961-3da9-4733-b70c-44e36a7fb8f4"/>
-				<imageExpression><![CDATA["C:\\Program Files\\logo.png"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement mode="Transparent" x="319" y="33" width="183" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="7619d1fc-5ae4-4cf5-b140-ab6eb95f1529"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
@@ -342,6 +338,10 @@ SELECT
 				</textElement>
 				<text><![CDATA[INVENTARIO CONCENTRADO FISICO]]></text>
 			</staticText>
+			<image>
+				<reportElement x="1" y="31" width="148" height="39" uuid="d09931c6-477b-4530-86e5-b49c39b1c0da"/>
+				<imageExpression><![CDATA["C:\\tsmanager\\imagenes\\logo.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

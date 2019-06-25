@@ -103,7 +103,7 @@ public class ObjectProductos {
         return listaProductos;
     }
 
-    public ArrayList<Producto>GetByC(String filtro) {
+    public ArrayList<Producto> GetByC(String filtro) {
         ArrayList<Producto> listaProductos = new ArrayList<Producto>();
         try {
             st = c.prepareStatement("select  p.Descripcion,p.Id_Producto,\n"
@@ -133,7 +133,7 @@ public class ObjectProductos {
         }
         return listaProductos;
     }
-    
+
     public ArrayList<Producto> productoSearch(String filtro) {
         ArrayList<Producto> listaProductos = new ArrayList<Producto>();
         try {

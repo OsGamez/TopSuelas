@@ -22,7 +22,7 @@ public class Precio {
     private String DesCli;
 
     PreparedStatement st = null;
-    //Connection c = Conexion.getRcpt();
+//    Connection c = Conexion.getRcpt();
     Connection c = Server.getRcpt();
     
     ResultSet rs = null;

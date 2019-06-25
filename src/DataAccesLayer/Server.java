@@ -91,7 +91,6 @@ public static Connection getRcpt(){
     }
     return pa;
 }
-
 public static Connection getPhylon(){
         try{
         if(Phylon == null){
@@ -122,6 +121,18 @@ public static Connection getServer(){
             String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
             Class.forName(driver);
             sv = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;databaseName=RCPTPhylon", "sa", "Admin1305");
+        }
+    }catch(ClassNotFoundException | SQLException ex){
+        ex.printStackTrace();
+    }
+    return sv;
+}
+public static Connection gettempphy(){
+    try{
+        if(sv == null){
+            String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+            Class.forName(driver);
+            sv = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;databaseName=tempphy", "sa", "Admin1305");
         }
     }catch(ClassNotFoundException | SQLException ex){
         ex.printStackTrace();

@@ -11,8 +11,8 @@ import java.util.ArrayList;
 public class ObjectInfisico {
 
     PreparedStatement st = null;
-    Connection c = Conexion.getRcpt();
-    Connection server = Conexion.getLocal();
+    Connection c = Server.getRcpt();
+    Connection server = Server.gettempphy();
     ResultSet rs = null;
 
     public boolean AddInventarioCopy(Infisico inv) {
@@ -164,7 +164,7 @@ public class ObjectInfisico {
 
     public boolean AddInventario(Infisico inv) {
         try {
-            c.setAutoCommit(false);
+            server.setAutoCommit(false);
             st = server.prepareStatement("INSERT INTO InvFisico(Almacen,Producto,Estilo,corrida,Combinacion,Tipo,Punto1,"
                     + "Punto2,Punto3,Punto4,Punto5,Punto6,Punto7,Punto8,Punto9,Punto10,Punto11,Punto12,Punto13,Punto14,TotalPares)"
                     + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -335,10 +335,7 @@ public class ObjectInfisico {
             st = c.prepareStatement("SELECT Producto, Almacen, Estilo, Corrida, Combinacion,Tipo,\n"
                     + "sum(Pto1) as Pto1,sum(Pto2) as Pto2,sum(Pto3) as Pto3,sum(Pto4) as Pto4,sum(Pto5) as Pto5,sum(Pto6) as Pto6,sum(Pto7) as Pto7,\n"
                     + "sum(Pto8) as Pto8,sum(Pto9) as Pto9,sum(Pto10) as Pto10,sum(Pto11) as Pto11,sum(Pto12) as Pto12,sum(Pto13) as Pto13,\n"
-                    + "sum(Pto14) as Pto14,sum(TotalPares) as TotalPares\n"
-                    + "\n"
-                    + "FROM InCopy\n"
-                    + "group by Producto,Almacen,Estilo,Corrida,Combinacion,Tipo\n"
+                    + "sum(Pto14) as Pto14,sum(TotalPares) as TotalPares FROM group by Producto,Almacen,Estilo,Corrida,Combinacion,Tipo\n"
                     + "order by Producto");
             rs = st.executeQuery();
             while (rs.next()) {

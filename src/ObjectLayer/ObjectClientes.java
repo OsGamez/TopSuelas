@@ -17,8 +17,8 @@ public class ObjectClientes {
 
     Connection c = Server.getCobranza();
     Connection rc = Server.getRcobranza();
-    //Connection c = Conexion.getCobranza();
-    //Connection rc = Conexion.getRcobranza();
+//    Connection c = Conexion.getCobranza();
+//    Connection rc = Conexion.getRcobranza();
     PreparedStatement st = null;
     Statement sta = null;
     PreparedStatement copy = null;
@@ -442,7 +442,7 @@ public class ObjectClientes {
                     + "inner join Ciudades cd on c.Id_Ciudad = cd.Id_Ciudad\n"
                     + "inner join Estados e on c.Id_Estado = e.Id_Estado\n"
                     + "inner join Paises p on c.Id_Pais = p.Id_Pais\n"
-                    + "inner join Agentes a on c.Id_Agente = a.Id_Agente WHERE c.Activo = 1 AND c.Id_Cliente LIKE '" + filtro + "%' ORDER BY c.Nombre");
+                    + "inner join Agentes a on c.Id_Agente = a.Id_Agente WHERE c.Activo = 1 AND c.Id_Cliente = " + filtro + " ORDER BY c.Nombre");
             rs = st.executeQuery();
 
             while (rs.next()) {

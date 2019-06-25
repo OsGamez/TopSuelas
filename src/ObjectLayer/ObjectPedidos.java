@@ -12,8 +12,8 @@ import java.util.ArrayList;
 
 public class ObjectPedidos {
 
-    //Connection c = Conexion.getRpt();
-    //Connection pa = Conexion.getRcpt();
+//    Connection c = Conexion.getRpt();
+//    Connection pa = Conexion.getRcpt();
     Connection c = Server.getRpt();
     Connection pa = Server.getRcpt();
 
@@ -23,292 +23,8 @@ public class ObjectPedidos {
     ObjectDetalle obj = new ObjectDetalle();
     ObjectParametros parametro = new ObjectParametros();
 
-    
-
-
-    //CUANDO HAY PEDIDOS ES SERIE A INSERTA EN PHYLON, RPT Y ACTUALIZA PARAMETROS PHY
-    public boolean insertarVentaAPam(Pedido p, ArrayList<Dpedido> detalle, String Np) {
-        boolean rpta = false;
-        try {
-            pa.setAutoCommit(false);
-            dp = pa.prepareStatement("INSERT INTO Pedidos (Npedido,NpedidoCl, Id_Cliente,Fecha_Pedido,Fecha_Entrega,"
-                    + "Condiciones,Observaciones,Id_Usuario,Serie,TotalPares,CostoTotal,Estatus,ParesSurt,OrdenCompra,"
-                    + "Fecha_Recibido,Fecha_Captura)"
-                    + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
-            dp.setString(1, p.getNpedido());
-            dp.setString(2, p.getNpedidoCl());
-            dp.setInt(3, p.getId_Cliente());
-            dp.setDate(4, p.getFecha_Pedido());
-            dp.setDate(5, p.getFecha_Entrega());
-            dp.setString(6, p.getCondiciones());
-            dp.setString(7, p.getObservaciones());
-            dp.setInt(8, p.getId_Usuario());
-            dp.setString(9, p.getSerie());
-            dp.setInt(10, p.getTotalPares());
-            dp.setDouble(11, p.getCostoTotal());
-            dp.setString(12, p.getStatus());
-            dp.setInt(13, p.getParesSurt());
-            dp.setString(14, p.getOrdenCompra());
-            dp.setDate(15, p.getFecha_Recibido());
-            dp.setDate(16, p.getFecha_Captura());
-
-            rpta = dp.executeUpdate() == 1 ? true : false;
-
-            if (rpta) {
-                for (Dpedido dt : detalle) {
-                    dt.setNpedido(p.getNpedido());
-                    rpta = obj.insertDetalleA(dt);
-                    if (!rpta) {
-                        pa.rollback();
-                        dp.close();
-                    } else {
-                        rpta = parametro.actualizarPamA(Np);
-                        if (rpta) {
-                            rpta = insertarVentaPam(p, detalle, Np);
-                            if (rpta) {
-                                pa.commit();
-                                dp.close();
-                            } else {
-                                pa.rollback();
-                                dp.close();
-                            }
-                        } else {
-                            pa.rollback();
-                            dp.close();
-                        }
-                    }
-                }
-            } else {
-                pa.rollback();
-                dp.close();
-            }
-            Conexion.cerrarPhylonA(dp);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            Conexion.cerrarPhylonA(dp);
-            Conexion.rollbackA(pa);
-            Conexion.cerrarConexionA(pa);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Conexion.cerrarPhylonA(dp);
-            Conexion.rollbackA(pa);
-            Conexion.cerrarConexionA(pa);
-        }
-        return rpta;
-    }
-
-    
-    //CUANDO HAY PEDIDOS SI ES SERIE A, INSERTA EN RPTPHYLON Y ACTUALIZA PARAMETROS RPT
-    public boolean insertarVentaPam(Pedido p, ArrayList<Dpedido> detalle, String Np) {
-       boolean rpta = false;
-        try {
-            pa.setAutoCommit(false);
-            dp = pa.prepareStatement("INSERT INTO Pedidos (Npedido,NpedidoCl, Id_Cliente,Fecha_Pedido,Fecha_Entrega,"
-                    + "Condiciones,Observaciones,Id_Usuario,Serie,TotalPares,CostoTotal,Estatus,ParesSurt,OrdenCompra,"
-                    + "Fecha_Recibido,Fecha_Captura)"
-                    + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
-            dp.setString(1, p.getNpedido());
-            dp.setString(2, p.getNpedidoCl());
-            dp.setInt(3, p.getId_Cliente());
-            dp.setDate(4, p.getFecha_Pedido());
-            dp.setDate(5, p.getFecha_Entrega());
-            dp.setString(6, p.getCondiciones());
-            dp.setString(7, p.getObservaciones());
-            dp.setInt(8, p.getId_Usuario());
-            dp.setString(9, p.getSerie());
-            dp.setInt(10, p.getTotalPares());
-            dp.setDouble(11, p.getCostoTotal());
-            dp.setString(12, p.getStatus());
-            dp.setInt(13, p.getParesSurt());
-            dp.setString(14, p.getOrdenCompra());
-            dp.setDate(15, p.getFecha_Recibido());
-            dp.setDate(16, p.getFecha_Captura());
-
-            rpta = dp.executeUpdate() == 1 ? true : false;
-
-            if (rpta) {
-                for (Dpedido dt : detalle) {
-                    dt.setNpedido(p.getNpedido());
-                    rpta = obj.insertDetalleA(dt);
-                    if (!rpta) {
-                        pa.rollback();
-                        dp.close();
-                    } else {
-                        rpta = parametro.actualizarPamA(Np);
-                        if (rpta) {
-                            rpta = parametro.actualizarPam(Np);
-                            if (rpta) {
-                                pa.commit();
-                                dp.close();
-                            } else {
-                                pa.rollback();
-                                dp.close();
-                            }
-                        } else {
-                            pa.rollback();
-                            dp.close();
-                        }
-                    }
-                }
-            } else {
-                pa.rollback();
-                dp.close();
-            }
-            Conexion.cerrarPhylonA(dp);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            Conexion.cerrarPhylonA(dp);
-            Conexion.rollbackA(pa);
-            Conexion.cerrarConexionA(pa);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Conexion.cerrarPhylonA(dp);
-            Conexion.rollbackA(pa);
-            Conexion.cerrarConexionA(pa);
-        }
-        return rpta;
-    }
-    
-    
-    //CUANDO HAY PEDIDOS SI ES SERIE B, INSERTA EN PHYLON Y ACTUALIZA EN LAS TABLAS DE PARAMETROS
-    public boolean insertarVentaPhylon(Pedido p, ArrayList<Dpedido> detalle, String Np){
-        boolean rpta = false;
-        try {
-            pa.setAutoCommit(false);
-            dp = pa.prepareStatement("INSERT INTO Pedidos (Npedido,NpedidoCl, Id_Cliente,Fecha_Pedido,Fecha_Entrega,"
-                    + "Condiciones,Observaciones,Id_Usuario,Serie,TotalPares,CostoTotal,Estatus,ParesSurt,OrdenCompra,"
-                    + "Fecha_Recibido,Fecha_Captura)"
-                    + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
-            dp.setString(1, p.getNpedido());
-            dp.setString(2, p.getNpedidoCl());
-            dp.setInt(3, p.getId_Cliente());
-            dp.setDate(4, p.getFecha_Pedido());
-            dp.setDate(5, p.getFecha_Entrega());
-            dp.setString(6, p.getCondiciones());
-            dp.setString(7, p.getObservaciones());
-            dp.setInt(8, p.getId_Usuario());
-            dp.setString(9, p.getSerie());
-            dp.setInt(10, p.getTotalPares());
-            dp.setDouble(11, p.getCostoTotal());
-            dp.setString(12, p.getStatus());
-            dp.setInt(13, p.getParesSurt());
-            dp.setString(14, p.getOrdenCompra());
-            dp.setDate(15, p.getFecha_Recibido());
-            dp.setDate(16, p.getFecha_Captura());
-
-            rpta = dp.executeUpdate() == 1 ? true : false;
-
-            if (rpta) {
-                for (Dpedido dt : detalle) {
-                    dt.setNpedido(p.getNpedido());
-                    rpta = obj.insertDetalleA(dt);
-                    if (!rpta) {
-                        pa.rollback();
-                        dp.close();
-                    } else {
-                        rpta = parametro.actualizarPamA(Np);
-                        if (rpta) {
-                            rpta = parametro.actualizarPam(Np);
-                            if (rpta) {
-                                pa.commit();
-                                dp.close();
-                            } else {
-                                pa.commit();
-                                dp.close();
-                            }
-                        } else {
-                            pa.rollback();
-                            dp.close();
-                        }
-                    }
-                }
-            } else {
-                pa.rollback();
-                dp.close();
-            }
-            Conexion.cerrarPhylonA(dp);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            Conexion.cerrarPhylonA(dp);
-            Conexion.rollbackA(pa);
-            Conexion.cerrarConexionA(pa);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Conexion.cerrarPhylonA(dp);
-            Conexion.rollbackA(pa);
-            Conexion.cerrarConexionA(pa);
-        }
-        return rpta;
-    }
-          
-    //INSERTA EN RPTPHYLON Y EN PARAMETROS RPT
-    public boolean insertarVenta(Pedido p, ArrayList<Dpedido> detalle, Parametro pam) {
-        boolean rpta = false;
-        try {
-            c.setAutoCommit(false);
-            st = c.prepareStatement("INSERT INTO Pedidos (Npedido,NpedidoCl, Id_Cliente,Fecha_Pedido,Fecha_Entrega, "
-                    + "Condiciones,Observaciones,Id_Usuario,Serie,TotalPares,CostoTotal,Estatus,ParesSurt,OrdenCompra,"
-                    + "Fecha_Recibido,Fecha_Captura)"
-                    + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            st.setString(1, p.getNpedido());
-            st.setString(2, p.getNpedidoCl());
-            st.setInt(3, p.getId_Cliente());
-            st.setDate(4, p.getFecha_Pedido());
-            st.setDate(5, p.getFecha_Entrega());
-            st.setString(6, p.getCondiciones());
-            st.setString(7, p.getObservaciones());
-            st.setInt(8, p.getId_Usuario());
-            st.setString(9, p.getSerie());
-            st.setInt(10, p.getTotalPares());
-            st.setDouble(11, p.getCostoTotal());
-            st.setString(12, p.getStatus());
-            st.setInt(13, p.getParesSurt());
-            st.setString(14, p.getOrdenCompra());
-            st.setDate(15, p.getFecha_Recibido());
-            st.setDate(16, p.getFecha_Captura());
-
-            rpta = st.executeUpdate() == 1 ? true : false;
-
-            if (rpta) {
-                for (Dpedido det : detalle) {
-                    det.setNpedido(p.getNpedido());
-                    rpta = obj.insertDetalle(det);
-
-                    if (!rpta) {
-                        c.rollback();
-                        st.close();
-                    } else {
-                        pam.setNpedido(p.getNpedido());
-                        rpta = parametro.insertarPam(pam);
-                        if (rpta) {
-                            c.commit();
-                            st.close();
-                        } else {
-                            c.rollback();
-                            st.close();
-                        }
-                    }
-                }
-            }
-            Conexion.cerrarPrep(st);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            Conexion.cerrarPrep(st);
-            Conexion.rollback(c);
-            Conexion.cerrarConexion(c);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Conexion.cerrarPrep(st);
-            Conexion.rollback(c);
-            Conexion.cerrarConexion(c);
-        }
-        return rpta;
-    }
-    
     //CUANDO NO HAY PEDIDOS SI ES SERIE A INSERTA EN PHYLON,RPT Y EN PARAMETROS PHY
+    //RCPTPHYLONA
     public boolean insertarVentaA(Pedido p, ArrayList<Dpedido> detalle, Parametro pam) {
         boolean rpta = false;
         try {
@@ -341,25 +57,25 @@ public class ObjectPedidos {
                 for (Dpedido dt : detalle) {
                     dt.setNpedido(p.getNpedido());
                     rpta = obj.insertDetalleA(dt);
-                    if (!rpta) {
-                        pa.rollback();
-                        dp.close();
-                    } else {
-                        pam.setNpedido(p.getNpedido());
-                        rpta = parametro.insertarPamA(pam);
+                }
+                if (!rpta) {
+                    pa.rollback();
+                    dp.close();
+                } else {
+                    pam.setNpedido(p.getNpedido());
+                    rpta = parametro.insertarPamA(pam);
+                    if (rpta) {
+                        rpta = insertarVenta(p, detalle, pam);
                         if (rpta) {
-                            rpta = insertarVenta(p, detalle, pam);
-                            if (rpta) {
-                                pa.commit();
-                                dp.close();
-                            } else {
-                                pa.commit();
-                                dp.close();
-                            }
+                            pa.commit();
+                            dp.close();
                         } else {
                             pa.rollback();
                             dp.close();
                         }
+                    } else {
+                        pa.rollback();
+                        dp.close();
                     }
                 }
             } else {
@@ -380,9 +96,215 @@ public class ObjectPedidos {
         }
         return rpta;
     }
-    
-    //CUANDO NO HAY PEDIDOS SI ES SERIE B, INSERTA EN PHYLON, INSERTA EN LAS TABLAS DE PARAMETROS
-    public boolean insertarVentaRPT(Pedido p, ArrayList<Dpedido> detalle, Parametro pam) {
+
+    //CUANDO NO HAY PEDIDOS INSERTA EN RPTPHYLON, RPT Y EN PARAMETROS 
+    //RPTPHY
+    public boolean insertarVenta(Pedido p, ArrayList<Dpedido> detalle, Parametro pam) {
+        boolean rpta = false;
+        try {
+            c.setAutoCommit(false);
+            st = c.prepareStatement("INSERT INTO Pedidos (Npedido,NpedidoCl, Id_Cliente,Fecha_Pedido,Fecha_Entrega, "
+                    + "Condiciones,Observaciones,Id_Usuario,Serie,TotalPares,CostoTotal,Estatus,ParesSurt,OrdenCompra,"
+                    + "Fecha_Recibido,Fecha_Captura)"
+                    + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            st.setString(1, p.getNpedido());
+            st.setString(2, p.getNpedidoCl());
+            st.setInt(3, p.getId_Cliente());
+            st.setDate(4, p.getFecha_Pedido());
+            st.setDate(5, p.getFecha_Entrega());
+            st.setString(6, p.getCondiciones());
+            st.setString(7, p.getObservaciones());
+            st.setInt(8, p.getId_Usuario());
+            st.setString(9, p.getSerie());
+            st.setInt(10, p.getTotalPares());
+            st.setDouble(11, p.getCostoTotal());
+            st.setString(12, p.getStatus());
+            st.setInt(13, p.getParesSurt());
+            st.setString(14, p.getOrdenCompra());
+            st.setDate(15, p.getFecha_Recibido());
+            st.setDate(16, p.getFecha_Captura());
+
+            rpta = st.executeUpdate() == 1 ? true : false;
+
+            if (rpta) {
+                for (Dpedido det : detalle) {
+                    det.setNpedido(p.getNpedido());
+                    rpta = obj.insertDetalle(det);
+                }
+                if (!rpta) {
+                    c.rollback();
+                    st.close();
+                } else {
+                    pam.setNpedido(p.getNpedido());
+                    rpta = parametro.insertarPam(pam);
+                    if (rpta) {
+                        c.commit();
+                        st.close();
+                    } else {
+                        c.rollback();
+                        st.close();
+                    }
+                }
+            } else {
+                c.rollback();
+                st.close();
+            }
+            Conexion.cerrarPrep(st);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(st);
+            Conexion.rollback(c);
+            Conexion.cerrarConexion(c);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Conexion.cerrarPrep(st);
+            Conexion.rollback(c);
+            Conexion.cerrarConexion(c);
+        }
+        return rpta;
+    }
+
+    //CUANDO HAY PEDIDOS SI ES SERIE A INSERTA EN PHYLON, RPT Y ACTUALIZA LAS TABLAS DE PARAMETROS PHY
+    public boolean insertarVentaAPam(Pedido p, ArrayList<Dpedido> detalle, String Np) {
+        boolean rpta = false;
+        try {
+            pa.setAutoCommit(false);
+            dp = pa.prepareStatement("INSERT INTO Pedidos (Npedido,NpedidoCl, Id_Cliente,Fecha_Pedido,Fecha_Entrega,"
+                    + "Condiciones,Observaciones,Id_Usuario,Serie,TotalPares,CostoTotal,Estatus,ParesSurt,OrdenCompra,"
+                    + "Fecha_Recibido,Fecha_Captura)"
+                    + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+            dp.setString(1, p.getNpedido());
+            dp.setString(2, p.getNpedidoCl());
+            dp.setInt(3, p.getId_Cliente());
+            dp.setDate(4, p.getFecha_Pedido());
+            dp.setDate(5, p.getFecha_Entrega());
+            dp.setString(6, p.getCondiciones());
+            dp.setString(7, p.getObservaciones());
+            dp.setInt(8, p.getId_Usuario());
+            dp.setString(9, p.getSerie());
+            dp.setInt(10, p.getTotalPares());
+            dp.setDouble(11, p.getCostoTotal());
+            dp.setString(12, p.getStatus());
+            dp.setInt(13, p.getParesSurt());
+            dp.setString(14, p.getOrdenCompra());
+            dp.setDate(15, p.getFecha_Recibido());
+            dp.setDate(16, p.getFecha_Captura());
+
+            rpta = dp.executeUpdate() == 1 ? true : false;
+
+            if (rpta) {
+                for (Dpedido dt : detalle) {
+                    dt.setNpedido(p.getNpedido());
+                    rpta = obj.insertDetalleA(dt);
+                }
+                if (!rpta) {
+                    pa.rollback();
+                    dp.close();
+                } else {
+                    rpta = parametro.actualizarPamA(Np);
+                    if (rpta) {
+                        rpta = insertarVentaPam(p, detalle, Np);
+                        if (rpta) {
+                            pa.commit();
+                            dp.close();
+                        } else {
+                            pa.rollback();
+                            dp.close();
+                        }
+                    } else {
+                        pa.rollback();
+                        dp.close();
+                    }
+                }
+            } else {
+                pa.rollback();
+                dp.close();
+            }
+            Conexion.cerrarPhylonA(dp);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPhylonA(dp);
+            Conexion.rollbackA(pa);
+            Conexion.cerrarConexionA(pa);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Conexion.cerrarPhylonA(dp);
+            Conexion.rollbackA(pa);
+            Conexion.cerrarConexionA(pa);
+        }
+        return rpta;
+    }
+
+    //CUANDO HAY PEDIDOS SI ES SERIE A, INSERTA EN RPTPHYLON Y ACTUALIZA PARAMETROS RPT
+    public boolean insertarVentaPam(Pedido p, ArrayList<Dpedido> detalle, String Np) {
+        boolean rpta = false;
+        try {
+            c.setAutoCommit(false);
+            st = c.prepareStatement("INSERT INTO Pedidos (Npedido,NpedidoCl, Id_Cliente,Fecha_Pedido,Fecha_Entrega,"
+                    + "Condiciones,Observaciones,Id_Usuario,Serie,TotalPares,CostoTotal,Estatus,ParesSurt,OrdenCompra,"
+                    + "Fecha_Recibido,Fecha_Captura)"
+                    + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+            st.setString(1, p.getNpedido());
+            st.setString(2, p.getNpedidoCl());
+            st.setInt(3, p.getId_Cliente());
+            st.setDate(4, p.getFecha_Pedido());
+            st.setDate(5, p.getFecha_Entrega());
+            st.setString(6, p.getCondiciones());
+            st.setString(7, p.getObservaciones());
+            st.setInt(8, p.getId_Usuario());
+            st.setString(9, p.getSerie());
+            st.setInt(10, p.getTotalPares());
+            st.setDouble(11, p.getCostoTotal());
+            st.setString(12, p.getStatus());
+            st.setInt(13, p.getParesSurt());
+            st.setString(14, p.getOrdenCompra());
+            st.setDate(15, p.getFecha_Recibido());
+            st.setDate(16, p.getFecha_Captura());
+
+            rpta = st.executeUpdate() == 1 ? true : false;
+
+            if (rpta) {
+                for (Dpedido dt : detalle) {
+                    dt.setNpedido(p.getNpedido());
+                    rpta = obj.insertDetalle(dt);
+                }
+                if (!rpta) {
+                        c.rollback();
+                        st.close();
+                    } else {
+                        rpta = parametro.actualizarPam(Np);
+                        if (rpta) {
+                            c.commit();
+                            st.close();
+                        } else {
+                            c.rollback();
+                            st.close();
+                        }
+                    }
+            } else {
+                c.rollback();
+                st.close();
+            }
+            Conexion.cerrarPhylonA(st);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPhylonA(st);
+            Conexion.rollbackA(c);
+            Conexion.cerrarConexionA(c);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Conexion.cerrarPhylonA(st);
+            Conexion.rollbackA(c);
+            Conexion.cerrarConexionA(c);
+        }
+        return rpta;
+    }
+
+    //CUANDO NO HAY PEDIDOS SI ES SERIE B INSERTA EN PHYLON Y EN PARAMETROS PHY
+    //RCPTPHYLONA
+    public boolean insertarVentaB(Pedido p, ArrayList<Dpedido> detalle, Parametro pam) {
         boolean rpta = false;
         try {
             pa.setAutoCommit(false);
@@ -453,8 +375,80 @@ public class ObjectPedidos {
         }
         return rpta;
     }
-    
-    
+
+    //CUANDO  HAY PEDIDOS INSERTA EN RPTPHYLON Y  ACTUALIZA EN PARAMETROS 
+    //RPTPHY
+    public boolean insertarVentaBPam(Pedido p, ArrayList<Dpedido> detalle, String Np) {
+        boolean rpta = false;
+        try {
+            pa.setAutoCommit(false);
+            dp = pa.prepareStatement("INSERT INTO Pedidos (Npedido,NpedidoCl, Id_Cliente,Fecha_Pedido,Fecha_Entrega,"
+                    + "Condiciones,Observaciones,Id_Usuario,Serie,TotalPares,CostoTotal,Estatus,ParesSurt,OrdenCompra,"
+                    + "Fecha_Recibido,Fecha_Captura)"
+                    + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+            dp.setString(1, p.getNpedido());
+            dp.setString(2, p.getNpedidoCl());
+            dp.setInt(3, p.getId_Cliente());
+            dp.setDate(4, p.getFecha_Pedido());
+            dp.setDate(5, p.getFecha_Entrega());
+            dp.setString(6, p.getCondiciones());
+            dp.setString(7, p.getObservaciones());
+            dp.setInt(8, p.getId_Usuario());
+            dp.setString(9, p.getSerie());
+            dp.setInt(10, p.getTotalPares());
+            dp.setDouble(11, p.getCostoTotal());
+            dp.setString(12, p.getStatus());
+            dp.setInt(13, p.getParesSurt());
+            dp.setString(14, p.getOrdenCompra());
+            dp.setDate(15, p.getFecha_Recibido());
+            dp.setDate(16, p.getFecha_Captura());
+
+            rpta = dp.executeUpdate() == 1 ? true : false;
+
+            if (rpta) {
+                for (Dpedido dt : detalle) {
+                    dt.setNpedido(p.getNpedido());
+                    rpta = obj.insertDetalleA(dt);
+                    if (!rpta) {
+                        pa.rollback();
+                        dp.close();
+                    } else {
+                        rpta = parametro.actualizarPamA(Np);
+                        if (rpta) {
+                            rpta = parametro.actualizarPam(Np);
+                            if (rpta) {
+                                pa.commit();
+                                dp.close();
+                            } else {
+                                pa.rollback();
+                                dp.close();
+                            }
+                        } else {
+                            pa.rollback();
+                            dp.close();
+                        }
+                    }
+                }
+            } else {
+                pa.rollback();
+                dp.close();
+            }
+            Conexion.cerrarPhylonA(dp);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPhylonA(dp);
+            Conexion.rollbackA(pa);
+            Conexion.cerrarConexionA(pa);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Conexion.cerrarPhylonA(dp);
+            Conexion.rollbackA(pa);
+            Conexion.cerrarConexionA(pa);
+        }
+        return rpta;
+    }
+
     public boolean insertarParametro(Parametro p) {
         try {
             c.setAutoCommit(false);
@@ -640,9 +634,11 @@ public class ObjectPedidos {
                         st.close();
                     } else {
                         c.rollback();
+                        st.close();
                     }
                 } else {
                     c.rollback();
+                    st.close();
                 }
                 st.close();
             }
@@ -677,20 +673,73 @@ public class ObjectPedidos {
                     dt.setNpedido(p.getNpedido());
                     rpta = obj.actualizarDetalleA(dt);
                     if (rpta) {
-                        pa.commit();
-                        dp.close();
+                        rpta = actualizarPedido(p, dt, Id);
+                        if (rpta) {
+                            pa.commit();
+                            dp.close();
+                        } else {
+                            pa.rollback();
+                            dp.close();
+                        }
+
                     } else {
                         pa.rollback();
+                        dp.close();
                     }
                 } else {
                     pa.rollback();
+                    dp.close();
                 }
                 dp.close();
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
             Conexion.cerrarPrep(st);
-            Conexion.rollback(c);
+            Conexion.rollback(pa);
+        }
+        return rpta;
+
+    }
+
+    public boolean actualizarPedidoAPhy(Pedido p, Dpedido dt, int Id) {
+        boolean rpta = false;
+        try {
+            pa.setAutoCommit(false);
+            dp = pa.prepareStatement("select p.Estatus,p.Npedido from RCPTPhylonA.dbo.Dpedido d\n"
+                    + "            inner join RCPTPhylonA.dbo.Pedidos p on p.Npedido = d.Npedido\n"
+                    + "            WHERE d.Renglon = ? and d.Npedido = ?\n"
+                    + "			and d.Estatus<>10");
+            dp.setInt(1, Id);
+            dp.setString(2, p.getNpedido());
+            ra = dp.executeQuery();
+            if (ra.next()) {
+                return false;
+            } else {
+                dp = pa.prepareStatement("UPDATE Pedidos SET TotalPares = ?, CostoTotal=? WHERE Npedido= ?");
+                dp.setDouble(1, p.getTotalPares());
+                dp.setDouble(2, p.getCostoTotal());
+                dp.setString(3, p.getNpedido());
+                rpta = dp.executeUpdate() == 1 ? true : false;
+                if (rpta) {
+                    dt.setNpedido(p.getNpedido());
+                    rpta = obj.actualizarDetalleA(dt);
+                    if (rpta) {
+                        pa.commit();
+                        dp.close();
+                    } else {
+                        pa.rollback();
+                        dp.close();
+                    }
+                } else {
+                    pa.rollback();
+                    dp.close();
+                }
+                dp.close();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(st);
+            Conexion.rollback(pa);
         }
         return rpta;
 
@@ -765,19 +814,66 @@ public class ObjectPedidos {
                     for (Dpedido dt : detalle) {
                         dt.setNpedido(p.getNpedido());
                         rpta = obj.insertDetalleA(dt);
-                        if (!rpta) {
-                            pa.rollback();
-                            dp.close();
+                        if (rpta) {
+                            rpta = agregarPedido(p, detalle, Np);
+                            if (rpta) {
+                                pa.commit();
+                                dp.close();
+                            } else {
+                                pa.rollback();
+                                dp.close();
+                            }
+
                         } else {
-                            pa.commit();
+                            pa.rollback();
                             dp.close();
                         }
                     }
-                    /*if (rpta) {
-                        pa.commit();
-                    } else {
-                        Conexion.rollbackA(pa);
-                    }*/
+
+                } else {
+                    pa.rollback();
+                    dp.close();
+                }
+                dp.close();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(dp);
+            Conexion.rollback(pa);
+        }
+        return rpta;
+    }
+
+    public boolean agregarPedidoAPhy(Pedido p, ArrayList<Dpedido> detalle, String Np) {
+        boolean rpta = false;
+        try {
+            pa.setAutoCommit(false);
+            dp = pa.prepareStatement("select p.Estatus,p.Npedido from RCPTPhylonA.dbo.Dpedido d\n"
+                    + "inner join RCPTPhylonA.dbo.Pedidos p on p.Npedido = d.Npedido\n"
+                    + "where p.Npedido = ? and p.Estatus<>10");
+            dp.setString(1, Np);
+            ra = dp.executeQuery();
+            if (ra.next()) {
+                return false;
+            } else {
+                dp = pa.prepareStatement("UPDATE Pedidos SET TotalPares = ?,CostoTotal=? WHERE Npedido=?");
+                dp.setDouble(1, p.getTotalPares());
+                dp.setDouble(2, p.getCostoTotal());
+                dp.setString(3, p.getNpedido());
+                rpta = dp.executeUpdate() == 1 ? true : false;
+                if (rpta) {
+                    for (Dpedido dt : detalle) {
+                        dt.setNpedido(p.getNpedido());
+                        rpta = obj.insertDetalleA(dt);
+                        if (rpta) {
+                            pa.commit();
+                            dp.close();
+                        } else {
+                            pa.rollback();
+                            dp.close();
+                        }
+                    }
+
                 } else {
                     pa.rollback();
                     dp.close();
@@ -835,6 +931,51 @@ public class ObjectPedidos {
     }
 
     public boolean eliminarPedidoA(Pedido p, int id) {
+        boolean rpta = false;
+        try {
+            pa.setAutoCommit(false);
+            dp = pa.prepareStatement("select d.Estatus,d.Npedido from RCPTPhylonA.dbo.Dpedido d\n"
+                    + "            inner join RCPTPhylonA.dbo.Pedidos p on p.Npedido = d.Npedido\n"
+                    + "            WHERE d.Renglon = ? and d.Npedido = ?\n"
+                    + "			and d.Estatus<>10");
+            dp.setInt(1, id);
+            dp.setString(2, p.getNpedido());
+            ra = dp.executeQuery();
+            if (ra.next()) {
+                return false;
+            } else {
+                dp = pa.prepareStatement("UPDATE Pedidos SET TotalPares = ?,CostoTotal=? WHERE Npedido=?");
+                dp.setDouble(1, p.getTotalPares());
+                dp.setDouble(2, p.getCostoTotal());
+                dp.setString(3, p.getNpedido());
+                rpta = dp.executeUpdate() == 1 ? true : false;
+                if (rpta) {
+                    rpta = obj.eliminarDetalleA(id, p.getNpedido());
+                    if (rpta) {
+                        rpta = eliminarPedido(p, id);
+                        if (rpta) {
+                            pa.commit();
+                            dp.close();
+                        }
+                    } else {
+                        pa.rollback();
+                        dp.close();
+                    }
+                } else {
+                    pa.rollback();
+                    dp.close();
+                }
+                dp.close();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Conexion.cerrarPrep(dp);
+            Conexion.rollback(pa);
+        }
+        return rpta;
+    }
+
+    public boolean eliminarPedidoB(Pedido p, int id) {
         boolean rpta = false;
         try {
             pa.setAutoCommit(false);
@@ -944,7 +1085,7 @@ public class ObjectPedidos {
         }
     }
 
-    public boolean cancelarPedidoA(String Npedido, Parametro pam) {
+    public boolean cancelarPedidoA(String Npedido) {
         boolean rpta = false;
         try {
             pa.setAutoCommit(false);
@@ -959,9 +1100,14 @@ public class ObjectPedidos {
                 dp.setString(1, Npedido);
                 rpta = dp.executeUpdate() == 1 ? true : false;
                 if (rpta) {
-                    //rpta = parametro.cancelarPamA(Npedido);
-                    pa.commit();
-                    dp.close();
+                    rpta = cancelarPedido(Npedido);
+                    if (rpta) {
+                        pa.commit();
+                        dp.close();
+                    } else {
+                        pa.rollback();
+                        dp.close();
+                    }
                 } else {
                     pa.rollback();
                     dp.close();
@@ -977,7 +1123,7 @@ public class ObjectPedidos {
         return rpta;
     }
 
-    public boolean cancelarPedido(String Npedido, Parametro pam) {
+    public boolean cancelarPedido(String Npedido) {
         boolean rpta = false;
         try {
             c.setAutoCommit(false);
@@ -1000,6 +1146,38 @@ public class ObjectPedidos {
                     st.close();
                 }
                 st.close();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Conexion.cerrarPrep(dp);
+            Conexion.rollback(pa);
+        }
+        return rpta;
+    }
+
+    public boolean cancelarPedidoB(String Npedido) {
+        boolean rpta = false;
+        try {
+            pa.setAutoCommit(false);
+            dp = pa.prepareStatement("SELECT Estatus,Npedido FROM Pedidos WHERE Npedido = ? AND Estatus<>10");
+            dp.setString(1, Npedido);
+            rs = dp.executeQuery();
+
+            if (rs.next()) {
+                return false;
+            } else {
+                dp = pa.prepareStatement("DELETE Pedidos WHERE Npedido = ?");
+                dp.setString(1, Npedido);
+                rpta = dp.executeUpdate() == 1 ? true : false;
+                if (rpta) {
+                    pa.commit();
+                    dp.close();
+                } else {
+                    pa.rollback();
+                    dp.close();
+                }
+                dp.close();
             }
 
         } catch (Exception e) {

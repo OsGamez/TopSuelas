@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 public class PtProducto {
+
     PreparedStatement st = null;
     Connection c = Server.getServer();
     ResultSet rs = null;
@@ -24,12 +25,21 @@ public class PtProducto {
     private int Almacen;
     private int Pti;
     private int Ptf;
+    private int SuelaPhy;
     private String DescripcionAlmacen;
     private String Estatus;
 
     public PtProducto() {
     }
 
+    public int getSuelaPhy() {
+        return SuelaPhy;
+    }
+
+    public void setSuelaPhy(int SuelaPhy) {
+        this.SuelaPhy = SuelaPhy;
+    }
+    
     public int getPti() {
         return Pti;
     }
@@ -68,7 +78,7 @@ public class PtProducto {
 
     public void setEstatus(String Estatus) {
         this.Estatus = Estatus;
-    }   
+    }
 
     public int getProducto() {
         return Producto;
@@ -110,13 +120,11 @@ public class PtProducto {
         this.Combinacion = Combinacion;
     }
 
-    
-    
     @Override
     public String toString() {
         return this.Descripcion;
     }
-    
+
     public Vector<PtProducto> getProductos() {
         Vector<PtProducto> datos = new Vector<PtProducto>();
         PtProducto p = null;

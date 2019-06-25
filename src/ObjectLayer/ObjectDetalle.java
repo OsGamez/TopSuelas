@@ -11,8 +11,8 @@ public class ObjectDetalle {
 
     Connection c = Server.getRpt();
     Connection p = Server.getRcpt();
-    //Connection c = Conexion.getRpt();
-    //Connection p = Conexion.getRcpt();
+//    Connection c = Conexion.getRpt();
+//    Connection p = Conexion.getRcpt();
 
     PreparedStatement st, dp = null;
     ResultSet rs = null;

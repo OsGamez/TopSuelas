@@ -1,4 +1,3 @@
-
 package ViewLayer;
 
 import DataAccesLayer.Conexion;
@@ -22,16 +21,18 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
-
 public class RPedido extends javax.swing.JFrame {
-    Connection c = Conexion.getRcpt();
+
+    Connection c = Server.getRcpt();
     ObjectPedidos pedido = new ObjectPedidos();
+
     public RPedido() {
         initComponents();
         JbFecha.setEnabled(false);
         JbReporte.setEnabled(false);
+        JtNpedido.requestFocus();
     }
-  
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -71,6 +72,12 @@ public class RPedido extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("No. Pedido:");
+
+        JtNpedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtNpedidoActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("IMPRIMIR POR FECHAS");
@@ -182,84 +189,18 @@ public class RPedido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JbPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbPedidoActionPerformed
-        ArrayList<Pedido>lista = pedido.pedidoGetByID(JtNpedido.getText());
-         if(lista.size()>0){
-             if(JtNpedido.getText().equals("")){
-             JOptionPane.showMessageDialog(this, "Ingresa un numero de pedido","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-             }else{
-        try{
-            JasperReport reporte = null;
-            Map parametro = new HashMap();
-            parametro.put("Npedido", JtNpedido.getText());
-            reporte = (JasperReport)JRLoader.loadObject(getClass().getResource("/Reports/ReporteNpedido.jasper"));
-            try {
-                JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro,c);
-                JasperViewer view = new  JasperViewer(jprint,false);
-                view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                view.setVisible(true);
-                view.setIconImage(getImage());
-                view.setTitle("TOP-SUELAS");
-            } catch (JRException ex) {
-                Logger.getLogger(RPedido.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }catch (JRException ex) {
-            Logger.getLogger(RPedido.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         dispose();   
-             }
-         }else{
-              JOptionPane.showMessageDialog(this, "No existe este pedido","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-              JtNpedido.setText("");
-         }   
+        Reporte();
     }//GEN-LAST:event_JbPedidoActionPerformed
 
     private void JbReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbReporteActionPerformed
-           try{
+        try {
             JasperReport reporte = null;
             String path = "src\\Reports\\ReportePedidos.jasper";
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
             try {
-                JasperPrint jprint = JasperFillManager.fillReport(reporte, null,c);
-                JasperViewer view = new  JasperViewer(jprint,false);
-                
-                view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                view.setVisible(true);
-                view.setIconImage(getImage());
-                view.setTitle("TOP-SUELAS");
-            } catch (JRException ex) {
-                Logger.getLogger(Colores.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }catch (JRException ex) {
-            Logger.getLogger(Colores.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            dispose();
-    }//GEN-LAST:event_JbReporteActionPerformed
+                JasperPrint jprint = JasperFillManager.fillReport(reporte, null, c);
+                JasperViewer view = new JasperViewer(jprint, false);
 
-    private void JbFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbFechaActionPerformed
-         
-         if(Fecha1.getDate() == null || Fecha2.getDate() == null){
-              JOptionPane.showMessageDialog(this, "Ingresa una fecha","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-         }else{
-         java.util.Date fecha = new java.util.Date();
-         SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
-         fecha = Fecha1.getDate();
-         String pfecha = sm.format(fecha);
-         
-         java.util.Date fecha2 = new java.util.Date();
-         SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
-         fecha2 = Fecha2.getDate();
-         String sfecha = fm.format(fecha2);
-          try {                                          
-            JasperReport reporte = null;
-            String path = "src\\Reports\\ReportePedidoFechas.jasper";
-            Map par = new HashMap();
-            par.put("Fecha_Pedido", pfecha);
-            par.put("Fecha_Pedido2", sfecha);
-            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
-            try {
-                JasperPrint jprint = JasperFillManager.fillReport(reporte, par,c);
-                JasperViewer view = new  JasperViewer(jprint,false);
-                
                 view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                 view.setVisible(true);
                 view.setIconImage(getImage());
@@ -270,13 +211,87 @@ public class RPedido extends javax.swing.JFrame {
         } catch (JRException ex) {
             Logger.getLogger(Colores.class.getName()).log(Level.SEVERE, null, ex);
         }
-         dispose();     
-         }
+        dispose();
+    }//GEN-LAST:event_JbReporteActionPerformed
+
+    private void JbFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbFechaActionPerformed
+        if (Fecha1.getDate() == null || Fecha2.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Ingresa una fecha", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+        } else {
+            java.util.Date fecha = new java.util.Date();
+            SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
+            fecha = Fecha1.getDate();
+            String pfecha = sm.format(fecha);
+
+            java.util.Date fecha2 = new java.util.Date();
+            SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+            fecha2 = Fecha2.getDate();
+            String sfecha = fm.format(fecha2);
+            try {
+                JasperReport reporte = null;
+                String path = "src\\Reports\\ReportePedidoFechas.jasper";
+                Map par = new HashMap();
+                par.put("Fecha_Pedido", pfecha);
+                par.put("Fecha_Pedido2", sfecha);
+                reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+                try {
+                    JasperPrint jprint = JasperFillManager.fillReport(reporte, par, c);
+                    JasperViewer view = new JasperViewer(jprint, false);
+
+                    view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    view.setVisible(true);
+                    view.setIconImage(getImage());
+                    view.setTitle("TOP-SUELAS");
+                } catch (JRException ex) {
+                    Logger.getLogger(Colores.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (JRException ex) {
+                Logger.getLogger(Colores.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            dispose();
+        }
     }//GEN-LAST:event_JbFechaActionPerformed
-    public Image getImage(){
+
+    private void Reporte() {
+        ArrayList<Pedido> lista = pedido.pedidoGetByID(JtNpedido.getText());
+        if (lista.size() > 0) {
+            if (JtNpedido.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Ingresa un numero de pedido", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            } else {
+                try {
+                    JasperReport reporte = null;
+                    Map parametro = new HashMap();
+                    parametro.put("Npedido", JtNpedido.getText());
+                    reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reports/ReporteNpedido.jasper"));
+                    try {
+                        JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, c);
+                        JasperViewer view = new JasperViewer(jprint, false);
+                        view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                        view.setVisible(true);
+                        view.setIconImage(getImage());
+                        view.setTitle("TOP-SUELAS");
+                    } catch (JRException ex) {
+                        Logger.getLogger(RPedido.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } catch (JRException ex) {
+                    Logger.getLogger(RPedido.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                dispose();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No existe este pedido", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            JtNpedido.setText("");
+        }
+    }
+
+    private void JtNpedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtNpedidoActionPerformed
+        Reporte();
+    }//GEN-LAST:event_JtNpedidoActionPerformed
+    public Image getImage() {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/PhotoPrint_11187.png"));
         return icon;
     }
+
     /**
      * @param args the command line arguments
      */
