@@ -2,6 +2,7 @@ package ViewLayer;
 
 import ObjectLayer.Copiaarchivo;
 import ObjectLayer.Hora;
+import ObjectLayer.Sesioninfo;
 import ObjectLayer.Usuario;
 import java.awt.Color;
 import java.awt.Image;
@@ -51,6 +52,7 @@ public class Principal extends javax.swing.JFrame {
     ConceptosMPrima conceptom;
     ProvedoresMPrima conceptomp;
     NOrdenCompra ordenc;
+    MovimientosCMP movcmp;
     public String Estado = "A";
     String Tb = "";
 
@@ -82,6 +84,10 @@ public class Principal extends javax.swing.JFrame {
 //        popCMP.add(JmOrdenc);
         this.us = us;
         LoadVersion();
+        Sesioninfo se = new Sesioninfo();
+        se.setSerie(Estado);
+        se.setUsuario(us.getUsuario());
+        se.setId_usuario(us.getId_Usuario());
         if (us.getDepartamento().equals("ADMIN")) {
 
         } else if (us.getUsuario().equals("kim")) {
@@ -190,6 +196,7 @@ public class Principal extends javax.swing.JFrame {
         JmMateriales = new javax.swing.JMenuItem();
         JmAlmacenes = new javax.swing.JMenuItem();
         JmOrdenc = new javax.swing.JMenuItem();
+        JmMovES = new javax.swing.JMenuItem();
         MainContent = new javax.swing.JDesktopPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
@@ -669,6 +676,15 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         JmCMP.add(JmOrdenc);
+
+        JmMovES.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/exchange.png"))); // NOI18N
+        JmMovES.setText("Movimientos Entrada/Salida");
+        JmMovES.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmMovESActionPerformed(evt);
+            }
+        });
+        JmCMP.add(JmMovES);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TOP-SUELAS");
@@ -1444,6 +1460,13 @@ public class Principal extends javax.swing.JFrame {
     private void nominasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nominasMouseClicked
         popnomina.show(evt.getComponent(), evt.getX(), evt.getY());
     }//GEN-LAST:event_nominasMouseClicked
+
+    private void JmMovESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmMovESActionPerformed
+        movcmp = new MovimientosCMP();
+        MainContent.add(movcmp);
+        MainContent.getDesktopManager().maximizeFrame(movcmp);
+        movcmp.setVisible(true);
+    }//GEN-LAST:event_JmMovESActionPerformed
     private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {
         LoadMaquina();
     }
@@ -1522,6 +1545,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JmMaquinas;
     private javax.swing.JMenuItem JmMateriales;
     private javax.swing.JMenuItem JmMoldes;
+    private javax.swing.JMenuItem JmMovES;
     private javax.swing.JMenu JmOpciones;
     private javax.swing.JMenuItem JmOrdenc;
     private javax.swing.JMenuItem JmPais;
