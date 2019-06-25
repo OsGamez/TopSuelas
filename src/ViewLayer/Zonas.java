@@ -146,6 +146,7 @@ public class Zonas extends javax.swing.JInternalFrame {
 
         JtDatosZona.setModel(modelZona
         );
+        JtDatosZona.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtDatosZona);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

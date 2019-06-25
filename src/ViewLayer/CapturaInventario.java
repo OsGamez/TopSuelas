@@ -207,6 +207,7 @@ public class CapturaInventario extends javax.swing.JFrame {
         JbPf.setText("jLabel1");
 
         JtPhylon.setModel(modelP);
+        JtPhylon.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane2.setViewportView(JtPhylon);
 
         Jpanel.setBorder(null);

@@ -162,6 +162,7 @@ public class Costos extends javax.swing.JInternalFrame {
         });
 
         JtCostos.setModel(modelCosto);
+        JtCostos.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtCostos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

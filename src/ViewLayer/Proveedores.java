@@ -125,6 +125,7 @@ public class Proveedores extends javax.swing.JInternalFrame {
         });
 
         JtProveedor.setModel(modelProveedor);
+        JtProveedor.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtProveedor);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

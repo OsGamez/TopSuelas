@@ -181,6 +181,7 @@ public class ProvedoresMPrima extends javax.swing.JInternalFrame {
         });
 
         JtProveedorMPrima.setModel(modelProvedorPrima);
+        JtProveedorMPrima.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtProveedorMPrima);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

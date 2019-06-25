@@ -160,6 +160,7 @@ public class ConceptosMPrima extends javax.swing.JInternalFrame {
         });
 
         JtConcepto.setModel(modelConcepto);
+        JtConcepto.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtConcepto);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

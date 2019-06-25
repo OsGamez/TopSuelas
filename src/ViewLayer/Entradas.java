@@ -171,6 +171,7 @@ public class Entradas extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         JtEntradas.setModel(modelEntrada);
+        JtEntradas.setSelectionBackground(new java.awt.Color(102, 153, 255));
         JtEntradas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 JtEntradasKeyPressed(evt);

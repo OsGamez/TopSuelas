@@ -165,6 +165,7 @@ public class Agentes extends javax.swing.JInternalFrame {
 
         JtDatosAgente.setModel(modelAgente
         );
+        JtDatosAgente.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtDatosAgente);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -144,6 +144,7 @@ public class Almacenes extends javax.swing.JInternalFrame {
         });
 
         JtAlmacen.setModel(modelAlmacen);
+        JtAlmacen.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtAlmacen);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

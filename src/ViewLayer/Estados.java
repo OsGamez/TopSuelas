@@ -134,6 +134,7 @@ public class Estados extends javax.swing.JInternalFrame {
 
         JtDatosEstado.setModel(modelEstado
         );
+        JtDatosEstado.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtDatosEstado);
 
         JtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {

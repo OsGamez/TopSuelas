@@ -139,6 +139,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
         );
 
         JtDatosUsuario.setModel(modelUsuario);
+        JtDatosUsuario.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtDatosUsuario);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -224,6 +225,10 @@ public class Usuarios extends javax.swing.JInternalFrame {
         JtDatosUsuario.getColumnModel().getColumn(0).setMaxWidth(0);
         JtDatosUsuario.getColumnModel().getColumn(0).setMinWidth(0);
         JtDatosUsuario.getColumnModel().getColumn(0).setPreferredWidth(0);
+        
+        JtDatosUsuario.getColumnModel().getColumn(4).setMaxWidth(0);
+        JtDatosUsuario.getColumnModel().getColumn(4).setMinWidth(0);
+        JtDatosUsuario.getColumnModel().getColumn(4).setPreferredWidth(0);
     }
     private void JbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEliminarActionPerformed
         int row = JtDatosUsuario.getSelectedRow();

@@ -139,6 +139,7 @@ public class Precios extends javax.swing.JInternalFrame {
         });
 
         JtDatosPrecio.setModel(modelPrecio);
+        JtDatosPrecio.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtDatosPrecio);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -131,6 +131,7 @@ public class Gastos extends javax.swing.JInternalFrame {
         });
 
         JtGastos.setModel(modelGasto);
+        JtGastos.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtGastos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

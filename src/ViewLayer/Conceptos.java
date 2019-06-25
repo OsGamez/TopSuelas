@@ -70,6 +70,7 @@ public class Conceptos extends javax.swing.JInternalFrame {
         setClosable(true);
         setMaximizable(true);
         setTitle("CONCEPTOS");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/courses_letters_blackboard_board_staff_book_1475.png"))); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 102)));
 
@@ -156,6 +157,7 @@ public class Conceptos extends javax.swing.JInternalFrame {
         });
 
         JtConcepto.setModel(modelConcepto);
+        JtConcepto.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtConcepto);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

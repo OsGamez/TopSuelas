@@ -328,6 +328,7 @@ public class Clientes extends javax.swing.JInternalFrame {
         });
 
         JtDatosCliente.setModel(modelCliente);
+        JtDatosCliente.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtDatosCliente);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

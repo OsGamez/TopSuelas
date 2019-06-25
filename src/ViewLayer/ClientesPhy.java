@@ -77,6 +77,7 @@ public class ClientesPhy extends javax.swing.JDialog {
         setResizable(false);
 
         JtDatosCliente.setModel(modelCliente);
+        JtDatosCliente.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtDatosCliente);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/search_book_open_search_locate_6178.png"))); // NOI18N

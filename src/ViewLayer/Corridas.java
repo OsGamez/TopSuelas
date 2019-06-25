@@ -144,6 +144,7 @@ public class Corridas extends javax.swing.JInternalFrame {
         });
 
         JtDatosCorrida.setModel(modelCorrida);
+        JtDatosCorrida.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtDatosCorrida);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
