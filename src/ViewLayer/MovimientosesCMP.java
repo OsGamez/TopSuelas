@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class MovimientosesCMP extends javax.swing.JDialog {
-
+    
     String informacion = "";
     ObjectProveedoresMPrima pm = new ObjectProveedoresMPrima();
     ArrayList<ProveedorMPrima> listaproveedorm;
@@ -35,14 +35,14 @@ public class MovimientosesCMP extends javax.swing.JDialog {
     ObjectKardexCmp Objcmp = new ObjectKardexCmp();
     String columna = "";
     Sesioninfo s = new Sesioninfo();
-
+    
     DefaultListModel<ProveedorMPrima> modeloListaProveedor = new DefaultListModel<>();
     DefaultListModel<Material> modeloListaMat = new DefaultListModel<>();
-    DefaultTableModel modelMaterials = new DefaultTableModel();
-
+    DefaultTableModel modelMaterials;
+    
     public MovimientosesCMP(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-
+        
         initComponents();
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/etiqueta.png"));
@@ -54,12 +54,14 @@ public class MovimientosesCMP extends javax.swing.JDialog {
         JtCuenta.requestFocus();
         Jlserie.setText(s.getSerie());
         LoadModelmaterials();
+        JbIdProd.setVisible(false);
+        JbCvet.setVisible(false);
     }
-
+    
     public String getInformacion() {
         return this.informacion;
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -230,7 +232,6 @@ public class MovimientosesCMP extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Almacen");
 
-        JttMaterial.setModel(modelMaterials);
         JttMaterial.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 JttMaterialMouseClicked(evt);
@@ -271,44 +272,44 @@ public class MovimientosesCMP extends javax.swing.JDialog {
                                 .addGap(114, 114, 114)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JtFolio)
+                                .addComponent(JtFolio, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                                 .addGap(8, 8, 8)
                                 .addComponent(Jtlc, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(71, 71, 71)
-                                .addComponent(JbIdProd)
+                                .addGap(55, 55, 55)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(JbMat)
+                                    .addComponent(JbIdProd))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(JbCvet)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(JeFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Jlserie, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(60, 60, 60))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(JbMat)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(110, 110, 110)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(JtMat, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(59, 59, 59)
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButton1)
+                                .addGap(212, 212, 212))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                                    .addComponent(JtMat))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                    .addComponent(JtProveedor))))))
+                                    .addComponent(JtProveedor)))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(84, 84, 84))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(296, 296, 296))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -343,23 +344,20 @@ public class MovimientosesCMP extends javax.swing.JDialog {
                     .addComponent(JbIdProd)
                     .addComponent(JbCvet))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JbMat)
+                    .addComponent(JtMat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(JtProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JbMat)
-                            .addComponent(JtMat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(JtProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(jButton1)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(jButton1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(63, 63, 63))
         );
 
@@ -377,15 +375,24 @@ public class MovimientosesCMP extends javax.swing.JDialog {
         JcAlmacen.setModel(modelEtiqueta);
         JcAlmacen.setSelectedIndex(0);
     }
-
+    
     private void LoadModelmaterials() {
+        modelMaterials = new DefaultTableModel();
         modelMaterials.addColumn("Material");
         modelMaterials.addColumn("Cantidad");
         JttMaterial.editCellAt(1, 1);
+        JttMaterial.setModel(modelMaterials);
+    }
 
+    private void vaciatabla() {
+        int rows = JttMaterial.getRowCount();
+        System.out.println(rows);
+        for (int i = rows - 1; i >= 0; i--) {
+            modelMaterials.removeRow(i);
+        }
     }
     private void JtProveedorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtProveedorKeyReleased
-
+        
         if (JtProveedor.getText().isEmpty()) {
         } else {
             listaproveedorm = pm.ProveedorMPrimaSearch(JtProveedor.getText());
@@ -409,7 +416,7 @@ public class MovimientosesCMP extends javax.swing.JDialog {
 
     private void listaProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaProveedorMouseClicked
         JList lis = (JList) evt.getSource();
-
+        
         if (evt.getClickCount() == 1) {
             ProveedorMPrima p = (ProveedorMPrima) lis.getSelectedValue();
             //JbCorrida.setText(String.valueOf(cr.getCorridas(prod.getId_Producto())));
@@ -428,7 +435,7 @@ public class MovimientosesCMP extends javax.swing.JDialog {
     }//GEN-LAST:event_JtProveedorMouseClicked
 
     private void JtMatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtMatKeyReleased
-
+        
         if (JtMat.getText().isEmpty()) {
             limpiarMaterial();
         } else {
@@ -437,7 +444,7 @@ public class MovimientosesCMP extends javax.swing.JDialog {
             for (Material m : listaMaterial) {
                 modeloListaMat.addElement(m);
             }
-
+            
         }
     }//GEN-LAST:event_JtMatKeyReleased
 
@@ -459,18 +466,28 @@ public class MovimientosesCMP extends javax.swing.JDialog {
             Movs_materiales ma = new Movs_materiales();
             Validacion v = new Validacion();
             String resp = JOptionPane.showInputDialog("Escribe la cantidad: ");
-            while (!v.verificanumeros(resp)) {
+            while (!v.verificanumeros(resp) || Integer.parseInt(resp) <= 0) {
                 resp = JOptionPane.showInputDialog("Escribe la cantidad: ");
             }
-            ma.setCantidad(Integer.parseInt(resp));
-            ma.setMaterial(mat.getCveMat());
-            ma.setNombre_material(mat.getDescripcion());
-            listamovimiento_material.add(ma);
-            Object arr[] = {mat.getDescripcion(), resp};
-            modelMaterials.addRow(arr);
-            JtMat.setText("");
-            JtMat.requestFocus();
-            limpiarMaterial();
+            int existencia = ObjM.validaralmacen_material(listaalmacen.get(JcAlmacen.getSelectedIndex()).getAlmacen(), mat.getCveMat());
+            if (existencia <= Integer.parseInt(resp) && Integer.parseInt(JtCuenta.getText()) > 59) {
+                JOptionPane.showMessageDialog(null, "No se cuenta con suficiente existencia de este material con el almacen seleccionado", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                JtMat.setText("");
+                JtMat.requestFocus();
+                limpiarMaterial();
+            } else {
+                ma.setCantidad(Integer.parseInt(resp));
+                ma.setMaterial(mat.getCveMat());
+                ma.setNombre_material(mat.getDescripcion());
+                ma.setCosto((float) mat.getCostoCosteo());
+                listamovimiento_material.add(ma);
+                Object arr[] = {mat.getDescripcion(), resp};
+                modelMaterials.addRow(arr);
+                JtMat.setText("");
+                JtMat.requestFocus();
+                limpiarMaterial();
+            }
+            
         }
     }//GEN-LAST:event_listaMatMouseClicked
 
@@ -504,7 +521,7 @@ public class MovimientosesCMP extends javax.swing.JDialog {
             columna = (cuenta < 50) ? "Entradas" : "Salidas";
             JtFolio.setText(Objcmp.getparametro(columna));
             JcAlmacen.requestFocus();
-
+            
         }
     }//GEN-LAST:event_JtSubcuentaActionPerformed
 
@@ -552,7 +569,7 @@ public class MovimientosesCMP extends javax.swing.JDialog {
     private void limpiarMaterial() {
         modeloListaMat.clear();
     }
-
+    
     private void Cerrar() {
 //        String botones[] = {"SI", "NO"};
 //        int eleccion = JOptionPane.showOptionDialog(this,"¿Deseas cerrar esta ventana?", "TOP-SUELAS", 
@@ -563,7 +580,7 @@ public class MovimientosesCMP extends javax.swing.JDialog {
 //        }else if(eleccion == JOptionPane.NO_OPTION){       
 //        }
     }
-
+    
     private String getfecha() {
         Calendar fecha = Calendar.getInstance(); //intanciar informacion del calendiario respecto al sistema
         int año = fecha.get(Calendar.YEAR);
@@ -584,41 +601,73 @@ public class MovimientosesCMP extends javax.swing.JDialog {
         if (minuto > 9) {
             horas += minuto;
         }
-        String fechac = año + "-" + mes + "-" + dia + " " + horas;//fecha formada por Calendar.getInstance(); 
+        String fechac = dia + "-0" + mes + "-" + año + " " + horas + ":00.000";//fecha formada por Calendar.getInstance(); 
         return fechac;
     }
-
+    
     private void generarmovimiento() {
-        if(JcAlmacen.getSelectedIndex()==0 && listamovimiento_material.isEmpty()){
-            JcAlmacen.requestFocus();
-            JOptionPane.showMessageDialog(null, "Elija un almacen o un material!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-        }else if(JtCuenta.getText().equals("")||JtSubcuenta.getText().equals("")||JtFolio.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "La cuenta y subcuenta no pueden ir vacias!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-            JtCuenta.requestFocus();
-        }else{
-            ArrayList<KardexCmp> arr= new ArrayList<>();
-            int rows = JttMaterial.getRowCount();
-            for (int i =0;i<rows;i++){
-                KardexCmp kaux = new KardexCmp();
-                //Aqui
+        String botones[] = {"SI", "NO"};
+        int eleccion = JOptionPane.showOptionDialog(this, "¿Estas Seguro de realizar el movimiento?", "TOP-SUELAS",
+                0, 0, null, botones, this);
+        if (eleccion == JOptionPane.YES_OPTION) {
+            try {
+                if (JcAlmacen.getSelectedIndex() == 0 && listamovimiento_material.isEmpty()) {
+                    JcAlmacen.requestFocus();
+                    JOptionPane.showMessageDialog(null, "Elija un almacen o un material!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                } else if (JtCuenta.getText().equals("") || JtSubcuenta.getText().equals("") || JtFolio.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "La cuenta y subcuenta no pueden ir vacias!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                    JtCuenta.requestFocus();
+                } else {
+                    ArrayList<Movs_materiales> arr = new ArrayList<>();
+                    int rows = JttMaterial.getRowCount();
+                    for (int i = 0; i < rows; i++) {
+                        String numaux = JttMaterial.getValueAt(i, 1).toString();
+                        Movs_materiales mo = new Movs_materiales();
+                        mo.setMaterial(listamovimiento_material.get(i).getMaterial());
+                        mo.setCosto(listamovimiento_material.get(i).getCosto());
+                        mo.setCantidad(Integer.parseInt(numaux));
+                        arr.add(mo);
+                    }
+                    String operacion = (columna.equals("Entradas")) ? "+" : "-";
+                    KardexCmp k = new KardexCmp();
+                    k.setFolio(Integer.parseInt(JtFolio.getText()) + 1);
+                    k.setCuenta(Integer.parseInt(JtCuenta.getText()));
+                    k.setSubcuenta(Integer.parseInt(JtSubcuenta.getText()));
+                    k.setProveedor(0);// cambia
+                    k.setAlmacen(listaalmacen.get(JcAlmacen.getSelectedIndex()).getAlmacen());
+                    k.setOrdenc("");// cambia
+                    k.setFechamov(getfecha());
+                    k.setFechadoc(getfecha());//cambia
+//                    k.setSerie(s.getSerie());
+                    k.setSerie("A");
+                    k.setTipo(columna.charAt(0) + "");
+                    k.setDocref("");//cambia
+                    k.setOperacion(operacion);
+                    k.setUsuario(s.getId_usuario());
+                    k.setMat(arr);
+                    if (Objcmp.KardexCmpAdd(k)) {
+                        limpiamovimiento();
+                        JOptionPane.showMessageDialog(null, "Movimiento Completo!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Algo salio Mal, Contacta a Sistemas!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "En cantidad de productos solo pueden ir numeros!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                JtCuenta.requestFocus();
+                e.printStackTrace();
             }
-        String operacion = (columna.equals("Entradas")) ? "+" : "-";
-        KardexCmp k = new KardexCmp();
-        k.setFolio(Integer.parseInt(JtFolio.getText()) + 1);
-        k.setCuenta(Integer.parseInt(JtCuenta.getText()));
-        k.setSubcuenta(Integer.parseInt(JtSubcuenta.getText()));
-        k.setProveedor(0);// cambia
-        k.setAlmacen(listaalmacen.get(JcAlmacen.getSelectedIndex()).getAlmacen());
-        k.setOrdenc("");// cambia
-        k.setFechamov(getfecha());
-        k.setFechadoc(getfecha());//cambia
-        k.setSerie(s.getSerie());
-        k.setTipo(columna.charAt(0) + "");
-        k.setDocref("");//cambia
-        k.setOperacion(operacion);
-        k.setUsuario(s.getId_usuario());
         }
-       
+        
+    }
+    
+    private void limpiamovimiento() {
+        JtCuenta.setText("");
+        JtSubcuenta.setText("");
+        JtFolio.setText("");
+        JcAlmacen.setSelectedIndex(0);
+        LoadModelmaterials();
+        JtCuenta.requestFocus();
     }
 
     /**

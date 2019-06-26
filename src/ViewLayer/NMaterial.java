@@ -60,6 +60,7 @@ public class NMaterial extends javax.swing.JDialog {
     }
     private void LoadAlmacen() {
         Almacen am = new Almacen();
+        am.conCMP();
         DefaultComboBoxModel modelAlmacen = new DefaultComboBoxModel(am.getAlmacenes());
         JcAlm.setModel(modelAlmacen);
     }

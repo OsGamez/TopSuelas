@@ -6,7 +6,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ObjectKardexCmp {
 
@@ -14,19 +17,66 @@ public class ObjectKardexCmp {
     ResultSet rs = null;
     Connection c = Server.getCmpPhylon();
 
-    public boolean KardexCmpAdd(int am, String Desc) {
+    public boolean KardexCmpAdd(KardexCmp k) {
         try {
             c.setAutoCommit(false);
-            st = c.prepareStatement("INSERT INTO KardexCmpes(KardexCmp,Descripcion)"
-                    + "VALUES(?,?)");
-            st.setInt(1, am);
-            st.setString(2, Desc);
+            int renglon = 1;
+            //bucle para insercion en kardex y actualizacion de cantidades en existencias.
+            for (int i = 0; i < k.getMat().size(); i++) {
+                int cant = k.getMat().get(i).getCantidad();
+                float cos = k.getMat().get(i).getCosto();
+                String material = k.getMat().get(i).getMaterial();
+                String sql = "INSERT INTO KardexCmp values(" + k.getFolio() + "," + k.getCuenta() + ""
+                        + "," + k.getSubcuenta() + "," + k.getProveedor() + "," + k.getAlmacen() + ",'" + material + "'"
+                        + ",'" + k.getOrdenc() + "','" + k.getFechamov() + "','" + k.getFechadoc() + "','" + k.getSerie() + "'"
+                        + ",'" + k.getTipo() + "','" + k.getDocref() + "'," + cant + "," + cos + "," + cos * cant + "," + renglon + ",'1',"
+                        + "" + k.getUsuario() + ")";
+//                System.out.println(sql);
+                st = c.prepareStatement(sql);
+                st.executeUpdate();
+                Statement s;
+                s = c.createStatement();
+                sql = "select cvemat from existencias where almacen =" + k.getAlmacen() + " and "
+                        + "cvemat='" + material + "'";
+                rs = s.executeQuery(sql);
+                boolean flag = false;
+                while (rs.next()) {
+                    flag = true;
+                }
+//                flag verificara si existe o no un registro con respecto al
+//                material y al almacen
+                if (flag) {
+                    sql = "update existencias set existencia =existencia+" + cant + ", ultcosto=" + cos + " "
+                            + "where almacen =" + k.getAlmacen() + " and "
+                            + "cvemat='" + material + "'";
+                } else {
+                    sql = "insert into existencias values('" + material + "'," 
+                            + k.getAlmacen() + "," + cos + "," + cant + ")";
+                }
+                st = c.prepareStatement(sql);
+                st.executeUpdate();
+//                System.out.println(sql);
+                renglon++;
+            }
+            String columna =(k.getTipo().equals("E"))?"Entradas":"Salidas";
+            st=c.prepareStatement("update parametroscmp set "+columna+"="+k.getFolio());
             st.executeUpdate();
             c.commit();
-            st.close();
             return true;
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            try {
+                c.rollback();
+                ex.printStackTrace();
+            } catch (SQLException ex1) {
+                Logger.getLogger(ObjectKardexCmp.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        } finally {
+            try {
+                rs.close();
+                st.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ObjectKardexCmp.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return false;
     }
@@ -140,14 +190,15 @@ public class ObjectKardexCmp {
         }
         return listaKardexCmp;
     }
-     public String getparametro(String columna) {
-        String parametro ="";
+
+    public String getparametro(String columna) {
+        String parametro = "";
         try {
-            st = c.prepareStatement("SELECT "+columna+" FROM parametroscmp");
+            st = c.prepareStatement("SELECT " + columna + " FROM parametroscmp");
             rs = st.executeQuery();
 
             while (rs.next()) {
-                parametro=rs.getString(columna);
+                parametro = rs.getString(columna);
             }
             rs.close();
             st.close();

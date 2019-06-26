@@ -279,4 +279,18 @@ public class ObjectMateriales {
             return 1;
         }
     }
+        public int validaralmacen_material(int almacen, String material){
+        int resp=0;
+        try {
+            st = c.prepareStatement("SELECT existencia FROM Existencias WHERE Almacen = "+almacen+
+                    " and cvemat = '"+material+"'");
+            rs = st.executeQuery();
+            if (rs.next()) {
+                resp=rs.getInt("existencia");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return resp;
+    }
 }

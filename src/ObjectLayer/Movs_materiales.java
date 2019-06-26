@@ -11,7 +11,15 @@ package ObjectLayer;
  */
 public class Movs_materiales implements java.io.Serializable{
     private String nombre_material,material;
+    private float costo;
 
+    public float getCosto() {
+        return costo;
+    }
+
+    public void setCosto(float costo) {
+        this.costo = costo;
+    }
     public String getNombre_material() {
         return nombre_material;
     }
