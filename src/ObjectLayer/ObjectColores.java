@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +13,9 @@ import java.util.ArrayList;
 public class ObjectColores {
 
     PreparedStatement st = null;
-    public Connection c = Server.getProduccion();
+    //public Connection c = Server.getProduccion();
+    DB db = new DB();
+    Connection c = db.Produccion();
     public ResultSet rs = null;
 
     public boolean colorAdd(String Descripcion, boolean Activo) {

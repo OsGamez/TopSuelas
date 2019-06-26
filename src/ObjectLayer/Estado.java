@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,9 @@ public class Estado {
     private boolean Activo;
 
     PreparedStatement st = null;
-    Connection c = Server.getCobranza();
+    DB db = new DB();
+    Connection c = db.Cobranza();
+    //Connection c = Server.getCobranza();
     ResultSet rs = null;
 
     public Estado() {

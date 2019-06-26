@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +12,9 @@ import java.util.ArrayList;
 
 public class ObjectRCPT {
 
-    Connection c = Server.getServer();
+//    Connection c = Server.getServer();
+    DB db = new DB();
+    Connection c = db.Server();
     ResultSet rs = null;
     Statement sta = null;
     PreparedStatement st = null;
@@ -117,7 +120,7 @@ public class ObjectRCPT {
                     + "on c.Id_ProductoRCPT = pt.Producto\n"
                     + "inner join RCPTPhylon.dbo.Corridas cr\n"
                     + "on pt.Corrida = cr.Corrida\n"
-                    + "where c.Id_Producto = "+filtro+ " group by c.Id_Producto,p.Descripcion,c.Id_ProductoRCPT,cr.Corrida\n"
+                    + "where c.Id_Producto = " + filtro + " group by c.Id_Producto,p.Descripcion,c.Id_ProductoRCPT,cr.Corrida\n"
                     + ",cr.PuntoInicial,cr.PuntoFinal,pt.Combinacion,pt.Estilo");
 
             rs = st.executeQuery();

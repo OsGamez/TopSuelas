@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +13,9 @@ public class ObjectProveedores {
 
     PreparedStatement st = null;
     ResultSet rs = null;
-    Connection c = Server.getPhylon();
+//    Connection c = Server.getPhylon();
+    DB db = new DB();
+    Connection c = db.RCPTPhylonA();
 
     public boolean addProveedor(Proveedor p) {
         try {
@@ -81,14 +84,14 @@ public class ObjectProveedores {
         return listaProveedores;
     }
 
-    public ArrayList<Proveedor> proveedorSearch(String filtro){
-         ArrayList<Proveedor> listaProveedores = new ArrayList<Proveedor>();
-         try {
+    public ArrayList<Proveedor> proveedorSearch(String filtro) {
+        ArrayList<Proveedor> listaProveedores = new ArrayList<Proveedor>();
+        try {
             st = c.prepareStatement("SELECT * FROM Proveedores WHERE Estatus = 'A' AND Nombre LIKE'%" + filtro + "%'"
-                     + "ORDER BY Nombre");
+                    + "ORDER BY Nombre");
             rs = st.executeQuery();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 Proveedor pv = new Proveedor();
                 pv.setProveedor(rs.getInt("Proveedor"));
                 pv.setNombre(rs.getString("Nombre"));
@@ -106,9 +109,9 @@ public class ObjectProveedores {
         } catch (Exception e) {
             e.printStackTrace();
         }
-          return listaProveedores;
+        return listaProveedores;
     }
-    
+
     public boolean proveedorUpdate(Proveedor pv) {
         try {
             st = c.prepareStatement("UPDATE Proveedores SET Nombre = ?, RFC = ?, Direccion = ?, Ciudad = ?, CP = ?, Telefonos = ?,"
@@ -132,8 +135,8 @@ public class ObjectProveedores {
         }
         return false;
     }
-    
-    public boolean deleteProveedor(int Pv){
+
+    public boolean deleteProveedor(int Pv) {
         try {
             st = c.prepareStatement("UPDATE Proveedores SET Estatus = 'I' WHERE Proveedor = ?");
             st.setInt(1, Pv);

@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,8 +12,11 @@ import java.util.ArrayList;
 public class ObjectInfisico {
 
     PreparedStatement st = null;
-    Connection c = Server.getRcpt();
-    Connection server = Server.gettempphy();
+//    Connection c = Server.getRcpt();
+//    Connection server = Server.gettempphy();
+    DB db = new DB();
+    Connection c = db.RCPTPhylonA();
+    Connection server = db.tempphy();
     ResultSet rs = null;
 
     public boolean AddInventarioCopy(Infisico inv) {

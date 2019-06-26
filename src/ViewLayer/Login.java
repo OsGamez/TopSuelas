@@ -2,6 +2,7 @@ package ViewLayer;
 
 import ObjectLayer.Encrypt;
 import ObjectLayer.ObjectUsuarios;
+import ObjectLayer.Sesioninfo;
 import ObjectLayer.Usuario;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -14,9 +15,10 @@ import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
-    ObjectUsuarios obj = new ObjectUsuarios();
     Usuario us = new Usuario();
+    Sesioninfo sesion = new Sesioninfo();
     boolean a = true;
+    public String ip, password;
     ImageIcon mostrar = new ImageIcon("C:\\tsmanager\\imagenes\\ojo2.png");
     ImageIcon ocultar = new ImageIcon("C:\\tsmanager\\imagenes\\ojo.png");
     
@@ -26,6 +28,7 @@ public class Login extends javax.swing.JFrame {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/programa.png"));
         setIconImage(icon);
         btnMostrar.setIcon(mostrar);
+        JcDB.setVisible(false);
     }
     
     @SuppressWarnings("unchecked")
@@ -40,6 +43,7 @@ public class Login extends javax.swing.JFrame {
         Jpassword = new javax.swing.JPasswordField();
         JtUsuario = new javax.swing.JTextField();
         btnMostrar = new javax.swing.JButton();
+        JcDB = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(300, 120));
@@ -107,45 +111,50 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        JcDB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "192.168.90.1", "192.168.6.93" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 26, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(187, 187, 187)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(JbEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(JbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(JtUsuario)
-                            .addComponent(Jpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(150, 150, 150))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(24, 24, 24))))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(JbEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JtUsuario)
+                    .addComponent(Jpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JcDB, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(75, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(24, 24, 24)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(JtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(JtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JcDB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Jpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -153,18 +162,31 @@ public class Login extends javax.swing.JFrame {
                                 .addGap(23, 23, 23)
                                 .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49))
+                .addGap(30, 30, 30))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void userData(){
+        ip = JcDB.getSelectedItem().toString();
+        
+        if(ip.equals("192.168.90.1")){
+            password = "Admin1305";
+        }else if(ip.equals("192.168.6.93")){
+            password = "123";
+        }
+        sesion.setIp(ip);
+        sesion.setContraseña(password);
+    }
+    
     private void JbEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEntrarActionPerformed
-
+        userData();
+        ObjectUsuarios obj = new ObjectUsuarios();
         String pass = new String(Jpassword.getPassword());
         String nuevoPass = Encrypt.sha1(pass);
         String usuario = JtUsuario.getText();
@@ -205,6 +227,8 @@ public class Login extends javax.swing.JFrame {
     private void JpasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JpasswordKeyPressed
         int codigo = evt.getKeyCode();
         if (codigo == KeyEvent.VK_ENTER) {
+            userData();
+            ObjectUsuarios obj = new ObjectUsuarios();
             String pass = new String(Jpassword.getPassword());
             String nuevoPass = Encrypt.sha1(pass);
             String usuario = JtUsuario.getText();
@@ -256,7 +280,7 @@ public class Login extends javax.swing.JFrame {
         int codigo = evt.getKeyCode();
         
         if(codigo == KeyEvent.VK_F12){
-            System.out.println("F12");
+           JcDB.setVisible(true);
         }
     }//GEN-LAST:event_JtUsuarioKeyPressed
     private void CambiarIcono(){
@@ -316,6 +340,7 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbEntrar;
     private javax.swing.JButton JbSalir;
+    private javax.swing.JComboBox<String> JcDB;
     private javax.swing.JPasswordField Jpassword;
     private javax.swing.JTextField JtUsuario;
     private javax.swing.JButton btnMostrar;

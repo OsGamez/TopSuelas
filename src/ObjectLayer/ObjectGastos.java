@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +14,9 @@ import java.util.logging.Logger;
 public class ObjectGastos {
 
     PreparedStatement st = null;
-    Connection c = Server.getProduccion();
+//    Connection c = Server.getProduccion();
+    DB db = new DB();
+    Connection c = db.Produccion();
     ResultSet rs = null;
 
     public boolean gastoAdd(Gasto g) {

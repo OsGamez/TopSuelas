@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import Plugins.ParametroCliente;
 import java.sql.Connection;
@@ -15,10 +16,11 @@ import javax.swing.JOptionPane;
 
 public class ObjectClientes {
 
-    Connection c = Server.getCobranza();
-    Connection rc = Server.getRcobranza();
-//    Connection c = Conexion.getCobranza();
-//    Connection rc = Conexion.getRcobranza();
+//    Connection c = Server.getCobranza();
+//    Connection rc = Server.getRcobranza();
+    DB db = new DB();
+    Connection c = db.Cobranza();
+    Connection rc = db.Rcobranza();
     PreparedStatement st = null;
     Statement sta = null;
     PreparedStatement copy = null;

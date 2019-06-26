@@ -5,6 +5,7 @@
  */
 package ObjectLayer;
 
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,7 +22,9 @@ public class ObjectEtiquetas {
 
     PreparedStatement st = null;
     ResultSet rs = null;
-    Connection c = Server.getProduccion();
+    //Connection c = Server.getProduccion();
+    DB db = new DB();
+    Connection c = db.Produccion();
 
     public ArrayList<etiqueta> EtiquetaGetAll() {
         ArrayList<etiqueta> listaetiquetas = new ArrayList<>();

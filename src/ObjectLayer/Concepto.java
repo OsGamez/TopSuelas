@@ -1,6 +1,7 @@
 
 package ObjectLayer;
 
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,9 +12,12 @@ import java.util.Vector;
 
 public class Concepto {
     
+    
     PreparedStatement st = null;
     ResultSet rs = null;
-    Connection c = Server.getPhylon();
+    DB db = new DB();
+    Connection c = db.RCPTPhylonA();
+    //Connection c = Server.getPhylon();
     
     private String Cuenta;
     private String SubCuenta;

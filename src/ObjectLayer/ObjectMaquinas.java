@@ -5,6 +5,7 @@
  */
 package ObjectLayer;
 
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +23,9 @@ public class ObjectMaquinas {
 
     PreparedStatement st = null;
     ResultSet rs = null;
-    Connection c = Server.getProduccion();
+//    Connection c = Server.getProduccion();
+    DB db = new DB();
+    Connection c = db.Produccion();
 
     public ArrayList<Maquina> MaquinaGetAll() {
         ArrayList<Maquina> listamaquinas = new ArrayList<Maquina>();

@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,9 @@ public class Zona {
     private boolean Activo;
 
     PreparedStatement st = null;
-    Connection c = Server.getCobranza();
+//    Connection c = Server.getCobranza();
+    DB db = new DB();
+    Connection c = db.Cobranza();
     ResultSet rs = null;
 
     public Zona() {

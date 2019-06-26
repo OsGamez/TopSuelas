@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -66,7 +67,9 @@ public class Material {
     private String TipoCosto;
     private String divisa;
     PreparedStatement st = null;
-    Connection c = Server.getCmpPhylon();
+    DB db = new DB();
+    Connection c = db.Cmp();
+    //Connection c = Server.getCmpPhylon();
     ResultSet rs = null;
 
     public Material() {

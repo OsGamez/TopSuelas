@@ -17,6 +17,7 @@ import ObjectLayer.Parametro;
 import ObjectLayer.Pedido;
 import ObjectLayer.Precio;
 import ObjectLayer.Producto;
+import ObjectLayer.Sesioninfo;
 import com.sun.glass.events.KeyEvent;
 import java.awt.event.ItemEvent;
 import java.sql.Connection;
@@ -50,23 +51,27 @@ public class Pedidos extends javax.swing.JInternalFrame {
     Principal main = new Principal();
     SimpleDateFormat fecha = new SimpleDateFormat();
     String Est = "10";
-    int cont = 1;
+    int ct = 1;
     int cc = 0;
     public int Id_Usuario;
+    Sesioninfo se = new Sesioninfo();
     public String Serie = "";
     int client, clientR, Id_Cliente;
+    int sum;
     ArrayList<Cliente> listC = new ArrayList<>();
-    ArrayList<Cliente> listCR = new ArrayList<>();
     ArrayList<Producto> listP = new ArrayList<>();
+    ArrayList<String> array = new ArrayList<String>();
     DefaultTableModel modelPedido = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int row, int column) {
             return false;
         }
+
     };
-    Connection c = Server.getRpt();
+    //Connection c = Server.getRpt();
     int Id_Producto;
     int cantidad, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12;
+    String ct1 = "0", ct2 = "0", ct3 = "0", ct4 = "0", ct5 = "0", ct6 = "0", ct7 = "0", ct8 = "0", ct9 = "0", ct10 = "0", ct11 = "0", ct12 = "0";
     DecimalFormat precioA = new DecimalFormat("#.00");
     DecimalFormat precioB = new DecimalFormat("#.00");
     SimpleDateFormat sm = new SimpleDateFormat("dd/MM/yyyy");
@@ -195,6 +200,9 @@ public class Pedidos extends javax.swing.JInternalFrame {
         lblPares = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         lblTotal = new javax.swing.JLabel();
+        Jpi = new javax.swing.JLabel();
+        Jpf = new javax.swing.JLabel();
+        JbS = new javax.swing.JLabel();
 
         setClosable(true);
         setMaximizable(true);
@@ -202,6 +210,23 @@ public class Pedidos extends javax.swing.JInternalFrame {
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/3440908-ecommerce-label-price-shop-shopping-store-tag_107534.png"))); // NOI18N
         setName(""); // NOI18N
         setVisible(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -233,6 +258,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JtabDatos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         JtPedido.setModel(modelPedido);
+        JtPedido.setSelectionBackground(new java.awt.Color(102, 153, 255));
         JtPedido.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 JtPedidoMouseClicked(evt);
@@ -493,18 +519,21 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
         JbSerie.setText("A");
 
-        JcPrecio.setText("PREMIER");
+        JcPrecio.setText("PRIME");
         JcPrecio.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 JcPrecioItemStateChanged(evt);
             }
         });
 
-        jPanel1.setBorder(null);
-
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("Cantidad:");
 
+        JtCant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtCantActionPerformed(evt);
+            }
+        });
         JtCant.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 JtCantKeyPressed(evt);
@@ -742,6 +771,12 @@ public class Pedidos extends javax.swing.JInternalFrame {
         lblTotal.setForeground(new java.awt.Color(51, 153, 0));
         lblTotal.setText("0.00");
 
+        Jpi.setText("jLabel5");
+
+        Jpf.setText("jLabel5");
+
+        JbS.setText("jLabel5");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -839,7 +874,13 @@ public class Pedidos extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(JtRenglon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(JbSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(JbSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(Jpi)
+                                .addGap(18, 18, 18)
+                                .addComponent(Jpf)
+                                .addGap(30, 30, 30)
+                                .addComponent(JbS)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(JtabDatos)
         );
@@ -865,7 +906,10 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     .addComponent(JtprecioA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JtRenglon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JbSerie))
+                    .addComponent(JbSerie)
+                    .addComponent(Jpi)
+                    .addComponent(Jpf)
+                    .addComponent(JbS))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -928,45 +972,29 @@ public class Pedidos extends javax.swing.JInternalFrame {
             int opcion = JOptionPane.showConfirmDialog(this, "¿Quieres cancelar este pedido?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
             if (opcion == JOptionPane.YES_OPTION) {
-                if (JbSerie.getText().equals("A")) {
-                    if (pedido.cancelarPedido(Np, pam) && pedido.cancelarPedidoA(Np, pam)) {
+                if (JbS.getText().equals("A")) {
+                    if (pedido.cancelarPedidoA(Np)) {
                         JOptionPane.showMessageDialog(this, "Se ha cancelado el pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                        LimpiarPedido();
-                        LimpiarCliente();
-                        CleanTable();
-                        JtNpedido.setText("");
-                        JtNpc.requestFocus();
+                        LimpiarDelete();
+                        LimpiarTextbox();
                         CargarPedido();
-                        JtNpedido.setEditable(false);
                     } else {
                         JOptionPane.showMessageDialog(null, "No se puede cancelar este pedido", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                        LimpiarPedido();
-                        LimpiarCliente();
-                        CleanTable();
-                        JtNpedido.setText("");
-                        JtNpc.requestFocus();
+                        LimpiarDelete();
+                        LimpiarTextbox();
                         CargarPedido();
-                        JtNpedido.setEditable(false);
                     }
                 } else {
-                    if (pedido.cancelarPedidoA(Np, pam)) {
+                    if (pedido.cancelarPedidoB(Np)) {
                         JOptionPane.showMessageDialog(this, "Se ha cancelado el pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                        LimpiarPedido();
-                        LimpiarCliente();
-                        CleanTable();
-                        JtNpc.setText("");
-                        JtNpc.requestFocus();
+                        LimpiarDelete();
+                        LimpiarTextbox();
                         CargarPedido();
-                        JtNpedido.setEditable(false);
                     } else {
                         JOptionPane.showMessageDialog(null, "No se puede cancelar este pedido", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                        LimpiarPedido();
-                        LimpiarCliente();
-                        CleanTable();
-                        JtNpc.setText("");
-                        JtNpc.requestFocus();
+                        LimpiarDelete();
+                        LimpiarTextbox();
                         CargarPedido();
-                        JtNpedido.setEditable(false);
                     }
                 }
             }
@@ -993,11 +1021,10 @@ public class Pedidos extends javax.swing.JInternalFrame {
             OcultarCampos();
             Producto prod = new Producto();
             client = listC.get(JcCliente.getSelectedIndex()).getId_Cliente();
-            DefaultComboBoxModel modelProd = new DefaultComboBoxModel(prod.getProd(client));
+            DefaultComboBoxModel modelProd = new DefaultComboBoxModel(prod.getProdPedido(client));
             JcSuela.setModel(modelProd);
 
             ArrayList<Cliente> lista = obj.clienteGetByID(client);
-            //ArrayList<Cliente> listaR = obj.clienteGetByIDR(client);
 
             if (Serie.equals("A")) {
                 for (Cliente cn : lista) {
@@ -1031,24 +1058,53 @@ public class Pedidos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JcClienteItemStateChanged
     private void JcSuelaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JcSuelaItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            Producto prod = (Producto) JcSuela.getSelectedItem();
-            //Cliente cli = (Cliente) JcCliente.getSelectedItem();
-            JtCorrida.setText(String.valueOf(cr.getCorridas(prod.getId_Producto())));
-            JtColor.setText(String.valueOf(cl.getColor(prod.getId_Producto())));
-            if (JcSuela.getSelectedIndex() == 0) {
-                OcultarCampos();
-                limpiarCorrida();
-                JtColor.setText("");
-                JtCorrida.setText("");
-            } else {
-                ValidarCorridas();
-                JtCant.requestFocus();
-                cargarPrecio();
-            }
+            CambiarProducto();
         }
     }//GEN-LAST:event_JcSuelaItemStateChanged
 
+    private void CambiarProducto() {
+        Producto prod = (Producto) JcSuela.getSelectedItem();
+
+        if (JcSuela.getSelectedIndex() == 0) {
+            OcultarCampos();
+            limpiarCorrida();
+            JtColor.setText("");
+            JtCorrida.setText("");
+        } else {
+            JtCorrida.setText(prod.getCorrida());
+            JtColor.setText(prod.getColor());
+            Jpi.setText(String.valueOf(prod.getPti()));
+            Jpf.setText(String.valueOf(prod.getPtf()));
+            ValidarCorridas();
+            JtCant.requestFocus();
+            cargarPrecio();
+        }
+    }
+
     private void ValidarCorridas() {
+        /*int pt1 = Integer.parseInt(Jpi.getText().substring(0, 2));
+        int pt2 = Integer.parseInt(Jpf.getText().substring(0, 2));
+        double num = 0.5;
+
+        sum = pt2 - pt1 + 1;
+
+        String colums = null;
+        Object[] datos = {""};
+        PuntosCaptura p = new PuntosCaptura(null, true);
+        for (int i = pt1; i <= pt2; i++) {
+            colums = String.valueOf(i);
+            p.modelP.addColumn(colums, datos);
+
+            for (double j = i + num; j <= i + num; j++) {
+                colums = String.valueOf(j);
+                p.modelP.addColumn(colums, datos);
+            }
+        }
+        p.SumaPuntos = sum;
+        p.Pares = Integer.parseInt(JtCant.getText());
+        p.Jtdatos.changeSelection(0, 0, true, false);
+        p.array = array;
+        p.setVisible(true);*/
         JtC1.setText("0");
         JtC2.setText("0");
         JtC3.setText("0");
@@ -1063,7 +1119,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JtC12.setText("0");
 
         switch (JtCorrida.getText()) {
-            case "[10-12]":
+            case "10-12":
                 L1.setText("10:");
                 L2.setText("10.5:");
                 L3.setText("11:");
@@ -1089,8 +1145,9 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtC4.setVisible(true);
                 JtC5.setVisible(true);
                 JtC6.setVisible(true);
+                HideBack();
                 break;
-            case "[13-16]":
+            case "13-16":
                 L1.setText("13:");
                 L2.setText("13.5:");
                 L3.setText("14:");
@@ -1124,8 +1181,9 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtC6.setVisible(true);
                 JtC7.setVisible(true);
                 JtC8.setVisible(true);
+                HideBack2();
                 break;
-            case "[27-29]":
+            case "27-29":
                 L1.setText("27:");
                 L2.setText("27.5:");
                 L3.setText("28:");
@@ -1152,8 +1210,9 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtC4.setVisible(true);
                 JtC5.setVisible(true);
                 JtC6.setVisible(true);
+                HideBack();
                 break;
-            case "[11-14]":
+            case "11-14":
                 L1.setText("11:");
                 L2.setText("11.5:");
                 L3.setText("12:");
@@ -1187,8 +1246,9 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtC6.setVisible(true);
                 JtC7.setVisible(true);
                 JtC8.setVisible(true);
+                HideBack2();
                 break;
-            case "[22-27]":
+            case "22-27":
                 L1.setText("22:");
                 L2.setText("22.5:");
                 L3.setText("23:");
@@ -1239,7 +1299,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtC11.setVisible(true);
                 JtC12.setVisible(true);
                 break;
-            case "[12-14]":
+            case "12-14":
                 L1.setText("12:");
                 L2.setText("12.5:");
                 L3.setText("13:");
@@ -1265,8 +1325,9 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtC4.setVisible(true);
                 JtC5.setVisible(true);
                 JtC6.setVisible(true);
+                HideBack();
                 break;
-            case "[15-17]":
+            case "15-17":
                 L1.setText("15:");
                 L2.setText("15.5:");
                 L3.setText("16:");
@@ -1292,8 +1353,9 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtC4.setVisible(true);
                 JtC5.setVisible(true);
                 JtC6.setVisible(true);
+                HideBack();
                 break;
-            case "[18-21]":
+            case "18-21":
                 L1.setText("18:");
                 L2.setText("18.5:");
                 L3.setText("19:");
@@ -1327,8 +1389,9 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtC6.setVisible(true);
                 JtC7.setVisible(true);
                 JtC8.setVisible(true);
+                HideBack2();
                 break;
-            case "[22-24]":
+            case "22-24":
                 L1.setText("22:");
                 L2.setText("22.5:");
                 L3.setText("23:");
@@ -1354,51 +1417,9 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtC4.setVisible(true);
                 JtC5.setVisible(true);
                 JtC6.setVisible(true);
+                HideBack();
                 break;
-            case "[22-26]":
-                L1.setText("22:");
-                L2.setText("22.5:");
-                L3.setText("23:");
-                L4.setText("23.5:");
-                L5.setText("24:");
-                L6.setText("24.5:");
-                L7.setText("25:");
-                L8.setText("25.5:");
-                L9.setText("26:");
-                L10.setText("26.5:");
-                JtC1.requestFocus();
-                L1.setVisible(true);
-                L2.setVisible(true);
-                L3.setVisible(true);
-                L4.setVisible(true);
-                L5.setVisible(true);
-                L6.setVisible(true);
-                L7.setVisible(true);
-                L8.setVisible(true);
-                L9.setVisible(true);
-                L10.setVisible(true);
-                JtC1.setSelectionStart(0);
-                JtC2.setSelectionStart(0);
-                JtC3.setSelectionStart(0);
-                JtC4.setSelectionStart(0);
-                JtC5.setSelectionStart(0);
-                JtC6.setSelectionStart(0);
-                JtC7.setSelectionStart(0);
-                JtC8.setSelectionStart(0);
-                JtC9.setSelectionStart(0);
-                JtC10.setSelectionStart(0);
-                JtC1.setVisible(true);
-                JtC2.setVisible(true);
-                JtC3.setVisible(true);
-                JtC4.setVisible(true);
-                JtC5.setVisible(true);
-                JtC6.setVisible(true);
-                JtC7.setVisible(true);
-                JtC8.setVisible(true);
-                JtC9.setVisible(true);
-                JtC10.setVisible(true);
-                break;
-            case "[23-26]":
+            case "22-26":
                 L1.setText("22:");
                 L2.setText("22.5:");
                 L3.setText("23:");
@@ -1440,8 +1461,9 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtC8.setVisible(true);
                 JtC9.setVisible(true);
                 JtC10.setVisible(true);
+                HideBack3();
                 break;
-            case "[23-29]":
+            case "23-26":
                 L1.setText("22:");
                 L2.setText("22.5:");
                 L3.setText("23:");
@@ -1483,8 +1505,53 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtC8.setVisible(true);
                 JtC9.setVisible(true);
                 JtC10.setVisible(true);
+                HideBack3();
                 break;
-            case "[25-30]":
+            case "23-29":
+                L1.setText("22:");
+                L2.setText("22.5:");
+                L3.setText("23:");
+                L4.setText("23.5:");
+                L5.setText("24:");
+                L6.setText("24.5:");
+                L7.setText("25:");
+                L8.setText("25.5:");
+                L9.setText("26:");
+                L10.setText("26.5:");
+                JtC1.requestFocus();
+                L1.setVisible(true);
+                L2.setVisible(true);
+                L3.setVisible(true);
+                L4.setVisible(true);
+                L5.setVisible(true);
+                L6.setVisible(true);
+                L7.setVisible(true);
+                L8.setVisible(true);
+                L9.setVisible(true);
+                L10.setVisible(true);
+                JtC1.setSelectionStart(0);
+                JtC2.setSelectionStart(0);
+                JtC3.setSelectionStart(0);
+                JtC4.setSelectionStart(0);
+                JtC5.setSelectionStart(0);
+                JtC6.setSelectionStart(0);
+                JtC7.setSelectionStart(0);
+                JtC8.setSelectionStart(0);
+                JtC9.setSelectionStart(0);
+                JtC10.setSelectionStart(0);
+                JtC1.setVisible(true);
+                JtC2.setVisible(true);
+                JtC3.setVisible(true);
+                JtC4.setVisible(true);
+                JtC5.setVisible(true);
+                JtC6.setVisible(true);
+                JtC7.setVisible(true);
+                JtC8.setVisible(true);
+                JtC9.setVisible(true);
+                JtC10.setVisible(true);
+                HideBack3();
+                break;
+            case "25-30":
                 L1.setText("25:");
                 L2.setText("25.5:");
                 L3.setText("26:");
@@ -1535,7 +1602,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtC11.setVisible(true);
                 JtC12.setVisible(true);
                 break;
-            case "[25-29]":
+            case "25-29":
                 L1.setText("25:");
                 L2.setText("25.5:");
                 L3.setText("26:");
@@ -1586,7 +1653,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtC11.setVisible(true);
                 JtC12.setVisible(true);
                 break;
-            case "[21-25]":
+            case "21-25":
                 L1.setText("21:");
                 L2.setText("21.5:");
                 L3.setText("22:");
@@ -1628,8 +1695,9 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtC8.setVisible(true);
                 JtC9.setVisible(true);
                 JtC10.setVisible(true);
+                HideBack3();
                 break;
-            case "[30-33]":
+            case "30-33":
                 L1.setText("30:");
                 L2.setText("30.5:");
                 L3.setText("31:");
@@ -1663,8 +1731,9 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtC6.setVisible(true);
                 JtC7.setVisible(true);
                 JtC8.setVisible(true);
+                HideBack2();
                 break;
-            case "[17-21]":
+            case "17-21":
                 L1.setText("17:");
                 L2.setText("17.5:");
                 L3.setText("18:");
@@ -1706,8 +1775,9 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtC8.setVisible(true);
                 JtC9.setVisible(true);
                 JtC10.setVisible(true);
+                HideBack3();
                 break;
-            case "[23-27]":
+            case "23-27":
                 L1.setText("23:");
                 L2.setText("23.5:");
                 L3.setText("24:");
@@ -1749,10 +1819,12 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JtC8.setVisible(true);
                 JtC9.setVisible(true);
                 JtC10.setVisible(true);
+                HideBack3();
                 break;
             default:
                 break;
         }
+
     }
 
     private void JbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbAgregarActionPerformed
@@ -1762,11 +1834,13 @@ public class Pedidos extends javax.swing.JInternalFrame {
     private void AgregarDetalle() {
         ArrayList<Dpedido> detalles = new ArrayList<Dpedido>();
         ArrayList<Pedido> list = pedido.pedidoGetByID(JtNpedido.getText());
-        int index = modelPedido.getRowCount() - 1;
         if (JtCant.getText().isEmpty() || JcSuela.getSelectedIndex() == 0) {
             JtCant.requestFocus();
             JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
         } else if (list.size() > 0) {
+            int index = modelPedido.getRowCount() - 1;
+            String var = JtPedido.getValueAt(index, 1).toString();
+            cc = Integer.parseInt(var) + 1;
             Producto prod = (Producto) JcSuela.getSelectedItem();
             double precioa = Double.parseDouble(JtprecioA.getText());
             Double importe = Double.parseDouble(JtCant.getText()) * precioa;
@@ -1777,7 +1851,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
             this.Id_Producto = prod.getId_Producto();
             String Npedido = JtNpedido.getText();
 
-            //Cliente cli = (Cliente) JcCliente.getSelectedItem();
             Date Captura = JdCaptura.getDate();
             long c = Captura.getTime();
             java.sql.Date fechaCap = new java.sql.Date(c);
@@ -1812,7 +1885,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
             boolean aviso = false;
             String datos[] = new String[21];
             datos[0] = String.valueOf(Id_Producto);
-            datos[1] = String.valueOf(cont);
+            datos[1] = String.valueOf(cc);
             datos[2] = Desc;
             datos[3] = Color;
             datos[4] = Corrida;
@@ -1898,8 +1971,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
             }
             if (aviso == false) {
                 modelPedido.addRow(datos);
-                String var = JtPedido.getValueAt(index, 1).toString();
-                cc = Integer.parseInt(var) + 1;
+
                 String costo = lblTotal.getText();
                 double costoPedido = Double.parseDouble(costo);
                 String par = lblPares.getText();
@@ -1912,7 +1984,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 Dpedido Dt = new Dpedido();
                 Dt.setRenglon(cc);
                 Dt.setNpedido(Npedido);
-                Dt.setId_Cliente(Integer.parseInt(JtCliente.getText()));
+                Dt.setId_Cliente(client);
                 Dt.setFecha_Pedido(fechaPed);
                 Dt.setFecha_Entrega(fechaEn);
                 Dt.setId_Producto(Id_Producto);
@@ -1948,13 +2020,11 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 Dt.setStatus(Est);
                 Dt.setPrecio(precio);
                 detalles.add(Dt);
-                if (JbSerie.getText().equals("A")) {
-                    if (pedido.agregarPedido(pd, detalles, Npedido)) {
-                        if (pedido.agregarPedidoA(pd, detalles, Npedido)) {
-                            JOptionPane.showMessageDialog(this, "Se agrego la suela al pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                            Limpiar();
-                            OcultarCampos();
-                        }
+                if (JbS.getText().equals("A")) {
+                    if (pedido.agregarPedidoA(pd, detalles, Npedido)) {
+                        JOptionPane.showMessageDialog(this, "Se agrego la suela al pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                        Limpiar();
+                        OcultarCampos();
                     } else {
                         JOptionPane.showMessageDialog(this, "Este pedido no se puede actualizar!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         Limpiar();
@@ -1963,7 +2033,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         CargarDetalle();
                     }
                 } else {
-                    if (pedido.agregarPedidoA(pd, detalles, Npedido)) {
+                    if (pedido.agregarPedidoAPhy(pd, detalles, Npedido)) {
                         JOptionPane.showMessageDialog(this, "Se agrego la suela al pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         Limpiar();
                         OcultarCampos();
@@ -1978,13 +2048,12 @@ public class Pedidos extends javax.swing.JInternalFrame {
             }
         } else {
             AddItem();
-            JcPrecio.setEnabled(false);
         }
     }
 
     private void AddItem() {
         switch (JtCorrida.getText()) {
-            case "[10-12]":
+            case "10-12":
                 if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
                         || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
@@ -1994,7 +2063,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     OcultarCampos();
                 }
                 break;
-            case "[11-14]":
+            case "11-14":
                 if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
                         || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
                         || JtC7.getText().isEmpty() || JtC8.getText().isEmpty()) {
@@ -2005,7 +2074,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     OcultarCampos();
                 }
                 break;
-            case "[12-14]":
+            case "12-14":
                 if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
                         || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
@@ -2015,7 +2084,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     OcultarCampos();
                 }
                 break;
-            case "[13-16]":
+            case "13-16":
                 if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
                         || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
                         || JtC7.getText().isEmpty() || JtC8.getText().isEmpty()) {
@@ -2026,7 +2095,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     OcultarCampos();
                 }
                 break;
-            case "[15-17]":
+            case "15-17":
                 if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
                         || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
@@ -2036,7 +2105,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     OcultarCampos();
                 }
                 break;
-            case "[17-21]":
+            case "17-21":
                 if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
                         || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
                         || JtC7.getText().isEmpty() || JtC8.getText().isEmpty() || JtC9.getText().isEmpty() || JtC10.getText().isEmpty()) {
@@ -2047,7 +2116,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     OcultarCampos();
                 }
                 break;
-            case "[18-21]":
+            case "18-21":
                 if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
                         || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
                         || JtC7.getText().isEmpty() || JtC8.getText().isEmpty()) {
@@ -2058,7 +2127,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     OcultarCampos();
                 }
                 break;
-            case "[21-25]":
+            case "21-25":
                 if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
                         || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
                         || JtC7.getText().isEmpty() || JtC8.getText().isEmpty() || JtC9.getText().isEmpty() || JtC10.getText().isEmpty()) {
@@ -2069,7 +2138,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     OcultarCampos();
                 }
                 break;
-            case "[22-24]":
+            case "22-24":
                 if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
                         || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
@@ -2079,7 +2148,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     OcultarCampos();
                 }
                 break;
-            case "[22-26]":
+            case "22-26":
                 if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
                         || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
                         || JtC7.getText().isEmpty() || JtC8.getText().isEmpty() || JtC9.getText().isEmpty() || JtC10.getText().isEmpty()) {
@@ -2090,7 +2159,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     OcultarCampos();
                 }
                 break;
-            case "[22-27]":
+            case "22-27":
                 if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
                         || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
                         || JtC7.getText().isEmpty() || JtC8.getText().isEmpty() || JtC9.getText().isEmpty() || JtC10.getText().isEmpty()) {
@@ -2101,7 +2170,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     OcultarCampos();
                 }
                 break;
-            case "[23-26]":
+            case "23-26":
                 if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
                         || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
                         || JtC7.getText().isEmpty() || JtC8.getText().isEmpty() || JtC9.getText().isEmpty() || JtC10.getText().isEmpty()) {
@@ -2112,7 +2181,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     OcultarCampos();
                 }
                 break;
-            case "[23-27]":
+            case "23-27":
                 if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
                         || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
                         || JtC7.getText().isEmpty() || JtC8.getText().isEmpty() || JtC9.getText().isEmpty() || JtC10.getText().isEmpty()) {
@@ -2122,7 +2191,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     Limpiar();
                     OcultarCampos();
                 }
-            case "[23-29]":
+            case "23-29":
                 if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
                         || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
                         || JtC7.getText().isEmpty() || JtC8.getText().isEmpty() || JtC9.getText().isEmpty() || JtC10.getText().isEmpty()) {
@@ -2133,7 +2202,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     OcultarCampos();
                 }
                 break;
-            case "[25-30]":
+            case "25-30":
                 if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
                         || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
                         || JtC7.getText().isEmpty() || JtC8.getText().isEmpty() || JtC9.getText().isEmpty() || JtC10.getText().isEmpty()) {
@@ -2144,7 +2213,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     OcultarCampos();
                 }
                 break;
-            case "[25-29]":
+            case "25-29":
                 if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
                         || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
                         || JtC7.getText().isEmpty() || JtC8.getText().isEmpty() || JtC9.getText().isEmpty() || JtC10.getText().isEmpty()) {
@@ -2155,7 +2224,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     OcultarCampos();
                 }
                 break;
-            case "[27-29]":
+            case "27-29":
                 if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
                         || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
@@ -2165,7 +2234,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     OcultarCampos();
                 }
                 break;
-            case "[30-33]":
+            case "30-33":
                 if (JtC1.getText().isEmpty() || JtC2.getText().isEmpty() || JtC3.getText().isEmpty()
                         || JtC4.getText().isEmpty() || JtC5.getText().isEmpty() || JtC6.getText().isEmpty()
                         || JtC7.getText().isEmpty() || JtC8.getText().isEmpty()) {
@@ -2201,7 +2270,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
                         String Num = JtRenglon.getText();
                         if (JbSerie.getText().equals("A")) {
-                            if (pedido.eliminarPedido(pd, Integer.parseInt(Num)) && pedido.eliminarPedidoA(pd, Integer.parseInt(Num))) {
+                            if (pedido.eliminarPedidoA(pd, Integer.parseInt(Num))) {
                                 JOptionPane.showMessageDialog(this, "Registro eliminado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                                 OcultarCampos();
                                 Limpiar();
@@ -2214,7 +2283,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                                 CargarDetalle();
                             }
                         } else {
-                            if (pedido.eliminarPedidoA(pd, Integer.parseInt(Num))) {
+                            if (pedido.eliminarPedidoB(pd, Integer.parseInt(Num))) {
                                 JOptionPane.showMessageDialog(this, "Registro eliminado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                                 OcultarCampos();
                                 Limpiar();
@@ -2248,30 +2317,19 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
     private void cargarPrecio() {
         Producto prod = (Producto) JcSuela.getSelectedItem();
-        //Cliente cli = (Cliente) JcCliente.getSelectedItem();
-
-        ArrayList<Precio> lista = pc.GetByID(prod.getId_Producto(), client);
 
         if (JbSerie.getText().equals("A") && JcPrecio.isSelected() == false) {
-            for (Precio p : lista) {
-                double precio = p.getPrecioA();
-                JtprecioA.setText(precioA.format(precio));
-            }
+            double precio = prod.getPrecioAP();
+            JtprecioA.setText(precioA.format(precio));
         } else if (JbSerie.getText().equals("A") && JcPrecio.isSelected() == true) {
-            for (Precio p : lista) {
-                double precio = p.getPrecioAP();
-                JtprecioA.setText(precioA.format(precio));
-            }
+            double precio = prod.getPrecioA();
+            JtprecioA.setText(precioA.format(precio));
         } else if (JbSerie.getText().equals("B") && JcPrecio.isSelected() == false) {
-            for (Precio p : lista) {
-                double precio = p.getPrecioB();
-                JtprecioA.setText(precioA.format(precio));
-            }
+            double precio = prod.getPrecioBP();
+            JtprecioA.setText(precioA.format(precio));
         } else if (JbSerie.getText().equals("B") && JcPrecio.isSelected() == true) {
-            for (Precio p : lista) {
-                double precio = p.getPrecioBP();
-                JtprecioA.setText(precioA.format(precio));
-            }
+            double precio = prod.getPrecioB();
+            JtprecioA.setText(precioA.format(precio));
         }
     }
 
@@ -2282,14 +2340,11 @@ public class Pedidos extends javax.swing.JInternalFrame {
         String Condicion = "Nada";
         String Mes = "0";
         String Npedido = JtNpedido.getText();
-        int restarParametro = 1;
-        int Nped = Integer.parseInt(Npedido);
-        String Serie = JbSerie.getText();
         String Npc = JtNpc.getText();
+        String Serie = JbSerie.getText();
         String Orden = JtOcompra.getText();
         String Obv = JtCobranza.getText();
         int TotalPares = Integer.parseInt(lblPares.getText());
-        //Cliente cli = (Cliente) JcCliente.getSelectedItem();
         Date Captura = JdCaptura.getDate();
         long c = Captura.getTime();
         java.sql.Date fechaCap = new java.sql.Date(c);
@@ -2306,13 +2361,13 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
         Pedido pd = new Pedido();
         pd.setNpedido(Npedido);
-        pd.setNpedidoCl(Npedido);
+        pd.setNpedidoCl(Npc);
         pd.setId_Cliente(client);
         pd.setFecha_Pedido(fechaPed);
         pd.setFecha_Entrega(fechaEn);
         pd.setCondiciones(Condicion);
         pd.setObservaciones(Obv);
-        pd.setId_Usuario(Id_Usuario);
+        pd.setId_Usuario(se.getId_usuario());
         pd.setSerie(Serie);
         pd.setTotalPares(TotalPares);
         pd.setCostoTotal(costoPedido);
@@ -2402,6 +2457,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     if (JbSerie.getText().equals("A")) {
                         if (pedido.insertarVentaA(pd, detalles, pam)) {
                             JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                            limpiarCorrida();
                         } else {
                             JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
                         }
@@ -2410,7 +2466,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         CargarPedido();
                         //SI ES PRECIO B    
                     } else {
-                        if (pedido.insertarVentaRPT(pd, detalles, pam)) {
+                        if (pedido.insertarVentaB(pd, detalles, pam)) {
                             JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
 
                         } else {
@@ -2434,7 +2490,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         CargarPedido();
                         //SI ES PRECIO B    
                     } else {
-                        if (pedido.insertarVentaPhylon(pd, detalles, Npedido)) {
+                        if (pedido.insertarVentaBPam(pd, detalles, Npedido)) {
                             JOptionPane.showMessageDialog(this, "Pedido realizado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         } else {
                             JOptionPane.showMessageDialog(this, "No se pudo registrar el pedido contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
@@ -2578,8 +2634,8 @@ public class Pedidos extends javax.swing.JInternalFrame {
             pd.setTotalPares(TotalPares);
             int opcion = JOptionPane.showConfirmDialog(this, "¿Modificar registro del pedido?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (opcion == JOptionPane.YES_OPTION) {
-                if (JbSerie.getText().equals("A")) {
-                    if (pedido.actualizarPedido(pd, det, id_dt) && pedido.actualizarPedidoA(pd, det, id_dt)) {
+                if (JbS.getText().equals("A")) {
+                    if (pedido.actualizarPedidoA(pd, det, id_dt)) {
                         JOptionPane.showMessageDialog(this, "Se actualizo el pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         JcPrecio.setEnabled(true);
                     } else {
@@ -2590,7 +2646,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                         CargarDetalle();
                     }
                 } else {
-                    if (pedido.actualizarPedidoA(pd, det, id_dt)) {
+                    if (pedido.actualizarPedidoAPhy(pd, det, id_dt)) {
                         JOptionPane.showMessageDialog(this, "Se actualizo el pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                         JcPrecio.setEnabled(true);
                         OcultarCampos();
@@ -2611,13 +2667,14 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
     private void JtPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JtPedidoMouseClicked
         int row = JtPedido.rowAtPoint(evt.getPoint());
-        Producto Pro = new Producto();
+        //Producto Pro = new Producto();
         JtRenglon.setText(String.valueOf(JtPedido.getValueAt(row, 1)));
-        Pro.setId_Producto(Integer.parseInt(JtPedido.getValueAt(row, 0).toString()));
+        /*Pro.setId_Producto(Integer.parseInt(JtPedido.getValueAt(row, 0).toString()));
         Pro.setDescripcion(JtPedido.getValueAt(row, 2).toString());
         JcSuela.getModel().setSelectedItem(Pro);
         JtprecioA.setText(JtPedido.getValueAt(row, 18).toString());
-        JcPrecio.setEnabled(false);
+        //JcPrecio.setEnabled(false);
+        CambiarProducto();*/
     }//GEN-LAST:event_JtPedidoMouseClicked
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
@@ -2631,33 +2688,23 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
     private void JcPrecioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JcPrecioItemStateChanged
         Producto prod = (Producto) JcSuela.getSelectedItem();
-        //Cliente cli = (Cliente) JcCliente.getSelectedItem();
-        ArrayList<Precio> lista = pc.GetByID(prod.getId_Producto(), client);
 
         if (evt.getStateChange() == ItemEvent.SELECTED) {
 
             if (JbSerie.getText().equals("A")) {
-                for (Precio p : lista) {
-                    double precio = p.getPrecioAP();
-                    JtprecioA.setText(precioA.format(precio));
-                }
+                double precio = prod.getPrecioAP();
+                JtprecioA.setText(precioA.format(precio));
             } else if (JbSerie.getText().equals("B")) {
-                for (Precio p : lista) {
-                    double precio = p.getPrecioBP();
-                    JtprecioA.setText(precioA.format(precio));
-                }
+                double precio = prod.getPrecioBP();
+                JtprecioA.setText(precioA.format(precio));
             }
         } else {
             if (JbSerie.getText().equals("A")) {
-                for (Precio p : lista) {
-                    double precio = p.getPrecioA();
-                    JtprecioA.setText(precioA.format(precio));
-                }
+                double precio = prod.getPrecioA();
+                JtprecioA.setText(precioA.format(precio));
             } else if (JbSerie.getText().equals("B")) {
-                for (Precio p : lista) {
-                    double precio = p.getPrecioB();
-                    JtprecioA.setText(precioA.format(precio));
-                }
+                double precio = prod.getPrecioB();
+                JtprecioA.setText(precioA.format(precio));
             }
         }
     }//GEN-LAST:event_JcPrecioItemStateChanged
@@ -2740,26 +2787,29 @@ public class Pedidos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_JtC12KeyPressed
 
+    private void LimpiarDelete() {
+        LimpiarPedido();
+        JtNpedido.setEditable(false);
+        JtNpc.requestFocus();
+        CleanTable();
+        CargarPedido();
+        JcCliente.setEnabled(true);
+        JbNuevo.setEnabled(true);
+        JtNpc.setEditable(true);
+        JtOcompra.setEditable(true);
+        JdEntrega.setEnabled(true);
+        JdPedido.setEnabled(true);
+        JdRecibido.setEnabled(true);
+        JtCliente.setText("");
+        JbActualizar.setEnabled(false);
+        JbEliminar.setEnabled(false);
+        JtprecioA.setText("");
+    }
+
     private void JtNpedidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtNpedidoKeyPressed
         int codigo = evt.getKeyCode();
         if (codigo == KeyEvent.VK_BACKSPACE) {
-            LimpiarPedido();
-            JtNpedido.setEditable(false);
-            JtNpc.requestFocus();
-            CleanTable();
-            CargarPedido();
-            JcCliente.setEnabled(true);
-            JbNuevo.setEnabled(true);
-            JtNpc.setEditable(true);
-            JtOcompra.setEditable(true);
-            JdCaptura.setEnabled(true);
-            JdEntrega.setEnabled(true);
-            JdPedido.setEnabled(true);
-            JdRecibido.setEnabled(true);
-            JtCliente.setText("");
-            JbActualizar.setEnabled(false);
-            JbEliminar.setEnabled(false);
-            JtprecioA.setText("");
+            LimpiarDelete();
         } else if (codigo == KeyEvent.VK_ENTER) {
             ArrayList<Pedido> lista = pedido.pedidoGetByID(JtNpedido.getText());
             if (JtNpedido.getText().isEmpty()) {
@@ -2775,23 +2825,19 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 JdEntrega.setEnabled(false);
                 JdPedido.setEnabled(false);
                 JdRecibido.setEnabled(false);
-                JcPrecio.setEnabled(false);
                 JbActualizar.setEnabled(true);
                 JbEliminar.setEnabled(true);
                 String datos[] = new String[21];
                 for (Pedido p : lista) {
                     Cliente cli = new Cliente();
                     Producto prod = new Producto();
-                    //client = listC.get(JcCliente.getSelectedIndex()).getId_Cliente();
-                    DefaultComboBoxModel modelProd = new DefaultComboBoxModel(prod.getProd(p.getId_Cliente()));
+                    DefaultComboBoxModel modelProd = new DefaultComboBoxModel(prod.getProdPedido(p.getId_Cliente()));
                     JcSuela.setModel(modelProd);
-                    //client = listC.get(p.getId_Cliente()).getId_Cliente();
                     JtCliente.setText(String.valueOf(p.getId_Cliente()));
                     JbCliente.setText(p.getRsocial());
-                    //JcCliente.getModel().setSelectedItem(cli);
+                    JbS.setText(p.getSerie());
                     cli.setId_Cliente(Integer.parseInt(JtCliente.getText()));
                     cli.setNombre(JbCliente.getText());
-                    //JcCliente.setSelectedIndex(Integer.parseInt(JtCliente.getText()));
                     JbCalle.setText(p.getCalle());
                     JbColonia.setText(p.getColonia());
                     JbCD.setText(p.getCiudad());
@@ -2842,6 +2888,14 @@ public class Pedidos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_JtNpedidoKeyPressed
 
+    private void JtCantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtCantActionPerformed
+        JtC1.requestFocus();
+    }//GEN-LAST:event_JtCantActionPerformed
+
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+
+    }//GEN-LAST:event_formInternalFrameActivated
+
     private boolean ValidarDatos() {
         if (this.JtPedido.getRowCount() == 0 && this.JtPedido.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(null, "No hay productos para el pedido", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
@@ -2858,16 +2912,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JtNpc.setText("");
         JtOcompra.setText("");
         JcCliente.setSelectedIndex(0);
-        JbCliente.setText("");
-        JbCalle.setText("");
-        JbColonia.setText("");
-        JbCD.setText("");
-        JbEstado.setText("");
-        JbCP.setText("");
-        JbPais.setText("");
-        JbPlazo.setText("");
-        JbAgente.setText("");
-        JtCobranza.setText("");
         Calendar fechaActual = new GregorianCalendar();
         JdCaptura.setCalendar(fechaActual);
         JdPedido.setCalendar(fechaActual);
@@ -2876,17 +2920,13 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JcPrecio.setEnabled(true);
     }
 
-    private void LimpiarCliente() {
-        JbCliente.setText("");
-        JbCalle.setText("");
-        JbColonia.setText("");
-        JbCD.setText("");
-        JbEstado.setText("");
-        JbCP.setText("");
-        JbPais.setText("");
-        JbPlazo.setText("");
-        JbAgente.setText("");
-        JtCobranza.setText("");
+    private void LimpiarTextbox() {
+        lblTotal.setText("0.00");
+        lblPares.setText("0");
+        JtNpedido.setText("");
+        JtNpc.setText("");
+        JtOcompra.setText("");
+        JcCliente.setSelectedIndex(0);
     }
 
     private boolean ValidarC1() {
@@ -2995,27 +3035,42 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JtC12.setVisible(false);
         JtprecioA.setVisible(false);
         JtCliente.setVisible(false);
+        Jpi.setVisible(false);
+        Jpf.setVisible(false);
+        JbS.setVisible(false);
     }
 
     private void HideBack() {
-        L4.setVisible(false);
-        L5.setVisible(false);
-        L6.setVisible(false);
-        JtC4.setVisible(false);
-        JtC5.setVisible(false);
-        JtC6.setVisible(false);
+        L7.setVisible(false);
+        L8.setVisible(false);
+        L9.setVisible(false);
+        L10.setVisible(false);
+        L11.setVisible(false);
+        L12.setVisible(false);
+        JtC7.setVisible(false);
+        JtC8.setVisible(false);
+        JtC9.setVisible(false);
+        JtC10.setVisible(false);
+        JtC11.setVisible(false);
+        JtC12.setVisible(false);
     }
 
     private void HideBack2() {
-        L5.setVisible(false);
-        JtC5.setVisible(false);
-        L6.setVisible(false);
-        JtC6.setVisible(false);
+        L9.setVisible(false);
+        L10.setVisible(false);
+        L11.setVisible(false);
+        L12.setVisible(false);
+        JtC9.setVisible(false);
+        JtC10.setVisible(false);
+        JtC11.setVisible(false);
+        JtC12.setVisible(false);
     }
 
     private void HideBack3() {
-        L6.setVisible(false);
-        JtC6.setVisible(false);
+        L11.setVisible(false);
+        L12.setVisible(false);
+        JtC11.setVisible(false);
+        JtC12.setVisible(false);
     }
 
     private void HideBack4() {
@@ -3026,6 +3081,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
     }
 
     private void AddProducto() {
+
         Producto prod = (Producto) JcSuela.getSelectedItem();
         double precioa = Double.parseDouble(JtprecioA.getText());
         double importe = Double.parseDouble(JtCant.getText()) * precioa;
@@ -3038,7 +3094,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
         String datos[] = new String[21];
 
         datos[0] = String.valueOf(Id_Producto);
-        datos[1] = String.valueOf(cont);
+        datos[1] = String.valueOf(ct);
         datos[2] = Desc;
         datos[3] = Color;
         datos[4] = Corrida;
@@ -3123,14 +3179,95 @@ public class Pedidos extends javax.swing.JInternalFrame {
         }
         if (aviso == false) {
             modelPedido.addRow(datos);
-            cont++;
+            ct++;
+        }
+    }
+
+    private void AgregarProducto() {
+        Object[] obj = array.toArray();
+        String datos[] = new String[21];
+        Producto prod = (Producto) JcSuela.getSelectedItem();
+        double precioa = Double.parseDouble(JtprecioA.getText());
+        double importe = Double.parseDouble(JtCant.getText()) * precioa;
+        String Desc = prod.getDescripcion();
+        String Color = JtColor.getText();
+        String Corrida = JtCorrida.getText();
+        Id_Producto = prod.getId_Producto();
+        DecimalFormat impt = new DecimalFormat("#.00");
+        boolean aviso = false;
+
+        if (obj.length == 12) {
+            ct1 = (String) obj[0];
+            ct2 = (String) obj[1];
+            ct3 = (String) obj[2];
+            ct4 = (String) obj[3];
+            ct5 = (String) obj[4];
+            ct6 = (String) obj[5];
+            ct7 = (String) obj[6];
+            ct8 = (String) obj[7];
+            ct9 = (String) obj[8];
+            ct10 = (String) obj[9];
+            ct11 = (String) obj[10];
+            ct12 = (String) obj[11];
+        } else if (obj.length == 10) {
+            ct1 = (String) obj[0];
+            ct2 = (String) obj[1];
+            ct3 = (String) obj[2];
+            ct4 = (String) obj[3];
+            ct5 = (String) obj[4];
+            ct6 = (String) obj[5];
+            ct7 = (String) obj[6];
+            ct8 = (String) obj[7];
+            ct9 = (String) obj[8];
+            ct10 = (String) obj[9];
+        } else if (obj.length == 8) {
+            ct1 = (String) obj[0];
+            ct2 = (String) obj[1];
+            ct3 = (String) obj[2];
+            ct4 = (String) obj[3];
+            ct5 = (String) obj[4];
+            ct6 = (String) obj[5];
+            ct7 = (String) obj[6];
+            ct8 = (String) obj[7];
+        } else if (obj.length == 6) {
+            ct1 = (String) obj[0];
+            ct2 = (String) obj[1];
+            ct3 = (String) obj[2];
+            ct4 = (String) obj[3];
+            ct5 = (String) obj[4];
+            ct6 = (String) obj[5];
+        }
+
+        datos[0] = String.valueOf(Id_Producto);
+//        datos[1] = String.valueOf(cont);
+        datos[2] = Desc;
+        datos[3] = Color;
+        datos[4] = Corrida;
+        datos[5] = ct1;
+        datos[6] = ct2;
+        datos[7] = ct3;
+        datos[8] = ct4;
+        datos[9] = ct5;
+        datos[10] = ct6;
+        datos[11] = ct7;
+        datos[12] = ct8;
+        datos[13] = ct9;
+        datos[14] = ct10;
+        datos[15] = ct11;
+        datos[16] = ct12;
+        datos[17] = JtCant.getText();
+        datos[18] = precioA.format(precioa);
+        datos[19] = impt.format(importe);
+        datos[20] = Est;
+
+        if (aviso == false) {
+            modelPedido.addRow(datos);
+            //cont++;
         }
     }
 
     private void LoadModelCliente() {
-        //DefaultComboBoxModel modelCliente = new DefaultComboBoxModel();
         listC = obj.clientesGetAll();
-        //listCR = obj.getClientesR();
         JcCliente.setModel(modelCliente);
 
         if (Serie.equals("A")) {
@@ -3163,8 +3300,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
         JtCorrida.setText("");
         JtColor.setText("");
         JtprecioA.setText("");
-        cont = 1;
-        //JtRenglon.setText("");
+        JtRenglon.setText("");
     }
 
     private void LoadColumns() {
@@ -3274,6 +3410,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel JbPais;
     private javax.swing.JLabel JbPlazo;
     private javax.swing.JButton JbQuitar;
+    private javax.swing.JLabel JbS;
     private javax.swing.JButton JbSalir;
     public javax.swing.JLabel JbSerie;
     private javax.swing.JComboBox<String> JcCliente;
@@ -3286,6 +3423,8 @@ public class Pedidos extends javax.swing.JInternalFrame {
     private javax.swing.JPanel JpDpedido;
     private javax.swing.JPanel JpFacturas;
     private javax.swing.JPanel JpObservaciones;
+    private javax.swing.JLabel Jpf;
+    private javax.swing.JLabel Jpi;
     private javax.swing.JTextField JtC1;
     private javax.swing.JTextField JtC10;
     private javax.swing.JTextField JtC11;

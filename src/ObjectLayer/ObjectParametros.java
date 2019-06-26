@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,15 +11,16 @@ import java.util.ArrayList;
 
 public class ObjectParametros {
 
-    Connection c = Server.getRpt();
-    Connection pa = Server.getRcpt();
+//    Connection c = Server.getRpt();
+//    Connection pa = Server.getRcpt();
+    DB db = new DB();
+    Connection c = db.RPTPhylon();
+    Connection pa = db.RCPTPhylonA();
 
-//    Connection c = Conexion.getRpt();
-//    Connection pa = Conexion.getRcpt();
     PreparedStatement st, dp = null;
     ResultSet rs = null;
 
-    public boolean insertarPam(Parametro p) {
+    public boolean insertarPam(Parametro p) throws SQLException {
         boolean rpta = false;
         try {
             c.setAutoCommit(false);
@@ -31,65 +33,69 @@ public class ObjectParametros {
             st.setString(5, p.getMes());
 
             rpta = st.executeUpdate() == 1 ? true : false;
-            
-            if(rpta){
+
+            if (rpta) {
                 c.commit();
                 st.close();
-            }else{
+            } else {
                 c.rollback();
                 st.close();
             }
             st.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            Conexion.cerrarPrep(st);
+            st.close();
         } catch (Exception ex) {
             ex.printStackTrace();
-            Conexion.cerrarPrep(st);
+            st.close();
         }
         return rpta;
     }
 
-    public boolean actualizarPam(String Np) {
-        boolean rpta = false;
+    public boolean actualizarPam(String Np) throws SQLException {
         try {
-            st = c.prepareStatement("UPDATE Parametros SET Npedido = ?");
-
-            st.setString(1, Np);
-
-            rpta = st.executeUpdate() == 1 ? true : false;
-            Conexion.cerrarPrep(st);
+           c.setAutoCommit(false);
+           st = c.prepareStatement("UPDATE Parametros SET Npedido = ?");
+           st.setString(1, Np);
+           st.executeUpdate();
+           c.commit();
+           st.close();
+           return true;
         } catch (SQLException e) {
             e.printStackTrace();
-            Conexion.cerrarPrep(st);
+            c.rollback();
+            st.close();
         } catch (Exception ex) {
             ex.printStackTrace();
-            Conexion.cerrarPrep(st);
+            c.rollback();
+            st.close();
         }
-        return rpta;
+        return false;
     }
 
-    public boolean actualizarPamA(String Np) {
-        boolean rpta = false;
+    public boolean actualizarPamA(String Np) throws SQLException {
         try {
+            pa.setAutoCommit(false);
             dp = pa.prepareStatement("UPDATE Parametros SET Npedido = ?");
-
             dp.setString(1, Np);
-
-            rpta = dp.executeUpdate() == 1 ? true : false;
-            Conexion.cerrarPrep(dp);
+            dp.executeUpdate();
+            pa.commit();
+            dp.close();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
-            Conexion.cerrarPrep(dp);
+            pa.rollback();
+            dp.close();
         } catch (Exception ex) {
             ex.printStackTrace();
-            Conexion.cerrarPrep(dp);
+            pa.rollback();
+            dp.close();
         }
-        return rpta;
+        return false;
     }
 
-    public boolean insertarPamA(Parametro p) {
-       boolean rpta = false;
+    public boolean insertarPamA(Parametro p) throws SQLException {
+        boolean rpta = false;
         try {
             dp = pa.prepareStatement("INSERT INTO Parametros (Npedido, Entrada,Salida,Factura,Mes)"
                     + "values(?,?,?,?,?)");
@@ -100,47 +106,47 @@ public class ObjectParametros {
             dp.setString(5, p.getMes());
 
             rpta = dp.executeUpdate() == 1 ? true : false;
-            Conexion.cerrarPrep(dp);
+            dp.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            Conexion.cerrarPrep(dp);
+            dp.close();
         } catch (Exception ex) {
             ex.printStackTrace();
-            Conexion.cerrarPrep(dp);
+            dp.close();
         }
         return rpta;
     }
 
-    public boolean cancelarPam(String Npedido) {
+    public boolean cancelarPam(String Npedido) throws SQLException {
         boolean rpta = false;
         try {
             st = c.prepareStatement("DELETE Parametros WHERE Npedido = ?");
             st.setString(1, Npedido);
             rpta = st.executeUpdate() == 1 ? true : false;
-            Conexion.cerrarPrep(st);
+            st.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            Conexion.cerrarPrep(st);
+            st.close();
         } catch (Exception ex) {
             ex.printStackTrace();
-            Conexion.cerrarPrep(st);
+            st.close();
         }
         return rpta;
     }
 
-    public boolean cancelarPamA(String Npedido) {
+    public boolean cancelarPamA(String Npedido) throws SQLException {
         boolean rpta = false;
         try {
             dp = pa.prepareStatement("DELETE Parametros WHERE Npedido = ?");
             dp.setString(1, Npedido);
             rpta = dp.executeUpdate() == 1 ? true : false;
-            Conexion.cerrarPhylonA(dp);
+            dp.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            Conexion.cerrarPhylonA(dp);
+            dp.close();
         } catch (Exception ex) {
             ex.printStackTrace();
-            Conexion.cerrarPhylonA(dp);
+            dp.close();
         }
         return rpta;
     }
@@ -163,7 +169,7 @@ public class ObjectParametros {
         }
         return listaP;
     }
-    
+
     public ArrayList<Parametro> getFolioActualB() {
         ArrayList<Parametro> listaP = new ArrayList<Parametro>();
         try {

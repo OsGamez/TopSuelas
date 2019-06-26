@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -8,13 +9,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+import javax.swing.JOptionPane;
 
 public class ObjectUsuarios {
 
-    Connection us = Server.getUsuario();
+    //Connection us = Server.getUsuario();
+    DB db = new DB();
+    Connection us = db.User();
     PreparedStatement st = null;
     ResultSet rs = null;
+
+    private boolean ComprobatCn() {
+        if (us != null) {
+            System.out.println("Conectado");
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo conectar");
+        }
+        return false;
+    }
 
     public boolean registrarUsuario(Usuario usuario) {
         try {
@@ -52,7 +65,8 @@ public class ObjectUsuarios {
     }
 
     public boolean Login(Usuario user) {
-        try {
+        if(ComprobatCn()){
+           try {
             st = us.prepareStatement("SELECT Id_Usuario,Nombre,Password,Usuario,Departamento FROM Usuarios\n"
                     + "WHERE Usuario= ?");
             st.setString(1, user.getUsuario());
@@ -73,6 +87,9 @@ public class ObjectUsuarios {
             return false;
         } catch (SQLException ex) {
             ex.printStackTrace();
+            return false;
+        } 
+        }else{
             return false;
         }
     }
@@ -117,7 +134,7 @@ public class ObjectUsuarios {
                 us.setUsuario(usuario);
                 us.setPassword(pass);
                 us.setDepartamento(Dep);
-                
+
                 listaUsuarios.add(us);
             }
         } catch (SQLException ex) {
@@ -165,15 +182,15 @@ public class ObjectUsuarios {
             ex.printStackTrace();
         }
     }
-    
-    public InputStream buscarFoto(Usuario usuario){
+
+    public InputStream buscarFoto(Usuario usuario) {
         InputStream streamFoto = null;
         try {
             st = us.prepareStatement("SELECT Imagen FROM Usuarios WHERE Id_Usuario = ?");
             st.setInt(1, usuario.getId_Usuario());
             rs = st.executeQuery();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 streamFoto = rs.getBinaryStream("Imagen");
             }
         } catch (Exception e) {

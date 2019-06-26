@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,9 @@ public class ObjectMateriales {
 
     PreparedStatement st = null;
     ResultSet rs = null;
-    Connection c = Server.getCmpPhylon();
+//    Connection c = Server.getCmpPhylon();
+    DB db = new DB();
+    Connection c = db.Cmp();
     Statement sta = null;
 
     public boolean addMaterial(Material mat) {

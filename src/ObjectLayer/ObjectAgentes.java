@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,11 +13,12 @@ public class ObjectAgentes {
 
     PreparedStatement st = null;
     PreparedStatement copy = null;
-    //Connection c = Server.getCobranza();
-    //Connection rc = Server.getRcobranza();
+    DB db = new DB();
+    Connection c = db.Cobranza();
+    Connection rc = db.Rcobranza();
 
-    Connection c = Server.getCobranza();
-    Connection rc = Server.getRcobranza();
+//    Connection c = Server.getCobranza();
+//    Connection rc = Server.getRcobranza();
     ResultSet rs = null;
 
     public boolean agenteAdd(String Descripcion, boolean Activo) {

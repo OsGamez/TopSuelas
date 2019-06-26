@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,10 +11,11 @@ import java.util.ArrayList;
 
 public class ObjectPrecios {
 
-    Connection c = Server.getRpt();
-    Connection pa = Server.getRcpt();
-//    Connection c = Conexion.getRpt();
-//    Connection pa = Conexion.getRcpt();
+//    Connection c = Server.getRpt();
+//    Connection pa = Server.getRcpt();
+    DB db = new DB();
+    Connection c = db.RPTPhylon();
+    Connection pa = db.RCPTPhylonA();
 
     PreparedStatement st, st2 = null;
     ResultSet rs = null;
@@ -192,7 +194,6 @@ public class ObjectPrecios {
                 st2.close();
             }
             st2.close();*/
-
         } catch (SQLException ex) {
             Conexion.rollback(pa);
             Conexion.cerrarPrep(st2);
