@@ -23,9 +23,9 @@ public class ObjectConsumos {
 
     PreparedStatement st = null;
     ResultSet rs = null;
-    //Connection c = Server.getProduccion();
-    DB db = new DB();
-    Connection c = db.Produccion();
+    Connection c = Server.getProduccion();
+//    DB db = new DB();
+//    Connection c = db.Produccion();
     
     public ArrayList<Consumo> ConsumoGetAll() {
         ArrayList<Consumo> listaconsumos = new ArrayList<>();

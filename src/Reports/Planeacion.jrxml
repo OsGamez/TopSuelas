@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4b866826-13b8-4ee5-9bf3-d134da4edb83">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="752" pageHeight="572" orientation="Landscape" columnWidth="752" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4b866826-13b8-4ee5-9bf3-d134da4edb83">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -15,397 +15,392 @@
 SELECT 
  ROW_NUMBER() OVER(ORDER BY p.Npedido) AS Numero, 
  dp.Npedido as Pedido,
- c.RazonSocial as Cliente,
- CASE WHEN a.Descripcion = 'JOSE CARLOS' THEN 'J'
-	WHEN a.Descripcion = 'GERARDO PEDROZA' THEN 'G'
-	WHEN a.Descripcion = 'HORACIO HERNANDEZ' THEN 'H'
-	WHEN a.Descripcion = 'ROBERTO OLIVA' THEN 'R'
-	WHEN a.Descripcion = 'FRANCISCO VALLEJO' THEN 'F' END AS Agente,
+ c.RazonSocial as Cliente,a.Descripcion as Agente,
  l.Descripcion as Modelo,cr.Descripcion as Color
 ,
-CASE WHEN Corrida = '[10-12]' THEN C1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '10',
+CASE WHEN Corrida = '10-12' THEN C1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '10',
 
-	CASE WHEN Corrida = '[10-12]' THEN C2 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '10.5',
+	CASE WHEN Corrida = '10-12' THEN C2 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '10.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN C3 WHEN Corrida = '[11-14]' THEN C1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '11',
+	CASE WHEN Corrida = '10-12' THEN C3 WHEN Corrida = '11-14' THEN C1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '11',
 
-	CASE WHEN Corrida = '[10-12]' THEN C4 WHEN Corrida = '[11-14]' THEN C2 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '11.5',
+	CASE WHEN Corrida = '10-12' THEN C4 WHEN Corrida = '11-14' THEN C2 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '11.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN C5 WHEN Corrida = '[11-14]' THEN C3 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '12',
+	CASE WHEN Corrida = '10-12' THEN C5 WHEN Corrida = '11-14' THEN C3 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '12',
 
-	CASE WHEN Corrida = '[10-12]' THEN C6 WHEN Corrida = '[11-14]' THEN C4 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '12.5',
+	CASE WHEN Corrida = '10-12' THEN C6 WHEN Corrida = '11-14' THEN C4 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '12.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN C5 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN C1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '13',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN C5 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '13',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN C6 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN C2 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '13.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN C6 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C2 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '13.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN C7 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN C3 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '14',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN C7 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C3 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '14',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN C8 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN C4 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '14.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN C8 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C4 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '14.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN C5 WHEN Corrida = '[15-17]' THEN C1  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '15',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C5 WHEN Corrida = '15-17' THEN C1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '15',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN C6 WHEN Corrida = '[15-17]' THEN C2  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '15.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C6 WHEN Corrida = '15-17' THEN C2  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '15.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN C7 WHEN Corrida = '[15-17]' THEN C3  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '16',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C7 WHEN Corrida = '15-17' THEN C3  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '16',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN C8 WHEN Corrida = '[15-17]' THEN C4  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '16.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C8 WHEN Corrida = '15-17' THEN C4  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '16.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN C5  WHEN Corrida = '[17-21]' THEN C1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '17',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN C5  WHEN Corrida = '17-21' THEN C1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '17',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN C6  WHEN Corrida = '[17-21]' THEN C2
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '17.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN C6  WHEN Corrida = '17-21' THEN C2
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '17.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN C3
-	WHEN Corrida = '[18-21]' THEN C1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '18',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C3
+	WHEN Corrida = '18-21' THEN C1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '18',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN C4
-	WHEN Corrida = '[18-21]' THEN C2 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '18.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C4
+	WHEN Corrida = '18-21' THEN C2 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '18.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN C5
-	WHEN Corrida = '[18-21]' THEN C3 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '19',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C5
+	WHEN Corrida = '18-21' THEN C3 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '19',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN C6
-	WHEN Corrida = '[18-21]' THEN C4 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '19.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C6
+	WHEN Corrida = '18-21' THEN C4 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '19.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN C7
-	WHEN Corrida = '[18-21]' THEN C5 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '20',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C7
+	WHEN Corrida = '18-21' THEN C5 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '20',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN C8
-	WHEN Corrida = '[18-21]' THEN C6 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '20.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C8
+	WHEN Corrida = '18-21' THEN C6 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '20.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN C9
-	WHEN Corrida = '[18-21]' THEN C7 WHEN Corrida = '[21-25]' THEN C1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '21',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C9
+	WHEN Corrida = '18-21' THEN C7 WHEN Corrida = '21-25' THEN C1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '21',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN C10
-	WHEN Corrida = '[18-21]' THEN C8 WHEN Corrida = '[21-25]' THEN C2 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '21.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C10
+	WHEN Corrida = '18-21' THEN C8 WHEN Corrida = '21-25' THEN C2 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '21.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN C3 WHEN Corrida = '[22-24]' THEN C1
-	WHEN Corrida = '[22-26]' THEN C1 WHEN Corrida = '[22-27]' THEN C1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN C1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '22',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C3 WHEN Corrida = '22-24' THEN C1
+	WHEN Corrida = '22-26' THEN C1 WHEN Corrida = '22-27' THEN C1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN C1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '22',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN C4 WHEN Corrida = '[22-24]' THEN C2
-	WHEN Corrida = '[22-26]' THEN C2 WHEN Corrida = '[22-27]' THEN C2 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN C2 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '22.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C4 WHEN Corrida = '22-24' THEN C2
+	WHEN Corrida = '22-26' THEN C2 WHEN Corrida = '22-27' THEN C2 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN C2 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '22.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN C5 WHEN Corrida = '[22-24]' THEN C3
-	WHEN Corrida = '[22-26]' THEN C3 WHEN Corrida = '[22-27]' THEN C1 WHEN Corrida = '[23-27]' THEN C1
-	WHEN Corrida = '[23-26]' THEN C3 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '23',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C5 WHEN Corrida = '22-24' THEN C3
+	WHEN Corrida = '22-26' THEN C3 WHEN Corrida = '22-27' THEN C1 WHEN Corrida = '23-27' THEN C1
+	WHEN Corrida = '23-26' THEN C3 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '23',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN C6 WHEN Corrida = '[22-24]' THEN C4
-	WHEN Corrida = '[22-26]' THEN C4 WHEN Corrida = '[22-27]' THEN C4 WHEN Corrida = '[23-27]' THEN C2
-	WHEN Corrida = '[23-26]' THEN C4 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '23.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C6 WHEN Corrida = '22-24' THEN C4
+	WHEN Corrida = '22-26' THEN C4 WHEN Corrida = '22-27' THEN C4 WHEN Corrida = '23-27' THEN C2
+	WHEN Corrida = '23-26' THEN C4 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '23.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN C7 WHEN Corrida = '[22-24]' THEN C5
-	WHEN Corrida = '[22-26]' THEN C5 WHEN Corrida = '[22-27]' THEN C5 WHEN Corrida = '[23-27]' THEN C3
-	WHEN Corrida = '[23-26]' THEN C5 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '24',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C7 WHEN Corrida = '22-24' THEN C5
+	WHEN Corrida = '22-26' THEN C5 WHEN Corrida = '22-27' THEN C5 WHEN Corrida = '23-27' THEN C3
+	WHEN Corrida = '23-26' THEN C5 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '24',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN C8 WHEN Corrida = '[22-24]' THEN C6
-	WHEN Corrida = '[22-26]' THEN C6 WHEN Corrida = '[22-27]' THEN C6 WHEN Corrida = '[23-27]' THEN C4
-	WHEN Corrida = '[23-26]' THEN C6 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '24.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C8 WHEN Corrida = '22-24' THEN C6
+	WHEN Corrida = '22-26' THEN C6 WHEN Corrida = '22-27' THEN C6 WHEN Corrida = '23-27' THEN C4
+	WHEN Corrida = '23-26' THEN C6 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '24.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN C9 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN C7 WHEN Corrida = '[22-27]' THEN C7 WHEN Corrida = '[23-27]' THEN C5
-	WHEN Corrida = '[23-26]' THEN C7 WHEN Corrida = '[25-30]' THEN C1 WHEN Corrida = '[25-29]' THEN C1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '25',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C9 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN C7 WHEN Corrida = '22-27' THEN C7 WHEN Corrida = '23-27' THEN C5
+	WHEN Corrida = '23-26' THEN C7 WHEN Corrida = '25-30' THEN C1 WHEN Corrida = '25-29' THEN C1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '25',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN C10 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN C8 WHEN Corrida = '[22-27]' THEN C8 WHEN Corrida = '[23-27]' THEN C6
-	WHEN Corrida = '[23-26]' THEN C8 WHEN Corrida = '[25-30]' THEN C2 WHEN Corrida = '[25-29]' THEN C2
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '25.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C10 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN C8 WHEN Corrida = '22-27' THEN C8 WHEN Corrida = '23-27' THEN C6
+	WHEN Corrida = '23-26' THEN C8 WHEN Corrida = '25-30' THEN C2 WHEN Corrida = '25-29' THEN C2
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '25.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN C9 WHEN Corrida = '[22-27]' THEN C9 WHEN Corrida = '[23-27]' THEN C7
-	WHEN Corrida = '[23-26]' THEN C9 WHEN Corrida = '[25-30]' THEN C3 WHEN Corrida = '[25-29]' THEN C3
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '26',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN C9 WHEN Corrida = '22-27' THEN C9 WHEN Corrida = '23-27' THEN C7
+	WHEN Corrida = '23-26' THEN C9 WHEN Corrida = '25-30' THEN C3 WHEN Corrida = '25-29' THEN C3
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '26',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN C10 WHEN Corrida = '[22-27]' THEN C10 WHEN Corrida = '[23-27]' THEN C8
-	WHEN Corrida = '[23-26]' THEN C10 WHEN Corrida = '[25-30]' THEN C4 WHEN Corrida = '[25-29]' THEN C4
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '26.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN C10 WHEN Corrida = '22-27' THEN C10 WHEN Corrida = '23-27' THEN C8
+	WHEN Corrida = '23-26' THEN C10 WHEN Corrida = '25-30' THEN C4 WHEN Corrida = '25-29' THEN C4
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '26.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN C11 WHEN Corrida = '[23-27]' THEN C9
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN C5 WHEN Corrida = '[25-29]' THEN C5
-	WHEN Corrida = '[27-29]' THEN C1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '27',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN C11 WHEN Corrida = '23-27' THEN C9
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C5 WHEN Corrida = '25-29' THEN C5
+	WHEN Corrida = '27-29' THEN C1
+	WHEN Corrida = '30-33' THEN @v1 END AS '27',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN C12 WHEN Corrida = '[23-27]' THEN C10
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN C6 WHEN Corrida = '[25-29]' THEN C6
-	WHEN Corrida = '[27-29]' THEN C2
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '27.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN C12 WHEN Corrida = '23-27' THEN C10
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C6 WHEN Corrida = '25-29' THEN C6
+	WHEN Corrida = '27-29' THEN C2
+	WHEN Corrida = '30-33' THEN @v1 END AS '27.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN C7 WHEN Corrida = '[25-29]' THEN C7
-	WHEN Corrida = '[27-29]' THEN C3
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '28',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C7 WHEN Corrida = '25-29' THEN C7
+	WHEN Corrida = '27-29' THEN C3
+	WHEN Corrida = '30-33' THEN @v1 END AS '28',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN C8 WHEN Corrida = '[25-29]' THEN C8
-	WHEN Corrida = '[27-29]' THEN C4
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '28.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C8 WHEN Corrida = '25-29' THEN C8
+	WHEN Corrida = '27-29' THEN C4
+	WHEN Corrida = '30-33' THEN @v1 END AS '28.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN C9 WHEN Corrida = '[25-29]' THEN C9
-	WHEN Corrida = '[27-29]' THEN C5
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '29',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C9 WHEN Corrida = '25-29' THEN C9
+	WHEN Corrida = '27-29' THEN C5
+	WHEN Corrida = '30-33' THEN @v1 END AS '29',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN C10 WHEN Corrida = '[25-29]' THEN C10
-	WHEN Corrida = '[27-29]' THEN C6
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '29.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C10 WHEN Corrida = '25-29' THEN C10
+	WHEN Corrida = '27-29' THEN C6
+	WHEN Corrida = '30-33' THEN @v1 END AS '29.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN C11 WHEN Corrida = '[25-29]' THEN C11
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN C1 END AS '30',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C11 WHEN Corrida = '25-29' THEN C11
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C1 END AS '30',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN C12 WHEN Corrida = '[25-29]' THEN C12
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN C2 END AS '30.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C12 WHEN Corrida = '25-29' THEN C12
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C2 END AS '30.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN C3 END AS '31',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C3 END AS '31',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN C4 END AS '31.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C4 END AS '31.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN C5 END AS '32',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C5 END AS '32',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN C6 END AS '32.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C6 END AS '32.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN C7 END AS '33',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C7 END AS '33',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN C8 END AS '33.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C8 END AS '33.5',
 	dp.Pares AS TotalPares,p.Observaciones,p.OrdenCompra,dp.Estatus
 FROM Pedidos p INNER JOIN CobranzaPhy.dbo.Clientes c
 ON p.Id_Cliente = c.Id_Cliente
@@ -484,9 +479,9 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 		<band splitType="Stretch"/>
 	</background>
 	<detail>
-		<band height="73" splitType="Stretch">
+		<band height="67" splitType="Stretch">
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="21" y="1" width="25" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="14b8a1b4-3a14-4167-965a-671161798827"/>
+				<reportElement mode="Transparent" x="26" y="1" width="25" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="14b8a1b4-3a14-4167-965a-671161798827"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -494,7 +489,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{Pedido}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="46" y="1" width="81" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="e1793b75-4485-4381-bb05-3d3c685c752e"/>
+				<reportElement mode="Transparent" x="51" y="1" width="130" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="e1793b75-4485-4381-bb05-3d3c685c752e"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -502,7 +497,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{Cliente}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="131" y="1" width="19" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="b3bbc65b-a8a0-4f37-801c-362eec722369"/>
+				<reportElement mode="Transparent" x="194" y="1" width="19" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="b3bbc65b-a8a0-4f37-801c-362eec722369"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -510,7 +505,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{Agente}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="150" y="1" width="41" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="238023f4-c467-4398-b320-97550da2f2d3"/>
+				<reportElement mode="Transparent" x="218" y="1" width="41" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="238023f4-c467-4398-b320-97550da2f2d3"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -518,7 +513,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{Modelo}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="191" y="1" width="32" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="1f044378-6a85-4024-a095-30ddcf67e9f0"/>
+				<reportElement mode="Transparent" x="259" y="1" width="32" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="1f044378-6a85-4024-a095-30ddcf67e9f0"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -526,7 +521,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{Color}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="228" y="1" width="19" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="1ac22333-a56d-4cef-b1c5-0712c294997e"/>
+				<reportElement mode="Transparent" x="297" y="1" width="19" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="1ac22333-a56d-4cef-b1c5-0712c294997e"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -534,7 +529,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{TotalPares}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="247" y="1" width="99" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="2831afab-8f57-47f3-94e0-e4f5a91758f9"/>
+				<reportElement mode="Transparent" x="321" y="1" width="99" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="2831afab-8f57-47f3-94e0-e4f5a91758f9"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -542,7 +537,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{Observaciones}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="354" y="1" width="21" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="d94ef2ee-2453-4533-ad85-460e8b218a52"/>
+				<reportElement mode="Transparent" x="426" y="1" width="21" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="d94ef2ee-2453-4533-ad85-460e8b218a52"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -550,7 +545,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{OrdenCompra}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="2" y="1" width="21" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="28d42c07-4731-4c96-98e5-81a02f6ffa31"/>
+				<reportElement mode="Transparent" x="7" y="1" width="21" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="28d42c07-4731-4c96-98e5-81a02f6ffa31"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -558,7 +553,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{Numero}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="0" y="17" width="84" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="868846a7-4212-4cba-9abc-43eeaa79f46c"/>
+				<reportElement mode="Transparent" x="5" y="17" width="84" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="868846a7-4212-4cba-9abc-43eeaa79f46c"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -566,7 +561,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[DISTRIBUCIÓN DE PUNTOS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="176" y="34" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="085db30d-3c8f-4d7a-bd1a-feab30e4c1f9"/>
+				<reportElement mode="Transparent" x="181" y="31" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="085db30d-3c8f-4d7a-bd1a-feab30e4c1f9"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -574,7 +569,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[15]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="17" y="49" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="08f85f33-ae21-4eb6-8412-5c4251425437"/>
+				<reportElement mode="Transparent" x="22" y="46" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="08f85f33-ae21-4eb6-8412-5c4251425437"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -582,7 +577,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{10.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="262" y="49" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="b74d3d54-d88b-4375-844f-4129972a4567"/>
+				<reportElement mode="Transparent" x="267" y="46" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="b74d3d54-d88b-4375-844f-4129972a4567"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -590,7 +585,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{17.5}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="401" y="34" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="37cf5390-beeb-4546-85c9-80e9133c50cf"/>
+				<reportElement mode="Transparent" x="406" y="31" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="37cf5390-beeb-4546-85c9-80e9133c50cf"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -598,7 +593,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[21.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="469" y="34" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="ab202ba8-e8bd-4612-9489-066a7b94fad7"/>
+				<reportElement mode="Transparent" x="474" y="31" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="ab202ba8-e8bd-4612-9489-066a7b94fad7"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -606,7 +601,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[23.5]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="366" y="49" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="ce17f9fe-0765-4781-889b-d1b38ae417c3"/>
+				<reportElement mode="Transparent" x="371" y="46" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="ce17f9fe-0765-4781-889b-d1b38ae417c3"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -614,7 +609,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{20.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="500" y="49" width="18" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="94fd4927-4637-4af9-9a65-2f74b32844be"/>
+				<reportElement mode="Transparent" x="505" y="46" width="18" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="94fd4927-4637-4af9-9a65-2f74b32844be"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -622,7 +617,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{24.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="453" y="49" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="6749fec5-be2a-4b71-af0a-b51e9a413ced"/>
+				<reportElement mode="Transparent" x="458" y="46" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="6749fec5-be2a-4b71-af0a-b51e9a413ced"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -630,7 +625,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{23}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="400" y="49" width="19" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="2839dc66-10d7-4720-80b2-d6b49716c90c"/>
+				<reportElement mode="Transparent" x="405" y="46" width="19" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="2839dc66-10d7-4720-80b2-d6b49716c90c"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -638,7 +633,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{21.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="34" y="49" width="15" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="66f63404-fac1-4a45-be0a-3128a1c9d743"/>
+				<reportElement mode="Transparent" x="39" y="46" width="15" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="66f63404-fac1-4a45-be0a-3128a1c9d743"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -646,7 +641,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{11}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="65" y="34" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="f8712866-3ca1-49d0-91fb-6df81a13d1c4"/>
+				<reportElement mode="Transparent" x="70" y="31" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="f8712866-3ca1-49d0-91fb-6df81a13d1c4"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -654,7 +649,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[12]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="49" y="49" width="16" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="a5c8a51c-6a6b-4168-9d66-792652b7807d"/>
+				<reportElement mode="Transparent" x="54" y="46" width="16" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="a5c8a51c-6a6b-4168-9d66-792652b7807d"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -662,7 +657,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{11.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="666" y="49" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="9d4a1670-4afd-4003-ae3d-643215cec684"/>
+				<reportElement mode="Transparent" x="671" y="46" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="9d4a1670-4afd-4003-ae3d-643215cec684"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -670,7 +665,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{29.5}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="436" y="34" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="acab6656-6cd0-4b70-828e-10986a570cb1"/>
+				<reportElement mode="Transparent" x="441" y="31" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="acab6656-6cd0-4b70-828e-10986a570cb1"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -678,7 +673,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[22.5]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="158" y="49" width="18" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="5deb31a1-c8c1-493f-b49b-53805fa45d74"/>
+				<reportElement mode="Transparent" x="163" y="46" width="18" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="5deb31a1-c8c1-493f-b49b-53805fa45d74"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -686,7 +681,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{14.5}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Transparent" x="0" y="49" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="34955ddb-549a-4657-ae5a-c064f618ca8d"/>
+				<reportElement mode="Transparent" x="5" y="46" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="34955ddb-549a-4657-ae5a-c064f618ca8d"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -694,7 +689,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{10}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="349" y="49" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="f4367c34-90b4-4431-aa98-25310f9dd2bb"/>
+				<reportElement mode="Transparent" x="354" y="46" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="f4367c34-90b4-4431-aa98-25310f9dd2bb"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -702,7 +697,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{20}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="65" y="49" width="18" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="d8ae46b1-0208-49f6-a930-d7b1e79b6310"/>
+				<reportElement mode="Transparent" x="70" y="46" width="18" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="d8ae46b1-0208-49f6-a930-d7b1e79b6310"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -710,7 +705,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{12}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="83" y="34" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="820f9979-9839-487a-9105-1ca0487cb328"/>
+				<reportElement mode="Transparent" x="88" y="31" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="820f9979-9839-487a-9105-1ca0487cb328"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -718,7 +713,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[12.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="34" y="34" width="10" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="17502b60-0d2b-40ae-97e1-2173e64bf4d5"/>
+				<reportElement mode="Transparent" x="39" y="31" width="10" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="17502b60-0d2b-40ae-97e1-2173e64bf4d5"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -726,7 +721,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[11]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="517" y="49" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="46fc98b4-bd58-4c81-9f8e-d036cfc76ed6"/>
+				<reportElement mode="Transparent" x="522" y="46" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="46fc98b4-bd58-4c81-9f8e-d036cfc76ed6"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -734,7 +729,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{25}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="518" y="34" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="e979504f-09fb-4899-80ae-e0a91fa7e947"/>
+				<reportElement mode="Transparent" x="523" y="31" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="e979504f-09fb-4899-80ae-e0a91fa7e947"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -742,7 +737,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[25]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="584" y="34" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="08e1872c-1c5c-4ae3-b98d-8b8b4f0a01df"/>
+				<reportElement mode="Transparent" x="589" y="31" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="08e1872c-1c5c-4ae3-b98d-8b8b4f0a01df"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -750,7 +745,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[27]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="666" y="34" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="5cfef7ba-9744-4b88-a51c-4c5b72475f63"/>
+				<reportElement mode="Transparent" x="671" y="31" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="5cfef7ba-9744-4b88-a51c-4c5b72475f63"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -758,7 +753,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[29.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="501" y="34" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="f624bb94-8e31-474e-b5da-2945dcb9d0b3"/>
+				<reportElement mode="Transparent" x="506" y="31" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="f624bb94-8e31-474e-b5da-2945dcb9d0b3"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -766,7 +761,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[24.5]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="383" y="49" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="d54749bf-0e58-420c-b2fd-5f4727ec449a"/>
+				<reportElement mode="Transparent" x="388" y="46" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="d54749bf-0e58-420c-b2fd-5f4727ec449a"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -774,7 +769,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{21}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="192" y="49" width="18" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="54e80446-8004-4ec8-b80a-71dcd751e9b1"/>
+				<reportElement mode="Transparent" x="197" y="46" width="18" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="54e80446-8004-4ec8-b80a-71dcd751e9b1"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -782,7 +777,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{15.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="83" y="49" width="19" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="02936306-5cb8-4098-9374-621bea3f3b22"/>
+				<reportElement mode="Transparent" x="88" y="46" width="19" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="02936306-5cb8-4098-9374-621bea3f3b22"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -790,7 +785,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{12.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="550" y="49" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="ed74bfca-df06-4a40-875e-1d7b64d0ef3f"/>
+				<reportElement mode="Transparent" x="555" y="46" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="ed74bfca-df06-4a40-875e-1d7b64d0ef3f"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -798,7 +793,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{26}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="17" y="34" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="e54fb4e0-1907-4d18-8aa1-806235ff48a0"/>
+				<reportElement mode="Transparent" x="22" y="31" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="e54fb4e0-1907-4d18-8aa1-806235ff48a0"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -806,7 +801,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[10.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="227" y="34" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="1611165d-858e-4d55-a166-0a26c1090b82"/>
+				<reportElement mode="Transparent" x="232" y="31" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="1611165d-858e-4d55-a166-0a26c1090b82"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -814,7 +809,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[16.5]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="209" y="49" width="18" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="f1a74712-bfc5-4308-9a18-1a24ead62dd1"/>
+				<reportElement mode="Transparent" x="214" y="46" width="18" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="f1a74712-bfc5-4308-9a18-1a24ead62dd1"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -822,7 +817,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{16}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="419" y="34" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="3025992a-fed3-446f-a75f-c384b16748da"/>
+				<reportElement mode="Transparent" x="424" y="31" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="3025992a-fed3-446f-a75f-c384b16748da"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -830,7 +825,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[22]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="245" y="49" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="77b80a70-90be-4cbd-ba13-f90c74d37768"/>
+				<reportElement mode="Transparent" x="250" y="46" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="77b80a70-90be-4cbd-ba13-f90c74d37768"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -838,7 +833,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{17}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="314" y="49" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="672af7ae-806f-4f31-ba43-bd1d2b2718cb"/>
+				<reportElement mode="Transparent" x="319" y="46" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="672af7ae-806f-4f31-ba43-bd1d2b2718cb"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -846,7 +841,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{19}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="331" y="34" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="b32333ab-4967-4831-a467-a43f12307646"/>
+				<reportElement mode="Transparent" x="336" y="31" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="b32333ab-4967-4831-a467-a43f12307646"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -854,7 +849,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[19.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="262" y="34" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="29026ebe-b126-49df-935c-87dd05611906"/>
+				<reportElement mode="Transparent" x="267" y="31" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="29026ebe-b126-49df-935c-87dd05611906"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -862,7 +857,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[17.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="141" y="34" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="414bb966-b11d-4506-b1ba-3cecf9c3ea3a"/>
+				<reportElement mode="Transparent" x="146" y="31" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="414bb966-b11d-4506-b1ba-3cecf9c3ea3a"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -870,7 +865,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[14]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="279" y="49" width="18" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="14b38aa7-85d5-46e8-88d6-105003938bae"/>
+				<reportElement mode="Transparent" x="284" y="46" width="18" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="14b38aa7-85d5-46e8-88d6-105003938bae"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -878,7 +873,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{18}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="314" y="34" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="bc866999-218a-4d94-bca4-e25ee3f85dd0"/>
+				<reportElement mode="Transparent" x="319" y="31" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="bc866999-218a-4d94-bca4-e25ee3f85dd0"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -886,7 +881,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[19]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="633" y="34" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="6269af3a-8422-4a61-96a1-b16b88bb1ebc"/>
+				<reportElement mode="Transparent" x="638" y="31" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="6269af3a-8422-4a61-96a1-b16b88bb1ebc"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -894,7 +889,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[28.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="366" y="34" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="c0e265ae-67ae-4c8e-8c1b-d616ba6e8d14"/>
+				<reportElement mode="Transparent" x="371" y="31" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="c0e265ae-67ae-4c8e-8c1b-d616ba6e8d14"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -902,7 +897,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[20.5]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="296" y="49" width="18" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="6e498e97-4686-4f72-8c5d-16edb884bf1d"/>
+				<reportElement mode="Transparent" x="301" y="46" width="18" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="6e498e97-4686-4f72-8c5d-16edb884bf1d"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -910,7 +905,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{18.5}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="121" y="34" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="82852dd3-5552-4139-aa4f-68e29df154d5"/>
+				<reportElement mode="Transparent" x="126" y="31" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="82852dd3-5552-4139-aa4f-68e29df154d5"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -918,7 +913,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[13.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="617" y="34" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="151f9643-6e2d-4f43-b395-8962c7e81452"/>
+				<reportElement mode="Transparent" x="622" y="31" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="151f9643-6e2d-4f43-b395-8962c7e81452"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -926,7 +921,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[28]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="103" y="34" width="11" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="4233d70d-05dc-4b6b-8cb1-67885d753c03"/>
+				<reportElement mode="Transparent" x="108" y="31" width="11" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="4233d70d-05dc-4b6b-8cb1-67885d753c03"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -934,7 +929,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[13]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="331" y="49" width="18" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="3b0a8b6a-89ed-4724-a665-0a20fad9073f"/>
+				<reportElement mode="Transparent" x="336" y="46" width="18" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="3b0a8b6a-89ed-4724-a665-0a20fad9073f"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -942,7 +937,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{19.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="418" y="49" width="19" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="da7a12ae-1225-4620-9c6d-98582c2412d7"/>
+				<reportElement mode="Transparent" x="423" y="46" width="19" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="da7a12ae-1225-4620-9c6d-98582c2412d7"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -950,7 +945,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{22}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="699" y="49" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="d811c1df-3b0b-4411-b04a-7a71d59be900"/>
+				<reportElement mode="Transparent" x="704" y="46" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="d811c1df-3b0b-4411-b04a-7a71d59be900"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -958,7 +953,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{30.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="584" y="49" width="16" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="527d1464-b8b5-4bec-931e-ad4596630a01"/>
+				<reportElement mode="Transparent" x="589" y="46" width="16" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="527d1464-b8b5-4bec-931e-ad4596630a01"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -966,7 +961,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{27}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="617" y="49" width="16" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="2cf1306d-fedd-415d-9771-a4b97868dc9f"/>
+				<reportElement mode="Transparent" x="622" y="46" width="16" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="2cf1306d-fedd-415d-9771-a4b97868dc9f"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -974,7 +969,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{28}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="485" y="34" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="05637e8a-4535-4f51-8a89-1ec55c891ee0"/>
+				<reportElement mode="Transparent" x="490" y="31" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="05637e8a-4535-4f51-8a89-1ec55c891ee0"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -982,7 +977,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[24]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="227" y="49" width="18" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="8c04cb5f-e6bf-40df-b2e6-eb9bc6b18fe9"/>
+				<reportElement mode="Transparent" x="232" y="46" width="18" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="8c04cb5f-e6bf-40df-b2e6-eb9bc6b18fe9"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -990,7 +985,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{16.5}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="349" y="34" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="826c6cf7-8a03-495e-82c7-c189fff6805a"/>
+				<reportElement mode="Transparent" x="354" y="31" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="826c6cf7-8a03-495e-82c7-c189fff6805a"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -998,7 +993,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[20]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="534" y="34" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="fd43740d-1f7f-4309-99e7-c444fc330d3a"/>
+				<reportElement mode="Transparent" x="539" y="31" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="fd43740d-1f7f-4309-99e7-c444fc330d3a"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1006,7 +1001,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[25.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="49" y="34" width="11" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="cb9d4974-3382-40e4-976b-be429c0f6210"/>
+				<reportElement mode="Transparent" x="54" y="31" width="11" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="cb9d4974-3382-40e4-976b-be429c0f6210"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1014,7 +1009,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[11.5]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="176" y="49" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="bb9a9048-c658-41bd-b7ae-ce184831fc43"/>
+				<reportElement mode="Transparent" x="181" y="46" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="bb9a9048-c658-41bd-b7ae-ce184831fc43"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1022,7 +1017,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{15}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="534" y="49" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="2a9ed367-fbd3-440c-afda-50ad0e6a498a"/>
+				<reportElement mode="Transparent" x="539" y="46" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="2a9ed367-fbd3-440c-afda-50ad0e6a498a"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1030,7 +1025,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{25.5}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="210" y="34" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="4c496384-4cd0-46a5-9612-d4ebb456ec0c"/>
+				<reportElement mode="Transparent" x="215" y="31" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="4c496384-4cd0-46a5-9612-d4ebb456ec0c"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1038,7 +1033,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[16]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="470" y="49" width="15" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="af49e91d-2125-4e1e-82fb-9f8bc92ec9e8"/>
+				<reportElement mode="Transparent" x="475" y="46" width="15" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="af49e91d-2125-4e1e-82fb-9f8bc92ec9e8"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1046,7 +1041,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{23.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="122" y="49" width="19" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="dd13a9ff-aeca-4356-b7bd-ae170b8e59ef"/>
+				<reportElement mode="Transparent" x="127" y="46" width="19" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="dd13a9ff-aeca-4356-b7bd-ae170b8e59ef"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1054,7 +1049,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{13.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="682" y="49" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="b56cf0d9-7ca0-464e-92e3-c48a75ddfafa"/>
+				<reportElement mode="Transparent" x="687" y="46" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="b56cf0d9-7ca0-464e-92e3-c48a75ddfafa"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1062,7 +1057,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{30}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="245" y="34" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="43fd3561-0e54-4c90-95e9-d57afc60401d"/>
+				<reportElement mode="Transparent" x="250" y="31" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="43fd3561-0e54-4c90-95e9-d57afc60401d"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1070,7 +1065,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[17]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="384" y="34" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="a87fdddf-ae93-4888-9ea4-d1e46ac84540"/>
+				<reportElement mode="Transparent" x="389" y="31" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="a87fdddf-ae93-4888-9ea4-d1e46ac84540"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1078,7 +1073,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[21]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="279" y="34" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="32e58331-917c-4985-b7d0-4e2f7fed8e07"/>
+				<reportElement mode="Transparent" x="284" y="31" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="32e58331-917c-4985-b7d0-4e2f7fed8e07"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1086,7 +1081,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[18]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="599" y="49" width="18" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="351f920e-d3c7-4278-9ee0-98039a73a4ca"/>
+				<reportElement mode="Transparent" x="604" y="46" width="18" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="351f920e-d3c7-4278-9ee0-98039a73a4ca"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1094,7 +1089,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{27.5}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="158" y="34" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="975bb886-e1f9-4c14-a015-3cd5873631b4"/>
+				<reportElement mode="Transparent" x="163" y="31" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="975bb886-e1f9-4c14-a015-3cd5873631b4"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1102,7 +1097,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[14.5]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="633" y="49" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="3479f49b-a3d6-45d4-8710-33a743208439"/>
+				<reportElement mode="Transparent" x="638" y="46" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="3479f49b-a3d6-45d4-8710-33a743208439"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1110,7 +1105,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{28.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="485" y="49" width="15" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="157f5d96-9486-494b-bf7a-5dbdc48bc1c7"/>
+				<reportElement mode="Transparent" x="490" y="46" width="15" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="157f5d96-9486-494b-bf7a-5dbdc48bc1c7"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1118,7 +1113,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{24}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="102" y="49" width="19" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="d3e9b968-5a5e-472e-b954-d3faf9b8c143"/>
+				<reportElement mode="Transparent" x="107" y="46" width="19" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="d3e9b968-5a5e-472e-b954-d3faf9b8c143"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1126,7 +1121,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{13}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="0" y="34" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="b9c07bfd-c587-46db-8c31-eab8d49225a8"/>
+				<reportElement mode="Transparent" x="5" y="31" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="b9c07bfd-c587-46db-8c31-eab8d49225a8"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1134,7 +1129,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[10]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="141" y="49" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="49145390-f4db-4f24-b780-dd350f3c1fc6"/>
+				<reportElement mode="Transparent" x="146" y="46" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="49145390-f4db-4f24-b780-dd350f3c1fc6"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1142,7 +1137,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{14}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="699" y="34" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="c7f08753-23c0-4e9d-96ed-9443b1014682"/>
+				<reportElement mode="Transparent" x="704" y="31" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="c7f08753-23c0-4e9d-96ed-9443b1014682"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1150,7 +1145,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[30.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="567" y="34" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="7ac95108-c428-45c5-b01f-182064fa2aca"/>
+				<reportElement mode="Transparent" x="572" y="31" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="7ac95108-c428-45c5-b01f-182064fa2aca"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1158,7 +1153,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[26.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="600" y="34" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="8105cce3-45e0-448a-9cf5-ff7ed64cd1e6"/>
+				<reportElement mode="Transparent" x="605" y="31" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="8105cce3-45e0-448a-9cf5-ff7ed64cd1e6"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1166,7 +1161,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[27.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="683" y="34" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="a5792105-8fd0-4287-bdbe-c8e91e9c3b3d"/>
+				<reportElement mode="Transparent" x="688" y="31" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="a5792105-8fd0-4287-bdbe-c8e91e9c3b3d"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1174,7 +1169,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[30]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="296" y="34" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="3edbd91e-a023-4bb0-a9f3-3ead30ba9e8c"/>
+				<reportElement mode="Transparent" x="301" y="31" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="3edbd91e-a023-4bb0-a9f3-3ead30ba9e8c"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1182,7 +1177,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[18.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="551" y="34" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="9a08597c-240b-43a5-b06e-c16083ae482b"/>
+				<reportElement mode="Transparent" x="556" y="31" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="9a08597c-240b-43a5-b06e-c16083ae482b"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1190,7 +1185,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[26]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="566" y="49" width="18" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="3c82180a-fe0e-48b8-b78b-330a2a4d2666"/>
+				<reportElement mode="Transparent" x="571" y="46" width="18" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="3c82180a-fe0e-48b8-b78b-330a2a4d2666"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1198,7 +1193,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{26.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="649" y="49" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="3059a47d-2218-40c1-b66a-5d165041fa52"/>
+				<reportElement mode="Transparent" x="654" y="46" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="3059a47d-2218-40c1-b66a-5d165041fa52"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1206,7 +1201,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{29}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="453" y="34" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="99354d6f-1d33-4264-8fa5-4c10583d07a0"/>
+				<reportElement mode="Transparent" x="458" y="31" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="99354d6f-1d33-4264-8fa5-4c10583d07a0"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1214,7 +1209,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[23]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="436" y="49" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="2beb77b3-9641-4ed7-8d49-e82deb781e97"/>
+				<reportElement mode="Transparent" x="441" y="46" width="17" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="2beb77b3-9641-4ed7-8d49-e82deb781e97"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1222,7 +1217,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<textFieldExpression><![CDATA[$F{22.5}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="193" y="34" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="ffdfb0cb-7514-4584-827e-6d6f15c70665"/>
+				<reportElement mode="Transparent" x="198" y="31" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="ffdfb0cb-7514-4584-827e-6d6f15c70665"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1230,7 +1225,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[15.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="650" y="34" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="c504b2c8-de9f-4b32-8ac8-2a4f18dcefe8"/>
+				<reportElement mode="Transparent" x="655" y="31" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="c504b2c8-de9f-4b32-8ac8-2a4f18dcefe8"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1238,7 +1233,7 @@ AND DATEPART(WK,p.Fecha_Entrega) = $P{Semana}]]>
 				<text><![CDATA[29]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="-5" y="58" width="732" height="14" uuid="2c981cad-7758-4552-8641-faa43e754d44"/>
+				<reportElement x="0" y="53" width="732" height="14" uuid="2c981cad-7758-4552-8641-faa43e754d44"/>
 				<text><![CDATA[- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -]]></text>
 			</staticText>
 		</band>

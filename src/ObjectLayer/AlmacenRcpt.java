@@ -13,13 +13,13 @@ import java.util.Vector;
 
 public class AlmacenRcpt {
     
-    DB db = new DB();
+//    DB db = new DB();
     private int Almacen;
     private String Descripcion;
     
     PreparedStatement st = null;
-    Connection c = db.RCPTPhylonA();
-    //Connection c = Server.getRcpt();
+//    Connection c = db.RCPTPhylonA();
+    Connection c = Server.getRcpt();
     ResultSet rs = null;
   
     public AlmacenRcpt() {

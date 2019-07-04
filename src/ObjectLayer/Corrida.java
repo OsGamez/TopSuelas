@@ -19,9 +19,9 @@ public class Corrida {
     private boolean Activo;
 
     PreparedStatement st = null;
-     DB db = new DB();
-    Connection c = db.Produccion();
-    //Connection c = Server.getProduccion();
+//    DB db = new DB();
+//    Connection c = db.Produccion();
+    Connection c = Server.getProduccion();
     ResultSet rs = null;
 
     public Corrida() {

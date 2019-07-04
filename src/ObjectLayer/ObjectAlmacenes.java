@@ -14,9 +14,9 @@ public class ObjectAlmacenes {
 
     PreparedStatement st = null;
     ResultSet rs = null;
-    DB db = new DB();
-    Connection c = db.Cmp();
-    //Connection c = Server.getCmpPhylon();
+//    DB db = new DB();
+//    Connection c = db.Cmp();
+    Connection c = Server.getCmpPhylon();
 
     public boolean almacenAdd(int am, String Desc) {
             try {
@@ -153,4 +153,6 @@ public class ObjectAlmacenes {
         }
         return listaAlmacen;
     }
+    
+
 }

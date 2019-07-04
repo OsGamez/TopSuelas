@@ -12,9 +12,9 @@ import java.util.ArrayList;
 
 public class ObjectRCPT {
 
-//    Connection c = Server.getServer();
-    DB db = new DB();
-    Connection c = db.Server();
+    Connection c = Server.getServer();
+//    DB db = new DB();
+//    Connection c = db.Server();
     ResultSet rs = null;
     Statement sta = null;
     PreparedStatement st = null;
@@ -64,19 +64,19 @@ public class ObjectRCPT {
         return listaProductos;
     }
 
-    public ArrayList<PtProducto> getById(String id) {
+    public ArrayList<PtProducto> getById(String filtro) {
         ArrayList<PtProducto> listaProductos = new ArrayList<PtProducto>();
         try {
-            st = c.prepareStatement("select p.Producto,p.Descripcion,p.Estilo,p.Combinacion, p.Corrida,\n"
-                    + "c.PuntoInicial,c.PuntoFinal from Productos p \n"
-                    + "inner join Corridas c on p.Corrida = c.Corrida\n"
-                    + "WHERE p.Estatus = 'A'  and p.Descripcion LIKE'%" + id + "%' ORDER BY p.Descripcion");
+            st = c.prepareStatement("select p.Producto,p.Descripcion as Suela,p.Estilo,p.Combinacion, c.Corrida,c.PuntoInicial,c.PuntoFinal \n"
+                    + "from RCPTPhylon..Productos p inner join RCPTPhylon..Corridas c on p.Corrida = c.Corrida WHERE p.Estatus = 'A'  \n"
+                    + "and p.Descripcion LIKE'%" + filtro +"%' ORDER BY p.Descripcion");
+            //st = c.prepareStatement(sql);
             rs = st.executeQuery();
 
             while (rs.next()) {
                 PtProducto producto = new PtProducto();
                 producto.setProducto(rs.getInt("Producto"));
-                producto.setDescripcion(rs.getString("Descripcion"));
+                producto.setDescripcion(rs.getString("Suela"));
                 producto.setEstilo(rs.getInt("Estilo"));
                 producto.setCombinacion(rs.getInt("Combinacion"));
                 producto.setCorrida(rs.getInt("Corrida"));

@@ -67,9 +67,9 @@ public class Material {
     private String TipoCosto;
     private String divisa;
     PreparedStatement st = null;
-    DB db = new DB();
-    Connection c = db.Cmp();
-    //Connection c = Server.getCmpPhylon();
+//    DB db = new DB();
+//    Connection c = db.Cmp();
+    Connection c = Server.getCmpPhylon();
     ResultSet rs = null;
 
     public Material() {

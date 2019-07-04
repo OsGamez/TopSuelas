@@ -16,8 +16,8 @@ public class ObjectAlmacenRcpt {
     PreparedStatement st = null;
     ResultSet rs = null;
     DB db = new DB();
-    Connection c = db.RCPTPhylonA();
-    //Connection c = Server.getPhylon();
+//    Connection c = db.RCPTPhylonA();
+    Connection c = Server.getRcpt();
     
     public boolean almacenAdd(int am, String Desc) {
             try {

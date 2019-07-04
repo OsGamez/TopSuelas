@@ -16,9 +16,9 @@ import java.util.logging.Logger;
 public class ObjectConceptosPrima {
     PreparedStatement st = null;
     ResultSet rs = null;
-    //Connection c = Server.getCmpPhylon();
-    DB db = new DB();
-    Connection c = db.Cmp();
+    Connection c = Server.getCmpPhylon();
+//    DB db = new DB();
+//    Connection c = db.Cmp();
     
     
     public boolean conceptoAdd(String Cuenta, String SubCuenta, String Des) {

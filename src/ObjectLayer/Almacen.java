@@ -21,11 +21,14 @@ public class Almacen {
     ResultSet rs = null;
 
     public void conRCPT(){
-        c=db.RCPTPhylonA();
+//        c=db.RCPTPhylonA();
+          c = Server.getRcpt();
     }
     public void conCMP(){
-        c=db.Cmp();
+//        c=db.Cmp();
+          c = Server.getCmpPhylon();
     }
+   
     public Almacen() {
     }
 

@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
 
     Usuario us = new Usuario();
-    Sesioninfo sesion = new Sesioninfo();
+    
     boolean a = true;
     public String ip, password;
     ImageIcon mostrar = new ImageIcon("C:\\tsmanager\\imagenes\\ojo2.png");
@@ -173,19 +173,19 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void userData(){
-        ip = JcDB.getSelectedItem().toString();
-        
-        if(ip.equals("192.168.90.1")){
-            password = "Admin1305";
-        }else if(ip.equals("192.168.6.93")){
-            password = "123";
-        }
-        sesion.setIp(ip);
-        sesion.setContraseña(password);
+//        ip = JcDB.getSelectedItem().toString();
+//        
+//        if(ip.equals("192.168.90.1")){
+//            password = "Admin1305";
+//        }else if(ip.equals("192.168.6.93")){
+//            password = "123";
+//        }
+//        sesion.setIp(ip);
+//        sesion.setContraseña(password);
     }
     
     private void JbEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEntrarActionPerformed
-        userData();
+        //userData();
         ObjectUsuarios obj = new ObjectUsuarios();
         String pass = new String(Jpassword.getPassword());
         String nuevoPass = Encrypt.sha1(pass);

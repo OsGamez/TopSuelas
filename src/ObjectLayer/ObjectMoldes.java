@@ -23,9 +23,9 @@ public class ObjectMoldes {
 
     PreparedStatement st = null;
     ResultSet rs = null;
-//    Connection c = Server.getProduccion();
-    DB db = new DB();
-    Connection c = db.Produccion();
+    Connection c = Server.getProduccion();
+//    DB db = new DB();
+//    Connection c = db.Produccion();
 
     public ArrayList<Molde> MoldeGetAll() {
         ArrayList<Molde> listamoldes = new ArrayList<Molde>();

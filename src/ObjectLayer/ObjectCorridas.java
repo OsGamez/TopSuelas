@@ -13,9 +13,9 @@ import java.util.logging.Logger;
 
 public class ObjectCorridas {
 
-    //Connection c = Server.getProduccion();
-    DB db = new DB();
-    Connection c = db.Produccion();
+    Connection c = Server.getProduccion();
+//    DB db = new DB();
+//    Connection c = db.Produccion();
     PreparedStatement st = null;
     ResultSet rs = null;
 

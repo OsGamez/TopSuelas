@@ -8,6 +8,8 @@ import ObjectLayer.ObjectInfisico;
 import ObjectLayer.ObjectProductos;
 import ObjectLayer.ObjectRCPT;
 import ObjectLayer.PtProducto;
+import ObjectLayer.Sesioninfo;
+import Plugins.Sound;
 import com.sun.glass.events.KeyEvent;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -26,6 +28,7 @@ import java.util.StringTokenizer;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.Clip;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -44,7 +47,9 @@ public class CapturaInventario extends javax.swing.JFrame {
     ObjectAlmacenes ObjA = new ObjectAlmacenes();
     ObjectInfisico objF = new ObjectInfisico();
     ObjectRCPT obj = new ObjectRCPT();
+    Sesioninfo sesion = new Sesioninfo();
     Connection c = Server.getRcpt();
+    Sound sn = new Sound();
     String cadena = "";
     int sum, CodigoSuela;
     String am, prod, punto, cantidad;
@@ -52,7 +57,7 @@ public class CapturaInventario extends javax.swing.JFrame {
     String c1 = "0", c2 = "0", c3 = "0", c4 = "0", c5 = "0", c6 = "0", c7 = "0", c8 = "0", c9 = "0", c10 = "0", c11 = "0", c12 = "0";
     ArrayList<String> array = new ArrayList<String>();
     File fichero = new File("C:\\tsmanager\\datos.txt");//Archivo usado para guardar y leer los datos, con ruta 
-    public String TbTemp = "";
+    String TbTemp = "";
     DefaultTableModel modelP = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int row, int column) {
@@ -69,6 +74,7 @@ public class CapturaInventario extends javax.swing.JFrame {
         LeerDatos();
         OcultarCampos();
         JtCod.setEnabled(false);
+        TbTemp = sesion.getUsuario();
     }
 
     private void BorrarTabla() {
@@ -82,7 +88,7 @@ public class CapturaInventario extends javax.swing.JFrame {
             return false;
         }
     }
-
+    
     private void LoadColumns() {
         modelP.addColumn("ID");
         modelP.addColumn("SUELA");
@@ -164,8 +170,8 @@ public class CapturaInventario extends javax.swing.JFrame {
         JbCantidad = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("INVENTARIO FISICO");
         setLocation(new java.awt.Point(100, 100));
-        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -311,49 +317,19 @@ public class CapturaInventario extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(JtAm, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(53, 53, 53)
-                                .addComponent(JlPares)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(JtPares, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(JbEstilo)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(JbCombinacion)
-                                        .addGap(22, 22, 22)
-                                        .addComponent(JbIdSuela))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(JbRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
-                                .addComponent(JbClean, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35)
-                                .addComponent(JbGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(JbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(JbCorrida)
+                        .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(JbProducto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JbIdProd)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JbPi)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JbPf)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JtAm, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(JlPares)
+                        .addGap(18, 18, 18)
+                        .addComponent(JtPares, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(138, 138, 138)
                         .addComponent(SUELA)
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,50 +340,60 @@ public class CapturaInventario extends javax.swing.JFrame {
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(JbPunto)
-                            .addComponent(JbCantidad))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JbAm)
-                        .addGap(55, 55, 55)
+                            .addComponent(JbCantidad)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(273, 273, 273)
+                                        .addComponent(JbEstilo)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(JbCombinacion)
+                                        .addGap(22, 22, 22)
+                                        .addComponent(JbIdSuela)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(JbAm))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(JbRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(40, 40, 40)
+                                        .addComponent(JbClean, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(35, 35, 35)
+                                        .addComponent(JbGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(30, 30, 30)
+                                        .addComponent(JbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JbCorrida)
+                                .addGap(18, 18, 18)
+                                .addComponent(JbProducto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(JbIdProd)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(JbPi)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(JbPf)))
+                        .addGap(74, 74, 74)
                         .addComponent(JcCódigo)
                         .addGap(46, 46, 46)
-                        .addComponent(JtCod, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69))))
+                        .addComponent(JtCod, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SUELA)
-                    .addComponent(JtSuela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JtAm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(JlPares)
-                    .addComponent(JtPares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JbPunto))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JbRemove)
-                            .addComponent(JbClean)
-                            .addComponent(JbGenerar)
-                            .addComponent(JbGuardar))
-                        .addGap(43, 43, 43)
+                        .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JbCorrida)
-                            .addComponent(JbProducto)
-                            .addComponent(JbIdProd)
-                            .addComponent(JbPi)
-                            .addComponent(JbPf)
-                            .addComponent(JbEstilo)
-                            .addComponent(JbCombinacion)
-                            .addComponent(JbIdSuela)
-                            .addComponent(JbAm))
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
+                            .addComponent(SUELA)
+                            .addComponent(JtSuela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JtAm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(JlPares)
+                            .addComponent(JtPares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JbPunto))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -415,12 +401,30 @@ public class CapturaInventario extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
                                 .addComponent(JbCantidad)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JbRemove)
+                            .addComponent(JbClean)
+                            .addComponent(JbGenerar)
+                            .addComponent(JbGuardar)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(JcCódigo)
-                            .addComponent(JtCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)))
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JtCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JbCorrida)
+                    .addComponent(JbProducto)
+                    .addComponent(JbIdProd)
+                    .addComponent(JbPi)
+                    .addComponent(JbPf)
+                    .addComponent(JbEstilo)
+                    .addComponent(JbCombinacion)
+                    .addComponent(JbIdSuela)
+                    .addComponent(JbAm))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -469,7 +473,7 @@ public class CapturaInventario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JlistProductosMouseClicked
 
-    public void MostrarDetalle() {
+    private void MostrarDetalle() {
         Object[] obj = array.toArray();
         String dt[] = new String[22];
 
@@ -544,7 +548,6 @@ public class CapturaInventario extends javax.swing.JFrame {
         dt[20] = "0";
         dt[21] = JtPares.getText();
         modelP.addRow(dt);
-        array.clear();
         LimpiarCampos();
     }
 
@@ -613,6 +616,7 @@ public class CapturaInventario extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         if (array.size() > 0) {
             MostrarDetalle();
+            LimpiarRegistro();
         }
     }//GEN-LAST:event_formWindowActivated
 
@@ -636,14 +640,15 @@ public class CapturaInventario extends javax.swing.JFrame {
         if (row > 0) {
             int opcion = JOptionPane.showConfirmDialog(this, "¿Estas seguro de limpiar los registros?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (opcion == JOptionPane.YES_OPTION) {
-                if (LimpiarTabla()) {
-                    VaciarDatos();
-                    CleanTable();
-                    JOptionPane.showMessageDialog(null, "Se han limpiado los registros");
-                    JtAm.requestFocus();
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se pudo limpiar el registro");
-                }
+                VaciarDatos();
+                CleanTable();
+                JOptionPane.showMessageDialog(null, "Se han limpiado los registros");
+                JtAm.requestFocus();
+//                if (LimpiarTabla()) {
+//                    
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "No se pudo limpiar el registro");
+//                }
             }
         } else {
             JOptionPane.showMessageDialog(null, "No hay registros");
@@ -746,7 +751,7 @@ public class CapturaInventario extends javax.swing.JFrame {
                 if (objF.validarInv(TbTemp) == 0) {
                     JOptionPane.showMessageDialog(null, "Revisa el registro antes del concentrado");
                 } else {
-                    ReporteGroup();
+                    Guardar();
                 }
             }
 
@@ -775,11 +780,7 @@ public class CapturaInventario extends javax.swing.JFrame {
     }//GEN-LAST:event_JcCódigoItemStateChanged
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        int codigo = evt.getKeyCode();
 
-        if (codigo == KeyEvent.VK_ENTER) {
-            System.out.println("BIEN");
-        }
     }//GEN-LAST:event_formKeyPressed
 
     private void JtCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtCodActionPerformed
@@ -790,6 +791,7 @@ public class CapturaInventario extends javax.swing.JFrame {
             JtCod.setText("");
         } else {
             if (cadena.length() != 13) {
+                sn.play();
                 JOptionPane.showMessageDialog(null, "El tamaño del código no es correcto", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                 JtCod.setText("");
             } else {
@@ -798,33 +800,58 @@ public class CapturaInventario extends javax.swing.JFrame {
                 CodigoSuela = Integer.parseInt(prod);
                 punto = cadena.substring(7, 10);
                 cantidad = cadena.substring(10, 13);
-                ObtenerProductoRCPT();
-                ComprobaroPuntos();
+                
+                
+                ArrayList<PtProducto> listaProd = obj.GetByInventario(CodigoSuela);
+                if (listaProd.size() > 0) {
+
+                    for (PtProducto pt : listaProd) {
+                        JbCorrida.setText(String.valueOf(pt.getCorrida()));
+                        JbProducto.setText(pt.getDescripcion());
+                        JbIdProd.setText(String.valueOf(pt.getSuelaPhy()));
+                        JbPi.setText(String.valueOf(pt.getPti()));
+                        JbPf.setText(String.valueOf(pt.getPtf()));
+                        JbEstilo.setText(String.valueOf(pt.getEstilo()));
+                        JbCombinacion.setText(String.valueOf(pt.getCombinacion()));
+                        JbIdSuela.setText(String.valueOf(pt.getSuelaPhy()));
+                        //JbAm.setText(am);
+                        JbPunto.setText(punto);
+                        JbCantidad.setText(cantidad);
+                    }
+                ComprobaroPuntos();    
+                } else {
+                    sn.play();
+                    JOptionPane.showMessageDialog(null, "Producto no encontrado", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                    JtCod.setText("");
+                }
+
+                //ObtenerProductoRCPT();
+                
             }
         }
     }//GEN-LAST:event_JtCodActionPerformed
 
     private void ObtenerProductoRCPT() {
-        ArrayList<PtProducto> listaProd = obj.GetByInventario(CodigoSuela);
-
-        if (listaProd.size() > 0) {
-            for (PtProducto pt : listaProd) {
-                JbCorrida.setText(String.valueOf(pt.getCorrida()));
-                JbProducto.setText(pt.getDescripcion());
-                JbIdProd.setText(String.valueOf(pt.getSuelaPhy()));
-                JbPi.setText(String.valueOf(pt.getPti()));
-                JbPf.setText(String.valueOf(pt.getPtf()));
-                JbEstilo.setText(String.valueOf(pt.getEstilo()));
-                JbCombinacion.setText(String.valueOf(pt.getCombinacion()));
-                JbIdSuela.setText(String.valueOf(pt.getSuelaPhy()));
-                //JbAm.setText(am);
-                JbPunto.setText(punto);
-                JbCantidad.setText(cantidad);
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Producto no encontrado", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-            JtCod.setText("");
-        }
+//        ArrayList<PtProducto> listaProd = obj.GetByInventario(CodigoSuela);
+//
+//        if (listaProd.size() > 0) {
+//            for (PtProducto pt : listaProd) {
+//                JbCorrida.setText(String.valueOf(pt.getCorrida()));
+//                JbProducto.setText(pt.getDescripcion());
+//                JbIdProd.setText(String.valueOf(pt.getSuelaPhy()));
+//                JbPi.setText(String.valueOf(pt.getPti()));
+//                JbPf.setText(String.valueOf(pt.getPtf()));
+//                JbEstilo.setText(String.valueOf(pt.getEstilo()));
+//                JbCombinacion.setText(String.valueOf(pt.getCombinacion()));
+//                JbIdSuela.setText(String.valueOf(pt.getSuelaPhy()));
+//                //JbAm.setText(am);
+//                JbPunto.setText(punto);
+//                JbCantidad.setText(cantidad);
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Producto no encontrado", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+//            JtCod.setText("");
+//        }
     }
 
     private void ComprobaroPuntos() {
@@ -837,13 +864,17 @@ public class CapturaInventario extends javax.swing.JFrame {
 
         for (float i = Pti; i <= pto; i++) {
             array.add(String.valueOf(cant));
+             System.out.println(i);
         }
 
         if (Pti != pto) {
             for (float j = Pti + num; j <= pto; j++) {
                 array.add(String.valueOf(cant));
+                 System.out.println(j);
             }
         }
+        
+       
 
         switch (array.size()) {
             case 12:
@@ -994,8 +1025,11 @@ public class CapturaInventario extends javax.swing.JFrame {
         if ("OK".equals(ms)) {
             JOptionPane.showMessageDialog(this, "Se han agregado los registros al inventario!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
             CleanTable();
-            BorrarTabla();
+            //BorrarTabla();
             //VaciarDatos();
+        }else{
+            JOptionPane.showMessageDialog(this, "Ocurrio un error!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            CleanTable();
         }
     }
 
@@ -1034,7 +1068,7 @@ public class CapturaInventario extends javax.swing.JFrame {
     private void ReporteGroup() {
         try {
             JasperReport reporte = null;
-            reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("/Reports/InPhylon.jasper"));
+            reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("/Reports/InventarioConcentrado.jasper"));
             try {
                 Map par = new HashMap();
                 par.put("tabla", TbTemp);
@@ -1064,7 +1098,7 @@ public class CapturaInventario extends javax.swing.JFrame {
     private void Reporte() {
         try {
             JasperReport reporte = null;
-            reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("/Reports/InPhylonS.jasper"));
+            reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("/Reports/InventarioAlmacen.jasper"));
             try {
                 Map par = new HashMap();
                 par.put("tabla", TbTemp);
@@ -1106,7 +1140,7 @@ public class CapturaInventario extends javax.swing.JFrame {
         sum = pt2 - pt1 + 1;
 
         String colums = null;
-        Object[] datos = {""};
+        Object[] datos = {"0"};
         PuntosCaptura p = new PuntosCaptura(null, true);
         for (int i = pt1; i <= pt2; i++) {
             colums = String.valueOf(i);

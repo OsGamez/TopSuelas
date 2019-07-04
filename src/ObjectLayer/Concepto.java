@@ -15,9 +15,9 @@ public class Concepto {
     
     PreparedStatement st = null;
     ResultSet rs = null;
-    DB db = new DB();
-    Connection c = db.RCPTPhylonA();
-    //Connection c = Server.getPhylon();
+//    DB db = new DB();
+//    Connection c = db.RCPTPhylonA();
+    Connection c = Server.getRcpt();
     
     private String Cuenta;
     private String SubCuenta;

@@ -13,9 +13,9 @@ import java.util.ArrayList;
 public class ObjectColores {
 
     PreparedStatement st = null;
-    //public Connection c = Server.getProduccion();
-    DB db = new DB();
-    Connection c = db.Produccion();
+    public Connection c = Server.getProduccion();
+//    DB db = new DB();
+//    Connection c = db.Produccion();
     public ResultSet rs = null;
 
     public boolean colorAdd(String Descripcion, boolean Activo) {

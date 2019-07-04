@@ -24,9 +24,9 @@ public class Precio {
 
     PreparedStatement st = null;
 
-//    Connection c = Server.getRcpt();
-     DB db = new DB();
-    Connection c = db.RCPTPhylonA();
+    Connection c = Server.getRcpt();
+//     DB db = new DB();
+//    Connection c = db.RCPTPhylonA();
     
     
     ResultSet rs = null;

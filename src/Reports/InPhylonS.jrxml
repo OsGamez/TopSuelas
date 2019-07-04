@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="40147bf7-5705-4405-bad4-83ec819ba589">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="752" pageHeight="572" orientation="Landscape" columnWidth="752" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="40147bf7-5705-4405-bad4-83ec819ba589">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="tabla" class="java.lang.String">
 		<defaultValueExpression><![CDATA["InCopy"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="almacen" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[DECLARE @v1 INT  
@@ -205,7 +208,8 @@ SET @v1 = 0
 	,i.TotalPares 
 	FROM RCPTPhylon.dbo.Productos p   
 	inner join $P!{tabla} i 
-	on p.Producto = i.Producto]]>
+	on p.Producto = i.Producto
+where i.Almacen = $P!{almacen}]]>
 	</queryString>
 	<field name="Almacen" class="java.lang.Short"/>
 	<field name="Suela" class="java.lang.String"/>
@@ -264,47 +268,10 @@ SET @v1 = 0
 	<background>
 		<band splitType="Stretch"/>
 	</background>
-	<title>
-		<band height="79" splitType="Stretch">
-			<staticText>
-				<reportElement mode="Transparent" x="319" y="42" width="122" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="8ad628fd-82d1-41b4-bae5-e3ccbfcd0697"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[INVENTARIO FISICO]]></text>
-			</staticText>
-			<image>
-				<reportElement x="0" y="40" width="148" height="39" uuid="5f0d8b72-d9ed-4717-9ce7-d59b16e2d4a0"/>
-				<imageExpression><![CDATA["C:\\tsmanager\\imagenes\\logo.png"]]></imageExpression>
-			</image>
-		</band>
-	</title>
-	<pageHeader>
-		<band height="47" splitType="Stretch">
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="678" y="0" width="82" height="20" uuid="3178e5af-0a34-4a60-9cb1-4de9b449a1f6"/>
-				<textElement>
-					<font fontName="SansSerif" size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
-			<textField pattern="HH.mm.ss">
-				<reportElement x="719" y="26" width="47" height="20" uuid="0f69b5b9-e2fb-405a-928b-a06fced821ea"/>
-				<textElement>
-					<font fontName="Serif" size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
-		</band>
-	</pageHeader>
 	<columnHeader>
 		<band height="21" splitType="Stretch">
-			<rectangle>
-				<reportElement x="0" y="1" width="765" height="20" backcolor="#000066" uuid="b027759c-5cdb-4d11-89d8-84ae200d7c08"/>
-			</rectangle>
 			<staticText>
-				<reportElement mode="Transparent" x="149" y="2" width="25" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="0cac0e8e-8221-4207-9b86-9cdd0d90c054"/>
+				<reportElement mode="Transparent" x="149" y="2" width="25" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="0cac0e8e-8221-4207-9b86-9cdd0d90c054"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -312,15 +279,15 @@ SET @v1 = 0
 				<text><![CDATA[PARES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="0" y="2" width="45" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="8994600f-3ce8-4473-ba75-94e2326411da"/>
+				<reportElement mode="Transparent" x="0" y="2" width="26" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="8994600f-3ce8-4473-ba75-94e2326411da"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[ALMACÉN]]></text>
+				<text><![CDATA[ALM]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="48" y="2" width="34" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="d3f57a6e-86a4-4589-98b9-0a8fc632a792"/>
+				<reportElement mode="Transparent" x="26" y="2" width="34" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="d3f57a6e-86a4-4589-98b9-0a8fc632a792"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -328,7 +295,7 @@ SET @v1 = 0
 				<text><![CDATA[SUELA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="447" y="1" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="420b0a6b-37e5-48dd-9e76-a40f18e390d2"/>
+				<reportElement mode="Transparent" x="447" y="1" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="420b0a6b-37e5-48dd-9e76-a40f18e390d2"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -336,7 +303,7 @@ SET @v1 = 0
 				<text><![CDATA[20]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="530" y="1" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="3c9b50de-8a22-4601-9c5e-7fa1859ad0af"/>
+				<reportElement mode="Transparent" x="530" y="1" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="3c9b50de-8a22-4601-9c5e-7fa1859ad0af"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -344,7 +311,7 @@ SET @v1 = 0
 				<text><![CDATA[24]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="489" y="1" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="f3cf2748-9185-4739-9a81-d5b9ff0dc833"/>
+				<reportElement mode="Transparent" x="489" y="1" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="f3cf2748-9185-4739-9a81-d5b9ff0dc833"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -352,7 +319,7 @@ SET @v1 = 0
 				<text><![CDATA[22]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="367" y="1" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="a232bf87-76b9-4fe4-b80c-2002b1812170"/>
+				<reportElement mode="Transparent" x="367" y="1" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="a232bf87-76b9-4fe4-b80c-2002b1812170"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -360,7 +327,7 @@ SET @v1 = 0
 				<text><![CDATA[16]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="568" y="1" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="7dc551ab-4db6-415b-82a9-3e14815fb65d"/>
+				<reportElement mode="Transparent" x="568" y="1" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="7dc551ab-4db6-415b-82a9-3e14815fb65d"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -368,7 +335,7 @@ SET @v1 = 0
 				<text><![CDATA[26]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="549" y="1" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="32b0b4e4-e3cd-4de8-b546-d2a0b91c87db"/>
+				<reportElement mode="Transparent" x="549" y="1" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="32b0b4e4-e3cd-4de8-b546-d2a0b91c87db"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -376,7 +343,7 @@ SET @v1 = 0
 				<text><![CDATA[25]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="700" y="1" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="5f5dd466-39e1-4bae-bb89-75c21f178f94"/>
+				<reportElement mode="Transparent" x="700" y="1" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="5f5dd466-39e1-4bae-bb89-75c21f178f94"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -384,7 +351,7 @@ SET @v1 = 0
 				<text><![CDATA[30]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="586" y="1" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="fa271693-c48f-4616-aad9-29c11d37d03b"/>
+				<reportElement mode="Transparent" x="586" y="1" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="fa271693-c48f-4616-aad9-29c11d37d03b"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -392,7 +359,7 @@ SET @v1 = 0
 				<text><![CDATA[27]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="325" y="1" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="384d7bc2-119f-4f59-94d8-76836e75e4b4"/>
+				<reportElement mode="Transparent" x="325" y="1" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="384d7bc2-119f-4f59-94d8-76836e75e4b4"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -400,7 +367,7 @@ SET @v1 = 0
 				<text><![CDATA[14]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="468" y="1" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="7e9c9b4d-82ae-4fcf-a717-7ba79eed072c"/>
+				<reportElement mode="Transparent" x="468" y="1" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="7e9c9b4d-82ae-4fcf-a717-7ba79eed072c"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -408,7 +375,7 @@ SET @v1 = 0
 				<text><![CDATA[21]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="407" y="1" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="42b15097-4671-411f-80fc-b9d20290ca91"/>
+				<reportElement mode="Transparent" x="407" y="1" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="42b15097-4671-411f-80fc-b9d20290ca91"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -416,7 +383,7 @@ SET @v1 = 0
 				<text><![CDATA[18]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="306" y="1" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="023a46a7-e51d-475f-99fb-5c83cd4944ef"/>
+				<reportElement mode="Transparent" x="306" y="1" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="023a46a7-e51d-475f-99fb-5c83cd4944ef"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -424,7 +391,7 @@ SET @v1 = 0
 				<text><![CDATA[13]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="387" y="1" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="98be78c7-a56d-4a15-9ac8-88dc2a811318"/>
+				<reportElement mode="Transparent" x="387" y="1" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="98be78c7-a56d-4a15-9ac8-88dc2a811318"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -432,7 +399,7 @@ SET @v1 = 0
 				<text><![CDATA[17]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="623" y="1" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="aa1bc2bf-66a9-4872-a857-59e633ac591f"/>
+				<reportElement mode="Transparent" x="623" y="1" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="aa1bc2bf-66a9-4872-a857-59e633ac591f"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -440,7 +407,7 @@ SET @v1 = 0
 				<text><![CDATA[28]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="267" y="1" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="f78cdcfd-66e9-4b90-9a81-478b1c9ff729"/>
+				<reportElement mode="Transparent" x="267" y="1" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="f78cdcfd-66e9-4b90-9a81-478b1c9ff729"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -448,7 +415,7 @@ SET @v1 = 0
 				<text><![CDATA[12]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="662" y="1" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="839f5941-88a1-4111-a949-f7423a000a39"/>
+				<reportElement mode="Transparent" x="662" y="1" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="839f5941-88a1-4111-a949-f7423a000a39"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -456,7 +423,7 @@ SET @v1 = 0
 				<text><![CDATA[29]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="187" y="1" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="e1f2c91f-79a1-4931-8a4e-557de9778f47"/>
+				<reportElement mode="Transparent" x="187" y="1" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="e1f2c91f-79a1-4931-8a4e-557de9778f47"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -464,7 +431,7 @@ SET @v1 = 0
 				<text><![CDATA[10]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="227" y="1" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="3e96b9df-1bff-4877-92fa-4784921cb260"/>
+				<reportElement mode="Transparent" x="227" y="1" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="3e96b9df-1bff-4877-92fa-4784921cb260"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -472,7 +439,7 @@ SET @v1 = 0
 				<text><![CDATA[11]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="427" y="1" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="9b6cac46-7342-4578-91a0-bb38aca9e771"/>
+				<reportElement mode="Transparent" x="427" y="1" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="9b6cac46-7342-4578-91a0-bb38aca9e771"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -480,7 +447,7 @@ SET @v1 = 0
 				<text><![CDATA[19]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="346" y="1" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="2ab856e5-3055-43e3-93b8-b546e5b58d22"/>
+				<reportElement mode="Transparent" x="346" y="1" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="2ab856e5-3055-43e3-93b8-b546e5b58d22"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -488,7 +455,7 @@ SET @v1 = 0
 				<text><![CDATA[15]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="510" y="1" width="13" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="05ccfa29-7718-444c-bd06-36414bdc6170"/>
+				<reportElement mode="Transparent" x="510" y="1" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="05ccfa29-7718-444c-bd06-36414bdc6170"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -496,7 +463,7 @@ SET @v1 = 0
 				<text><![CDATA[23]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="603" y="1" width="16" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="c45f393b-81d2-4bfd-8bfe-533953ed476c"/>
+				<reportElement mode="Transparent" x="603" y="1" width="16" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="c45f393b-81d2-4bfd-8bfe-533953ed476c"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -504,7 +471,7 @@ SET @v1 = 0
 				<text><![CDATA[27.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="204" y="1" width="17" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="6fa28a25-c16f-4558-b60f-bbbf6ace5a32"/>
+				<reportElement mode="Transparent" x="204" y="1" width="17" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="6fa28a25-c16f-4558-b60f-bbbf6ace5a32"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -512,7 +479,7 @@ SET @v1 = 0
 				<text><![CDATA[10.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="244" y="1" width="19" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="2d5a171c-a1a9-4cf1-b847-f7b51226b509"/>
+				<reportElement mode="Transparent" x="244" y="1" width="19" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="2d5a171c-a1a9-4cf1-b847-f7b51226b509"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -520,7 +487,7 @@ SET @v1 = 0
 				<text><![CDATA[11.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="284" y="1" width="18" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="313c3489-7967-43b6-a2b4-379e1adb4772"/>
+				<reportElement mode="Transparent" x="284" y="1" width="18" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="313c3489-7967-43b6-a2b4-379e1adb4772"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -528,7 +495,7 @@ SET @v1 = 0
 				<text><![CDATA[12.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="640" y="1" width="17" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="72fb165c-c361-49cb-a176-f3cd9ec1cbdc"/>
+				<reportElement mode="Transparent" x="640" y="1" width="17" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="72fb165c-c361-49cb-a176-f3cd9ec1cbdc"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -536,12 +503,16 @@ SET @v1 = 0
 				<text><![CDATA[28.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="679" y="1" width="18" height="15" forecolor="#FF6633" backcolor="#FFFFFF" uuid="a1dcefae-f66e-4f8d-b83f-779d7f6716e8"/>
+				<reportElement mode="Transparent" x="679" y="1" width="18" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="a1dcefae-f66e-4f8d-b83f-779d7f6716e8"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[29.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="5" width="730" height="16" uuid="0427f86c-e871-4686-81b4-b022735647fc"/>
+				<text><![CDATA[- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -556,7 +527,7 @@ SET @v1 = 0
 				<textFieldExpression><![CDATA[$F{Almacen}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="49" y="2" width="93" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="ffd33c03-2e95-41ef-9409-7d140da7cd35"/>
+				<reportElement mode="Transparent" x="27" y="2" width="111" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="ffd33c03-2e95-41ef-9409-7d140da7cd35"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -789,37 +760,17 @@ SET @v1 = 0
 			</textField>
 		</band>
 	</detail>
-	<pageFooter>
-		<band height="23" splitType="Stretch">
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="675" y="2" width="58" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="44ff031f-b082-4ca8-b630-e1e4f5ac65ad"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="722" y="2" width="32" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="40bd0d37-7857-434f-b686-084914244f97"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-		</band>
-	</pageFooter>
 	<summary>
-		<band height="56">
+		<band height="35">
 			<staticText>
-				<reportElement x="0" y="36" width="76" height="20" uuid="eb8a7883-2479-4710-b2ef-8b2f5ed5fa6c"/>
+				<reportElement x="0" y="14" width="76" height="20" uuid="eb8a7883-2479-4710-b2ef-8b2f5ed5fa6c"/>
 				<textElement>
 					<font size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TOTAL DE PARES:]]></text>
 			</staticText>
-			<textField>
-				<reportElement mode="Transparent" x="74" y="36" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="8a644e59-9898-4f82-b1d4-b9646d26663c"/>
+			<textField pattern="#,##0">
+				<reportElement mode="Transparent" x="74" y="14" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="8a644e59-9898-4f82-b1d4-b9646d26663c"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>

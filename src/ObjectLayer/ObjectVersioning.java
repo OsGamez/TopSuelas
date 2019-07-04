@@ -10,9 +10,9 @@ import java.sql.SQLException;
 
 public class ObjectVersioning {
 
-//    Connection us = Conexion.getUsuario();
-    DB db = new DB();
-    Connection us = db.User();
+    Connection us = Conexion.getUsuario();
+//    DB db = new DB();
+//    Connection us = db.User();
     PreparedStatement st = null;
     ResultSet rs = null;
 

@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 public class Banco {
-    DB db = new DB();
+//    DB db = new DB();
     private int Id_Banco;
     private String Descripcion;
     private String RFC;
@@ -18,8 +18,8 @@ public class Banco {
     private boolean Activo;
 
     PreparedStatement st = null;
-    //Connection c = Server.getCobranza();
-    Connection c = db.Cobranza();
+    Connection c = Server.getCobranza();
+//    Connection c = db.Cobranza();
     ResultSet rs = null;
 
     public Banco() {

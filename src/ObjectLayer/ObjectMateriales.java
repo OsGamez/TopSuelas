@@ -16,9 +16,9 @@ public class ObjectMateriales {
 
     PreparedStatement st = null;
     ResultSet rs = null;
-//    Connection c = Server.getCmpPhylon();
-    DB db = new DB();
-    Connection c = db.Cmp();
+    Connection c = Server.getCmpPhylon();
+//    DB db = new DB();
+//    Connection c = db.Cmp();
     Statement sta = null;
 
     public boolean addMaterial(Material mat) {
@@ -281,5 +281,19 @@ public class ObjectMateriales {
             ex.printStackTrace();
             return 1;
         }
+    }
+        public int validaralmacen_material(int almacen, String material){
+        int resp=0;
+        try {
+            st = c.prepareStatement("SELECT existencia FROM Existencias WHERE Almacen = "+almacen+
+                    " and cvemat = '"+material+"'");
+            rs = st.executeQuery();
+            if (rs.next()) {
+                resp=rs.getInt("existencia");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return resp;
     }
 }

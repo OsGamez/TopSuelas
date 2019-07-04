@@ -10,11 +10,11 @@ import java.sql.SQLException;
 
 public class ObjectDetalle {
 
-//    Connection c = Server.getRpt();
-//    Connection p = Server.getRcpt();
-    DB db = new DB();
-    Connection c = db.RPTPhylon();
-    Connection p = db.RCPTPhylonA();
+    Connection c = Server.getRpt();
+    Connection p = Server.getRcpt();
+//    DB db = new DB();
+//    Connection c = db.RPTPhylon();
+//    Connection p = db.RCPTPhylonA();
 
     PreparedStatement st, dp = null;
     ResultSet rs = null;
@@ -292,21 +292,24 @@ public class ObjectDetalle {
     }
 
     public boolean eliminarDetalleA(int id, String Npedido) throws SQLException {
-        boolean rpta = false;
         try {
+            p.setAutoCommit(false);
             dp = p.prepareStatement("DELETE FROM Dpedido WHERE Renglon=? AND Npedido=?");
             dp.setInt(1, id);
             dp.setString(2, Npedido);
-            rpta = dp.executeUpdate() == 1 ? true : false;
+            dp.executeUpdate();
+            p.commit();
             dp.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
+            p.rollback();
             dp.close();
         } catch (Exception ex) {
-            Conexion.cerrarPhylonA(dp);
+            p.rollback();
+            dp.close();
             ex.printStackTrace();
         }
-        return rpta;
+        return false;
     }
 
     public boolean cambiarEstatusA(String Npedido, String Estatus) throws SQLException {

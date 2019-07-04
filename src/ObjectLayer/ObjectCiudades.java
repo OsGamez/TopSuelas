@@ -15,11 +15,11 @@ public class ObjectCiudades {
 
     PreparedStatement st = null;
     PreparedStatement copy = null;
-//    Connection c = Server.getCobranza();
-//    Connection rc = Server.getRcobranza();
-    DB db = new DB();
-    Connection c = db.Cobranza();
-    Connection rc = db.Rcobranza();
+    Connection c = Server.getCobranza();
+    Connection rc = Server.getRcobranza();
+//    DB db = new DB();
+//    Connection c = db.Cobranza();
+//    Connection rc = db.Rcobranza();
     ResultSet rs = null;
 
     public boolean ciudadAdd(String Descripcion, boolean Activo) {

@@ -13,9 +13,9 @@ import javax.swing.JOptionPane;
 
 public class ObjectUsuarios {
 
-    //Connection us = Server.getUsuario();
-    DB db = new DB();
-    Connection us = db.User();
+    Connection us = Server.getUsuario();
+//    DB db = new DB();
+//    Connection us = db.User();
     PreparedStatement st = null;
     ResultSet rs = null;
 

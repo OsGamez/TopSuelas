@@ -11,11 +11,11 @@ import java.util.ArrayList;
 
 public class ObjectParametros {
 
-//    Connection c = Server.getRpt();
-//    Connection pa = Server.getRcpt();
-    DB db = new DB();
-    Connection c = db.RPTPhylon();
-    Connection pa = db.RCPTPhylonA();
+    Connection c = Server.getRpt();
+    Connection pa = Server.getRcpt();
+//    DB db = new DB();
+//    Connection c = db.RPTPhylon();
+//    Connection pa = db.RCPTPhylonA();
 
     PreparedStatement st, dp = null;
     ResultSet rs = null;

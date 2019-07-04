@@ -18,8 +18,8 @@ public class Color {
     private boolean Activo;
     
     PreparedStatement st = null;
-    //Connection c = Server.getProduccion();
-    Connection c = db.Produccion();
+    Connection c = Server.getProduccion();
+//    Connection c = db.Produccion();
     ResultSet rs = null;
     
     public Color(){}

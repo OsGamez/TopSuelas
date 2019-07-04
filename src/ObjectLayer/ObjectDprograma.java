@@ -9,9 +9,9 @@ import java.sql.ResultSet;
 
 
 public class ObjectDprograma {
-    //Connection c = Conexion.getRcpt();
-    DB db = new DB();
-    Connection c = db.RCPTPhylonA();
+    Connection c = Conexion.getRcpt();
+//    DB db = new DB();
+//    Connection c = db.RCPTPhylonA();
     PreparedStatement st = null; 
     ResultSet rs = null;
     

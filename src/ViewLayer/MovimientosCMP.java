@@ -1,14 +1,15 @@
 package ViewLayer;
 
 import DataAccesLayer.Conexion;
-import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import ObjectLayer.Agente;
 import ObjectLayer.Banco;
 import ObjectLayer.Ciudad;
 import ObjectLayer.Cliente;
 import ObjectLayer.Estado;
+import ObjectLayer.KardexCmp;
 import ObjectLayer.ObjectClientes;
+import ObjectLayer.ObjectKardexCmp;
 import ObjectLayer.Pais;
 import ObjectLayer.Zona;
 import java.awt.Image;
@@ -21,209 +22,46 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
+public class MovimientosCMP extends javax.swing.JInternalFrame {
 
-public class Clientes extends javax.swing.JInternalFrame {
-
-    ObjectClientes obj = new ObjectClientes();
-    DefaultTableModel modelCliente = new DefaultTableModel() {
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            return false;
-        }
-    };
-//    DB db = new DB();
-//    Connection c = db.Cobranza();
-    Connection c = Server.getCobranza();
-    
+    ObjectKardexCmp obj = new ObjectKardexCmp();
+    DefaultTableModel modelkardexcmp = new DefaultTableModel();
+    ArrayList<KardexCmp> listakardex;
     public String Serie = "";
 
-    public Clientes() {
+    public MovimientosCMP() {
         initComponents();
         LoadColumns();
-        LoadModelCliente();
-        JtDatosCliente.getTableHeader().setReorderingAllowed(false);
+        Loadmodelkardexcmp();
+       // JtDatosCliente.getTableHeader().setReorderingAllowed(false);
     }
 
     public void LoadColumns() {
-        modelCliente.addColumn("Código");//0
-        modelCliente.addColumn("N.CLIENTE");//1
-        modelCliente.addColumn("NOMBRE");//2
-        modelCliente.addColumn("RAZÓN SOCIAL");//3
-        modelCliente.addColumn("RFC");//4
-        modelCliente.addColumn("Cod");//5
-        modelCliente.addColumn("CP");//6
-        modelCliente.addColumn("COLONIA");//7
-        modelCliente.addColumn("CALLE");//8
-        modelCliente.addColumn("NumeroCalle");//9
-        modelCliente.addColumn("CFDI");//10
-        modelCliente.addColumn("Email");//11
-        modelCliente.addColumn("Observaciones");//12
-        modelCliente.addColumn("TELEFONO");//13
-        modelCliente.addColumn("TELEFONO2");//14
-        modelCliente.addColumn("TELEFONO3");//15
-        modelCliente.addColumn("Cuenta");//16
-        modelCliente.addColumn("Días Crédito");//17
-        modelCliente.addColumn("CONTACTO");//18
-        modelCliente.addColumn("Forma Pago");//19
-        modelCliente.addColumn("MetodoPago");//20
-        modelCliente.addColumn("AGENTE");//21
-        modelCliente.addColumn("Cod-Agente");//22
-        modelCliente.addColumn("ZONA");//23
-        modelCliente.addColumn("Cod-Zona");//24
-        modelCliente.addColumn("PAIS");//25
-        modelCliente.addColumn("Cod-Pais");//26
-        modelCliente.addColumn("ESTADO");//27
-        modelCliente.addColumn("Cod-Estado");//28
-        modelCliente.addColumn("CIUDAD");//29
-        modelCliente.addColumn("Cod-Ciudad");//30
-        modelCliente.addColumn("BANCO");//31
-        modelCliente.addColumn("Cod-Banco");//32
-        modelCliente.addColumn("SERIE");//33
-
-        JtDatosCliente.getColumnModel().getColumn(0).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(0).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(0).setPreferredWidth(0);
-
-        JtDatosCliente.getColumnModel().getColumn(1).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(1).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(1).setPreferredWidth(0);
-
-        /*JtDatosCliente.getColumnModel().getColumn(3).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(3).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(3).setPreferredWidth(0);*/
-
-        JtDatosCliente.getColumnModel().getColumn(4).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(4).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(4).setPreferredWidth(0);
-
-        JtDatosCliente.getColumnModel().getColumn(5).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(5).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(5).setPreferredWidth(0);
-
-        JtDatosCliente.getColumnModel().getColumn(6).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(6).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(6).setPreferredWidth(0);
-
-        JtDatosCliente.getColumnModel().getColumn(7).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(7).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(7).setPreferredWidth(0);
-
-        JtDatosCliente.getColumnModel().getColumn(8).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(8).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(8).setPreferredWidth(0);
-
-        JtDatosCliente.getColumnModel().getColumn(9).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(9).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(9).setPreferredWidth(0);
-
-        JtDatosCliente.getColumnModel().getColumn(10).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(10).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(10).setPreferredWidth(0);
-
-        JtDatosCliente.getColumnModel().getColumn(11).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(11).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(11).setPreferredWidth(0);
-
-        JtDatosCliente.getColumnModel().getColumn(12).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(12).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(12).setPreferredWidth(0);
-
-        JtDatosCliente.getColumnModel().getColumn(13).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(13).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(13).setPreferredWidth(0);
-
-        JtDatosCliente.getColumnModel().getColumn(14).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(14).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(14).setPreferredWidth(0);
-
-        JtDatosCliente.getColumnModel().getColumn(15).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(15).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(15).setPreferredWidth(0);
-
-        JtDatosCliente.getColumnModel().getColumn(17).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(17).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(17).setPreferredWidth(0);
-
-        JtDatosCliente.getColumnModel().getColumn(18).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(18).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(18).setPreferredWidth(0);
-
-        JtDatosCliente.getColumnModel().getColumn(22).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(22).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(22).setPreferredWidth(0);
-
-        JtDatosCliente.getColumnModel().getColumn(24).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(24).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(24).setPreferredWidth(0);
-
-        JtDatosCliente.getColumnModel().getColumn(26).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(26).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(26).setPreferredWidth(0);
-
-        JtDatosCliente.getColumnModel().getColumn(28).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(28).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(28).setPreferredWidth(0);
-
-        JtDatosCliente.getColumnModel().getColumn(30).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(30).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(30).setPreferredWidth(0);
-
-        JtDatosCliente.getColumnModel().getColumn(32).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(32).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(32).setPreferredWidth(0);
-
-        JtDatosCliente.getColumnModel().getColumn(33).setMaxWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(33).setMinWidth(0);
-        JtDatosCliente.getColumnModel().getColumn(33).setPreferredWidth(0);
+        modelkardexcmp.addColumn("Folio");
+        modelkardexcmp.addColumn("Cuenta");
+        modelkardexcmp.addColumn("Subcuenta");
+        modelkardexcmp.addColumn("Fecha Mov");
+        modelkardexcmp.addColumn("Serie");
+        modelkardexcmp.addColumn("Almacen");
+        modelkardexcmp.addColumn("Material");
+        modelkardexcmp.addColumn("Cantidad");
     }
 
-    public void LoadModelCliente() {
-        ArrayList<Cliente> listaClientes = obj.clientesGetAll();
-        modelCliente.setNumRows(listaClientes.size());
+    public void Loadmodelkardexcmp() {
+        listakardex = obj.KardexCmpGatAll();
+        modelkardexcmp.setNumRows(listakardex.size());
 
-        for (int i = 0; i < listaClientes.size(); i++) {
-            Cliente cliente = listaClientes.get(i);
+        for (int i = 0; i < listakardex.size(); i++) {
+            KardexCmp kardex = listakardex.get(i);
 
-            modelCliente.setValueAt(cliente.getId_Cliente(), i, 0);
-            modelCliente.setValueAt(cliente.getNumCliente(), i, 1);
-            modelCliente.setValueAt(cliente.getNombre(), i, 2);
-            modelCliente.setValueAt(cliente.getRazonSocial(), i, 3);
-            modelCliente.setValueAt(cliente.getRFC(), i, 4);
-            modelCliente.setValueAt(cliente.getCodigo(), i, 5);
-            modelCliente.setValueAt(cliente.getCP(), i, 6);
-            modelCliente.setValueAt(cliente.getColonia(), i, 7);
-            modelCliente.setValueAt(cliente.getCalle(), i, 8);
-            modelCliente.setValueAt(cliente.getNumeroCalle(), i, 9);
-            modelCliente.setValueAt(cliente.getUsoCfdi(), i, 10);
-            modelCliente.setValueAt(cliente.getEmail(), i, 11);
-            modelCliente.setValueAt(cliente.getObservaciones(), i, 12);
-            modelCliente.setValueAt(cliente.getTelefono(), i, 13);
-            modelCliente.setValueAt(cliente.getTelefono2(), i, 14);
-            modelCliente.setValueAt(cliente.getTelefono3(), i, 15);
-            modelCliente.setValueAt(cliente.getCuenta(), i, 16);
-            modelCliente.setValueAt(cliente.getDiasCredito(), i, 17);
-            modelCliente.setValueAt(cliente.getContacto(), i, 18);
-            modelCliente.setValueAt(cliente.getFormaPago(), i, 19);
-            modelCliente.setValueAt(cliente.getMetodoPago(), i, 20);
-            modelCliente.setValueAt(cliente.getAgente(), i, 21);
-            modelCliente.setValueAt(cliente.getId_Agente(), i, 22);
-            modelCliente.setValueAt(cliente.getZona(), i, 23);
-            modelCliente.setValueAt(cliente.getId_Zona(), i, 24);
-            modelCliente.setValueAt(cliente.getPais(), i, 25);
-            modelCliente.setValueAt(cliente.getId_Pais(), i, 26);
-            modelCliente.setValueAt(cliente.getEstado(), i, 27);
-            modelCliente.setValueAt(cliente.getId_Estado(), i, 28);
-            modelCliente.setValueAt(cliente.getCiudad(), i, 29);
-            modelCliente.setValueAt(cliente.getId_Ciudad(), i, 30);
-            modelCliente.setValueAt(cliente.getBanco(), i, 31);
-            modelCliente.setValueAt(cliente.getId_Banco(), i, 32);
-            modelCliente.setValueAt(cliente.getSerie(), i, 33);
+            modelkardexcmp.setValueAt(kardex.getFolio(), i, 0);
+            modelkardexcmp.setValueAt(kardex.getCuenta(), i, 1);
+            modelkardexcmp.setValueAt(kardex.getSubcuenta(), i, 2);
+            modelkardexcmp.setValueAt(kardex.getFechamov(), i, 3);
+            modelkardexcmp.setValueAt(kardex.getSerie(), i, 4);
+            modelkardexcmp.setValueAt(kardex.getNombrealmacen(), i, 5);
+            modelkardexcmp.setValueAt(kardex.getNombrematerial(), i, 6);
+            modelkardexcmp.setValueAt(kardex.getCantidad(), i, 7);
         }
     }
 
@@ -244,8 +82,8 @@ public class Clientes extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setMaximizable(true);
-        setTitle("CLIENTES");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/manager_person_man_people_2841.png"))); // NOI18N
+        setTitle("Entradas y Salidas");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Banking_00016_A_icon-icons.com_59832.png"))); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 102)));
 
@@ -331,8 +169,7 @@ public class Clientes extends javax.swing.JInternalFrame {
             }
         });
 
-        JtDatosCliente.setModel(modelCliente);
-        JtDatosCliente.setSelectionBackground(new java.awt.Color(102, 153, 255));
+        JtDatosCliente.setModel(modelkardexcmp);
         jScrollPane1.setViewportView(JtDatosCliente);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -368,15 +205,15 @@ public class Clientes extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbNuevoActionPerformed
-        NCliente nuevo = new NCliente(null, true);
-        nuevo.JbSerie.setText(Serie);
+        MovimientosesCMP nuevo = new MovimientosesCMP(null, true);
+        //nuevo.JbSerie.setText(Serie);
         nuevo.setVisible(true);
         nuevo.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         nuevo.setAlwaysOnTop(true);
 
         if (nuevo.getInformacion() != "") {
             CleanTable();
-            LoadModelCliente();
+            Loadmodelkardexcmp();
         }
     }//GEN-LAST:event_JbNuevoActionPerformed
 
@@ -391,12 +228,12 @@ public class Clientes extends javax.swing.JInternalFrame {
             if (row >= 0) {
                 int opcion = JOptionPane.showConfirmDialog(this, "¿Estas seguro de borrar este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (opcion == JOptionPane.YES_OPTION) {
-                    if (obj.clienteDelete(Integer.parseInt(JtDatosCliente.getValueAt(row, 0).toString()))) {
-                        modelCliente.removeRow(row);
-                        JOptionPane.showMessageDialog(null, "Registro eliminado");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Este cliente tiene pedidos activos en el sistema");
-                    }
+//                    if (obj.clienteDelete(Integer.parseInt(JtDatosCliente.getValueAt(row, 0).toString()))) {
+//                        modelkardexcmp.removeRow(row);
+//                        JOptionPane.showMessageDialog(null, "Registro eliminado");
+//                    } else {
+//                        JOptionPane.showMessageDialog(null, "Este cliente tiene pedidos activos en el sistema");
+//                    }
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
@@ -466,7 +303,7 @@ public class Clientes extends javax.swing.JInternalFrame {
                     editar.setAlwaysOnTop(true);
                     if (editar.getInformacion() != "") {
                         CleanTable();
-                        LoadModelCliente();
+                        Loadmodelkardexcmp();
                     }
                 }
             } else {
@@ -479,69 +316,25 @@ public class Clientes extends javax.swing.JInternalFrame {
 
     private void JtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyReleased
         CleanTable();
-        JtBuscar.getText();
-        ArrayList<Cliente> listaClientes = obj.clienteSearch(JtBuscar.getText());
-        listaClientes.size();
-        modelCliente.setNumRows(listaClientes.size());
+        listakardex = obj.KardexCmpSearch(JtBuscar.getText());
+        modelkardexcmp.setNumRows(listakardex.size());
 
-        for (int i = 0; i < listaClientes.size(); i++) {
-            Cliente cliente = listaClientes.get(i);
+        for (int i = 0; i < listakardex.size(); i++) {
+            KardexCmp kardex = listakardex.get(i);
 
-            modelCliente.setValueAt(cliente.getId_Cliente(), i, 0);
-            modelCliente.setValueAt(cliente.getNumCliente(), i, 1);
-            modelCliente.setValueAt(cliente.getNombre(), i, 2);
-            modelCliente.setValueAt(cliente.getRazonSocial(), i, 3);
-            modelCliente.setValueAt(cliente.getRFC(), i, 4);
-            modelCliente.setValueAt(cliente.getCodigo(), i, 5);
-            modelCliente.setValueAt(cliente.getCP(), i, 6);
-            modelCliente.setValueAt(cliente.getColonia(), i, 7);
-            modelCliente.setValueAt(cliente.getCalle(), i, 8);
-            modelCliente.setValueAt(cliente.getNumeroCalle(), i, 9);
-            modelCliente.setValueAt(cliente.getUsoCfdi(), i, 10);
-            modelCliente.setValueAt(cliente.getEmail(), i, 11);
-            modelCliente.setValueAt(cliente.getObservaciones(), i, 12);
-            modelCliente.setValueAt(cliente.getTelefono(), i, 13);
-            modelCliente.setValueAt(cliente.getTelefono2(), i, 14);
-            modelCliente.setValueAt(cliente.getTelefono3(), i, 15);
-            modelCliente.setValueAt(cliente.getCuenta(), i, 16);
-            modelCliente.setValueAt(cliente.getDiasCredito(), i, 17);
-            modelCliente.setValueAt(cliente.getContacto(), i, 18);
-            modelCliente.setValueAt(cliente.getFormaPago(), i, 19);
-            modelCliente.setValueAt(cliente.getMetodoPago(), i, 20);
-            modelCliente.setValueAt(cliente.getAgente(), i, 21);
-            modelCliente.setValueAt(cliente.getId_Agente(), i, 22);
-            modelCliente.setValueAt(cliente.getZona(), i, 23);
-            modelCliente.setValueAt(cliente.getId_Zona(), i, 24);
-            modelCliente.setValueAt(cliente.getPais(), i, 25);
-            modelCliente.setValueAt(cliente.getId_Pais(), i, 26);
-            modelCliente.setValueAt(cliente.getEstado(), i, 27);
-            modelCliente.setValueAt(cliente.getId_Estado(), i, 28);
-            modelCliente.setValueAt(cliente.getCiudad(), i, 29);
-            modelCliente.setValueAt(cliente.getId_Ciudad(), i, 30);
-            modelCliente.setValueAt(cliente.getBanco(), i, 31);
-            modelCliente.setValueAt(cliente.getId_Banco(), i, 32);
-            modelCliente.setValueAt(cliente.getSerie(), i, 33);
+            modelkardexcmp.setValueAt(kardex.getFolio(), i, 0);
+            modelkardexcmp.setValueAt(kardex.getCuenta(), i, 1);
+            modelkardexcmp.setValueAt(kardex.getSubcuenta(), i, 2);
+            modelkardexcmp.setValueAt(kardex.getFechamov(), i, 3);
+            modelkardexcmp.setValueAt(kardex.getSerie(), i, 4);
+            modelkardexcmp.setValueAt(kardex.getNombrealmacen(), i, 5);
+            modelkardexcmp.setValueAt(kardex.getNombrematerial(), i, 6);
+            modelkardexcmp.setValueAt(kardex.getCantidad(), i, 7);
         }
     }//GEN-LAST:event_JtBuscarKeyReleased
 
     private void JbReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbReporteActionPerformed
-        try {
-            JasperReport reporte = null;
-            reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reports/CatalogoClientes.jasper"));
-            try {
-                JasperPrint jprint = JasperFillManager.fillReport(reporte, null, c);
-                JasperViewer view = new JasperViewer(jprint, false);
-
-                view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                view.setVisible(true);
-                view.setIconImage(getImage());
-                view.setTitle("TOP-SUELAS");
-            } catch (JRException ex) {
-                Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } catch (JRException ex) {
-            Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
     }//GEN-LAST:event_JbReporteActionPerformed
 
     private void JtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyTyped
@@ -553,15 +346,15 @@ public class Clientes extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_JtBuscarKeyTyped
     public Image getImage() {
-        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/PhotoPrint_11187.png"));
+        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/Banking_00016_A_icon-icons.com_59832.png"));
         return icon;
     }
 
     private void CleanTable() {
-        int numFilas = modelCliente.getRowCount();
+        int numFilas = modelkardexcmp.getRowCount();
         if (numFilas > 0) {
             for (int i = numFilas - 1; i >= 0; i--) {
-                modelCliente.removeRow(i);
+                modelkardexcmp.removeRow(i);
             }
         }
     }

@@ -1,7 +1,7 @@
-
 package ViewLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.awt.Color;
 import java.awt.Image;
@@ -22,8 +22,10 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class ReporteGastos extends javax.swing.JDialog {
-    
-    Connection c = Server.getProduccion();
+
+    DB db = new DB();
+    Connection c = db.Produccion();
+
     public ReporteGastos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -132,61 +134,60 @@ public class ReporteGastos extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-   
+
     private void JbImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbImprimirActionPerformed
-       if(JcFecha.isSelected()== false && JcReporte.isSelected() == false){
-         JOptionPane.showMessageDialog(this, "Selecciona una opcion","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE);
-       }else if(JcFecha.isSelected()== true && JcReporte.isSelected() == true){
-          JOptionPane.showMessageDialog(this, "Solo debes de seleccionar una opcion","TOP-SUELAS" ,JOptionPane.WARNING_MESSAGE); 
-       }
-       else if(JcFecha.isSelected()== true){
-            try {                                          
-            Map par = new HashMap();
-            int mes = JmMes.getMonth()+1;
-            par.put("Año", JyAño.getYear());
-            par.put("Mes", String.valueOf(mes));
-            JasperReport reporte = (JasperReport)JRLoader.loadObject(getClass().getResource("/Reports/ReporteGastosMes.jasper"));
+        if (JcFecha.isSelected() == false && JcReporte.isSelected() == false) {
+            JOptionPane.showMessageDialog(this, "Selecciona una opcion", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+        } else if (JcFecha.isSelected() == true && JcReporte.isSelected() == true) {
+            JOptionPane.showMessageDialog(this, "Solo debes de seleccionar una opcion", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+        } else if (JcFecha.isSelected() == true) {
             try {
-                JasperPrint jprint = JasperFillManager.fillReport(reporte, par,c);
-                JasperViewer view = new  JasperViewer(jprint,false);
-                
-                this. dispose();
-                view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                view.setVisible(true);
-                view.setIconImage(getImage());
-                view.setTitle("TOP-SUELAS");
+                Map par = new HashMap();
+                int mes = JmMes.getMonth() + 1;
+                par.put("Año", JyAño.getYear());
+                par.put("Mes", String.valueOf(mes));
+                JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reports/ReporteGastosMes.jasper"));
+                try {
+                    JasperPrint jprint = JasperFillManager.fillReport(reporte, par, c);
+                    JasperViewer view = new JasperViewer(jprint, false);
+
+                    this.dispose();
+                    view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    view.setVisible(true);
+                    view.setIconImage(getImage());
+                    view.setTitle("TOP-SUELAS");
+                } catch (JRException ex) {
+                    Logger.getLogger(Colores.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } catch (JRException ex) {
                 Logger.getLogger(Colores.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (JRException ex) {
-            Logger.getLogger(Colores.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        dispose();    
-       }else if(JcReporte.isSelected() == true){
-           try {                                          
-            JasperReport reporte = null;
-            reporte = (JasperReport)JRLoader.loadObject(getClass().getResource("/Reports/ReporteGastos.jasper"));
+            dispose();
+        } else if (JcReporte.isSelected() == true) {
             try {
-                JasperPrint jprint = JasperFillManager.fillReport(reporte, null,c);
-                JasperViewer view = new  JasperViewer(jprint,false);
-                
-                this. dispose();
-                view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                view.setVisible(true);
-                view.setIconImage(getImage());
-                view.setTitle("TOP-SUELAS");
-            }catch (JRException ex) {
+                JasperReport reporte = null;
+                reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reports/ReporteGastos.jasper"));
+                try {
+                    JasperPrint jprint = JasperFillManager.fillReport(reporte, null, c);
+                    JasperViewer view = new JasperViewer(jprint, false);
+
+                    this.dispose();
+                    view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    view.setVisible(true);
+                    view.setIconImage(getImage());
+                    view.setTitle("TOP-SUELAS");
+                } catch (JRException ex) {
+                    Logger.getLogger(ReporteGastos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (JRException ex) {
                 Logger.getLogger(ReporteGastos.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (JRException ex) {
-            Logger.getLogger(ReporteGastos.class.getName()).log(Level.SEVERE, null, ex);
+
         }
-           
-       }
     }//GEN-LAST:event_JbImprimirActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-       Cerrar();
+        Cerrar();
     }//GEN-LAST:event_formWindowClosing
 
     private void JcFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcFechaActionPerformed
@@ -194,45 +195,48 @@ public class ReporteGastos extends javax.swing.JDialog {
     }//GEN-LAST:event_JcFechaActionPerformed
 
     private void JcFechaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JcFechaItemStateChanged
-      if (evt.getStateChange() == ItemEvent.SELECTED){
-          Mostrar();
-      }else{
-          Ocultar();
-      }
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            Mostrar();
+        } else {
+            Ocultar();
+        }
     }//GEN-LAST:event_JcFechaItemStateChanged
 
     private void JcReporteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JcReporteItemStateChanged
-       if (evt.getStateChange() == ItemEvent.SELECTED){
-          Ocultar();
-      }
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            Ocultar();
+        }
     }//GEN-LAST:event_JcReporteItemStateChanged
-    
-    private void Ocultar(){
+
+    private void Ocultar() {
         JbAño.setVisible(false);
         JbMes.setVisible(false);
         JyAño.setVisible(false);
         JmMes.setVisible(false);
     }
-    
-    private void Mostrar(){
+
+    private void Mostrar() {
         JbMes.setVisible(true);
         JbAño.setVisible(true);
         JyAño.setVisible(true);
         JmMes.setVisible(true);
     }
-    public Image getImage(){
+
+    public Image getImage() {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/PhotoPrint_11187.png"));
         return icon;
     }
-     private void Cerrar(){
+
+    private void Cerrar() {
         String botones[] = {"SI", "NO"};
-        int eleccion = JOptionPane.showOptionDialog(this,"¿Deseas cerrar esta ventana?", "TOP-SUELAS", 
+        int eleccion = JOptionPane.showOptionDialog(this, "¿Deseas cerrar esta ventana?", "TOP-SUELAS",
                 0, 0, null, botones, this);
-        if(eleccion == JOptionPane.YES_OPTION){
+        if (eleccion == JOptionPane.YES_OPTION) {
             dispose();
-        }else if(eleccion == JOptionPane.NO_OPTION){       
+        } else if (eleccion == JOptionPane.NO_OPTION) {
         }
     }
+
     /**
      * @param args the command line arguments
      */

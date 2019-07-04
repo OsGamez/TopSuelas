@@ -16,9 +16,9 @@ public class Estado {
     private boolean Activo;
 
     PreparedStatement st = null;
-    DB db = new DB();
-    Connection c = db.Cobranza();
-    //Connection c = Server.getCobranza();
+//    DB db = new DB();
+//    Connection c = db.Cobranza();
+    Connection c = Server.getCobranza();
     ResultSet rs = null;
 
     public Estado() {

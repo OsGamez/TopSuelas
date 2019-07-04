@@ -14,9 +14,9 @@ public class ObjectProveedoresMPrima {
 
     PreparedStatement st = null;
     ResultSet rs = null;
-//    Connection c = Server.getCmpPhylon();
-    DB db = new DB();
-    Connection c = db.Cmp();
+    Connection c = Server.getCmpPhylon();
+//    DB db = new DB();
+//    Connection c = db.Cmp();
 
     public boolean ProveedorMPrimaAdd(ProveedorMPrima p) {
         try {

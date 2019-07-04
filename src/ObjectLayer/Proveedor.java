@@ -26,9 +26,9 @@ public class Proveedor {
 
     PreparedStatement st = null;
     ResultSet rs = null;
-    //Connection c = Server.getPhylon();
-    DB db = new DB();
-    Connection c = db.RCPTPhylonA();
+    Connection c = Server.getPhylon();
+//    DB db = new DB();
+//    Connection c = db.RCPTPhylonA();
     
     
     public int getProveedor() {

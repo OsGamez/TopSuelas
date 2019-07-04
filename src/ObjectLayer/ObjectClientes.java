@@ -16,16 +16,16 @@ import javax.swing.JOptionPane;
 
 public class ObjectClientes {
 
-//    Connection c = Server.getCobranza();
-//    Connection rc = Server.getRcobranza();
-    DB db = new DB();
-    Connection c = db.Cobranza();
-    Connection rc = db.Rcobranza();
+    Connection c = Server.getCobranza();
+    Connection rc = Server.getRcobranza();
+//    DB db = new DB();
+//    Connection c = db.Cobranza();
+//    Connection rc = db.Rcobranza();
     PreparedStatement st = null;
     Statement sta = null;
     PreparedStatement copy = null;
     ResultSet rs = null;
-    
+
     public boolean clientesAdd(Cliente cliente) {
         try {
             c.setAutoCommit(false);
@@ -214,6 +214,108 @@ public class ObjectClientes {
         return listaClientes;
     }
 
+    public ArrayList<Cliente> clienteGetByNombre(String filtro) {
+        ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+        try {
+            st = c.prepareStatement("SELECT  c.Id_Cliente,c.NumCliente,c.Nombre,c.Codigo,c.CP,c.Colonia,c.Calle,"
+                    + "c.NumeroCalle,c.UsoCfdi,c.Email,c.Observaciones,c.RFC,c.Telefono,c.Telefono2,c.Telefono3,\n"
+                    + "c.Cuenta,c.DiasCredito,c.Contacto,c.FormaPago,c.MetodoPago,\n"
+                    + "a.Descripcion as Agente ,z.Descripcion as Zona,p.Descripcion as Pais,\n"
+                    + "e.Descripcion as Estado,cd.Descripcion as Ciudad,b.Descripcion as Banco ,c.Id_Agente, c.Id_Banco,\n"
+                    + "c.Id_Ciudad, c.Id_Estado,c.Id_Pais, c.Id_Zona,c.Serie\n"
+                    + "from Clientes c INNER JOIN Agentes a on c.Id_Agente = a.Id_agente\n"
+                    + "INNER JOIN Zonas z on c.Id_Zona = z.Id_Zona \n"
+                    + "INNER JOIN Paises p on c.Id_Pais = p.Id_Pais\n"
+                    + "INNER JOIN Estados e on c.Id_Estado = e.Id_Estado\n"
+                    + "INNER JOIN Ciudades cd on c.Id_Ciudad = cd.Id_Ciudad\n"
+                    + "INNER JOIN Bancos b on c.Id_Banco = b.Id_Banco WHERE c.Nombre LIKE'%" + filtro + "%' and c.Activo = 1 ORDER BY c.Nombre");
+
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                Cliente cliente = new Cliente();
+                cliente.setId_Cliente(rs.getInt("Id_Cliente"));
+                cliente.setNombre(rs.getString("Nombre"));
+                cliente.setDiasCredito(rs.getInt("DiasCredito"));
+                cliente.setContacto(rs.getString("Contacto"));
+                cliente.setCodigo(rs.getString("Codigo"));
+                cliente.setColonia(rs.getString("Colonia"));
+                cliente.setCalle(rs.getString("Calle"));
+                cliente.setNumeroCalle(rs.getString("NumeroCalle"));
+                cliente.setCP(rs.getString("CP"));
+                cliente.setObservaciones(rs.getString("Observaciones"));
+                cliente.setId_Agente(rs.getInt("Id_Agente"));
+                cliente.setId_Zona(rs.getInt("Id_Zona"));
+                cliente.setId_Pais(rs.getInt("Id_Pais"));
+                cliente.setId_Estado(rs.getInt("Id_Estado"));
+                cliente.setId_Ciudad(rs.getInt("Id_Ciudad"));
+                cliente.setId_Banco(rs.getInt("Id_Banco"));
+                cliente.setAgente(rs.getString("Agente"));
+                cliente.setZona(rs.getString("Zona"));
+                cliente.setPais(rs.getString("Pais"));
+                cliente.setEstado(rs.getString("Estado"));
+                cliente.setCiudad(rs.getString("Ciudad"));
+                cliente.setSerie(rs.getString("Serie"));
+                listaClientes.add(cliente);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listaClientes;
+    }
+
+    public ArrayList<Cliente> clienteGetByRz(String filtro) {
+        ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+        try {
+            st = c.prepareStatement("SELECT c.Id_Cliente,c.Nombre,c.RazonSocial,c.CP,c.Colonia,c.Calle,"
+                    + "c.NumeroCalle,c.Observaciones,\n"
+                    + "c.DiasCredito,c.Contacto,\n"
+                    + "a.Descripcion as Agente ,z.Descripcion as Zona,p.Descripcion as Pais,\n"
+                    + "e.Descripcion as Estado,cd.Descripcion as Ciudad,b.Descripcion as Banco ,c.Id_Agente, c.Id_Banco,\n"
+                    + "c.Id_Ciudad, c.Id_Estado,c.Id_Pais, c.Id_Zona,c.Serie\n"
+                    + "from Clientes c INNER JOIN Agentes a on c.Id_Agente = a.Id_agente\n"
+                    + "INNER JOIN Zonas z on c.Id_Zona = z.Id_Zona \n"
+                    + "INNER JOIN Paises p on c.Id_Pais = p.Id_Pais\n"
+                    + "INNER JOIN Estados e on c.Id_Estado = e.Id_Estado\n"
+                    + "INNER JOIN Ciudades cd on c.Id_Ciudad = cd.Id_Ciudad\n"
+                    + "INNER JOIN Bancos b on c.Id_Banco = b.Id_Banco WHERE (c.Nombre LIKE'%" + filtro + "%' or c.RazonSocial LIKE'%" + filtro + "%' ) and c.Activo = 1 ORDER BY c.Nombre");
+
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                Cliente cliente = new Cliente();
+                cliente.setId_Cliente(rs.getInt("Id_Cliente"));
+                cliente.setNombre(rs.getString("Nombre"));
+                cliente.setRazonSocial(rs.getString("RazonSocial"));
+                cliente.setCP(rs.getString("CP"));
+                cliente.setColonia(rs.getString("Colonia"));
+                cliente.setCalle(rs.getString("Calle"));
+                cliente.setNumeroCalle(rs.getString("NumeroCalle"));
+                cliente.setObservaciones(rs.getString("Observaciones"));
+                cliente.setDiasCredito(rs.getInt("DiasCredito"));
+                cliente.setContacto(rs.getString("Contacto"));
+                cliente.setAgente(rs.getString("Agente"));
+                cliente.setZona(rs.getString("Zona"));
+                cliente.setPais(rs.getString("Pais"));
+                cliente.setEstado(rs.getString("Estado"));
+                cliente.setCiudad(rs.getString("Ciudad"));
+                cliente.setBanco(rs.getString("Banco"));
+                cliente.setSerie(rs.getString("Serie"));
+                cliente.setId_Agente(rs.getInt("Id_Agente"));
+                cliente.setId_Zona(rs.getInt("Id_Zona"));
+                cliente.setId_Pais(rs.getInt("Id_Pais"));
+                cliente.setId_Estado(rs.getInt("Id_Estado"));
+                cliente.setId_Ciudad(rs.getInt("Id_Ciudad"));
+                cliente.setId_Banco(rs.getInt("Id_Banco"));
+                
+                listaClientes.add(cliente);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listaClientes;
+    }
+
     public ArrayList<Cliente> clienteSearch(String filtro) {
         ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
         try {
@@ -314,7 +416,7 @@ public class ObjectClientes {
         }
         return listaC;
     }
-    
+
     public ArrayList<Cliente> getClientesR() {
         ArrayList<Cliente> listaC = new ArrayList<Cliente>();
         try {
@@ -471,7 +573,7 @@ public class ObjectClientes {
         }
         return listaClientes;
     }
-    
+
     public ArrayList<Cliente> clienteGetByIDR(int filtro) {
         ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
         try {

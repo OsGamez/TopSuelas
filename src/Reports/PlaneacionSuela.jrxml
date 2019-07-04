@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="41199073-c253-415d-9c7e-6d2cc89a4c2c">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="752" pageHeight="572" orientation="Landscape" columnWidth="752" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="41199073-c253-415d-9c7e-6d2cc89a4c2c">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -26,7 +26,7 @@ GROUP BY dp.Pares,p.Fecha_Entrega,l.Descripcion]]>
 			<staticText>
 				<reportElement mode="Transparent" x="0" y="0" width="35" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="196e7fd3-74ac-4ef7-acff-10c8447c2e4d"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="6" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[MODELO]]></text>
@@ -37,9 +37,9 @@ GROUP BY dp.Pares,p.Fecha_Entrega,l.Descripcion]]>
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="17">
+		<band height="13">
 			<textField>
-				<reportElement mode="Transparent" x="0" y="3" width="91" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="3050ac5f-55a3-4bbc-b3ce-4be82270a259"/>
+				<reportElement mode="Transparent" x="0" y="3" width="91" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="3050ac5f-55a3-4bbc-b3ce-4be82270a259"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -47,7 +47,7 @@ GROUP BY dp.Pares,p.Fecha_Entrega,l.Descripcion]]>
 				<textFieldExpression><![CDATA[$F{Modelo}]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="-20" y="-1" width="118" height="12" uuid="eb785f97-925d-4315-b57d-0b2ac5de2ece"/>
+				<reportElement x="28" y="12" width="118" height="0" uuid="eb785f97-925d-4315-b57d-0b2ac5de2ece"/>
 				<subreportParameter name="Modelo">
 					<subreportParameterExpression><![CDATA[$F{Modelo}]]></subreportParameterExpression>
 				</subreportParameter>

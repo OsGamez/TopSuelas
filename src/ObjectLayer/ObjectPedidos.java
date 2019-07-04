@@ -13,11 +13,11 @@ import java.util.ArrayList;
 
 public class ObjectPedidos {
 
-//    Connection c = Server.getRpt();
-//    Connection pa = Server.getRcpt();
-    DB db = new DB();
-    Connection c = db.RPTPhylon();
-    Connection pa = db.RCPTPhylonA();
+    Connection c = Server.getRpt();
+    Connection pa = Server.getRcpt();
+//    DB db = new DB();
+//    Connection c = db.RPTPhylon();
+//    Connection pa = db.RCPTPhylonA();
 
     PreparedStatement st, dp = null;
     ResultSet rs, ra = null;
@@ -371,16 +371,16 @@ public class ObjectPedidos {
         return false;
     }
 
-    public ArrayList<Pedido> pedidoGetByID(String filtro) {
+    public ArrayList<Pedido> pedidoGetByID(String filtro, String Serie) {
         ArrayList<Pedido> listaPedido = new ArrayList<Pedido>();
         try {
-            dp = pa.prepareStatement("Select p.Npedido,p.NpedidoCl,p.OrdenCompra,pd.Renglon,c.Id_Cliente,c.RazonSocial,c.Calle,c.CP,c.Colonia,cd.Descripcion as Ciudad,\n"
+            dp = pa.prepareStatement("Select p.Npedido,p.NpedidoCl,p.OrdenCompra,pd.Renglon,c.Id_Cliente,c.RazonSocial,c.Nombre,c.Calle,c.CP,c.Colonia,cd.Descripcion as Ciudad,\n"
                     + "e.Descripcion as Estado,ps.Descripcion as Pais,c.DiasCredito,a.Id_Agente as Agente,c.Observaciones\n"
                     + ",p.TotalPares,p.CostoTotal,\n"
                     + "pd.Importe,p.Fecha_Pedido,p.Fecha_Captura,p.Fecha_Entrega,p.Fecha_Recibido,pd.Pares,\n"
                     + "p.Serie,pd.Estatus,prod.Id_Producto,prod.Descripcion as Suela,pd.Corrida,cl.Descripcion as Color,\n"
                     + "pd.Precio,\n"
-                    + "pd.C1,pd.C2,pd.C3,pd.C4,pd.C5,pd.C6,pd.C7,pd.C8,pd.C9,pd.C10,pd.C11,pd.C12,pd.CSurt1,pd.CSurt2,pd.CSurt3,pd.CSurt4,pd.CSurt5,pd.CSurt6 \n"
+                    + "pd.C1,pd.C2,pd.C3,pd.C4,pd.C5,pd.C6,pd.C7,pd.C8,pd.C9,pd.C10,pd.C11,pd.C12\n"
                     + "from Pedidos p inner join Dpedido pd\n"
                     + "on p.Npedido = pd.Npedido \n"
                     + "inner join  CobranzaPhy.dbo.Clientes as c on p.Id_Cliente = c.Id_Cliente\n"
@@ -390,9 +390,10 @@ public class ObjectPedidos {
                     + "inner join CobranzaPhy.dbo.Paises as ps on c.Id_Pais = ps.Id_Pais\n"
                     + "inner join ProduccionPhy.dbo.Producto as prod on pd.Id_Producto = prod.Id_Producto\n"
                     + "inner join ProduccionPhy.dbo.Color as cl on prod.Id_Color = cl.Id_Color\n"
-                    + "where p.Npedido = ?");
+                    + "where p.Npedido = ?  and p.Serie = ?");
 
             dp.setString(1, filtro);
+            dp.setString(2, Serie);
             ra = dp.executeQuery();
             while (ra.next()) {
                 Pedido p = new Pedido();
@@ -401,6 +402,7 @@ public class ObjectPedidos {
                 p.setRenglon(ra.getInt("Renglon"));
                 p.setNpedidoCl(ra.getString("NpedidoCl"));
                 p.setRsocial(ra.getString("RazonSocial"));
+                p.setNombre(ra.getString("Nombre"));
                 p.setOrdenCompra(ra.getString("OrdenCompra"));
                 p.setCalle(ra.getString("Calle"));
                 p.setCp(ra.getString("CP"));
@@ -431,18 +433,12 @@ public class ObjectPedidos {
                 p.setC4(ra.getInt("C4"));
                 p.setC5(ra.getInt("C5"));
                 p.setC6(ra.getInt("C6"));
-                p.setC6(ra.getInt("C7"));
-                p.setC6(ra.getInt("C8"));
-                p.setC6(ra.getInt("C9"));
-                p.setC6(ra.getInt("C10"));
-                p.setC6(ra.getInt("C11"));
-                p.setC6(ra.getInt("C12"));
-                p.setCSurt1(ra.getInt("CSurt1"));
-                p.setCSurt2(ra.getInt("CSurt2"));
-                p.setCSurt3(ra.getInt("CSurt3"));
-                p.setCSurt4(ra.getInt("CSurt4"));
-                p.setCSurt5(ra.getInt("CSurt5"));
-                p.setCSurt6(ra.getInt("CSurt6"));
+                p.setC7(ra.getInt("C7"));
+                p.setC8(ra.getInt("C8"));
+                p.setC9(ra.getInt("C9"));
+                p.setC10(ra.getInt("C10"));
+                p.setC11(ra.getInt("C11"));
+                p.setC12(ra.getInt("C12"));
                 p.setPrecio(ra.getDouble("Precio"));
                 listaPedido.add(p);
             }
@@ -452,25 +448,16 @@ public class ObjectPedidos {
         return listaPedido;
     }
 
-    public ArrayList<Pedido> pedidoGetByIDA(String filtro, String filtro2) {
+    public ArrayList<Pedido> pedidoGetByReporte(String filtro) {
         ArrayList<Pedido> listaPedido = new ArrayList<Pedido>();
         try {
-            st = c.prepareStatement("Select pd.Id_Detalle \n"
-                    + "from  Dpedido p\n"
-                    + "inner join PtPhylon.dbo.Dpedido pd\n"
-                    + "on p.Npedido = pd.Npedido\n"
-                    + "where pd.Serie = ? and pd.Npedido = ?\n"
-                    + "group by pd.Id_Detalle");
-            st.setString(1, filtro);
-            st.setString(2, filtro2);
-            rs = st.executeQuery();
-            while (rs.next()) {
-                //String Np = rs.getString("Npedido");
-                int Detalle = rs.getInt("Id_Detalle");
+            dp = pa.prepareStatement("select * from Pedidos where Npedido = ?");
+            dp.setString(1, filtro);
+         
+            ra = dp.executeQuery();
+            while (ra.next()) {
                 Pedido p = new Pedido();
-                //p.setNpedido(Np);
-                // p.setId_Detalle(Detalle);
-
+                p.setNpedido(ra.getString("Npedido"));
                 listaPedido.add(p);
             }
         } catch (SQLException ex) {
@@ -676,7 +663,6 @@ public class ObjectPedidos {
                         dp.setDouble(37, dt.getPrecio());
                         dp.executeUpdate();
                     }
-
                 }
             }
             pa.commit();
@@ -685,8 +671,9 @@ public class ObjectPedidos {
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            DB.cerrarPrep(dp);
-            DB.rollback(pa);
+            Server.cerrarPrep(dp);
+            Server.rollback(pa);
+            Server.rollback(c);
         }
         return false;
     }
@@ -708,10 +695,11 @@ public class ObjectPedidos {
                 dp.setString(3, p.getNpedido());
                 dp.executeUpdate();
                 pa.commit();
+
                 for (Dpedido dt : detalle) {
                     obj.insertDetalleA(dt);
                 }
-                pa.close();
+                dp.close();
                 return true;
             }
         } catch (SQLException ex) {
@@ -722,101 +710,53 @@ public class ObjectPedidos {
         return false;
     }
 
-    public boolean eliminarPedido(Pedido p, int id) {
-        boolean rpta = false;
-        try {
-            c.setAutoCommit(false);
-            st = c.prepareStatement("select d.Estatus,d.Npedido from RPTPhylon.dbo.Dpedido d\n"
-                    + "            inner join RPTPhylon.dbo.Pedidos p on p.Npedido = d.Npedido\n"
-                    + "            WHERE d.Renglon = ? and d.Npedido = ?\n"
-                    + "			and d.Estatus<>10");
-            st.setInt(1, id);
-            st.setString(2, p.getNpedido());
-            rs = st.executeQuery();
-            if (rs.next()) {
-                return false;
-            } else {
-                st = c.prepareStatement("UPDATE Pedidos SET TotalPares = ?,CostoTotal=? WHERE Npedido=?");
-                st.setDouble(1, p.getTotalPares());
-                st.setDouble(2, p.getCostoTotal());
-                st.setString(3, p.getNpedido());
-                rpta = st.executeUpdate() == 1 ? true : false;
-                if (rpta) {
-                    rpta = obj.eliminarDetalle(id, p.getNpedido());
-                    if (rpta) {
-                        c.commit();
-                        st.close();
-                    } else {
-                        c.rollback();
-                        st.close();
-                    }
-                } else {
-                    c.rollback();
-                    st.close();
-                }
-                st.close();
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            DB.cerrarPrep(st);
-            DB.rollback(c);
-        }
-        return rpta;
-    }
-
-    public boolean eliminarPedidoA(Pedido p, int id) {
-        boolean rpta = false;
+    public boolean eliminarPedidoA(Pedido p, int id, String Npedido) {
         try {
             pa.setAutoCommit(false);
-            dp = pa.prepareStatement("select d.Estatus,d.Npedido from RCPTPhylonA.dbo.Dpedido d\n"
-                    + "            inner join RCPTPhylonA.dbo.Pedidos p on p.Npedido = d.Npedido\n"
-                    + "            WHERE d.Renglon = ? and d.Npedido = ?\n"
-                    + "			and d.Estatus<>10");
-            dp.setInt(1, id);
-            dp.setString(2, p.getNpedido());
-            ra = dp.executeQuery();
-            if (ra.next()) {
-                return false;
-            } else {
-                dp = pa.prepareStatement("UPDATE Pedidos SET TotalPares = ?,CostoTotal=? WHERE Npedido=?");
-                dp.setDouble(1, p.getTotalPares());
-                dp.setDouble(2, p.getCostoTotal());
-                dp.setString(3, p.getNpedido());
-                rpta = dp.executeUpdate() == 1 ? true : false;
-                if (rpta) {
-                    rpta = obj.eliminarDetalleA(id, p.getNpedido());
-                    if (rpta) {
-                        rpta = eliminarPedido(p, id);
-                        if (rpta) {
-                            pa.commit();
-                            dp.close();
-                        }
-                    } else {
-                        pa.rollback();
-                        dp.close();
-                    }
+            c.setAutoCommit(false);
+            for (int i = 0; i < datos.length; i++) {
+                dp = datos[i].prepareStatement("select d.Estatus,d.Npedido from RCPTPhylonA.dbo.Dpedido d\n"
+                        + "            inner join RCPTPhylonA.dbo.Pedidos p on p.Npedido = d.Npedido\n"
+                        + "            WHERE d.Renglon = ? and d.Npedido = ?\n"
+                        + "			and d.Estatus<>10");
+                dp.setInt(1, id);
+                dp.setString(2, p.getNpedido());
+                ra = dp.executeQuery();
+                if (ra.next()) {
+                    return false;
                 } else {
-                    pa.rollback();
-                    dp.close();
+                    dp = datos[i].prepareStatement("UPDATE Pedidos SET TotalPares = ?,CostoTotal=? WHERE Npedido=?");
+                    dp.setDouble(1, p.getTotalPares());
+                    dp.setDouble(2, p.getCostoTotal());
+                    dp.setString(3, p.getNpedido());
+                    dp.executeUpdate();
+
+                    dp = datos[i].prepareStatement("DELETE FROM Dpedido WHERE Renglon=? AND Npedido=?");
+                    dp.setInt(1, id);
+                    dp.setString(2, Npedido);
+                    dp.executeUpdate();
                 }
-                dp.close();
             }
+            pa.commit();
+            c.commit();
+            dp.close();
+            return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
             DB.cerrarPrep(dp);
             DB.rollback(pa);
         }
-        return rpta;
+        return false;
     }
 
-    public boolean eliminarPedidoB(Pedido p, int id) {
+    public boolean eliminarPedidoB(Pedido p, int id, String Npedido) {
         boolean rpta = false;
         try {
             pa.setAutoCommit(false);
             dp = pa.prepareStatement("select d.Estatus,d.Npedido from RCPTPhylonA.dbo.Dpedido d\n"
-                    + "            inner join RCPTPhylonA.dbo.Pedidos p on p.Npedido = d.Npedido\n"
-                    + "            WHERE d.Renglon = ? and d.Npedido = ?\n"
-                    + "			and d.Estatus<>10");
+                    + "inner join RCPTPhylonA.dbo.Pedidos p on p.Npedido = d.Npedido\n"
+                    + "WHERE d.Renglon = ? and d.Npedido = ?\n"
+                    + "and d.Estatus<>10");
             dp.setInt(1, id);
             dp.setString(2, p.getNpedido());
             ra = dp.executeQuery();
@@ -827,21 +767,11 @@ public class ObjectPedidos {
                 dp.setDouble(1, p.getTotalPares());
                 dp.setDouble(2, p.getCostoTotal());
                 dp.setString(3, p.getNpedido());
-                rpta = dp.executeUpdate() == 1 ? true : false;
-                if (rpta) {
-                    rpta = obj.eliminarDetalleA(id, p.getNpedido());
-                    if (rpta) {
-                        pa.commit();
-                        dp.close();
-                    } else {
-                        pa.rollback();
-                        dp.close();
-                    }
-                } else {
-                    pa.rollback();
-                    dp.close();
-                }
+                dp.executeUpdate();
+                pa.commit();
+                obj.eliminarDetalleA(id, Npedido);
                 dp.close();
+                return true;
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -882,17 +812,33 @@ public class ObjectPedidos {
             return 1;
         }
     }
-
-    public ArrayList<Parametro> getPedidoActual() {
-        ArrayList<Parametro> listaP = new ArrayList<Parametro>();
+    
+    public int buscarPedido(int Num){
         try {
-            dp = pa.prepareStatement("SELECT  MAX(CONVERT(INT,Npedido)) as Pedido FROM Parametros");
+            st = c.prepareStatement("SELECT COUNT (CONVERT(INT,Npedido)) FROM Pedidos  WHERE Npedido =? ");
+            st.setInt(1, Num);
+
+            rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+            return 1;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return 1;
+        }
+    }
+
+    public ArrayList<Pedido> getPedidoActual() {
+        ArrayList<Pedido> listaP = new ArrayList<Pedido>();
+        try {
+            dp = pa.prepareStatement("SELECT  MAX(CONVERT(INT,Npedido)) as Pedido FROM Pedidos");
 
             rs = dp.executeQuery();
 
             while (rs.next()) {
                 int Np = rs.getInt("Pedido");
-                Parametro par = new Parametro();
+                Pedido par = new Pedido();
                 par.setNpedido(String.valueOf(Np));
 
                 listaP.add(par);
@@ -920,41 +866,32 @@ public class ObjectPedidos {
     }
 
     public boolean cancelarPedidoA(String Npedido) {
-        boolean rpta = false;
         try {
             pa.setAutoCommit(false);
-            dp = pa.prepareStatement("SELECT Estatus,Npedido FROM Pedidos WHERE Npedido = ? AND Estatus<>10");
-            dp.setString(1, Npedido);
-            rs = dp.executeQuery();
-
-            if (rs.next()) {
-                return false;
-            } else {
-                dp = pa.prepareStatement("DELETE Pedidos WHERE Npedido = ?");
+            c.setAutoCommit(false);
+            for (int i = 0; i < datos.length; i++) {
+                dp = datos[i].prepareStatement("SELECT Estatus,Npedido FROM Pedidos WHERE Npedido = ? AND Estatus<>10");
                 dp.setString(1, Npedido);
-                rpta = dp.executeUpdate() == 1 ? true : false;
-                if (rpta) {
-                    rpta = cancelarPedido(Npedido);
-                    if (rpta) {
-                        pa.commit();
-                        dp.close();
-                    } else {
-                        pa.rollback();
-                        dp.close();
-                    }
-                } else {
-                    pa.rollback();
-                    dp.close();
-                }
-                dp.close();
-            }
+                rs = dp.executeQuery();
 
+                if (rs.next()) {
+                    return false;
+                } else {
+                    dp = datos[i].prepareStatement("DELETE Pedidos WHERE Npedido = ?");
+                    dp.setString(1, Npedido);
+                    dp.executeUpdate();
+                }
+            }
+            pa.commit();
+            c.commit();
+            dp.close();
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
             DB.cerrarPrep(dp);
             DB.rollback(pa);
         }
-        return rpta;
+        return false;
     }
 
     public boolean cancelarPedido(String Npedido) {
@@ -991,7 +928,6 @@ public class ObjectPedidos {
     }
 
     public boolean cancelarPedidoB(String Npedido) {
-        boolean rpta = false;
         try {
             pa.setAutoCommit(false);
             dp = pa.prepareStatement("SELECT Estatus,Npedido FROM Pedidos WHERE Npedido = ? AND Estatus<>10");
@@ -1003,15 +939,10 @@ public class ObjectPedidos {
             } else {
                 dp = pa.prepareStatement("DELETE Pedidos WHERE Npedido = ?");
                 dp.setString(1, Npedido);
-                rpta = dp.executeUpdate() == 1 ? true : false;
-                if (rpta) {
-                    pa.commit();
-                    dp.close();
-                } else {
-                    pa.rollback();
-                    dp.close();
-                }
+                dp.executeUpdate();
+                pa.commit();
                 dp.close();
+                return true;
             }
 
         } catch (Exception e) {
@@ -1019,7 +950,7 @@ public class ObjectPedidos {
             DB.cerrarPrep(dp);
             DB.rollback(pa);
         }
-        return rpta;
+        return false;
     }
 
     public ArrayList<Parametro> getParametro() {

@@ -14,9 +14,9 @@ import java.util.Vector;
 public class PtProducto {
 
     PreparedStatement st = null;
-//    Connection c = Server.getServer();
-    DB db = new DB();
-    Connection c = db.Server();
+    Connection c = Server.getServer();
+//    DB db = new DB();
+//    Connection c = db.Server();
     ResultSet rs = null;
     Statement sta = null;
 

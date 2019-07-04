@@ -14,9 +14,9 @@ import java.util.logging.Logger;
 public class ObjectLineas {
 
     PreparedStatement st = null;
-//    Connection c = Server.getProduccion();
-    DB db = new DB();
-    Connection c = db.Produccion();
+    Connection c = Server.getProduccion();
+//    DB db = new DB();
+//    Connection c = db.Produccion();
     ResultSet rs = null;
 
     public boolean lineaAdd(String Descripcion, boolean Activo) {

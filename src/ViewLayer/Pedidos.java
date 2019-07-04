@@ -68,7 +68,6 @@ public class Pedidos extends javax.swing.JInternalFrame {
         }
 
     };
-    //Connection c = Server.getRpt();
     int Id_Producto;
     int cantidad, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12;
     String ct1 = "0", ct2 = "0", ct3 = "0", ct4 = "0", ct5 = "0", ct6 = "0", ct7 = "0", ct8 = "0", ct9 = "0", ct10 = "0", ct11 = "0", ct12 = "0";
@@ -1005,9 +1004,9 @@ public class Pedidos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbSalirActionPerformed
     private void CargarPedido() {
         int num = 1;
-        ArrayList<Parametro> listP = pedido.getPedidoActual();
+        ArrayList<Pedido> listP = pedido.getPedidoActual();
         if (listP.size() > 0) {
-            for (Parametro par : listP) {
+            for (Pedido par : listP) {
                 int Np = Integer.parseInt(par.getNpedido());
                 int var = num + Np;
                 JtNpedido.setText(String.valueOf(var));
@@ -1026,8 +1025,8 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
             ArrayList<Cliente> lista = obj.clienteGetByID(client);
 
-            if (Serie.equals("A")) {
-                for (Cliente cn : lista) {
+            for (Cliente cn : lista) {
+                if (Serie.equals("A")) {
                     JbCliente.setText(cn.getRazonSocial());
                     JbCalle.setText(cn.getCalle());
                     JbColonia.setText(cn.getColonia());
@@ -1038,9 +1037,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                     JbPlazo.setText("Plazo" + " " + String.valueOf(cn.getDiasCredito()) + " " + "Días");
                     JbAgente.setText("Agente" + " " + String.valueOf(cn.getId_Agente()));
                     JtCobranza.setText(cn.getObservaciones());
-                }
-            } else if (Serie.equals("B")) {
-                for (Cliente cn : lista) {
+                } else if (Serie.equals("B")) {
                     JbCliente.setText(cn.getNombre());
                     JbCalle.setText(cn.getCalle());
                     JbColonia.setText(cn.getColonia());
@@ -1832,223 +1829,223 @@ public class Pedidos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbAgregarActionPerformed
 
     private void AgregarDetalle() {
-        ArrayList<Dpedido> detalles = new ArrayList<Dpedido>();
-        ArrayList<Pedido> list = pedido.pedidoGetByID(JtNpedido.getText());
-        if (JtCant.getText().isEmpty() || JcSuela.getSelectedIndex() == 0) {
-            JtCant.requestFocus();
-            JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
-        } else if (list.size() > 0) {
-            int index = modelPedido.getRowCount() - 1;
-            String var = JtPedido.getValueAt(index, 1).toString();
-            cc = Integer.parseInt(var) + 1;
-            Producto prod = (Producto) JcSuela.getSelectedItem();
-            double precioa = Double.parseDouble(JtprecioA.getText());
-            Double importe = Double.parseDouble(JtCant.getText()) * precioa;
-            DecimalFormat impt = new DecimalFormat("#.00");
-            String Desc = prod.getDescripcion();
-            String Color = JtColor.getText();
-            String Corrida = JtCorrida.getText();
-            this.Id_Producto = prod.getId_Producto();
-            String Npedido = JtNpedido.getText();
-
-            Date Captura = JdCaptura.getDate();
-            long c = Captura.getTime();
-            java.sql.Date fechaCap = new java.sql.Date(c);
-            Date Entrega = JdEntrega.getDate();
-            long e = Entrega.getTime();
-            java.sql.Date fechaEn = new java.sql.Date(e);
-            Date Pedido = JdPedido.getDate();
-            long p = Pedido.getTime();
-            java.sql.Date fechaPed = new java.sql.Date(p);
-            Date Recibido = JdRecibido.getDate();
-            long r = Recibido.getTime();
-            java.sql.Date fechaRec = new java.sql.Date(r);
-            String Serie = JbSerie.getText();
-
-            String Cantidad = JtCant.getText();
-            int Pares = Integer.parseInt(Cantidad);
-            String pre = JtprecioA.getText();
-            Double precio = Double.parseDouble(pre);
-            int cr1 = Integer.parseInt(JtC1.getText());
-            int cr2 = Integer.parseInt(JtC2.getText());
-            int cr3 = Integer.parseInt(JtC3.getText());
-            int cr4 = Integer.parseInt(JtC4.getText());
-            int cr5 = Integer.parseInt(JtC5.getText());
-            int cr6 = Integer.parseInt(JtC6.getText());
-            int cr7 = Integer.parseInt(JtC7.getText());
-            int cr8 = Integer.parseInt(JtC8.getText());
-            int cr9 = Integer.parseInt(JtC9.getText());
-            int cr10 = Integer.parseInt(JtC10.getText());
-            int cr11 = Integer.parseInt(JtC11.getText());
-            int cr12 = Integer.parseInt(JtC12.getText());
-
-            boolean aviso = false;
-            String datos[] = new String[21];
-            datos[0] = String.valueOf(Id_Producto);
-            datos[1] = String.valueOf(cc);
-            datos[2] = Desc;
-            datos[3] = Color;
-            datos[4] = Corrida;
-            datos[5] = String.valueOf(cr1);
-            datos[6] = String.valueOf(cr2);
-            datos[7] = String.valueOf(cr3);
-            datos[8] = String.valueOf(cr4);
-            datos[9] = String.valueOf(cr5);
-            datos[10] = String.valueOf(cr6);
-            datos[11] = String.valueOf(cr7);
-            datos[12] = String.valueOf(cr8);
-            datos[13] = String.valueOf(cr9);
-            datos[14] = String.valueOf(cr10);
-            datos[15] = String.valueOf(cr11);
-            datos[16] = String.valueOf(cr12);
-            datos[17] = Cantidad;
-            datos[18] = precioA.format(precioa);
-            datos[19] = impt.format(importe);
-            datos[20] = Est;
-            for (int i = 0; i < JtPedido.getRowCount(); i++) {
-                if (JtPedido.getValueAt(i, 0).equals(String.valueOf(Id_Producto))) {
-                    aviso = true;
-                    String cant = JtCant.getText();
-                    String ct = JtPedido.getValueAt(i, 17).toString();
-                    int canti = Integer.parseInt(cant) + Integer.parseInt(ct);
-                    String cn1 = JtC1.getText();
-                    String corrida = JtPedido.getValueAt(i, 5).toString();
-                    int cor = Integer.parseInt(cn1) + Integer.parseInt(corrida);
-                    String cn2 = JtC2.getText();
-                    String corrida2 = JtPedido.getValueAt(i, 6).toString();
-                    int cor2 = Integer.parseInt(cn2) + Integer.parseInt(corrida2);
-                    String cn3 = JtC3.getText();
-                    String corrida3 = JtPedido.getValueAt(i, 7).toString();
-                    int cor3 = Integer.parseInt(cn3) + Integer.parseInt(corrida3);
-                    String cn4 = JtC4.getText();
-                    String corrida4 = JtPedido.getValueAt(i, 8).toString();
-                    int cor4 = Integer.parseInt(cn4) + Integer.parseInt(corrida4);
-                    String cn5 = JtC5.getText();
-                    String corrida5 = JtPedido.getValueAt(i, 9).toString();
-                    int cor5 = Integer.parseInt(cn5) + Integer.parseInt(corrida5);
-                    String cn6 = JtC6.getText();
-                    String corrida6 = JtPedido.getValueAt(i, 10).toString();
-                    int cor6 = Integer.parseInt(cn6) + Integer.parseInt(corrida6);
-                    String cn7 = JtC7.getText();
-                    String corrida7 = JtPedido.getValueAt(i, 11).toString();
-                    int cor7 = Integer.parseInt(cn7) + Integer.parseInt(corrida7);
-                    String cn8 = JtC8.getText();
-                    String corrida8 = JtPedido.getValueAt(i, 12).toString();
-                    int cor8 = Integer.parseInt(cn8) + Integer.parseInt(corrida8);
-                    String cn9 = JtC9.getText();
-                    String corrida9 = JtPedido.getValueAt(i, 13).toString();
-                    int cor9 = Integer.parseInt(cn9) + Integer.parseInt(corrida9);
-                    String cn10 = JtC10.getText();
-                    String corrida10 = JtPedido.getValueAt(i, 14).toString();
-                    int cor10 = Integer.parseInt(cn10) + Integer.parseInt(corrida10);
-                    String cn11 = JtC11.getText();
-                    String corrida11 = JtPedido.getValueAt(i, 15).toString();
-                    int cor11 = Integer.parseInt(cn11) + Integer.parseInt(corrida11);
-                    String cn12 = JtC12.getText();
-                    String corrida12 = JtPedido.getValueAt(i, 16).toString();
-                    int cor12 = Integer.parseInt(cn12) + Integer.parseInt(corrida12);
-
-                    Double precios = Double.parseDouble(JtprecioA.getText());
-                    double impor = Integer.valueOf(canti) * precio;
-                    modelPedido.setValueAt(String.valueOf(cor), i, 5);
-                    modelPedido.setValueAt(String.valueOf(cor2), i, 6);
-                    modelPedido.setValueAt(String.valueOf(cor3), i, 7);
-                    modelPedido.setValueAt(String.valueOf(cor4), i, 8);
-                    modelPedido.setValueAt(String.valueOf(cor5), i, 9);
-                    modelPedido.setValueAt(String.valueOf(cor6), i, 10);
-                    modelPedido.setValueAt(String.valueOf(cor7), i, 11);
-                    modelPedido.setValueAt(String.valueOf(cor8), i, 12);
-                    modelPedido.setValueAt(String.valueOf(cor9), i, 13);
-                    modelPedido.setValueAt(String.valueOf(cor10), i, 14);
-                    modelPedido.setValueAt(String.valueOf(cor11), i, 15);
-                    modelPedido.setValueAt(String.valueOf(cor12), i, 16);
-                    modelPedido.setValueAt(String.valueOf(canti), i, 17);
-                    modelPedido.setValueAt(precioA.format(precios), i, 18);
-                    modelPedido.setValueAt(impt.format(impor), i, 19);
-                    Limpiar();
-                    OcultarCampos();
-                }
-            }
-            if (aviso == false) {
-                modelPedido.addRow(datos);
-
-                String costo = lblTotal.getText();
-                double costoPedido = Double.parseDouble(costo);
-                String par = lblPares.getText();
-                int TotalPares = Integer.parseInt(par);
-                Pedido pd = new Pedido();
-                pd.setNpedido(Npedido);
-                pd.setTotalPares(TotalPares);
-                pd.setCostoTotal(costoPedido);
-
-                Dpedido Dt = new Dpedido();
-                Dt.setRenglon(cc);
-                Dt.setNpedido(Npedido);
-                Dt.setId_Cliente(client);
-                Dt.setFecha_Pedido(fechaPed);
-                Dt.setFecha_Entrega(fechaEn);
-                Dt.setId_Producto(Id_Producto);
-                Dt.setCorrida(Corrida);
-                Dt.setC1(cr1);
-                Dt.setC2(cr2);
-                Dt.setC3(cr3);
-                Dt.setC4(cr4);
-                Dt.setC5(cr5);
-                Dt.setC6(cr6);
-                Dt.setC7(cr7);
-                Dt.setC8(cr8);
-                Dt.setC9(cr9);
-                Dt.setC10(cr10);
-                Dt.setC11(cr11);
-                Dt.setC12(cr12);
-                Dt.setPares(Pares);
-                Dt.setImporte(importe);
-                Dt.setSerie(Serie);
-                Dt.setCSurt1(0);
-                Dt.setCSurt2(0);
-                Dt.setCSurt3(0);
-                Dt.setCSurt4(0);
-                Dt.setCSurt5(0);
-                Dt.setCSurt6(0);
-                Dt.setCSurt7(0);
-                Dt.setCSurt8(0);
-                Dt.setCSurt9(0);
-                Dt.setCSurt10(0);
-                Dt.setCSurt11(0);
-                Dt.setCSurt12(0);
-                Dt.setParesSurt(0);
-                Dt.setStatus(Est);
-                Dt.setPrecio(precio);
-                detalles.add(Dt);
-                if (JbS.getText().equals("A")) {
-                    if (pedido.agregarPedidoA(pd, detalles, Npedido)) {
-                        JOptionPane.showMessageDialog(this, "Se agrego la suela al pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                        Limpiar();
-                        OcultarCampos();
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Este pedido no se puede actualizar!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                        Limpiar();
-                        OcultarCampos();
-                        CleanTable();
-                        CargarDetalle();
-                    }
-                } else {
-                    if (pedido.agregarPedidoAPhy(pd, detalles, Npedido)) {
-                        JOptionPane.showMessageDialog(this, "Se agrego la suela al pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                        Limpiar();
-                        OcultarCampos();
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Este pedido no se puede actualizar!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                        Limpiar();
-                        OcultarCampos();
-                        CleanTable();
-                        CargarDetalle();
-                    }
-                }
-            }
-        } else {
-            AddItem();
-        }
+//        ArrayList<Dpedido> detalles = new ArrayList<Dpedido>();
+//        ArrayList<Pedido> list = pedido.pedidoGetByID(JtNpedido.getText());
+//        if (JtCant.getText().isEmpty() || JcSuela.getSelectedIndex() == 0) {
+//            JtCant.requestFocus();
+//            JOptionPane.showMessageDialog(null, "Faltan datos de ingresar");
+//        } else if (list.size() > 0) {
+//            int index = modelPedido.getRowCount() - 1;
+//            String var = JtPedido.getValueAt(index, 1).toString();
+//            cc = Integer.parseInt(var) + 1;
+//            Producto prod = (Producto) JcSuela.getSelectedItem();
+//            double precioa = Double.parseDouble(JtprecioA.getText());
+//            Double importe = Double.parseDouble(JtCant.getText()) * precioa;
+//            DecimalFormat impt = new DecimalFormat("#.00");
+//            String Desc = prod.getDescripcion();
+//            String Color = JtColor.getText();
+//            String Corrida = JtCorrida.getText();
+//            this.Id_Producto = prod.getId_Producto();
+//            String Npedido = JtNpedido.getText();
+//
+//            Date Captura = JdCaptura.getDate();
+//            long c = Captura.getTime();
+//            java.sql.Date fechaCap = new java.sql.Date(c);
+//            Date Entrega = JdEntrega.getDate();
+//            long e = Entrega.getTime();
+//            java.sql.Date fechaEn = new java.sql.Date(e);
+//            Date Pedido = JdPedido.getDate();
+//            long p = Pedido.getTime();
+//            java.sql.Date fechaPed = new java.sql.Date(p);
+//            Date Recibido = JdRecibido.getDate();
+//            long r = Recibido.getTime();
+//            java.sql.Date fechaRec = new java.sql.Date(r);
+//            String Serie = JbSerie.getText();
+//
+//            String Cantidad = JtCant.getText();
+//            int Pares = Integer.parseInt(Cantidad);
+//            String pre = JtprecioA.getText();
+//            Double precio = Double.parseDouble(pre);
+//            int cr1 = Integer.parseInt(JtC1.getText());
+//            int cr2 = Integer.parseInt(JtC2.getText());
+//            int cr3 = Integer.parseInt(JtC3.getText());
+//            int cr4 = Integer.parseInt(JtC4.getText());
+//            int cr5 = Integer.parseInt(JtC5.getText());
+//            int cr6 = Integer.parseInt(JtC6.getText());
+//            int cr7 = Integer.parseInt(JtC7.getText());
+//            int cr8 = Integer.parseInt(JtC8.getText());
+//            int cr9 = Integer.parseInt(JtC9.getText());
+//            int cr10 = Integer.parseInt(JtC10.getText());
+//            int cr11 = Integer.parseInt(JtC11.getText());
+//            int cr12 = Integer.parseInt(JtC12.getText());
+//
+//            boolean aviso = false;
+//            String datos[] = new String[21];
+//            datos[0] = String.valueOf(Id_Producto);
+//            datos[1] = String.valueOf(cc);
+//            datos[2] = Desc;
+//            datos[3] = Color;
+//            datos[4] = Corrida;
+//            datos[5] = String.valueOf(cr1);
+//            datos[6] = String.valueOf(cr2);
+//            datos[7] = String.valueOf(cr3);
+//            datos[8] = String.valueOf(cr4);
+//            datos[9] = String.valueOf(cr5);
+//            datos[10] = String.valueOf(cr6);
+//            datos[11] = String.valueOf(cr7);
+//            datos[12] = String.valueOf(cr8);
+//            datos[13] = String.valueOf(cr9);
+//            datos[14] = String.valueOf(cr10);
+//            datos[15] = String.valueOf(cr11);
+//            datos[16] = String.valueOf(cr12);
+//            datos[17] = Cantidad;
+//            datos[18] = precioA.format(precioa);
+//            datos[19] = impt.format(importe);
+//            datos[20] = Est;
+//            for (int i = 0; i < JtPedido.getRowCount(); i++) {
+//                if (JtPedido.getValueAt(i, 0).equals(String.valueOf(Id_Producto))) {
+//                    aviso = true;
+//                    String cant = JtCant.getText();
+//                    String ct = JtPedido.getValueAt(i, 17).toString();
+//                    int canti = Integer.parseInt(cant) + Integer.parseInt(ct);
+//                    String cn1 = JtC1.getText();
+//                    String corrida = JtPedido.getValueAt(i, 5).toString();
+//                    int cor = Integer.parseInt(cn1) + Integer.parseInt(corrida);
+//                    String cn2 = JtC2.getText();
+//                    String corrida2 = JtPedido.getValueAt(i, 6).toString();
+//                    int cor2 = Integer.parseInt(cn2) + Integer.parseInt(corrida2);
+//                    String cn3 = JtC3.getText();
+//                    String corrida3 = JtPedido.getValueAt(i, 7).toString();
+//                    int cor3 = Integer.parseInt(cn3) + Integer.parseInt(corrida3);
+//                    String cn4 = JtC4.getText();
+//                    String corrida4 = JtPedido.getValueAt(i, 8).toString();
+//                    int cor4 = Integer.parseInt(cn4) + Integer.parseInt(corrida4);
+//                    String cn5 = JtC5.getText();
+//                    String corrida5 = JtPedido.getValueAt(i, 9).toString();
+//                    int cor5 = Integer.parseInt(cn5) + Integer.parseInt(corrida5);
+//                    String cn6 = JtC6.getText();
+//                    String corrida6 = JtPedido.getValueAt(i, 10).toString();
+//                    int cor6 = Integer.parseInt(cn6) + Integer.parseInt(corrida6);
+//                    String cn7 = JtC7.getText();
+//                    String corrida7 = JtPedido.getValueAt(i, 11).toString();
+//                    int cor7 = Integer.parseInt(cn7) + Integer.parseInt(corrida7);
+//                    String cn8 = JtC8.getText();
+//                    String corrida8 = JtPedido.getValueAt(i, 12).toString();
+//                    int cor8 = Integer.parseInt(cn8) + Integer.parseInt(corrida8);
+//                    String cn9 = JtC9.getText();
+//                    String corrida9 = JtPedido.getValueAt(i, 13).toString();
+//                    int cor9 = Integer.parseInt(cn9) + Integer.parseInt(corrida9);
+//                    String cn10 = JtC10.getText();
+//                    String corrida10 = JtPedido.getValueAt(i, 14).toString();
+//                    int cor10 = Integer.parseInt(cn10) + Integer.parseInt(corrida10);
+//                    String cn11 = JtC11.getText();
+//                    String corrida11 = JtPedido.getValueAt(i, 15).toString();
+//                    int cor11 = Integer.parseInt(cn11) + Integer.parseInt(corrida11);
+//                    String cn12 = JtC12.getText();
+//                    String corrida12 = JtPedido.getValueAt(i, 16).toString();
+//                    int cor12 = Integer.parseInt(cn12) + Integer.parseInt(corrida12);
+//
+//                    Double precios = Double.parseDouble(JtprecioA.getText());
+//                    double impor = Integer.valueOf(canti) * precio;
+//                    modelPedido.setValueAt(String.valueOf(cor), i, 5);
+//                    modelPedido.setValueAt(String.valueOf(cor2), i, 6);
+//                    modelPedido.setValueAt(String.valueOf(cor3), i, 7);
+//                    modelPedido.setValueAt(String.valueOf(cor4), i, 8);
+//                    modelPedido.setValueAt(String.valueOf(cor5), i, 9);
+//                    modelPedido.setValueAt(String.valueOf(cor6), i, 10);
+//                    modelPedido.setValueAt(String.valueOf(cor7), i, 11);
+//                    modelPedido.setValueAt(String.valueOf(cor8), i, 12);
+//                    modelPedido.setValueAt(String.valueOf(cor9), i, 13);
+//                    modelPedido.setValueAt(String.valueOf(cor10), i, 14);
+//                    modelPedido.setValueAt(String.valueOf(cor11), i, 15);
+//                    modelPedido.setValueAt(String.valueOf(cor12), i, 16);
+//                    modelPedido.setValueAt(String.valueOf(canti), i, 17);
+//                    modelPedido.setValueAt(precioA.format(precios), i, 18);
+//                    modelPedido.setValueAt(impt.format(impor), i, 19);
+//                    Limpiar();
+//                    OcultarCampos();
+//                }
+//            }
+//            if (aviso == false) {
+//                modelPedido.addRow(datos);
+//
+//                String costo = lblTotal.getText();
+//                double costoPedido = Double.parseDouble(costo);
+//                String par = lblPares.getText();
+//                int TotalPares = Integer.parseInt(par);
+//                Pedido pd = new Pedido();
+//                pd.setNpedido(Npedido);
+//                pd.setTotalPares(TotalPares);
+//                pd.setCostoTotal(costoPedido);
+//
+//                Dpedido Dt = new Dpedido();
+//                Dt.setRenglon(cc);
+//                Dt.setNpedido(Npedido);
+//                Dt.setId_Cliente(client);
+//                Dt.setFecha_Pedido(fechaPed);
+//                Dt.setFecha_Entrega(fechaEn);
+//                Dt.setId_Producto(Id_Producto);
+//                Dt.setCorrida(Corrida);
+//                Dt.setC1(cr1);
+//                Dt.setC2(cr2);
+//                Dt.setC3(cr3);
+//                Dt.setC4(cr4);
+//                Dt.setC5(cr5);
+//                Dt.setC6(cr6);
+//                Dt.setC7(cr7);
+//                Dt.setC8(cr8);
+//                Dt.setC9(cr9);
+//                Dt.setC10(cr10);
+//                Dt.setC11(cr11);
+//                Dt.setC12(cr12);
+//                Dt.setPares(Pares);
+//                Dt.setImporte(importe);
+//                Dt.setSerie(Serie);
+//                Dt.setCSurt1(0);
+//                Dt.setCSurt2(0);
+//                Dt.setCSurt3(0);
+//                Dt.setCSurt4(0);
+//                Dt.setCSurt5(0);
+//                Dt.setCSurt6(0);
+//                Dt.setCSurt7(0);
+//                Dt.setCSurt8(0);
+//                Dt.setCSurt9(0);
+//                Dt.setCSurt10(0);
+//                Dt.setCSurt11(0);
+//                Dt.setCSurt12(0);
+//                Dt.setParesSurt(0);
+//                Dt.setStatus(Est);
+//                Dt.setPrecio(precio);
+//                detalles.add(Dt);
+//                if (JbS.getText().equals("A")) {
+//                    if (pedido.agregarPedidoA(pd, detalles, Npedido)) {
+//                        JOptionPane.showMessageDialog(this, "Se agrego la suela al pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+//                        Limpiar();
+//                        OcultarCampos();
+//                    } else {
+//                        JOptionPane.showMessageDialog(this, "Este pedido no se puede actualizar!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+//                        Limpiar();
+//                        OcultarCampos();
+//                        CleanTable();
+//                        CargarDetalle();
+//                    }
+//                } else {
+//                    if (pedido.agregarPedidoAPhy(pd, detalles, Npedido)) {
+//                        JOptionPane.showMessageDialog(this, "Se agrego la suela al pedido!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+//                        Limpiar();
+//                        OcultarCampos();
+//                    } else {
+//                        JOptionPane.showMessageDialog(this, "Este pedido no se puede actualizar!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+//                        Limpiar();
+//                        OcultarCampos();
+//                        CleanTable();
+//                        CargarDetalle();
+//                    }
+//                }
+//            }
+//        } else {
+//            AddItem();
+//        }
     }
 
     private void AddItem() {
@@ -2249,70 +2246,70 @@ public class Pedidos extends javax.swing.JInternalFrame {
         }
     }
     private void JbQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbQuitarActionPerformed
-        ArrayList<Pedido> list = pedido.pedidoGetByID(JtNpedido.getText());
-        int row = JtPedido.getSelectedRow();
-        String Npedido = JtNpedido.getText();
-        try {
-
-            if (list.size() > 0) {
-                if (row >= 0) {
-                    int opcion = JOptionPane.showConfirmDialog(this, "¿Quitar registro del pedido?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                    if (opcion == JOptionPane.YES_OPTION) {
-                        modelPedido.removeRow(row);
-                        String par = lblPares.getText();
-                        int TotalPares = Integer.parseInt(par);
-                        String costo = lblTotal.getText();
-                        double costoPedido = Double.parseDouble(costo);
-                        Pedido pd = new Pedido();
-                        pd.setNpedido(Npedido);
-                        pd.setCostoTotal(costoPedido);
-                        pd.setTotalPares(TotalPares);
-
-                        String Num = JtRenglon.getText();
-                        if (JbSerie.getText().equals("A")) {
-                            if (pedido.eliminarPedidoA(pd, Integer.parseInt(Num))) {
-                                JOptionPane.showMessageDialog(this, "Registro eliminado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                                OcultarCampos();
-                                Limpiar();
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Este pedido ya fue surtido", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-
-                                OcultarCampos();
-                                Limpiar();
-                                CleanTable();
-                                CargarDetalle();
-                            }
-                        } else {
-                            if (pedido.eliminarPedidoB(pd, Integer.parseInt(Num))) {
-                                JOptionPane.showMessageDialog(this, "Registro eliminado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                                OcultarCampos();
-                                Limpiar();
-                            } else {
-                                JOptionPane.showMessageDialog(this, "Registro eliminado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                                OcultarCampos();
-                                Limpiar();
-                            }
-                        }
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
-                }
-            } else {
-                if (row >= 0) {
-                    int opcion = JOptionPane.showConfirmDialog(this, "¿Quitar registro del pedido?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                    if (opcion == JOptionPane.YES_OPTION) {
-                        modelPedido.removeRow(row);
-                        OcultarCampos();
-                        Limpiar();
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
-                }
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-
-        }
+//        ArrayList<Pedido> list = pedido.pedidoGetByID(JtNpedido.getText());
+//        int row = JtPedido.getSelectedRow();
+//        String Npedido = JtNpedido.getText();
+//        try {
+//
+//            if (list.size() > 0) {
+//                if (row >= 0) {
+//                    int opcion = JOptionPane.showConfirmDialog(this, "¿Quitar registro del pedido?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+//                    if (opcion == JOptionPane.YES_OPTION) {
+//                        modelPedido.removeRow(row);
+//                        String par = lblPares.getText();
+//                        int TotalPares = Integer.parseInt(par);
+//                        String costo = lblTotal.getText();
+//                        double costoPedido = Double.parseDouble(costo);
+//                        Pedido pd = new Pedido();
+//                        pd.setNpedido(Npedido);
+//                        pd.setCostoTotal(costoPedido);
+//                        pd.setTotalPares(TotalPares);
+//
+//                        String Num = JtRenglon.getText();
+//                        if (JbSerie.getText().equals("A")) {
+//                            if (pedido.eliminarPedidoA(pd, Integer.parseInt(Num), Npedido)) {
+//                                JOptionPane.showMessageDialog(this, "Registro eliminado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+//                                OcultarCampos();
+//                                Limpiar();
+//                            } else {
+//                                JOptionPane.showMessageDialog(null, "Este pedido ya fue surtido", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+//
+//                                OcultarCampos();
+//                                Limpiar();
+//                                CleanTable();
+//                                CargarDetalle();
+//                            }
+//                        } else {
+//                            if (pedido.eliminarPedidoB(pd, Integer.parseInt(Num), Npedido)) {
+//                                JOptionPane.showMessageDialog(this, "Registro eliminado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+//                                OcultarCampos();
+//                                Limpiar();
+//                            } else {
+//                                JOptionPane.showMessageDialog(this, "Registro eliminado correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+//                                OcultarCampos();
+//                                Limpiar();
+//                            }
+//                        }
+//                    }
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
+//                }
+//            } else {
+//                if (row >= 0) {
+//                    int opcion = JOptionPane.showConfirmDialog(this, "¿Quitar registro del pedido?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+//                    if (opcion == JOptionPane.YES_OPTION) {
+//                        modelPedido.removeRow(row);
+//                        OcultarCampos();
+//                        Limpiar();
+//                    }
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
+//                }
+//            }
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//
+//        }
     }//GEN-LAST:event_JbQuitarActionPerformed
 
     private void cargarPrecio() {
@@ -2534,42 +2531,42 @@ public class Pedidos extends javax.swing.JInternalFrame {
         }
     }
     private void JbImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbImprimirActionPerformed
-        RPedido nuevo = new RPedido();
+        ReportePedidos nuevo = new ReportePedidos(null, true);
         nuevo.setVisible(true);
         nuevo.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         nuevo.setAlwaysOnTop(true);
     }//GEN-LAST:event_JbImprimirActionPerformed
 
     private void CargarDetalle() {
-        ArrayList<Pedido> list = pedido.pedidoGetByID(JtNpedido.getText());
-        if (list.size() > 0) {
-            for (Pedido ls : list) {
-                DecimalFormat impo = new DecimalFormat("#.00");
-                String arreglo[] = new String[21];
-                arreglo[0] = String.valueOf(ls.getId_Producto());
-                arreglo[1] = String.valueOf(ls.getRenglon());
-                arreglo[2] = ls.getSuela();
-                arreglo[3] = ls.getColor();
-                arreglo[4] = ls.getCorrida();
-                arreglo[5] = String.valueOf(ls.getC1());
-                arreglo[6] = String.valueOf(ls.getC2());
-                arreglo[7] = String.valueOf(ls.getC3());
-                arreglo[8] = String.valueOf(ls.getC4());
-                arreglo[9] = String.valueOf(ls.getC5());
-                arreglo[10] = String.valueOf(ls.getC6());
-                arreglo[11] = String.valueOf(ls.getC7());
-                arreglo[12] = String.valueOf(ls.getC8());
-                arreglo[13] = String.valueOf(ls.getC9());
-                arreglo[14] = String.valueOf(ls.getC10());
-                arreglo[15] = String.valueOf(ls.getC11());
-                arreglo[16] = String.valueOf(ls.getC12());
-                arreglo[17] = String.valueOf(ls.getPares());
-                arreglo[18] = precioA.format(ls.getPrecio());
-                arreglo[19] = impo.format(ls.getImporte());
-                arreglo[20] = ls.getStatus();
-                modelPedido.addRow(arreglo);
-            }
-        }
+//        ArrayList<Pedido> list = pedido.pedidoGetByID(JtNpedido.getText());
+//        if (list.size() > 0) {
+//            for (Pedido ls : list) {
+//                DecimalFormat impo = new DecimalFormat("#.00");
+//                String arreglo[] = new String[21];
+//                arreglo[0] = String.valueOf(ls.getId_Producto());
+//                arreglo[1] = String.valueOf(ls.getRenglon());
+//                arreglo[2] = ls.getSuela();
+//                arreglo[3] = ls.getColor();
+//                arreglo[4] = ls.getCorrida();
+//                arreglo[5] = String.valueOf(ls.getC1());
+//                arreglo[6] = String.valueOf(ls.getC2());
+//                arreglo[7] = String.valueOf(ls.getC3());
+//                arreglo[8] = String.valueOf(ls.getC4());
+//                arreglo[9] = String.valueOf(ls.getC5());
+//                arreglo[10] = String.valueOf(ls.getC6());
+//                arreglo[11] = String.valueOf(ls.getC7());
+//                arreglo[12] = String.valueOf(ls.getC8());
+//                arreglo[13] = String.valueOf(ls.getC9());
+//                arreglo[14] = String.valueOf(ls.getC10());
+//                arreglo[15] = String.valueOf(ls.getC11());
+//                arreglo[16] = String.valueOf(ls.getC12());
+//                arreglo[17] = String.valueOf(ls.getPares());
+//                arreglo[18] = precioA.format(ls.getPrecio());
+//                arreglo[19] = impo.format(ls.getImporte());
+//                arreglo[20] = ls.getStatus();
+//                modelPedido.addRow(arreglo);
+//            }
+//        }
     }
     private void JbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbBuscarActionPerformed
         JtNpedido.setEditable(true);
@@ -2807,85 +2804,85 @@ public class Pedidos extends javax.swing.JInternalFrame {
     }
 
     private void JtNpedidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtNpedidoKeyPressed
-        int codigo = evt.getKeyCode();
-        if (codigo == KeyEvent.VK_BACKSPACE) {
-            LimpiarDelete();
-        } else if (codigo == KeyEvent.VK_ENTER) {
-            ArrayList<Pedido> lista = pedido.pedidoGetByID(JtNpedido.getText());
-            if (JtNpedido.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "No introduciste un numero de pedido", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-                JtNpedido.requestFocus();
-            } else if (lista.size() > 0) {
-                CleanTable();
-                JcCliente.setEnabled(false);
-                JbNuevo.setEnabled(false);
-                JtNpc.setEditable(false);
-                JtOcompra.setEditable(false);
-                JdCaptura.setEnabled(false);
-                JdEntrega.setEnabled(false);
-                JdPedido.setEnabled(false);
-                JdRecibido.setEnabled(false);
-                JbActualizar.setEnabled(true);
-                JbEliminar.setEnabled(true);
-                String datos[] = new String[21];
-                for (Pedido p : lista) {
-                    Cliente cli = new Cliente();
-                    Producto prod = new Producto();
-                    DefaultComboBoxModel modelProd = new DefaultComboBoxModel(prod.getProdPedido(p.getId_Cliente()));
-                    JcSuela.setModel(modelProd);
-                    JtCliente.setText(String.valueOf(p.getId_Cliente()));
-                    JbCliente.setText(p.getRsocial());
-                    JbS.setText(p.getSerie());
-                    cli.setId_Cliente(Integer.parseInt(JtCliente.getText()));
-                    cli.setNombre(JbCliente.getText());
-                    JbCalle.setText(p.getCalle());
-                    JbColonia.setText(p.getColonia());
-                    JbCD.setText(p.getCiudad());
-                    JbEstado.setText(p.getEstado());
-                    JbCP.setText(p.getCp());
-                    JbPais.setText(p.getPais());
-                    JtNpc.setText(p.getNpedidoCl());
-                    JtNpedido.setText(p.getNpedido());
-                    JbPlazo.setText("Plazo" + " " + String.valueOf(p.getCred()) + " " + "Días");
-                    JbAgente.setText("Agente" + " " + String.valueOf(p.getAgente()));
-                    JtCobranza.setText(p.getObservaciones());
-                    JdPedido.setDate(p.getFecha_Pedido());
-                    JdCaptura.setDate(p.getFecha_Captura());
-                    JdEntrega.setDate(p.getFecha_Entrega());
-                    JdRecibido.setDate(p.getFecha_Recibido());
-                    JtOcompra.setText(p.getOrdenCompra());
-                    JbSerie.setText(p.getSerie());
-
-                    DecimalFormat impt = new DecimalFormat("#.00");
-                    datos[0] = String.valueOf(p.getId_Producto());
-                    datos[1] = String.valueOf(p.getRenglon());
-                    datos[2] = p.getSuela();
-                    datos[3] = p.getColor();
-                    datos[4] = p.getCorrida();
-                    datos[5] = String.valueOf(p.getC1());
-                    datos[6] = String.valueOf(p.getC2());
-                    datos[7] = String.valueOf(p.getC3());
-                    datos[8] = String.valueOf(p.getC4());
-                    datos[9] = String.valueOf(p.getC5());
-                    datos[10] = String.valueOf(p.getC6());
-                    datos[11] = String.valueOf(p.getC7());
-                    datos[12] = String.valueOf(p.getC8());
-                    datos[13] = String.valueOf(p.getC9());
-                    datos[14] = String.valueOf(p.getC10());
-                    datos[15] = String.valueOf(p.getC11());
-                    datos[16] = String.valueOf(p.getC12());
-                    datos[17] = String.valueOf(p.getPares());
-                    datos[18] = precioA.format(p.getPrecio());
-                    datos[19] = impt.format(p.getImporte());
-                    datos[20] = p.getStatus();
-                    modelPedido.addRow(datos);
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "No existe este pedido", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-                JtNpedido.setText("");
-                JtNpedido.requestFocus();
-            }
-        }
+//        int codigo = evt.getKeyCode();
+//        if (codigo == KeyEvent.VK_BACKSPACE) {
+//            LimpiarDelete();
+//        } else if (codigo == KeyEvent.VK_ENTER) {
+//            ArrayList<Pedido> lista = pedido.pedidoGetByID(JtNpedido.getText());
+//            if (JtNpedido.getText().isEmpty()) {
+//                JOptionPane.showMessageDialog(this, "No introduciste un numero de pedido", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+//                JtNpedido.requestFocus();
+//            } else if (lista.size() > 0) {
+//                CleanTable();
+//                JcCliente.setEnabled(false);
+//                JbNuevo.setEnabled(false);
+//                JtNpc.setEditable(false);
+//                JtOcompra.setEditable(false);
+//                JdCaptura.setEnabled(false);
+//                JdEntrega.setEnabled(false);
+//                JdPedido.setEnabled(false);
+//                JdRecibido.setEnabled(false);
+//                JbActualizar.setEnabled(true);
+//                JbEliminar.setEnabled(true);
+//                String datos[] = new String[21];
+//                for (Pedido p : lista) {
+//                    Cliente cli = new Cliente();
+//                    Producto prod = new Producto();
+//                    DefaultComboBoxModel modelProd = new DefaultComboBoxModel(prod.getProdPedido(p.getId_Cliente()));
+//                    JcSuela.setModel(modelProd);
+//                    JtCliente.setText(String.valueOf(p.getId_Cliente()));
+//                    JbCliente.setText(p.getRsocial());
+//                    JbS.setText(p.getSerie());
+//                    cli.setId_Cliente(Integer.parseInt(JtCliente.getText()));
+//                    cli.setNombre(JbCliente.getText());
+//                    JbCalle.setText(p.getCalle());
+//                    JbColonia.setText(p.getColonia());
+//                    JbCD.setText(p.getCiudad());
+//                    JbEstado.setText(p.getEstado());
+//                    JbCP.setText(p.getCp());
+//                    JbPais.setText(p.getPais());
+//                    JtNpc.setText(p.getNpedidoCl());
+//                    JtNpedido.setText(p.getNpedido());
+//                    JbPlazo.setText("Plazo" + " " + String.valueOf(p.getCred()) + " " + "Días");
+//                    JbAgente.setText("Agente" + " " + String.valueOf(p.getAgente()));
+//                    JtCobranza.setText(p.getObservaciones());
+//                    JdPedido.setDate(p.getFecha_Pedido());
+//                    JdCaptura.setDate(p.getFecha_Captura());
+//                    JdEntrega.setDate(p.getFecha_Entrega());
+//                    JdRecibido.setDate(p.getFecha_Recibido());
+//                    JtOcompra.setText(p.getOrdenCompra());
+//                    JbSerie.setText(p.getSerie());
+//
+//                    DecimalFormat impt = new DecimalFormat("#.00");
+//                    datos[0] = String.valueOf(p.getId_Producto());
+//                    datos[1] = String.valueOf(p.getRenglon());
+//                    datos[2] = p.getSuela();
+//                    datos[3] = p.getColor();
+//                    datos[4] = p.getCorrida();
+//                    datos[5] = String.valueOf(p.getC1());
+//                    datos[6] = String.valueOf(p.getC2());
+//                    datos[7] = String.valueOf(p.getC3());
+//                    datos[8] = String.valueOf(p.getC4());
+//                    datos[9] = String.valueOf(p.getC5());
+//                    datos[10] = String.valueOf(p.getC6());
+//                    datos[11] = String.valueOf(p.getC7());
+//                    datos[12] = String.valueOf(p.getC8());
+//                    datos[13] = String.valueOf(p.getC9());
+//                    datos[14] = String.valueOf(p.getC10());
+//                    datos[15] = String.valueOf(p.getC11());
+//                    datos[16] = String.valueOf(p.getC12());
+//                    datos[17] = String.valueOf(p.getPares());
+//                    datos[18] = precioA.format(p.getPrecio());
+//                    datos[19] = impt.format(p.getImporte());
+//                    datos[20] = p.getStatus();
+//                    modelPedido.addRow(datos);
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "No existe este pedido", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+//                JtNpedido.setText("");
+//                JtNpedido.requestFocus();
+//            }
+//        }
     }//GEN-LAST:event_JtNpedidoKeyPressed
 
     private void JtCantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtCantActionPerformed
@@ -3269,13 +3266,10 @@ public class Pedidos extends javax.swing.JInternalFrame {
     private void LoadModelCliente() {
         listC = obj.clientesGetAll();
         JcCliente.setModel(modelCliente);
-
-        if (Serie.equals("A")) {
-            for (int i = 0; i < listC.size(); i++) {
+        for (int i = 0; i < listC.size(); i++) {
+            if (Serie.equals("A")) {
                 JcCliente.addItem(listC.get(i).getRazonSocial());
-            }
-        } else if (Serie.equals("B")) {
-            for (int i = 0; i < listC.size(); i++) {
+            } else if (Serie.equals("B")) {
                 JcCliente.addItem(listC.get(i).getNombre());
             }
         }

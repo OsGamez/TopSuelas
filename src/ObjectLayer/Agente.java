@@ -10,15 +10,15 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 public class Agente {
-    DB db = new DB();
-    Connection c = db.Cobranza();
+//    DB db = new DB();
+//    Connection c = db.Cobranza();
 
     private int Id_Agente;
     private String Descripcion;
     private boolean Activo;
 
     PreparedStatement st = null;
-    //Connection c = Server.getCobranza();
+    Connection c = Server.getCobranza();
     ResultSet rs = null;
 
     public Agente() {

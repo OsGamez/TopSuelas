@@ -14,9 +14,9 @@ import java.util.ArrayList;
 public class ObjectConceptos {
     PreparedStatement st = null;
     ResultSet rs = null;
-//    Connection c = Server.getPhylon();
-    DB db = new DB();
-    Connection c = db.Cmp();
+    Connection c = Server.getRcpt();
+//    DB db = new DB();
+//    Connection c = db.Cmp();
     
     
     public boolean conceptoAdd(String Cuenta, String SubCuenta, String Des) {

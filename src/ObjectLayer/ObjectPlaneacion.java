@@ -14,12 +14,9 @@ public class ObjectPlaneacion {
     PreparedStatement st = null, dp = null;
     ObjectDetalle obj = new ObjectDetalle();
 
-//    Connection pa = Conexion.getRcpt();
-//    Connection c = Conexion.getRpt();
-    DB db = new DB();
-    Connection c = db.RPTPhylon();
-    Connection pa = db.RCPTPhylonA();
-    
+    Connection pa = Server.getRcpt();
+    Connection c = Server.getRpt();
+   
    
     ResultSet rs = null;
 

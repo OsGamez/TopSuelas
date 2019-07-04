@@ -33,9 +33,9 @@ public class Producto {
     private int IdRcpt;
     
     PreparedStatement st = null;
-//    Connection c = Server.getProduccion();
-    DB db = new DB();
-    Connection c = db.Produccion();
+    Connection c = Server.getProduccion();
+//    DB db = new DB();
+//    Connection c = db.Produccion();
     ResultSet rs = null;
 
     public Producto() {

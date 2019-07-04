@@ -190,10 +190,10 @@ public class Precios extends javax.swing.JInternalFrame {
         modelPrecio.addColumn("Cod-Cli");
         modelPrecio.addColumn("SUELA");
         modelPrecio.addColumn("Cod-Prod");
+        modelPrecio.addColumn("PRECIO A PRIMER");
+        modelPrecio.addColumn("PRECIO B PRIMER");
         modelPrecio.addColumn("PRECIO A");
         modelPrecio.addColumn("PRECIO B");
-        modelPrecio.addColumn("PRECIO A PREMIER");
-        modelPrecio.addColumn("PRECIO B PREMIER");
 
         JtDatosPrecio.getColumnModel().getColumn(0).setMaxWidth(0);
         JtDatosPrecio.getColumnModel().getColumn(0).setMinWidth(0);

@@ -11,9 +11,9 @@ public class ObjectKardex {
 
     PreparedStatement st = null;
     ResultSet rs = null;
-//    Connection c = Server.getPhylon();
-    DB db = new DB();
-    Connection c = db.RCPTPhylonA();
+    Connection c = Server.getRcpt();
+//    DB db = new DB();
+//    Connection c = db.RCPTPhylonA();
 
     public boolean kardexAdd(Kardex kx) {
         String query = "INSERT INTO Kardex(Almacen,Producto,Folio,FMovimiento,Renglon,DocumentoRef,Nvale,Cl_Prv\n"
