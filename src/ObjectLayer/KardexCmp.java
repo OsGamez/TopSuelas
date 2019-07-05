@@ -37,10 +37,18 @@ public class KardexCmp implements java.io.Serializable{
         return operacion;
     }
 
+    public int getFolio2() {
+        return folio2;
+    }
+
+    public void setFolio2(int folio2) {
+        this.folio2 = folio2;
+    }
+
     public void setOperacion(String operacion) {
         this.operacion = operacion;
     }
-    private int cuenta,subcuenta,folio,proveedor,almacen,cantidad,renglon,usuario;
+    private int cuenta,subcuenta,folio,proveedor,almacen,cantidad,renglon,usuario,folio2;
 
     public int getUsuario() {
         return usuario;

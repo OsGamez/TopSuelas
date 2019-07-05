@@ -651,12 +651,23 @@
             <MenuItem class="javax.swing.JMenuItem" name="Jmetiqprod">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Resources/etiqueta.png"/>
+                  <Image iconType="3" name="/Resources/Barcodescanner_7314.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Generador de Etiquetas"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JmetiqprodActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="Jmetiqprod1">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Resources/etiqueta.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Generador de Etiquetas MIDSOLE"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Jmetiqprod1ActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

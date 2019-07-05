@@ -105,7 +105,7 @@ public class ObjectConsumos {
         }finally {
             try {
                 st.close();
-                c.close();
+                
             } catch (SQLException ex) {
                 Logger.getLogger(ObjectMaquinas.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -131,7 +131,7 @@ public class ObjectConsumos {
         }finally {
             try {
                 st.close();
-                c.close();
+                
             } catch (SQLException ex) {
                 Logger.getLogger(ObjectMaquinas.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -195,7 +195,7 @@ public class ObjectConsumos {
         }finally {
             try {
                 st.close();
-                c.close();
+                
             } catch (SQLException ex) {
                 Logger.getLogger(ObjectMaquinas.class.getName()).log(Level.SEVERE, null, ex);
             }

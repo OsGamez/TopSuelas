@@ -88,7 +88,7 @@ public class ObjectMoldes {
         } finally {
             try {
                 st.close();
-                c.close();
+                
             } catch (SQLException ex) {
                 Logger.getLogger(ObjectMoldes.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -113,7 +113,7 @@ public class ObjectMoldes {
         } finally {
             try {
                 st.close();
-                c.close();
+                
             } catch (SQLException ex) {
                 Logger.getLogger(ObjectMoldes.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -140,7 +140,7 @@ public class ObjectMoldes {
         } finally {
             try {
                 st.close();
-                c.close();
+                
             } catch (SQLException ex) {
                 Logger.getLogger(ObjectMoldes.class.getName()).log(Level.SEVERE, null, ex);
             }

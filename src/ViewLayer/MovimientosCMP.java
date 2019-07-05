@@ -33,6 +33,8 @@ public class MovimientosCMP extends javax.swing.JInternalFrame {
         initComponents();
         LoadColumns();
         Loadmodelkardexcmp();
+        JbEliminar.setVisible(false);
+        JbEditar.setVisible(false);
        // JtDatosCliente.getTableHeader().setReorderingAllowed(false);
     }
 

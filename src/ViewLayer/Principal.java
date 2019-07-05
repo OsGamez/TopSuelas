@@ -53,6 +53,7 @@ public class Principal extends javax.swing.JFrame {
     ProvedoresMPrima conceptomp;
     NOrdenCompra ordenc;
     MovimientosCMP movcmp;
+    Etiquetasb etiqb;
     public String Estado = "A";
     String Tb = "";
 
@@ -181,6 +182,7 @@ public class Principal extends javax.swing.JFrame {
         JmConceptos = new javax.swing.JMenuItem();
         Jmutilprod = new javax.swing.JMenu();
         Jmetiqprod = new javax.swing.JMenuItem();
+        Jmetiqprod1 = new javax.swing.JMenuItem();
         JmOpciones = new javax.swing.JMenu();
         JmAyuda = new javax.swing.JMenuItem();
         JmSalir = new javax.swing.JMenuItem();
@@ -602,7 +604,7 @@ public class Principal extends javax.swing.JFrame {
         Jmutilprod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/utileria.png"))); // NOI18N
         Jmutilprod.setText("Utilerias");
 
-        Jmetiqprod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/etiqueta.png"))); // NOI18N
+        Jmetiqprod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Barcodescanner_7314.png"))); // NOI18N
         Jmetiqprod.setText("Generador de Etiquetas");
         Jmetiqprod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -610,6 +612,15 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         Jmutilprod.add(Jmetiqprod);
+
+        Jmetiqprod1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/etiqueta.png"))); // NOI18N
+        Jmetiqprod1.setText("Generador de Etiquetas MIDSOLE");
+        Jmetiqprod1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Jmetiqprod1ActionPerformed(evt);
+            }
+        });
+        Jmutilprod.add(Jmetiqprod1);
 
         JmProduccion.add(Jmutilprod);
 
@@ -1251,7 +1262,10 @@ public class Principal extends javax.swing.JFrame {
     private void LoadEtiqueta() {
         etiq = new Etiquetas(null, true);
         etiq.setVisible(true);
-
+    }
+    private void LoadEtiquetaB() {
+        etiqb = new Etiquetasb(null, true);
+        etiqb.setVisible(true);
     }
 
     private void LoadVersion() {
@@ -1467,6 +1481,10 @@ public class Principal extends javax.swing.JFrame {
         MainContent.getDesktopManager().maximizeFrame(movcmp);
         movcmp.setVisible(true);
     }//GEN-LAST:event_JmMovESActionPerformed
+
+    private void Jmetiqprod1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jmetiqprod1ActionPerformed
+        LoadEtiquetaB();
+    }//GEN-LAST:event_Jmetiqprod1ActionPerformed
     private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {
         LoadMaquina();
     }
@@ -1564,6 +1582,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu Jmcatcpt;
     private javax.swing.JMenu Jmcatprod;
     private javax.swing.JMenuItem Jmetiqprod;
+    private javax.swing.JMenuItem Jmetiqprod1;
     private javax.swing.JMenu Jmfaccpt;
     private javax.swing.JMenu Jmmovcpt;
     private javax.swing.JMenu Jmpedcpt;

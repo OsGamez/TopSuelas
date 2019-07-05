@@ -31,7 +31,7 @@ public class ObjectKardexCmp {
                         + ",'" + k.getOrdenc() + "','" + k.getFechamov() + "','" + k.getFechadoc() + "','" + k.getSerie() + "'"
                         + ",'" + k.getTipo() + "','" + k.getDocref() + "'," + cant + "," + cos + "," + cos * cant + "," + renglon + ",'1',"
                         + "" + k.getUsuario() + ")";
-//                System.out.println(sql);
+//                System.out.println("kardex "+sql);
                 st = c.prepareStatement(sql);
                 st.executeUpdate();
                 Statement s;
@@ -46,7 +46,7 @@ public class ObjectKardexCmp {
 //                flag verificara si existe o no un registro con respecto al
 //                material y al almacen
                 if (flag) {
-                    sql = "update existencias set existencia =existencia+" + cant + ", ultcosto=" + cos + " "
+                    sql = "update existencias set existencia =existencia"+k.getOperacion()+" " + cant + ", ultcosto=" + cos + " "
                             + "where almacen =" + k.getAlmacen() + " and "
                             + "cvemat='" + material + "'";
                 } else {
@@ -55,7 +55,7 @@ public class ObjectKardexCmp {
                 }
                 st = c.prepareStatement(sql);
                 st.executeUpdate();
-//                System.out.println(sql);
+//                System.out.println("existencias "+sql);
                 renglon++;
             }
             String columna =(k.getTipo().equals("E"))?"Entradas":"Salidas";
@@ -84,19 +84,22 @@ public class ObjectKardexCmp {
     public ArrayList<KardexCmp> KardexCmpGatAll() {
         ArrayList<KardexCmp> listaKardexCmp = new ArrayList<>();
         try {
-            st = c.prepareStatement("select top(30) folio,k.cuenta,k.subcuenta,fechamov,fechadoc,serie,k.tipo,"
+            String sql="select top(30) folio,k.cuenta,k.subcuenta,fechamov,fechadoc,serie,k.tipo,"
                     + "k.ProveedorMPrima,k.Almacen,docref,k.cvemat,k.cantidad,k.costo,importe,\n"
                     + "k.usuario,k.status,renglon,Ordencompra,mat.descripcion as 'mdescripcion',pmp.nombre as 'ndescripcion'"
                     + ",alm.descripcion as 'adescripcion'\n"
-                    + "from KardexCmp k join  ConceptosES c on k.cuenta=c.Cuenta\n"
+                    + "from KardexCmp k \n"
                     + "join ProvedoresMPrima pmp on k.ProveedorMPrima=pmp.Proveedor\n"
                     + "join Almacenes alm on k.Almacen=alm.Almacen\n"
-                    + "join Materiales mat on k.Cvemat=mat.CveMat  ORDER BY folio DESC");
+                    + "join Materiales mat on k.Cvemat=mat.CveMat  ORDER BY fechamov DESC";
+            System.out.println(sql);
+            st = c.prepareStatement(sql);
             rs = st.executeQuery();
             while (rs.next()) {
                 KardexCmp k = new KardexCmp();
                 k.setFolio(rs.getInt("Folio"));
                 k.setCuenta(rs.getInt("cuenta"));
+                k.setSubcuenta(rs.getInt("subcuenta"));
                 k.setFechamov(rs.getString("fechamov"));
                 k.setSerie(rs.getString("serie"));
                 k.setNombrealmacen(rs.getString("adescripcion"));
@@ -118,17 +121,18 @@ public class ObjectKardexCmp {
                     + "k.ProveedorMPrima,k.Almacen,docref,k.cvemat,k.cantidad,k.costo,importe,\n"
                     + "k.usuario,k.status,renglon,Ordencompra,mat.descripcion as 'mdescripcion',pmp.nombre as 'ndescripcion'"
                     + ",alm.descripcion as 'adescripcion'\n"
-                    + "from KardexCmp k join  ConceptosES c on k.cuenta=c.Cuenta\n"
+                    + "from KardexCmp k \n"
                     + "join ProvedoresMPrima pmp on k.ProveedorMPrima=pmp.Proveedor\n"
                     + "join Almacenes alm on k.Almacen=alm.Almacen\n"
                     + "join Materiales mat on k.Cvemat=mat.CveMat"
                     + " where folio like '%" + filtro + "%' or mat.descripcion like '%" + filtro + "%' "
-                    + "or pmp.nombre like '%" + filtro + "%'  ORDER BY folio DESC");
+                    + "or pmp.nombre like '%" + filtro + "%'  ORDER BY fechamov DESC");
             rs = st.executeQuery();
             while (rs.next()) {
                 KardexCmp k = new KardexCmp();
                 k.setFolio(rs.getInt("Folio"));
                 k.setCuenta(rs.getInt("cuenta"));
+                 k.setSubcuenta(rs.getInt("subcuenta"));
                 k.setFechamov(rs.getString("fechamov"));
                 k.setSerie(rs.getString("serie"));
                 k.setNombrealmacen(rs.getString("adescripcion"));
@@ -192,6 +196,21 @@ public class ObjectKardexCmp {
     }
 
     public String getparametro(String columna) {
+        int parametro = 0;
+        try {
+            st = c.prepareStatement("SELECT " + columna + " FROM parametroscmp");
+            rs = st.executeQuery();
+            while (rs.next()) {
+                parametro = rs.getInt(columna);
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return String.valueOf(parametro);
+    }
+        public String getparametro2(String columna) {
         String parametro = "";
         try {
             st = c.prepareStatement("SELECT " + columna + " FROM parametroscmp");
