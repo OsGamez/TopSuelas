@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="a24440d8-875a-42d8-bcd4-760cfb9f53b2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tabla" class="java.lang.String">
+		<defaultValueExpression><![CDATA["InCopy"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="almacen" class="java.lang.Short">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT l.Linea as id,l.Descripcion AS Linea FROM RCPTPhylon..Lineas AS l
+INNER JOIN $P!{tabla} as k
+ON k.Estilo = l.Linea
+where k.Almacen = $P!{almacen}
+GROUP BY l.Linea,l.Descripcion
+ORDER BY l.Descripcion]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="Linea" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="7" y="0" width="100" height="20" uuid="12ebc092-18a5-4ccb-a005-389c1d3da3d8"/>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Linea}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="7" y="20" width="145" height="19" uuid="70c560f6-5699-4754-ad41-4df3940fa43b"/>
+				<subreportParameter name="tabla">
+					<subreportParameterExpression><![CDATA[$P{tabla}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="linea">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="almacen">
+					<subreportParameterExpression><![CDATA[$P{almacen}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\InPhylonAlmacen.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

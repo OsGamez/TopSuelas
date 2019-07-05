@@ -284,6 +284,7 @@ public class ObjectClientes {
 
             while (rs.next()) {
                 Cliente cliente = new Cliente();
+               
                 cliente.setId_Cliente(rs.getInt("Id_Cliente"));
                 cliente.setNombre(rs.getString("Nombre"));
                 cliente.setRazonSocial(rs.getString("RazonSocial"));

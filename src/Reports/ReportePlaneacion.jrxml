@@ -98,7 +98,7 @@ GROUP BY DATEPART(YEAR,Fecha_Entrega),DATEPART(WK,Fecha_Entrega)]]>
 				<text><![CDATA[FECHA]]></text>
 			</staticText>
 			<image>
-				<reportElement x="307" y="-1" width="135" height="25" uuid="5dd7f850-ea8e-425e-8a7a-2f5e65a1c86b"/>
+				<reportElement x="308" y="-1" width="135" height="25" uuid="5dd7f850-ea8e-425e-8a7a-2f5e65a1c86b"/>
 				<imageExpression><![CDATA["C:\\Program Files\\logo.png"]]></imageExpression>
 			</image>
 			<textField pattern="EEEEE dd MMMMM yyyy">

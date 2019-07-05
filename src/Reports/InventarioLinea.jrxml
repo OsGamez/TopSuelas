@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="752" pageHeight="572" orientation="Landscape" columnWidth="712" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eedabb4d-ede5-4a16-b868-55e390a70fea">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tabla" class="java.lang.String">
+		<defaultValueExpression><![CDATA["InCopy"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT l.Linea as id,l.Descripcion AS Linea FROM RCPTPhylon..Lineas AS l
+INNER JOIN $P!{tabla} as k
+ON k.Estilo = l.Linea
+GROUP BY l.Linea,l.Descripcion
+ORDER BY l.Descripcion]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="Linea" class="java.lang.String"/>
+	<variable name="suma" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="65">
+			<staticText>
+				<reportElement mode="Transparent" x="266" y="33" width="184" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="0b824a97-3ddb-4896-98ec-f0b3f9ebbd73"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[CAPTURA INVENTARIO FISICO]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="26" width="148" height="39" uuid="a7660231-504f-4c87-9735-d9301cf0e152"/>
+				<imageExpression><![CDATA["C:\\tsmanager\\imagenes\\logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="47">
+			<textField pattern="HH.mm.ss">
+				<reportElement x="677" y="26" width="47" height="20" uuid="99a8795f-397a-46ee-8252-749c0afd9975"/>
+				<textElement>
+					<font fontName="Serif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="636" y="0" width="82" height="20" uuid="4e3744a3-ba4d-4b62-b9c6-964329d3bf79"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="4" y="0" width="100" height="20" uuid="7d7b63a5-62ec-4e5c-9346-7a5b59b58924"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Linea}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="-11" y="12" width="100" height="11" uuid="0f4220f8-23eb-4b14-9b09-a478cbd307c8"/>
+				<subreportParameter name="tabla">
+					<subreportParameterExpression><![CDATA[$P{tabla}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="linea">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\InPhylonAlmacen.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="21">
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="680" y="0" width="32" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="f1206bbe-c70a-4aba-8b5d-5daa63ce0d24"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="633" y="0" width="58" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="777868f5-c3c8-4ecd-9d22-edf039a2345f"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="53">
+			<subreport>
+				<reportElement x="292" y="18" width="123" height="33" uuid="dd86c59f-c295-4661-84a3-603a74dabacf"/>
+				<subreportParameter name="tabla">
+					<subreportParameterExpression><![CDATA[$P{tabla}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\TotalInventario.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>
