@@ -145,6 +145,7 @@ public class Bancos extends javax.swing.JInternalFrame {
         });
 
         JtDatosBanco.setModel(modelBanco);
+        JtDatosBanco.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtDatosBanco);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

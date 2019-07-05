@@ -144,6 +144,7 @@ public class Materiales extends javax.swing.JInternalFrame {
         });
 
         JtMaterial.setModel(modelMat);
+        JtMaterial.setSelectionBackground(new java.awt.Color(102, 153, 255));
         JtMaterial.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 JtMaterialMouseClicked(evt);

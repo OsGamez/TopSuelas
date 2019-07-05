@@ -38,6 +38,7 @@ public class PuntosCaptura extends javax.swing.JDialog {
         setResizable(false);
 
         Jtdatos.setModel(modelP);
+        Jtdatos.setSelectionBackground(new java.awt.Color(255, 153, 0));
         Jtdatos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 JtdatosKeyPressed(evt);

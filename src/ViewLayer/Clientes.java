@@ -1,6 +1,7 @@
 package ViewLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import ObjectLayer.Agente;
 import ObjectLayer.Banco;
@@ -36,7 +37,10 @@ public class Clientes extends javax.swing.JInternalFrame {
             return false;
         }
     };
+//    DB db = new DB();
+//    Connection c = db.Cobranza();
     Connection c = Server.getCobranza();
+    
     public String Serie = "";
 
     public Clientes() {
@@ -328,6 +332,7 @@ public class Clientes extends javax.swing.JInternalFrame {
         });
 
         JtDatosCliente.setModel(modelCliente);
+        JtDatosCliente.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtDatosCliente);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

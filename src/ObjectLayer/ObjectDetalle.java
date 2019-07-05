@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,15 +10,16 @@ import java.sql.SQLException;
 
 public class ObjectDetalle {
 
-    //Connection c = Server.getRpt();
-    //Connection p = Server.getRcpt();
-    Connection c = Conexion.getRpt();
-    Connection p = Conexion.getRcpt();
+    Connection c = Server.getRpt();
+    Connection p = Server.getRcpt();
+//    DB db = new DB();
+//    Connection c = db.RPTPhylon();
+//    Connection p = db.RCPTPhylonA();
 
     PreparedStatement st, dp = null;
     ResultSet rs = null;
 
-    public boolean insertDetalle(Dpedido detalle) throws SQLException {
+    public boolean insertDetalle(Dpedido detalle) {
 
         boolean rpta = false;
         try {
@@ -65,22 +67,21 @@ public class ObjectDetalle {
             st.setDouble(37, detalle.getPrecio());
 
             rpta = st.executeUpdate() == 1 ? true : false;
-            Conexion.cerrarPrep(st);
+            DB.cerrarPrep(st);
         } catch (SQLException e) {
 
             e.printStackTrace();
-            Conexion.cerrarPrep(st);
+            DB.cerrarPrep(st);
         } catch (Exception ex) {
             ex.printStackTrace();
-            Conexion.cerrarPrep(st);
+            DB.cerrarPrep(st);
         }
         return rpta;
     }
 
-    public boolean insertDetalleA(Dpedido detalle) throws SQLException {
-
-        boolean rpta = false;
+    public boolean insertDetalleA(Dpedido detalle) {       
         try {
+            p.setAutoCommit(false);
             dp = p.prepareStatement("INSERT INTO Dpedido (Renglon,Npedido, Id_Cliente,Fecha_Pedido,Fecha_Entrega, "
                     + "Id_Producto,Corrida,C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,Pares,Importe,Serie,CSurt1,CSurt2,CSurt3,"
                     + "CSurt4,CSurt5,CSurt6,CSurt7,CSurt8,CSurt9,CSurt10,CSurt11,CSurt12,ParesSurt,Estatus,Precio)"
@@ -124,16 +125,18 @@ public class ObjectDetalle {
             dp.setString(36, detalle.getStatus());
             dp.setDouble(37, detalle.getPrecio());
 
-            rpta = dp.executeUpdate() == 1 ? true : false;
-            Conexion.cerrarPhylonA(dp);
+            dp.executeUpdate();
+            p.commit();
+            DB.cerrarPrep(dp);
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
-            Conexion.cerrarPhylonA(dp);
+            DB.cerrarPrep(dp);
         } catch (Exception ex) {
             ex.printStackTrace();
-            Conexion.cerrarPhylonA(dp);
+            DB.cerrarPrep(dp);
         }
-        return rpta;
+        return false;
     }
 
     public boolean insertNuevo(Dpedido detalle) throws SQLException {
@@ -183,21 +186,21 @@ public class ObjectDetalle {
             st.setDouble(37, detalle.getPrecio());
 
             rpta = st.executeUpdate() == 1 ? true : false;
-            Conexion.cerrarPrep(st);
+            st.close();
         } catch (SQLException e) {
 
             e.printStackTrace();
-            Conexion.cerrarPrep(st);
+            st.close();
         } catch (Exception ex) {
             ex.printStackTrace();
-            Conexion.cerrarPrep(st);
+            st.close();
         }
         return rpta;
     }
 
-    public boolean actualizarDetalle(Dpedido detalle) {
-        boolean rpta = false;
+    public boolean actualizarDetalle(Dpedido detalle) throws SQLException {
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("UPDATE Dpedido SET C1=?,C2=?,C3=?,C4=?,C5=?,C6=?,C7=?,C8=?,C9=?,C10=?,C11=?,C12=?,Pares=?,Importe=? "
                     + "WHERE Renglon=? AND Npedido=?");
             st.setInt(1, detalle.getC1());
@@ -216,22 +219,25 @@ public class ObjectDetalle {
             st.setDouble(14, detalle.getImporte());
             st.setInt(15, detalle.getRenglon());
             st.setString(16, detalle.getNpedido());
-
-            rpta = st.executeUpdate() == 1 ? true : false;
-            Conexion.cerrarPrep(st);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            Conexion.cerrarPrep(st);
+            st.executeUpdate();
+            c.commit();           
+            st.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            c.rollback();
+            st.close();
         } catch (Exception ex) {
             ex.printStackTrace();
-            Conexion.cerrarPrep(st);
+            c.rollback();
+            st.close();
         }
-        return rpta;
+        return false;
     }
 
-    public boolean actualizarDetalleA(Dpedido detalle) {
-        boolean rpta = false;
+    public boolean actualizarDetalleA(Dpedido detalle) throws SQLException {
         try {
+            p.setAutoCommit(false);
             dp = p.prepareStatement("UPDATE Dpedido SET C1=?,C2=?,C3=?,C4=?,C5=?,C6=?,C7=?,C8=?,C9=?,C10=?,C11=?,C12=?,Pares=?,Importe=? "
                     + "WHERE Renglon=? AND Npedido=?");
 
@@ -251,86 +257,93 @@ public class ObjectDetalle {
             dp.setDouble(14, detalle.getImporte());
             dp.setInt(15, detalle.getRenglon());
             dp.setString(16, detalle.getNpedido());
-            rpta = dp.executeUpdate() == 1 ? true : false;
-            Conexion.cerrarPhylonA(dp);
+            dp.executeUpdate();
+            p.commit();
+            dp.close();
+            return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            Conexion.cerrarPhylonA(dp);
+            p.rollback();
+            dp.close();
         } catch (Exception ex) {
             ex.printStackTrace();
-            Conexion.cerrarPhylonA(dp);
+            p.rollback();
+            dp.close();
         }
-        return rpta;
+        return false;
     }
 
-    public boolean eliminarDetalle(int id, String Npedido) {
+    public boolean eliminarDetalle(int id, String Npedido) throws SQLException {
         boolean rpta = false;
         try {
             st = c.prepareStatement("DELETE FROM Dpedido WHERE Renglon=? AND Npedido=?");
             st.setInt(1, id);
             st.setString(2, Npedido);
             rpta = st.executeUpdate() == 1 ? true : false;
-            Conexion.cerrarPrep(st);
+            st.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
-            Conexion.cerrarPrep(st);
+            st.close();
         } catch (Exception ex) {
             ex.printStackTrace();
-            Conexion.cerrarPrep(st);
+            st.close();
         }
         return rpta;
     }
 
-    public boolean eliminarDetalleA(int id, String Npedido) {
-        boolean rpta = false;
+    public boolean eliminarDetalleA(int id, String Npedido) throws SQLException {
         try {
+            p.setAutoCommit(false);
             dp = p.prepareStatement("DELETE FROM Dpedido WHERE Renglon=? AND Npedido=?");
             dp.setInt(1, id);
             dp.setString(2, Npedido);
-            rpta = dp.executeUpdate() == 1 ? true : false;
-            Conexion.cerrarPhylonA(dp);
+            dp.executeUpdate();
+            p.commit();
+            dp.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
-            Conexion.cerrarPhylonA(dp);
+            p.rollback();
+            dp.close();
         } catch (Exception ex) {
-            Conexion.cerrarPhylonA(dp);
+            p.rollback();
+            dp.close();
             ex.printStackTrace();
         }
-        return rpta;
+        return false;
     }
 
-    public boolean cambiarEstatusA(String Npedido, String Estatus) {
+    public boolean cambiarEstatusA(String Npedido, String Estatus) throws SQLException {
         boolean rpta = false;
         try {
             dp = p.prepareStatement("UPDATE Dpedido SET Estatus = ? WHERE Npedido = ?");
             dp.setString(1, Estatus);
             dp.setString(2, Npedido);
             rpta = dp.executeUpdate() == 1 ? true : false;
-            Conexion.cerrarPhylonA(dp);
+            dp.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
-            Conexion.cerrarPhylonA(dp);
+            dp.close();
         } catch (Exception ex) {
             ex.printStackTrace();
-            Conexion.cerrarPhylonA(dp);
+            dp.close();
         }
         return rpta;
     }
 
-    public boolean cambiarEstatus(String Npedido, String Estatus) {
+    public boolean cambiarEstatus(String Npedido, String Estatus) throws SQLException {
         boolean rpta = false;
         try {
             st = c.prepareStatement("UPDATE Dpedido SET Estatus = ? WHERE Npedido = ?");
             st.setString(1, Estatus);
             st.setString(2, Npedido);
             rpta = st.executeUpdate() == 1 ? true : false;
-            Conexion.cerrarPrep(st);
+            st.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
-            Conexion.cerrarPrep(st);
+            st.close();
         } catch (Exception ex) {
             ex.printStackTrace();
-            Conexion.cerrarPrep(st);
+            st.close();
         }
         return rpta;
     }

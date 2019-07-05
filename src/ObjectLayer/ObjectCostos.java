@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,8 @@ public class ObjectCostos {
 
     PreparedStatement st = null;
     Connection c = Server.getProduccion();
+//    DB db = new DB();
+//    Connection c = db.Produccion();
     ResultSet rs = null;
 
     public boolean CostoAdd(Costo costo) {
@@ -153,12 +156,12 @@ public class ObjectCostos {
         }
         return false;
     }
-    
-    public boolean UpdateCve(double precio,String cve){
+
+    public boolean UpdateCve(double precio, String cve) {
         try {
             c.setAutoCommit(false);
-            st = c.prepareStatement("update Costos set Precio = ?\n" +
-            "where CveMat = ?");
+            st = c.prepareStatement("update Costos set Precio = ?\n"
+                    + "where CveMat = ?");
             st.setDouble(1, precio);
             st.setString(2, cve);
             st.executeUpdate();
@@ -170,7 +173,7 @@ public class ObjectCostos {
         }
         return false;
     }
-            
+
     public ArrayList<Costo> costoSearch(String filtro) {
         ArrayList<Costo> listaCostos = new ArrayList<Costo>();
         try {

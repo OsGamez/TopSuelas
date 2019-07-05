@@ -5,6 +5,7 @@
  */
 package ObjectLayer;
 
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,6 +21,8 @@ public class Maquina implements java.io.Serializable {
 
     private int Maquina, estaciones, estacionesmod;
     PreparedStatement st = null;
+//    DB db = new DB();
+//    Connection c = db.Produccion();
     Connection c = Server.getProduccion();
     ResultSet rs = null;
 

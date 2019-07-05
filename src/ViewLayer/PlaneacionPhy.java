@@ -231,8 +231,8 @@ public class PlaneacionPhy extends javax.swing.JInternalFrame {
             }
         });
 
-        JtPhylon.setBorder(null);
         JtPhylon.setModel(modelPhylon);
+        JtPhylon.setSelectionBackground(new java.awt.Color(102, 153, 255));
         JtPhylon.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 JtPhylonKeyReleased(evt);

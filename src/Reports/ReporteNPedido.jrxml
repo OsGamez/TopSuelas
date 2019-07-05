@@ -29,389 +29,389 @@ where Npedido = '1']]>
 	,prod.Id_Producto,prod.Descripcion as Suela,l.Descripcion as Estilo,
 	pd.Corrida,cl.Descripcion as Color,
 	pd.Precio ,
-	CASE WHEN Corrida = '[10-12]' THEN C1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '10',
+	CASE WHEN Corrida = '10-12' THEN C1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '10',
 
-	CASE WHEN Corrida = '[10-12]' THEN C2 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '10.5',
+	CASE WHEN Corrida = '10-12' THEN C2 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '10.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN C3 WHEN Corrida = '[11-14]' THEN C1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '11',
+	CASE WHEN Corrida = '10-12' THEN C3 WHEN Corrida = '11-14' THEN C1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '11',
 
-	CASE WHEN Corrida = '[10-12]' THEN C4 WHEN Corrida = '[11-14]' THEN C2 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '11.5',
+	CASE WHEN Corrida = '10-12' THEN C4 WHEN Corrida = '11-14' THEN C2 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '11.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN C5 WHEN Corrida = '[11-14]' THEN C3 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '12',
+	CASE WHEN Corrida = '10-12' THEN C5 WHEN Corrida = '11-14' THEN C3 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '12',
 
-	CASE WHEN Corrida = '[10-12]' THEN C6 WHEN Corrida = '[11-14]' THEN C4 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '12.5',
+	CASE WHEN Corrida = '10-12' THEN C6 WHEN Corrida = '11-14' THEN C4 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '12.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN C5 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN C1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '13',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN C5 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '13',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN C6 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN C2 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '13.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN C6 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C2 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '13.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN C7 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN C3 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '14',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN C7 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C3 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '14',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN C8 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN C4 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '14.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN C8 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C4 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '14.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN C5 WHEN Corrida = '[15-17]' THEN C1  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '15',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C5 WHEN Corrida = '15-17' THEN C1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '15',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN C6 WHEN Corrida = '[15-17]' THEN C2  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '15.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C6 WHEN Corrida = '15-17' THEN C2  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '15.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN C7 WHEN Corrida = '[15-17]' THEN C3  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '16',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C7 WHEN Corrida = '15-17' THEN C3  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '16',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN C8 WHEN Corrida = '[15-17]' THEN C4  WHEN Corrida = '[17-21]' THEN @v1 
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '16.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C8 WHEN Corrida = '15-17' THEN C4  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '16.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN C5  WHEN Corrida = '[17-21]' THEN C1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '17',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN C5  WHEN Corrida = '17-21' THEN C1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '17',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN C6  WHEN Corrida = '[17-21]' THEN C2
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '17.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN C6  WHEN Corrida = '17-21' THEN C2
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '17.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN C3
-	WHEN Corrida = '[18-21]' THEN C1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '18',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C3
+	WHEN Corrida = '18-21' THEN C1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '18',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN C4
-	WHEN Corrida = '[18-21]' THEN C2 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '18.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C4
+	WHEN Corrida = '18-21' THEN C2 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '18.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN C5
-	WHEN Corrida = '[18-21]' THEN C3 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '19',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C5
+	WHEN Corrida = '18-21' THEN C3 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '19',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN C6
-	WHEN Corrida = '[18-21]' THEN C4 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '19.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C6
+	WHEN Corrida = '18-21' THEN C4 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '19.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN C7
-	WHEN Corrida = '[18-21]' THEN C5 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '20',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C7
+	WHEN Corrida = '18-21' THEN C5 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '20',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN C8
-	WHEN Corrida = '[18-21]' THEN C6 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '20.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C8
+	WHEN Corrida = '18-21' THEN C6 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '20.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN C9
-	WHEN Corrida = '[18-21]' THEN C7 WHEN Corrida = '[21-25]' THEN C1 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '21',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C9
+	WHEN Corrida = '18-21' THEN C7 WHEN Corrida = '21-25' THEN C1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '21',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN C10
-	WHEN Corrida = '[18-21]' THEN C8 WHEN Corrida = '[21-25]' THEN C2 WHEN Corrida = '[22-24]' THEN @v1 
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '21.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C10
+	WHEN Corrida = '18-21' THEN C8 WHEN Corrida = '21-25' THEN C2 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '21.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN C3 WHEN Corrida = '[22-24]' THEN C1
-	WHEN Corrida = '[22-26]' THEN C1 WHEN Corrida = '[22-27]' THEN C1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN C1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '22',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C3 WHEN Corrida = '22-24' THEN C1
+	WHEN Corrida = '22-26' THEN C1 WHEN Corrida = '22-27' THEN C1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN C1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '22',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN C4 WHEN Corrida = '[22-24]' THEN C2
-	WHEN Corrida = '[22-26]' THEN C2 WHEN Corrida = '[22-27]' THEN C2 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN C2 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '22.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C4 WHEN Corrida = '22-24' THEN C2
+	WHEN Corrida = '22-26' THEN C2 WHEN Corrida = '22-27' THEN C2 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN C2 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '22.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN C5 WHEN Corrida = '[22-24]' THEN C3
-	WHEN Corrida = '[22-26]' THEN C3 WHEN Corrida = '[22-27]' THEN C1 WHEN Corrida = '[23-27]' THEN C1
-	WHEN Corrida = '[23-26]' THEN C3 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '23',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C5 WHEN Corrida = '22-24' THEN C3
+	WHEN Corrida = '22-26' THEN C3 WHEN Corrida = '22-27' THEN C1 WHEN Corrida = '23-27' THEN C1
+	WHEN Corrida = '23-26' THEN C3 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '23',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN C6 WHEN Corrida = '[22-24]' THEN C4
-	WHEN Corrida = '[22-26]' THEN C4 WHEN Corrida = '[22-27]' THEN C4 WHEN Corrida = '[23-27]' THEN C2
-	WHEN Corrida = '[23-26]' THEN C4 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '23.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C6 WHEN Corrida = '22-24' THEN C4
+	WHEN Corrida = '22-26' THEN C4 WHEN Corrida = '22-27' THEN C4 WHEN Corrida = '23-27' THEN C2
+	WHEN Corrida = '23-26' THEN C4 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '23.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN C7 WHEN Corrida = '[22-24]' THEN C5
-	WHEN Corrida = '[22-26]' THEN C5 WHEN Corrida = '[22-27]' THEN C5 WHEN Corrida = '[23-27]' THEN C3
-	WHEN Corrida = '[23-26]' THEN C5 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '24',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C7 WHEN Corrida = '22-24' THEN C5
+	WHEN Corrida = '22-26' THEN C5 WHEN Corrida = '22-27' THEN C5 WHEN Corrida = '23-27' THEN C3
+	WHEN Corrida = '23-26' THEN C5 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '24',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN C8 WHEN Corrida = '[22-24]' THEN C6
-	WHEN Corrida = '[22-26]' THEN C6 WHEN Corrida = '[22-27]' THEN C6 WHEN Corrida = '[23-27]' THEN C4
-	WHEN Corrida = '[23-26]' THEN C6 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '24.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C8 WHEN Corrida = '22-24' THEN C6
+	WHEN Corrida = '22-26' THEN C6 WHEN Corrida = '22-27' THEN C6 WHEN Corrida = '23-27' THEN C4
+	WHEN Corrida = '23-26' THEN C6 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '24.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN C9 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN C7 WHEN Corrida = '[22-27]' THEN C7 WHEN Corrida = '[23-27]' THEN C5
-	WHEN Corrida = '[23-26]' THEN C7 WHEN Corrida = '[25-30]' THEN C1 WHEN Corrida = '[25-29]' THEN C1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '25',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C9 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN C7 WHEN Corrida = '22-27' THEN C7 WHEN Corrida = '23-27' THEN C5
+	WHEN Corrida = '23-26' THEN C7 WHEN Corrida = '25-30' THEN C1 WHEN Corrida = '25-29' THEN C1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '25',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN C10 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN C8 WHEN Corrida = '[22-27]' THEN C8 WHEN Corrida = '[23-27]' THEN C6
-	WHEN Corrida = '[23-26]' THEN C8 WHEN Corrida = '[25-30]' THEN C2 WHEN Corrida = '[25-29]' THEN C2
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '25.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C10 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN C8 WHEN Corrida = '22-27' THEN C8 WHEN Corrida = '23-27' THEN C6
+	WHEN Corrida = '23-26' THEN C8 WHEN Corrida = '25-30' THEN C2 WHEN Corrida = '25-29' THEN C2
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '25.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN C9 WHEN Corrida = '[22-27]' THEN C9 WHEN Corrida = '[23-27]' THEN C7
-	WHEN Corrida = '[23-26]' THEN C9 WHEN Corrida = '[25-30]' THEN C3 WHEN Corrida = '[25-29]' THEN C3
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '26',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN C9 WHEN Corrida = '22-27' THEN C9 WHEN Corrida = '23-27' THEN C7
+	WHEN Corrida = '23-26' THEN C9 WHEN Corrida = '25-30' THEN C3 WHEN Corrida = '25-29' THEN C3
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '26',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN C10 WHEN Corrida = '[22-27]' THEN C10 WHEN Corrida = '[23-27]' THEN C8
-	WHEN Corrida = '[23-26]' THEN C10 WHEN Corrida = '[25-30]' THEN C4 WHEN Corrida = '[25-29]' THEN C4
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '26.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN C10 WHEN Corrida = '22-27' THEN C10 WHEN Corrida = '23-27' THEN C8
+	WHEN Corrida = '23-26' THEN C10 WHEN Corrida = '25-30' THEN C4 WHEN Corrida = '25-29' THEN C4
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '26.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN C11 WHEN Corrida = '[23-27]' THEN C9
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN C5 WHEN Corrida = '[25-29]' THEN C5
-	WHEN Corrida = '[27-29]' THEN C1
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '27',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN C11 WHEN Corrida = '23-27' THEN C9
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C5 WHEN Corrida = '25-29' THEN C5
+	WHEN Corrida = '27-29' THEN C1
+	WHEN Corrida = '30-33' THEN @v1 END AS '27',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN C12 WHEN Corrida = '[23-27]' THEN C10
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN C6 WHEN Corrida = '[25-29]' THEN C6
-	WHEN Corrida = '[27-29]' THEN C2
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '27.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN C12 WHEN Corrida = '23-27' THEN C10
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C6 WHEN Corrida = '25-29' THEN C6
+	WHEN Corrida = '27-29' THEN C2
+	WHEN Corrida = '30-33' THEN @v1 END AS '27.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN C7 WHEN Corrida = '[25-29]' THEN C7
-	WHEN Corrida = '[27-29]' THEN C3
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '28',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C7 WHEN Corrida = '25-29' THEN C7
+	WHEN Corrida = '27-29' THEN C3
+	WHEN Corrida = '30-33' THEN @v1 END AS '28',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN C8 WHEN Corrida = '[25-29]' THEN C8
-	WHEN Corrida = '[27-29]' THEN C4
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '28.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C8 WHEN Corrida = '25-29' THEN C8
+	WHEN Corrida = '27-29' THEN C4
+	WHEN Corrida = '30-33' THEN @v1 END AS '28.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN C9 WHEN Corrida = '[25-29]' THEN C9
-	WHEN Corrida = '[27-29]' THEN C5
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '29',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C9 WHEN Corrida = '25-29' THEN C9
+	WHEN Corrida = '27-29' THEN C5
+	WHEN Corrida = '30-33' THEN @v1 END AS '29',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN C10 WHEN Corrida = '[25-29]' THEN C10
-	WHEN Corrida = '[27-29]' THEN C6
-	WHEN Corrida = '[30-33]' THEN @v1 END AS '29.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C10 WHEN Corrida = '25-29' THEN C10
+	WHEN Corrida = '27-29' THEN C6
+	WHEN Corrida = '30-33' THEN @v1 END AS '29.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN C11 WHEN Corrida = '[25-29]' THEN C11
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN C1 END AS '30',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C11 WHEN Corrida = '25-29' THEN C11
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C1 END AS '30',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN C12 WHEN Corrida = '[25-29]' THEN C12
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN C2 END AS '30.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C12 WHEN Corrida = '25-29' THEN C12
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C2 END AS '30.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN C3 END AS '31',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C3 END AS '31',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN C4 END AS '31.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C4 END AS '31.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN C5 END AS '32',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C5 END AS '32',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN C6 END AS '32.5',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C6 END AS '32.5',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN C7 END AS '33',
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C7 END AS '33',
 
-	CASE WHEN Corrida = '[10-12]' THEN @v1 WHEN Corrida = '[11-14]' THEN @v1 WHEN Corrida = '[12-14]' THEN @v1
-	WHEN Corrida = '[13-16]' THEN @v1 WHEN Corrida = '[15-17]' THEN @v1  WHEN Corrida = '[17-21]' THEN @v1
-	WHEN Corrida = '[18-21]' THEN @v1 WHEN Corrida = '[21-25]' THEN @v1 WHEN Corrida = '[22-24]' THEN @v1
-	WHEN Corrida = '[22-26]' THEN @v1 WHEN Corrida = '[22-27]' THEN @v1 WHEN Corrida = '[23-27]' THEN @v1
-	WHEN Corrida = '[23-26]' THEN @v1 WHEN Corrida = '[25-30]' THEN @v1 WHEN Corrida = '[25-29]' THEN @v1
-	WHEN Corrida = '[27-29]' THEN @v1
-	WHEN Corrida = '[30-33]' THEN C8 END AS '33.5'
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C8 END AS '33.5'
 
 	from RCPTPhylonA.dbo.Pedidos p inner join  RCPTPhylonA.dbo.Dpedido pd
 	on p.Npedido = pd.Npedido 
@@ -792,17 +792,13 @@ where Npedido = '1']]>
 				<textFieldExpression><![CDATA[$F{Observaciones}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="660" y="84" width="47" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="b9f37124-69d8-4249-8fa2-eea4e507353b"/>
+				<reportElement mode="Transparent" x="660" y="84" width="32" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="b9f37124-69d8-4249-8fa2-eea4e507353b"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Fecha_Entrega}]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement x="1" y="48" width="202" height="50" uuid="79179eaa-ae89-4357-a7ed-bb52ce606d47"/>
-				<imageExpression><![CDATA["C:\\Program Files\\logo.png"]]></imageExpression>
-			</image>
 			<textField pattern="" isBlankWhenNull="false">
 				<reportElement mode="Transparent" x="663" y="8" width="18" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="05f44843-696a-4d98-adb3-f8e3b79ab7b2"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
@@ -819,6 +815,10 @@ where Npedido = '1']]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Fecha_Pedido}]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="0" y="59" width="181" height="51" uuid="c4c51032-3404-4dba-a563-eafa72d6b013"/>
+				<imageExpression><![CDATA["C:\\tsmanager\\imagenes\\logo.png"]]></imageExpression>
+			</image>
 		</band>
 	</pageHeader>
 	<columnHeader>

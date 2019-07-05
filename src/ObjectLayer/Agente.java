@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +10,8 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 public class Agente {
+//    DB db = new DB();
+//    Connection c = db.Cobranza();
 
     private int Id_Agente;
     private String Descripcion;

@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 public class Banco {
-
+//    DB db = new DB();
     private int Id_Banco;
     private String Descripcion;
     private String RFC;
@@ -18,6 +19,7 @@ public class Banco {
 
     PreparedStatement st = null;
     Connection c = Server.getCobranza();
+//    Connection c = db.Cobranza();
     ResultSet rs = null;
 
     public Banco() {

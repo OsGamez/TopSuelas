@@ -1,6 +1,7 @@
 
 package ObjectLayer;
 
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,6 +27,8 @@ public class Proveedor {
     PreparedStatement st = null;
     ResultSet rs = null;
     Connection c = Server.getPhylon();
+//    DB db = new DB();
+//    Connection c = db.RCPTPhylonA();
     
     
     public int getProveedor() {

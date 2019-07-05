@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,8 +23,11 @@ public class Precio {
     private String DesCli;
 
     PreparedStatement st = null;
-    //Connection c = Conexion.getRcpt();
+
     Connection c = Server.getRcpt();
+//     DB db = new DB();
+//    Connection c = db.RCPTPhylonA();
+    
     
     ResultSet rs = null;
 

@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +14,9 @@ import java.util.logging.Logger;
 public class ObjectLineas {
 
     PreparedStatement st = null;
-    public Connection c = Server.getProduccion();
+    Connection c = Server.getProduccion();
+//    DB db = new DB();
+//    Connection c = db.Produccion();
     ResultSet rs = null;
 
     public boolean lineaAdd(String Descripcion, boolean Activo) {

@@ -85,21 +85,21 @@ ORDER BY c.Id_Cliente]]>
 				<text><![CDATA[POR PROGAMAR]]></text>
 			</staticText>
 			<line>
-				<reportElement x="497" y="0" width="1" height="18" uuid="8d089d88-deb0-4cc1-960e-0bbb9d310b3b"/>
+				<reportElement x="497" y="1" width="1" height="17" uuid="8d089d88-deb0-4cc1-960e-0bbb9d310b3b"/>
 			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="16" splitType="Stretch">
+		<band height="11" splitType="Stretch">
 			<textField>
-				<reportElement x="37" y="0" width="143" height="15" uuid="1ad05311-9912-4220-a586-779d09843a15"/>
+				<reportElement x="37" y="0" width="183" height="11" uuid="1ad05311-9912-4220-a586-779d09843a15"/>
 				<textElement>
 					<font fontName="Arial" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{RazonSocial}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="239" y="5" width="35" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="b2c2cab9-d983-40de-8fa1-3d5f6ba0ba42"/>
+				<reportElement mode="Transparent" x="239" y="2" width="35" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="b2c2cab9-d983-40de-8fa1-3d5f6ba0ba42"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -107,7 +107,7 @@ ORDER BY c.Id_Cliente]]>
 				<textFieldExpression><![CDATA[$F{Pares}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="5" y="0" width="24" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="85fa420c-6bb8-48b8-81c0-be93b4bffe57"/>
+				<reportElement mode="Transparent" x="5" y="0" width="24" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="85fa420c-6bb8-48b8-81c0-be93b4bffe57"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -115,7 +115,7 @@ ORDER BY c.Id_Cliente]]>
 				<textFieldExpression><![CDATA[$F{Id_Cliente}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="309" y="5" width="38" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="34b8cb71-3294-4f8d-a66b-d98e531bb97a"/>
+				<reportElement mode="Transparent" x="309" y="2" width="38" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="34b8cb71-3294-4f8d-a66b-d98e531bb97a"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -123,7 +123,7 @@ ORDER BY c.Id_Cliente]]>
 				<textFieldExpression><![CDATA[$F{PENDS}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="388" y="5" width="38" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="739e1e7a-70e8-4e02-ae4c-76ba3059e2ee"/>
+				<reportElement mode="Transparent" x="388" y="2" width="38" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="739e1e7a-70e8-4e02-ae4c-76ba3059e2ee"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -131,7 +131,7 @@ ORDER BY c.Id_Cliente]]>
 				<textFieldExpression><![CDATA[$F{PENDS}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="451" y="5" width="38" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="99ae41a4-9a61-4617-9d57-53b1f17e9068"/>
+				<reportElement mode="Transparent" x="451" y="2" width="38" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="99ae41a4-9a61-4617-9d57-53b1f17e9068"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -139,7 +139,7 @@ ORDER BY c.Id_Cliente]]>
 				<textFieldExpression><![CDATA[$F{PENDS}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="524" y="5" width="38" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="1bd0db85-7d64-4015-b9d0-1bfa0893a8a7"/>
+				<reportElement mode="Transparent" x="524" y="2" width="38" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="1bd0db85-7d64-4015-b9d0-1bfa0893a8a7"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -147,17 +147,17 @@ ORDER BY c.Id_Cliente]]>
 				<textFieldExpression><![CDATA[$F{PENDS}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="231" y="-2" width="1" height="18" uuid="cfb419fe-3ee6-4d59-b5a4-cbcc0371985c"/>
+				<reportElement x="231" y="-2" width="1" height="13" uuid="cfb419fe-3ee6-4d59-b5a4-cbcc0371985c"/>
 			</line>
 			<line>
-				<reportElement x="497" y="-3" width="1" height="18" uuid="f9fae916-dccf-44e3-9abf-9a8b06bc0cc9"/>
+				<reportElement x="497" y="-3" width="1" height="14" uuid="f9fae916-dccf-44e3-9abf-9a8b06bc0cc9"/>
 			</line>
 		</band>
 	</detail>
 	<summary>
-		<band height="18" splitType="Stretch">
+		<band height="13" splitType="Stretch">
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="310" y="2" width="38" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="ce229220-53f2-4af2-b80b-8c203961f18a"/>
+				<reportElement mode="Transparent" x="308" y="2" width="38" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="ce229220-53f2-4af2-b80b-8c203961f18a"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -165,7 +165,7 @@ ORDER BY c.Id_Cliente]]>
 				<textFieldExpression><![CDATA[$F{PENDS}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="387" y="2" width="38" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="68da9592-a853-4a81-b324-3bd1baad77a4"/>
+				<reportElement mode="Transparent" x="388" y="2" width="38" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="68da9592-a853-4a81-b324-3bd1baad77a4"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -181,7 +181,7 @@ ORDER BY c.Id_Cliente]]>
 				<textFieldExpression><![CDATA[$F{PENDS}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="523" y="2" width="38" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="e9c68a48-8536-4b16-83bb-a865008c8cde"/>
+				<reportElement mode="Transparent" x="524" y="2" width="38" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="e9c68a48-8536-4b16-83bb-a865008c8cde"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -189,7 +189,7 @@ ORDER BY c.Id_Cliente]]>
 				<textFieldExpression><![CDATA[$F{PENDS}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="238" y="2" width="51" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="39c760af-10c2-457b-b5c3-64df4e649ef9"/>
+				<reportElement mode="Transparent" x="238" y="2" width="51" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="39c760af-10c2-457b-b5c3-64df4e649ef9"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>

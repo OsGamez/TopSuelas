@@ -32,8 +32,8 @@ public class NConsumo extends javax.swing.JDialog {
     }
     private void LoadProductos(){
     Producto p = new Producto();
-     DefaultComboBoxModel modelproducto = new  DefaultComboBoxModel(p.getProductos());
-     listaProductos=p.getProductos();
+     DefaultComboBoxModel modelproducto = new  DefaultComboBoxModel(p.getProdP());
+     listaProductos=p.getProdP();
      jcp.setModel(modelproducto);
     }
     private void Cerrar() {

@@ -150,6 +150,7 @@ public class Consumos extends javax.swing.JInternalFrame {
         });
 
         JtDatosConsumo.setModel(ModelConsumo);
+        JtDatosConsumo.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtDatosConsumo);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

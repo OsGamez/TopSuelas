@@ -2,6 +2,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,13 +12,14 @@ import java.util.Vector;
 
 
 public class Color {
-    
+    DB db = new DB();
     private  int Id_Color;
     private String Descripcion;
     private boolean Activo;
     
     PreparedStatement st = null;
     Connection c = Server.getProduccion();
+//    Connection c = db.Produccion();
     ResultSet rs = null;
     
     public Color(){}

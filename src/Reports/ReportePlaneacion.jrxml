@@ -89,32 +89,16 @@ GROUP BY DATEPART(YEAR,Fecha_Entrega),DATEPART(WK,Fecha_Entrega)]]>
 				</textElement>
 				<text><![CDATA[PROGRAMA DE PRODUCCIÓN (SEMANA)]]></text>
 			</staticText>
-			<textField>
-				<reportElement mode="Transparent" x="293" y="29" width="61" height="16" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="5755cdc1-b6b9-49a8-8a3d-3ecc86fc45b8"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{Semana}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="361" y="29" width="47" height="16" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="8b2f84a8-60ad-4aa5-b581-6500306e4e3c"/>
+				<reportElement mode="Transparent" x="360" y="29" width="47" height="16" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="8b2f84a8-60ad-4aa5-b581-6500306e4e3c"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[FECHA]]></text>
 			</staticText>
-			<textField>
-				<reportElement mode="Transparent" x="413" y="29" width="131" height="16" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="c8ac8501-2a69-429e-a31f-9b2bbd57b9fb"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{RANGO}]]></textFieldExpression>
-			</textField>
 			<image>
-				<reportElement x="309" y="-1" width="135" height="25" uuid="5dd7f850-ea8e-425e-8a7a-2f5e65a1c86b"/>
+				<reportElement x="307" y="-1" width="135" height="25" uuid="5dd7f850-ea8e-425e-8a7a-2f5e65a1c86b"/>
 				<imageExpression><![CDATA["C:\\Program Files\\logo.png"]]></imageExpression>
 			</image>
 			<textField pattern="EEEEE dd MMMMM yyyy">
@@ -131,16 +115,31 @@ GROUP BY DATEPART(YEAR,Fecha_Entrega),DATEPART(WK,Fecha_Entrega)]]>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="283" y="29" width="58" height="15" forecolor="#FFFFFF" uuid="e752a732-de7f-4800-bc76-e140b93bd5ac"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Semana}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="418" y="29" width="100" height="15" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="d413285f-0d09-4a1e-8cf0-e7a520b44c64"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RANGO}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<detail>
-		<band height="36" splitType="Stretch">
+		<band height="53" splitType="Stretch">
 			<rectangle radius="0">
 				<reportElement mode="Opaque" x="0" y="0" width="752" height="20" forecolor="#000000" backcolor="#000066" uuid="131e3cda-2247-4348-ad3b-8b7490679ef6"/>
 				<graphicElement fill="Solid"/>
 			</rectangle>
 			<staticText>
-				<reportElement mode="Transparent" x="126" y="0" width="19" height="20" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="5877ce91-5586-45aa-8d34-a09819d8500a"/>
+				<reportElement mode="Transparent" x="190" y="0" width="19" height="20" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="5877ce91-5586-45aa-8d34-a09819d8500a"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -148,7 +147,7 @@ GROUP BY DATEPART(YEAR,Fecha_Entrega),DATEPART(WK,Fecha_Entrega)]]>
 				<text><![CDATA[A.G]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="351" y="0" width="32" height="20" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="c1d3bcb7-55d6-4637-b275-5c438a1cdb21"/>
+				<reportElement mode="Transparent" x="417" y="0" width="32" height="20" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="c1d3bcb7-55d6-4637-b275-5c438a1cdb21"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -156,7 +155,7 @@ GROUP BY DATEPART(YEAR,Fecha_Entrega),DATEPART(WK,Fecha_Entrega)]]>
 				<text><![CDATA[ORDEN D COMPRA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="143" y="0" width="41" height="20" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="ab3964c0-c837-409c-b2f2-c6041c29ecda"/>
+				<reportElement mode="Transparent" x="209" y="0" width="41" height="20" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="ab3964c0-c837-409c-b2f2-c6041c29ecda"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -172,7 +171,7 @@ GROUP BY DATEPART(YEAR,Fecha_Entrega),DATEPART(WK,Fecha_Entrega)]]>
 				<text><![CDATA[NO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="249" y="0" width="102" height="20" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="e916f6d8-892f-4024-905d-a28edd2f92c3"/>
+				<reportElement mode="Transparent" x="315" y="0" width="102" height="20" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="e916f6d8-892f-4024-905d-a28edd2f92c3"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -180,7 +179,7 @@ GROUP BY DATEPART(YEAR,Fecha_Entrega),DATEPART(WK,Fecha_Entrega)]]>
 				<text><![CDATA[OBSERVACIONES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="185" y="0" width="38" height="20" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="c53ef5a7-2aca-4a13-99af-b8edae4cb926"/>
+				<reportElement mode="Transparent" x="251" y="0" width="38" height="20" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="c53ef5a7-2aca-4a13-99af-b8edae4cb926"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -196,7 +195,7 @@ GROUP BY DATEPART(YEAR,Fecha_Entrega),DATEPART(WK,Fecha_Entrega)]]>
 				<text><![CDATA[PEDIDO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="226" y="0" width="23" height="20" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="0d985c65-2a9c-40f8-a973-c97097fe92c2"/>
+				<reportElement mode="Transparent" x="292" y="0" width="23" height="20" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="0d985c65-2a9c-40f8-a973-c97097fe92c2"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -212,7 +211,7 @@ GROUP BY DATEPART(YEAR,Fecha_Entrega),DATEPART(WK,Fecha_Entrega)]]>
 				<text><![CDATA[CLIENTE]]></text>
 			</staticText>
 			<subreport>
-				<reportElement x="-17" y="10" width="129" height="26" uuid="87fddb4f-7d7b-4efd-9be0-840f366bb2ba"/>
+				<reportElement x="0" y="30" width="138" height="23" uuid="c4802bc3-f03e-4d68-bf71-bbc0449fd656"/>
 				<subreportParameter name="Año">
 					<subreportParameterExpression><![CDATA[$F{Año}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -245,9 +244,9 @@ GROUP BY DATEPART(YEAR,Fecha_Entrega),DATEPART(WK,Fecha_Entrega)]]>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="19">
+		<band height="46">
 			<subreport>
-				<reportElement x="-15" y="0" width="109" height="19" uuid="94a77609-0235-495e-905f-8ba862019b58"/>
+				<reportElement x="-1" y="7" width="101" height="38" uuid="81f2e38b-65b9-4286-a4b5-ecf0173e1f34"/>
 				<subreportParameter name="Date">
 					<subreportParameterExpression><![CDATA[$F{Semana}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -255,15 +254,7 @@ GROUP BY DATEPART(YEAR,Fecha_Entrega),DATEPART(WK,Fecha_Entrega)]]>
 				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\PlaneacionSuela.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="227" y="0" width="112" height="19" uuid="dba36786-5413-4c17-bbbf-15d34f0fc46b"/>
-				<subreportParameter name="Date">
-					<subreportParameterExpression><![CDATA[$F{Semana}]]></subreportParameterExpression>
-				</subreportParameter>
-				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\SumaPsuela.jasper"]]></subreportExpression>
-			</subreport>
-			<subreport>
-				<reportElement x="65" y="0" width="109" height="19" uuid="c1ffadf1-fe93-4707-bc5a-7f9632be01fd"/>
+				<reportElement x="115" y="7" width="94" height="38" uuid="2214576d-9e4e-4020-be35-006b6f8e91b4"/>
 				<subreportParameter name="Date">
 					<subreportParameterExpression><![CDATA[$F{Semana}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -271,7 +262,7 @@ GROUP BY DATEPART(YEAR,Fecha_Entrega),DATEPART(WK,Fecha_Entrega)]]>
 				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\PlaneacionAgente.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="147" y="0" width="109" height="19" uuid="73216ca3-523d-4739-9838-64e7d4bbefa2"/>
+				<reportElement x="225" y="7" width="89" height="38" uuid="527db253-774c-4c6e-80c8-5b5609c3eaa6"/>
 				<subreportParameter name="Date">
 					<subreportParameterExpression><![CDATA[$F{Semana}]]></subreportParameterExpression>
 				</subreportParameter>

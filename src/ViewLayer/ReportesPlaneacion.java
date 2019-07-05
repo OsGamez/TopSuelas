@@ -20,24 +20,14 @@ import net.sf.jasperreports.view.JasperViewer;
 
 public class ReportesPlaneacion extends javax.swing.JDialog {
 
-    Connection c = Conexion.getRcpt();
+    Connection c = Server.getRcpt();
 
     public ReportesPlaneacion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setLocationRelativeTo(null);
     }
 
-    private void Cerrar() {
-        String botones[] = {"SI", "NO"};
-        int eleccion = JOptionPane.showOptionDialog(this, "¿Deseas cerrar esta ventana?", "TOP-SUELAS",
-                0, 0, null, botones, this);
-        if (eleccion == JOptionPane.YES_OPTION) {
-            dispose();
-        } else if (eleccion == JOptionPane.NO_OPTION) {
-        }
-    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -51,11 +41,6 @@ public class ReportesPlaneacion extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("REPORTE DE PLANEACIÓN");
         setResizable(false);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
-        });
 
         JcSemanal.setText("Semanal");
 
@@ -104,10 +89,6 @@ public class ReportesPlaneacion extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        Cerrar();
-    }//GEN-LAST:event_formWindowClosing
-
     private void JbImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbImprimirActionPerformed
         if (JcSemanal.isSelected() == false && JcDetalle.isSelected() == false && JcMensual.isSelected() == false) {
             JOptionPane.showMessageDialog(this, "Selecciona una opcion", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
@@ -135,7 +116,7 @@ public class ReportesPlaneacion extends javax.swing.JDialog {
                     JasperPrint jprint = JasperFillManager.fillReport(reporte, null, c);
                     JasperViewer view = new JasperViewer(jprint, false);
 
-                    this.dispose();
+                    //this.dispose();
                     view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                     view.setVisible(true);
                     view.setIconImage(getImage());
@@ -153,7 +134,7 @@ public class ReportesPlaneacion extends javax.swing.JDialog {
                     JasperPrint jprint = JasperFillManager.fillReport(reporte, null, c);
                     JasperViewer view = new JasperViewer(jprint, false);
 
-                    this.dispose();
+                    //this.dispose();
                     view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                     view.setVisible(true);
                     view.setIconImage(getImage());
@@ -171,7 +152,7 @@ public class ReportesPlaneacion extends javax.swing.JDialog {
                     JasperPrint jprint = JasperFillManager.fillReport(reporte, null, c);
                     JasperViewer view = new JasperViewer(jprint, false);
 
-                    this.dispose();
+                    //this.dispose();
                     view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                     view.setVisible(true);
                     view.setIconImage(getImage());

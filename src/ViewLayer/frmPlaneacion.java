@@ -265,6 +265,7 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
         jLabel1.setText("Programa:");
 
         Tb.setModel(Table);
+        Tb.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(Tb);
 
         jLabel2.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N

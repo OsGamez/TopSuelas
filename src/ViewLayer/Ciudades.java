@@ -146,6 +146,7 @@ public class Ciudades extends javax.swing.JInternalFrame {
 
         JtDatosCiudad.setModel(modelCiudad
         );
+        JtDatosCiudad.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtDatosCiudad);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

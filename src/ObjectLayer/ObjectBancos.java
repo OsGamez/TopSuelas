@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +17,9 @@ public class ObjectBancos {
     PreparedStatement copy = null;
     Connection c = Server.getCobranza();
     Connection rc = Server.getRcobranza();
+//    DB db = new DB();
+//    Connection c = db.Cobranza();
+//    Connection rc = db.Rcobranza();
     ResultSet rs = null;
 
     public boolean bancoAdd(Banco banco) {

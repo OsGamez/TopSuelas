@@ -56,8 +56,10 @@ public class Principal extends javax.swing.JFrame {
     Etiquetasb etiqb;
     public String Estado = "A";
     String Tb = "";
-
+    Sesioninfo se = new Sesioninfo();
     Maquinas maq;
+    Ped ptp;
+    ReportesPlaneacion rplaneacion;
 
     ImageIcon notificacion = new ImageIcon("C:\\tsmanager\\imagenes\\push.png");
     ImageIcon campana = new ImageIcon("C:\\tsmanager\\imagenes\\bell.png");
@@ -85,12 +87,12 @@ public class Principal extends javax.swing.JFrame {
 //        popCMP.add(JmOrdenc);
         this.us = us;
         LoadVersion();
-        Sesioninfo se = new Sesioninfo();
+
         se.setSerie(Estado);
         se.setUsuario(us.getUsuario());
         se.setId_usuario(us.getId_Usuario());
-        if (us.getDepartamento().equals("ADMIN")) {
 
+        if (us.getDepartamento().equals("ADMIN")) {
         } else if (us.getUsuario().equals("kim")) {
             JmConfig.setVisible(false);
 
@@ -160,12 +162,14 @@ public class Principal extends javax.swing.JFrame {
         Jmpedcpt = new javax.swing.JMenu();
         JmCancelación = new javax.swing.JMenuItem();
         JmPedidos = new javax.swing.JMenuItem();
-        JmReportes = new javax.swing.JMenuItem();
         Jmrepcpt = new javax.swing.JMenu();
         JmReportescpt = new javax.swing.JMenuItem();
         JmExistenciascpt = new javax.swing.JMenuItem();
         JmKardexcpt = new javax.swing.JMenuItem();
         JmInventariofcpt = new javax.swing.JMenuItem();
+        JmPlaneacion = new javax.swing.JMenu();
+        JmReportes = new javax.swing.JMenuItem();
+        JmRplaneacion = new javax.swing.JMenuItem();
         JmConfig = new javax.swing.JMenu();
         JmUsuario = new javax.swing.JMenuItem();
         JmProduccion = new javax.swing.JMenu();
@@ -425,16 +429,6 @@ public class Principal extends javax.swing.JFrame {
         });
         Jmpedcpt.add(JmPedidos);
 
-        JmReportes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        JmReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/travel_journey_icon-icons.com_55995.png"))); // NOI18N
-        JmReportes.setText("Planeación");
-        JmReportes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JmReportesActionPerformed(evt);
-            }
-        });
-        Jmpedcpt.add(JmReportes);
-
         JmCPT.add(Jmpedcpt);
 
         Jmrepcpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Data_Meter4_37237.png"))); // NOI18N
@@ -467,6 +461,30 @@ public class Principal extends javax.swing.JFrame {
         Jmrepcpt.add(JmInventariofcpt);
 
         JmCPT.add(Jmrepcpt);
+
+        JmPlaneacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/calendar-icon_34471.png"))); // NOI18N
+        JmPlaneacion.setText("Planeación");
+
+        JmReportes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JmReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/travel_journey_icon-icons.com_55995.png"))); // NOI18N
+        JmReportes.setText("Planeación");
+        JmReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmReportesActionPerformed(evt);
+            }
+        });
+        JmPlaneacion.add(JmReportes);
+
+        JmRplaneacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1486564180-finance-financial-report_81493.png"))); // NOI18N
+        JmRplaneacion.setText("Reportes");
+        JmRplaneacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmRplaneacionActionPerformed(evt);
+            }
+        });
+        JmPlaneacion.add(JmRplaneacion);
+
+        JmCPT.add(JmPlaneacion);
 
         JmConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/cogregular_106332.png"))); // NOI18N
         JmConfig.setText("Configuración");
@@ -745,7 +763,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(JbUser)
                 .addGap(44, 44, 44)
                 .addComponent(JbRol)
-                .addGap(31, 31, 31)
+                .addGap(63, 63, 63)
                 .addComponent(JbAlerta, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -812,13 +830,13 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(cmo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(prod, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE))
+                    .addComponent(prod, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
                 .addGap(127, 127, 127)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cpt, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                    .addComponent(cpt, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
                     .addComponent(nominas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(138, 138, 138)
-                .addComponent(cobranza, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE))
+                .addComponent(cobranza, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -869,16 +887,30 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void loadReportesPlaneacion(){
+        //Tb = us.getUsuario();
+        if (rplaneacion == null) {
+            rplaneacion = new ReportesPlaneacion(null, true);
+            //capturaIn.TbTemp = Tb;
+            rplaneacion.setVisible(true);
+        } else {
+            rplaneacion.dispose();
+            rplaneacion = new ReportesPlaneacion(null, true);
+            //capturaIn.TbTemp = Tb;
+            rplaneacion.setVisible(true);
+        }
+    }
+    
     private void LoadInFisico() {
-        Tb = us.getUsuario();
+        //Tb = us.getUsuario();
         if (capturaIn == null) {
             capturaIn = new CapturaInventario();
-            capturaIn.TbTemp = Tb;
+            //capturaIn.TbTemp = Tb;
             capturaIn.setVisible(true);
         } else {
             capturaIn.dispose();
             capturaIn = new CapturaInventario();
-            capturaIn.TbTemp = Tb;
+            //capturaIn.TbTemp = Tb;
             capturaIn.setVisible(true);
         }
     }
@@ -1175,21 +1207,32 @@ public class Principal extends javax.swing.JFrame {
     }
 
     private void LoadPedido() {
-        if (pedidos == null) {
-            pedidos = new Pedidos(Estado);
-            MainContent.add(pedidos);
-            pedidos.Id_Usuario = Integer.parseInt(id_usuario);
-            pedidos.JbSerie.setText(Estado);
-            MainContent.getDesktopManager().maximizeFrame(pedidos);
-            pedidos.setVisible(true);
+//        if (pedidos == null) {
+//            pedidos = new Pedidos(Estado);
+//            MainContent.add(pedidos);
+//            pedidos.Id_Usuario = Integer.parseInt(id_usuario);
+//            pedidos.JbSerie.setText(Estado);
+//            MainContent.getDesktopManager().maximizeFrame(pedidos);
+//            pedidos.setVisible(true);
+//        }else{
+//            pedidos.dispose();
+//            pedidos = new Pedidos(Estado);
+//            MainContent.add(pedidos);
+//            pedidos.Id_Usuario = Integer.parseInt(id_usuario);
+//            pedidos.JbSerie.setText(Estado);
+//            MainContent.getDesktopManager().maximizeFrame(pedidos);
+//            pedidos.setVisible(true);
+//        }
+
+        if (ptp == null) {
+            ptp = new Ped();
+            ptp.setExtendedState(Ped.MAXIMIZED_BOTH);
+            ptp.setVisible(true);
         } else {
-            pedidos.dispose();
-            pedidos = new Pedidos(Estado);
-            pedidos.Id_Usuario = Integer.parseInt(id_usuario);
-            pedidos.JbSerie.setText(Estado);
-            MainContent.add(pedidos);
-            MainContent.getDesktopManager().maximizeFrame(pedidos);
-            pedidos.setVisible(true);
+            ptp.dispose();
+            ptp = new Ped();
+            ptp.setExtendedState(Ped.MAXIMIZED_BOTH);
+            ptp.setVisible(true);
         }
     }
 
@@ -1391,8 +1434,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cobranzaMouseClicked
 
     private void cmoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmoMouseClicked
-       popCMP.show(evt.getComponent(), evt.getX(), evt.getY());
-        
+        popCMP.show(evt.getComponent(), evt.getX(), evt.getY());
+
     }//GEN-LAST:event_cmoMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
@@ -1418,11 +1461,14 @@ public class Principal extends javax.swing.JFrame {
             JbAlerta.setForeground(Color.red);
             Estado = "B";
             JbAlerta.setIcon(notificacion);
+            se.setSerie("B");
+
         } else {
             //JbAlerta.setText("A");
             JbAlerta.setForeground(Color.green);
             JbAlerta.setIcon(campana);
             Estado = "A";
+            se.setSerie("A");
         }
     }//GEN-LAST:event_JbAlertaMousePressed
 
@@ -1465,10 +1511,11 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_JmAlmacenesPrimaActionPerformed
 
     private void JmOrdencActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmOrdencActionPerformed
+        /*                ordenc = new NOrdenCompra(null, true);
                     ordenc = new NOrdenCompra(null, true);
         ordenc.setVisible(true);
         ordenc.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        ordenc.setAlwaysOnTop(true);
+        ordenc.setAlwaysOnTop(true);*/
     }//GEN-LAST:event_JmOrdencActionPerformed
 
     private void nominasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nominasMouseClicked
@@ -1476,15 +1523,18 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_nominasMouseClicked
 
     private void JmMovESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmMovESActionPerformed
-        movcmp = new MovimientosCMP();
-        MainContent.add(movcmp);
-        MainContent.getDesktopManager().maximizeFrame(movcmp);
-        movcmp.setVisible(true);
+//        movcmp = new MovimientosCMP();
+//        MainContent.add(movcmp);
+//        MainContent.getDesktopManager().maximizeFrame(movcmp);
+//        movcmp.setVisible(true);
     }//GEN-LAST:event_JmMovESActionPerformed
 
     private void Jmetiqprod1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jmetiqprod1ActionPerformed
         LoadEtiquetaB();
     }//GEN-LAST:event_Jmetiqprod1ActionPerformed
+    private void JmRplaneacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmRplaneacionActionPerformed
+       loadReportesPlaneacion();
+    }//GEN-LAST:event_JmRplaneacionActionPerformed
     private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {
         LoadMaquina();
     }
@@ -1503,16 +1553,24 @@ public class Principal extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -1568,6 +1626,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JmOrdenc;
     private javax.swing.JMenuItem JmPais;
     private javax.swing.JMenuItem JmPedidos;
+    private javax.swing.JMenu JmPlaneacion;
     private javax.swing.JMenuItem JmPrecios;
     private javax.swing.JMenu JmProduccion;
     private javax.swing.JMenuItem JmProductos;
@@ -1575,6 +1634,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JmProveedor;
     private javax.swing.JMenuItem JmReportes;
     private javax.swing.JMenuItem JmReportescpt;
+    private javax.swing.JMenuItem JmRplaneacion;
     private javax.swing.JMenuItem JmSalidascpt;
     private javax.swing.JMenuItem JmSalir;
     private javax.swing.JMenuItem JmUsuario;

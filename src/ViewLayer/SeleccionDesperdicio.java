@@ -46,8 +46,8 @@ public class SeleccionDesperdicio extends javax.swing.JDialog {
 
     private void LoadProductos() {
         Producto l = new Producto();
-        DefaultComboBoxModel modelselect = new DefaultComboBoxModel(l.getProductos());
-        listaproductos = l.getProductos();
+        DefaultComboBoxModel modelselect = new DefaultComboBoxModel(l.getProdP());
+        listaproductos = l.getProdP();
         jcp.setModel(modelselect);
     }
 

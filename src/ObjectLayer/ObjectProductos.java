@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +12,9 @@ import java.util.ArrayList;
 
 public class ObjectProductos {
 
-    public Connection c = Server.getProduccion();
+    Connection c = Server.getProduccion();
+//    DB db = new DB();
+//    Connection c = db.Produccion();
     PreparedStatement st, prod = null;
     ResultSet rs = null;
     Statement sta = null;
@@ -103,7 +106,7 @@ public class ObjectProductos {
         return listaProductos;
     }
 
-    public ArrayList<Producto>GetByC(String filtro) {
+    public ArrayList<Producto> GetByC(String filtro) {
         ArrayList<Producto> listaProductos = new ArrayList<Producto>();
         try {
             st = c.prepareStatement("select  p.Descripcion,p.Id_Producto,\n"
@@ -111,7 +114,7 @@ public class ObjectProductos {
                     + "cr.Punto_Inicial,cr.Punto_Final\n"
                     + "from Producto p inner join Color c on p.Id_Color = c.Id_Color\n"
                     + "inner join Corrida cr on p.Id_Corrida = cr.Id_Corrida\n"
-                    + "WHERE p.Activo = 1  and p.Descripcion LIKE'" + filtro + "%' ORDER BY p.Descripcion");
+                    + "WHERE p.Activo = 1  and p.Descripcion LIKE'" + filtro + "%' and p.Activo = 1 ORDER BY p.Descripcion");
 
             rs = st.executeQuery();
 
@@ -133,7 +136,7 @@ public class ObjectProductos {
         }
         return listaProductos;
     }
-    
+
     public ArrayList<Producto> productoSearch(String filtro) {
         ArrayList<Producto> listaProductos = new ArrayList<Producto>();
         try {
@@ -181,6 +184,41 @@ public class ObjectProductos {
                 producto.setId_Producto(rs.getInt("Id_Producto"));
                 producto.setDescripcion(rs.getString("Descripcion"));
                 producto.setObservaciones(rs.getString("Observaciones"));
+                listaProductos.add(producto);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listaProductos;
+    }
+    
+     public ArrayList<Producto> GetByCliente(int id, String filtro) {
+        ArrayList<Producto> listaProductos = new ArrayList<Producto>();
+        try {
+            st = c.prepareStatement("select p.Id_Producto,p.Descripcion  as Suela,cr.Punto_Inicial, cr.Punto_Final,cr.Descripcion as Corrida,\n"
+                    + "cl.Descripcion as Color,pc.PrecioA,pc.PrecioB,PC.PrecioAP,PC.PrecioBP\n"
+                    + "from RCPTPhylonA.dbo.Precios as pc inner join ProduccionPhy.dbo.Producto as p\n"
+                    + "on pc.Id_Producto = p.Id_Producto \n"
+                    + "inner join ProduccionPhy.dbo.Color as cl\n"
+                    + "on p.Id_Color = cl.Id_Color\n"
+                    + "inner join ProduccionPhy.dbo.Corrida as cr\n"
+                    + "on p.Id_Corrida = cr.Id_Corrida\n"
+                    + "inner join CobranzaPhy.dbo.Clientes as c on pc.Id_Cliente = c.Id_Cliente\n"
+                    + "where pc.Id_Cliente=" + id
+                    +"and p.Descripcion like '%" + filtro + "%' and pc.Activo = 1 order by P.Descripcion");
+            rs = st.executeQuery();
+            while (rs.next()) {
+                Producto producto = new Producto();
+                producto.setId_Producto(rs.getInt("Id_Producto"));
+                producto.setDescripcion(rs.getString("Suela"));
+                producto.setPti(rs.getFloat("Punto_Inicial"));
+                producto.setPtf(rs.getFloat("Punto_Final"));
+                producto.setDescripcionCorrida(rs.getString("Corrida"));
+                producto.setDescripcionColor(rs.getString("Color"));
+                producto.setPrecioA(rs.getDouble("PrecioA"));
+                producto.setPrecioB(rs.getDouble("PrecioB"));
+                producto.setPrecioAP(rs.getDouble("PrecioAP"));
+                producto.setPrecioBP(rs.getDouble("PrecioBP"));
                 listaProductos.add(producto);
             }
         } catch (Exception e) {

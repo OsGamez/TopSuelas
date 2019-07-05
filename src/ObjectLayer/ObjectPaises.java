@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +17,9 @@ public class ObjectPaises {
     PreparedStatement copy = null;
     Connection c = Server.getCobranza();
     Connection rc = Server.getRcobranza();
+//    DB db = new DB();
+//    Connection c = db.Cobranza();
+//    Connection rc = db.Rcobranza();
     ResultSet rs = null;
 
     public boolean paisAdd(String Descripcion, boolean Activo) {
@@ -162,7 +166,7 @@ public class ObjectPaises {
                     c.rollback();
                     c.close();
                 }
-                 c.close();
+                c.close();
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -190,7 +194,7 @@ public class ObjectPaises {
                 rc.rollback();
                 copy.close();
             }
-           copy.close();
+            copy.close();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -222,10 +226,10 @@ public class ObjectPaises {
                     st.close();
                 }
             } else {
-               c.rollback();
-               st.close();
+                c.rollback();
+                st.close();
             }
-           st.close();
+            st.close();
 
         } catch (SQLException ex) {
             ex.printStackTrace();

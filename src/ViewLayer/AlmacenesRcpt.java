@@ -159,6 +159,7 @@ public class AlmacenesRcpt extends javax.swing.JInternalFrame {
         );
 
         JtAlmacen.setModel(modelAlmacen);
+        JtAlmacen.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtAlmacen);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N

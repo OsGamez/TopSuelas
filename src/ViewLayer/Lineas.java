@@ -144,6 +144,7 @@ class Lineas extends javax.swing.JInternalFrame {
         });
 
         JtDatosLinea.setModel(modelLinea);
+        JtDatosLinea.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtDatosLinea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

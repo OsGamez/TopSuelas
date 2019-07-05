@@ -109,6 +109,7 @@ public class Productos extends javax.swing.JInternalFrame {
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Vans_Sundown_Black_37299.png"))); // NOI18N
 
         JtDatosProducto.setModel(modelProducto);
+        JtDatosProducto.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtDatosProducto);
 
         JpMenu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 102)));

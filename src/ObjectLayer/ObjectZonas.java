@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,10 +17,13 @@ public class ObjectZonas {
     PreparedStatement copy = null;
     Connection c = Server.getCobranza();
     Connection rc = Server.getRcobranza();
+//    DB db = new DB();
+//    Connection c = db.Cobranza();
+//    Connection rc = db.Rcobranza();
     ResultSet rs = null;
 
     public boolean zonaAdd(String Descripcion, boolean Activo) {
-       boolean rpta = false;
+        boolean rpta = false;
         try {
             st = c.prepareStatement("INSERT INTO Zonas (Descripcion ,Activo)"
                     + "values(?,?)");
@@ -42,11 +46,11 @@ public class ObjectZonas {
         } catch (SQLException ex) {
             ex.printStackTrace();
             Conexion.cerrarPhylonA(st);
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
             Conexion.cerrarPrep(st);
         }
-        return rpta; 
+        return rpta;
     }
 
     public boolean zonaAddCopy(String Descripcion, boolean Activo) {
@@ -137,7 +141,7 @@ public class ObjectZonas {
 
     }
 
-    public boolean zonaDelete(int Id_Zona,String Descripcion) {
+    public boolean zonaDelete(int Id_Zona, String Descripcion) {
         boolean rpta = false;
         try {
             st = c.prepareStatement("select c.RazonSocial,z.Id_Zona from Clientes c\n"
@@ -164,20 +168,20 @@ public class ObjectZonas {
         } catch (SQLException ex) {
             ex.printStackTrace();
             Conexion.cerrarPhylonA(st);
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
             Conexion.cerrarPrep(st);
         }
         return rpta;
     }
-    
+
     public boolean zonaDeleteCopy(String Descripcion) {
         boolean rpta = false;
         try {
             copy = rc.prepareStatement("UPDATE Zonas SET Activo = 0 WHERE Descripcion = ?");
             rc.setAutoCommit(false);
             copy.setString(1, Descripcion);
-           
+
             rpta = copy.executeUpdate() == 1 ? true : false;
 
             if (rpta) {
@@ -198,38 +202,38 @@ public class ObjectZonas {
     }
 
     public boolean zonaUpdate(String Descripcion, String Nombre) {
-       boolean rpta = false;
+        boolean rpta = false;
         try {
             st = c.prepareStatement("UPDATE Zonas SET Descripcion = ? WHERE Descripcion = ?");
             c.setAutoCommit(false);
             st.setString(1, Descripcion);
             st.setString(2, Nombre);
             rpta = st.executeUpdate() == 1 ? true : false;
-            
-            if(rpta){
+
+            if (rpta) {
                 rpta = zonaUpdateCopy(Descripcion, Nombre);
-                 if (rpta) {
+                if (rpta) {
                     c.commit();
                 } else {
                     Conexion.rollbackA(c);
                 }
-            }else {
+            } else {
                 Conexion.rollbackA(c);
             }
             Conexion.cerrarPhylonA(st);
-            
+
         } catch (SQLException ex) {
             ex.printStackTrace();
             Conexion.cerrarPhylonA(st);
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
             Conexion.cerrarPrep(st);
         }
         return rpta;
     }
-    
-    public boolean zonaUpdateCopy(String Descripcion, String Nombre){
-       boolean rpta = false;
+
+    public boolean zonaUpdateCopy(String Descripcion, String Nombre) {
+        boolean rpta = false;
         try {
             copy = rc.prepareStatement("UPDATE Zonas SET Descripcion = ? WHERE Descripcion = ?");
             rc.setAutoCommit(false);
@@ -251,6 +255,6 @@ public class ObjectZonas {
             ex.printStackTrace();
             Conexion.cerrarPrep(copy);
         }
-        return rpta; 
+        return rpta;
     }
 }

@@ -2,6 +2,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +10,8 @@ import java.sql.ResultSet;
 
 public class ObjectDprograma {
     Connection c = Conexion.getRcpt();
+//    DB db = new DB();
+//    Connection c = db.RCPTPhylonA();
     PreparedStatement st = null; 
     ResultSet rs = null;
     
@@ -59,9 +62,9 @@ public class ObjectDprograma {
             if(rpta){
                 c.commit();
             }else{
-                 Conexion.rollback(c);
+                c.rollback();
             }
-             Conexion.cerrarPrep(st);
+             st.close();
          } catch (Exception e) {
              e.printStackTrace();
          }

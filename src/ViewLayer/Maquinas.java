@@ -139,6 +139,7 @@ public class Maquinas extends javax.swing.JInternalFrame {
         });
 
         JtDatosMaquina.setModel(modelMaquina);
+        JtDatosMaquina.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtDatosMaquina);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

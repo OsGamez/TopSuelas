@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,14 +25,64 @@ public class Producto {
     private boolean Activo;
     private double PrecioA;
     private double PrecioB;
+    private double PrecioAP;
+    private double PrecioBP;
     private int Id_Lista;
+    private String Color;
+    private String Corrida;
+    private int IdRcpt;
+    
     PreparedStatement st = null;
     Connection c = Server.getProduccion();
+//    DB db = new DB();
+//    Connection c = db.Produccion();
     ResultSet rs = null;
 
     public Producto() {
     }
 
+    public int getIdRcpt() {
+        return IdRcpt;
+    }
+
+    public void setIdRcpt(int IdRcpt) {
+        this.IdRcpt = IdRcpt;
+    }
+    
+    public double getPrecioAP() {
+        return PrecioAP;
+    }
+
+    public void setPrecioAP(double PrecioAP) {
+        this.PrecioAP = PrecioAP;
+    }
+
+    public double getPrecioBP() {
+        return PrecioBP;
+    }
+
+    public void setPrecioBP(double PrecioBP) {
+        this.PrecioBP = PrecioBP;
+    }
+    
+    
+
+    public String getColor() {
+        return Color;
+    }
+
+    public void setColor(String Color) {
+        this.Color = Color;
+    }
+
+    public String getCorrida() {
+        return Corrida;
+    }
+
+    public void setCorrida(String Corrida) {
+        this.Corrida = Corrida;
+    }
+    
     public Float getPti() {
         return Pti;
     }
@@ -48,7 +99,6 @@ public class Producto {
         this.Ptf = Ptf;
     }
 
-    
     public int getId_Lista() {
         return Id_Lista;
     }
@@ -158,7 +208,7 @@ public class Producto {
         return this.Descripcion;
     }
 
-    public Vector<Producto> getProductos() {
+    public Vector<Producto> getProdP() {
 
         Vector<Producto> datos = new Vector<Producto>();
         Producto p = null;
@@ -177,6 +227,51 @@ public class Producto {
                 p.setId_Producto(rs.getInt("Id_Producto"));
                 p.setDescripcion(rs.getString("Descripcion"));
                 datos.add(p);
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return datos;
+    }
+
+    public Vector<Producto> getProdPedido(int Id_Cliente) {
+        Vector<Producto> datos = new Vector<Producto>();
+        Producto pc = null;
+
+        try {
+            st = c.prepareStatement("select p.Id_Producto,p.Descripcion  as Combinacion,cr.Punto_Inicial, cr.Punto_Final,cr.Descripcion as Corrida,\n"
+                    + "cl.Descripcion as Color,pc.PrecioA,pc.PrecioB,PC.PrecioAP,PC.PrecioBP\n"
+                    + "from RCPTPhylonA.dbo.Precios as pc inner join ProduccionPhy.dbo.Producto as p\n"
+                    + "on pc.Id_Producto = p.Id_Producto \n"
+                    + "inner join ProduccionPhy.dbo.Color as cl\n"
+                    + "on p.Id_Color = cl.Id_Color\n"
+                    + "inner join ProduccionPhy.dbo.Corrida as cr\n"
+                    + "on p.Id_Corrida = cr.Id_Corrida\n"
+                    + "inner join CobranzaPhy.dbo.Clientes as c on pc.Id_Cliente = c.Id_Cliente\n"
+                    + "where pc.Id_Cliente=" + Id_Cliente
+                    +"and pc.Activo = 1 order by P.Descripcion");
+            rs = st.executeQuery();
+
+            pc = new Producto();
+            pc.setId_Producto(0);
+            pc.setDescripcion("Seleciona un producto");
+            datos.add(pc);
+
+            while (rs.next()) {
+                pc = new Producto();
+                pc.setId_Producto(rs.getInt("Id_Producto"));
+                pc.setDescripcion(rs.getString("Combinacion"));
+                pc.setPti(rs.getFloat("Punto_Inicial"));
+                pc.setPtf(rs.getFloat("Punto_Final"));
+                pc.setCorrida(rs.getString("Corrida"));
+                pc.setColor(rs.getString("Color"));
+                pc.setPrecioA(rs.getDouble("PrecioA"));
+                pc.setPrecioB(rs.getDouble("PrecioB"));
+                pc.setPrecioAP(rs.getDouble("PrecioAP"));
+                pc.setPrecioBP(rs.getDouble("PrecioBP"));
+                
+                datos.add(pc);
             }
             rs.close();
         } catch (SQLException ex) {

@@ -151,6 +151,7 @@ public class Colores extends javax.swing.JInternalFrame {
 
         JtDatosColor.setModel(modelColor
         );
+        JtDatosColor.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtDatosColor);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

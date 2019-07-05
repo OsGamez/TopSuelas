@@ -137,6 +137,7 @@ public class Moldes extends javax.swing.JInternalFrame {
         });
 
         JtDatosMolde.setModel(modelMolde);
+        JtDatosMolde.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane1.setViewportView(JtDatosMolde);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

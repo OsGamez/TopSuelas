@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,11 +14,10 @@ public class ObjectPlaneacion {
     PreparedStatement st = null, dp = null;
     ObjectDetalle obj = new ObjectDetalle();
 
-    Connection pa = Conexion.getRcpt();
-    Connection c = Conexion.getRpt();
-    
-    //Connection pa = Server.getRcpt();
-    //Connection c = Server.getRpt();
+    Connection pa = Server.getRcpt();
+    Connection c = Server.getRpt();
+   
+   
     ResultSet rs = null;
 
     public ArrayList<Planeacion> obtenerPlaneacion(int año, int semana) {

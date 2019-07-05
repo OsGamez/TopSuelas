@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,13 +10,15 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 public class Ciudad {
-
+//    DB db = new DB();
+    
     private int Id_Ciudad;
     private String Descripcion;
     private boolean Activo;
 
     PreparedStatement st = null;
     Connection c = Server.getCobranza();
+//    Connection c = db.Cobranza();
     ResultSet rs = null;
 
     public Ciudad() {

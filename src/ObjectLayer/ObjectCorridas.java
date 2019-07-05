@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +13,9 @@ import java.util.logging.Logger;
 
 public class ObjectCorridas {
 
-    public Connection c = Server.getProduccion();
+    Connection c = Server.getProduccion();
+//    DB db = new DB();
+//    Connection c = db.Produccion();
     PreparedStatement st = null;
     ResultSet rs = null;
 
@@ -33,8 +36,8 @@ public class ObjectCorridas {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-            return false;
-        
+        return false;
+
     }
 
     public int validarCorrida(String nombre) {
@@ -76,7 +79,7 @@ public class ObjectCorridas {
         return listaCorridas;
     }
 
-     public ArrayList<Corrida>getById(int Id) {
+    public ArrayList<Corrida> getById(int Id) {
         ArrayList<Corrida> listaCorridas = new ArrayList<Corrida>();
         try {
             st = c.prepareStatement("SELECT * FROM Corrida WHERE Id_Corrida = ? AND Activo = 1");
@@ -97,7 +100,7 @@ public class ObjectCorridas {
         }
         return listaCorridas;
     }
-    
+
     public ArrayList<Corrida> corridaSearch(String criterio) {
         ArrayList<Corrida> listaCorridas = new ArrayList<Corrida>();
         try {
@@ -131,7 +134,7 @@ public class ObjectCorridas {
             st.setFloat(3, corrida.getPunto_Final());
             st.setString(4, corrida.getObservaciones());
             st.setInt(5, corrida.getId_Corrida());
-            
+
             st.executeUpdate();
             c.commit();
             st.close();

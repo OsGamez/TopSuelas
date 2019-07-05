@@ -25,6 +25,7 @@ public class Pedido {
     private Date Fecha_Captura;
     private double CostoTotal;
     private String Rsocial;
+    private String Nombre;
     private String Calle;
     private String Cp;
     private String Colonia;
@@ -60,6 +61,14 @@ public class Pedido {
     public Pedido() {
     }
 
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
+    }
+    
     public int getId_A() {
         return Id_A;
     }

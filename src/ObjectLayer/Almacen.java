@@ -1,6 +1,7 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +11,8 @@ import java.util.Vector;
 
 public class Almacen {
 
+     DB db = new DB();
+    
     private int Almacen;
     private String Descripcion;
 
@@ -18,11 +21,14 @@ public class Almacen {
     ResultSet rs = null;
 
     public void conRCPT(){
-        c=Server.getRcpt();
+//        c=db.RCPTPhylonA();
+          c = Server.getRcpt();
     }
     public void conCMP(){
-        c=Server.getCmpPhylon();
+//        c=db.Cmp();
+          c = Server.getCmpPhylon();
     }
+   
     public Almacen() {
     }
 

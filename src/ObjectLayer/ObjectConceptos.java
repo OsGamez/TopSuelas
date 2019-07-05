@@ -2,6 +2,7 @@
 
 package ObjectLayer;
 
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +14,9 @@ import java.util.ArrayList;
 public class ObjectConceptos {
     PreparedStatement st = null;
     ResultSet rs = null;
-    Connection c = Server.getPhylon();
+    Connection c = Server.getRcpt();
+//    DB db = new DB();
+//    Connection c = db.Cmp();
     
     
     public boolean conceptoAdd(String Cuenta, String SubCuenta, String Des) {

@@ -1,5 +1,6 @@
 package ObjectLayer;
 
+import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,8 @@ public class ObjectProveedoresMPrima {
     PreparedStatement st = null;
     ResultSet rs = null;
     Connection c = Server.getCmpPhylon();
+//    DB db = new DB();
+//    Connection c = db.Cmp();
 
     public boolean ProveedorMPrimaAdd(ProveedorMPrima p) {
         try {
