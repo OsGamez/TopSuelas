@@ -1,0 +1,1251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="752" pageHeight="572" orientation="Landscape" columnWidth="752" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b902db84-3666-4111-9f68-c4151dc23a63">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Npedido" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[DECLARE @v1 INT 
+	SET @v1 = 0  
+  SELECT p.Descripcion as Suela,dt.Corrida,
+  
+	CASE WHEN Corrida = '10-12' THEN C1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '10',
+
+	CASE WHEN Corrida = '10-12' THEN C2 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '10.5',
+
+	CASE WHEN Corrida = '10-12' THEN C3 WHEN Corrida = '11-14' THEN C1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '11',
+
+	CASE WHEN Corrida = '10-12' THEN C4 WHEN Corrida = '11-14' THEN C2 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '11.5',
+
+	CASE WHEN Corrida = '10-12' THEN C5 WHEN Corrida = '11-14' THEN C3 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '12',
+
+	CASE WHEN Corrida = '10-12' THEN C6 WHEN Corrida = '11-14' THEN C4 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '12.5',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN C5 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '13',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN C6 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C2 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '13.5',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN C7 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C3 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '14',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN C8 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C4 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '14.5',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C5 WHEN Corrida = '15-17' THEN C1  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '15',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C6 WHEN Corrida = '15-17' THEN C2  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '15.5',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C7 WHEN Corrida = '15-17' THEN C3  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '16',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN C8 WHEN Corrida = '15-17' THEN C4  WHEN Corrida = '17-21' THEN @v1 
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '16.5',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN C5  WHEN Corrida = '17-21' THEN C1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '17',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN C6  WHEN Corrida = '17-21' THEN C2
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '17.5',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C3
+	WHEN Corrida = '18-21' THEN C1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '18',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C4
+	WHEN Corrida = '18-21' THEN C2 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '18.5',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C5
+	WHEN Corrida = '18-21' THEN C3 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '19',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C6
+	WHEN Corrida = '18-21' THEN C4 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '19.5',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C7
+	WHEN Corrida = '18-21' THEN C5 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '20',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C8
+	WHEN Corrida = '18-21' THEN C6 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '20.5',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C9
+	WHEN Corrida = '18-21' THEN C7 WHEN Corrida = '21-25' THEN C1 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '21',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN C10
+	WHEN Corrida = '18-21' THEN C8 WHEN Corrida = '21-25' THEN C2 WHEN Corrida = '22-24' THEN @v1 
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '21.5',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C3 WHEN Corrida = '22-24' THEN C1
+	WHEN Corrida = '22-26' THEN C1 WHEN Corrida = '22-27' THEN C1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN C1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '22',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C4 WHEN Corrida = '22-24' THEN C2
+	WHEN Corrida = '22-26' THEN C2 WHEN Corrida = '22-27' THEN C2 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN C2 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '22.5',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C5 WHEN Corrida = '22-24' THEN C3
+	WHEN Corrida = '22-26' THEN C3 WHEN Corrida = '22-27' THEN C1 WHEN Corrida = '23-27' THEN C1
+	WHEN Corrida = '23-26' THEN C3 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '23',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C6 WHEN Corrida = '22-24' THEN C4
+	WHEN Corrida = '22-26' THEN C4 WHEN Corrida = '22-27' THEN C4 WHEN Corrida = '23-27' THEN C2
+	WHEN Corrida = '23-26' THEN C4 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '23.5',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C7 WHEN Corrida = '22-24' THEN C5
+	WHEN Corrida = '22-26' THEN C5 WHEN Corrida = '22-27' THEN C5 WHEN Corrida = '23-27' THEN C3
+	WHEN Corrida = '23-26' THEN C5 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '24',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C8 WHEN Corrida = '22-24' THEN C6
+	WHEN Corrida = '22-26' THEN C6 WHEN Corrida = '22-27' THEN C6 WHEN Corrida = '23-27' THEN C4
+	WHEN Corrida = '23-26' THEN C6 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '24.5',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C9 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN C7 WHEN Corrida = '22-27' THEN C7 WHEN Corrida = '23-27' THEN C5
+	WHEN Corrida = '23-26' THEN C7 WHEN Corrida = '25-30' THEN C1 WHEN Corrida = '25-29' THEN C1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '25',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN C10 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN C8 WHEN Corrida = '22-27' THEN C8 WHEN Corrida = '23-27' THEN C6
+	WHEN Corrida = '23-26' THEN C8 WHEN Corrida = '25-30' THEN C2 WHEN Corrida = '25-29' THEN C2
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '25.5',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN C9 WHEN Corrida = '22-27' THEN C9 WHEN Corrida = '23-27' THEN C7
+	WHEN Corrida = '23-26' THEN C9 WHEN Corrida = '25-30' THEN C3 WHEN Corrida = '25-29' THEN C3
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '26',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN C10 WHEN Corrida = '22-27' THEN C10 WHEN Corrida = '23-27' THEN C8
+	WHEN Corrida = '23-26' THEN C10 WHEN Corrida = '25-30' THEN C4 WHEN Corrida = '25-29' THEN C4
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN @v1 END AS '26.5',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN C11 WHEN Corrida = '23-27' THEN C9
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C5 WHEN Corrida = '25-29' THEN C5
+	WHEN Corrida = '27-29' THEN C1
+	WHEN Corrida = '30-33' THEN @v1 END AS '27',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN C12 WHEN Corrida = '23-27' THEN C10
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C6 WHEN Corrida = '25-29' THEN C6
+	WHEN Corrida = '27-29' THEN C2
+	WHEN Corrida = '30-33' THEN @v1 END AS '27.5',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C7 WHEN Corrida = '25-29' THEN C7
+	WHEN Corrida = '27-29' THEN C3
+	WHEN Corrida = '30-33' THEN @v1 END AS '28',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C8 WHEN Corrida = '25-29' THEN C8
+	WHEN Corrida = '27-29' THEN C4
+	WHEN Corrida = '30-33' THEN @v1 END AS '28.5',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C9 WHEN Corrida = '25-29' THEN C9
+	WHEN Corrida = '27-29' THEN C5
+	WHEN Corrida = '30-33' THEN @v1 END AS '29',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C10 WHEN Corrida = '25-29' THEN C10
+	WHEN Corrida = '27-29' THEN C6
+	WHEN Corrida = '30-33' THEN @v1 END AS '29.5',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C11 WHEN Corrida = '25-29' THEN C11
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C1 END AS '30',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN C12 WHEN Corrida = '25-29' THEN C12
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C2 END AS '30.5',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C3 END AS '31',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C4 END AS '31.5',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C5 END AS '32',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C6 END AS '32.5',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C7 END AS '33',
+
+	CASE WHEN Corrida = '10-12' THEN @v1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
+	WHEN Corrida = '13-16' THEN @v1 WHEN Corrida = '15-17' THEN @v1  WHEN Corrida = '17-21' THEN @v1
+	WHEN Corrida = '18-21' THEN @v1 WHEN Corrida = '21-25' THEN @v1 WHEN Corrida = '22-24' THEN @v1
+	WHEN Corrida = '22-26' THEN @v1 WHEN Corrida = '22-27' THEN @v1 WHEN Corrida = '23-27' THEN @v1
+	WHEN Corrida = '23-26' THEN @v1 WHEN Corrida = '25-30' THEN @v1 WHEN Corrida = '25-29' THEN @v1
+	WHEN Corrida = '27-29' THEN @v1
+	WHEN Corrida = '30-33' THEN C8 END AS '33.5',
+	cl.Descripcion as Color, dt.Pares, dt.Precio,dt.Importe
+	FROM Dpedido dt INNER JOIN ProduccionPhy..Producto p
+	ON dt.Id_Producto = p.Id_Producto
+	INNER JOIN ProduccionPhy..Color cl ON
+	p.Id_Color = cl.Id_Color
+	WHERE dt.Npedido = $P{Npedido}]]>
+	</queryString>
+	<field name="Suela" class="java.lang.String"/>
+	<field name="Corrida" class="java.lang.String"/>
+	<field name="10" class="java.lang.Integer"/>
+	<field name="10.5" class="java.lang.Integer"/>
+	<field name="11" class="java.lang.Integer"/>
+	<field name="11.5" class="java.lang.Integer"/>
+	<field name="12" class="java.lang.Integer"/>
+	<field name="12.5" class="java.lang.Integer"/>
+	<field name="13" class="java.lang.Integer"/>
+	<field name="13.5" class="java.lang.Integer"/>
+	<field name="14" class="java.lang.Integer"/>
+	<field name="14.5" class="java.lang.Integer"/>
+	<field name="15" class="java.lang.Integer"/>
+	<field name="15.5" class="java.lang.Integer"/>
+	<field name="16" class="java.lang.Integer"/>
+	<field name="16.5" class="java.lang.Integer"/>
+	<field name="17" class="java.lang.Integer"/>
+	<field name="17.5" class="java.lang.Integer"/>
+	<field name="18" class="java.lang.Integer"/>
+	<field name="18.5" class="java.lang.Integer"/>
+	<field name="19" class="java.lang.Integer"/>
+	<field name="19.5" class="java.lang.Integer"/>
+	<field name="20" class="java.lang.Integer"/>
+	<field name="20.5" class="java.lang.Integer"/>
+	<field name="21" class="java.lang.Integer"/>
+	<field name="21.5" class="java.lang.Integer"/>
+	<field name="22" class="java.lang.Integer"/>
+	<field name="22.5" class="java.lang.Integer"/>
+	<field name="23" class="java.lang.Integer"/>
+	<field name="23.5" class="java.lang.Integer"/>
+	<field name="24" class="java.lang.Integer"/>
+	<field name="24.5" class="java.lang.Integer"/>
+	<field name="25" class="java.lang.Integer"/>
+	<field name="25.5" class="java.lang.Integer"/>
+	<field name="26" class="java.lang.Integer"/>
+	<field name="26.5" class="java.lang.Integer"/>
+	<field name="27" class="java.lang.Integer"/>
+	<field name="27.5" class="java.lang.Integer"/>
+	<field name="28" class="java.lang.Integer"/>
+	<field name="28.5" class="java.lang.Integer"/>
+	<field name="29" class="java.lang.Integer"/>
+	<field name="29.5" class="java.lang.Integer"/>
+	<field name="30" class="java.lang.Integer"/>
+	<field name="30.5" class="java.lang.Integer"/>
+	<field name="31" class="java.lang.Integer"/>
+	<field name="31.5" class="java.lang.Integer"/>
+	<field name="32" class="java.lang.Integer"/>
+	<field name="32.5" class="java.lang.Integer"/>
+	<field name="33" class="java.lang.Integer"/>
+	<field name="33.5" class="java.lang.Integer"/>
+	<field name="Color" class="java.lang.String"/>
+	<field name="Pares" class="java.lang.Integer"/>
+	<field name="Precio" class="java.math.BigDecimal"/>
+	<field name="Importe" class="java.math.BigDecimal"/>
+	<variable name="suma" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{Importe}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="15" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="47" y="0" width="27" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="46f1a1de-cc7a-4345-ac9c-aed697279db0"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[SUELA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="199" y="0" width="45" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="96cc90c5-7beb-412c-b2b3-026892deacdd"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[COLOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="260" y="0" width="43" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="0cd6c7b7-567d-4bc8-ac92-0fd7b694d2d1"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[PARES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="324" y="0" width="43" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="ea9b54b7-81f9-4af8-abdd-12017407b573"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[PRECIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="385" y="0" width="43" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="112bce07-3319-4a2e-9d12-6a82d69c45b7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="47" y="2" width="384" height="13" uuid="4b355142-52f5-4c15-ba51-339ced9f538e"/>
+				<text><![CDATA[- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="44" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="47" y="0" width="144" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="4bd5c2c3-6f64-4ff5-9138-52b33a6c1923"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Suela}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="199" y="0" width="45" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="5b56da93-e954-4923-9074-462695324015"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Color}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="260" y="0" width="43" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="01fccc4e-9568-4c3e-a889-764578e8afef"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Pares}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="324" y="0" width="43" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="1cd8acac-95c8-4e92-ad06-41223cbcac80"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Precio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="385" y="0" width="43" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="3495ac6a-e2e3-4c41-99b8-cfaf8d676036"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Importe}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="1" y="21" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="172636f8-0be3-42f2-b23c-35532acb38f1"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[10]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="19" y="21" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="dc8bffda-da21-4be7-adb2-a34bc39adb7f"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[10.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="37" y="21" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="d0302332-1874-402e-a61e-0f9f70ec5d58"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[11]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="53" y="21" width="11" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="aa0421cc-6a5e-412b-a6fb-2793d08b68f9"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[11.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="70" y="21" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="8de9a1eb-f946-4d6f-bc3a-ea9bae8eda8b"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[12]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="110" y="21" width="11" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="ece83a19-0b59-4b4e-bfd3-41a38a1e9354"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[13]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="89" y="21" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="4e4e7947-e31b-4777-8aa9-b0a64c1643b8"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[12.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="129" y="21" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="d8194f02-0475-40ac-97d9-5b9287e6c5a6"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[13.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="150" y="21" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="cf459f95-e2bd-4880-a469-343a2b2d255a"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[14]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="168" y="21" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="ffa53004-177e-48d1-8ccd-3a9b0129bd42"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[14.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="187" y="21" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="654dbe9d-1924-4037-b899-2342a3493ce4"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[15]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="205" y="21" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="ac782b5e-0bcd-4df9-b7e7-67e62f1bf57e"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[15.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="223" y="21" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="afac1562-8f7e-40d1-a235-25d8360a57c9"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[16]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="241" y="21" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="d548f82c-2536-4327-9888-e9354e15f7e2"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[16.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="260" y="21" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="e5b83edd-85dd-4598-bdbb-9444e83bc6b3"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[17]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="278" y="21" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="2121945d-eba2-48ba-99ca-295aa7babb03"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[17.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="296" y="21" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="1a475736-d664-4324-81e3-85d91a6b04b8"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[18]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="314" y="21" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="fd1f98e4-5bd8-46c7-807c-ebb9d9d5cfad"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[18.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="351" y="21" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="5c48843c-a5fa-432b-a8b6-2204804346a6"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[19.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="333" y="21" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="6303dcf2-7bec-4216-b74c-f448ce07e797"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[19]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="370" y="21" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="b5fa69ee-b284-4241-a2f7-405d2321efbe"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[20]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="388" y="21" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="a7006b44-d5cf-4b29-868f-93be967a8ab4"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[20.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="407" y="21" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="8cfca293-7c49-4711-9b8f-93bbb13ddf19"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[21]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="425" y="21" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="e39d1cf6-4371-4083-9980-d3f6e591c473"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[21.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="444" y="21" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="68ee1365-c80d-4ab1-aa25-3c228131c23d"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[22]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="462" y="21" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="aff78e1f-7b34-4d4a-9ef6-01b3866271d5"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[22.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="480" y="21" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="6721e786-22ba-4b4d-965a-8bac4ce948f7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[23]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="497" y="21" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="e0eb07db-af9f-4182-80a0-884ef17f4323"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[23.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="514" y="21" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="7f3dba2d-e366-4a2d-a300-373a620e0397"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[24]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="531" y="21" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="119ce994-db8b-4a5e-b708-acc8868a5776"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[24.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="549" y="21" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="e50bf3d4-a876-4b10-bd22-861d939c5da1"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[25]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="566" y="21" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="a3c8cbd6-1a8f-453b-8529-cdc7307e0193"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[25.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="584" y="21" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="f910a568-c98d-41a4-a3ae-443e4e937262"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[26]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="601" y="21" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="dc20fad2-72b2-4d33-8c70-0dfa14e6e60b"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[26.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="619" y="21" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="d5b547f8-118f-417c-b538-58d31eb51b91"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[27]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="636" y="21" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="dddedc88-0a59-47a0-8564-3822410719c1"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[27.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="654" y="21" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="7ae58381-82af-4b99-ae73-856ff0e18860"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[28]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="671" y="21" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="9df753a0-1837-42e1-a511-a3d3c49ffb4a"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[28.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="689" y="21" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="636ede88-7377-425d-a1c7-33bf081363ab"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[29]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="706" y="21" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="4972eff0-f272-40d0-84e8-50ee4f2bec04"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[29.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="724" y="21" width="12" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="a3530c07-1284-4e53-8947-6ad8c96f4647"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[30]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="741" y="21" width="13" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="a514a565-15c1-48ef-b5b9-618dcc3cecc0"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[30.5]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement mode="Transparent" x="1" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="c4d32d27-668e-49b7-af00-b707cb9e7c96"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{10}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="18" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="4ae789a2-999c-4054-8bd0-b41cdcb71e3b"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{10.5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="37" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="2a07013e-ee3e-4785-ab15-584d5b7bc10d"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{11}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="55" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="c07459b8-0134-4eb6-a1ed-8443708783e6"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{11.5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="71" y="34" width="18" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="d60b4482-e6e0-4aa3-a355-e236d1ed4d1b"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{12}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="91" y="34" width="19" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="95a3cdbe-9a39-4113-bf53-3a2807f87dfb"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{12.5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="110" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="cf5ae616-e34d-4ae9-a601-6b865df0133b"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{13}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="129" y="34" width="19" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="ed03c865-ec7b-4966-bc81-ca05dc6c02c4"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{13.5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="150" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="580a93ef-8e06-4bc6-aada-668a115d5d55"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{14}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="168" y="34" width="18" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="7384096d-c579-40c9-99fb-1b6de3c9238f"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{14.5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="187" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="8f00f0af-46f1-43ce-9cda-ba6f7008ce0c"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{15}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="205" y="34" width="18" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="9cf0dc59-4140-478f-a9be-a25a752636f7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{15.5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="223" y="34" width="18" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="ce0363be-36b3-4b18-8824-102c8dddf4c1"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{16}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="241" y="34" width="18" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="449a4125-83ec-4479-8b7f-812d699e98bb"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{16.5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="260" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="7a5368d4-f1d7-49c6-b772-b093f55bc586"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{17}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="278" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="12388ca7-de07-4fec-80ff-0906d05ddf7b"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{17.5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="296" y="34" width="18" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="5537183c-589c-4999-83ed-7ffc7c4d997d"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{18}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="314" y="34" width="18" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="055b3ea8-d4fc-43db-b2c7-4158652241d1"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{18.5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="333" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="40b3fecd-9875-4539-8e7e-bdad69d216e5"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{19}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="351" y="34" width="18" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="e4f59c1b-f8c9-492b-be5d-e9d27323727d"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{19.5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="370" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="0c37db0c-4b51-4ae0-aefb-408472b3ae7b"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{20}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="388" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="d09cbb24-e263-4e6d-af51-c921b6be0f5e"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{20.5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="408" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="566ccc1e-3e64-4fdd-967a-138a0e770351"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{21}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="428" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="b4068d55-fd50-4194-849a-3cbb3b6afad2"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{21.5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="444" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="4d26e23a-cbcf-498a-92b8-b8b10ae69c3f"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{22}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="462" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="1fa23d8f-d2be-44e9-a6ed-6ac1dc2ae774"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{22.5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="480" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="a40fc199-b9ac-47d3-8ba8-43ef052e1521"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{23}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="497" y="34" width="15" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="66bdd70d-6e2e-465e-8775-183cbe261c42"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{23.5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="514" y="34" width="15" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="b8cbf171-d9d6-4eb9-8ae7-f0634fe2862b"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{24}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="531" y="34" width="18" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="5d1e51a6-9f98-4e3a-a06a-f83b33f179f7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{24.5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="549" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="cef88c29-2d35-4c52-bd72-d38d92c4126c"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{25}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="566" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="3e8d159e-a1bb-4ac0-91a9-613fcdbc10ae"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{25.5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="584" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="aa1b2797-4fd4-4ffe-961e-19c606a1dbae"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{26}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="601" y="34" width="18" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="903c5350-3a94-4c26-a973-5a1936551654"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{26.5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="619" y="34" width="16" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="7e2236ad-f36e-438d-ac52-881216f3f433"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{27}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="636" y="34" width="18" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="95449124-9ac2-4212-b7dc-e07b5d6ea54b"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{27.5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="654" y="34" width="16" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="75d0bb61-2c68-4f6b-887e-fe7d6d1ab95d"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{28}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="671" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="79f77bc2-c7f4-4657-a783-746a0ae78e9d"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{28.5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="689" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="ecd49f67-4c70-47dc-8dee-7425e1c85700"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{29}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="707" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="e8307110-02d7-46b0-a75c-16345f8ad48b"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{29.5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="724" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="247e5845-9f3f-44af-8881-639ae8410b3f"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{30}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="741" y="34" width="17" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="a7662b95-1cdd-4a1f-8339-0db963da57b8"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Serif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{30.5}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="30" splitType="Stretch">
+			<textField pattern="#,##0.00">
+				<reportElement mode="Transparent" x="36" y="16" width="68" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="fedbbf44-af4f-4e63-a113-38e6afaccd2f"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="6" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{suma}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="4" y="16" width="27" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="91bafa19-31de-49dd-9ef6-edfb05a0eac3"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="6" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[TOTAL:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="37" y="24" width="54" height="1" uuid="db5c8024-b6a2-41be-89c9-5dc18636068b"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

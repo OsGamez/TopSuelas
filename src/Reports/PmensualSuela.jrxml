@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ce4adb32-6bb9-457a-b6e7-7951d63b69d8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2019-01-01"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha2" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2019-12-31"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+ DATEPART(MM,Fecha_Entrega) as #,
+ 
+ CASE WHEN DATEPART(MM,Fecha_Entrega) = 1 THEN 'ENERO'
+ WHEN DATEPART(MM,Fecha_Entrega) = 2 THEN 'FEBRERO'
+ WHEN DATEPART(MM,Fecha_Entrega) = 3 THEN 'MARZO'
+ WHEN DATEPART(MM,Fecha_Entrega) = 4 THEN 'ABRIL'
+ WHEN DATEPART(MM,Fecha_Entrega) = 5 THEN 'MAYO'
+ WHEN DATEPART(MM,Fecha_Entrega) = 6 THEN 'JUNIO'
+ WHEN DATEPART(MM,Fecha_Entrega) = 7 THEN 'JULIO'
+ WHEN DATEPART(MM,Fecha_Entrega) = 8 THEN 'AGOSTO'
+ WHEN DATEPART(MM,Fecha_Entrega) = 9 THEN 'SEPTIEMBRE'
+ WHEN DATEPART(MM,Fecha_Entrega) = 10 THEN 'OCTUBRE'
+ WHEN DATEPART(MM,Fecha_Entrega) = 11 THEN 'NOVIEMBRE'
+ WHEN DATEPART(MM,Fecha_Entrega) = 12 THEN 'DICIEMBRE'
+ END AS 'MES'
+FROM Pedidos
+WHERE Fecha_Entrega BETWEEN $P{fecha} AND $P{fecha2}
+GROUP BY DATEPART(MM,Fecha_Entrega)]]>
+	</queryString>
+	<field name="#" class="java.lang.Integer"/>
+	<field name="MES" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="85" splitType="Stretch">
+			<staticText>
+				<reportElement x="190" y="52" width="228" height="20" uuid="ad160c15-bc07-4558-bbbb-6b4d64dba00c"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Resúmen Planeación Mensual Suela]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="499" y="22" width="82" height="20" uuid="af6d2cb3-1699-48aa-bfcb-0d4a261fc438"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH.mm.ss">
+				<reportElement x="539" y="48" width="47" height="20" uuid="1bcbaba5-cfff-4d05-8472-9a54a6de1f70"/>
+				<textElement>
+					<font fontName="Serif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="1" y="52" width="131" height="28" uuid="3b5538e9-a99a-485e-abad-4df422c6b883"/>
+				<imageExpression><![CDATA["C:\\tsmanager\\imagenes\\logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="41" splitType="Stretch">
+			<rectangle>
+				<reportElement x="1" y="1" width="571" height="14" backcolor="#FF6633" uuid="fd442a34-37e4-4ce8-9692-9d4c22ce34d6"/>
+			</rectangle>
+			<textField>
+				<reportElement x="254" y="2" width="92" height="12" forecolor="#FFFFFF" uuid="cfbee85f-dec5-4138-b861-70886ed5e390"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MES}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="1" y="17" width="222" height="11" uuid="2085d7df-4491-478b-88b9-f901ac22bca3"/>
+				<subreportParameter name="Date">
+					<subreportParameterExpression><![CDATA[$F{#}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\tsmanager\\reportes\\SubPmensualSuela.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="494" y="0" width="80" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="138b657a-e708-4f39-8b8c-b1b4e6bcd4ff"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="539" y="0" width="32" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="ad0e3273-8c2f-45c8-a756-2a692eb1adf7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
