@@ -32,7 +32,7 @@ public class ObjectKardexCmp {
                         + ",'" + k.getOrdenc() + "','" + k.getFechamov() + "','" + k.getFechadoc() + "','" + k.getSerie() + "'"
                         + ",'" + k.getTipo() + "','" + k.getDocref() + "'," + cant + "," + cos + "," + cos * cant + "," + renglon + ",'1',"
                         + "" + k.getUsuario() + ")";
-//                System.out.println("kardex "+sql);
+////                System.out.println("kardex "+sql);
                 st = c.prepareStatement(sql);
                 st.executeUpdate();
                 Statement s;
@@ -56,7 +56,7 @@ public class ObjectKardexCmp {
                 }
                 st = c.prepareStatement(sql);
                 st.executeUpdate();
-//                System.out.println("existencias "+sql);
+////                System.out.println("existencias "+sql);
                 renglon++;
             }
             String columna =(k.getTipo().equals("E"))?"Entradas":"Salidas";
@@ -93,7 +93,7 @@ public class ObjectKardexCmp {
                     + "join ProvedoresMPrima pmp on k.ProveedorMPrima=pmp.Proveedor\n"
                     + "join Almacenes alm on k.Almacen=alm.Almacen\n"
                     + "join Materiales mat on k.Cvemat=mat.CveMat  ORDER BY fechamov DESC";
-            System.out.println(sql);
+//            System.out.println(sql);
             st = c.prepareStatement(sql);
             rs = st.executeQuery();
             while (rs.next()) {
@@ -196,6 +196,21 @@ public class ObjectKardexCmp {
         return listaKardexCmp;
     }
 
+        public int getByOrden() {
+        int folio=0;
+        try {
+            st = c.prepareStatement("SELECT OrdenCompra FROM Parametroscmp ");
+            rs = st.executeQuery();
+            while (rs.next()) {
+                folio=rs.getInt("OrdenCompra");
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return folio;
+    }
     public String getparametro(String columna) {
         int parametro = 0;
         try {

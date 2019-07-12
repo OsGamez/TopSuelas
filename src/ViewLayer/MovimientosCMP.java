@@ -148,14 +148,14 @@ public class MovimientosCMP extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(JbNuevo)
-                .addGap(32, 32, 32)
-                .addComponent(JbEliminar)
-                .addGap(29, 29, 29)
-                .addComponent(JbEditar)
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
                 .addComponent(JbReporte)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addComponent(JbSalir)
+                .addGap(188, 188, 188)
+                .addComponent(JbEliminar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JbEditar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -199,7 +199,7 @@ public class MovimientosCMP extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

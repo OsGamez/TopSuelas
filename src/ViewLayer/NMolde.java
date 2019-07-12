@@ -196,11 +196,11 @@ public class NMolde extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Falta datos de ingresar verifica", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
             Jtp.requestFocus();
         }//verifica el campo de punto y el campo de cantidad 
-        else if (v.verificapunto(Jtp.getText()) && v.verificanumeros(Jtc.getText())) {
+        else if (v.verificanumeros(Jtc.getText())) {
             //se añaden los datos al objeto 'molde'
             m.setCantidad(Integer.parseInt(Jtc.getText()));
             m.setLinea((datos.get(Jtl.getSelectedIndex()).getId_Linea()));
-            m.setPunto(Integer.parseInt(Jtp.getText()));
+            m.setPunto(Jtp.getText().toUpperCase());
             ObjectMoldes obm = new ObjectMoldes();
             if (obm.MoldeAdd(m)) {// se ejecuta insercion, si todo esta bien regresa true
                 JOptionPane.showMessageDialog(this, "Molde Guardado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);

@@ -206,10 +206,16 @@ public class Consumos extends javax.swing.JInternalFrame {
         listaConsumo = obsumos.ConsumoGetAll();
         ModelConsumo.setNumRows(listaConsumo.size());
         for (int i = 0; i < listaConsumo.size(); i++) {
-            int desperdicio = (int) ((listaConsumo.get(i).getDesperdicio() - 1) * 100);
-            desperdicio=(desperdicio==9)?desperdicio:desperdicio+1;
+            int desperdicio = (int) ((listaConsumo.get(i).getDesperdicio()) * 100);
+            //desperdicio=(desperdicio==9)?desperdicio:desperdicio+1;
             ModelConsumo.setValueAt(listaConsumo.get(i).getDescripcionprod(), i, 0);
-            ModelConsumo.setValueAt(listaConsumo.get(i).getPunto(), i, 1);
+            String punto=String.valueOf(listaConsumo.get(i).getPunto());
+            if(punto.length()==5){
+                ModelConsumo.setValueAt(listaConsumo.get(i).getPunto()/10, i, 1);
+            }
+            else
+                ModelConsumo.setValueAt(listaConsumo.get(i).getPunto(), i, 1);
+            
             ModelConsumo.setValueAt(listaConsumo.get(i).getPeso(), i, 2);
             ModelConsumo.setValueAt((desperdicio), i, 3);
         }
@@ -280,8 +286,8 @@ public class Consumos extends javax.swing.JInternalFrame {
         listaConsumo = obsumos.BuscaConsumo(JtBuscar.getText());
         ModelConsumo.setNumRows(listaConsumo.size());
         for (int i = 0; i < listaConsumo.size(); i++) {
-            int desperdicio = (int) ((listaConsumo.get(i).getDesperdicio() - 1) * 100);
-            desperdicio=(desperdicio==9)?desperdicio:desperdicio+1;
+            int desperdicio = (int) ((listaConsumo.get(i).getDesperdicio()) * 100);
+            //desperdicio=(desperdicio==9)?desperdicio:desperdicio+1;
             ModelConsumo.setValueAt(listaConsumo.get(i).getDescripcionprod(), i, 0);
             ModelConsumo.setValueAt(listaConsumo.get(i).getPunto(), i, 1);
             ModelConsumo.setValueAt(listaConsumo.get(i).getPeso(), i, 2);

@@ -158,10 +158,10 @@ public class NMaquina extends javax.swing.JDialog {
         if ( Jte.equals("") && Jtm.equals("")) {
             JOptionPane.showMessageDialog(this, "Falta datos de ingresar verifica", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
             Jtm.requestFocus();
-        } else if (v.verificanumeros(Jtm.getText()) && v.verificanumeros(Jte.getText())) {//
+        } else if (v.verificanumeros(Jte.getText())) {//
             ObjectMaquinas obmaq = new ObjectMaquinas();
             Maquina maq = new Maquina();
-            maq.setMaquina(Integer.parseInt(Jtm.getText()));
+            maq.setMaquina(Jtm.getText().toUpperCase());
             maq.setEstaciones(Integer.parseInt(Jte.getText()));
             if(obmaq.BuscaMaquinab(Jtm.getText())){
             if (obmaq.MaquinaAdd(maq)) {

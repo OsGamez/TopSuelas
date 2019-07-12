@@ -236,7 +236,7 @@ public class Moldes extends javax.swing.JInternalFrame {
                     if(opcion ==JOptionPane.YES_OPTION){
                         Molde m = new Molde();
                         m.setMolde((int)JtDatosMolde.getValueAt(fila, 0));
-                        m.setPunto((int)JtDatosMolde.getValueAt(fila, 1));
+                        m.setPunto((String)JtDatosMolde.getValueAt(fila, 1));
                         m.setCantidad((int)JtDatosMolde.getValueAt(fila, 2));
                         m.setStatus(JtDatosMolde.getValueAt(fila, 3).toString());
                         m.setCharlinea(JtDatosMolde.getValueAt(fila, 4).toString());
@@ -276,7 +276,7 @@ public class Moldes extends javax.swing.JInternalFrame {
             modelMolde.setValueAt(listaMolde.get(i).getPunto(), i, 1);
             modelMolde.setValueAt(listaMolde.get(i).getCantidad(), i, 2);
             modelMolde.setValueAt(listaMolde.get(i).getStatus(), i, 3);
-            modelMolde.setValueAt(listaMolde.get(i).getLinea(), i, 4);
+            modelMolde.setValueAt(listaMolde.get(i).getCharlinea(), i, 4);
         }
     }//GEN-LAST:event_JtBuscarKeyReleased
 

@@ -12,6 +12,24 @@ package ObjectLayer;
 public class Movs_materiales implements java.io.Serializable{
     private String nombre_material,material;
     private float costo;
+    private double importe;
+    private int surtido;
+
+    public double getImporte() {
+        return importe;
+    }
+
+    public void setImporte(double importe) {
+        this.importe = importe;
+    }
+
+    public int getSurtido() {
+        return surtido;
+    }
+
+    public void setSurtido(int surtido) {
+        this.surtido = surtido;
+    }
 
     public float getCosto() {
         return costo;

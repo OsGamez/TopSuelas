@@ -11,8 +11,8 @@ package ObjectLayer;
  * @author GATEWAY1-
  */
 public class Molde implements java.io.Serializable{
-    private int linea,punto,molde,cantidad;
-    private String status,charlinea;
+    private int linea,molde,cantidad;
+    private String status,charlinea,punto;
 
     public String getCharlinea() {
         return charlinea;
@@ -31,11 +31,11 @@ public class Molde implements java.io.Serializable{
         this.linea = linea;
     }
 
-    public int getPunto() {
+    public String getPunto() {
         return punto;
     }
 
-    public void setPunto(int punto) {
+    public void setPunto(String punto) {
         this.punto = punto;
     }
 

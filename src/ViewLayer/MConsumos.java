@@ -9,7 +9,8 @@ import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 public class MConsumos extends javax.swing.JDialog {
-    ObjectConsumos obsumos= new ObjectConsumos();
+
+    ObjectConsumos obsumos = new ObjectConsumos();
     public Consumo consumo;
     String informacion = "";
 
@@ -38,8 +39,8 @@ public class MConsumos extends javax.swing.JDialog {
         Jts = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         Jtdesp = new javax.swing.JTextField();
-        Jcd = new javax.swing.JComboBox<>();
         Jtpunto = new javax.swing.JLabel();
+        Jcd = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("EDITAR CONSUMOS");
@@ -83,9 +84,13 @@ public class MConsumos extends javax.swing.JDialog {
             }
         });
 
-        Jcd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "9", "15" }));
-
         Jtpunto.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+
+        Jcd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JcdActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,8 +111,8 @@ public class MConsumos extends javax.swing.JDialog {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(Jcd, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(43, 43, 43))
+                                        .addComponent(Jcd, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(33, 33, 33))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addGap(18, 18, 18)
@@ -167,40 +172,51 @@ public class MConsumos extends javax.swing.JDialog {
     private void JtdespActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtdespActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JtdespActionPerformed
+
+    private void JcdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JcdActionPerformed
     private void Cerrar() {
 //        String botones[] = {"SI", "NO"};
 //        int eleccion = JOptionPane.showOptionDialog(this, "¿Deseas cerrar esta ventana?", "TOP-SUELAS",
 //                0, 0, null, botones, this);
 //        if (eleccion == JOptionPane.YES_OPTION) {
-            dispose();
+        dispose();
 //        } else if (eleccion == JOptionPane.NO_OPTION) {
 //        }
     }
-    
-    private void ConsumoUpdate(){
-     if (Jtdesp.getText().equals("")) {// verifica que el campo no este vacio
-            JOptionPane.showMessageDialog(this, "Falta datos de ingresar verifica", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-        } else {
-            Validacion v = new Validacion();
-            if(v.verificaflotantes(Jtdesp.getText())){// verifica el contenido sea valido
-                //&&consumo.getDesperdicio()==Float.parseFloat(Jcd.getSelectedItem().toString())
-                if(consumo.getPeso()==Float.parseFloat(Jtdesp.getText())) {// verifica si el contenido es lo mismo y no sufrio cambios
+
+    private void ConsumoUpdate() {
+        try {
+            if (Jtdesp.getText().equals("")) {// verifica que el campo no este vacio
+                JOptionPane.showMessageDialog(this, "Falta datos de ingresar verifica", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            } else {
+                Validacion v = new Validacion();
+                if (v.verificaflotantes(Jtdesp.getText())) {// verifica el contenido sea valido
+                    //&&consumo.getDesperdicio()==Float.parseFloat(Jcd.getSelectedItem().toString())
+                    if (consumo.getPeso() == Float.parseFloat(Jtdesp.getText())) {// verifica si el contenido es lo mismo y no sufrio cambios
+                        Jtdesp.requestFocus();
+                    } else {
+                        consumo.setPeso(Float.parseFloat(Jtdesp.getText()));
+                        consumo.setDesperdicio((Float.parseFloat(Jcd.getText()) / 100));
+                        if (obsumos.ConsumoUpdate(consumo)) {
+                            JOptionPane.showMessageDialog(this, "Modificacion exitosa!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                            informacion = "1";
+                            Cerrar();
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Error al modificar Contacta a Sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Los datos que has introducido no son válidos.", "TOP-SUELAS", JOptionPane.ERROR_MESSAGE);
+                    //dispose();
                     Jtdesp.requestFocus();
-                }else{
-                   consumo.setPeso(Float.parseFloat(Jtdesp.getText()));
-                   consumo.setDesperdicio((Float.parseFloat(Jcd.getSelectedItem().toString())/100)+1);
-                    if(obsumos.ConsumoUpdate(consumo)){
-                        JOptionPane.showMessageDialog(this, "Modificacion exitosa!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                        informacion="1";
-                        Cerrar();
-                    }else JOptionPane.showMessageDialog(this, "Error al modificar Contacta a Sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
                 }
-            }else {
-            JOptionPane.showMessageDialog(this, "Los datos que has introducido no son válidos.", "TOP-SUELAS", JOptionPane.ERROR_MESSAGE);
-               //dispose();
-               Jtdesp.requestFocus();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
     /**
@@ -255,7 +271,7 @@ public class MConsumos extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbCerrar;
     private javax.swing.JButton JbGuardar;
-    private javax.swing.JComboBox<String> Jcd;
+    private javax.swing.JTextField Jcd;
     public javax.swing.JTextField Jtdesp;
     public javax.swing.JLabel Jtp;
     public javax.swing.JLabel Jtpunto;
