@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ff4f7564-51aa-45ea-8831-bfab1124374e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="mes" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="3" width="100" height="14" uuid="3177b2b6-0977-47c3-ba9b-d01a90d7e25d"/>
+				<textElement>
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUELA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="17" width="573" height="1" uuid="3ddbc60d-c14c-41c4-803e-82be44cdd12b"/>
+			</line>
+			<staticText>
+				<reportElement mode="Transparent" x="503" y="4" width="68" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="7e38569b-9ac8-4d56-af5c-cd0baa5869ff"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[POR ENTREGAR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="241" y="3" width="35" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="53a61ca6-ec62-435e-8770-1b9e93a76989"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[PARES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="436" y="4" width="62" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="b9a4761d-30b4-401c-81a9-fe2824d1be44"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ENTREGADOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="288" y="4" width="70" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="e2d13f59-f4a7-48ba-9a70-cbd406cdaf58"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[POR PROGAMAR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="371" y="4" width="54" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="e97e14a5-f33d-4c87-a4aa-c2b3c3b613b3"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[EN PROCESO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
