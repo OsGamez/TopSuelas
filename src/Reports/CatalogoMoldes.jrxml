@@ -12,10 +12,10 @@
 	<queryString>
 		<![CDATA[select molde,punto,cant,stat,suela,l.descripcion as 'descripcion' from Moldes m join Linea l on m.suela=l.Id_Linea
  where l.descripcion like '%$P!{linea}%'
-order by l.descripcion]]>
+order by l.descripcion ]]>
 	</queryString>
 	<field name="molde" class="java.lang.Integer"/>
-	<field name="punto" class="java.lang.Integer"/>
+	<field name="punto" class="java.lang.String"/>
 	<field name="cant" class="java.lang.Integer"/>
 	<field name="stat" class="java.lang.String"/>
 	<field name="suela" class="java.lang.Short"/>

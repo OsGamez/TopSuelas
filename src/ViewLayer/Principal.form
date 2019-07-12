@@ -902,7 +902,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" alignment="0" pref="1407" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -921,20 +921,24 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="cmo" max="32767" attributes="0"/>
-                              <Component id="prod" pref="377" max="32767" attributes="0"/>
+                              <Component id="cmo" pref="346" max="32767" attributes="0"/>
+                              <Component id="prod" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="cpt" pref="378" max="32767" attributes="0"/>
+                              <Component id="cpt" pref="346" max="32767" attributes="0"/>
                               <Component id="nominas" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
-                          <Component id="cobranza" pref="377" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
+                          <Component id="cobranza" min="-2" pref="312" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="73" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jPanel2" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -971,6 +975,11 @@
                       <Color blue="66" green="33" red="0" type="rgb"/>
                     </Property>
                   </Properties>
+                  <AccessibilityProperties>
+                    <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="jScrollPane1"/>
+                    </Property>
+                  </AccessibilityProperties>
 
                   <Layout>
                     <DimensionLayout dim="0">

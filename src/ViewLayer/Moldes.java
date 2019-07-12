@@ -43,6 +43,7 @@ public class Moldes extends javax.swing.JInternalFrame {
         JtDatosMolde = new javax.swing.JTable();
 
         setClosable(true);
+        setIconifiable(true);
         setMaximizable(true);
         setTitle("MOLDES");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/suela.png"))); // NOI18N
