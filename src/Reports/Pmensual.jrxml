@@ -3,6 +3,12 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="fecha" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2019-01-01"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha2" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2019-12-31"]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT 
  DATEPART(MM,Fecha_Entrega) as #,
@@ -21,6 +27,7 @@
  WHEN DATEPART(MM,Fecha_Entrega) = 12 THEN 'DICIEMBRE'
  END AS 'MES'
 FROM Pedidos
+WHERE Fecha_Entrega BETWEEN $P{fecha} AND $P{fecha2}
 GROUP BY DATEPART(MM,Fecha_Entrega)]]>
 	</queryString>
 	<field name="#" class="java.lang.Integer"/>
@@ -31,24 +38,34 @@ GROUP BY DATEPART(MM,Fecha_Entrega)]]>
 	<title>
 		<band height="77" splitType="Stretch">
 			<staticText>
-				<reportElement x="204" y="45" width="193" height="20" uuid="19f0bfdd-5184-4e29-8de2-313dc697a785"/>
+				<reportElement x="203" y="45" width="228" height="20" uuid="19f0bfdd-5184-4e29-8de2-313dc697a785"/>
 				<textElement>
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Resúmen Planeación Mensual]]></text>
+				<text><![CDATA[Resúmen Planeación Mensual Cliente]]></text>
 			</staticText>
-			<image>
-				<reportElement x="1" y="42" width="131" height="28" uuid="f69c965a-018c-418f-a7c0-53d2fa50de58"/>
-				<imageExpression><![CDATA["C:\\Program Files\\logo.png"]]></imageExpression>
-			</image>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="465" y="10" width="100" height="20" uuid="a9ef0e4c-e5c3-489f-b61c-5ea911a355ba"/>
+			<textField pattern="HH.mm.ss">
+				<reportElement x="538" y="26" width="47" height="20" uuid="d56e174e-691a-4981-8cee-c694f1a89441"/>
+				<textElement>
+					<font fontName="Serif" size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="498" y="0" width="82" height="20" uuid="09a675ee-561d-44c2-bca2-11527de7aaf7"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="1" y="41" width="131" height="28" uuid="3c7d3e5f-9690-41c3-9e4f-854c32ff599b"/>
+				<imageExpression><![CDATA["C:\\tsmanager\\imagenes\\logo.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<detail>
-		<band height="16" splitType="Stretch">
+		<band height="18" splitType="Stretch">
 			<rectangle>
 				<reportElement x="1" y="1" width="571" height="14" backcolor="#FF6633" uuid="9d195199-8c03-4ac4-bd11-e697b1a97a67"/>
 			</rectangle>
@@ -60,12 +77,12 @@ GROUP BY DATEPART(MM,Fecha_Entrega)]]>
 				<textFieldExpression><![CDATA[$F{MES}]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="-18" y="-7" width="256" height="15" uuid="70c80828-9f3d-4a08-8505-aa391549043d"/>
+				<reportElement x="1" y="15" width="256" height="2" uuid="70c80828-9f3d-4a08-8505-aa391549043d"/>
 				<subreportParameter name="Date">
 					<subreportParameterExpression><![CDATA[$F{#}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\SubPmensual.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["C:\\tsmanager\\reportes\\SubPmensual.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

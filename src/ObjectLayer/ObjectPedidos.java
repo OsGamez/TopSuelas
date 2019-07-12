@@ -200,12 +200,12 @@ public class ObjectPedidos {
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            DB.cerrarPrep(dp);
-            DB.rollback(pa);
+            Server.cerrarPrep(dp);
+            Server.rollback(pa);
         } catch (Exception e) {
             e.printStackTrace();
-            DB.cerrarPrep(dp);
-            DB.rollback(pa);
+            Server.cerrarPrep(dp);
+            Server.rollback(pa);
         }
         return false;
     }
@@ -375,7 +375,7 @@ public class ObjectPedidos {
         ArrayList<Pedido> listaPedido = new ArrayList<Pedido>();
         try {
             dp = pa.prepareStatement("Select p.Npedido,p.NpedidoCl,p.OrdenCompra,pd.Renglon,c.Id_Cliente,c.RazonSocial,c.Nombre,c.Calle,c.CP,c.Colonia,cd.Descripcion as Ciudad,\n"
-                    + "e.Descripcion as Estado,ps.Descripcion as Pais,c.DiasCredito,a.Id_Agente as Agente,c.Observaciones\n"
+                    + "e.Descripcion as Estado,ps.Descripcion as Pais,c.DiasCredito,a.Id_Agente as Agente,p.Observaciones\n"
                     + ",p.TotalPares,p.CostoTotal,\n"
                     + "pd.Importe,p.Fecha_Pedido,p.Fecha_Captura,p.Fecha_Entrega,p.Fecha_Recibido,pd.Pares,\n"
                     + "p.Serie,pd.Estatus,prod.Id_Producto,prod.Descripcion as Suela,pd.Corrida,cl.Descripcion as Color,\n"

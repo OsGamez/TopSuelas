@@ -84,7 +84,7 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png"))); // NOI18N
 
         Jpassword.setBackground(new java.awt.Color(214, 217, 223));
-        Jpassword.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        Jpassword.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         Jpassword.setForeground(new java.awt.Color(255, 102, 51));
         Jpassword.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PASSWORD", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("sansserif", 1, 14))); // NOI18N
         Jpassword.setCaretColor(java.awt.Color.orange);
@@ -95,7 +95,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         JtUsuario.setBackground(new java.awt.Color(214, 217, 223));
-        JtUsuario.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        JtUsuario.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         JtUsuario.setForeground(new java.awt.Color(255, 102, 51));
         JtUsuario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "USUARIO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("sansserif", 1, 14))); // NOI18N
         JtUsuario.setCaretColor(new java.awt.Color(255, 204, 51));
@@ -162,7 +162,7 @@ public class Login extends javax.swing.JFrame {
                                 .addGap(23, 23, 23)
                                 .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))

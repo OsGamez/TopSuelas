@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d9240b64-89fb-4f22-8176-84b1b45de432">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="572" pageHeight="752" columnWidth="572" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="d9240b64-89fb-4f22-8176-84b1b45de432">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -16,7 +16,7 @@ INNER JOIN ProduccionPhy.dbo.Producto pd
 ON d.Id_Producto = pd.Id_Producto
 INNER JOIN ProduccionPhy.dbo.Corrida c
 ON pd.Id_Corrida = c.Id_Corrida
-WHERE p.Npedido = $P{Numero}
+WHERE p.Npedido = $P!{Numero}
 GROUP BY p.Npedido,d.Id_Producto,c.Descripcion,pd.Descripcion,p.ParesSurt,d.Pares]]>
 	</queryString>
 	<field name="Npares" class="java.lang.Integer"/>
@@ -49,7 +49,7 @@ GROUP BY p.Npedido,d.Id_Producto,c.Descripcion,pd.Descripcion,p.ParesSurt,d.Pare
 				<textFieldExpression><![CDATA[$F{Descripcion}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="254" y="0" width="31" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="2388525a-1e1a-4933-a1c5-c45895e8a604"/>
+				<reportElement mode="Transparent" x="259" y="0" width="31" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="2388525a-1e1a-4933-a1c5-c45895e8a604"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -57,7 +57,7 @@ GROUP BY p.Npedido,d.Id_Producto,c.Descripcion,pd.Descripcion,p.ParesSurt,d.Pare
 				<textFieldExpression><![CDATA[$F{Pares}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="308" y="0" width="30" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="53c8f743-e039-4748-984c-8cb63b8876c0"/>
+				<reportElement mode="Transparent" x="312" y="0" width="30" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="53c8f743-e039-4748-984c-8cb63b8876c0"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -65,7 +65,7 @@ GROUP BY p.Npedido,d.Id_Producto,c.Descripcion,pd.Descripcion,p.ParesSurt,d.Pare
 				<textFieldExpression><![CDATA[$F{Npares}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="378" y="0" width="30" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="9ec96e23-d495-475f-9308-b5abdc54c55f"/>
+				<reportElement mode="Transparent" x="382" y="0" width="30" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="9ec96e23-d495-475f-9308-b5abdc54c55f"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -73,7 +73,7 @@ GROUP BY p.Npedido,d.Id_Producto,c.Descripcion,pd.Descripcion,p.ParesSurt,d.Pare
 				<textFieldExpression><![CDATA[$F{Npares}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="447" y="0" width="30" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="f0c034c9-10e1-4419-9866-4fffc5e42524"/>
+				<reportElement mode="Transparent" x="451" y="0" width="30" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="f0c034c9-10e1-4419-9866-4fffc5e42524"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -81,7 +81,7 @@ GROUP BY p.Npedido,d.Id_Producto,c.Descripcion,pd.Descripcion,p.ParesSurt,d.Pare
 				<textFieldExpression><![CDATA[$F{Npares}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="517" y="0" width="30" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="57100fcc-82e1-4cbb-a51c-fcd0f6845339"/>
+				<reportElement mode="Transparent" x="521" y="0" width="30" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="57100fcc-82e1-4cbb-a51c-fcd0f6845339"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -100,8 +100,8 @@ GROUP BY p.Npedido,d.Id_Producto,c.Descripcion,pd.Descripcion,p.ParesSurt,d.Pare
 	</detail>
 	<summary>
 		<band height="14">
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="255" y="3" width="31" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="222abd92-17e3-48b6-b2db-604b77ced940"/>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="259" y="3" width="31" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="222abd92-17e3-48b6-b2db-604b77ced940"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -109,7 +109,7 @@ GROUP BY p.Npedido,d.Id_Producto,c.Descripcion,pd.Descripcion,p.ParesSurt,d.Pare
 				<textFieldExpression><![CDATA[$V{Total}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="308" y="4" width="26" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="961fee16-b403-4f9b-8c1a-29adb0cd7349"/>
+				<reportElement mode="Transparent" x="312" y="4" width="26" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="961fee16-b403-4f9b-8c1a-29adb0cd7349"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -117,7 +117,7 @@ GROUP BY p.Npedido,d.Id_Producto,c.Descripcion,pd.Descripcion,p.ParesSurt,d.Pare
 				<textFieldExpression><![CDATA[$V{TPares}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="378" y="4" width="26" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="98df1832-d3db-4b4c-9326-5c5677c2b522"/>
+				<reportElement mode="Transparent" x="382" y="4" width="26" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="98df1832-d3db-4b4c-9326-5c5677c2b522"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -125,7 +125,7 @@ GROUP BY p.Npedido,d.Id_Producto,c.Descripcion,pd.Descripcion,p.ParesSurt,d.Pare
 				<textFieldExpression><![CDATA[$V{TPares}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="447" y="4" width="26" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="3446eab2-9139-4e77-8369-52d4952d3ee8"/>
+				<reportElement mode="Transparent" x="451" y="4" width="26" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="3446eab2-9139-4e77-8369-52d4952d3ee8"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -133,7 +133,7 @@ GROUP BY p.Npedido,d.Id_Producto,c.Descripcion,pd.Descripcion,p.ParesSurt,d.Pare
 				<textFieldExpression><![CDATA[$V{TPares}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="517" y="4" width="26" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="e27f4404-18fc-44fb-8b57-8f9fd2b70312"/>
+				<reportElement mode="Transparent" x="521" y="4" width="26" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="e27f4404-18fc-44fb-8b57-8f9fd2b70312"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>

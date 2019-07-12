@@ -47,7 +47,7 @@ public class Principal extends javax.swing.JFrame {
     CapturaInventario capturaIn;
     Consumos sumos;
     Etiquetas etiq;
-    Entradas entrada;
+    MovimientosCPT mCPT;
     Conceptos concepto;
     ConceptosMPrima conceptom;
     ProvedoresMPrima conceptomp;
@@ -59,13 +59,14 @@ public class Principal extends javax.swing.JFrame {
     Sesioninfo se = new Sesioninfo();
     Maquinas maq;
     Ped ptp;
-    ReportesPlaneacion rplaneacion;
+    Rplaneacion rplaneacion;
 
     ImageIcon notificacion = new ImageIcon("C:\\tsmanager\\imagenes\\push.png");
     ImageIcon campana = new ImageIcon("C:\\tsmanager\\imagenes\\bell.png");
 
     public Principal() {
         initComponents();
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     public Principal(Usuario us) {
@@ -888,15 +889,12 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loadReportesPlaneacion(){
-        //Tb = us.getUsuario();
         if (rplaneacion == null) {
-            rplaneacion = new ReportesPlaneacion(null, true);
-            //capturaIn.TbTemp = Tb;
+            rplaneacion = new Rplaneacion();
             rplaneacion.setVisible(true);
         } else {
             rplaneacion.dispose();
-            rplaneacion = new ReportesPlaneacion(null, true);
-            //capturaIn.TbTemp = Tb;
+            rplaneacion = new Rplaneacion();
             rplaneacion.setVisible(true);
         }
     }
@@ -946,19 +944,13 @@ public class Principal extends javax.swing.JFrame {
     }
 
     private void LoadEntradas() {
-        if (entrada == null) {
-            entrada = new Entradas();
-            MainContent.add(entrada);
-            entrada.JbSerie.setText(Estado);
-            MainContent.getDesktopManager().maximizeFrame(entrada);
-            entrada.setVisible(true);
+        if (mCPT == null) {
+            mCPT = new MovimientosCPT();
+            mCPT.setVisible(true);
         } else {
-            entrada.dispose();
-            entrada = new Entradas();
-            MainContent.add(entrada);
-            entrada.JbSerie.setText(Estado);
-            MainContent.getDesktopManager().maximizeFrame(entrada);
-            entrada.setVisible(true);
+            mCPT.dispose();
+            mCPT = new MovimientosCPT();
+            mCPT.setVisible(true);
         }
     }
 

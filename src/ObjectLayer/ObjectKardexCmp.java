@@ -12,6 +12,8 @@ import java.util.logging.Logger;
 
 
 
+
+
 public class ObjectKardexCmp {
 
     PreparedStatement st = null;

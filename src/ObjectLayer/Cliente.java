@@ -54,8 +54,8 @@ public class Cliente {
 //    Connection c = db.Cobranza();
     ResultSet rs = null;
 
-    public Cliente(Usuario us) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Cliente() {
+        
     }
 
     public String getNumCliente() {
@@ -82,8 +82,6 @@ public class Cliente {
         this.Serie = Serie;
     }
     
-    
-
     public String getAgente() {
         return Agente;
     }
@@ -130,9 +128,6 @@ public class Cliente {
 
     public void setZona(String Zona) {
         this.Zona = Zona;
-    }
-
-    public Cliente() {
     }
 
     public int getId_Cliente() {

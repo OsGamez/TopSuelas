@@ -97,7 +97,7 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
         Table.addColumn("Pto10");
         Table.addColumn("Pto11");
         Table.addColumn("Pto12");
-        Table.addColumn("Serie");
+        Table.addColumn("SERIE");
 
         Tb.getColumnModel().getColumn(3).setMaxWidth(0);
         Tb.getColumnModel().getColumn(3).setMinWidth(0);
@@ -379,7 +379,6 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
 
     private void JbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbGuardarActionPerformed
         int Est = 20;
-        String A = "A";
         Date Entrega = JdFecha.getDate();
         long e = Entrega.getTime();
         java.sql.Date Fecha = new java.sql.Date(e);
@@ -470,22 +469,22 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
                 }else{
                     var2 = "error";
                 }*/
-                obj.AddPlaneacionA(p, String.valueOf(Est), pedido);
-                obj.CambiarEstatus(String.valueOf(Est), pedido);
-                var2 = "ok";
-                //FUNCIONA
-                /*if (obj.AddPlaneacionA(p,String.valueOf(Est), pedido)) {
+                if (obj.AddPlaneacionA(p, String.valueOf(Est), pedido)) {
+                    obj.CambiarEstatus(String.valueOf(Est), pedido);
                     var2 = "ok";
                 } else {
                     var2 = "error";
-                }*/
+                }
             }
         }
         if (var2 == "ok") {
             JOptionPane.showMessageDialog(this, "Programa Guardado!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-
+            CleanTable();
+            Jsemana.setValue(0);
         } else if (var2 == "error") {
             JOptionPane.showMessageDialog(this, "Ocurrio un error!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            CleanTable();
+            Jsemana.setValue(0);
         }
     }//GEN-LAST:event_JbGuardarActionPerformed
 

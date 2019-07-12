@@ -16,11 +16,12 @@ INNER JOIN ProduccionPhy.dbo.Producto pd
 ON dp.Id_Producto = pd.Id_Producto
 INNER JOIN ProduccionPhy.dbo.Linea l
 ON pd.Id_Linea = l.Id_Linea
-WHERE DATEPART(WK,p.Fecha_Entrega) = $P{Date}
+WHERE DATEPART(WK,p.Fecha_Entrega) = $P!{Date}
 GROUP BY dp.Pares,p.Fecha_Entrega,l.Descripcion]]>
 	</queryString>
 	<field name="Modelo" class="java.lang.String"/>
 	<field name="Fecha" class="java.lang.Integer"/>
+	<variable name="suma" class="java.lang.Integer" calculation="Sum"/>
 	<pageHeader>
 		<band height="13">
 			<staticText>
@@ -47,15 +48,15 @@ GROUP BY dp.Pares,p.Fecha_Entrega,l.Descripcion]]>
 				<textFieldExpression><![CDATA[$F{Modelo}]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="28" y="12" width="118" height="0" uuid="eb785f97-925d-4315-b57d-0b2ac5de2ece"/>
+				<reportElement x="0" y="13" width="118" height="0" uuid="7b778933-1d96-4ba2-be7e-2ce328134f01"/>
 				<subreportParameter name="Modelo">
 					<subreportParameterExpression><![CDATA[$F{Modelo}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="Date">
-					<subreportParameterExpression><![CDATA[$F{Fecha}]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA[$P{Date}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\SubPsuela.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["C:\\tsmanager\\reportes\\SubPsuela.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

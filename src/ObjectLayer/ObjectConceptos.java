@@ -121,7 +121,8 @@ public class ObjectConceptos {
             return 1;
         }
     }
-     public boolean conceptoDelete(String Cuenta) {
+    
+    public boolean conceptoDelete(String Cuenta) {
         try {
             st = c.prepareStatement("DELETE FROM Conceptoses WHERE Cuenta = ?");
             st.setString(1, Cuenta);
