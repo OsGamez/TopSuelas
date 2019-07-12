@@ -36,7 +36,7 @@ public class ObjectMaquinas {
             rs = st.executeQuery();
             while (rs.next()) {
                 Maquina m = new Maquina();
-                m.setMaquina(rs.getInt("maquina"));
+                m.setMaquina(rs.getString("maquina"));
                 m.setStatus(rs.getString("stat"));
                 m.setEstaciones(rs.getInt("estaciones"));
                 listamaquinas.add(m);
@@ -60,7 +60,7 @@ public class ObjectMaquinas {
             rs = st.executeQuery();
             while (rs.next()) {
                 Maquina m = new Maquina();
-                m.setMaquina(rs.getInt("maquina"));
+                m.setMaquina(rs.getString("maquina"));
                 m.setStatus(rs.getString("stat"));
                 m.setEstaciones(rs.getInt("estaciones"));
                 listamaquinas.add(m);
@@ -92,10 +92,10 @@ public class ObjectMaquinas {
         return resp;
     }
 
-    public void MaquinaDelete(int maquina) {
+    public void MaquinaDelete(String maquina) {
         try {
             c.setAutoCommit(false);
-            st = c.prepareStatement("UPDATE Maquinas set stat ='0' where maquina=" + maquina);
+            st = c.prepareStatement("UPDATE Maquinas set stat ='0' where maquina='" + maquina+"'");
             st.executeUpdate();
             c.commit();
         } catch (SQLException ex) {
@@ -126,7 +126,7 @@ public class ObjectMaquinas {
                 }
             } else {
                 for (int i = m.getEstaciones() + 1; i <= m.getEstacionesmod(); i++) {
-                    q = "insert into estaciones values(" + i + "," + m.getMaquina() + ",'1')";
+                    q = "insert into estaciones values(" + i + ",'" + m.getMaquina() + "','1')";
                     st = c.prepareStatement(q);
                     st.executeUpdate();
                 }
@@ -154,14 +154,14 @@ public class ObjectMaquinas {
     public boolean MaquinaAdd(Maquina maq) {
         try {
             c.setAutoCommit(false);
-            String q = "insert into Maquinas(maquina,stat) values(" + maq.getMaquina() + ",'1')";
+            String q = "insert into Maquinas(maquina,stat) values('" + maq.getMaquina() + "','1')";
             try {
                 st = c.prepareStatement(q);
                 st.execute();
                 c.commit();
                 st.close();
                 for (int i = 1; i <= maq.getEstaciones(); i++) {
-                    q = "insert into Estaciones(estacion,maquina,stat) values(" + i + "," + maq.getMaquina() + ",'1')";
+                    q = "insert into Estaciones(estacion,maquina,stat) values(" + i + ",'" + maq.getMaquina() + "','1')";
                     st = c.prepareStatement(q);
                     st.execute();
                 }

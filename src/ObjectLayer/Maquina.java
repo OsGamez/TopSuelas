@@ -19,7 +19,8 @@ import java.util.Vector;
  */
 public class Maquina implements java.io.Serializable {
 
-    private int Maquina, estaciones, estacionesmod;
+    private int estaciones, estacionesmod;
+    private String Maquina;
     PreparedStatement st = null;
 //    DB db = new DB();
 //    Connection c = db.Produccion();
@@ -43,11 +44,11 @@ public class Maquina implements java.io.Serializable {
     }
     private String status, nombre;
 
-    public int getMaquina() {
+    public String getMaquina() {
         return Maquina;
     }
 
-    public void setMaquina(int Maquina) {
+    public void setMaquina(String Maquina) {
         this.Maquina = Maquina;
     }
 
@@ -73,12 +74,12 @@ public class Maquina implements java.io.Serializable {
             st = c.prepareStatement("SELECT * FROM maquinas WHERE stat = '1'");
             rs = st.executeQuery();
             Maquina maq = new Maquina();
-            maq.setMaquina(0);
+            maq.setMaquina("");
             maq.setStatus("1");
             datos.add(maq);
             while (rs.next()) {
                 maq=new Maquina();
-                maq.setMaquina(rs.getInt("Maquina"));
+                maq.setMaquina(rs.getString("Maquina"));
                 maq.setStatus(rs.getString("stat"));
                 datos.add(maq);
             }

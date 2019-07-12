@@ -70,7 +70,6 @@ public class SeleccionDesperdicio extends javax.swing.JDialog {
 
         JbGuardar = new javax.swing.JButton();
         JbCerrar = new javax.swing.JButton();
-        Jcd = new javax.swing.JComboBox<>();
         JbPrecioa1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jcp = new javax.swing.JComboBox<>();
@@ -78,6 +77,7 @@ public class SeleccionDesperdicio extends javax.swing.JDialog {
         Jct = new javax.swing.JRadioButton();
         Jcs = new javax.swing.JRadioButton();
         Jcl = new javax.swing.JRadioButton();
+        Jcd = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("NUEVA LISTA");
@@ -101,13 +101,6 @@ public class SeleccionDesperdicio extends javax.swing.JDialog {
         JbCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JbCerrarActionPerformed(evt);
-            }
-        });
-
-        Jcd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "9", "15" }));
-        Jcd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JcdActionPerformed(evt);
             }
         });
 
@@ -145,6 +138,12 @@ public class SeleccionDesperdicio extends javax.swing.JDialog {
         Jcl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JclActionPerformed(evt);
+            }
+        });
+
+        Jcd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JcdActionPerformed(evt);
             }
         });
 
@@ -197,9 +196,9 @@ public class SeleccionDesperdicio extends javax.swing.JDialog {
                 .addComponent(jcp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Jcd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JbPrecioa1)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(Jcd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbGuardar)
@@ -222,10 +221,6 @@ public class SeleccionDesperdicio extends javax.swing.JDialog {
         ModificaConsumos();
     }//GEN-LAST:event_JbGuardarActionPerformed
 
-    private void JcdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JcdActionPerformed
-
     private void jcpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcpActionPerformed
 //        System.out.println(jcp.getSelectedItem() +" "+listaProductos.get(jcp.getSelectedIndex()).getId_Producto());
     }//GEN-LAST:event_jcpActionPerformed
@@ -244,8 +239,11 @@ public class SeleccionDesperdicio extends javax.swing.JDialog {
         jcp.setVisible(false);
     }//GEN-LAST:event_JctActionPerformed
 
-    private void ModificaConsumos() {
+    private void JcdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JcdActionPerformed
 
+    private void ModificaConsumos() {
         ObjectConsumos obsumos = new ObjectConsumos();
         Consumo sumos = new Consumo();
         String where = "";
@@ -259,7 +257,7 @@ public class SeleccionDesperdicio extends javax.swing.JDialog {
             }
             sumos.setProducto(id);
             sumos.setConsulta(where);
-            sumos.setDesperdicio((Float.parseFloat(Jcd.getSelectedItem().toString())/100)+1);
+            sumos.setDesperdicio((Float.parseFloat(Jcd.getText())/100));
             if (obsumos.ConsumoUpdateDesperdicio(sumos)) {
                 JOptionPane.showMessageDialog(this, "Consumos Modificados Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                 informacion = "1";
@@ -335,7 +333,7 @@ public class SeleccionDesperdicio extends javax.swing.JDialog {
     private javax.swing.JButton JbCerrar;
     private javax.swing.JButton JbGuardar;
     private javax.swing.JLabel JbPrecioa1;
-    private javax.swing.JComboBox<String> Jcd;
+    private javax.swing.JTextField Jcd;
     private javax.swing.JRadioButton Jcl;
     private javax.swing.JRadioButton Jcs;
     private javax.swing.JRadioButton Jct;

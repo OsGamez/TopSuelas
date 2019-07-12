@@ -25,6 +25,7 @@ public class MMolde extends javax.swing.JDialog {
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/edit-validated_40458.png"));
         setIconImage(icon);
+        Jtlc.setVisible(false);
 
         setLocationRelativeTo(null);
 
@@ -198,11 +199,11 @@ public class MMolde extends javax.swing.JDialog {
         //verifica si los campos estan vacios    
         if (Jtp.getText().equals("") || Jtc.getText().equals("") || Jtl.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "Falta datos de ingresar verifica", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-        } else if (v.verificapunto(Jtp.getText()) && v.verificanumeros(Jtc.getText())) {
+        } else if (v.verificanumeros(Jtc.getText())) {
             Molde mol = new Molde();
             //añade informacion al objeto molde
             mol.setLinea(datos.get(Jtl.getSelectedIndex()).getId_Linea());
-            mol.setPunto(Integer.parseInt(Jtp.getText()));
+            mol.setPunto(Jtp.getText().toUpperCase());
             mol.setCantidad(Integer.parseInt(Jtc.getText()));
             mol.setMolde(m.getMolde());
             if (obm.MoldeUpdate(mol)) {//actualiza el molde especificado con el objeto molde

@@ -10,8 +10,8 @@ package ObjectLayer;
  * @author GATEWAY1-
  */
 public class Consumo implements java.io.Serializable{
-    private int producto,punto;
-    private float peso,desperdicio;
+    private int producto;
+    private float peso,desperdicio,punto;
     private String descripcionprod,consulta;
 
     public String getConsulta() {
@@ -30,11 +30,11 @@ public class Consumo implements java.io.Serializable{
         this.producto = producto;
     }
 
-    public int getPunto() {
+    public float getPunto() {
         return punto;
     }
 
-    public void setPunto(int punto) {
+    public void setPunto(float punto) {
         this.punto = punto;
     }
 

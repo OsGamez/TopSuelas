@@ -209,7 +209,7 @@ public class Maquinas extends javax.swing.JInternalFrame {
             if(row >=0){
               int opcion = JOptionPane.showConfirmDialog(this,"¿Estas seguro de borrar este registro?","TOP-SUELAS",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
               if(opcion ==JOptionPane.YES_OPTION){
-                  obmaq.MaquinaDelete((int)JtDatosMaquina.getValueAt(row,0));
+                  obmaq.MaquinaDelete((String)JtDatosMaquina.getValueAt(row,0));
                   modelMaquina.removeRow(row); 
                        JOptionPane.showMessageDialog(null,"Registro eliminado");
                 }
@@ -232,7 +232,7 @@ public class Maquinas extends javax.swing.JInternalFrame {
                     int opcion = JOptionPane.showConfirmDialog(this,"¿Quieres editar este registro?","TOP-SUELAS",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
                     if(opcion ==JOptionPane.YES_OPTION){
                         Maquina maq = new Maquina();
-                        maq.setMaquina((int)JtDatosMaquina.getValueAt(fila, 0));
+                        maq.setMaquina((String)JtDatosMaquina.getValueAt(fila, 0));
                         maq.setEstaciones((int)JtDatosMaquina.getValueAt(fila, 2));
                     editarmaq.Jtm.setText("Maquina # ".concat(String.valueOf(maq.getMaquina())));
                     editarmaq.maq=maq;

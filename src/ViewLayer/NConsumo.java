@@ -56,11 +56,11 @@ public class NConsumo extends javax.swing.JDialog {
         JbGuardar = new javax.swing.JButton();
         JbCerrar = new javax.swing.JButton();
         Jcp = new javax.swing.JTextField();
-        Jcd = new javax.swing.JComboBox<>();
         JbPrecioa1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jcp = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        Jcd = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("NUEVA LISTA");
@@ -105,13 +105,6 @@ public class NConsumo extends javax.swing.JDialog {
             }
         });
 
-        Jcd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "9", "15" }));
-        Jcd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JcdActionPerformed(evt);
-            }
-        });
-
         JbPrecioa1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         JbPrecioa1.setText("Desperdicio ");
 
@@ -128,34 +121,43 @@ public class NConsumo extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("%");
 
+        Jcd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JcdActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(85, Short.MAX_VALUE)
+                .addGap(94, 94, 94)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(JbGuardar)
-                        .addGap(50, 50, 50)
-                        .addComponent(JbCerrar)
-                        .addGap(34, 34, 34))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addComponent(JbProd)
+                    .addComponent(JbPrecioa1)
+                    .addComponent(JbPrecioa)
+                    .addComponent(jLabel1))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JbProd)
-                            .addComponent(JbPrecioa1)
-                            .addComponent(JbPrecioa)
-                            .addComponent(jLabel1))
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(Jcepeso)
-                            .addComponent(Jcp)
-                            .addComponent(jcp, 0, 204, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(Jcd, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel2)))
-                        .addGap(67, 67, 67))))
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(Jcepeso, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                                .addComponent(Jcp)))
+                        .addGap(67, 67, 67))
+                    .addComponent(jcp, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(38, 38, 38))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(106, Short.MAX_VALUE)
+                .addComponent(JbGuardar)
+                .addGap(50, 50, 50)
+                .addComponent(JbCerrar)
+                .addGap(97, 97, 97))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,14 +176,14 @@ public class NConsumo extends javax.swing.JDialog {
                     .addComponent(Jcepeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Jcd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JbPrecioa1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addComponent(Jcd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbGuardar)
                     .addComponent(JbCerrar))
-                .addGap(22, 22, 22))
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -208,26 +210,31 @@ public class NConsumo extends javax.swing.JDialog {
         JbGuardar.setSelected(true);
     }//GEN-LAST:event_JcepesoActionPerformed
 
-    private void JcdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JcdActionPerformed
-
     private void jcpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcpActionPerformed
 //        System.out.println(jcp.getSelectedItem() +" "+listaProductos.get(jcp.getSelectedIndex()).getId_Producto());
     }//GEN-LAST:event_jcpActionPerformed
 
+    private void JcdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JcdActionPerformed
+
     private void nuevoConsumo() {
         Validacion v = new Validacion();
+        System.out.println(v.verificapunto(Jcp.getText()) +" "+ v.verificaflotantes(Jcepeso.getText()));
         if ( Jcepeso.getText().equals("") && Jcp.getText().equals("") && jcp.getSelectedIndex()==0) {
             JOptionPane.showMessageDialog(this, "Falta datos de ingresar verifica", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
             Jcp.requestFocus();
-        } else if (v.verificapunto(Jcp.getText()) && v.verificaflotantes(Jcepeso.getText())) {//
+        } else if ((v.verificapunto(Jcp.getText())|| v.puntoflotante(Jcp.getText())) && v.verificaflotantes(Jcepeso.getText())) {//
             ObjectConsumos obsumos = new ObjectConsumos();
             Consumo sumos = new Consumo();
             sumos.setProducto(listaProductos.get(jcp.getSelectedIndex()).getId_Producto());
-            sumos.setDesperdicio((Float.parseFloat(Jcd.getSelectedItem().toString())/100)+1);
+            sumos.setDesperdicio((Float.parseFloat(Jcd.getText())/100));
             sumos.setPeso(Float.parseFloat(Jcepeso.getText()));
-            sumos.setPunto(Integer.parseInt(Jcp.getText()));
+            String punto=Jcp.getText();
+            if(Jcp.getText().length()>1){
+                punto = String.valueOf(Float.parseFloat(Jcp.getText())*10);
+            }
+            sumos.setPunto(Float.parseFloat(punto));
             if(obsumos.BuscaConsumob(sumos)){
             if (obsumos.ConsumoAdd(sumos)) {
                 JOptionPane.showMessageDialog(this, "Consumo Almacenado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
@@ -310,7 +317,7 @@ public class NConsumo extends javax.swing.JDialog {
     private javax.swing.JLabel JbPrecioa;
     private javax.swing.JLabel JbPrecioa1;
     private javax.swing.JLabel JbProd;
-    private javax.swing.JComboBox<String> Jcd;
+    private javax.swing.JTextField Jcd;
     private javax.swing.JTextField Jcepeso;
     private javax.swing.JTextField Jcp;
     private javax.swing.JLabel jLabel1;
