@@ -286,7 +286,7 @@ public class ObjectMateriales {
         int resp=0;
         try {
             st = c.prepareStatement("SELECT existencia FROM Existencias WHERE Almacen = "+almacen+
-                    " and cvemat = '"+material+"'");
+                    " and cvemat = '"+material+"'");           
             rs = st.executeQuery();
             if (rs.next()) {
                 resp=rs.getInt("existencia");

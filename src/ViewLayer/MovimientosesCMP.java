@@ -4,6 +4,7 @@ import ObjectLayer.Almacen;
 import ObjectLayer.KardexCmp;
 import ObjectLayer.Material;
 import ObjectLayer.Movs_materiales;
+import ObjectLayer.ObjectConceptosPrima;
 import ObjectLayer.ObjectKardexCmp;
 import ObjectLayer.ObjectMateriales;
 import ObjectLayer.ObjectProveedoresMPrima;
@@ -24,31 +25,35 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class MovimientosesCMP extends javax.swing.JDialog {
-    
+
     String informacion = "";
     ObjectProveedoresMPrima pm = new ObjectProveedoresMPrima();
     ArrayList<ProveedorMPrima> listaproveedorm;
     ArrayList<Material> listaMaterial;
     ArrayList<Movs_materiales> listamovimiento_material = new ArrayList<>();
+    ProveedorMPrima pmp = new ProveedorMPrima();
     Vector<Almacen> listaalmacen = new Vector<>();
+    Vector<Almacen> listaalmacena = new Vector<>();
     ObjectMateriales ObjM = new ObjectMateriales();
     ObjectKardexCmp Objcmp = new ObjectKardexCmp();
     String columna = "";
+    String columna2 = "";
     Sesioninfo s = new Sesioninfo();
-    
+
     DefaultListModel<ProveedorMPrima> modeloListaProveedor = new DefaultListModel<>();
     DefaultListModel<Material> modeloListaMat = new DefaultListModel<>();
     DefaultTableModel modelMaterials;
-    
+
     public MovimientosesCMP(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        
+
         initComponents();
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/etiqueta.png"));
         setIconImage(icon);
         setLocationRelativeTo(null);
         LoadModelAlmacen();
+        LoadModelAlmacena();
         Calendar fecha = new GregorianCalendar();
         JeFecha.setCalendar(fecha);
         JtCuenta.requestFocus();
@@ -56,12 +61,21 @@ public class MovimientosesCMP extends javax.swing.JDialog {
         LoadModelmaterials();
         JbIdProd.setVisible(false);
         JbCvet.setVisible(false);
+        Jlca.setVisible(false);
+        JtCuentaa.setVisible(false);
+        Jlsa.setVisible(false);
+        JtSubcuentaa.setVisible(false);
+        Jla.setVisible(false);
+        JcAlmacena.setVisible(false);
+        Jlcambio.setVisible(false);
+        JtFolio2.setVisible(false);
+        pmp.setProveedor(0);
     }
-    
+
     public String getInformacion() {
         return this.informacion;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -85,15 +99,26 @@ public class MovimientosesCMP extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         Jlserie = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        JttMaterial = new javax.swing.JTable();
+        JbMov = new javax.swing.JButton();
+        JtCuentaa = new javax.swing.JTextField();
+        JtSubcuentaa = new javax.swing.JTextField();
+        Jlca = new javax.swing.JLabel();
+        Jlsa = new javax.swing.JLabel();
+        JcAlmacena = new javax.swing.JComboBox<>();
+        Jla = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         JtCuenta = new javax.swing.JTextField();
         JtSubcuenta = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         JcAlmacen = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        JttMaterial = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        Jlcambio = new javax.swing.JLabel();
+        JtFolio2 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         Jmi.setText("Eliminar Producto");
         Jmi.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -109,7 +134,7 @@ public class MovimientosesCMP extends javax.swing.JDialog {
         JpMenu.add(Jmi);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Orden de compra");
+        setTitle("Movimientos de Entrada y Salida");
         setLocation(new java.awt.Point(0, 0));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -166,6 +191,11 @@ public class MovimientosesCMP extends javax.swing.JDialog {
                 JtMatMouseClicked(evt);
             }
         });
+        JtMat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtMatActionPerformed(evt);
+            }
+        });
         JtMat.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 JtMatKeyReleased(evt);
@@ -193,6 +223,65 @@ public class MovimientosesCMP extends javax.swing.JDialog {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Serie:");
+
+        Jlserie.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JlserieMouseClicked(evt);
+            }
+        });
+
+        JttMaterial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JttMaterialMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(JttMaterial);
+
+        JbMov.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        JbMov.setText("Realizar Movimiento");
+        JbMov.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbMovActionPerformed(evt);
+            }
+        });
+
+        JtCuentaa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtCuentaaActionPerformed(evt);
+            }
+        });
+
+        JtSubcuentaa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JtSubcuentaaMouseClicked(evt);
+            }
+        });
+        JtSubcuentaa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtSubcuentaaActionPerformed(evt);
+            }
+        });
+
+        Jlca.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Jlca.setText("Cuenta");
+
+        Jlsa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Jlsa.setText("Subcuenta");
+
+        JcAlmacena.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JcAlmacena.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                JcAlmacenaItemStateChanged(evt);
+            }
+        });
+        JcAlmacena.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JcAlmacenaMouseClicked(evt);
+            }
+        });
+
+        Jla.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Jla.setText("Almacen");
 
         JtCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,18 +321,55 @@ public class MovimientosesCMP extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Almacen");
 
-        JttMaterial.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JttMaterialMouseClicked(evt);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(JtCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JtSubcuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(JcAlmacen, 0, 209, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(JtCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)
+                        .addComponent(JtSubcuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(JcAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(49, 49, 49))
+        );
+
+        Jlcambio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1491313940-repeat_82991.png"))); // NOI18N
+
+        JtFolio2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtFolio2ActionPerformed(evt);
             }
         });
-        jScrollPane2.setViewportView(JttMaterial);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Realizar Movimiento");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Doc. Ref");
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jTextField1ActionPerformed(evt);
             }
         });
 
@@ -251,53 +377,40 @@ public class MovimientosesCMP extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(JtFolio2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JtFolio, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(Jtlc, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JeFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Jlserie, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(144, 144, 144))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JtCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel7)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(JbMat)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(JbCvet)
+                                .addComponent(JbIdProd)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JtSubcuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JcAlmacen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(114, 114, 114)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JtFolio, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                                .addGap(8, 8, 8)
-                                .addComponent(Jtlc, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(55, 55, 55)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(JbMat)
-                                    .addComponent(JbIdProd))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(JbCvet)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JeFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Jlserie, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton1)
+                                .addComponent(JbMov)
                                 .addGap(212, 212, 212))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
@@ -307,56 +420,97 @@ public class MovimientosesCMP extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                    .addComponent(JtProveedor)))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                    .addComponent(JtProveedor)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Jlca)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(JtCuentaa, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Jlsa)
+                                .addGap(10, 10, 10)
+                                .addComponent(JtSubcuentaa, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37)
+                                .addComponent(Jla)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(JcAlmacena, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(6, 6, 6))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(147, 147, 147)
+                                .addComponent(Jlcambio)
+                                .addGap(280, 280, 280)))))
                 .addGap(84, 84, 84))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Jtlc, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(JtFolio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel4))
-                                    .addComponent(JeFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Jlserie, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(JtCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)
-                        .addComponent(JtSubcuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel8)
-                        .addComponent(JcAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JbIdProd)
-                    .addComponent(JbCvet))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(JtFolio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel4)
+                                .addComponent(JtFolio2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(JeFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Jlserie, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(Jtlc, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Jlcambio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(JcAlmacena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Jla)
+                        .addComponent(JtSubcuentaa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Jlsa)
+                        .addComponent(JtCuentaa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Jlca)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JbMat)
                     .addComponent(JtMat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(JtProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JtProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JbMat))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(JbIdProd)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JbCvet)))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
-                        .addComponent(jButton1))
+                        .addComponent(JbMov))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(63, 63, 63))
         );
@@ -375,7 +529,16 @@ public class MovimientosesCMP extends javax.swing.JDialog {
         JcAlmacen.setModel(modelEtiqueta);
         JcAlmacen.setSelectedIndex(0);
     }
-    
+
+    private void LoadModelAlmacena() {
+        Almacen e = new Almacen();
+        e.conCMP();
+        DefaultComboBoxModel modelEtiqueta = new DefaultComboBoxModel(e.getAlmacenes());
+        listaalmacena = e.getAlmacenes();
+        JcAlmacena.setModel(modelEtiqueta);
+        JcAlmacena.setSelectedIndex(0);
+    }
+
     private void LoadModelmaterials() {
         modelMaterials = new DefaultTableModel();
         modelMaterials.addColumn("Material");
@@ -392,9 +555,11 @@ public class MovimientosesCMP extends javax.swing.JDialog {
         }
     }
     private void JtProveedorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtProveedorKeyReleased
-        
+
         if (JtProveedor.getText().isEmpty()) {
+            limpiarListaProveedor();
         } else {
+            limpiarListaProveedor();
             listaproveedorm = pm.ProveedorMPrimaSearch(JtProveedor.getText());
             for (ProveedorMPrima p : listaproveedorm) {
                 modeloListaProveedor.addElement(p);
@@ -410,19 +575,28 @@ public class MovimientosesCMP extends javax.swing.JDialog {
             evt.setKeyChar(c);
         }
     }//GEN-LAST:event_JtProveedorKeyTyped
-    private void limpiarListaProductos() {
+    private void limpiarListaProveedor() {
         modeloListaProveedor.clear();
     }
 
     private void listaProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaProveedorMouseClicked
         JList lis = (JList) evt.getSource();
-        
+
         if (evt.getClickCount() == 1) {
-            ProveedorMPrima p = (ProveedorMPrima) lis.getSelectedValue();
-            //JbCorrida.setText(String.valueOf(cr.getCorridas(prod.getId_Producto())));
-            JbIdProd.setText(String.valueOf(p.getProveedor()) + " " + listaproveedorm.get(lis.getSelectedIndex()).getProveedor());
-//            limpiarListaProductos();
-            //  JtPt.requestFocus();
+            if (pmp.getNombre() == null || pmp.getNombre().equals("")) {
+                pmp.setNombre(listaproveedorm.get(lis.getSelectedIndex()).getNombre());
+                pmp.setProveedor(listaproveedorm.get(lis.getSelectedIndex()).getProveedor());
+                ProveedorMPrima p = (ProveedorMPrima) lis.getSelectedValue();
+                JtProveedor.setText(listaproveedorm.get(lis.getSelectedIndex()).getNombre());
+                JbIdProd.setText(String.valueOf(p.getProveedor()) + " " + listaproveedorm.get(lis.getSelectedIndex()).getProveedor());
+                JbMov.requestFocus();
+            } else {
+                pmp.setNombre(listaproveedorm.get(lis.getSelectedIndex()).getNombre());
+                pmp.setProveedor(listaproveedorm.get(lis.getSelectedIndex()).getProveedor());
+                JtProveedor.setText(listaproveedorm.get(lis.getSelectedIndex()).getNombre());
+                JbMov.requestFocus();
+            }
+
         }
     }//GEN-LAST:event_listaProveedorMouseClicked
 
@@ -432,20 +606,33 @@ public class MovimientosesCMP extends javax.swing.JDialog {
 
     private void JtProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JtProveedorMouseClicked
         JtProveedor.setText("");
+        if (JtCuenta.getText().equals("")) {
+            JtCuenta.requestFocus();
+        }
+
     }//GEN-LAST:event_JtProveedorMouseClicked
 
     private void JtMatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtMatKeyReleased
-        
-        if (JtMat.getText().isEmpty()) {
+        int cuenta = Integer.parseInt(JtCuenta.getText());
+        int sub = Integer.parseInt(JtSubcuenta.getText());
+        if (listaalmacen.get(JcAlmacen.getSelectedIndex()).getAlmacen()
+                == listaalmacena.get(JcAlmacena.getSelectedIndex()).getAlmacen() && ((cuenta == 1 && sub == 16) || (cuenta == 60 && sub == 16))) {
+            JOptionPane.showMessageDialog(null, "No puede elegirse el mismo almacen!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+            JcAlmacena.requestFocus();
             limpiarMaterial();
+            JtMat.setText("");
         } else {
-            limpiarMaterial();
-            listaMaterial = ObjM.GetByCosto(JtMat.getText());
-            for (Material m : listaMaterial) {
-                modeloListaMat.addElement(m);
+            if (JtMat.getText().isEmpty()) {
+                limpiarMaterial();
+            } else {
+                limpiarMaterial();
+                listaMaterial = ObjM.GetByCosto(JtMat.getText());
+                for (Material m : listaMaterial) {
+                    modeloListaMat.addElement(m);
+                }
             }
-            
         }
+
     }//GEN-LAST:event_JtMatKeyReleased
 
     private void JtMatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtMatKeyTyped
@@ -469,8 +656,14 @@ public class MovimientosesCMP extends javax.swing.JDialog {
             while (!v.verificanumeros(resp) || Integer.parseInt(resp) <= 0) {
                 resp = JOptionPane.showInputDialog("Escribe la cantidad: ");
             }
-            int existencia = ObjM.validaralmacen_material(listaalmacen.get(JcAlmacen.getSelectedIndex()).getAlmacen(), mat.getCveMat());
-            if (existencia <= Integer.parseInt(resp) && Integer.parseInt(JtCuenta.getText()) > 59) {
+            int existencia;
+            if (Integer.parseInt(JtCuenta.getText()) == 1 && Integer.parseInt(JtSubcuenta.getText()) == 16) {
+                existencia = ObjM.validaralmacen_material(listaalmacena.get(JcAlmacena.getSelectedIndex()).getAlmacen(), mat.getCveMat());
+            } else {
+                existencia = ObjM.validaralmacen_material(listaalmacen.get(JcAlmacen.getSelectedIndex()).getAlmacen(), mat.getCveMat());
+            }
+            System.out.println(existencia+ " * "+resp+" *");
+            if (existencia == 0 || existencia < Integer.parseInt(resp)) {
                 JOptionPane.showMessageDialog(null, "No se cuenta con suficiente existencia de este material con el almacen seleccionado", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                 JtMat.setText("");
                 JtMat.requestFocus();
@@ -487,12 +680,17 @@ public class MovimientosesCMP extends javax.swing.JDialog {
                 JtMat.requestFocus();
                 limpiarMaterial();
             }
-            
+
         }
     }//GEN-LAST:event_listaMatMouseClicked
 
     private void JtCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtCuentaActionPerformed
-        JtSubcuenta.requestFocus();
+        if (JtCuenta.getText().equals("")) {
+            JtCuenta.requestFocus();
+        } else {
+            JtSubcuenta.setText("");
+            JtSubcuenta.requestFocus();
+        }
     }//GEN-LAST:event_JtCuentaActionPerformed
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
@@ -502,27 +700,79 @@ public class MovimientosesCMP extends javax.swing.JDialog {
     }//GEN-LAST:event_formMouseClicked
 
     private void JtSubcuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtSubcuentaActionPerformed
-        if ((JtCuenta.getText().equals("01") || JtCuenta.getText().equals("1"))
-                && JtSubcuenta.getText().equals("01") || JtSubcuenta.getText().equals("1")) {
-            String botones[] = {"SI", "NO"};
-            int eleccion = JOptionPane.showOptionDialog(this, "¿Deseas realizar una orden de compra?", "TOP-SUELAS",
-                    0, 0, null, botones, this);
-            if (eleccion == JOptionPane.YES_OPTION) {
-                this.dispose();
-                NOrdenCompra ordenc = new NOrdenCompra(null, true);
-                ordenc.setVisible(true);
-                ordenc.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-                ordenc.setAlwaysOnTop(true);
-            } else if (eleccion == JOptionPane.NO_OPTION) {
-                JtSubcuenta.setText("");
-            }
+        if (JtSubcuenta.getText().equals("")) {
+            JtSubcuenta.requestFocus();
         } else {
             int cuenta = Integer.parseInt(JtCuenta.getText());
-            columna = (cuenta < 50) ? "Entradas" : "Salidas";
-            JtFolio.setText(Objcmp.getparametro(columna));
-            JcAlmacen.requestFocus();
-            
+            int subcuenta = Integer.parseInt(JtSubcuenta.getText());
+            if (cuenta == 1 && subcuenta == 1) {
+                String botones[] = {"SI", "NO"};
+                int eleccion = JOptionPane.showOptionDialog(this, "¿Deseas realizar una orden de compra?", "TOP-SUELAS",
+                        0, 0, null, botones, this);
+                if (eleccion == JOptionPane.YES_OPTION) {
+//                    this.dispose();
+//                    NOrdenCompra ordenc = new NOrdenCompra(null, true);
+//                    ordenc.setVisible(true);
+//                    ordenc.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+//                    ordenc.setAlwaysOnTop(true);
+                    
+                } else if (eleccion == JOptionPane.NO_OPTION) {
+                    JtCuenta.setText("");
+                }
+            } else if (cuenta == 1 && subcuenta == 16) {
+                JtFolio.setText(Objcmp.getparametro("Entradas"));
+                JtFolio2.setText(Objcmp.getparametro("Salidas"));
+                JtCuentaa.setText("60");
+                JtSubcuentaa.setText("16");
+                JtCuentaa.setEnabled(false);
+                JtSubcuentaa.setEnabled(false);
+                Jlca.setVisible(true);
+                JtCuentaa.setVisible(true);
+                Jlsa.setVisible(true);
+                JtSubcuentaa.setVisible(true);
+                Jla.setVisible(true);
+                JcAlmacena.setVisible(true);
+                Jlcambio.setVisible(true);
+                JtFolio2.setVisible(true);
+                JcAlmacen.requestFocus();
+            } else if (cuenta == 60 && subcuenta == 16) {
+                JtFolio.setText(Objcmp.getparametro("Salidas"));
+                JtFolio2.setText(Objcmp.getparametro("Entradas"));
+                JtCuentaa.setText("01");
+                JtSubcuentaa.setText("16");
+                JtCuentaa.setEnabled(false);
+                JtSubcuentaa.setEnabled(false);
+                Jlca.setVisible(true);
+                JtCuentaa.setVisible(true);
+                Jlsa.setVisible(true);
+                JtSubcuentaa.setVisible(true);
+                Jla.setVisible(true);
+                JcAlmacena.setVisible(true);
+                Jlcambio.setVisible(true);
+                JtFolio2.setVisible(true);
+                JcAlmacen.requestFocus();
+
+            } else {
+                ObjectConceptosPrima ocp = new ObjectConceptosPrima();
+                if (!ocp.validarCuenta(JtCuenta.getText(), JtSubcuenta.getText())) {
+                    columna = (cuenta < 50) ? "Entradas" : "Salidas";
+                    JtFolio.setText(Objcmp.getparametro(columna));
+                    JcAlmacen.requestFocus();
+                    Jlca.setVisible(false);
+                    JtCuentaa.setVisible(false);
+                    Jlsa.setVisible(false);
+                    JtSubcuentaa.setVisible(false);
+                    Jla.setVisible(false);
+                    JcAlmacena.setVisible(false);
+                    Jlcambio.setVisible(false);
+                    JtFolio2.setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(null, "La cuenta y subcuenta no existe!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                    JtCuenta.requestFocus();
+                }
+            }
         }
+
     }//GEN-LAST:event_JtSubcuentaActionPerformed
 
     private void JttMaterialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JttMaterialMouseClicked
@@ -559,17 +809,73 @@ public class MovimientosesCMP extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_JcAlmacenMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void JbMovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbMovActionPerformed
         generarmovimiento();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_JbMovActionPerformed
 
     private void JcAlmacenItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JcAlmacenItemStateChanged
-        JtMat.requestFocus();
+        JcAlmacena.requestFocus();
     }//GEN-LAST:event_JcAlmacenItemStateChanged
+
+    private void JlserieMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JlserieMouseClicked
+        String serie = (s.getSerie().equals("A")) ? "B" : "A";
+        s.setSerie(serie);
+        Jlserie.setText(serie);
+    }//GEN-LAST:event_JlserieMouseClicked
+
+    private void JtCuentaaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtCuentaaActionPerformed
+        if (JtCuenta.getText().equals("") && JtSubcuenta.getText().equals("")) {
+            JtCuenta.requestFocus();
+        } else {
+            JtSubcuentaa.requestFocus();
+        }
+    }//GEN-LAST:event_JtCuentaaActionPerformed
+
+    private void JtSubcuentaaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JtSubcuentaaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtSubcuentaaMouseClicked
+
+    private void JtSubcuentaaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtSubcuentaaActionPerformed
+        if (JtCuenta.getText().equals("") && JtSubcuenta.getText().equals("")) {
+            JtCuenta.requestFocus();
+        } else {
+            JcAlmacena.requestFocus();
+        }
+    }//GEN-LAST:event_JtSubcuentaaActionPerformed
+
+    private void JcAlmacenaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JcAlmacenaItemStateChanged
+        if (JtCuenta.getText().equals("") && JtSubcuenta.getText().equals("")) {
+            JtCuenta.requestFocus();
+        } else {
+            if (listaalmacen.get(JcAlmacen.getSelectedIndex()).getAlmacen()
+                    == listaalmacena.get(JcAlmacena.getSelectedIndex()).getAlmacen()) {
+                JOptionPane.showMessageDialog(null, "No puede elegirse el mismo almacen!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+
+            } else {
+                JtMat.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_JcAlmacenaItemStateChanged
+
+    private void JcAlmacenaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JcAlmacenaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JcAlmacenaMouseClicked
+
+    private void JtFolio2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtFolio2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtFolio2ActionPerformed
+
+    private void JtMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtMatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtMatActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
     private void limpiarMaterial() {
         modeloListaMat.clear();
     }
-    
+
     private void Cerrar() {
 //        String botones[] = {"SI", "NO"};
 //        int eleccion = JOptionPane.showOptionDialog(this,"¿Deseas cerrar esta ventana?", "TOP-SUELAS", 
@@ -580,7 +886,7 @@ public class MovimientosesCMP extends javax.swing.JDialog {
 //        }else if(eleccion == JOptionPane.NO_OPTION){       
 //        }
     }
-    
+
     private String getfecha() {
         Calendar fecha = Calendar.getInstance(); //intanciar informacion del calendiario respecto al sistema
         int año = fecha.get(Calendar.YEAR);
@@ -604,7 +910,7 @@ public class MovimientosesCMP extends javax.swing.JDialog {
         String fechac = dia + "-0" + mes + "-" + año + " " + horas + ":00.000";//fecha formada por Calendar.getInstance(); 
         return fechac;
     }
-    
+
     private void generarmovimiento() {
         String botones[] = {"SI", "NO"};
         int eleccion = JOptionPane.showOptionDialog(this, "¿Estas Seguro de realizar el movimiento?", "TOP-SUELAS",
@@ -617,7 +923,15 @@ public class MovimientosesCMP extends javax.swing.JDialog {
                 } else if (JtCuenta.getText().equals("") || JtSubcuenta.getText().equals("") || JtFolio.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "La cuenta y subcuenta no pueden ir vacias!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                     JtCuenta.requestFocus();
+                } else if (listaalmacen.get(JcAlmacen.getSelectedIndex()).getAlmacen()
+                        == listaalmacena.get(JcAlmacena.getSelectedIndex()).getAlmacen()) {
+                    JOptionPane.showMessageDialog(null, "No puede elegirse el mismo almacen!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                    JcAlmacena.requestFocus();
+                }else if(pmp.getProveedor()==0){
+                    JtProveedor.requestFocus();
+                    JOptionPane.showMessageDialog(null, "Elija un almacen un proveedor, si no es Orden de compra elija SISTEMA", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                 } else {
+
                     ArrayList<Movs_materiales> arr = new ArrayList<>();
                     int rows = JttMaterial.getRowCount();
                     for (int i = 0; i < rows; i++) {
@@ -628,29 +942,102 @@ public class MovimientosesCMP extends javax.swing.JDialog {
                         mo.setCantidad(Integer.parseInt(numaux));
                         arr.add(mo);
                     }
-                    String operacion = (columna.equals("Entradas")) ? "+" : "-";
+                    String[] ar;// operacion
+                    String[] tipo;// tipo movimiento
+                    int[] carr;//cuentas
+                    int[] sarr;// subcuentas
+                    int[] alm;// almacenes
+                    int i = 0;
+                    int[] folios;// folios
+                    int cuenta = Integer.parseInt(JtCuenta.getText());
+                    int sub = Integer.parseInt(JtSubcuenta.getText());
+                    if ((cuenta == 1 && sub == 16)) {
+                        ar = new String[2];
+                        ar[0] = "+";
+                        ar[1] = "-";
+                        tipo = new String[2];
+                        tipo[0] = "E";
+                        tipo[1] = "S";
+                        carr = new int[2];
+                        carr[0] = 1;
+                        carr[1] = 60;
+                        sarr = new int[2];
+                        sarr[0] = 16;
+                        sarr[1] = 16;
+                        alm = new int[2];
+                        alm[0] = listaalmacen.get(JcAlmacen.getSelectedIndex()).getAlmacen();
+                        alm[1] = listaalmacena.get(JcAlmacena.getSelectedIndex()).getAlmacen();
+                        folios = new int[2];
+                        folios[0] = Integer.parseInt(JtFolio.getText()) + 1;
+                        folios[1] = Integer.parseInt(JtFolio2.getText()) + 1;
+                    } else if (cuenta == 60 && sub == 16) {
+                        ar = new String[2];
+                        ar[0] = "-";
+                        ar[1] = "+";
+                        tipo = new String[2];
+                        tipo[0] = "S";
+                        tipo[1] = "E";
+                        carr = new int[2];
+                        carr[0] = 60;
+                        carr[1] = 01;
+                        sarr = new int[2];
+                        sarr[0] = 16;
+                        sarr[1] = 16;
+                        alm = new int[2];
+                        alm[0] = listaalmacena.get(JcAlmacena.getSelectedIndex()).getAlmacen();
+                        alm[1] = listaalmacen.get(JcAlmacen.getSelectedIndex()).getAlmacen();
+                        folios = new int[2];
+                        folios[0] = Integer.parseInt(JtFolio.getText()) + 1;
+                        folios[1] = Integer.parseInt(JtFolio2.getText()) + 1;
+                    } else {
+                        ar = new String[1];
+                        ar[0] = (columna.equals("Entradas")) ? "+" : "-";
+                        tipo = new String[1];
+                        tipo[0] = columna.charAt(0) + "";
+                        carr = new int[1];
+                        carr[0] = cuenta;
+                        sarr = new int[1];
+                        sarr[0] = sub;
+                        alm = new int[1];
+                        alm[0] = listaalmacen.get(JcAlmacen.getSelectedIndex()).getAlmacen();
+                        folios = new int[1];
+                        folios[0] = Integer.parseInt(JtFolio.getText())+1;
+                    }
+                    //System.out.println(ar[0] + "$ " + tipo[0] + "$ " + carr[0] + "$ " + sarr[0] + "$ " + alm[0]);
+                    //String operacion = (columna.equals("Entradas")) ? "+" : "-";
                     KardexCmp k = new KardexCmp();
-                    k.setFolio(Integer.parseInt(JtFolio.getText()) + 1);
-                    k.setCuenta(Integer.parseInt(JtCuenta.getText()));
-                    k.setSubcuenta(Integer.parseInt(JtSubcuenta.getText()));
-                    k.setProveedor(0);// cambia
-                    k.setAlmacen(listaalmacen.get(JcAlmacen.getSelectedIndex()).getAlmacen());
+                    k.setProveedor(pmp.getProveedor());// cambia
                     k.setOrdenc("");// cambia
                     k.setFechamov(getfecha());
                     k.setFechadoc(getfecha());//cambia
 //                    k.setSerie(s.getSerie());
                     k.setSerie("A");
-                    k.setTipo(columna.charAt(0) + "");
                     k.setDocref("");//cambia
-                    k.setOperacion(operacion);
                     k.setUsuario(s.getId_usuario());
                     k.setMat(arr);
-                    if (Objcmp.KardexCmpAdd(k)) {
-                        limpiamovimiento();
-                        JOptionPane.showMessageDialog(null, "Movimiento Completo!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Algo salio Mal, Contacta a Sistemas!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                    while (i < ar.length) {
+                        k.setOperacion(ar[i]);
+                        k.setFolio(folios[i]);
+                        k.setCuenta(carr[i]);
+                        k.setSubcuenta(sarr[i]);
+                        k.setAlmacen(alm[i]);
+                        k.setTipo(tipo[i]);
+                        if (Objcmp.KardexCmpAdd(k)) {
+                            limpiamovimiento();
+                            informacion="1";
+                            JOptionPane.showMessageDialog(null, "Movimiento Completo!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Algo salio Mal, Contacta a Sistemas!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        i++;
                     }
+                    //k.setTipo(columna.charAt(0) + "");
+                    //k.setOperacion(operacion);
+//                    k.setFolio(Integer.parseInt(JtFolio.getText()) + 1);
+//                    k.setCuenta(Integer.parseInt(JtCuenta.getText()));
+//                    k.setSubcuenta(Integer.parseInt(JtSubcuenta.getText()));
+                    //k.setAlmacen(listaalmacen.get(JcAlmacen.getSelectedIndex()).getAlmacen()); no cambia
+
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "En cantidad de productos solo pueden ir numeros!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
@@ -658,9 +1045,9 @@ public class MovimientosesCMP extends javax.swing.JDialog {
                 e.printStackTrace();
             }
         }
-        
+
     }
-    
+
     private void limpiamovimiento() {
         JtCuenta.setText("");
         JtSubcuenta.setText("");
@@ -747,29 +1134,40 @@ public class MovimientosesCMP extends javax.swing.JDialog {
     private javax.swing.JLabel JbCvet;
     private javax.swing.JLabel JbIdProd;
     private javax.swing.JLabel JbMat;
+    private javax.swing.JButton JbMov;
     private javax.swing.JComboBox<String> JcAlmacen;
+    private javax.swing.JComboBox<String> JcAlmacena;
     private com.toedter.calendar.JDateChooser JeFecha;
+    private javax.swing.JLabel Jla;
+    private javax.swing.JLabel Jlca;
+    private javax.swing.JLabel Jlcambio;
+    private javax.swing.JLabel Jlsa;
     private javax.swing.JLabel Jlserie;
     private javax.swing.JMenuItem Jmi;
     private javax.swing.JPopupMenu JpMenu;
     private javax.swing.JTextField JtCuenta;
+    private javax.swing.JTextField JtCuentaa;
     private javax.swing.JTextField JtFolio;
+    private javax.swing.JTextField JtFolio2;
     public javax.swing.JTextField JtMat;
     public javax.swing.JTextField JtProveedor;
     private javax.swing.JTextField JtSubcuenta;
+    private javax.swing.JTextField JtSubcuentaa;
     public javax.swing.JLabel Jtlc;
     private javax.swing.JTable JttMaterial;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField jTextField1;
     public javax.swing.JList<Material> listaMat;
     public javax.swing.JList<ProveedorMPrima> listaProveedor;
     // End of variables declaration//GEN-END:variables

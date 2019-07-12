@@ -9,14 +9,11 @@
 	<parameter name="linea" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="almacen" class="java.lang.Integer">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-	</parameter>
 	<queryString>
 		<![CDATA[DECLARE @v1 INT, @v2 INT
 	SET @v1 = 0 
 SELECT 
-	i.Almacen,p.Descripcion as Suela,i.Corrida as Corrida,
+	p.Descripcion as Suela,i.Corrida as Corrida,
 
 	CASE WHEN i.Corrida = '80' THEN sum(TotalPares) WHEN i.Corrida = '85' THEN sum(TotalPares)
 	WHEN i.Corrida = '89' THEN sum(TotalPares) WHEN i.Corrida = '81' THEN sum(TotalPares)
@@ -273,11 +270,10 @@ SELECT
 	FROM RCPTPhylon.dbo.Productos p
 	inner join $P!{tabla} i
 	on p.Producto = i.Producto
-where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
-	group by i.Producto,p.Descripcion,i.Corrida,i.Almacen,i.Corrida,p.Linea
-	order by p.Descripcion,i.Almacen]]>
+where     i.Estilo = $P!{linea}
+	group by i.Producto,p.Descripcion,i.Corrida,i.Corrida,p.Linea
+	order by p.Descripcion]]>
 	</queryString>
-	<field name="Almacen" class="java.lang.Short"/>
 	<field name="Suela" class="java.lang.String"/>
 	<field name="Corrida" class="java.lang.Short"/>
 	<field name="TotalPares" class="java.lang.Integer"/>
@@ -338,7 +334,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 	<columnHeader>
 		<band height="19" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Transparent" x="153" y="1" width="39" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="9ea6e7be-3878-436f-b59b-e94e029414cc"/>
+				<reportElement mode="Transparent" x="144" y="1" width="39" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="9ea6e7be-3878-436f-b59b-e94e029414cc"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -346,15 +342,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[PARES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="5" y="1" width="25" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="4c19d36d-5cca-4923-92d3-a558fc627aea"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[ALM]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="35" y="1" width="34" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="aba578c2-4b8b-432f-8bf5-97e755a23791"/>
+				<reportElement mode="Transparent" x="9" y="1" width="34" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="aba578c2-4b8b-432f-8bf5-97e755a23791"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -362,7 +350,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[SUELA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="466" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="187c229e-d522-4821-9c9b-4651f506adfe"/>
+				<reportElement mode="Transparent" x="457" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="187c229e-d522-4821-9c9b-4651f506adfe"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -370,7 +358,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[20]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="547" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="f19a4b86-cf74-422b-b56b-e3f9627f417d"/>
+				<reportElement mode="Transparent" x="538" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="f19a4b86-cf74-422b-b56b-e3f9627f417d"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -378,7 +366,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[24]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="506" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="836cb1e7-33d9-4d97-81ff-1f582d82c9d0"/>
+				<reportElement mode="Transparent" x="497" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="836cb1e7-33d9-4d97-81ff-1f582d82c9d0"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -386,7 +374,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[22]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="384" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="57b93d3a-4230-442b-aa93-1d3d3fc7dc91"/>
+				<reportElement mode="Transparent" x="375" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="57b93d3a-4230-442b-aa93-1d3d3fc7dc91"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -394,7 +382,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[16]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="587" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="cfa9bdfe-9afb-4485-8e25-a416aae0176e"/>
+				<reportElement mode="Transparent" x="578" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="cfa9bdfe-9afb-4485-8e25-a416aae0176e"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -402,7 +390,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[26]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="567" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="8c39e953-a4ea-4cc9-a0a8-74e429b7bd99"/>
+				<reportElement mode="Transparent" x="558" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="8c39e953-a4ea-4cc9-a0a8-74e429b7bd99"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -410,7 +398,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[25]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="736" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="a5466dfb-229c-4d89-b06b-cd0e2bab4bb4"/>
+				<reportElement mode="Transparent" x="727" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="a5466dfb-229c-4d89-b06b-cd0e2bab4bb4"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -418,7 +406,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[30]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="607" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="f676ba5a-b9e9-44c2-ab1b-ff7de126b26f"/>
+				<reportElement mode="Transparent" x="598" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="f676ba5a-b9e9-44c2-ab1b-ff7de126b26f"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -426,7 +414,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[27]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="343" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="727ef5c6-41e1-445f-bceb-1f8011902bd5"/>
+				<reportElement mode="Transparent" x="334" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="727ef5c6-41e1-445f-bceb-1f8011902bd5"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -434,7 +422,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[14]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="486" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="a9f492dc-1d91-4cd3-b771-258cd7036e0b"/>
+				<reportElement mode="Transparent" x="477" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="a9f492dc-1d91-4cd3-b771-258cd7036e0b"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -442,7 +430,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[21]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="426" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="f66f4f51-483d-4513-b571-925fdb6cf5e2"/>
+				<reportElement mode="Transparent" x="417" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="f66f4f51-483d-4513-b571-925fdb6cf5e2"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -450,7 +438,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[18]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="323" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="b17fcfb5-e019-4a41-b026-e641971df13f"/>
+				<reportElement mode="Transparent" x="314" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="b17fcfb5-e019-4a41-b026-e641971df13f"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -458,7 +446,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[13]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="405" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="68ee87ad-e0c7-4da8-9215-541709183d56"/>
+				<reportElement mode="Transparent" x="396" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="68ee87ad-e0c7-4da8-9215-541709183d56"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -466,7 +454,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[17]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="649" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="dfd8f02e-683e-4ca2-bacc-1947cca52986"/>
+				<reportElement mode="Transparent" x="640" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="dfd8f02e-683e-4ca2-bacc-1947cca52986"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -474,7 +462,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[28]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="282" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="51c3c092-eba6-4bfc-9e6f-8822372ea48f"/>
+				<reportElement mode="Transparent" x="273" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="51c3c092-eba6-4bfc-9e6f-8822372ea48f"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -482,7 +470,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[12]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="692" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="f5fdd85c-432f-467a-9431-685ea1ba73cc"/>
+				<reportElement mode="Transparent" x="683" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="f5fdd85c-432f-467a-9431-685ea1ba73cc"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -490,7 +478,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[29]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="199" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="b65591e5-e067-428c-b248-b7930f89b51c"/>
+				<reportElement mode="Transparent" x="190" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="b65591e5-e067-428c-b248-b7930f89b51c"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -498,7 +486,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[10]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="241" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="e42c4ec8-6af3-4443-9962-f54c562907cd"/>
+				<reportElement mode="Transparent" x="232" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="e42c4ec8-6af3-4443-9962-f54c562907cd"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -506,7 +494,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[11]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="446" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="56ebdde0-829a-4b04-8423-2ca3034c924d"/>
+				<reportElement mode="Transparent" x="437" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="56ebdde0-829a-4b04-8423-2ca3034c924d"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -514,7 +502,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[19]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="364" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="9ba2f1ae-90ed-4af1-9f99-6adeb70c309b"/>
+				<reportElement mode="Transparent" x="355" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="9ba2f1ae-90ed-4af1-9f99-6adeb70c309b"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -522,7 +510,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[15]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="526" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="45883b0f-4767-420d-9b9e-d0e7a37dffab"/>
+				<reportElement mode="Transparent" x="517" y="0" width="13" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="45883b0f-4767-420d-9b9e-d0e7a37dffab"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -530,7 +518,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[23]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="628" y="0" width="16" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="ab66f82f-b968-4ca7-b4d2-739a73b37734"/>
+				<reportElement mode="Transparent" x="619" y="0" width="16" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="ab66f82f-b968-4ca7-b4d2-739a73b37734"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -538,7 +526,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[27.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="218" y="0" width="17" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="88c86b95-376f-4dcf-a018-77e59581503f"/>
+				<reportElement mode="Transparent" x="209" y="0" width="17" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="88c86b95-376f-4dcf-a018-77e59581503f"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -546,7 +534,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[10.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="259" y="0" width="19" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="cc942dd3-9f86-4921-9830-ec8cb9cc0c65"/>
+				<reportElement mode="Transparent" x="250" y="0" width="19" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="cc942dd3-9f86-4921-9830-ec8cb9cc0c65"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -554,7 +542,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[11.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="300" y="0" width="18" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="0cea8ce5-f8aa-435c-9c16-c0f2671523d3"/>
+				<reportElement mode="Transparent" x="291" y="0" width="18" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="0cea8ce5-f8aa-435c-9c16-c0f2671523d3"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -562,7 +550,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[12.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="670" y="0" width="17" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="2a717082-1620-4b25-8c36-08cefb6de18c"/>
+				<reportElement mode="Transparent" x="661" y="0" width="17" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="2a717082-1620-4b25-8c36-08cefb6de18c"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -570,7 +558,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<text><![CDATA[28.5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="712" y="0" width="18" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="15b7410b-c3ce-4ca3-95d8-0f7b5d9a4639"/>
+				<reportElement mode="Transparent" x="703" y="0" width="18" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="15b7410b-c3ce-4ca3-95d8-0f7b5d9a4639"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -586,15 +574,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 	<detail>
 		<band height="11" splitType="Stretch">
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="4" y="2" width="25" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="0ed9f5e0-6203-4c66-9d13-3e35b8e216cc"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{Almacen}]]></textFieldExpression>
-			</textField>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="34" y="2" width="114" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="1fe56beb-718e-49a8-ae42-cfd29a9eb426"/>
+				<reportElement mode="Transparent" x="9" y="2" width="134" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="1fe56beb-718e-49a8-ae42-cfd29a9eb426"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -602,7 +582,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{Suela}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="153" y="2" width="38" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="77de6c53-b091-43fe-a3e9-b1670bfd82a0"/>
+				<reportElement mode="Transparent" x="144" y="2" width="38" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="77de6c53-b091-43fe-a3e9-b1670bfd82a0"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -610,7 +590,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{TotalPares}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="198" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="59f8d3e4-002d-45e7-b159-2621bd8950cb"/>
+				<reportElement mode="Transparent" x="189" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="59f8d3e4-002d-45e7-b159-2621bd8950cb"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -618,7 +598,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{10}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="240" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="e7600a7d-f107-4016-93e7-a18b23a297b0"/>
+				<reportElement mode="Transparent" x="231" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="e7600a7d-f107-4016-93e7-a18b23a297b0"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -626,7 +606,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{11}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="281" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="87b88172-935e-4b2e-8218-0c365324ff7c"/>
+				<reportElement mode="Transparent" x="272" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="87b88172-935e-4b2e-8218-0c365324ff7c"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -634,7 +614,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{12}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="322" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="82d05297-394b-4aeb-b814-cfa1e641672b"/>
+				<reportElement mode="Transparent" x="313" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="82d05297-394b-4aeb-b814-cfa1e641672b"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -642,7 +622,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{13}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="342" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="d5f3e348-f70e-4061-b553-df009fb7e990"/>
+				<reportElement mode="Transparent" x="333" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="d5f3e348-f70e-4061-b553-df009fb7e990"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -650,7 +630,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{14}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="363" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="012b7710-d0e8-4fd4-a58f-73dc76f18801"/>
+				<reportElement mode="Transparent" x="354" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="012b7710-d0e8-4fd4-a58f-73dc76f18801"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -658,7 +638,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{15}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="384" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="7cfc797a-1b22-4415-afac-510611ebd62a"/>
+				<reportElement mode="Transparent" x="375" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="7cfc797a-1b22-4415-afac-510611ebd62a"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -666,7 +646,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{16}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="404" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="ed366cb3-7e26-44db-9c40-6f4c4d16b718"/>
+				<reportElement mode="Transparent" x="395" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="ed366cb3-7e26-44db-9c40-6f4c4d16b718"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -674,7 +654,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{17}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="425" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="cfa7e112-9b25-4e23-bd64-9ea38a586ec7"/>
+				<reportElement mode="Transparent" x="416" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="cfa7e112-9b25-4e23-bd64-9ea38a586ec7"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -682,7 +662,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{18}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="445" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="5f14149d-1f2f-4a5d-86d5-506b178a0032"/>
+				<reportElement mode="Transparent" x="436" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="5f14149d-1f2f-4a5d-86d5-506b178a0032"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -690,7 +670,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{19}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="465" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="02dc053f-2d6d-4e49-a679-1609ca9874cb"/>
+				<reportElement mode="Transparent" x="456" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="02dc053f-2d6d-4e49-a679-1609ca9874cb"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -698,7 +678,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{20}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="485" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="5d883aa6-1821-4b37-9853-bf6da66fdfed"/>
+				<reportElement mode="Transparent" x="476" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="5d883aa6-1821-4b37-9853-bf6da66fdfed"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -706,7 +686,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{21}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="505" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="5985df3f-4127-4964-8245-8cbdc646c47f"/>
+				<reportElement mode="Transparent" x="496" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="5985df3f-4127-4964-8245-8cbdc646c47f"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -714,7 +694,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{22}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="525" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="25946533-562b-40e4-8022-c1e31526bc10"/>
+				<reportElement mode="Transparent" x="516" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="25946533-562b-40e4-8022-c1e31526bc10"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -722,7 +702,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{23}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="546" y="2" width="20" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="b1fee1ad-f6ab-4e09-8c19-5679486da7e1"/>
+				<reportElement mode="Transparent" x="537" y="2" width="20" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="b1fee1ad-f6ab-4e09-8c19-5679486da7e1"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -730,7 +710,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{24}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="566" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="cbf79e34-ef1d-4f63-a3bc-d86cca94fc52"/>
+				<reportElement mode="Transparent" x="557" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="cbf79e34-ef1d-4f63-a3bc-d86cca94fc52"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -738,7 +718,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{25}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="586" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="a0f9b229-c339-4937-930d-4bec6a2ef90f"/>
+				<reportElement mode="Transparent" x="577" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="a0f9b229-c339-4937-930d-4bec6a2ef90f"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -746,7 +726,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{26}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="606" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="1cb2f49b-6d14-473e-a0e8-e1c655dcde6d"/>
+				<reportElement mode="Transparent" x="597" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="1cb2f49b-6d14-473e-a0e8-e1c655dcde6d"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -754,7 +734,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{27}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="648" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="28aa7ebc-3b7a-4581-bac1-8743341c9b54"/>
+				<reportElement mode="Transparent" x="639" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="28aa7ebc-3b7a-4581-bac1-8743341c9b54"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -762,7 +742,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{28}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="691" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="6a48cd47-3751-421b-9059-ac88cd6706ee"/>
+				<reportElement mode="Transparent" x="682" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="6a48cd47-3751-421b-9059-ac88cd6706ee"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -770,7 +750,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{29}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="735" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="3397832a-73af-40e1-8eff-0769139587de"/>
+				<reportElement mode="Transparent" x="726" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="3397832a-73af-40e1-8eff-0769139587de"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -778,7 +758,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{30}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="219" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="eceb81c4-bf58-4c40-9b43-8844fe839279"/>
+				<reportElement mode="Transparent" x="210" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="eceb81c4-bf58-4c40-9b43-8844fe839279"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -786,7 +766,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{10.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="260" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="09d8026c-b292-45da-86b2-74c952e436ee"/>
+				<reportElement mode="Transparent" x="251" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="09d8026c-b292-45da-86b2-74c952e436ee"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -794,7 +774,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{11.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="302" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="1eb61984-e1ac-43ac-a61b-a55e36e76bbd"/>
+				<reportElement mode="Transparent" x="293" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="1eb61984-e1ac-43ac-a61b-a55e36e76bbd"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -802,7 +782,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{12.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="627" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="6c570cdf-3999-4d8e-aba4-6902be0d42cf"/>
+				<reportElement mode="Transparent" x="618" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="6c570cdf-3999-4d8e-aba4-6902be0d42cf"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -810,7 +790,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{27.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="670" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="a64e956c-524f-417e-9f67-c257fa050628"/>
+				<reportElement mode="Transparent" x="661" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="a64e956c-524f-417e-9f67-c257fa050628"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -818,7 +798,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				<textFieldExpression><![CDATA[$F{28.5}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="712" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="39360277-36c1-4395-aeaf-710997017c29"/>
+				<reportElement mode="Transparent" x="703" y="2" width="16" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="39360277-36c1-4395-aeaf-710997017c29"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -837,7 +817,7 @@ where     i.Estilo = $P!{linea} and i.Almacen = $P!{almacen}
 				</textElement>
 				<text><![CDATA[TOTAL LINEA:]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="#,##0">
 				<reportElement mode="Transparent" x="69" y="2" width="100" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="4413116f-3157-480b-8100-2cd0785acb42"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>

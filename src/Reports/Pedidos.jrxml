@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a9992d7f-534f-4197-b93e-1c3cb725b301">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="1"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="Npedido" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -904,7 +904,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Precio}]]></textFieldExpression>
 			</textField>
-			<textField pattern="" isBlankWhenNull="false">
+			<textField pattern="#,##0" isBlankWhenNull="false">
 				<reportElement mode="Transparent" x="523" y="4" width="37" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="d40dbb58-c800-418b-99b6-da9ed550f2f0"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -1644,7 +1644,7 @@
 			<line>
 				<reportElement x="198" y="23" width="131" height="1" uuid="8bf6d2fa-fbff-4471-80fd-1cc7d5c51f9c"/>
 			</line>
-			<textField pattern="" isBlankWhenNull="false">
+			<textField pattern="#,##0" isBlankWhenNull="false">
 				<reportElement mode="Transparent" x="700" y="21" width="30" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="df01694c-7e06-41be-a10d-a626d08199ba"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -1676,7 +1676,7 @@
 				</textElement>
 				<text><![CDATA[TOTAL]]></text>
 			</staticText>
-			<textField pattern="" isBlankWhenNull="false">
+			<textField pattern="#,##0" isBlankWhenNull="false">
 				<reportElement mode="Transparent" x="599" y="22" width="34" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="80d3a8eb-7543-400e-ba1a-04a39672220f"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>

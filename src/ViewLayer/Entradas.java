@@ -450,7 +450,7 @@ public class Entradas extends javax.swing.JInternalFrame {
     private void CargarCodigo() {
         int num = 1;
 
-        ArrayList<Parametro> listP = Par.getFolioActual();
+        ArrayList<Parametro> listP = Par.getFolioEntrada();
 
         if (listP.size() > 0) {
             for (Parametro par : listP) {

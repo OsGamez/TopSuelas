@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="572" pageHeight="752" columnWidth="532" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="164439a1-dcdc-40ba-9999-31bac19617ff">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="572" pageHeight="712" columnWidth="572" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="164439a1-dcdc-40ba-9999-31bac19617ff">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -8,7 +8,10 @@
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT 
- p.Fecha_Entrega,c.Id_Cliente,c.RazonSocial,p.Npedido
+ p.Fecha_Entrega,c.Id_Cliente,
+ CASE WHEN p.Serie = 'A' THEN c.RazonSocial
+ WHEN p.Serie = 'B' THEN c.Nombre end as Cliente
+,p.Npedido
 ,CASE
 	WHEN DATEPART(WK,Fecha_Entrega) = 1  THEN p.TotalPares
  WHEN DATEPART(WK,Fecha_Entrega) = 2 THEN p.TotalPares
@@ -66,19 +69,19 @@
 	END AS Pares
 FROM Pedidos p INNER JOIN CobranzaPhy.dbo.Clientes c
 ON p.Id_Cliente = c.Id_Cliente
-WHERE DATEPART(WK,p.Fecha_Entrega) = $P{Date} 
+WHERE DATEPART(WK,p.Fecha_Entrega) = $P!{Date} 
 ORDER BY p.Npedido]]>
 	</queryString>
 	<field name="Fecha_Entrega" class="java.sql.Date"/>
 	<field name="Id_Cliente" class="java.lang.Short"/>
-	<field name="RazonSocial" class="java.lang.String"/>
+	<field name="Cliente" class="java.lang.String"/>
 	<field name="Npedido" class="java.lang.String"/>
 	<field name="Pares" class="java.lang.Short"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<detail>
-		<band height="35">
+		<band height="42">
 			<rectangle>
 				<reportElement x="1" y="1" width="572" height="14" backcolor="#FF6633" uuid="048e0b5e-94d6-4110-aba8-1ef76827c3fd"/>
 			</rectangle>
@@ -123,14 +126,6 @@ ORDER BY p.Npedido]]>
 				<text><![CDATA[CLIENTE:]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="297" y="2" width="100" height="12" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="6616f023-4d0a-412d-a39b-1b4fcf6f20af"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{RazonSocial}]]></textFieldExpression>
-			</textField>
-			<textField pattern="" isBlankWhenNull="false">
 				<reportElement mode="Transparent" x="263" y="2" width="24" height="12" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="9ee3ba89-f08c-418b-850f-d12d66bb3140"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -138,16 +133,8 @@ ORDER BY p.Npedido]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Id_Cliente}]]></textFieldExpression>
 			</textField>
-			<subreport>
-				<reportElement x="-5" y="19" width="156" height="5" uuid="0f715a5c-c931-404f-87f0-a6a0b109fff1"/>
-				<subreportParameter name="Numero">
-					<subreportParameterExpression><![CDATA[$F{Npedido}]]></subreportParameterExpression>
-				</subreportParameter>
-				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\SubDetalleP.jasper"]]></subreportExpression>
-			</subreport>
 			<staticText>
-				<reportElement mode="Transparent" x="375" y="18" width="58" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="7426911d-0d06-46b1-898a-d764bce0d7ea"/>
+				<reportElement mode="Transparent" x="369" y="18" width="58" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="7426911d-0d06-46b1-898a-d764bce0d7ea"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -155,7 +142,7 @@ ORDER BY p.Npedido]]>
 				<text><![CDATA[EN PROCESO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="265" y="18" width="33" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="614f80bf-ad24-4828-bd3a-6e655f8ab87d"/>
+				<reportElement mode="Transparent" x="263" y="18" width="33" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="614f80bf-ad24-4828-bd3a-6e655f8ab87d"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -163,7 +150,7 @@ ORDER BY p.Npedido]]>
 				<text><![CDATA[PARES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="13" y="18" width="40" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="bc3d250c-4538-4851-94ba-9cc266f3d290"/>
+				<reportElement mode="Transparent" x="10" y="18" width="40" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="bc3d250c-4538-4851-94ba-9cc266f3d290"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -171,7 +158,7 @@ ORDER BY p.Npedido]]>
 				<text><![CDATA[ESTILO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="313" y="18" width="51" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="94977de1-16ff-404b-87de-c0a8601d994b"/>
+				<reportElement mode="Transparent" x="307" y="18" width="51" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="94977de1-16ff-404b-87de-c0a8601d994b"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -179,7 +166,7 @@ ORDER BY p.Npedido]]>
 				<text><![CDATA[X PROCESO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="63" y="18" width="50" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="601f3c7e-b860-4e5e-81ec-94d1e53784ce"/>
+				<reportElement mode="Transparent" x="60" y="18" width="50" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="601f3c7e-b860-4e5e-81ec-94d1e53784ce"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -187,7 +174,7 @@ ORDER BY p.Npedido]]>
 				<text><![CDATA[CORRIDA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="130" y="18" width="75" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="29fcea86-7a5b-4453-b9c0-1caaec87ee78"/>
+				<reportElement mode="Transparent" x="127" y="18" width="75" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="29fcea86-7a5b-4453-b9c0-1caaec87ee78"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -195,7 +182,7 @@ ORDER BY p.Npedido]]>
 				<text><![CDATA[COMBINACIÓN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="518" y="18" width="56" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="486cfe8b-c47e-4cad-8d3f-3bd0d06e5837"/>
+				<reportElement mode="Transparent" x="512" y="18" width="46" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="486cfe8b-c47e-4cad-8d3f-3bd0d06e5837"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -203,7 +190,7 @@ ORDER BY p.Npedido]]>
 				<text><![CDATA[PENDIENTES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="445" y="18" width="59" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="7b35f918-9eab-4f69-9fff-543b95dd5051"/>
+				<reportElement mode="Transparent" x="439" y="18" width="59" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="7b35f918-9eab-4f69-9fff-543b95dd5051"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -211,9 +198,25 @@ ORDER BY p.Npedido]]>
 				<text><![CDATA[ENTREGADOS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="14" y="20" width="560" height="15" uuid="3cc9ceb7-bfed-4a76-9c60-ed4a846e641e"/>
+				<reportElement x="11" y="20" width="547" height="15" uuid="3cc9ceb7-bfed-4a76-9c60-ed4a846e641e"/>
 				<text><![CDATA[- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -]]></text>
 			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="298" y="2" width="220" height="11" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="24cdc039-1db0-4e52-9e9f-3a483c678323"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cliente}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="10" y="31" width="120" height="4" uuid="402c2468-1e38-477b-828c-7ad3fa16402c"/>
+				<subreportParameter name="Numero">
+					<subreportParameterExpression><![CDATA[$F{Npedido}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\tsmanager\\reportes\\SubDetalleP.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</detail>
 </jasperReport>

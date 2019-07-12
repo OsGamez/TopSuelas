@@ -3,66 +3,72 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="fecha" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2019-01-01"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha2" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2019-12-31"]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT 
  DATEPART(WK,Fecha_Entrega) as Semana,
  
-
- CASE WHEN DATEPART(WK,Fecha_Entrega) = 1 THEN '2018/12/31' + '  -  ' + '2019/01/05'
- WHEN DATEPART(WK,Fecha_Entrega) = 2 THEN '2019/01/07' + '  -  ' + '2019/01/12'
- WHEN DATEPART(WK,Fecha_Entrega) = 3 THEN '2019/01/14' + '  -  ' + '2019/01/19'
- WHEN DATEPART(WK,Fecha_Entrega) = 4 THEN '2019/01/21' + '  -  ' + '2019/01/26'
- WHEN DATEPART(WK,Fecha_Entrega) = 5 THEN '2019/01/28' + '  -  ' + '2019/02/02'
- WHEN DATEPART(WK,Fecha_Entrega) = 6 THEN '2019/02/04' + '  -  ' + '2019/02/09'
- WHEN DATEPART(WK,Fecha_Entrega) = 7 THEN '2019/02/11' + '  -  ' + '2019/02/16'
- WHEN DATEPART(WK,Fecha_Entrega) = 8 THEN '2019/02/18' + '  -  ' + '2019/02/23'
- WHEN DATEPART(WK,Fecha_Entrega) = 9 THEN '2019/02/25' + '  -  ' + '2019/03/02'
- WHEN DATEPART(WK,Fecha_Entrega) = 10 THEN '2019/03/04' + '  -  ' + '2019/03/09'
- WHEN DATEPART(WK,Fecha_Entrega) = 11 THEN '2019/03/11' + '  -  ' + '2019/03/16'
- WHEN DATEPART(WK,Fecha_Entrega) = 12 THEN '2019/03/18' + '  -  ' + '2019/03/26'
- WHEN DATEPART(WK,Fecha_Entrega) = 13 THEN '2019/03/25' + '  -  ' + '2019/03/30'
- WHEN DATEPART(WK,Fecha_Entrega) = 14 THEN '2019/04/01' + '  -  ' + '2019/04/06'
- WHEN DATEPART(WK,Fecha_Entrega) = 15 THEN '2019/04/08' + '  -  ' + '2019/04/13'
- WHEN DATEPART(WK,Fecha_Entrega) = 16 THEN '2019/04/15' + '  -  ' + '2019/04/20'
- WHEN DATEPART(WK,Fecha_Entrega) = 17 THEN '2019/04/22' + '  -  ' + '2019/04/27'
- WHEN DATEPART(WK,Fecha_Entrega) = 18 THEN '2019/04/29' + '  -  ' + '2019/05/04'
- WHEN DATEPART(WK,Fecha_Entrega) = 19 THEN '2019/05/06' + '  -  ' + '2019/05/11'
- WHEN DATEPART(WK,Fecha_Entrega) = 20 THEN '2019/05/13' + '  -  ' + '2019/05/18'
- WHEN DATEPART(WK,Fecha_Entrega) = 21 THEN '2019/05/20' + '  -  ' + '2019/05/25'
- WHEN DATEPART(WK,Fecha_Entrega) = 22 THEN '2019/05/27' + '  -  ' + '2019/06/01'
- WHEN DATEPART(WK,Fecha_Entrega) = 23 THEN '2019/06/03' + '  -  ' + '2019/06/08'
- WHEN DATEPART(WK,Fecha_Entrega) = 24 THEN '2019/06/10' + '  -  ' + '2019/06/15'
- WHEN DATEPART(WK,Fecha_Entrega) = 25 THEN '2019/06/17' + '  -  ' + '2019/06/22'
- WHEN DATEPART(WK,Fecha_Entrega) = 26 THEN '2019/06/24' + '  -  ' + '2019/06/29'
- WHEN DATEPART(WK,Fecha_Entrega) = 27 THEN '2019/07/01' + '  -  ' + '2019/07/06'
- WHEN DATEPART(WK,Fecha_Entrega) = 28 THEN '2019/07/08' + '  -  ' + '2019/07/13'
- WHEN DATEPART(WK,Fecha_Entrega) = 29 THEN '2019/07/15' + '  -  ' + '2019/07/20'
- WHEN DATEPART(WK,Fecha_Entrega) = 30 THEN '2019/07/22' + '  -  ' + '2019/07/27'
- WHEN DATEPART(WK,Fecha_Entrega) = 31 THEN '2019/07/29' + '  -  ' + '2019/08/03'
- WHEN DATEPART(WK,Fecha_Entrega) = 32 THEN '2019/08/05' + '  -  ' + '2019/08/10'
- WHEN DATEPART(WK,Fecha_Entrega) = 33 THEN '2019/08/12' + '  -  ' + '2019/08/17'
- WHEN DATEPART(WK,Fecha_Entrega) = 34 THEN '2019/08/19' + '  -  ' + '2019/08/24'
- WHEN DATEPART(WK,Fecha_Entrega) = 35 THEN '2019/08/26' + '  -  ' + '2019/08/31'
- WHEN DATEPART(WK,Fecha_Entrega) = 36 THEN '2019/09/02' + '  -  ' + '2019/09/07'
- WHEN DATEPART(WK,Fecha_Entrega) = 37 THEN '2019/09/09' + '  -  ' + '2019/09/14'
- WHEN DATEPART(WK,Fecha_Entrega) = 38 THEN '2019/09/16' + '  -  ' + '2019/09/21'
- WHEN DATEPART(WK,Fecha_Entrega) = 39 THEN '2019/09/23' + '  -  ' + '2019/09/28'
- WHEN DATEPART(WK,Fecha_Entrega) = 40 THEN '2019/09/30' + '  -  ' + '2019/10/05'
- WHEN DATEPART(WK,Fecha_Entrega) = 41 THEN '2019/10/07' + '  -  ' + '2019/10/12'
- WHEN DATEPART(WK,Fecha_Entrega) = 42 THEN '2019/10/14' + '  -  ' + '2019/10/19'
- WHEN DATEPART(WK,Fecha_Entrega) = 43 THEN '2019/10/21' + '  -  ' + '2019/10/26'
- WHEN DATEPART(WK,Fecha_Entrega) = 44 THEN '2019/10/28' + '  -  ' + '2019/11/02'
- WHEN DATEPART(WK,Fecha_Entrega) = 45 THEN '2019/11/04' + '  -  ' + '2019/11/09'
- WHEN DATEPART(WK,Fecha_Entrega) = 46 THEN '2019/11/11' + '  -  ' + '2019/11/16'
- WHEN DATEPART(WK,Fecha_Entrega) = 47 THEN '2019/11/18' + '  -  ' + '2019/11/23'
- WHEN DATEPART(WK,Fecha_Entrega) = 48 THEN '2019/11/25' + '  -  ' + '2019/11/30'
- WHEN DATEPART(WK,Fecha_Entrega) = 49 THEN '2019/12/02' + '  -  ' + '2019/12/07'
- WHEN DATEPART(WK,Fecha_Entrega) = 50 THEN '2019/12/09' + '  -  ' + '2019/12/14'
- WHEN DATEPART(WK,Fecha_Entrega) = 51 THEN '2019/12/16' + '  -  ' + '2019/12/21'
- WHEN DATEPART(WK,Fecha_Entrega) = 52 THEN '2019/12/23' + '  -  ' + '2019/12/28'
- WHEN DATEPART(WK,Fecha_Entrega) = 53 THEN '2019/12/30' + '  -  ' + '2020/01/04'
+CASE WHEN DATEPART(WK,Fecha_Entrega) = 1 THEN '31/12/2018' + '  -  ' + '05/01/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 2 THEN '07/01/2019' + '  -  ' + '12/01/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 3 THEN '14/01/2019' + '  -  ' + '19/01/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 4 THEN '21/01/2019' + '  -  ' + '26/01/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 5 THEN '28/01/2019' + '  -  ' + '02/02/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 6 THEN '04/02/2019' + '  -  ' + '09/02/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 7 THEN '11/02/2019' + '  -  ' + '16/02/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 8 THEN '18/02/2019' + '  -  ' + '23/02/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 9 THEN '25/02/2019' + '  -  ' + '02/03/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 10 THEN '04/03/2019' + '  -  ' + '09/03/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 11 THEN '11/03/2019' + '  -  ' + '16/03/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 12 THEN '18/03/2019' + '  -  ' + '26/03/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 13 THEN '25/03/2019' + '  -  ' + '30/03/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 14 THEN '01/04/2019' + '  -  ' + '06/04/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 15 THEN '08/04/2019' + '  -  ' + '13/04/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 16 THEN '15/04/2019' + '  -  ' + '20/04/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 17 THEN '22/04/2019' + '  -  ' + '27/04/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 18 THEN '29/04/2019' + '  -  ' + '04/05/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 19 THEN '06/05/2019' + '  -  ' + '11/05/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 20 THEN '13/05/2019' + '  -  ' + '18/05/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 21 THEN '20/05/2019' + '  -  ' + '25/05/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 22 THEN '27/05/2019' + '  -  ' + '01/06/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 23 THEN '03/06/2019' + '  -  ' + '08/06/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 24 THEN '10/06/2019' + '  -  ' + '15/06/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 25 THEN '17/06/2019' + '  -  ' + '22/06/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 26 THEN '24/06/2019' + '  -  ' + '29/06/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 27 THEN '01/07/2019' + '  -  ' + '06/07/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 28 THEN '08/07/2019' + '  -  ' + '13/07/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 29 THEN '15/07/2019' + '  -  ' + '20/07/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 30 THEN '22/07/2019' + '  -  ' + '27/07/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 31 THEN '29/07/2019' + '  -  ' + '03/08/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 32 THEN '05/08/2019' + '  -  ' + '10/08/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 33 THEN '12/08/2019' + '  -  ' + '17/08/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 34 THEN '19/08/2019' + '  -  ' + '24/08/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 35 THEN '26/08/2019' + '  -  ' + '31/08/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 36 THEN '02/09/2019' + '  -  ' + '07/09/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 37 THEN '09/09/2019' + '  -  ' + '14/09/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 38 THEN '16/09/2019' + '  -  ' + '21/09/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 39 THEN '23/09/2019' + '  -  ' + '28/09/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 40 THEN '30/09/2019' + '  -  ' + '05/10/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 41 THEN '07/10/2019' + '  -  ' + '12/10/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 42 THEN '14/10/2019' + '  -  ' + '19/10/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 43 THEN '21/10/2019' + '  -  ' + '26/10/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 44 THEN '28/10/2019' + '  -  ' + '02/11/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 45 THEN '04/11/2019' + '  -  ' + '09/11/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 46 THEN '11/11/2019' + '  -  ' + '16/11/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 47 THEN '18/11/2019' + '  -  ' + '23/11/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 48 THEN '25/11/2019' + '  -  ' + '30/11/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 49 THEN '02/12/2019' + '  -  ' + '07/12/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 50 THEN '09/12/2019' + '  -  ' + '14/12/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 51 THEN '16/12/2019' + '  -  ' + '21/12/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 52 THEN '23/12/2019' + '  -  ' + '28/12/2019'
+ WHEN DATEPART(WK,Fecha_Entrega) = 53 THEN '30/12/2019' + '  -  ' + '04/01/2020'
  END AS 'RANGO'
-FROM Pedidos
+FROM Pedidos 
+WHERE Fecha_Entrega BETWEEN $P{fecha} AND $P{fecha2}
 GROUP BY DATEPART(WK,Fecha_Entrega)]]>
 	</queryString>
 	<field name="Semana" class="java.lang.Integer"/>
@@ -73,29 +79,39 @@ GROUP BY DATEPART(WK,Fecha_Entrega)]]>
 	<title>
 		<band height="70" splitType="Stretch">
 			<staticText>
-				<reportElement x="229" y="39" width="146" height="20" uuid="15e55748-0957-4963-887f-66afc12cdfd5"/>
+				<reportElement x="217" y="42" width="201" height="20" uuid="15e55748-0957-4963-887f-66afc12cdfd5"/>
 				<textElement>
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[PLANEACIÓN SEMANAL]]></text>
+				<text><![CDATA[PLANEACIÓN SEMANAL CLIENTE]]></text>
 			</staticText>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="474" y="14" width="100" height="20" uuid="ac9189e9-f922-480b-adb3-0f14bac7a0c0"/>
+			<textField pattern="HH.mm.ss">
+				<reportElement x="540" y="35" width="47" height="20" uuid="7d57d35d-b743-42b8-9a8e-fbc8211d115b"/>
+				<textElement>
+					<font fontName="Serif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="500" y="9" width="82" height="20" uuid="af86abdc-e8e4-45ad-9dea-a3db03ffde1d"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="2" y="42" width="131" height="28" uuid="3ac4124f-ff6c-4110-b2de-3725a6698910"/>
-				<imageExpression><![CDATA["C:\\Program Files\\logo.png"]]></imageExpression>
+				<reportElement x="1" y="37" width="131" height="28" uuid="6df1209c-29a6-4fdc-b447-912021b9920c"/>
+				<imageExpression><![CDATA["C:\\tsmanager\\imagenes\\logo.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
 	<detail>
-		<band height="26" splitType="Stretch">
+		<band height="22" splitType="Stretch">
 			<rectangle>
-				<reportElement x="-1" y="9" width="579" height="15" backcolor="#000066" uuid="647111c5-97b8-4239-a1c0-a785fe7e56bc"/>
+				<reportElement x="-1" y="1" width="579" height="15" backcolor="#000066" uuid="647111c5-97b8-4239-a1c0-a785fe7e56bc"/>
 			</rectangle>
 			<textField>
-				<reportElement mode="Transparent" x="58" y="10" width="36" height="14" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="d3df3ea1-af53-4b70-8645-8dc78c7f6aec"/>
+				<reportElement mode="Transparent" x="58" y="2" width="36" height="14" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="d3df3ea1-af53-4b70-8645-8dc78c7f6aec"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -103,16 +119,16 @@ GROUP BY DATEPART(WK,Fecha_Entrega)]]>
 				<textFieldExpression><![CDATA[$F{Semana}]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="-14" y="4" width="142" height="6" uuid="0c56e870-a7c3-4d33-a5db-790daa8e2b4e"/>
+				<reportElement x="-1" y="16" width="142" height="6" uuid="0c56e870-a7c3-4d33-a5db-790daa8e2b4e"/>
 				<subreportParameter name="Date">
 					<subreportParameterExpression><![CDATA[$F{Semana}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="Fecha2"/>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\SubPsemanal.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["C:\\tsmanager\\reportes\\SubPsemanal.jasper"]]></subreportExpression>
 			</subreport>
 			<staticText>
-				<reportElement mode="Transparent" x="2" y="10" width="49" height="14" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="79f79ebe-d945-4091-9142-2b34c3322169"/>
+				<reportElement mode="Transparent" x="2" y="2" width="49" height="14" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="79f79ebe-d945-4091-9142-2b34c3322169"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -120,7 +136,7 @@ GROUP BY DATEPART(WK,Fecha_Entrega)]]>
 				<text><![CDATA[SEMANA]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="132" y="10" width="147" height="16" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="1e2591b5-80a3-4b26-9dcc-96742f487437"/>
+				<reportElement mode="Transparent" x="132" y="2" width="147" height="16" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="1e2591b5-80a3-4b26-9dcc-96742f487437"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -129,10 +145,10 @@ GROUP BY DATEPART(WK,Fecha_Entrega)]]>
 			</textField>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="26" splitType="Stretch">
+	<pageFooter>
+		<band height="21">
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="476" y="4" width="80" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="fd4a2680-0f82-480b-a045-04ea07434c46"/>
+				<reportElement mode="Transparent" x="494" y="0" width="80" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="fd4a2680-0f82-480b-a045-04ea07434c46"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -140,7 +156,7 @@ GROUP BY DATEPART(WK,Fecha_Entrega)]]>
 				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="521" y="4" width="32" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="78a6983c-f832-402e-9099-cd0204264516"/>
+				<reportElement mode="Transparent" x="539" y="0" width="32" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="78a6983c-f832-402e-9099-cd0204264516"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -148,5 +164,5 @@ GROUP BY DATEPART(WK,Fecha_Entrega)]]>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
-	</columnFooter>
+	</pageFooter>
 </jasperReport>

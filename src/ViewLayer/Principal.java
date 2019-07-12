@@ -47,23 +47,26 @@ public class Principal extends javax.swing.JFrame {
     CapturaInventario capturaIn;
     Consumos sumos;
     Etiquetas etiq;
-    Entradas entrada;
+    MovimientosCPT mCPT;
     Conceptos concepto;
     ConceptosMPrima conceptom;
     ProvedoresMPrima conceptomp;
-    ReportesPlaneacion rplaneacion;
-    Ped ptp;
-    //OrdenCompra ordenc;
+    NOrdenCompra ordenc;
+    MovimientosCMP movcmp;
+    Etiquetasb etiqb;
     public String Estado = "A";
     String Tb = "";
     Sesioninfo se = new Sesioninfo();
     Maquinas maq;
+    Ped ptp;
+    Rplaneacion rplaneacion;
 
     ImageIcon notificacion = new ImageIcon("C:\\tsmanager\\imagenes\\push.png");
     ImageIcon campana = new ImageIcon("C:\\tsmanager\\imagenes\\bell.png");
 
     public Principal() {
         initComponents();
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     public Principal(Usuario us) {
@@ -184,6 +187,7 @@ public class Principal extends javax.swing.JFrame {
         JmConceptos = new javax.swing.JMenuItem();
         Jmutilprod = new javax.swing.JMenu();
         Jmetiqprod = new javax.swing.JMenuItem();
+        Jmetiqprod1 = new javax.swing.JMenuItem();
         JmOpciones = new javax.swing.JMenu();
         JmAyuda = new javax.swing.JMenuItem();
         JmSalir = new javax.swing.JMenuItem();
@@ -619,7 +623,7 @@ public class Principal extends javax.swing.JFrame {
         Jmutilprod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/utileria.png"))); // NOI18N
         Jmutilprod.setText("Utilerias");
 
-        Jmetiqprod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/etiqueta.png"))); // NOI18N
+        Jmetiqprod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Barcodescanner_7314.png"))); // NOI18N
         Jmetiqprod.setText("Generador de Etiquetas");
         Jmetiqprod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -627,6 +631,15 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         Jmutilprod.add(Jmetiqprod);
+
+        Jmetiqprod1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/etiqueta.png"))); // NOI18N
+        Jmetiqprod1.setText("Generador de Etiquetas MIDSOLE");
+        Jmetiqprod1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Jmetiqprod1ActionPerformed(evt);
+            }
+        });
+        Jmutilprod.add(Jmetiqprod1);
 
         JmProduccion.add(Jmutilprod);
 
@@ -876,15 +889,12 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loadReportesPlaneacion(){
-        //Tb = us.getUsuario();
         if (rplaneacion == null) {
-            rplaneacion = new ReportesPlaneacion(null, true);
-            //capturaIn.TbTemp = Tb;
+            rplaneacion = new Rplaneacion();
             rplaneacion.setVisible(true);
         } else {
             rplaneacion.dispose();
-            rplaneacion = new ReportesPlaneacion(null, true);
-            //capturaIn.TbTemp = Tb;
+            rplaneacion = new Rplaneacion();
             rplaneacion.setVisible(true);
         }
     }
@@ -934,19 +944,13 @@ public class Principal extends javax.swing.JFrame {
     }
 
     private void LoadEntradas() {
-        if (entrada == null) {
-            entrada = new Entradas();
-            MainContent.add(entrada);
-            entrada.JbSerie.setText(Estado);
-            MainContent.getDesktopManager().maximizeFrame(entrada);
-            entrada.setVisible(true);
+        if (mCPT == null) {
+            mCPT = new MovimientosCPT();
+            mCPT.setVisible(true);
         } else {
-            entrada.dispose();
-            entrada = new Entradas();
-            MainContent.add(entrada);
-            entrada.JbSerie.setText(Estado);
-            MainContent.getDesktopManager().maximizeFrame(entrada);
-            entrada.setVisible(true);
+            mCPT.dispose();
+            mCPT = new MovimientosCPT();
+            mCPT.setVisible(true);
         }
     }
 
@@ -1293,7 +1297,10 @@ public class Principal extends javax.swing.JFrame {
     private void LoadEtiqueta() {
         etiq = new Etiquetas(null, true);
         etiq.setVisible(true);
-
+    }
+    private void LoadEtiquetaB() {
+        etiqb = new Etiquetasb(null, true);
+        etiqb.setVisible(true);
     }
 
     private void LoadVersion() {
@@ -1508,12 +1515,15 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_nominasMouseClicked
 
     private void JmMovESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmMovESActionPerformed
-//        movcmp = new MovimientosCMP();
-//        MainContent.add(movcmp);
-//        MainContent.getDesktopManager().maximizeFrame(movcmp);
-//        movcmp.setVisible(true);
+        movcmp = new MovimientosCMP();
+        MainContent.add(movcmp);
+        MainContent.getDesktopManager().maximizeFrame(movcmp);
+        movcmp.setVisible(true);
     }//GEN-LAST:event_JmMovESActionPerformed
 
+    private void Jmetiqprod1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jmetiqprod1ActionPerformed
+        LoadEtiquetaB();
+    }//GEN-LAST:event_Jmetiqprod1ActionPerformed
     private void JmRplaneacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmRplaneacionActionPerformed
        loadReportesPlaneacion();
     }//GEN-LAST:event_JmRplaneacionActionPerformed
@@ -1624,6 +1634,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu Jmcatcpt;
     private javax.swing.JMenu Jmcatprod;
     private javax.swing.JMenuItem Jmetiqprod;
+    private javax.swing.JMenuItem Jmetiqprod1;
     private javax.swing.JMenu Jmfaccpt;
     private javax.swing.JMenu Jmmovcpt;
     private javax.swing.JMenu Jmpedcpt;

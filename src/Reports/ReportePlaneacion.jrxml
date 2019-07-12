@@ -97,10 +97,6 @@ GROUP BY DATEPART(YEAR,Fecha_Entrega),DATEPART(WK,Fecha_Entrega)]]>
 				</textElement>
 				<text><![CDATA[FECHA]]></text>
 			</staticText>
-			<image>
-				<reportElement x="308" y="-1" width="135" height="25" uuid="5dd7f850-ea8e-425e-8a7a-2f5e65a1c86b"/>
-				<imageExpression><![CDATA["C:\\Program Files\\logo.png"]]></imageExpression>
-			</image>
 			<textField pattern="EEEEE dd MMMMM yyyy">
 				<reportElement x="609" y="0" width="92" height="20" uuid="e162d8a8-e656-42c8-b7a8-38213ecca35c"/>
 				<textElement>
@@ -130,6 +126,10 @@ GROUP BY DATEPART(YEAR,Fecha_Entrega),DATEPART(WK,Fecha_Entrega)]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{RANGO}]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="315" y="0" width="278" height="26" uuid="52ebe3c9-9020-47ae-bdeb-d1a1a1d92454"/>
+				<imageExpression><![CDATA["C:\\tsmanager\\imagenes\\logo.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<detail>
@@ -147,7 +147,7 @@ GROUP BY DATEPART(YEAR,Fecha_Entrega),DATEPART(WK,Fecha_Entrega)]]>
 				<text><![CDATA[A.G]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="417" y="0" width="32" height="20" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="c1d3bcb7-55d6-4637-b275-5c438a1cdb21"/>
+				<reportElement mode="Transparent" x="700" y="0" width="32" height="20" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="c1d3bcb7-55d6-4637-b275-5c438a1cdb21"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -171,7 +171,7 @@ GROUP BY DATEPART(YEAR,Fecha_Entrega),DATEPART(WK,Fecha_Entrega)]]>
 				<text><![CDATA[NO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="315" y="0" width="102" height="20" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="e916f6d8-892f-4024-905d-a28edd2f92c3"/>
+				<reportElement mode="Transparent" x="471" y="0" width="102" height="20" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="e916f6d8-892f-4024-905d-a28edd2f92c3"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -179,7 +179,7 @@ GROUP BY DATEPART(YEAR,Fecha_Entrega),DATEPART(WK,Fecha_Entrega)]]>
 				<text><![CDATA[OBSERVACIONES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="251" y="0" width="38" height="20" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="c53ef5a7-2aca-4a13-99af-b8edae4cb926"/>
+				<reportElement mode="Transparent" x="260" y="0" width="26" height="20" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="c53ef5a7-2aca-4a13-99af-b8edae4cb926"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -211,7 +211,7 @@ GROUP BY DATEPART(YEAR,Fecha_Entrega),DATEPART(WK,Fecha_Entrega)]]>
 				<text><![CDATA[CLIENTE]]></text>
 			</staticText>
 			<subreport>
-				<reportElement x="0" y="30" width="138" height="23" uuid="c4802bc3-f03e-4d68-bf71-bbc0449fd656"/>
+				<reportElement x="0" y="30" width="138" height="23" uuid="ef161a82-b661-4c97-b369-c64e64874ca2"/>
 				<subreportParameter name="Año">
 					<subreportParameterExpression><![CDATA[$F{Año}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -219,7 +219,7 @@ GROUP BY DATEPART(YEAR,Fecha_Entrega),DATEPART(WK,Fecha_Entrega)]]>
 					<subreportParameterExpression><![CDATA[$F{Semana}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\Planeacion.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["C:\\tsmanager\\reportes\\Planeacion.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>
@@ -244,30 +244,38 @@ GROUP BY DATEPART(YEAR,Fecha_Entrega),DATEPART(WK,Fecha_Entrega)]]>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="46">
+		<band height="33">
 			<subreport>
-				<reportElement x="-1" y="7" width="101" height="38" uuid="81f2e38b-65b9-4286-a4b5-ecf0173e1f34"/>
+				<reportElement x="318" y="0" width="83" height="12" uuid="f6443901-8472-4de6-9b44-09be20f6e915"/>
 				<subreportParameter name="Date">
 					<subreportParameterExpression><![CDATA[$F{Semana}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\PlaneacionSuela.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["C:\\tsmanager\\reportes\\SumaPsuela.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="115" y="7" width="94" height="38" uuid="2214576d-9e4e-4020-be35-006b6f8e91b4"/>
+				<reportElement x="106" y="0" width="101" height="30" uuid="63a64df4-964c-4b05-9ef5-8a820472bacb"/>
 				<subreportParameter name="Date">
 					<subreportParameterExpression><![CDATA[$F{Semana}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\PlaneacionAgente.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["C:\\tsmanager\\reportes\\PlaneacionAgente.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="225" y="7" width="89" height="38" uuid="527db253-774c-4c6e-80c8-5b5609c3eaa6"/>
+				<reportElement x="1" y="0" width="101" height="30" uuid="4886fc16-055d-40db-8ff4-7600f2a695f7"/>
 				<subreportParameter name="Date">
 					<subreportParameterExpression><![CDATA[$F{Semana}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\PlaneacionColor.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["C:\\tsmanager\\reportes\\PlaneacionSuela.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="211" y="0" width="101" height="30" uuid="1d27e032-102b-4999-9b85-911d796b83b1"/>
+				<subreportParameter name="Date">
+					<subreportParameterExpression><![CDATA[$F{Semana}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\tsmanager\\reportes\\PlaneacionColor.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</summary>

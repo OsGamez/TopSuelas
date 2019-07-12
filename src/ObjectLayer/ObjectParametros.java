@@ -151,7 +151,7 @@ public class ObjectParametros {
         return rpta;
     }
 
-    public ArrayList<Parametro> getFolioActual() {
+    public ArrayList<Parametro> getFolioEntrada() {
         ArrayList<Parametro> listaP = new ArrayList<Parametro>();
         try {
             st = pa.prepareStatement("SELECT  MAX(Entrada) as Folio FROM Parametros");
@@ -162,6 +162,25 @@ public class ObjectParametros {
                 int F = rs.getInt("Folio");
                 Parametro par = new Parametro();
                 par.setEntrada(F);
+                listaP.add(par);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listaP;
+    }
+    
+    public ArrayList<Parametro> getFolioSalida() {
+        ArrayList<Parametro> listaP = new ArrayList<Parametro>();
+        try {
+            st = pa.prepareStatement("SELECT  MAX(Salida) as Folio FROM Parametros");
+
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                int F = rs.getInt("Folio");
+                Parametro par = new Parametro();
+                par.setSalida(F);
                 listaP.add(par);
             }
         } catch (SQLException ex) {

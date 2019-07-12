@@ -25,7 +25,7 @@ ORDER BY a.Descripcion]]>
 				<imageExpression><![CDATA["C:\\tsmanager\\imagenes\\logo.png"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement mode="Transparent" x="292" y="51" width="184" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="db13f20e-ba6e-4a7a-93d8-662033cbc925"/>
+				<reportElement mode="Transparent" x="291" y="51" width="184" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="db13f20e-ba6e-4a7a-93d8-662033cbc925"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
