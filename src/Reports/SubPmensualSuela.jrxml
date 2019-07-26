@@ -16,7 +16,7 @@ FROM Dpedido p INNER JOIN ProduccionPhy..Producto pd
 ON p.Id_Producto = pd.Id_Producto
 WHERE  DATEPART(MM,p.Fecha_Entrega) = $P{Date}
 GROUP BY pd.Id_Producto,pd.Descripcion,p.ParesSurt
-ORDER BY pd.Id_Producto]]>
+ORDER BY pd.Descripcion]]>
 	</queryString>
 	<field name="Id_Producto" class="java.lang.Short"/>
 	<field name="Pares" class="java.lang.Integer"/>

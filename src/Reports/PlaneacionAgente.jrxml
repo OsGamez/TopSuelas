@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="752" pageHeight="572" orientation="Landscape" columnWidth="752" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8f1125ad-b955-474a-8f25-a9e32c0c4c6e">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="752" pageHeight="572" orientation="Landscape" columnWidth="712" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8f1125ad-b955-474a-8f25-a9e32c0c4c6e">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -8,7 +8,7 @@
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT 
- DISTINCT a.Descripcion as Agente,DATEPART(WK,p.Fecha_Entrega) as Fecha
+ a.Descripcion as Agente
 FROM Pedidos p 
 INNER JOIN Dpedido dp 
 ON p.Npedido = dp.Npedido
@@ -16,11 +16,11 @@ INNER JOIN CobranzaPhy.dbo.Clientes c
 ON dp.Id_Cliente = c.Id_Cliente
 INNER JOIN CobranzaPhy.dbo.Agentes a
 ON c.Id_Agente = a.Id_Agente
-WHERE DATEPART(WK,p.Fecha_Entrega) = $P!{Date}
-GROUP BY dp.Pares,p.Fecha_Entrega,a.Descripcion]]>
+WHERE DATEPART(WK,p.Fecha_Captura) = $P!{Date}
+GROUP BY a.Descripcion
+ORDER BY a.Descripcion]]>
 	</queryString>
 	<field name="Agente" class="java.lang.String"/>
-	<field name="Fecha" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>

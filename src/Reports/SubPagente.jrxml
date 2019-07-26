@@ -19,7 +19,7 @@ INNER JOIN CobranzaPhy.dbo.Clientes c
 ON dp.Id_Cliente = c.Id_Cliente
 INNER JOIN CobranzaPhy.dbo.Agentes a
 ON c.Id_Agente = a.Id_Agente
-WHERE a.Descripcion = $P{Agente} AND DATEPART(WK,p.Fecha_Entrega)= $P!{Date}]]>
+WHERE a.Descripcion = $P{Agente} AND DATEPART(WK,p.Fecha_Captura)= $P!{Date}]]>
 	</queryString>
 	<field name="Pares" class="java.lang.Integer"/>
 	<background>
@@ -38,7 +38,7 @@ WHERE a.Descripcion = $P{Agente} AND DATEPART(WK,p.Fecha_Entrega)= $P!{Date}]]>
 			<textField pattern="#,##0">
 				<reportElement mode="Transparent" x="25" y="1" width="100" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="e9156e28-e374-431f-b828-4a0dd927c4ff"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="6" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Pares}]]></textFieldExpression>

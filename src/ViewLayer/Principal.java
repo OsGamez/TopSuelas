@@ -19,7 +19,6 @@ public class Principal extends javax.swing.JFrame {
     Corridas corrida;
     Productos productos;
     Clientes cliente;
-    Pedidos pedidos;
     Gastos gasto;
     Estados estado;
     Agentes agente;
@@ -43,7 +42,6 @@ public class Principal extends javax.swing.JFrame {
     String User = "";
     Moldes m;
     Proveedores pv;
-    PlaneacionPhy phy;
     CapturaInventario capturaIn;
     Consumos sumos;
     Etiquetas etiq;
@@ -60,6 +58,9 @@ public class Principal extends javax.swing.JFrame {
     Maquinas maq;
     Ped ptp;
     Rplaneacion rplaneacion;
+    CapturaCodigos cCodigos;
+    FolioInventario finv;
+    
 
     ImageIcon notificacion = new ImageIcon("C:\\tsmanager\\imagenes\\push.png");
     ImageIcon campana = new ImageIcon("C:\\tsmanager\\imagenes\\bell.png");
@@ -114,7 +115,6 @@ public class Principal extends javax.swing.JFrame {
             JmConfig.setVisible(false);
             Jmcatcpt.setVisible(false);
             Jmfaccpt.setVisible(false);
-            Jmpedcpt.setVisible(false);
             cmo.setVisible(false);
         }
     }
@@ -153,20 +153,16 @@ public class Principal extends javax.swing.JFrame {
         JmConceptoscpt = new javax.swing.JMenuItem();
         JmProductoscpt = new javax.swing.JMenuItem();
         JmProveedor = new javax.swing.JMenuItem();
+        JmMov = new javax.swing.JMenuItem();
         Jmfaccpt = new javax.swing.JMenu();
         JmFacturacionfac = new javax.swing.JMenuItem();
         JmFacturacionrefac = new javax.swing.JMenuItem();
-        Jmmovcpt = new javax.swing.JMenu();
-        JmEntradascpt = new javax.swing.JMenuItem();
-        JmSalidascpt = new javax.swing.JMenuItem();
-        JmDevolucionescpt = new javax.swing.JMenuItem();
-        Jmpedcpt = new javax.swing.JMenu();
-        JmCancelación = new javax.swing.JMenuItem();
         JmPedidos = new javax.swing.JMenuItem();
         Jmrepcpt = new javax.swing.JMenu();
         JmReportescpt = new javax.swing.JMenuItem();
         JmExistenciascpt = new javax.swing.JMenuItem();
         JmKardexcpt = new javax.swing.JMenuItem();
+        JmFolio = new javax.swing.JMenuItem();
         JmInventariofcpt = new javax.swing.JMenuItem();
         JmPlaneacion = new javax.swing.JMenu();
         JmReportes = new javax.swing.JMenuItem();
@@ -369,6 +365,15 @@ public class Principal extends javax.swing.JFrame {
 
         JmCPT.add(Jmcatcpt);
 
+        JmMov.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/exchange.png"))); // NOI18N
+        JmMov.setText("Movimientos");
+        JmMov.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmMovActionPerformed(evt);
+            }
+        });
+        JmCPT.add(JmMov);
+
         Jmfaccpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1486564168-finance-bank-check_81495.png"))); // NOI18N
         Jmfaccpt.setText("Facturación");
         Jmfaccpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -385,41 +390,6 @@ public class Principal extends javax.swing.JFrame {
 
         JmCPT.add(Jmfaccpt);
 
-        Jmmovcpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/move_23058.png"))); // NOI18N
-        Jmmovcpt.setText("Movimientos");
-        Jmmovcpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        JmEntradascpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        JmEntradascpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/BagOK_icon-icons.com_51210.png"))); // NOI18N
-        JmEntradascpt.setText("Entradas");
-        JmEntradascpt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JmEntradascptActionPerformed(evt);
-            }
-        });
-        Jmmovcpt.add(JmEntradascpt);
-
-        JmSalidascpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        JmSalidascpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Bagcancel_icon-icons.com_51212.png"))); // NOI18N
-        JmSalidascpt.setText("Salidas");
-        Jmmovcpt.add(JmSalidascpt);
-
-        JmDevolucionescpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        JmDevolucionescpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Refresh_36729.png"))); // NOI18N
-        JmDevolucionescpt.setText("Devoluciones");
-        Jmmovcpt.add(JmDevolucionescpt);
-
-        JmCPT.add(Jmmovcpt);
-
-        Jmpedcpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Shopping-icon_30277.png"))); // NOI18N
-        Jmpedcpt.setText("Pedidos");
-        Jmpedcpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        JmCancelación.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        JmCancelación.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Cancel_icon-icons.com_54824.png"))); // NOI18N
-        JmCancelación.setText("Cancelación");
-        Jmpedcpt.add(JmCancelación);
-
         JmPedidos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Shopping-icon_30277.png"))); // NOI18N
         JmPedidos.setText("Pedidos");
@@ -428,9 +398,7 @@ public class Principal extends javax.swing.JFrame {
                 JmPedidosActionPerformed(evt);
             }
         });
-        Jmpedcpt.add(JmPedidos);
-
-        JmCPT.add(Jmpedcpt);
+        JmCPT.add(JmPedidos);
 
         Jmrepcpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Data_Meter4_37237.png"))); // NOI18N
         Jmrepcpt.setText("Reportes");
@@ -450,6 +418,15 @@ public class Principal extends javax.swing.JFrame {
         JmKardexcpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/check-form_116472.png"))); // NOI18N
         JmKardexcpt.setText("Kardex");
         Jmrepcpt.add(JmKardexcpt);
+
+        JmFolio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/construction_project_plan_building_architect_design_develop-61_icon-icons.com_60253.png"))); // NOI18N
+        JmFolio.setText("Folios generados");
+        JmFolio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmFolioActionPerformed(evt);
+            }
+        });
+        Jmrepcpt.add(JmFolio);
 
         JmInventariofcpt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmInventariofcpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/applicationvnd_103607.png"))); // NOI18N
@@ -775,15 +752,15 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(JbAlerta))
                     .addComponent(jLabel1)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(JbUser)
                             .addComponent(JbRol))
-                        .addComponent(jLabel2)))
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(JbAlerta)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -861,18 +838,17 @@ public class Principal extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jPanel1);
 
-        MainContent.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout MainContentLayout = new javax.swing.GroupLayout(MainContent);
         MainContent.setLayout(MainContentLayout);
         MainContentLayout.setHorizontalGroup(
             MainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1439, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         MainContentLayout.setVerticalGroup(
             MainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)
         );
+        MainContent.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -899,6 +875,17 @@ public class Principal extends javax.swing.JFrame {
         }
     }
     
+     private void LoadCodigos(){
+        if (cCodigos == null) {
+            cCodigos = new CapturaCodigos();
+            cCodigos.setVisible(true);
+        } else {
+            cCodigos.dispose();
+            cCodigos = new CapturaCodigos();
+            cCodigos.setVisible(true);
+        }
+    }
+    
     private void LoadInFisico() {
         //Tb = us.getUsuario();
         if (capturaIn == null) {
@@ -910,6 +897,17 @@ public class Principal extends javax.swing.JFrame {
             capturaIn = new CapturaInventario();
             //capturaIn.TbTemp = Tb;
             capturaIn.setVisible(true);
+        }
+    }
+    
+    private void LoadFolio() {
+        if (finv == null) {
+            finv = new FolioInventario();
+            finv.setVisible(true);
+        } else {
+            finv.dispose();
+            finv = new FolioInventario();
+            finv.setVisible(true);
         }
     }
 
@@ -1464,10 +1462,6 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JbAlertaMousePressed
 
-    private void JmEntradascptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmEntradascptActionPerformed
-        LoadEntradas();
-    }//GEN-LAST:event_JmEntradascptActionPerformed
-
     private void JmAlmacenescptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmAlmacenescptActionPerformed
         LoadInAlmacenRcpt();
     }//GEN-LAST:event_JmAlmacenescptActionPerformed
@@ -1523,6 +1517,14 @@ public class Principal extends javax.swing.JFrame {
     private void JmRplaneacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmRplaneacionActionPerformed
        loadReportesPlaneacion();
     }//GEN-LAST:event_JmRplaneacionActionPerformed
+
+    private void JmMovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmMovActionPerformed
+        LoadEntradas();
+    }//GEN-LAST:event_JmMovActionPerformed
+
+    private void JmFolioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmFolioActionPerformed
+       LoadFolio();
+    }//GEN-LAST:event_JmFolioActionPerformed
     private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {
         LoadMaquina();
     }
@@ -1582,7 +1584,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JmBanco;
     private javax.swing.JMenu JmCMP;
     private javax.swing.JMenu JmCPT;
-    private javax.swing.JMenuItem JmCancelación;
     private javax.swing.JMenu JmCatalogocmp;
     private javax.swing.JMenu JmCatalogocobranza;
     private javax.swing.JMenuItem JmCiudad;
@@ -1596,12 +1597,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JmConsumos;
     private javax.swing.JMenuItem JmCorridas;
     private javax.swing.JMenuItem JmCostos;
-    private javax.swing.JMenuItem JmDevolucionescpt;
-    private javax.swing.JMenuItem JmEntradascpt;
     private javax.swing.JMenuItem JmEstados;
     private javax.swing.JMenuItem JmExistenciascpt;
     private javax.swing.JMenuItem JmFacturacionfac;
     private javax.swing.JMenuItem JmFacturacionrefac;
+    private javax.swing.JMenuItem JmFolio;
     private javax.swing.JMenuItem JmGastos;
     private javax.swing.JMenuItem JmInventariofcpt;
     private javax.swing.JMenuItem JmKardexcpt;
@@ -1609,6 +1609,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JmMaquinas;
     private javax.swing.JMenuItem JmMateriales;
     private javax.swing.JMenuItem JmMoldes;
+    private javax.swing.JMenuItem JmMov;
     private javax.swing.JMenuItem JmMovES;
     private javax.swing.JMenu JmOpciones;
     private javax.swing.JMenuItem JmOrdenc;
@@ -1623,7 +1624,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JmReportes;
     private javax.swing.JMenuItem JmReportescpt;
     private javax.swing.JMenuItem JmRplaneacion;
-    private javax.swing.JMenuItem JmSalidascpt;
     private javax.swing.JMenuItem JmSalir;
     private javax.swing.JMenuItem JmUsuario;
     private javax.swing.JMenuItem JmZona;
@@ -1632,8 +1632,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem Jmetiqprod;
     private javax.swing.JMenuItem Jmetiqprod1;
     private javax.swing.JMenu Jmfaccpt;
-    private javax.swing.JMenu Jmmovcpt;
-    private javax.swing.JMenu Jmpedcpt;
     private javax.swing.JMenu Jmrepcpt;
     private javax.swing.JMenu Jmutilprod;
     private javax.swing.JDesktopPane MainContent;

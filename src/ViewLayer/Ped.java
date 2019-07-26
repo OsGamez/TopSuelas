@@ -57,9 +57,9 @@ public class Ped extends javax.swing.JFrame {
     SimpleDateFormat fecha = new SimpleDateFormat();
     int ct = 1, Renglon, cont, idcliente, sum, idprod, cantidad;
 
-    ArrayList<String> array = new ArrayList<String>();
-    DefaultListModel<Cliente> modeloListaCliente = new DefaultListModel<Cliente>();
-    DefaultListModel<Producto> modeloListaProducto = new DefaultListModel<Producto>();
+    ArrayList<String> array = new ArrayList<>();
+    DefaultListModel<Cliente> modeloListaCliente = new DefaultListModel<>();
+    DefaultListModel<Producto> modeloListaProducto = new DefaultListModel<>();
     DefaultTableModel modelPedido = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int row, int column) {
@@ -106,7 +106,6 @@ public class Ped extends javax.swing.JFrame {
         cargarPedido();
         mostrarSerie();
         JtNpedido.setEditable(false);
-        JtCobranza.setText("-");
     }
 
     /**
@@ -242,6 +241,8 @@ public class Ped extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Cobranza");
+
+        JtCobranza.setText("-");
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setText("Cancelación");
@@ -409,6 +410,11 @@ public class Ped extends javax.swing.JFrame {
         JtCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 JtClienteMouseClicked(evt);
+            }
+        });
+        JtCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtClienteActionPerformed(evt);
             }
         });
         JtCliente.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -587,7 +593,9 @@ public class Ped extends javax.swing.JFrame {
 
         Jpf.setText("jLabel5");
 
-        JbQuitar.setText("<<< Quitar Suela");
+        JbQuitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1486348819-back-backwards-repeat-arrows-arrow-blue_80473.png"))); // NOI18N
+        JbQuitar.setText("Quitar Suela");
+        JbQuitar.setPreferredSize(new java.awt.Dimension(132, 70));
         JbQuitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JbQuitarActionPerformed(evt);
@@ -661,8 +669,8 @@ public class Ped extends javax.swing.JFrame {
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(6, 6, 6)
                                 .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(JbQuitar))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JbQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -752,9 +760,7 @@ public class Ped extends javax.swing.JFrame {
                             .addComponent(jLabel10)
                             .addComponent(lblPares)
                             .addComponent(jLabel9)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblTotal)
-                                .addComponent(JbQuitar))))
+                            .addComponent(lblTotal)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -793,7 +799,9 @@ public class Ped extends javax.swing.JFrame {
                             .addComponent(JtSuela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                         .addComponent(JpSuelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(151, 151, 151)))
+                        .addGap(112, 112, 112)
+                        .addComponent(JbQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(JtabDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -848,7 +856,7 @@ public class Ped extends javax.swing.JFrame {
 
         sum = pt2 - pt1 + 1;
 
-        String colums = null;
+        String colums;
         Object[] datos = {"0"};
         PuntosCaptura p = new PuntosCaptura(null, true);
         for (int i = pt1; i <= pt2; i++) {
@@ -868,7 +876,7 @@ public class Ped extends javax.swing.JFrame {
     }
 
     private void MostrarDetalle() {
-        ArrayList<Dpedido> detalles = new ArrayList<Dpedido>();
+        ArrayList<Dpedido> detalles = new ArrayList<>();
         Object[] obj = array.toArray();
         String dt[] = new String[21];
         double precio = Double.parseDouble(JtPrecio.getText());
@@ -923,6 +931,7 @@ public class Ped extends javax.swing.JFrame {
                 break;
         }
         dt[0] = String.valueOf(idprod);
+        dt[1] = String.valueOf(ct);
         dt[2] = JtSuela.getText();
         dt[3] = JtColor.getText();
         dt[4] = JtCorrida.getText();
@@ -1041,17 +1050,16 @@ public class Ped extends javax.swing.JFrame {
                 limpiarCampos();
                 limpiarProducto();
             } else {
-                dt[1] = String.valueOf(ct);
-                ct++;
                 modelPedido.addRow(dt);
+                ct++;
                 limpiarCampos();
                 limpiarProducto();
-                idprod = 0;
             }
         }
     }
 
     private boolean validarProductoDuplicado() {
+        boolean aviso = false;
         for (int i = 0; i < JtPedido.getRowCount(); i++) {
             if (JtPedido.getValueAt(i, 0).equals(String.valueOf(idprod))) {
                 int canFinal = Integer.parseInt(JtCant.getText()) + Integer.parseInt(JtPedido.getValueAt(i, 17).toString());
@@ -1085,12 +1093,14 @@ public class Ped extends javax.swing.JFrame {
                 modelPedido.setValueAt(String.valueOf(canFinal), i, 17);
                 modelPedido.setValueAt(format.format(precio), i, 18);
                 modelPedido.setValueAt(format.format(impor), i, 19);
-                return true;
-            } else {
-                return false;
-            }
+                aviso = true;
+            } 
+            //else {
+//                aviso = false;
+//                return false;
+//            }
         }
-        return false;
+        return aviso;
     }
 
     private boolean comprobarPedido() {
@@ -1115,38 +1125,6 @@ public class Ped extends javax.swing.JFrame {
         } else {
             return true;
         }
-    }
-
-    private void cargarDetalle() {
-//        ArrayList<Pedido> list = pedido.pedidoGetByID(JtNpedido.getText());
-//        if (list.size() > 0) {
-//            for (ObjectLayer.Pedido ls : list) {
-//                DecimalFormat impo = new DecimalFormat("#.00");
-//                String arreglo[] = new String[21];
-//                arreglo[0] = String.valueOf(ls.getId_Producto());
-//                arreglo[1] = String.valueOf(ls.getRenglon());
-//                arreglo[2] = ls.getSuela();
-//                arreglo[3] = ls.getColor();
-//                arreglo[4] = ls.getCorrida();
-//                arreglo[5] = String.valueOf(ls.getC1());
-//                arreglo[6] = String.valueOf(ls.getC2());
-//                arreglo[7] = String.valueOf(ls.getC3());
-//                arreglo[8] = String.valueOf(ls.getC4());
-//                arreglo[9] = String.valueOf(ls.getC5());
-//                arreglo[10] = String.valueOf(ls.getC6());
-//                arreglo[11] = String.valueOf(ls.getC7());
-//                arreglo[12] = String.valueOf(ls.getC8());
-//                arreglo[13] = String.valueOf(ls.getC9());
-//                arreglo[14] = String.valueOf(ls.getC10());
-//                arreglo[15] = String.valueOf(ls.getC11());
-//                arreglo[16] = String.valueOf(ls.getC12());
-//                arreglo[17] = String.valueOf(ls.getPares());
-//                arreglo[18] = format.format(ls.getPrecio());
-//                arreglo[19] = impo.format(ls.getImporte());
-//                arreglo[20] = ls.getStatus();
-//                modelPedido.addRow(arreglo);
-//            }
-//        }
     }
 
     private void cleanTable() {
@@ -1224,15 +1202,7 @@ public class Ped extends javax.swing.JFrame {
     }//GEN-LAST:event_JcPrecioItemStateChanged
 
     private void JtPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JtPedidoMouseClicked
-        int row = JtPedido.rowAtPoint(evt.getPoint());
-        //Producto Pro = new Producto();
-        //        JtRenglon.setText(String.valueOf(JtPedido.getValueAt(row, 1)));
-        /*Pro.setId_Producto(Integer.parseInt(JtPedido.getValueAt(row, 0).toString()));
-        Pro.setDescripcion(JtPedido.getValueAt(row, 2).toString());
-        JcSuela.getModel().setSelectedItem(Pro);
-        JtprecioA.setText(JtPedido.getValueAt(row, 18).toString());
-        //JcPrecio.setEnabled(false);
-        CambiarProducto();*/
+   
     }//GEN-LAST:event_JtPedidoMouseClicked
 
     private void JbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbBorrarActionPerformed
@@ -1313,6 +1283,7 @@ public class Ped extends javax.swing.JFrame {
         pam.setFcatura(0);
         pam.setSalida(0);
         pam.setMes("0");
+        pam.setFolio(0);
 
         for (int i = 0; i < row; i++) {
             Dpedido Dt = new Dpedido();
@@ -1563,7 +1534,7 @@ public class Ped extends javax.swing.JFrame {
             ArrayList<Cliente> listaClientesR = objC.clienteGetByRz(JtCliente.getText());
 
             if (Serie.equals("A")) {
-                listaClientesR.forEach((cli) -> {
+                listaClientesR.forEach((Cliente cli) -> {
                     if (!cli.getRazonSocial().equals("")) {
                         cli.setNombre(cli.getRazonSocial());
                         modeloListaCliente.addElement(cli);
@@ -1574,9 +1545,7 @@ public class Ped extends javax.swing.JFrame {
                     }
                 });
             } else if (Serie.equals("B")) {
-                listaClientesR.forEach((cli) -> {
-                    modeloListaCliente.addElement(cli);
-                });
+                listaClientesR.forEach(modeloListaCliente::addElement);
             }
         }
     }//GEN-LAST:event_JtClienteKeyReleased
@@ -1603,41 +1572,41 @@ public class Ped extends javax.swing.JFrame {
         JList lis = (JList) evt.getSource();
 
         if (evt.getClickCount() == 1) {
-            Cliente cl = (Cliente) lis.getSelectedValue();
+            Cliente cli = (Cliente) lis.getSelectedValue();
 
             if (Serie.equals("A")) {
-                if (cl.getRazonSocial().equals("")) {
+                if (cli.getRazonSocial().equals("")) {
                     JOptionPane.showMessageDialog(null, ms, "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JtCliente.setText(cl.getNombre());
-                    JbCliente.setText(cl.getNombre());
-                    JbCalle.setText(cl.getCalle());
-                    JbCP.setText(cl.getCP());
-                    JbColonia.setText(cl.getColonia());
-                    JbCD.setText(cl.getCiudad());
-                    JbEstado.setText(cl.getEstado());
-                    JbPais.setText(cl.getPais());
-                    JbPlazo.setText("Plazo" + " " + String.valueOf(cl.getDiasCredito()) + " " + "Días");
-                    JbAgente.setText("Agente" + " " + String.valueOf(cl.getId_Agente()));
-                    JtCobranza.setText(cl.getObservaciones());
+                    JtCliente.setText(cli.getNombre());
+                    JbCliente.setText(cli.getNombre());
+                    JbCalle.setText(cli.getCalle());
+                    JbCP.setText(cli.getCP());
+                    JbColonia.setText(cli.getColonia());
+                    JbCD.setText(cli.getCiudad());
+                    JbEstado.setText(cli.getEstado());
+                    JbPais.setText(cli.getPais());
+                    JbPlazo.setText("Plazo" + " " + String.valueOf(cli.getDiasCredito()) + " " + "Días");
+                    JbAgente.setText("Agente" + " " + String.valueOf(cli.getId_Agente()));
+                    JtCobranza.setText(cli.getObservaciones());
                     limpiarListaClientes();
-                    idcliente = cl.getId_Cliente();
+                    idcliente = cli.getId_Cliente();
                     JpCliente.setVisible(false);
                 }
             } else if (Serie.equals("B")) {
-                JtCliente.setText(cl.getNombre());
-                JbCliente.setText(cl.getNombre());
-                JbCalle.setText(cl.getCalle());
-                JbCP.setText(cl.getCP());
-                JbColonia.setText(cl.getColonia());
-                JbCD.setText(cl.getCiudad());
-                JbEstado.setText(cl.getEstado());
-                JbPais.setText(cl.getPais());
-                JbPlazo.setText("Plazo" + " " + String.valueOf(cl.getDiasCredito()) + " " + "Días");
-                JbAgente.setText("Agente" + " " + String.valueOf(cl.getId_Agente()));
-                JtCobranza.setText(cl.getObservaciones());
+                JtCliente.setText(cli.getNombre());
+                JbCliente.setText(cli.getNombre());
+                JbCalle.setText(cli.getCalle());
+                JbCP.setText(cli.getCP());
+                JbColonia.setText(cli.getColonia());
+                JbCD.setText(cli.getCiudad());
+                JbEstado.setText(cli.getEstado());
+                JbPais.setText(cli.getPais());
+                JbPlazo.setText("Plazo" + " " + String.valueOf(cli.getDiasCredito()) + " " + "Días");
+                JbAgente.setText("Agente" + " " + String.valueOf(cli.getId_Agente()));
+                JtCobranza.setText(cli.getObservaciones());
                 limpiarListaClientes();
-                idcliente = cl.getId_Cliente();
+                idcliente = cli.getId_Cliente();
                 JpCliente.setVisible(false);
             }
 
@@ -1665,9 +1634,7 @@ public class Ped extends javax.swing.JFrame {
         } else {
             ArrayList<Producto> listaProductos = op.GetByCliente(idcliente, JtSuela.getText());
 
-            for (Producto prod : listaProductos) {
-                modeloListaProducto.addElement(prod);
-            }
+            listaProductos.forEach(modeloListaProducto::addElement);
         }
     }//GEN-LAST:event_JtSuelaKeyReleased
 
@@ -1860,6 +1827,10 @@ public class Ped extends javax.swing.JFrame {
         deshabilitarCampos();
     }//GEN-LAST:event_JbBuscarActionPerformed
 
+    private void JtClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtClienteActionPerformed
+
     private void limpiarCliente() {
         JbCliente.setText("----------------------------------------------------------");
         JbCalle.setText("----------------------------------------------------------");
@@ -1913,6 +1884,7 @@ public class Ped extends javax.swing.JFrame {
         JdPedido.setCalendar(fechaActual);
         JdEntrega.setCalendar(fechaActual);
         JdRecibido.setCalendar(fechaActual);
+        JtCobranza.setText("-");
     }
 
     private void Cerrar() {

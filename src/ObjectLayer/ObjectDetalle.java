@@ -20,9 +20,8 @@ public class ObjectDetalle {
     ResultSet rs = null;
 
     public boolean insertDetalle(Dpedido detalle) {
-
-        boolean rpta = false;
         try {
+            c.setAutoCommit(false);
             st = c.prepareStatement("INSERT INTO Dpedido (Renglon,Npedido, Id_Cliente,Fecha_Pedido,Fecha_Entrega, "
                     + "Id_Producto,Corrida,C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,Pares,Importe,Serie,CSurt1,CSurt2,CSurt3,"
                     + "CSurt4,CSurt5,CSurt6,CSurt7,CSurt8,CSurt9,CSurt10,CSurt11,CSurt12,ParesSurt,Estatus,Precio)"
@@ -65,18 +64,20 @@ public class ObjectDetalle {
             st.setInt(35, detalle.getParesSurt());
             st.setString(36, detalle.getStatus());
             st.setDouble(37, detalle.getPrecio());
-
-            rpta = st.executeUpdate() == 1 ? true : false;
-            DB.cerrarPrep(st);
+            st.executeUpdate();
+            c.commit();
+            st.close();
+            return true;
         } catch (SQLException e) {
-
             e.printStackTrace();
-            DB.cerrarPrep(st);
+            Server.cerrarPrep(st);
+            Server.rollback(c);
         } catch (Exception ex) {
             ex.printStackTrace();
-            DB.cerrarPrep(st);
+            Server.cerrarPrep(st);
+            Server.rollback(c);
         }
-        return rpta;
+        return false;
     }
 
     public boolean insertDetalleA(Dpedido detalle) {       
@@ -127,14 +128,16 @@ public class ObjectDetalle {
 
             dp.executeUpdate();
             p.commit();
-            DB.cerrarPrep(dp);
+            dp.close();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
-            DB.cerrarPrep(dp);
+            Server.cerrarPrep(dp);
+            Server.rollback(p);
         } catch (Exception ex) {
             ex.printStackTrace();
-            DB.cerrarPrep(dp);
+            Server.cerrarPrep(dp);
+            Server.rollback(p);
         }
         return false;
     }

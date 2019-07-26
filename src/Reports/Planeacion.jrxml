@@ -15,7 +15,9 @@
 SELECT 
  ROW_NUMBER() OVER(ORDER BY p.Npedido) AS Numero, 
  dp.Npedido as Pedido,
- c.RazonSocial as Cliente,a.Descripcion as Agente,
+ CASE WHEN p.Serie = 'A' THEN c.RazonSocial
+ WHEN p.Serie = 'B' THEN c.Nombre end as Cliente,
+ a.Descripcion as Agente,
  l.Descripcion as Modelo,cr.Descripcion as Color
 ,
 CASE WHEN Corrida = '10-12' THEN C1 WHEN Corrida = '11-14' THEN @v1 WHEN Corrida = '12-14' THEN @v1
@@ -414,8 +416,8 @@ INNER JOIN ProduccionPhy.dbo.Color cr
 ON pd.Id_Color = cr.Id_Color
 INNER JOIN ProduccionPhy.dbo.Linea l
 ON pd.Id_Linea = l.Id_Linea
-WHERE  DATEPART(YEAR,p.Fecha_Entrega) = $P!{Año}
-AND DATEPART(WK,p.Fecha_Entrega) = $P!{Semana}]]>
+WHERE  DATEPART(YEAR,p.Fecha_Captura) = $P!{Año}
+AND DATEPART(WK,p.Fecha_Captura) = $P!{Semana}]]>
 	</queryString>
 	<field name="Numero" class="java.lang.Long"/>
 	<field name="Pedido" class="java.lang.String"/>

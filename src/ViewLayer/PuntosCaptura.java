@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class PuntosCaptura extends javax.swing.JDialog {
 
-    public ArrayList<String> array = new ArrayList<String>();
+    public ArrayList<String> array = new ArrayList<>();
     int c1 = 0, c2 = 0, c3 = 0, c4 = 0, c5 = 0, c6 = 0, c7 = 0, c8 = 0, c9 = 0, c10 = 0, c11 = 0, c12 = 0;
     String ct1, ct2, ct3, ct4, ct5, ct6, ct7, ct8, ct9, ct10, ct11, ct12;
     String dt[] = new String[12];
@@ -63,13 +63,12 @@ public class PuntosCaptura extends javax.swing.JDialog {
     private void AgregarDetalle() {
         int row = modelP.getRowCount();
         //int var = Integer.parseInt(JbSuma.getText());
-        int var = SumaPuntos;
-        int tarreglo = var * 2;
+        int tarreglo = SumaPuntos * 2;
 
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < tarreglo; j++) {
-                String Pares = modelP.getValueAt(i, j).toString();
-                array.add(Pares);
+                String Par = modelP.getValueAt(i, j).toString();
+                array.add(Par);//Se asigna el tamaño del arreglo
             }
         }
     }

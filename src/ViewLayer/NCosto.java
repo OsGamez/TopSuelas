@@ -93,15 +93,15 @@ public class NCosto extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         JtProducto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listaProductos = new javax.swing.JList<>();
+        listaProductos = new javax.swing.JList<Producto>();
         JtPt = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        listaRCPT = new javax.swing.JList<>();
+        listaRCPT = new javax.swing.JList<PtProducto>();
         JbRCPT = new javax.swing.JLabel();
         JbIdProd = new javax.swing.JLabel();
         JtMat = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        listaMat = new javax.swing.JList<>();
+        listaMat = new javax.swing.JList<Material>();
         JbCvet = new javax.swing.JLabel();
         Jtid = new javax.swing.JTextField();
         JbPi = new javax.swing.JLabel();
@@ -204,6 +204,11 @@ public class NCosto extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("RCPT:");
 
+        JtProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtProductoActionPerformed(evt);
+            }
+        });
         JtProducto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 JtProductoKeyReleased(evt);
@@ -673,6 +678,10 @@ public class NCosto extends javax.swing.JDialog {
             JbPrecio.setText(var.format(mat.getCostoCosteo()));
         }
     }//GEN-LAST:event_listaMatMouseClicked
+
+    private void JtProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtProductoActionPerformed
 
     private void limpiarListaProductos() {
         modeloListaProductos.clear();

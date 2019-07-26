@@ -70,7 +70,8 @@ CASE
 FROM Pedidos p INNER JOIN CobranzaPhy.dbo.Clientes c
 ON p.Id_Cliente = c.Id_Cliente
 WHERE DATEPART(WK,p.Fecha_Entrega) = $P{Date}
-ORDER BY p.Fecha_Entrega]]>
+ORDER BY p.Fecha_Entrega, c.RazonSocial, c.Nombre
+]]>
 	</queryString>
 	<field name="Fecha_Entrega" class="java.sql.Date"/>
 	<field name="Id_Cliente" class="java.lang.Short"/>

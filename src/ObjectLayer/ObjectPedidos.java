@@ -109,12 +109,14 @@ public class ObjectPedidos {
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            DB.cerrarPrep(dp);
-            DB.rollback(pa);
+            Server.cerrarPrep(dp);
+            Server.rollback(c);
+            Server.rollback(pa);
         } catch (Exception e) {
             e.printStackTrace();
-            DB.cerrarPrep(dp);
-            DB.rollback(pa);
+            Server.cerrarPrep(dp);
+            Server.rollback(c);
+            Server.rollback(pa);
         }
         return false;
     }
@@ -201,10 +203,12 @@ public class ObjectPedidos {
         } catch (SQLException ex) {
             ex.printStackTrace();
             Server.cerrarPrep(dp);
+            Server.rollback(c);
             Server.rollback(pa);
         } catch (Exception e) {
             e.printStackTrace();
             Server.cerrarPrep(dp);
+            Server.rollback(c);
             Server.rollback(pa);
         }
         return false;
@@ -236,21 +240,23 @@ public class ObjectPedidos {
             dp.setString(14, p.getOrdenCompra());
             dp.setDate(15, p.getFecha_Recibido());
             dp.setDate(16, p.getFecha_Captura());
-
             dp.executeUpdate();
             pa.commit();
+            for (Dpedido dt : detalle) {
+                obj.insertDetalle(dt);
+            }
             insertarParametroA(pam);
             insertarParametro(pam);
             dp.close();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            DB.cerrarPrep(dp);
-            DB.rollback(pa);
+            Server.cerrarPrep(dp);
+            Server.rollback(pa);
         } catch (Exception e) {
             e.printStackTrace();
-            DB.cerrarPrep(dp);
-            DB.rollback(pa);
+            Server.cerrarPrep(dp);
+            Server.rollback(pa);
         }
         return false;
     }
@@ -291,12 +297,12 @@ public class ObjectPedidos {
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            DB.cerrarPrep(dp);
-            DB.rollback(pa);
+            Server.cerrarPrep(dp);
+            Server.rollback(pa);
         } catch (Exception e) {
             e.printStackTrace();
-            DB.cerrarPrep(dp);
-            DB.rollback(pa);
+            Server.cerrarPrep(dp);
+            Server.rollback(pa);
         }
         return false;
     }
@@ -557,49 +563,6 @@ public class ObjectPedidos {
         return false;
     }
 
-    public boolean agregarPedido(Pedido p, ArrayList<Dpedido> detalle, String Np) {
-        boolean rpta = false;
-        try {
-            c.setAutoCommit(false);
-            st = c.prepareStatement("select p.Estatus,p.Npedido from RPTPhylon.dbo.Dpedido d\n"
-                    + "inner join RPTPhylon.dbo.Pedidos p on p.Npedido = d.Npedido\n"
-                    + "where p.Npedido = ? and p.Estatus<>10");
-            st.setString(1, Np);
-            rs = st.executeQuery();
-            if (rs.next()) {
-                return false;
-            } else {
-                st = c.prepareStatement("UPDATE Pedidos SET TotalPares = ?,CostoTotal=? WHERE Npedido=?");
-                st.setDouble(1, p.getTotalPares());
-                st.setDouble(2, p.getCostoTotal());
-                st.setString(3, p.getNpedido());
-                rpta = st.executeUpdate() == 1 ? true : false;
-                if (rpta) {
-                    for (Dpedido det : detalle) {
-                        det.setNpedido(p.getNpedido());
-                        rpta = obj.insertDetalle(det);
-                        if (!rpta) {
-                            c.rollback();
-                            st.close();
-                        } else {
-                            c.commit();
-                            st.close();
-                        }
-                    }
-                } else {
-                    c.rollback();
-                    st.close();
-                }
-                st.close();
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            DB.cerrarPrep(st);
-            DB.rollback(c);
-        }
-        return rpta;
-    }
-
     public boolean agregarPedidoA(Pedido p, ArrayList<Dpedido> detalle, String Np) {
         try {
             pa.setAutoCommit(false);
@@ -791,7 +754,7 @@ public class ObjectPedidos {
                 return rs.getInt(1);
             }
             return 1;
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
             return 1;
         }

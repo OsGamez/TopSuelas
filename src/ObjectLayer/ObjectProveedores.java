@@ -59,7 +59,7 @@ public class ObjectProveedores {
     }
 
     public ArrayList<Proveedor> provedorGetAll() {
-        ArrayList<Proveedor> listaProveedores = new ArrayList<Proveedor>();
+        ArrayList<Proveedor> listaProveedores = new ArrayList<>();
         try {
             st = c.prepareStatement("SELECT * FROM Proveedores WHERE Estatus = 'A' ORDER BY Nombre");
             rs = st.executeQuery();
@@ -85,7 +85,7 @@ public class ObjectProveedores {
     }
 
     public ArrayList<Proveedor> proveedorSearch(String filtro) {
-        ArrayList<Proveedor> listaProveedores = new ArrayList<Proveedor>();
+        ArrayList<Proveedor> listaProveedores = new ArrayList<>();
         try {
             st = c.prepareStatement("SELECT * FROM Proveedores WHERE Estatus = 'A' AND Nombre LIKE'%" + filtro + "%'"
                     + "ORDER BY Nombre");
@@ -106,7 +106,7 @@ public class ObjectProveedores {
 
                 listaProveedores.add(pv);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return listaProveedores;

@@ -118,12 +118,12 @@ public class NCliente extends javax.swing.JDialog {
         JbPago = new javax.swing.JLabel();
         JsCred = new javax.swing.JSpinner();
         JbAgente = new javax.swing.JLabel();
-        JcAgente = new javax.swing.JComboBox<>();
-        JcFpago = new javax.swing.JComboBox<>();
+        JcAgente = new javax.swing.JComboBox<String>();
+        JcFpago = new javax.swing.JComboBox<String>();
         JbBanco = new javax.swing.JLabel();
-        JcBanco = new javax.swing.JComboBox<>();
+        JcBanco = new javax.swing.JComboBox<String>();
         JbContac = new javax.swing.JLabel();
-        JcMpago = new javax.swing.JComboBox<>();
+        JcMpago = new javax.swing.JComboBox<String>();
         jScrollPane2 = new javax.swing.JScrollPane();
         JtContacto = new javax.swing.JTextArea();
         JbSerie = new javax.swing.JLabel();
@@ -134,13 +134,13 @@ public class NCliente extends javax.swing.JDialog {
         JbNumC = new javax.swing.JLabel();
         Pane2 = new javax.swing.JPanel();
         JbPais = new javax.swing.JLabel();
-        JcPais = new javax.swing.JComboBox<>();
+        JcPais = new javax.swing.JComboBox<String>();
         JbEstado = new javax.swing.JLabel();
-        JcEstado = new javax.swing.JComboBox<>();
+        JcEstado = new javax.swing.JComboBox<String>();
         JbCiudad = new javax.swing.JLabel();
-        JcCiudad = new javax.swing.JComboBox<>();
+        JcCiudad = new javax.swing.JComboBox<String>();
         JbZona = new javax.swing.JLabel();
-        JcZona = new javax.swing.JComboBox<>();
+        JcZona = new javax.swing.JComboBox<String>();
         JbCP = new javax.swing.JLabel();
         JtCP = new javax.swing.JTextField();
         JtCalle = new javax.swing.JTextField();
@@ -158,8 +158,8 @@ public class NCliente extends javax.swing.JDialog {
         JtTel2 = new javax.swing.JTextField();
         JtTel3 = new javax.swing.JTextField();
         Jtid = new javax.swing.JTextField();
-        JbGuardar = new javax.swing.JButton();
         JbCancelar = new javax.swing.JButton();
+        JbGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("CLIENTE");
@@ -246,19 +246,19 @@ public class NCliente extends javax.swing.JDialog {
         JbAgente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         JbAgente.setText("Agente:");
 
-        JcAgente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JcAgente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        JcFpago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona una forma de pago", "01 Efectivo", "02 Cheque", "03 Transferencia de fondos", "99 Por definir" }));
+        JcFpago.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona una forma de pago", "01 Efectivo", "02 Cheque", "03 Transferencia de fondos", "99 Por definir" }));
 
         JbBanco.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         JbBanco.setText("Banco:");
 
-        JcBanco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JcBanco.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         JbContac.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         JbContac.setText("Contacto:");
 
-        JcMpago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona un método de pago", "PUE", "PPD" }));
+        JcMpago.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona un método de pago", "PUE", "PPD" }));
 
         JtContacto.setColumns(20);
         JtContacto.setRows(5);
@@ -348,7 +348,7 @@ public class NCliente extends javax.swing.JDialog {
                             .addComponent(JtCod, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(JcMpago, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(JcBanco, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         Pane1Layout.setVerticalGroup(
             Pane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -418,9 +418,9 @@ public class NCliente extends javax.swing.JDialog {
                                 .addGap(15, 15, 15)
                                 .addComponent(JbObv))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Pane1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(JbContac)
-                        .addGap(26, 26, 26))))
+                        .addGap(26, 26, 26)))
+                .addGap(70, 70, 70))
         );
 
         JtabDatos.addTab("Datos Generales", Pane1);
@@ -428,22 +428,22 @@ public class NCliente extends javax.swing.JDialog {
         JbPais.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         JbPais.setText("País");
 
-        JcPais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JcPais.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         JbEstado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         JbEstado.setText("Estado:");
 
-        JcEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JcEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         JbCiudad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         JbCiudad.setText("Ciudad:");
 
-        JcCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JcCiudad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         JbZona.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         JbZona.setText("Zona:");
 
-        JcZona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JcZona.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         JbCP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         JbCP.setText("CP:");
@@ -597,38 +597,37 @@ public class NCliente extends javax.swing.JDialog {
                         .addGroup(Pane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(JtTel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(Pane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Pane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(JcZona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JbZona))
+                    .addGroup(Pane2Layout.createSequentialGroup()
+                        .addGap(130, 130, 130)
                         .addGroup(Pane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JcZona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JbZona))
-                        .addGroup(Pane2Layout.createSequentialGroup()
-                            .addGap(130, 130, 130)
-                            .addGroup(Pane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(JbNum)
-                                .addComponent(JtNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(JbNum)
+                            .addComponent(JtNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(32, 32, 32)
                 .addGroup(Pane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(JtTel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Jtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         JtabDatos.addTab("Dirección", Pane2);
-
-        JbGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/saveas_1173.png"))); // NOI18N
-        JbGuardar.setText("REGISTRAR");
-        JbGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JbGuardarActionPerformed(evt);
-            }
-        });
 
         JbCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Cancel_icon-icons.com_54824.png"))); // NOI18N
         JbCancelar.setText("CANCELAR");
         JbCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JbCancelarActionPerformed(evt);
+            }
+        });
+
+        JbGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/saveas_1173.png"))); // NOI18N
+        JbGuardar.setText("REGISTRAR");
+        JbGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbGuardarActionPerformed(evt);
             }
         });
 
@@ -663,8 +662,8 @@ public class NCliente extends javax.swing.JDialog {
                 .addComponent(JtabDatos)
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JbGuardar)
-                    .addComponent(JbCancelar))
+                    .addComponent(JbCancelar)
+                    .addComponent(JbGuardar))
                 .addContainerGap())
         );
 
@@ -685,7 +684,7 @@ public class NCliente extends javax.swing.JDialog {
                 || JcPais.getSelectedIndex() == 0 || JcZona.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "Falta datos de ingresar verifica", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
         } else if (Jtid.getText().isEmpty()) {
-            if (obj.validarCliente(JtRs.getText(), JtNombre.getText()) == 0) {
+            if (obj.validarCliente(JtNombre.getText(), JtRs.getText()) == 0) {
                 Guardar();
             } else {
                 JOptionPane.showMessageDialog(null, "Este registro ya existe", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
@@ -701,24 +700,14 @@ public class NCliente extends javax.swing.JDialog {
         ArrayList<Cliente> listP = obj.getNumCli();
 
         if (listP.size() > 0) {
-            for (Cliente par : listP) {
-                int Num = Integer.parseInt(par.getNumCliente());
+            for (Cliente parametro : listP) {
+                int Num = Integer.parseInt(parametro.getNumCliente());
                 int var = num + Num;
                 JbNumC.setText(String.valueOf(var));
             }
         } else {
             JbNumC.setText(String.valueOf(num));
         }
-        /* for (Cliente par : listP) {
-
-            if (par.getNumCliente().equals(P)) {
-                JbNumC.setText(String.valueOf(num));
-            } else {
-                int Num = Integer.parseInt(par.getNumCliente());
-                int var = num + Num;
-                JbNumC.setText(String.valueOf(var));
-            }
-        }*/
     }
 
     private void Guardar() {
@@ -728,59 +717,38 @@ public class NCliente extends javax.swing.JDialog {
         Estado estado = (Estado) JcEstado.getSelectedItem();
         Pais pais = (Pais) JcPais.getSelectedItem();
         Zona zona = (Zona) JcZona.getSelectedItem();
-        String rs = JtRs.getText();
-        String rfc = JtRFC.getText();
-        String cta = JtCta.getText();
-        int cred = (int) JsCred.getValue();
-        String cp = JtCP.getText();
-        String email = JtEmail.getText();
-        String col = JtColonia.getText();
-        String Calle = JtCalle.getText();
-        String Num = JtNum.getText();
-        String cod = JtCod.getText();
-        String cont = JtContacto.getText();
-        String obv = JaObv.getText();
-        String Fpago = JcFpago.getSelectedItem().toString();
-
-        String Mpago = JcMpago.getSelectedItem().toString();
-        String cf = JtCf.getText();
-        String tel = JtTel.getText();
-        String tel2 = JtTel2.getText();
-        String tel3 = JtTel3.getText();
-        String Nombre = JtNombre.getText();
-        String NumC = JbNumC.getText();
 
         Cliente cl = new Cliente();
-        cl.setRazonSocial(rs);
-        cl.setCodigo(cod);
+        cl.setRazonSocial(JtRs.getText());
+        cl.setCodigo(JtCod.getText());
         cl.setId_Ciudad(ciudad.getId_Ciudad());
-        cl.setRFC(rfc);
+        cl.setRFC(JtRFC.getText());
         cl.setId_Agente(agente.getId_Agente());
-        cl.setCP(cp);
+        cl.setCP(JtCP.getText());
         cl.setId_Zona(zona.getId_Zona());
-        cl.setColonia(col);
-        cl.setCalle(Calle);
-        cl.setNumeroCalle(Num);
-        cl.setTelefono(tel);
+        cl.setColonia(JtColonia.getText());
+        cl.setCalle(JtCalle.getText());
+        cl.setNumeroCalle(JtNum.getText());
+        cl.setTelefono(JtTel.getText());
         cl.setId_Pais(pais.getId_Pais());
         cl.setId_Estado(estado.getId_Estado());
-        cl.setCuenta(cta);
-        cl.setDiasCredito(cred);
-        cl.setEmail(email);
-        cl.setContacto(cont);
-        cl.setObservaciones(obv);
-        cl.setUsoCfdi(cf);
-        cl.setFormaPago(Fpago);
-        cl.setMetodoPago(Mpago);
+        cl.setCuenta(JtCta.getText());
+        cl.setDiasCredito((int)JsCred.getValue());
+        cl.setEmail(JtEmail.getText());
+        cl.setContacto(JtContacto.getText());
+        cl.setObservaciones(JaObv.getText());
+        cl.setUsoCfdi(JtCf.getText());
+        cl.setFormaPago(JcFpago.getSelectedItem().toString());
+        cl.setMetodoPago(JcMpago.getSelectedItem().toString());
         cl.setId_Banco(banco.getId_Banco());
         cl.setActivo(true);
         
-        cl.setTelefono2(tel2);
-        cl.setTelefono3(tel3);
-        cl.setNombre(Nombre);
+        cl.setTelefono2(JtTel2.getText());
+        cl.setTelefono3(JtTel3.getText());
+        cl.setNombre(JtNombre.getText());
         cl.setSerie(JbSerie.getText());
-        cl.setNumCliente(NumC);
-        int Nc = Integer.parseInt(NumC);
+        cl.setNumCliente(JbNumC.getText());
+        int Nc = Integer.parseInt(JbNumC.getText());
 
         if (obj.validarNumCliente(Nc) == 0) {
             if (obj.clientesAdd(cl)) {
@@ -788,38 +756,18 @@ public class NCliente extends javax.swing.JDialog {
                 CargarNum();
                 informacion = "1";
                 Limpiar();
-                /*if (par.insertarPam(NumC)) {
-                    JOptionPane.showMessageDialog(this, "Registro Guardado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                    CargarNum();
-                    informacion = "1";
-                    Limpiar();
-                } else {
-                    obj.anularCliente(NumC);
-                }*/
             } else {
                 JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-                //Limpiar();
             }
         } else {
-            //JOptionPane.showMessageDialog(this, "Ya existe", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
             CargarNum();
             if (obj.clientesAdd(cl)) {
                 JOptionPane.showMessageDialog(this, "Registro Guardado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                 CargarNum();
                 informacion = "1";
                 Limpiar();
-                /*if (par.insertarPam(NumC)) {
-                    JOptionPane.showMessageDialog(this, "Registro Guardado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                    CargarNum();
-                    informacion = "1";
-                    Limpiar();
-                } else {
-                    obj.anularCliente(NumC);
-                }*/
-
             } else {
                 JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-                //Limpiar();
             }
         }
     }
@@ -1027,6 +975,7 @@ public class NCliente extends javax.swing.JDialog {
 
     private void Limpiar() {
         this.JtRs.setText("");
+        this.JtNombre.setText("");
         this.JtColonia.setText("");
         this.JaObv.setText("");
         this.JtCP.setText("");

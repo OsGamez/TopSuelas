@@ -24,22 +24,21 @@ where i.Almacen = $P!{almacen}]]>
 	<summary>
 		<band height="20" splitType="Stretch">
 			<textField pattern="#,##0">
-				<reportElement x="84" y="-1" width="100" height="20" uuid="f4bdd442-d728-4f0d-80cd-fdbf3a772fb9"/>
-				<textElement>
-					<font isBold="true"/>
+				<reportElement mode="Transparent" x="389" y="-1" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="f4bdd442-d728-4f0d-80cd-fdbf3a772fb9"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{suma}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="-2" y="0" width="100" height="20" uuid="b66dcbba-fa1b-4ccd-ab47-2283cc4e4356"/>
-				<textElement>
-					<font size="9" isBold="true"/>
+				<reportElement mode="Transparent" x="303" y="0" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="b66dcbba-fa1b-4ccd-ab47-2283cc4e4356"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[TOTAL ALMACÉN:]]></text>
 			</staticText>
-			<line>
-				<reportElement x="84" y="10" width="72" height="1" uuid="fdfdf8f5-64ed-47b2-a994-6beae0faf386"/>
-			</line>
 		</band>
 	</summary>
 </jasperReport>

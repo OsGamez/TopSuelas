@@ -28,7 +28,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="JcDetalle" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -37,30 +37,31 @@
               </Group>
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="JcMensual" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="JcmSuela" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="JcMensual" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="JcmSuela" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="61" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                      <Component id="JbImprimir" min="-2" pref="142" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="JcSemanalAgrupado" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="JdFin" alignment="0" pref="200" max="32767" attributes="0"/>
+                          <Component id="JdInicio" alignment="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Component id="JcPedido" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="JtNpedido" min="-2" pref="61" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="JbImprimir" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="JdFin" alignment="0" pref="200" max="32767" attributes="0"/>
-                      <Component id="JdInicio" alignment="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -91,22 +92,20 @@
                       <Component id="JdFin" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="JcSemanalS" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="JcPedido" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="JtNpedido" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="JcPedido" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JtNpedido" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="79" max="32767" attributes="0"/>
-                      <Component id="JbImprimir" min="-2" pref="57" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="JcSemanalS" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JcSemanalAgrupado" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace pref="66" max="32767" attributes="0"/>
+              <Component id="JbImprimir" min="-2" pref="57" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -132,7 +131,7 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="JcSemanalS">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Semanal / Suela"/>
+        <Property name="text" type="java.lang.String" value="Semanal / D&#xed;a / Suela"/>
       </Properties>
       <Events>
         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="JcSemanalSItemStateChanged"/>
@@ -185,6 +184,14 @@
     <Component class="com.toedter.calendar.JDateChooser" name="JdInicio">
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="JdFin">
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="JcSemanalAgrupado">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Semanal / Suela"/>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="JcSemanalAgrupadoItemStateChanged"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

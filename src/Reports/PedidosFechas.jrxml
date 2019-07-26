@@ -18,13 +18,13 @@ p.Fecha_Pedido, p.Fecha_Entrega
   FROM Pedidos p 
   INNER JOIN CobranzaPhy..Clientes c
   ON p.Id_Cliente = c.Id_Cliente
-  WHERE p.Fecha_Pedido BETWEEN $P{fecha} AND $P{fecha2}
+  WHERE p.Fecha_Captura BETWEEN $P{fecha} AND $P{fecha2}
  ORDER BY CONVERT(INT, Npedido)]]>
 	</queryString>
 	<field name="Npedido" class="java.lang.String"/>
 	<field name="Cliente" class="java.lang.String"/>
-	<field name="Fecha_Pedido" class="java.sql.Date"/>
-	<field name="Fecha_Entrega" class="java.sql.Date"/>
+	<field name="Fecha_Pedido" class="java.lang.String"/>
+	<field name="Fecha_Entrega" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
