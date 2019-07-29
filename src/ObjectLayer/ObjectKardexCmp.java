@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +27,7 @@ public class ObjectKardexCmp {
             c.setAutoCommit(false);
             int renglon = 1;
             //bucle para insercion en kardex y actualizacion de cantidades en existencias.
+            DateFormat df = DateFormat.getDateInstance();
             for (int i = 0; i < k.getMat().size(); i++) {
                 int cant = k.getMat().get(i).getCantidad();
                 float cos = k.getMat().get(i).getCosto();
@@ -32,7 +35,8 @@ public class ObjectKardexCmp {
                 String sql = "INSERT INTO KardexCmp values(" + k.getFolio() + "," + k.getCuenta() + ""
                         + "," + k.getSubcuenta() + "," + k.getProveedor() + "," + k.getAlmacen() + ",'" + material + "'"
                         + ",'" + k.getOrdenc() + "','" + k.getFechamov() + "','" + k.getFechadoc() + "','" + k.getSerie() + "'"
-                        + ",'" + k.getTipo() + "','" + k.getDocref() + "'," + cant + "," + cos + "," + cos * cant + "," + renglon + ",'1',"
+                        + ",'" + k.getTipo() + "','" + k.getDocref() + "'," + cant + "," + cos + "," 
+                        + df.format(String.valueOf(cos * cant)) + "," + renglon + ",'1',"
                         + "" + k.getUsuario() + ")";
 ////                System.out.println("kardex "+sql);
                 st = c.prepareStatement(sql);
@@ -84,6 +88,75 @@ public class ObjectKardexCmp {
         return false;
     }
 
+        public boolean KardexCmpOrdenAdd(KardexCmp k) {
+        try {
+            c.setAutoCommit(false);
+            //bucle para insercion en kardex y actualizacion de cantidades en existencias.
+            DecimalFormat dff = new DecimalFormat("#.00");
+            for (int i = 0; i < k.getMat().size(); i++) {
+                int cant = k.getMat().get(i).getSurtido();
+                float cos = k.getMat().get(i).getCosto();
+                String material = k.getMat().get(i).getMaterial();
+                String importe=dff.format(cos*cant);// fecha de orden de compra
+                String sql = "INSERT INTO KardexCmp values(" + k.getFolio() + "," + k.getCuenta() + ""
+                        + "," + k.getSubcuenta() + "," + k.getProveedor() + "," + k.getAlmacen() + ",'" + material + "'"
+                        + ",'" + k.getOrdenc() + "','" + k.getFechamov() + "','" + k.getFechadoc() + "','" + k.getSerie() + "'"
+                        + ",'" + k.getTipo() + "','" + k.getDocref() + "'," + cant + "," + cos + "," 
+                        + importe + "," + k.getMat().get(i).getRenglon() + ",'1',"
+                        + "" + k.getUsuario() + ")";
+                System.out.println("kardex "+sql);
+                st = c.prepareStatement(sql);
+                st.executeUpdate();
+                Statement s;
+                s = c.createStatement();
+                sql = "select cvemat from existencias where almacen =" + k.getAlmacen() + " and "
+                        + "cvemat='" + material + "'";
+                rs = s.executeQuery(sql);
+                boolean flag = false;
+                while (rs.next()) {
+                    flag = true;
+                }
+//                flag verificara si existe o no un registro con respecto al
+//                material y al almacen
+                if (flag) {
+                    sql = "update existencias set existencia =existencia"+k.getOperacion()+" " + cant + ", ultcosto=" + cos + " "
+                            + "where almacen =" + k.getAlmacen() + " and "
+                            + "cvemat='" + material + "'";
+                } else {
+                    sql = "insert into existencias values('" + material + "'," 
+                            + k.getAlmacen() + "," + cos + "," + cant + ")";
+                }
+                st = c.prepareStatement(sql);
+                st.executeUpdate();
+                st=c.prepareStatement("update DOrdencompra set cantsurtido=cantsurtido+"+k.getMat().get(i).getSurtido()+
+                        " where folio="+k.getOrdenc()+" and renglon ="+k.getMat().get(i).getRenglon());
+                st.executeUpdate();
+                System.out.println("existencias "+sql+"\n update DOrdencompra set cantsurtido=cantsurtido+"+k.getMat().get(i).getSurtido()+" where folio="+k.getOrdenc()+"  renglon ="+k.getMat().get(i).getRenglon());
+//                renglon++;
+            }
+            String columna =(k.getTipo().equals("E"))?"Entradas":"Salidas";
+            st=c.prepareStatement("update parametroscmp set "+columna+"="+k.getFolio());
+            st.executeUpdate();
+            
+            c.commit();
+            return true;
+        } catch (SQLException ex) {
+            try {
+                c.rollback();
+                ex.printStackTrace();
+            } catch (SQLException ex1) {
+                Logger.getLogger(ObjectKardexCmp.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        } finally {
+            try {
+                rs.close();
+                st.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ObjectKardexCmp.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return false;
+    }
     public ArrayList<KardexCmp> KardexCmpGatAll() {
         ArrayList<KardexCmp> listaKardexCmp = new ArrayList<>();
         try {

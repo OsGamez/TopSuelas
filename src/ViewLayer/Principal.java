@@ -47,7 +47,7 @@ public class Principal extends javax.swing.JFrame {
     CapturaInventario capturaIn;
     Consumos sumos;
     Etiquetas etiq;
-    MovimientosCPT mCPT;
+    Entradas entrada;
     Conceptos concepto;
     ConceptosMPrima conceptom;
     ProvedoresMPrima conceptomp;
@@ -66,7 +66,6 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     public Principal(Usuario us) {
@@ -826,21 +825,18 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cmo, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
-                    .addComponent(prod, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cmo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(prod, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
                 .addGap(127, 127, 127)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cpt, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
+                    .addComponent(cpt, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
                     .addComponent(nominas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(154, 154, 154)
-                .addComponent(cobranza, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 73, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(138, 138, 138)
+                .addComponent(cobranza, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -862,8 +858,6 @@ public class Principal extends javax.swing.JFrame {
                         .addContainerGap())))
         );
 
-        jPanel2.getAccessibleContext().setAccessibleParent(jScrollPane1);
-
         jScrollPane1.setViewportView(jPanel1);
 
         MainContent.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -872,7 +866,7 @@ public class Principal extends javax.swing.JFrame {
         MainContent.setLayout(MainContentLayout);
         MainContentLayout.setHorizontalGroup(
             MainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1407, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1439, Short.MAX_VALUE)
         );
         MainContentLayout.setVerticalGroup(
             MainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -894,12 +888,15 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loadReportesPlaneacion(){
+        //Tb = us.getUsuario();
         if (rplaneacion == null) {
             rplaneacion = new Rplaneacion();
+            //capturaIn.TbTemp = Tb;
             rplaneacion.setVisible(true);
         } else {
             rplaneacion.dispose();
             rplaneacion = new Rplaneacion();
+            //capturaIn.TbTemp = Tb;
             rplaneacion.setVisible(true);
         }
     }
@@ -949,13 +946,19 @@ public class Principal extends javax.swing.JFrame {
     }
 
     private void LoadEntradas() {
-        if (mCPT == null) {
-            mCPT = new MovimientosCPT();
-            mCPT.setVisible(true);
+        if (entrada == null) {
+            entrada = new Entradas();
+            MainContent.add(entrada);
+            entrada.JbSerie.setText(Estado);
+            MainContent.getDesktopManager().maximizeFrame(entrada);
+            entrada.setVisible(true);
         } else {
-            mCPT.dispose();
-            mCPT = new MovimientosCPT();
-            mCPT.setVisible(true);
+            entrada.dispose();
+            entrada = new Entradas();
+            MainContent.add(entrada);
+            entrada.JbSerie.setText(Estado);
+            MainContent.getDesktopManager().maximizeFrame(entrada);
+            entrada.setVisible(true);
         }
     }
 
@@ -1508,7 +1511,10 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_JmAlmacenesPrimaActionPerformed
 
     private void JmOrdencActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmOrdencActionPerformed
-
+        NOrdenCompra nuevo = new NOrdenCompra(null, true);
+        nuevo.setVisible(true);
+        nuevo.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        nuevo.setAlwaysOnTop(true);
     }//GEN-LAST:event_JmOrdencActionPerformed
 
     private void nominasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nominasMouseClicked

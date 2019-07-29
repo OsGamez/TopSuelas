@@ -12,7 +12,15 @@ import java.util.ArrayList;
  * @author GATEWAY1-
  */
 public class Ordencompra implements java.io.Serializable{
-    private String Refdoc,fecha,fechadoc,Observaciones,stat,nombreusuario,nombreproveedor,serie;
+    private String Refdoc,fecha,fechadoc,Observaciones,stat,nombreusuario,nombreproveedor,serie,tiempo;
+
+    public String getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(String tiempo) {
+        this.tiempo = tiempo;
+    }
 
     public String getSerie() {
         return serie;
@@ -20,6 +28,11 @@ public class Ordencompra implements java.io.Serializable{
 
     public void setSerie(String serie) {
         this.serie = serie;
+    }
+
+    @Override
+    public String toString() {
+        return "" + folio +", "+nombreproveedor;
     }
     private int folio, proveedor,cantidad,usuario;
 

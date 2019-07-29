@@ -13,7 +13,15 @@ public class Movs_materiales implements java.io.Serializable{
     private String nombre_material,material;
     private float costo;
     private double importe;
-    private int surtido;
+    private int surtido,renglon;
+
+    public int getRenglon() {
+        return renglon;
+    }
+
+    public void setRenglon(int renglon) {
+        this.renglon = renglon;
+    }
 
     public double getImporte() {
         return importe;
