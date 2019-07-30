@@ -257,7 +257,7 @@ public class Consumos extends javax.swing.JInternalFrame {
                 if (opcion == JOptionPane.YES_OPTION) {
                     Consumo consumo = new Consumo();
                     consumo.setProducto(listaConsumo.get(fila).getProducto());
-                    consumo.setPunto((int)JtDatosConsumo.getValueAt(fila, 1));
+                    consumo.setPunto((float)JtDatosConsumo.getValueAt(fila, 1));
                     consumo.setPeso((float)JtDatosConsumo.getValueAt(fila, 2));
                     consumo.setDescripcionprod(JtDatosConsumo.getValueAt(fila, 0).toString());
                     editarconsumo.Jtp.setText(consumo.getDescripcionprod());
