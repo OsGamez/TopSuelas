@@ -74,7 +74,7 @@ public class ObjectProductos {
     }
 
     public ArrayList<Producto> GetByID(String filtro) {
-        ArrayList<Producto> listaProductos = new ArrayList<Producto>();
+        ArrayList<Producto> listaProductos = new ArrayList<>();
         try {
             st = c.prepareStatement("select  p.Descripcion,p.Id_Producto,\n"
                     + "p.Id_Color, p.Id_Corrida,c.Descripcion as Color,cr.Descripcion as Corrida,\n"
@@ -107,7 +107,7 @@ public class ObjectProductos {
     }
 
     public ArrayList<Producto> GetByC(String filtro) {
-        ArrayList<Producto> listaProductos = new ArrayList<Producto>();
+        ArrayList<Producto> listaProductos = new ArrayList<>();
         try {
             st = c.prepareStatement("select  p.Descripcion,p.Id_Producto,\n"
                     + "p.Id_Color, p.Id_Corrida,c.Descripcion as Color,cr.Descripcion as Corrida,\n"
@@ -138,7 +138,7 @@ public class ObjectProductos {
     }
 
     public ArrayList<Producto> productoSearch(String filtro) {
-        ArrayList<Producto> listaProductos = new ArrayList<Producto>();
+        ArrayList<Producto> listaProductos = new ArrayList<>();
         try {
             st = c.prepareStatement("SELECT p.Id_Producto, p.Descripcion, p.Observaciones, c.Descripcion as Color,cr.Descripcion as Corrida,\n"
                     + "l.Descripcion as Linea, p.Id_Color,p.Id_Corrida, p.Id_linea\n"
@@ -170,7 +170,7 @@ public class ObjectProductos {
     }
 
     public ArrayList<Producto> GetByCosto(String filtro) {
-        ArrayList<Producto> listaProductos = new ArrayList<Producto>();
+        ArrayList<Producto> listaProductos = new ArrayList<>();
         try {
             String sql = "SELECT * FROM Producto WHERE Activo = 1 AND  Descripcion LIKE '%" + filtro + "%'"
                     + "ORDER BY Descripcion";
@@ -193,7 +193,7 @@ public class ObjectProductos {
     }
     
      public ArrayList<Producto> GetByCliente(int id, String filtro) {
-        ArrayList<Producto> listaProductos = new ArrayList<Producto>();
+        ArrayList<Producto> listaProductos = new ArrayList<>();
         try {
             st = c.prepareStatement("select p.Id_Producto,p.Descripcion  as Suela,cr.Punto_Inicial, cr.Punto_Final,cr.Descripcion as Corrida,\n"
                     + "cl.Descripcion as Color,pc.PrecioA,pc.PrecioB,PC.PrecioAP,PC.PrecioBP\n"
@@ -221,11 +221,39 @@ public class ObjectProductos {
                 producto.setPrecioBP(rs.getDouble("PrecioBP"));
                 listaProductos.add(producto);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return listaProductos;
     }
+     
+    public ArrayList<Producto> GetByM(String filtro) {
+        ArrayList<Producto> listaProductos = new ArrayList<>();
+        try {
+            st = c.prepareStatement("select p.Id_Producto,p.Descripcion  as Suela,cr.Punto_Inicial, cr.Punto_Final,cr.Descripcion as Corrida,\n"
+                    + "cl.Descripcion as Color\n"
+                    + "from ProduccionPhy.dbo.Producto p\n"
+                    + "inner join ProduccionPhy.dbo.Color as cl\n"
+                    + "on p.Id_Color = cl.Id_Color\n"
+                    + "inner join ProduccionPhy.dbo.Corrida as cr\n"
+                    + "on p.Id_Corrida = cr.Id_Corrida\n"
+                    + "where p.Descripcion like '%" + filtro + "%' and p.Activo = 1 order by p.Descripcion");
+            rs = st.executeQuery();
+            while (rs.next()) {
+                Producto producto = new Producto();
+                producto.setId_Producto(rs.getInt("Id_Producto"));
+                producto.setDescripcion(rs.getString("Suela"));
+                producto.setPti(rs.getFloat("Punto_Inicial"));
+                producto.setPtf(rs.getFloat("Punto_Final"));
+                producto.setDescripcionCorrida(rs.getString("Corrida"));
+                producto.setDescripcionColor(rs.getString("Color"));
+                listaProductos.add(producto);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listaProductos;
+    } 
 
     public boolean productoUpdate(Producto producto) {
         try {
@@ -284,6 +312,21 @@ public class ObjectProductos {
                     + "inner join Producto pd on pd.Id_Producto = p.Id_Producto\n"
                     + "where p.Id_Producto = ?");
             st.setInt(1, id);
+
+            rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+            return 1;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return 1;
+        }
+    }
+      public int validarSuela(String nombre) {
+        try {
+            st = c.prepareStatement("SELECT COUNT (Id_Producto) FROM Producto WHERE (Descripcion = ?) AND Activo = 1");
+            st.setString(1, nombre);
 
             rs = st.executeQuery();
             if (rs.next()) {

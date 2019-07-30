@@ -8,75 +8,18 @@
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT 
- p.Fecha_Entrega,pd.Id_Producto,p.ParesSurt,p.Npedido,
- pd.Descripcion as Suela
-,
-CASE
-	WHEN DATEPART(WK,Fecha_Entrega) = 1  THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 2 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 3 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 4 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 5 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 6 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 7 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 8 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 9 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 10 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 11 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 12 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 13 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 14 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 15 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 16 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 17 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 18 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 19 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 20 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 21 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 22 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 23 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 24 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 25 THEN  p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 26 THEN  p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 27 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 28 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 29 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 30 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 31 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 32 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 33 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 34 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 35 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 36 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 37 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 38 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 39 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 40 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 41 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 42 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 43 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 44 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 45 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 46 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 47 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 48 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 49 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 50 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 51 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 52 THEN p.Pares
- WHEN DATEPART(WK,Fecha_Entrega) = 53 THEN p.Pares
-	END AS Pares
+ pd.Id_Producto,
+ pd.Descripcion as Suela,sum(p.Pares) as Pares,p.ParesSurt
 FROM Dpedido p INNER JOIN ProduccionPhy..Producto pd
 ON p.Id_Producto = pd.Id_Producto
-WHERE DATEPART(WK,p.Fecha_Entrega) = $P{Date}
-ORDER BY p.Fecha_Entrega]]>
+WHERE DATEPART(WK,p.Fecha_Entrega) = $P!{Date}
+GROUP BY pd.Id_Producto,pd.Descripcion,p.ParesSurt
+ORDER BY pd.Descripcion]]>
 	</queryString>
-	<field name="Fecha_Entrega" class="java.sql.Date"/>
 	<field name="Id_Producto" class="java.lang.Short"/>
-	<field name="ParesSurt" class="java.lang.Integer"/>
-	<field name="Npedido" class="java.lang.String"/>
 	<field name="Suela" class="java.lang.String"/>
 	<field name="Pares" class="java.lang.Integer"/>
+	<field name="ParesSurt" class="java.lang.Integer"/>
 	<variable name="Total" class="java.lang.Integer" calculation="Sum">
 		<variableExpression><![CDATA[$F{Pares}]]></variableExpression>
 	</variable>
@@ -89,7 +32,7 @@ ORDER BY p.Fecha_Entrega]]>
 				<reportElement x="1" y="1" width="579" height="33" backcolor="#FF6633" uuid="bf25b804-3314-411b-a10e-24e1648f19ec"/>
 			</rectangle>
 			<staticText>
-				<reportElement mode="Transparent" x="293" y="12" width="48" height="10" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="9eac276b-f7c1-40f0-853b-9c312077e509"/>
+				<reportElement mode="Transparent" x="281" y="12" width="48" height="10" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="9eac276b-f7c1-40f0-853b-9c312077e509"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -97,15 +40,7 @@ ORDER BY p.Fecha_Entrega]]>
 				<text><![CDATA[PARES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="51" y="12" width="48" height="10" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="60af456a-8479-4d86-abc9-209625dfc5ba"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[ENTREGA]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="106" y="12" width="39" height="10" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="ff9a281c-3269-4923-ac13-d8fccc25b8ed"/>
+				<reportElement mode="Transparent" x="8" y="12" width="39" height="10" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="ff9a281c-3269-4923-ac13-d8fccc25b8ed"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -163,14 +98,6 @@ ORDER BY p.Fecha_Entrega]]>
 				</textElement>
 				<text><![CDATA[ENPROC]]></text>
 			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="12" y="12" width="36" height="10" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="0a4db3fb-99c8-4a5f-9a9e-a1d68210b34f"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[PEDIDO]]></text>
-			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
@@ -193,7 +120,7 @@ ORDER BY p.Fecha_Entrega]]>
 				<reportElement x="443" y="-16" width="1" height="27" uuid="4a04ae88-0ee6-4a8a-8538-c11d01eec69d"/>
 			</line>
 			<textField pattern="#,##0" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="293" y="1" width="48" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="3b761214-d2ef-45b6-a439-7f5e9897d507"/>
+				<reportElement mode="Transparent" x="281" y="1" width="48" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="3b761214-d2ef-45b6-a439-7f5e9897d507"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -236,14 +163,6 @@ ORDER BY p.Fecha_Entrega]]>
 			<line>
 				<reportElement x="400" y="-16" width="1" height="27" uuid="2cd74cfc-c71d-4471-a07a-e3489b366b9d"/>
 			</line>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="53" y="1" width="36" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="d2b0de17-d4fb-4a1d-8f54-d92aee2f060e"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{Fecha_Entrega}]]></textFieldExpression>
-			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="false">
 				<reportElement mode="Transparent" x="363" y="1" width="25" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="ca754567-0c2f-4af9-8113-76e1b879da95"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
@@ -253,15 +172,7 @@ ORDER BY p.Fecha_Entrega]]>
 				<textFieldExpression><![CDATA[$F{Pares}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="4" y="1" width="33" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="5540bd5b-eccd-42be-8227-9b5f17430622"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{Npedido}]]></textFieldExpression>
-			</textField>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="106" y="0" width="21" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="81385d02-99a9-4c67-800c-05a718dc3659"/>
+				<reportElement mode="Transparent" x="8" y="0" width="21" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="81385d02-99a9-4c67-800c-05a718dc3659"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -269,7 +180,7 @@ ORDER BY p.Fecha_Entrega]]>
 				<textFieldExpression><![CDATA[$F{Id_Producto}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="136" y="0" width="138" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="34017277-9c2a-470d-a779-8ee7dcebdfef"/>
+				<reportElement mode="Transparent" x="38" y="0" width="221" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="34017277-9c2a-470d-a779-8ee7dcebdfef"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -286,7 +197,7 @@ ORDER BY p.Fecha_Entrega]]>
 			<textField pattern="" isBlankWhenNull="false">
 				<reportElement mode="Transparent" x="411" y="4" width="24" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="c6124ab0-cfae-4fb5-8a52-40900625f682"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="7" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ParesSurt}]]></textFieldExpression>
@@ -294,7 +205,7 @@ ORDER BY p.Fecha_Entrega]]>
 			<textField pattern="" isBlankWhenNull="false">
 				<reportElement mode="Transparent" x="542" y="4" width="24" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="5ec24b0b-ada2-475c-ab39-bab21ac66faf"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="7" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ParesSurt}]]></textFieldExpression>
@@ -302,7 +213,7 @@ ORDER BY p.Fecha_Entrega]]>
 			<textField pattern="" isBlankWhenNull="false">
 				<reportElement mode="Transparent" x="498" y="4" width="24" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="289c1259-814f-48a7-a97a-cd97932aeb17"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="7" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ParesSurt}]]></textFieldExpression>
@@ -310,15 +221,15 @@ ORDER BY p.Fecha_Entrega]]>
 			<textField pattern="" isBlankWhenNull="false">
 				<reportElement mode="Transparent" x="452" y="4" width="24" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="083fa241-72cc-43ea-bec4-50af203f89b8"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="7" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ParesSurt}]]></textFieldExpression>
 			</textField>
-			<textField pattern="" isBlankWhenNull="false">
+			<textField pattern="#,##0" isBlankWhenNull="false">
 				<reportElement mode="Transparent" x="363" y="4" width="29" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="912eb5ee-6705-4781-aeb7-3d403fbad4f1"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="7" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{Total}]]></textFieldExpression>

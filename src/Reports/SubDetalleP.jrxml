@@ -17,7 +17,8 @@ ON d.Id_Producto = pd.Id_Producto
 INNER JOIN ProduccionPhy.dbo.Corrida c
 ON pd.Id_Corrida = c.Id_Corrida
 WHERE p.Npedido = $P!{Numero}
-GROUP BY p.Npedido,d.Id_Producto,c.Descripcion,pd.Descripcion,p.ParesSurt,d.Pares]]>
+GROUP BY p.Npedido,d.Id_Producto,c.Descripcion,pd.Descripcion,p.ParesSurt,d.Pares
+ORDER BY pd.Descripcion]]>
 	</queryString>
 	<field name="Npares" class="java.lang.Integer"/>
 	<field name="Id_Producto" class="java.lang.Short"/>

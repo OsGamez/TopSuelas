@@ -1,6 +1,5 @@
 package ViewLayer;
 
-import DataAccesLayer.Conexion;
 import DataAccesLayer.Server;
 import ObjectLayer.Infisico;
 import ObjectLayer.ObjectAlmacenes;
@@ -9,8 +8,8 @@ import ObjectLayer.ObjectProductos;
 import ObjectLayer.ObjectRCPT;
 import ObjectLayer.PtProducto;
 import ObjectLayer.Sesioninfo;
+import ObjectLayer.objInv;
 import Plugins.Sound;
-import com.sun.glass.events.KeyEvent;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ItemEvent;
@@ -22,13 +21,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.StringTokenizer;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.sound.sampled.Clip;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -46,16 +41,17 @@ public class CapturaInventario extends javax.swing.JFrame {
     ObjectProductos ObjP = new ObjectProductos();
     ObjectAlmacenes ObjA = new ObjectAlmacenes();
     ObjectInfisico objF = new ObjectInfisico();
+    objInv inv = new objInv();
     ObjectRCPT obj = new ObjectRCPT();
     Sesioninfo sesion = new Sesioninfo();
     Connection c = Server.getRcpt();
     Sound sn = new Sound();
     String cadena = "";
-    int sum, CodigoSuela;
-    String am, prod, punto, cantidad;
+    int sum, CodigoSuela, contador = 0;
+    String am, prod, punto, cantidad, tipo = "S", ms;
     int var;
     String c1 = "0", c2 = "0", c3 = "0", c4 = "0", c5 = "0", c6 = "0", c7 = "0", c8 = "0", c9 = "0", c10 = "0", c11 = "0", c12 = "0";
-    ArrayList<String> array = new ArrayList<String>();
+    ArrayList<String> array = new ArrayList<>();
     File fichero = new File("C:\\tsmanager\\datos.txt");//Archivo usado para guardar y leer los datos, con ruta 
     String TbTemp = "";
     DefaultTableModel modelP = new DefaultTableModel() {
@@ -71,24 +67,15 @@ public class CapturaInventario extends javax.swing.JFrame {
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         JtPhylon.getTableHeader().setReorderingAllowed(false);
         LoadColumns();
-        LeerDatos();
         OcultarCampos();
-        JtCod.setEnabled(false);
         TbTemp = sesion.getUsuario();
-    }
-
-    private void BorrarTabla() {
-        objF.dropTable(TbTemp);
+        LoadModelPhy();
     }
 
     private boolean LimpiarTabla() {
-        if (objF.deleteTemp(TbTemp)) {
-            return true;
-        } else {
-            return false;
-        }
+        return objF.deleteTemp();
     }
-    
+
     private void LoadColumns() {
         modelP.addColumn("ID");
         modelP.addColumn("SUELA");
@@ -151,7 +138,7 @@ public class CapturaInventario extends javax.swing.JFrame {
         JtPhylon = new javax.swing.JTable();
         Jpanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        JlistProductos = new javax.swing.JList<>();
+        JlistProductos = new javax.swing.JList<PtProducto>();
         jLabel1 = new javax.swing.JLabel();
         JtAm = new javax.swing.JTextField();
         JlPares = new javax.swing.JLabel();
@@ -161,13 +148,14 @@ public class CapturaInventario extends javax.swing.JFrame {
         JbRemove = new javax.swing.JButton();
         JbClean = new javax.swing.JButton();
         JbGenerar = new javax.swing.JButton();
-        JbGuardar = new javax.swing.JButton();
-        JcCódigo = new javax.swing.JCheckBox();
-        JtCod = new javax.swing.JTextField();
         JbIdSuela = new javax.swing.JLabel();
         JbAm = new javax.swing.JLabel();
         JbPunto = new javax.swing.JLabel();
         JbCantidad = new javax.swing.JLabel();
+        JcCaptura = new javax.swing.JCheckBox();
+        JcAgrupado = new javax.swing.JCheckBox();
+        JcAgrupadoA = new javax.swing.JCheckBox();
+        JbEnviar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("INVENTARIO FISICO");
@@ -215,8 +203,6 @@ public class CapturaInventario extends javax.swing.JFrame {
         JtPhylon.setModel(modelP);
         JtPhylon.setSelectionBackground(new java.awt.Color(102, 153, 255));
         jScrollPane2.setViewportView(JtPhylon);
-
-        Jpanel.setBorder(null);
 
         JlistProductos.setModel(modeloListaProductos);
         JlistProductos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -285,26 +271,6 @@ public class CapturaInventario extends javax.swing.JFrame {
             }
         });
 
-        JbGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/datainboth_directions_transfer_arrow_3091.png"))); // NOI18N
-        JbGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JbGuardarActionPerformed(evt);
-            }
-        });
-
-        JcCódigo.setText("Leer Códigos");
-        JcCódigo.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                JcCódigoItemStateChanged(evt);
-            }
-        });
-
-        JtCod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JtCodActionPerformed(evt);
-            }
-        });
-
         JbIdSuela.setText("jLabel2");
 
         JbAm.setText("jLabel2");
@@ -312,6 +278,34 @@ public class CapturaInventario extends javax.swing.JFrame {
         JbPunto.setText("jLabel2");
 
         JbCantidad.setText("jLabel2");
+
+        JcCaptura.setText("Captura");
+        JcCaptura.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                JcCapturaItemStateChanged(evt);
+            }
+        });
+
+        JcAgrupado.setText("Agrupado / Linea");
+        JcAgrupado.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                JcAgrupadoItemStateChanged(evt);
+            }
+        });
+
+        JcAgrupadoA.setText("Agrupado / Almacén");
+        JcAgrupadoA.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                JcAgrupadoAItemStateChanged(evt);
+            }
+        });
+
+        JbEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/1491313940-repeat_82991.png"))); // NOI18N
+        JbEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbEnviarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -321,15 +315,7 @@ public class CapturaInventario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(JtAm, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
-                        .addComponent(JlPares)
-                        .addGap(18, 18, 18)
-                        .addComponent(JtPares, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(138, 138, 138)
+                        .addGap(524, 524, 524)
                         .addComponent(SUELA)
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -348,10 +334,20 @@ public class CapturaInventario extends javax.swing.JFrame {
                                 .addGap(17, 17, 17)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(273, 273, 273)
-                                        .addComponent(JbEstilo)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(JbCombinacion)
+                                        .addGap(45, 45, 45)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel1)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(JtAm, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(JlPares)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(JtPares, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(JbEstilo)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(JbCombinacion)))
                                         .addGap(22, 22, 22)
                                         .addComponent(JbIdSuela)
                                         .addGap(18, 18, 18)
@@ -362,8 +358,14 @@ public class CapturaInventario extends javax.swing.JFrame {
                                         .addComponent(JbClean, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(35, 35, 35)
                                         .addComponent(JbGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(JbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGap(36, 36, 36)
+                                        .addComponent(JbEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(80, 80, 80)
+                                        .addComponent(JcCaptura)
+                                        .addGap(47, 47, 47)
+                                        .addComponent(JcAgrupado)
+                                        .addGap(34, 34, 34)
+                                        .addComponent(JcAgrupadoA))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(JbCorrida)
                                 .addGap(18, 18, 18)
@@ -373,11 +375,7 @@ public class CapturaInventario extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(JbPi)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(JbPf)))
-                        .addGap(74, 74, 74)
-                        .addComponent(JcCódigo)
-                        .addGap(46, 46, 46)
-                        .addComponent(JtCod, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(JbPf)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -389,11 +387,11 @@ public class CapturaInventario extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(SUELA)
                             .addComponent(JtSuela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JbPunto)
                             .addComponent(JtAm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
                             .addComponent(JlPares)
-                            .addComponent(JtPares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JbPunto))
+                            .addComponent(JtPares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -402,16 +400,17 @@ public class CapturaInventario extends javax.swing.JFrame {
                                 .addGap(28, 28, 28)
                                 .addComponent(JbCantidad)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JbRemove)
-                            .addComponent(JbClean)
-                            .addComponent(JbGenerar)
-                            .addComponent(JbGuardar)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(JbRemove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JbClean, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JbGenerar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JbEnviar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JcCódigo)
-                            .addComponent(JtCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(JcCaptura)
+                            .addComponent(JcAgrupado)
+                            .addComponent(JcAgrupadoA))))
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbCorrida)
@@ -440,18 +439,18 @@ public class CapturaInventario extends javax.swing.JFrame {
         } else {
             ArrayList<PtProducto> listaProd = obj.getById(JtSuela.getText());
 
-            for (PtProducto prod : listaProd) {
-                modeloListaProductos.addElement(prod);
-            }
+            listaProd.forEach((pt) -> {
+                modeloListaProductos.addElement(pt);
+            });
         }
     }//GEN-LAST:event_JtSuelaKeyReleased
 
     private void JtSuelaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtSuelaKeyTyped
-        char c = evt.getKeyChar();
-        if (Character.isLowerCase(c)) {
-            String cad = ("" + c).toUpperCase();
-            c = cad.charAt(0);
-            evt.setKeyChar(c);
+        char cr = evt.getKeyChar();
+        if (Character.isLowerCase(cr)) {
+            String cad = ("" + cr).toUpperCase();
+            cr = cad.charAt(0);
+            evt.setKeyChar(cr);
         }
     }//GEN-LAST:event_JtSuelaKeyTyped
 
@@ -531,7 +530,7 @@ public class CapturaInventario extends javax.swing.JFrame {
         dt[3] = JbEstilo.getText();
         dt[4] = JbCorrida.getText();
         dt[5] = JbCombinacion.getText();
-        dt[6] = "E";
+        dt[6] = tipo;
         dt[7] = c1;
         dt[8] = c2;
         dt[9] = c3;
@@ -547,28 +546,58 @@ public class CapturaInventario extends javax.swing.JFrame {
         dt[19] = "0";
         dt[20] = "0";
         dt[21] = JtPares.getText();
-        modelP.addRow(dt);
-        LimpiarCampos();
-    }
 
-    private void DesabilitarCampos() {
-        JtAm.setEnabled(false);
-        JtPares.setEnabled(false);
-        JtSuela.setEnabled(false);
-        JtCod.setEnabled(true);
-        JtCod.requestFocus();
-    }
+        Infisico inv = new Infisico();
+        inv.setProducto(Integer.parseInt(dt[0]));
+        inv.setAlmacen(Integer.parseInt(dt[2]));
+        inv.setEstilo(Integer.parseInt(dt[3]));
+        inv.setCorrida(Integer.parseInt(dt[4]));
+        inv.setCombinacion(Integer.parseInt(dt[5]));
+        inv.setTipo(tipo);
+        inv.setPto1(Integer.parseInt(dt[7]));
+        inv.setPto2(Integer.parseInt(dt[8]));
+        inv.setPto3(Integer.parseInt(dt[9]));
+        inv.setPto4(Integer.parseInt(dt[10]));
+        inv.setPto5(Integer.parseInt(dt[11]));
+        inv.setPto6(Integer.parseInt(dt[12]));
+        inv.setPto7(Integer.parseInt(dt[13]));
+        inv.setPto8(Integer.parseInt(dt[14]));
+        inv.setPto9(Integer.parseInt(dt[15]));
+        inv.setPto10(Integer.parseInt(dt[16]));
+        inv.setPto11(Integer.parseInt(dt[17]));
+        inv.setPto12(Integer.parseInt(dt[18]));
+        inv.setPto13(Integer.parseInt(dt[19]));
+        inv.setPto14(Integer.parseInt(dt[20]));
+        inv.setTotalPares(Integer.parseInt(dt[21]));
+        
+        if(objF.AddTemp(inv)){
+            modelP.addRow(dt);
+            LimpiarCampos();
+        }else{
+            JOptionPane.showMessageDialog(this, "Ocurrio un error!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+        }
 
-    private void HabilitarCampos() {
-        JtAm.setEnabled(true);
-        JtPares.setEnabled(true);
-        JtSuela.setEnabled(true);
-        JtCod.setEnabled(false);
-        JtAm.requestFocus();
+//        if (objF.VerificarTabla(TbTemp) == 0) {//Verifica si existe la tabla temporal 
+//            if (objF.CrearTb(TbTemp)) {//Crea la tabla
+//                if (objF.AddTemporal(inv, TbTemp)) {
+//                    modelP.addRow(dt);
+//                    LimpiarCampos();
+//                } else {
+//                    JOptionPane.showMessageDialog(this, "Ocurrio un error!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+//                }
+//            }
+//        } else {
+//            if (objF.AddTemporal(inv, TbTemp)) {
+//                modelP.addRow(dt);
+//                LimpiarCampos();
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Ocurrio un error!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+//            }
+//        }
     }
 
     private void LimpiarCampos() {
-        JtAm.setText("");
+        //JtAm.setText("");
         JtSuela.setText("");
         JtPares.setText("");
         JbCorrida.setText("");
@@ -626,8 +655,13 @@ public class CapturaInventario extends javax.swing.JFrame {
         if (row >= 0) {
             int opcion = JOptionPane.showConfirmDialog(this, "¿Quieres omitir este registro?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (opcion == JOptionPane.YES_OPTION) {
-                modelP.removeRow(row);
-                JtAm.requestFocus();
+                int id = Integer.parseInt(JtPhylon.getValueAt(row, 0).toString());
+                if (objF.deleteByPt(id)) {
+                    modelP.removeRow(row);
+                    JtAm.requestFocus();
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo eliminar el registro");
+                }
             }
         } else {
             JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
@@ -640,15 +674,13 @@ public class CapturaInventario extends javax.swing.JFrame {
         if (row > 0) {
             int opcion = JOptionPane.showConfirmDialog(this, "¿Estas seguro de limpiar los registros?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (opcion == JOptionPane.YES_OPTION) {
-                VaciarDatos();
-                CleanTable();
-                JOptionPane.showMessageDialog(null, "Se han limpiado los registros");
-                JtAm.requestFocus();
-//                if (LimpiarTabla()) {
-//                    
-//                } else {
-//                    JOptionPane.showMessageDialog(null, "No se pudo limpiar el registro");
-//                }
+                if (LimpiarTabla()) {
+                    CleanTable();
+                    JOptionPane.showMessageDialog(null, "Se han limpiado los registros");
+                    JtAm.requestFocus();
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo limpiar el registro");
+                }
             }
         } else {
             JOptionPane.showMessageDialog(null, "No hay registros");
@@ -657,12 +689,22 @@ public class CapturaInventario extends javax.swing.JFrame {
     }//GEN-LAST:event_JbCleanActionPerformed
 
     private void JbGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbGenerarActionPerformed
-        Generar();
+        if (contador > 1) {
+            JOptionPane.showMessageDialog(this, "Solo debes de seleccionar una opción!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+        } else if (contador == 0) {
+            JOptionPane.showMessageDialog(this, "Debes de seleccionar una opción!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+        } else if (contador == 1) {
+            if (JcCaptura.isSelected()) {
+                Reporte();
+            } else if (JcAgrupado.isSelected()) {
+                ReporteAgrupado();
+            }else if(JcAgrupadoA.isSelected()){
+                ReporteAgrupadoAlmacen();
+            }
+        }
     }//GEN-LAST:event_JbGenerarActionPerformed
 
     private void Generar() {
-        String tipo = "S";
-        String ms = "";
         int row = JtPhylon.getRowCount();
 
         if (ValidarDetalle()) {
@@ -736,27 +778,12 @@ public class CapturaInventario extends javax.swing.JFrame {
                 }
             }
         }
-        if (ms == "OK") {
-            Reporte();
-        } else if (ms == "ERROR") {
+        if ("OK".equals(ms)) {
+
+        } else if ("ERROR".equals(ms)) {
             JOptionPane.showMessageDialog(this, "Ocurrio un error!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
         }
     }
-
-    private void JbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbGuardarActionPerformed
-        if (ValidarDetalle()) {
-            if (objF.VerificarTabla(TbTemp) == 0) {
-                JOptionPane.showMessageDialog(null, "Revisa el registro antes del concentrado");
-            } else {
-                if (objF.validarInv(TbTemp) == 0) {
-                    JOptionPane.showMessageDialog(null, "Revisa el registro antes del concentrado");
-                } else {
-                    Guardar();
-                }
-            }
-
-        }
-    }//GEN-LAST:event_JbGuardarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         Cerrar();
@@ -770,89 +797,44 @@ public class CapturaInventario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JtSuelaMouseClicked
 
-    private void JcCódigoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JcCódigoItemStateChanged
-        if (evt.getStateChange() == ItemEvent.SELECTED) {
-            DesabilitarCampos();
-        } else {
-            HabilitarCampos();
-        }
-
-    }//GEN-LAST:event_JcCódigoItemStateChanged
-
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
 
     }//GEN-LAST:event_formKeyPressed
 
-    private void JtCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtCodActionPerformed
-        String cadena = JtCod.getText();
-
-        if (JtAm.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Debes de elegir un almacén", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-            JtCod.setText("");
-        } else {
-            if (cadena.length() != 13) {
-                sn.play();
-                JOptionPane.showMessageDialog(null, "El tamaño del código no es correcto", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                JtCod.setText("");
-            } else {
-                am = cadena.substring(0, 2);
-                prod = cadena.substring(2, 7);
-                CodigoSuela = Integer.parseInt(prod);
-                punto = cadena.substring(7, 10);
-                cantidad = cadena.substring(10, 13);
-                
-                
-                ArrayList<PtProducto> listaProd = obj.GetByInventario(CodigoSuela);
-                if (listaProd.size() > 0) {
-
-                    for (PtProducto pt : listaProd) {
-                        JbCorrida.setText(String.valueOf(pt.getCorrida()));
-                        JbProducto.setText(pt.getDescripcion());
-                        JbIdProd.setText(String.valueOf(pt.getSuelaPhy()));
-                        JbPi.setText(String.valueOf(pt.getPti()));
-                        JbPf.setText(String.valueOf(pt.getPtf()));
-                        JbEstilo.setText(String.valueOf(pt.getEstilo()));
-                        JbCombinacion.setText(String.valueOf(pt.getCombinacion()));
-                        JbIdSuela.setText(String.valueOf(pt.getSuelaPhy()));
-                        //JbAm.setText(am);
-                        JbPunto.setText(punto);
-                        JbCantidad.setText(cantidad);
-                    }
-                ComprobaroPuntos();    
-                } else {
-                    sn.play();
-                    JOptionPane.showMessageDialog(null, "Producto no encontrado", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                    JtCod.setText("");
-                }
-
-                //ObtenerProductoRCPT();
-                
-            }
+    private void JcCapturaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JcCapturaItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            contador++;
+        } else if (evt.getStateChange() == ItemEvent.DESELECTED) {
+            contador--;
         }
-    }//GEN-LAST:event_JtCodActionPerformed
+    }//GEN-LAST:event_JcCapturaItemStateChanged
 
-    private void ObtenerProductoRCPT() {
-//        ArrayList<PtProducto> listaProd = obj.GetByInventario(CodigoSuela);
-//
-//        if (listaProd.size() > 0) {
-//            for (PtProducto pt : listaProd) {
-//                JbCorrida.setText(String.valueOf(pt.getCorrida()));
-//                JbProducto.setText(pt.getDescripcion());
-//                JbIdProd.setText(String.valueOf(pt.getSuelaPhy()));
-//                JbPi.setText(String.valueOf(pt.getPti()));
-//                JbPf.setText(String.valueOf(pt.getPtf()));
-//                JbEstilo.setText(String.valueOf(pt.getEstilo()));
-//                JbCombinacion.setText(String.valueOf(pt.getCombinacion()));
-//                JbIdSuela.setText(String.valueOf(pt.getSuelaPhy()));
-//                //JbAm.setText(am);
-//                JbPunto.setText(punto);
-//                JbCantidad.setText(cantidad);
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Producto no encontrado", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-//            JtCod.setText("");
-//        }
-    }
+    private void JcAgrupadoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JcAgrupadoItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            contador++;
+        } else if (evt.getStateChange() == ItemEvent.DESELECTED) {
+            contador--;
+        }
+    }//GEN-LAST:event_JcAgrupadoItemStateChanged
+
+    private void JcAgrupadoAItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JcAgrupadoAItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            contador++;
+        } else if (evt.getStateChange() == ItemEvent.DESELECTED) {
+            contador--;
+        }
+    }//GEN-LAST:event_JcAgrupadoAItemStateChanged
+
+    private void JbEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEnviarActionPerformed
+        if(inv.validarEnvio() == 0){
+            CleanTable();
+            LoadModelEnvio();
+            Guardar();
+        }else{
+           JOptionPane.showMessageDialog(null, "Tienes folios por afectar", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE); 
+        }
+        
+    }//GEN-LAST:event_JbEnviarActionPerformed
 
     private void ComprobaroPuntos() {
         String dt[] = new String[22];
@@ -864,17 +846,15 @@ public class CapturaInventario extends javax.swing.JFrame {
 
         for (float i = Pti; i <= pto; i++) {
             array.add(String.valueOf(cant));
-             System.out.println(i);
+            System.out.println(i);
         }
 
         if (Pti != pto) {
             for (float j = Pti + num; j <= pto; j++) {
                 array.add(String.valueOf(cant));
-                 System.out.println(j);
+                System.out.println(j);
             }
         }
-        
-       
 
         switch (array.size()) {
             case 12:
@@ -943,10 +923,6 @@ public class CapturaInventario extends javax.swing.JFrame {
     }
 
     private void Guardar() {
-        String ms = "";
-        CleanTable();
-        LoadModelPhy();
-
         int row = JtPhylon.getRowCount();
         for (int i = 0; i < row; i++) {
             String pt = JtPhylon.getValueAt(i, 0).toString();
@@ -992,30 +968,30 @@ public class CapturaInventario extends javax.swing.JFrame {
             int Pto14 = Integer.parseInt(pt14);
             int Tpares = Integer.parseInt(tpares);
 
-            Infisico inv = new Infisico();
-            inv.setProducto(Pt);
-            inv.setAlmacen(Am);
-            inv.setEstilo(Est);
-            inv.setCorrida(Corr);
-            inv.setCombinacion(Comb);
-            inv.setTipo(Tipo);
-            inv.setPto1(Pto1);
-            inv.setPto2(Pto2);
-            inv.setPto3(Pto3);
-            inv.setPto4(Pto4);
-            inv.setPto5(Pto5);
-            inv.setPto6(Pto6);
-            inv.setPto7(Pto7);
-            inv.setPto8(Pto8);
-            inv.setPto9(Pto9);
-            inv.setPto10(Pto10);
-            inv.setPto11(Pto11);
-            inv.setPto12(Pto12);
-            inv.setPto13(Pto13);
-            inv.setPto14(Pto14);
-            inv.setTotalPares(Tpares);
+            Infisico inve = new Infisico();
+            inve.setProducto(Pt);
+            inve.setAlmacen(Am);
+            inve.setEstilo(Est);
+            inve.setCorrida(Corr);
+            inve.setCombinacion(Comb);
+            inve.setTipo(Tipo);
+            inve.setPto1(Pto1);
+            inve.setPto2(Pto2);
+            inve.setPto3(Pto3);
+            inve.setPto4(Pto4);
+            inve.setPto5(Pto5);
+            inve.setPto6(Pto6);
+            inve.setPto7(Pto7);
+            inve.setPto8(Pto8);
+            inve.setPto9(Pto9);
+            inve.setPto10(Pto10);
+            inve.setPto11(Pto11);
+            inve.setPto12(Pto12);
+            inve.setPto13(Pto13);
+            inve.setPto14(Pto14);
+            inve.setTotalPares(Tpares);
 
-            if (objF.AddInventario(inv)) {
+            if (objF.AddInventario(inve)) {
                 ms = "OK";
             } else {
                 ms = "ERROR";
@@ -1027,82 +1003,121 @@ public class CapturaInventario extends javax.swing.JFrame {
             CleanTable();
             //BorrarTabla();
             //VaciarDatos();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Ocurrio un error!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
             CleanTable();
+            LoadModelPhy();
         }
     }
 
     private void LoadModelPhy() {
-        ArrayList<Infisico> listaInv = objF.InvGetTemp(TbTemp);
+        ArrayList<Infisico> listaInv = objF.GetInventario();
 
-        modelP.setNumRows(listaInv.size());
+        if (listaInv.size() > 0) {
+            modelP.setNumRows(listaInv.size());
 
-        for (int i = 0; i < listaInv.size(); i++) {
-            Infisico inv = listaInv.get(i);
+            for (int i = 0; i < listaInv.size(); i++) {
+                Infisico inv = listaInv.get(i);
 
-            modelP.setValueAt(inv.getProducto(), i, 0);
-            modelP.setValueAt(inv.getAlmacen(), i, 2);
-            modelP.setValueAt(inv.getEstilo(), i, 3);
-            modelP.setValueAt(inv.getCorrida(), i, 4);
-            modelP.setValueAt(inv.getCombinacion(), i, 5);
-            modelP.setValueAt(inv.getTipo(), i, 6);
-            modelP.setValueAt(inv.getPto1(), i, 7);
-            modelP.setValueAt(inv.getPto2(), i, 8);
-            modelP.setValueAt(inv.getPto3(), i, 9);
-            modelP.setValueAt(inv.getPto4(), i, 10);
-            modelP.setValueAt(inv.getPto5(), i, 11);
-            modelP.setValueAt(inv.getPto6(), i, 12);
-            modelP.setValueAt(inv.getPto7(), i, 13);
-            modelP.setValueAt(inv.getPto8(), i, 14);
-            modelP.setValueAt(inv.getPto9(), i, 15);
-            modelP.setValueAt(inv.getPto10(), i, 16);
-            modelP.setValueAt(inv.getPto11(), i, 17);
-            modelP.setValueAt(inv.getPto12(), i, 18);
-            modelP.setValueAt(inv.getPto13(), i, 19);
-            modelP.setValueAt(inv.getPto14(), i, 20);
-            modelP.setValueAt(inv.getTotalPares(), i, 21);
+                modelP.setValueAt(inv.getProducto(), i, 0);
+                modelP.setValueAt(inv.getSuela(), i, 1);
+                modelP.setValueAt(inv.getAlmacen(), i, 2);
+                modelP.setValueAt(inv.getEstilo(), i, 3);
+                modelP.setValueAt(inv.getCorrida(), i, 4);
+                modelP.setValueAt(inv.getCombinacion(), i, 5);
+                modelP.setValueAt(inv.getTipo(), i, 6);
+                modelP.setValueAt(inv.getPto1(), i, 7);
+                modelP.setValueAt(inv.getPto2(), i, 8);
+                modelP.setValueAt(inv.getPto3(), i, 9);
+                modelP.setValueAt(inv.getPto4(), i, 10);
+                modelP.setValueAt(inv.getPto5(), i, 11);
+                modelP.setValueAt(inv.getPto6(), i, 12);
+                modelP.setValueAt(inv.getPto7(), i, 13);
+                modelP.setValueAt(inv.getPto8(), i, 14);
+                modelP.setValueAt(inv.getPto9(), i, 15);
+                modelP.setValueAt(inv.getPto10(), i, 16);
+                modelP.setValueAt(inv.getPto11(), i, 17);
+                modelP.setValueAt(inv.getPto12(), i, 18);
+                modelP.setValueAt(inv.getPto13(), i, 19);
+                modelP.setValueAt(inv.getPto14(), i, 20);
+                modelP.setValueAt(inv.getTotalPares(), i, 21);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay registros", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    
+    private void LoadModelEnvio() {
+        ArrayList<Infisico> listaInv = objF.GetInventarioAgrupado();
+
+        if (listaInv.size() > 0) {
+            modelP.setNumRows(listaInv.size());
+
+            for (int i = 0; i < listaInv.size(); i++) {
+                Infisico inv = listaInv.get(i);
+
+                modelP.setValueAt(inv.getProducto(), i, 0);
+                modelP.setValueAt(inv.getSuela(), i, 1);
+                modelP.setValueAt(inv.getAlmacen(), i, 2);
+                modelP.setValueAt(inv.getEstilo(), i, 3);
+                modelP.setValueAt(inv.getCorrida(), i, 4);
+                modelP.setValueAt(inv.getCombinacion(), i, 5);
+                modelP.setValueAt(inv.getTipo(), i, 6);
+                modelP.setValueAt(inv.getPto1(), i, 7);
+                modelP.setValueAt(inv.getPto2(), i, 8);
+                modelP.setValueAt(inv.getPto3(), i, 9);
+                modelP.setValueAt(inv.getPto4(), i, 10);
+                modelP.setValueAt(inv.getPto5(), i, 11);
+                modelP.setValueAt(inv.getPto6(), i, 12);
+                modelP.setValueAt(inv.getPto7(), i, 13);
+                modelP.setValueAt(inv.getPto8(), i, 14);
+                modelP.setValueAt(inv.getPto9(), i, 15);
+                modelP.setValueAt(inv.getPto10(), i, 16);
+                modelP.setValueAt(inv.getPto11(), i, 17);
+                modelP.setValueAt(inv.getPto12(), i, 18);
+                modelP.setValueAt(inv.getPto13(), i, 19);
+                modelP.setValueAt(inv.getPto14(), i, 20);
+                modelP.setValueAt(inv.getTotalPares(), i, 21);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay registros", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
-    private void ReporteGroup() {
+    private void ReporteAgrupadoAlmacen() {
         try {
             JasperReport reporte = null;
-            reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("/Reports/InventarioConcentrado.jasper"));
+            reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("/Reports/InventarioDetallado.jasper"));
             try {
-                Map par = new HashMap();
-                par.put("tabla", TbTemp);
-                JasperPrint jprint = JasperFillManager.fillReport(reporte, par, c);
+                JasperPrint jprint = JasperFillManager.fillReport(reporte, null, c);
                 JasperViewer view = new JasperViewer(jprint, false);
 
                 view.setVisible(true);
                 view.setIconImage(getImage());
                 view.setTitle("TOP-SUELAS");
                 view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                view.addWindowListener(new java.awt.event.WindowAdapter() {
-
-                    public void windowClosing(java.awt.event.WindowEvent evt) {
-                        if (JOptionPane.showConfirmDialog(null, new Object[]{"Quieres guardar las suelas en el inventario?"}, "JOPtion", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
-                            Guardar();
-                        }
-                    }
-                });
+//                view.addWindowListener(new java.awt.event.WindowAdapter() {
+//
+//                    public void windowClosing(java.awt.event.WindowEvent evt) {
+//                        if (JOptionPane.showConfirmDialog(null, new Object[]{"Quieres guardar las suelas en el inventario?"}, "JOPtion", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+//                            Guardar();
+//                        }
+//                    }
+//                });
             } catch (JRException ex) {
                 Logger.getLogger(Bancos.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (JRException ex) {
-            Logger.getLogger(PlaneacionPhy.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CapturaInventario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    private void Reporte() {
+    private void ReporteAgrupado() {
         try {
             JasperReport reporte = null;
-            reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("/Reports/InventarioAlmacen.jasper"));
+            reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("/Reports/InvAgrupadoLinea.jasper"));
             try {
-                Map par = new HashMap();
-                par.put("tabla", TbTemp);
-                JasperPrint jprint = JasperFillManager.fillReport(reporte, par, c);
+                JasperPrint jprint = JasperFillManager.fillReport(reporte, null, c);
                 JasperViewer view = new JasperViewer(jprint, false);
 
                 view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -1110,10 +1125,30 @@ public class CapturaInventario extends javax.swing.JFrame {
                 view.setIconImage(getImage());
                 view.setTitle("TOP-SUELAS");
             } catch (JRException ex) {
-                Logger.getLogger(PlaneacionPhy.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CapturaInventario.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (JRException ex) {
-            Logger.getLogger(PlaneacionPhy.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CapturaInventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void Reporte() {
+        try {
+            JasperReport reporte;
+            reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("/Reports/Inventario.jasper"));
+            try {
+                JasperPrint jprint = JasperFillManager.fillReport(reporte, null, c);
+                JasperViewer view = new JasperViewer(jprint, false);
+
+                view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                view.setVisible(true);
+                view.setIconImage(getImage());
+                view.setTitle("TOP-SUELAS");
+            } catch (JRException ex) {
+                Logger.getLogger(CapturaInventario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (JRException ex) {
+            Logger.getLogger(CapturaInventario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -1188,7 +1223,6 @@ public class CapturaInventario extends javax.swing.JFrame {
         JbPunto.setText("");
         JbCantidad.setText("");
         JbAm.setText("");
-        JtCod.setText("");
         array.clear();
         c1 = "0";
         c2 = "0";
@@ -1223,36 +1257,36 @@ public class CapturaInventario extends javax.swing.JFrame {
         }
     }
 
-    private void LeerDatos() {
-        FileReader fr = null;
-        BufferedReader br = null;
-
-        if (fichero.exists()) {
-            try {
-                fr = new FileReader(fichero);
-                br = new BufferedReader(fr);
-                String linea;
-
-                while ((linea = br.readLine()) != null) {
-                    if (linea.equals("")) {
-                        System.out.println("VACIO");
-                    } else {
-                        StringTokenizer dt = new StringTokenizer(linea, "|");
-                        Vector x = new Vector();
-                        while (dt.hasMoreTokens()) {
-                            x.addElement(dt.nextToken());
-                        }
-                        modelP.addRow(x);
-                    }
-
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "No existe ningun archivo");
-        }
-    }
+//    private void LeerDatos() {
+//        FileReader fr = null;
+//        BufferedReader br = null;
+//
+//        if (fichero.exists()) {
+//            try {
+//                fr = new FileReader(fichero);
+//                br = new BufferedReader(fr);
+//                String linea;
+//
+//                while ((linea = br.readLine()) != null) {
+//                    if (linea.equals("")) {
+//                        System.out.println("VACIO");
+//                    } else {
+//                        StringTokenizer dt = new StringTokenizer(linea, "|");
+//                        Vector x = new Vector();
+//                        while (dt.hasMoreTokens()) {
+//                            x.addElement(dt.nextToken());
+//                        }
+//                        modelP.addRow(x);
+//                    }
+//
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(null, "No existe ningun archivo");
+//        }
+//    }
 
     private void VaciarDatos() {
         try {
@@ -1273,13 +1307,7 @@ public class CapturaInventario extends javax.swing.JFrame {
         int eleccion = JOptionPane.showOptionDialog(this, "¿Deseas cerrar esta ventana?", "TOP-SUELAS",
                 0, 0, null, botones, this);
         if (eleccion == JOptionPane.YES_OPTION) {
-            if (this.JtPhylon.getRowCount() == 0 && this.JtPhylon.getSelectedRow() == -1) {
-                this.dispose();
-            } else {
-                GuardarFichero();
-                this.dispose();
-
-            }
+            this.dispose();
         } else if (eleccion == JOptionPane.NO_OPTION) {
         }
     }
@@ -1326,9 +1354,9 @@ public class CapturaInventario extends javax.swing.JFrame {
     private javax.swing.JButton JbClean;
     private javax.swing.JLabel JbCombinacion;
     private javax.swing.JLabel JbCorrida;
+    private javax.swing.JButton JbEnviar;
     private javax.swing.JLabel JbEstilo;
     private javax.swing.JButton JbGenerar;
-    private javax.swing.JButton JbGuardar;
     private javax.swing.JLabel JbIdProd;
     private javax.swing.JLabel JbIdSuela;
     private javax.swing.JLabel JbPf;
@@ -1336,12 +1364,13 @@ public class CapturaInventario extends javax.swing.JFrame {
     private javax.swing.JLabel JbProducto;
     private javax.swing.JLabel JbPunto;
     private javax.swing.JButton JbRemove;
-    private javax.swing.JCheckBox JcCódigo;
+    private javax.swing.JCheckBox JcAgrupado;
+    private javax.swing.JCheckBox JcAgrupadoA;
+    private javax.swing.JCheckBox JcCaptura;
     private javax.swing.JLabel JlPares;
     private javax.swing.JList<PtProducto> JlistProductos;
     private javax.swing.JPanel Jpanel;
     public javax.swing.JTextField JtAm;
-    private javax.swing.JTextField JtCod;
     public javax.swing.JTextField JtPares;
     public javax.swing.JTable JtPhylon;
     private javax.swing.JTextField JtSuela;

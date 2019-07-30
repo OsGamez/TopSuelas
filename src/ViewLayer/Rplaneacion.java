@@ -46,6 +46,7 @@ public class Rplaneacion extends javax.swing.JFrame {
         JbImprimir = new javax.swing.JButton();
         JdInicio = new com.toedter.calendar.JDateChooser();
         JdFin = new com.toedter.calendar.JDateChooser();
+        JcSemanalAgrupado = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("REPORTES PLANEACIÓN");
@@ -67,7 +68,7 @@ public class Rplaneacion extends javax.swing.JFrame {
             }
         });
 
-        JcSemanalS.setText("Semanal / Suela");
+        JcSemanalS.setText("Semanal / Día / Suela");
         JcSemanalS.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 JcSemanalSItemStateChanged(evt);
@@ -109,11 +110,18 @@ public class Rplaneacion extends javax.swing.JFrame {
             }
         });
 
+        JcSemanalAgrupado.setText("Semanal / Suela");
+        JcSemanalAgrupado.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                JcSemanalAgrupadoItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JcDetalle)
@@ -121,25 +129,26 @@ public class Rplaneacion extends javax.swing.JFrame {
                     .addComponent(JcSemanalS))
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JcMensual)
+                    .addComponent(JcmSuela)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JcMensual)
-                            .addComponent(JcmSuela))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                        .addGap(7, 7, 7)
+                        .addComponent(JbImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JcSemanalAgrupado))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
-                        .addGap(37, 37, 37))
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(JdFin, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                            .addComponent(JdInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(JcPedido)
                         .addGap(27, 27, 27)
-                        .addComponent(JtNpedido, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JbImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(JdFin, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                        .addComponent(JdInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(JtNpedido, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -161,18 +170,17 @@ public class Rplaneacion extends javax.swing.JFrame {
                         .addComponent(JdInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
                         .addComponent(JdFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JcSemanalS)
-                            .addComponent(JcPedido)
-                            .addComponent(JtNpedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                        .addComponent(JbImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(95, 95, 95))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(JcPedido)
+                        .addComponent(JtNpedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(JcSemanalS)
+                        .addComponent(JcSemanalAgrupado)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addComponent(JbImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -512,6 +520,64 @@ public class Rplaneacion extends javax.swing.JFrame {
                 } else if (JdFin.getDate() == null && JdInicio.getDate() != null) {
                     JOptionPane.showMessageDialog(this, "Ingresa una fecha final", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
                 }
+            }else if(JcSemanalAgrupado.isSelected()){
+                if (JdInicio.getDate() == null && JdFin.getDate() == null) {
+                    try {
+                        JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reports/PsemanalSuelaAgrupada.jasper"));
+                        try {
+
+                            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, c);
+                            JasperViewer view = new JasperViewer(jprint, false);
+
+                            this.toBack();
+                            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                            view.setVisible(true);
+                            view.setIconImage(getImage());
+                            view.setTitle("TOP-SUELAS");
+                        } catch (JRException ex) {
+                            Logger.getLogger(Colores.class.getName()).log(Level.SEVERE, null, ex);
+                            JOptionPane.showMessageDialog(this, ex, "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                        }
+                    } catch (JRException ex) {
+                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(this, ex, "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                    }
+                }else if (JdInicio.getDate() != null && JdFin.getDate() != null) {
+                    String formato = JdInicio.getDateFormatString();
+                    String formato2 = JdFin.getDateFormatString();
+                    Date date = JdInicio.getDate();
+                    Date date2 = JdFin.getDate();
+                    SimpleDateFormat sm = new SimpleDateFormat(formato);
+                    SimpleDateFormat sm2 = new SimpleDateFormat(formato2);
+                    fecha = String.valueOf(sm.format(date));
+                    fecha2 = String.valueOf(sm2.format(date2));
+                    Map par = new HashMap();
+                    par.put("fecha", fecha);
+                    par.put("fecha2", fecha2);
+                    try {
+                        JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reports/PsemanalSuelaAgrupada.jasper"));
+                        try {
+
+                            JasperPrint jprint = JasperFillManager.fillReport(reporte, par, c);
+                            JasperViewer view = new JasperViewer(jprint, false);
+
+                            this.toBack();
+                            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                            view.setVisible(true);
+                            view.setIconImage(getImage());
+                            view.setTitle("TOP-SUELAS");
+                        } catch (JRException ex) {
+                            Logger.getLogger(Colores.class.getName()).log(Level.SEVERE, null, ex);
+                            JOptionPane.showMessageDialog(this, ex, "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                        }
+                    } catch (JRException ex) {
+                        ex.printStackTrace();
+                    }
+                } else if (JdInicio.getDate() == null && JdFin.getDate() != null) {
+                    JOptionPane.showMessageDialog(this, "Ingresa una fecha de inicio", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                } else if (JdFin.getDate() == null && JdInicio.getDate() != null) {
+                    JOptionPane.showMessageDialog(this, "Ingresa una fecha final", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                }
             } else if (JcPedido.isSelected()) {
                 if (JtNpedido.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Ingresa un numero de pedido", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
@@ -546,6 +612,14 @@ public class Rplaneacion extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
+
+    private void JcSemanalAgrupadoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JcSemanalAgrupadoItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            contador++;
+        } else if (evt.getStateChange() == ItemEvent.DESELECTED) {
+            contador--;
+        }
+    }//GEN-LAST:event_JcSemanalAgrupadoItemStateChanged
 
     public Image getImage() {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/PhotoPrint_11187.png"));
@@ -593,6 +667,7 @@ public class Rplaneacion extends javax.swing.JFrame {
     private javax.swing.JCheckBox JcMensual;
     private javax.swing.JCheckBox JcPedido;
     private javax.swing.JCheckBox JcSemanal;
+    private javax.swing.JCheckBox JcSemanalAgrupado;
     private javax.swing.JCheckBox JcSemanalS;
     private javax.swing.JCheckBox JcmSuela;
     private com.toedter.calendar.JDateChooser JdFin;

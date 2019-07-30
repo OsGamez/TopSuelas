@@ -6,9 +6,18 @@ public class Parametro {
     private int Entrada;
     private int Salida;
     private int Factura;
+    private int Folio;
     private String Mes;
     
     public Parametro() {
+    }
+
+    public int getFolio() {
+        return Folio;
+    }
+
+    public void setFolio(int Folio) {
+        this.Folio = Folio;
     }
 
     public String getMes() {

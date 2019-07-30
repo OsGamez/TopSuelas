@@ -888,7 +888,7 @@
 	</columnHeader>
 	<detail>
 		<band height="68" splitType="Stretch">
-			<textField pattern="" isBlankWhenNull="false">
+			<textField pattern="#,##0" isBlankWhenNull="false">
 				<reportElement mode="Transparent" x="438" y="5" width="28" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="728d42ac-cbf1-4c9d-b4ec-c29227a920cb"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>

@@ -24,7 +24,7 @@ public class Server {
             if (cbz == null) {
                 String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
                 Class.forName(driver);
-                cbz = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;databaseName=CobranzaPhy", "sa", "Admin1305");
+                cbz = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;database=CobranzaPhy", "sa", "Admin1305");
             }
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();
@@ -37,7 +37,7 @@ public class Server {
             if (Rc == null) {
                 String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
                 Class.forName(driver);
-                Rc = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;databaseName=RcobranzaPhy", "sa", "Admin1305");
+                Rc = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;database=RcobranzaPhy", "sa", "Admin1305");
             }
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();
@@ -50,7 +50,7 @@ public class Server {
             if (prod == null) {
                 String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
                 Class.forName(driver);
-                prod = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;databaseName=ProduccionPhy", "sa", "Admin1305");
+                prod = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;database=ProduccionPhy", "sa", "Admin1305");
             }
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();
@@ -63,7 +63,7 @@ public class Server {
             if (pt == null) {
                 String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
                 Class.forName(driver);
-                pt = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;databaseName=RPTPhylon", "sa", "Admin1305");
+                pt = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;database=RPTPhylon", "sa", "Admin1305");
             }
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();
@@ -76,7 +76,7 @@ public class Server {
             if (us == null) {
                 String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
                 Class.forName(driver);
-                us = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;databaseName=UsuariosPhy", "sa", "Admin1305");
+                us = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;database=UsuariosPhy", "sa", "Admin1305");
             }
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();
@@ -89,7 +89,7 @@ public class Server {
             if (pa == null) {
                 String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
                 Class.forName(driver);
-                pa = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;databaseName=RCPTPhylonA", "sa", "Admin1305");
+                pa = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;database=RCPTPhylonA", "sa", "Admin1305");
             }
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();
@@ -102,7 +102,7 @@ public class Server {
             if (Phylon == null) {
                 String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
                 Class.forName(driver);
-                Phylon = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;databaseName=RCPTPhylonA", "sa", "Admin1305");
+                Phylon = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;database=RCPTPhylonA", "sa", "Admin1305");
             }
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();
@@ -115,7 +115,7 @@ public class Server {
             if (cm == null) {
                 String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
                 Class.forName(driver);
-                cm = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;databaseName=CmpPhylon", "sa", "Admin1305");
+                cm = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;database=CmpPhylon", "sa", "Admin1305");
             }
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();
@@ -128,7 +128,7 @@ public class Server {
             if (sv == null) {
                 String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
                 Class.forName(driver);
-                sv = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;databaseName=RCPTPhylon", "sa", "Admin1305");
+                sv = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;database=RCPTPhylon", "sa", "Admin1305");
             }
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();
@@ -141,7 +141,7 @@ public class Server {
             if (sv == null) {
                 String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
                 Class.forName(driver);
-                sv = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;databaseName=tempphy", "sa", "Admin1305");
+                sv = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;database=tempphy", "sa", "Admin1305");
             }
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();

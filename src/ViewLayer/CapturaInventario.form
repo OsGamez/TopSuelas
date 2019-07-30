@@ -36,15 +36,7 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="JtAm" min="-2" pref="90" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                      <Component id="JlPares" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="JtPares" min="-2" pref="90" max="-2" attributes="0"/>
-                      <EmptySpace min="138" pref="138" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="524" max="-2" attributes="0"/>
                       <Component id="SUELA" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -67,10 +59,23 @@
                               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="273" pref="273" max="-2" attributes="0"/>
-                                      <Component id="JbEstilo" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="JbCombinacion" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="JtAm" min="-2" pref="90" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="JlPares" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="JtPares" min="-2" pref="90" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="JbEstilo" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="JbCombinacion" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                       <Component id="JbIdSuela" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -82,8 +87,14 @@
                                       <Component id="JbClean" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                                       <Component id="JbGenerar" min="-2" pref="90" max="-2" attributes="0"/>
-                                      <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-                                      <Component id="JbGuardar" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                      <Component id="JbEnviar" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                                      <Component id="JcCaptura" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                                      <Component id="JcAgrupado" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="JcAgrupadoA" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -99,10 +110,6 @@
                               <Component id="JbPf" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="74" pref="74" max="-2" attributes="0"/>
-                      <Component id="JcCódigo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                      <Component id="JtCod" min="-2" pref="188" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -118,11 +125,11 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="SUELA" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="JtSuela" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JbPunto" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="JtAm" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="JlPares" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="JtPares" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="JbPunto" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
@@ -135,18 +142,19 @@
                           </Group>
                       </Group>
                       <EmptySpace pref="50" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="JbRemove" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="JbClean" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="JbGenerar" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="JbGuardar" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="JbRemove" alignment="0" max="32767" attributes="0"/>
+                          <Component id="JbClean" alignment="0" max="32767" attributes="0"/>
+                          <Component id="JbGenerar" alignment="0" max="32767" attributes="0"/>
+                          <Component id="JbEnviar" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="JcCódigo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="JtCod" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JcCaptura" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JcAgrupado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JcAgrupadoA" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -230,11 +238,6 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="Jpanel">
-      <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
-        </Property>
-      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -352,29 +355,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbGenerarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="JbGuardar">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Resources/datainboth_directions_transfer_arrow_3091.png"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbGuardarActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="JcC&#xf3;digo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Leer C&#xf3;digos"/>
-      </Properties>
-      <Events>
-        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="JcC&#xf3;digoItemStateChanged"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="JtCod">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtCodActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="JbIdSuela">
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel2"/>
@@ -394,6 +374,40 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel2"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="JcCaptura">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Captura"/>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="JcCapturaItemStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="JcAgrupado">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Agrupado / Linea"/>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="JcAgrupadoItemStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="JcAgrupadoA">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Agrupado / Almac&#xe9;n"/>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="JcAgrupadoAItemStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="JbEnviar">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Resources/1491313940-repeat_82991.png"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbEnviarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -18,7 +18,7 @@ FROM Pedidos p INNER JOIN CobranzaPhy.dbo.Clientes c
 ON p.Id_Cliente = c.Id_Cliente
 WHERE  DATEPART(MM,p.Fecha_Entrega) = $P{Date}
 GROUP BY c.RazonSocial,c.Id_Cliente,p.ParesSurt,p.Serie,c.Nombre
-ORDER BY c.Id_Cliente]]>
+ORDER BY c.RazonSocial, c.Nombre]]>
 	</queryString>
 	<field name="Id_Cliente" class="java.lang.Short"/>
 	<field name="Pares" class="java.lang.Integer"/>

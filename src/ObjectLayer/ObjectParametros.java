@@ -24,13 +24,14 @@ public class ObjectParametros {
         boolean rpta = false;
         try {
             c.setAutoCommit(false);
-            st = c.prepareStatement("INSERT INTO Parametros (Npedido, Entrada,Salida,Factura,Mes)"
+            st = c.prepareStatement("INSERT INTO Parametros (Npedido, Entrada,Salida,Factura,Mes,FolioTicket)"
                     + "values(?,?,?,?,?)");
             st.setString(1, p.getNpedido());
             st.setInt(2, p.getEntrada());
             st.setInt(3, p.getSalida());
             st.setInt(4, p.getFactura());
             st.setString(5, p.getMes());
+            st.setInt(6, p.getFolio());
 
             rpta = st.executeUpdate() == 1 ? true : false;
 
@@ -97,13 +98,14 @@ public class ObjectParametros {
     public boolean insertarPamA(Parametro p) throws SQLException {
         boolean rpta = false;
         try {
-            dp = pa.prepareStatement("INSERT INTO Parametros (Npedido, Entrada,Salida,Factura,Mes)"
+            dp = pa.prepareStatement("INSERT INTO Parametros (Npedido, Entrada,Salida,Factura,Mes,FolioTicket)"
                     + "values(?,?,?,?,?)");
             dp.setString(1, p.getNpedido());
             dp.setInt(2, p.getEntrada());
             dp.setInt(3, p.getSalida());
             dp.setInt(4, p.getFactura());
             dp.setString(5, p.getMes());
+            dp.setInt(6, p.getFolio());
 
             rpta = dp.executeUpdate() == 1 ? true : false;
             dp.close();

@@ -245,7 +245,6 @@ public class Productos extends javax.swing.JInternalFrame {
 
     private void JtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyReleased
         CleanTable();
-        JtBuscar.getText();
         ArrayList<Producto>listaProductos = obj.productoSearch(JtBuscar.getText());
         modelProducto.setNumRows(listaProductos.size());
         

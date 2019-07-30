@@ -3,7 +3,7 @@ package ObjectLayer;
 
 public class Infisico {
     
-    
+    private String Suela;
     private int Almacen;
     private int Producto;
     private int Estilo;
@@ -26,6 +26,14 @@ public class Infisico {
     private int Pto14;
     private int TotalPares;
 
+    public String getSuela() {
+        return Suela;
+    }
+
+    public void setSuela(String Suela) {
+        this.Suela = Suela;
+    }
+    
     public int getAlmacen() {
         return Almacen;
     }

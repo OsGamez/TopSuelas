@@ -127,8 +127,6 @@ public class Planeacion {
     }
 
     
-    
-    
     public int getCont() {
         return cont;
     }
@@ -280,8 +278,6 @@ public class Planeacion {
     public void setPto12(String Pto12) {
         this.Pto12 = Pto12;
     }
-
-    
 
     public int getC1() {
         return C1;

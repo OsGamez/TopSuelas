@@ -19,7 +19,7 @@ INNER JOIN ProduccionPhy.dbo.Producto pd
 ON dp.Id_Producto = pd.Id_Producto
 INNER JOIN ProduccionPhy.dbo.Color c
 ON pd.Id_Color = c.Id_Color
-WHERE c.Descripcion = $P{Color} AND DATEPART(WK,p.Fecha_Entrega)= $P!{Date}]]>
+WHERE c.Descripcion = $P{Color} AND DATEPART(WK,p.Fecha_Captura)= $P!{Date}]]>
 	</queryString>
 	<field name="Pares" class="java.lang.Integer"/>
 	<detail>
@@ -35,7 +35,7 @@ WHERE c.Descripcion = $P{Color} AND DATEPART(WK,p.Fecha_Entrega)= $P!{Date}]]>
 			<textField pattern="#,##0">
 				<reportElement mode="Transparent" x="25" y="2" width="100" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="0ef72008-5c1f-4ef0-823f-33869ca21b40"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="6" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Pares}]]></textFieldExpression>

@@ -464,11 +464,6 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
                 p.setC12(Cant12);
                 p.setSerie(Serie);
 
-                /*if(obj.AddPlaneacionA(p,String.valueOf(Est), pedido)){
-                        var2 = "ok";     
-                }else{
-                    var2 = "error";
-                }*/
                 if (obj.AddPlaneacionA(p, String.valueOf(Est), pedido)) {
                     obj.CambiarEstatus(String.valueOf(Est), pedido);
                     var2 = "ok";
@@ -477,11 +472,11 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
                 }
             }
         }
-        if (var2 == "ok") {
+        if ("ok".equals(var2)) {
             JOptionPane.showMessageDialog(this, "Programa Guardado!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
             CleanTable();
             Jsemana.setValue(0);
-        } else if (var2 == "error") {
+        } else if ("error".equals(var2)) {
             JOptionPane.showMessageDialog(this, "Ocurrio un error!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
             CleanTable();
             Jsemana.setValue(0);

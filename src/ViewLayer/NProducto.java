@@ -228,35 +228,41 @@ public class NProducto extends javax.swing.JDialog {
 
         if (JtNombre.getText().isEmpty() || color == 0 || corrida == 0 || linea == 0) {
             JOptionPane.showMessageDialog(this, "Falta datos de ingresar verifica", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-        } else if(Jtid.getText().isEmpty()){
+        } else if (Jtid.getText().isEmpty()) {
             Guardar();
-        }else{
+        } else {
             Editar();
         }
     }//GEN-LAST:event_JtGuardarActionPerformed
 
     private void Guardar() {
-        Color cl = (Color) JcColor.getSelectedItem();
-        Corrida cr = (Corrida) JcCorrida.getSelectedItem();
-        Linea ln = (Linea) JcLinea.getSelectedItem();
+        Color color = (Color) JcColor.getSelectedItem();
+        Corrida cor = (Corrida) JcCorrida.getSelectedItem();
+        Linea linea = (Linea) JcLinea.getSelectedItem();
         String Nombre = JtNombre.getText();
         String Obv = JaObservacion.getText();
 
         Producto producto = new Producto();
         producto.setDescripcion(Nombre);
         producto.setObservaciones(Obv);
-        producto.setId_Color(cl.getId_Color());
-        producto.setId_Corrida(cr.getId_Corrida());
+        producto.setId_Color(color.getId_Color());
+        producto.setId_Corrida(cor.getId_Corrida());
         producto.setActivo(true);
-        producto.setId_Linea(ln.getId_Linea());
-        if (op.productoAdd(producto)) {
-            JOptionPane.showMessageDialog(this, "Registro Guardado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-            informacion = "1";
-            Limpiar();
-        } else {
-            JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-            Limpiar();
+        producto.setId_Linea(linea.getId_Linea());
+
+        if (op.validarSuela(Nombre) == 0) {
+            if (op.productoAdd(producto)) {
+                JOptionPane.showMessageDialog(this, "Registro Guardado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                informacion = "1";
+                Limpiar();
+            } else {
+                JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                Limpiar();
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Esta suela ya existe", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
         }
+
     }
 
     private void Editar() {
@@ -279,7 +285,7 @@ public class NProducto extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Registro Editado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
             informacion = "1";
             this.dispose();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Ocurrio un error contacta con sistemas", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
             this.dispose();
         }

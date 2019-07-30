@@ -19,17 +19,18 @@
 	<summary>
 		<band height="22" splitType="Stretch">
 			<textField pattern="#,##0">
-				<reportElement mode="Transparent" x="96" y="0" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="3b61765d-c367-42c3-a9ab-28da892cc857"/>
+				<reportElement mode="Transparent" x="302" y="0" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="3b61765d-c367-42c3-a9ab-28da892cc857"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{sum}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="0" width="100" height="20" uuid="4b016413-da2a-455b-bb84-e8e83cf0a063"/>
-				<textElement>
-					<font size="9" isBold="true"/>
+				<reportElement mode="Transparent" x="216" y="0" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="4b016413-da2a-455b-bb84-e8e83cf0a063"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[TOTAL GENERAL:]]></text>
 			</staticText>

@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
 
     Usuario us = new Usuario();
+    ObjectUsuarios obj = new ObjectUsuarios();
     
     boolean a = true;
     public String ip, password;
@@ -99,6 +100,11 @@ public class Login extends javax.swing.JFrame {
         JtUsuario.setForeground(new java.awt.Color(255, 102, 51));
         JtUsuario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "USUARIO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("sansserif", 1, 14))); // NOI18N
         JtUsuario.setCaretColor(new java.awt.Color(255, 204, 51));
+        JtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtUsuarioActionPerformed(evt);
+            }
+        });
         JtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 JtUsuarioKeyPressed(evt);
@@ -185,8 +191,7 @@ public class Login extends javax.swing.JFrame {
     }
     
     private void JbEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEntrarActionPerformed
-        //userData();
-        ObjectUsuarios obj = new ObjectUsuarios();
+       
         String pass = new String(Jpassword.getPassword());
         String nuevoPass = Encrypt.sha1(pass);
         String usuario = JtUsuario.getText();
@@ -227,8 +232,6 @@ public class Login extends javax.swing.JFrame {
     private void JpasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JpasswordKeyPressed
         int codigo = evt.getKeyCode();
         if (codigo == KeyEvent.VK_ENTER) {
-            userData();
-            ObjectUsuarios obj = new ObjectUsuarios();
             String pass = new String(Jpassword.getPassword());
             String nuevoPass = Encrypt.sha1(pass);
             String usuario = JtUsuario.getText();
@@ -283,6 +286,10 @@ public class Login extends javax.swing.JFrame {
            JcDB.setVisible(true);
         }
     }//GEN-LAST:event_JtUsuarioKeyPressed
+
+    private void JtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtUsuarioActionPerformed
+        Jpassword.requestFocus();
+    }//GEN-LAST:event_JtUsuarioActionPerformed
     private void CambiarIcono(){
         btnMostrar.setIcon(ocultar);
     }

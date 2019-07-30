@@ -137,7 +137,7 @@ public class ObjectClientes {
 
     public int validarCliente(String nombre, String Rz) {
         try {
-            st = c.prepareStatement("SELECT COUNT (Id_Cliente) FROM Clientes WHERE  Nombre = ? OR RazonSocial=? AND Activo = 1");
+            st = c.prepareStatement("SELECT COUNT (Id_Cliente) FROM Clientes WHERE (Nombre = ? AND RazonSocial=?) AND Activo = 1");
             st.setString(1, nombre);
             st.setString(2, Rz);
 
@@ -153,7 +153,7 @@ public class ObjectClientes {
     }
 
     public ArrayList<Cliente> clientesGetAll() {
-        ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
         try {
             st = c.prepareStatement("SELECT  c.Id_Cliente,c.NumCliente,c.Nombre,c.RazonSocial,c.Codigo,c.CP,c.Colonia,c.Calle,"
                     + "c.NumeroCalle,c.UsoCfdi,c.Email,c.Observaciones,c.RFC,c.Telefono,c.Telefono2,c.Telefono3,\n"
@@ -215,7 +215,7 @@ public class ObjectClientes {
     }
 
     public ArrayList<Cliente> clienteGetByNombre(String filtro) {
-        ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
         try {
             st = c.prepareStatement("SELECT  c.Id_Cliente,c.NumCliente,c.Nombre,c.Codigo,c.CP,c.Colonia,c.Calle,"
                     + "c.NumeroCalle,c.UsoCfdi,c.Email,c.Observaciones,c.RFC,c.Telefono,c.Telefono2,c.Telefono3,\n"
@@ -265,7 +265,7 @@ public class ObjectClientes {
     }
 
     public ArrayList<Cliente> clienteGetByRz(String filtro) {
-        ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
         try {
             st = c.prepareStatement("SELECT c.Id_Cliente,c.Nombre,c.RazonSocial,c.CP,c.Colonia,c.Calle,"
                     + "c.NumeroCalle,c.Observaciones,\n"
@@ -318,7 +318,7 @@ public class ObjectClientes {
     }
 
     public ArrayList<Cliente> clienteSearch(String filtro) {
-        ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
         try {
             st = c.prepareStatement("SELECT  c.Id_Cliente,c.NumCliente,c.Nombre,c.RazonSocial,c.Codigo,c.CP,c.Colonia,c.Calle,"
                     + "c.NumeroCalle,c.UsoCfdi,c.Email,c.Observaciones,c.RFC,c.Telefono,c.Telefono2,c.Telefono3,\n"
@@ -331,7 +331,7 @@ public class ObjectClientes {
                     + "INNER JOIN Paises p on c.Id_Pais = p.Id_Pais\n"
                     + "INNER JOIN Estados e on c.Id_Estado = e.Id_Estado\n"
                     + "INNER JOIN Ciudades cd on c.Id_Ciudad = cd.Id_Ciudad\n"
-                    + "INNER JOIN Bancos b on c.Id_Banco = b.Id_Banco  WHERE c.Nombre LIKE'%" + filtro + "%' and c.Activo = 1 ORDER BY c.Nombre");
+                    + "INNER JOIN Bancos b on c.Id_Banco = b.Id_Banco  WHERE c.Activo = 1 AND c.Nombre LIKE'%" + filtro + "%' OR c.RazonSocial LIKE'%" + filtro + "%' AND c.Activo = 1 ORDER BY c.Nombre");
 
             rs = st.executeQuery();
 
@@ -652,15 +652,9 @@ public class ObjectClientes {
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
-        } finally {
-            try {
-                st.close();
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex, "Message", JOptionPane.WARNING_MESSAGE);
-                ex.printStackTrace();
-                Conexion.cerrarPrep(st);
-            }
-        }
+            JOptionPane.showMessageDialog(null, ex, "Message", JOptionPane.WARNING_MESSAGE);
+            Conexion.cerrarPrep(st);
+        } 
         return false;
     }
 

@@ -186,7 +186,7 @@ public class Estados extends javax.swing.JInternalFrame {
         nuevo.setVisible(true);
         nuevo.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         nuevo.setAlwaysOnTop(true);
-        if (nuevo.getInformacion() != "") {
+        if (!"".equals(nuevo.getInformacion())) {
             CleanTable();
             LoadModelEstado();
         }
