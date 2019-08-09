@@ -60,6 +60,7 @@ public class Principal extends javax.swing.JFrame {
     Rplaneacion rplaneacion;
     CapturaCodigos cCodigos;
     FolioInventario finv;
+    Prensistas prensa;
     
 
     ImageIcon notificacion = new ImageIcon("C:\\tsmanager\\imagenes\\push.png");
@@ -180,6 +181,7 @@ public class Principal extends javax.swing.JFrame {
         JmMaquinas = new javax.swing.JMenuItem();
         JmConsumos = new javax.swing.JMenuItem();
         JmConceptos = new javax.swing.JMenuItem();
+        JmPrensista = new javax.swing.JMenuItem();
         Jmutilprod = new javax.swing.JMenu();
         Jmetiqprod = new javax.swing.JMenuItem();
         Jmetiqprod1 = new javax.swing.JMenuItem();
@@ -594,6 +596,15 @@ public class Principal extends javax.swing.JFrame {
         });
         Jmcatprod.add(JmConceptos);
 
+        JmPrensista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/prensauser.png"))); // NOI18N
+        JmPrensista.setText("Prensistas");
+        JmPrensista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmPrensistaActionPerformed(evt);
+            }
+        });
+        Jmcatprod.add(JmPrensista);
+
         JmProduccion.add(Jmcatprod);
 
         Jmutilprod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/utileria.png"))); // NOI18N
@@ -837,6 +848,8 @@ public class Principal extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jPanel1);
 
+        MainContent.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout MainContentLayout = new javax.swing.GroupLayout(MainContent);
         MainContent.setLayout(MainContentLayout);
         MainContentLayout.setHorizontalGroup(
@@ -847,7 +860,6 @@ public class Principal extends javax.swing.JFrame {
             MainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)
         );
-        MainContent.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1314,7 +1326,6 @@ public class Principal extends javax.swing.JFrame {
             Copiaarchivo ca = new Copiaarchivo();
             ca.start();
         } catch (Exception e) {
-
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error en el uso de un directorio para copia de archivos \n" + e.getMessage(), "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -1536,6 +1547,13 @@ public class Principal extends javax.swing.JFrame {
     private void JmFolioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmFolioActionPerformed
        LoadFolio();
     }//GEN-LAST:event_JmFolioActionPerformed
+
+    private void JmPrensistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmPrensistaActionPerformed
+        prensa = new Prensistas();
+        MainContent.add(prensa);
+        MainContent.getDesktopManager().maximizeFrame(prensa);
+        prensa.setVisible(true);
+    }//GEN-LAST:event_JmPrensistaActionPerformed
     private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {
         LoadMaquina();
     }
@@ -1628,6 +1646,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JmPedidos;
     private javax.swing.JMenu JmPlaneacion;
     private javax.swing.JMenuItem JmPrecios;
+    private javax.swing.JMenuItem JmPrensista;
     private javax.swing.JMenu JmProduccion;
     private javax.swing.JMenuItem JmProductos;
     private javax.swing.JMenuItem JmProductoscpt;
