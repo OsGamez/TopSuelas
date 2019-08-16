@@ -61,6 +61,7 @@ public class Principal extends javax.swing.JFrame {
     CapturaCodigos cCodigos;
     FolioInventario finv;
     Prensistas prensa;
+    ProgramarSuelaxMaquina prog;
     
 
     ImageIcon notificacion = new ImageIcon("C:\\tsmanager\\imagenes\\push.png");
@@ -83,6 +84,7 @@ public class Principal extends javax.swing.JFrame {
         popcobranza.add(JmCobranza);
         popopciones.add(JmConfig);
         popopciones.add(JmSalir);
+        JmProgramacion.setVisible(false);
         JbUser.setText(us.getNombre());
         JbRol.setText(us.getDepartamento());
         popCMP.add(JmCMP);
@@ -185,6 +187,8 @@ public class Principal extends javax.swing.JFrame {
         Jmutilprod = new javax.swing.JMenu();
         Jmetiqprod = new javax.swing.JMenuItem();
         Jmetiqprod1 = new javax.swing.JMenuItem();
+        JmProgramacion = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         JmOpciones = new javax.swing.JMenu();
         JmAyuda = new javax.swing.JMenuItem();
         JmSalir = new javax.swing.JMenuItem();
@@ -629,6 +633,24 @@ public class Principal extends javax.swing.JFrame {
         Jmutilprod.add(Jmetiqprod1);
 
         JmProduccion.add(Jmutilprod);
+
+        JmProgramacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/programacion.png"))); // NOI18N
+        JmProgramacion.setText("Programación");
+        JmProgramacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmProgramacionActionPerformed(evt);
+            }
+        });
+        JmProduccion.add(JmProgramacion);
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/programacion.png"))); // NOI18N
+        jMenuItem1.setText("Programacion");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        JmProduccion.add(jMenuItem1);
 
         JmOpciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/File_Explorer_23583.png"))); // NOI18N
         JmOpciones.setText("Archivo");
@@ -1554,6 +1576,15 @@ public class Principal extends javax.swing.JFrame {
         MainContent.getDesktopManager().maximizeFrame(prensa);
         prensa.setVisible(true);
     }//GEN-LAST:event_JmPrensistaActionPerformed
+
+    private void JmProgramacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmProgramacionActionPerformed
+        
+    }//GEN-LAST:event_JmProgramacionActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        prog = new ProgramarSuelaxMaquina(null, true);
+        prog.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
     private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {
         LoadMaquina();
     }
@@ -1650,6 +1681,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu JmProduccion;
     private javax.swing.JMenuItem JmProductos;
     private javax.swing.JMenuItem JmProductoscpt;
+    private javax.swing.JMenu JmProgramacion;
     private javax.swing.JMenuItem JmProveedor;
     private javax.swing.JMenuItem JmReportes;
     private javax.swing.JMenuItem JmReportescpt;
@@ -1670,6 +1702,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel cpt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
