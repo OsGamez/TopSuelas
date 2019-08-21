@@ -32,18 +32,18 @@ ORDER BY l.Descripcion]]>
 				<textFieldExpression><![CDATA[$F{Linea}]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="7" y="9" width="145" height="15" uuid="70c560f6-5699-4754-ad41-4df3940fa43b"/>
-				<subreportParameter name="tabla">
-					<subreportParameterExpression><![CDATA[$P{tabla}]]></subreportParameterExpression>
-				</subreportParameter>
+				<reportElement x="7" y="9" width="145" height="15" uuid="ac1dd8ea-61d5-4202-99d0-8f10319864c7"/>
 				<subreportParameter name="linea">
 					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="almacen">
+				<subreportParameter name="tabla">
+					<subreportParameterExpression><![CDATA[$P{tabla}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="am">
 					<subreportParameterExpression><![CDATA[$P{almacen}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\tsmanager\\reportes\\InPhylonAlmacen.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["C:\\tsmanager\\reportes\\InPhylonAm.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

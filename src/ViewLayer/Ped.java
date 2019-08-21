@@ -809,12 +809,15 @@ public class Ped extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mostrarSerie() {
-        if (Serie.equals("A")) {
-            JbSerie.setIcon(campana);
-            JbSerie.setText("");
-        } else if (Serie.equals("B")) {
-            JbSerie.setIcon(notificacion);
-            JbSerie.setText("");
+        switch (Serie) {
+            case "A":
+                JbSerie.setIcon(campana);
+                JbSerie.setText("");
+                break;
+            case "B":
+                JbSerie.setIcon(notificacion);
+                JbSerie.setText("");
+                break;
         }
     }
 

@@ -1,7 +1,6 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
-import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -323,7 +322,8 @@ public class ObjectProductos {
             return 1;
         }
     }
-      public int validarSuela(String nombre) {
+    
+    public int validarSuela(String nombre) {
         try {
             st = c.prepareStatement("SELECT COUNT (Id_Producto) FROM Producto WHERE (Descripcion = ?) AND Activo = 1");
             st.setString(1, nombre);

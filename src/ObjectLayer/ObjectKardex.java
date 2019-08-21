@@ -12,17 +12,16 @@ public class ObjectKardex {
     PreparedStatement st = null;
     ResultSet rs = null;
     Connection c = Server.getRcpt();
-//    DB db = new DB();
-//    Connection c = db.RCPTPhylonA();
 
     public boolean kardexAdd(Kardex kx) {
-        String query = "INSERT INTO Kardex(Almacen,Producto,Folio,FMovimiento,Renglon,DocumentoRef,Nvale,Cl_Prv\n"
+        try {
+            c.setAutoCommit(false);
+            String query = "INSERT INTO Kardex(Almacen,Producto,Folio,FMovimiento,Renglon,DocumentoRef,Nvale,Cl_Prv\n"
                 + ",Cuenta,SubCuenta,TotalPares,PCosto,PVenta,ImporteCosto,Cantidad1,Cantidad2,Cantidad3\n"
                 + ",Cantidad4,Cantidad5,Cantidad6,Cantidad7,Cantidad8,Cantidad9,Cantidad10,Cantidad11\n"
                 + ",Cantidad12,StockPedidos,StatusSalida,Observaciones,StatusImpresion,Npedido,RenglonP\n"
                 + ",OCompra,CveConsignatario,TipoDivisa,TipoCambio,Factura,Serie ,Usuario,Registro)\n"
                 + "     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        try {
             st = c.prepareStatement(query);
             st.setInt(1, kx.getAlmacen());
             st.setInt(2, kx.getProducto());
@@ -55,16 +54,23 @@ public class ObjectKardex {
             st.setString(29, kx.getObservaciones());
             st.setString(30, kx.getStatusImpresion());
             st.setString(31, kx.getNpedido());
-            st.setInt(32, kx.getRenglon());
+            st.setInt(32, kx.getRenglonP());
             st.setString(33, kx.getOCompra());
             st.setInt(34, kx.getCveConsignatario());
             st.setInt(35, kx.getTipoDivisa());
-            st.setDouble(28, kx.getTipoCambio());
-            st.executeUpdate();
+            st.setDouble(36, kx.getTipoCambio());
+            st.setString(37, kx.getFactura());
+            st.setString(38, kx.getSerie());
+            st.setString(39, kx.getUsuario());
+            st.setDate(40, kx.getRegistro());
+            st.execute();
+            c.commit();
             st.close();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
+            Server.cerrarPrep(st);
+            Server.rollback(c);
         }
         return false;
     }

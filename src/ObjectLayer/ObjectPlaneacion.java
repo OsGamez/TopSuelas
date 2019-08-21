@@ -23,275 +23,275 @@ public class ObjectPlaneacion {
     public ArrayList<Planeacion> obtenerPlaneacion(int año, int semana) {
         ArrayList<Planeacion> lista = new ArrayList<>();
         try {
-            dp = pa.prepareStatement("DECLARE @v1 INT  \n"
-                    + "SET @v1 = 0  \n"
-                    + "SELECT  \n"
-                    + "ROW_NUMBER() OVER(ORDER BY p.Npedido) AS Numero,  \n"
-                    + "dp.Npedido as Pedido,\n"
-                    + "CASE WHEN dp.Serie = 'A' THEN c.RazonSocial \n"
-                    + "WHEN dp.Serie = 'B' THEN c.Nombre \n"
-                    + "END AS Cliente,\n"
-                    + "c.Id_Cliente,a.Id_Agente,pd.Id_Producto,a.Descripcion as Agente,  \n"
-                    + "l.Descripcion as Modelo,cr.Descripcion as Color, \n"
-                    + "cr.Id_Color,crd.Id_Corrida, \n"
-                    + "dp.C1,dp.C2,dp.C3,dp.C4,dp.C5,dp.C6,dp.C7,dp.C8,dp.C9,dp.C10,dp.C11,dp.C12, \n"
-                    + "CASE \n"
-                    + "WHEN Corrida = '10-12' THEN 10 \n"
-                    + "WHEN Corrida = '11-14' THEN 11 \n"
-                    + "WHEN Corrida = '12-14' THEN 12 \n"
-                    + "WHEN Corrida = '13-16' THEN 13 \n"
-                    + "WHEN Corrida = '15-17' THEN 15 \n"
-                    + "WHEN Corrida = '17-21' THEN 17 \n"
-                    + "WHEN Corrida = '18-21' THEN 18 \n"
-                    + "WHEN Corrida = '21-25' THEN 21 \n"
-                    + "WHEN Corrida = '22-24' THEN 22  \n"
-                    + "WHEN Corrida = '22-26' THEN 22 \n"
-                    + "WHEN Corrida = '23-26' THEN 22\n"
-                    + "WHEN Corrida = '23-29' THEN 23 \n"
-                    + "WHEN Corrida = '22-27' THEN 22 \n"
-                    + "WHEN Corrida = '23-27' THEN 23 \n"
-                    + "WHEN Corrida = '25-30' THEN 25 \n"
-                    + "WHEN Corrida = '25-29' THEN 25 \n"
-                    + "WHEN Corrida = '27-29' THEN 27 \n"
-                    + "WHEN Corrida = '30-33' THEN 30 \n"
-                    + "END AS 'Pto1', \n"
-                    + "CASE  \n"
-                    + "                            WHEN Corrida = '10-12' THEN 10.5 \n"
-                    + "                     		WHEN Corrida = '11-14' THEN 11.5 \n"
-                    + "                     		WHEN Corrida = '12-14' THEN 12.5 \n"
-                    + "                     		WHEN Corrida = '13-16' THEN 13.5 \n"
-                    + "                            WHEN Corrida = '15-17' THEN 15.5 \n"
-                    + "                     		WHEN Corrida = '17-21' THEN 17.5 \n"
-                    + "                            WHEN Corrida = '18-21' THEN 18.5 \n"
-                    + "                     		WHEN Corrida = '21-25' THEN 21.5 \n"
-                    + "                            WHEN Corrida = '22-24' THEN 22.5  \n"
-                    + "                            WHEN Corrida = '22-26' THEN 22.5 \n"
-                    + "                            WHEN Corrida = '23-26' THEN 22.5\n"
-                    + "							WHEN Corrida = '23-29' THEN 23.5 \n"
-                    + "                     		WHEN Corrida = '22-27' THEN 22.5 \n"
-                    + "                     		WHEN Corrida = '23-27' THEN 23.5 \n"
-                    + "                            WHEN Corrida = '25-30' THEN 25.5 \n"
-                    + "                     							WHEN Corrida = '25-29' THEN 25.5 \n"
-                    + "                     							WHEN Corrida = '27-29' THEN 27.5 \n"
-                    + "                     							WHEN Corrida = '30-33' THEN 30.5 \n"
-                    + "                                        			END AS 'Pto2', \n"
-                    + "                                        		CASE  \n"
-                    + "                                        			WHEN Corrida = '10-12' THEN 11 \n"
-                    + "                     							WHEN Corrida = '11-14' THEN 12 \n"
-                    + "                     							WHEN Corrida = '12-14' THEN 13 \n"
-                    + "                     							WHEN Corrida = '13-16' THEN 14 \n"
-                    + "                                        			WHEN Corrida = '15-17' THEN 16 \n"
-                    + "                     							WHEN Corrida = '17-21' THEN 18 \n"
-                    + "                                        			WHEN Corrida = '18-21' THEN 19 \n"
-                    + "                     							WHEN Corrida = '21-25' THEN 22 \n"
-                    + "                                        			WHEN Corrida = '22-24' THEN 23  \n"
-                    + "                                        			WHEN Corrida = '22-26' THEN 23 \n"
-                    + "                                        			WHEN Corrida = '23-26' THEN 23\n"
-                    + "													WHEN Corrida = '23-29' THEN 24 \n"
-                    + "                     							WHEN Corrida = '22-27' THEN 23 \n"
-                    + "                     							WHEN Corrida = '23-27' THEN 24 \n"
-                    + "                                        			WHEN Corrida = '25-30' THEN 26 \n"
-                    + "                     							WHEN Corrida = '25-29' THEN 26 \n"
-                    + "                     							WHEN Corrida = '27-29' THEN 28 \n"
-                    + "                     							WHEN Corrida = '30-33' THEN 31 \n"
-                    + "                                        			END AS 'Pto3', \n"
-                    + "                                        			CASE  \n"
-                    + "                                        			WHEN Corrida = '10-12' THEN 11.5 \n"
-                    + "                     							WHEN Corrida = '11-14' THEN 12.5 \n"
-                    + "                     							WHEN Corrida = '12-14' THEN 13.5 \n"
-                    + "                     							WHEN Corrida = '13-16' THEN 14.5 \n"
-                    + "                                        			WHEN Corrida = '15-17' THEN 16.5 \n"
-                    + "                     							WHEN Corrida = '17-21' THEN 18.5 \n"
-                    + "                                        			WHEN Corrida = '18-21' THEN 19.5 \n"
-                    + "                     							WHEN Corrida = '21-25' THEN 22.5 \n"
-                    + "                                        			WHEN Corrida = '22-24' THEN 23.5  \n"
-                    + "                                        			WHEN Corrida = '22-26' THEN 23.5 \n"
-                    + "                                        			WHEN Corrida = '23-26' THEN 23.5 \n"
-                    + "													WHEN Corrida = '23-29' THEN 24.5\n"
-                    + "                     							WHEN Corrida = '22-27' THEN 23.5 \n"
-                    + "                     							WHEN Corrida = '23-27' THEN 24.5 \n"
-                    + "                                        			WHEN Corrida = '25-30' THEN 26.5 \n"
-                    + "                     							WHEN Corrida = '25-29' THEN 26.5 \n"
-                    + "                     							WHEN Corrida = '27-29' THEN 28.5 \n"
-                    + "                     							WHEN Corrida = '30-33' THEN 31.5 \n"
-                    + "                                        			END AS 'Pto4', \n"
-                    + "                                        			CASE  \n"
-                    + "                                        			WHEN Corrida = '10-12' THEN 12 \n"
-                    + "                     							WHEN Corrida = '11-14' THEN 13 \n"
-                    + "                     							WHEN Corrida = '12-14' THEN 14 \n"
-                    + "                     							WHEN Corrida = '13-16' THEN 15 \n"
-                    + "                                        			WHEN Corrida = '15-17' THEN 17 \n"
-                    + "                     							WHEN Corrida = '17-21' THEN 19 \n"
-                    + "                                        			WHEN Corrida = '18-21' THEN 20 \n"
-                    + "                     							WHEN Corrida = '21-25' THEN 23 \n"
-                    + "                                        			WHEN Corrida = '22-24' THEN 24 \n"
-                    + "                                        			WHEN Corrida = '22-26' THEN 24 \n"
-                    + "                                        			WHEN Corrida = '23-26' THEN 24 \n"
-                    + "													WHEN Corrida = '23-29' THEN 25\n"
-                    + "                     							WHEN Corrida = '22-27' THEN 24 \n"
-                    + "                     							WHEN Corrida = '23-27' THEN 25 \n"
-                    + "                                        			WHEN Corrida = '25-30' THEN 27 \n"
-                    + "                     							WHEN Corrida = '25-29' THEN 27 \n"
-                    + "                     							WHEN Corrida = '27-29' THEN 29 \n"
-                    + "                     							WHEN Corrida = '30-33' THEN 32 \n"
-                    + "                                        			END AS 'Pto5', \n"
-                    + "                                        			CASE  \n"
-                    + "                                        			WHEN Corrida = '10-12' THEN 12.5 \n"
-                    + "                     							WHEN Corrida = '11-14' THEN 13.5 \n"
-                    + "                     							WHEN Corrida = '12-14' THEN 14.5 \n"
-                    + "                     							WHEN Corrida = '13-16' THEN 15.5 \n"
-                    + "                                        			WHEN Corrida = '15-17' THEN 17.5 \n"
-                    + "                     							WHEN Corrida = '17-21' THEN 19.5 \n"
-                    + "                                        			WHEN Corrida = '18-21' THEN 20.5 \n"
-                    + "                     							WHEN Corrida = '21-25' THEN 23.5 \n"
-                    + "                                        			WHEN Corrida = '22-24' THEN 24.5 \n"
-                    + "                                        			WHEN Corrida = '22-26' THEN 24.5 \n"
-                    + "                                        			WHEN Corrida = '23-26' THEN 24.5\n"
-                    + "													WHEN Corrida = '23-29' THEN 25.5 \n"
-                    + "                     							WHEN Corrida = '22-27' THEN 24.5 \n"
-                    + "                     							WHEN Corrida = '23-27' THEN 25.5 \n"
-                    + "                                        			WHEN Corrida = '25-30' THEN 27.5 \n"
-                    + "                     							WHEN Corrida = '25-29' THEN 27.5 \n"
-                    + "                     							WHEN Corrida = '27-29' THEN 29.5 \n"
-                    + "                     							WHEN Corrida = '30-33' THEN 32.5 \n"
-                    + "                                        			END AS 'Pto6', \n"
-                    + "                     							CASE  \n"
-                    + "                                        			WHEN Corrida = '10-12' THEN 0 \n"
-                    + "                     							WHEN Corrida = '11-14' THEN 14 \n"
-                    + "                     							WHEN Corrida = '12-14' THEN 0 \n"
-                    + "                     							WHEN Corrida = '13-16' THEN 16 \n"
-                    + "                                        			WHEN Corrida = '15-17' THEN 0 \n"
-                    + "                     							WHEN Corrida = '17-21' THEN 20 \n"
-                    + "                                        			WHEN Corrida = '18-21' THEN 21 \n"
-                    + "                     							WHEN Corrida = '21-25' THEN 24 \n"
-                    + "                                        			WHEN Corrida = '22-24' THEN 0 \n"
-                    + "                                        			WHEN Corrida = '22-26' THEN 25 \n"
-                    + "                                        			WHEN Corrida = '23-26' THEN 25 \n"
-                    + "													WHEN Corrida = '23-29' THEN 26\n"
-                    + "                     							WHEN Corrida = '22-27' THEN 25 \n"
-                    + "                     							WHEN Corrida = '23-27' THEN 26 \n"
-                    + "                                        			WHEN Corrida = '25-30' THEN 28 \n"
-                    + "                     							WHEN Corrida = '25-29' THEN 28 \n"
-                    + "                     							WHEN Corrida = '27-29' THEN 0 \n"
-                    + "                     							WHEN Corrida = '30-33' THEN 33 \n"
-                    + "                                        			END AS 'Pto7', \n"
-                    + "                     							CASE  \n"
-                    + "                                        			WHEN Corrida = '10-12' THEN 0 \n"
-                    + "                     							WHEN Corrida = '11-14' THEN 14.5 \n"
-                    + "                     							WHEN Corrida = '12-14' THEN 0 \n"
-                    + "                     							WHEN Corrida = '13-16' THEN 16.5 \n"
-                    + "                                        			WHEN Corrida = '15-17' THEN 0 \n"
-                    + "                     							WHEN Corrida = '17-21' THEN 20.5 \n"
-                    + "                                        			WHEN Corrida = '18-21' THEN 21.5 \n"
-                    + "                     							WHEN Corrida = '21-25' THEN 24.5 \n"
-                    + "                                        			WHEN Corrida = '22-24' THEN 0 \n"
-                    + "                                        			WHEN Corrida = '22-26' THEN 25.5 \n"
-                    + "                                        			WHEN Corrida = '23-26' THEN 25.5\n"
-                    + "													WHEN Corrida = '23-29' THEN 26.5 \n"
-                    + "                     							WHEN Corrida = '22-27' THEN 25.5 \n"
-                    + "                     							WHEN Corrida = '23-27' THEN 26.5 \n"
-                    + "                                        			WHEN Corrida = '25-30' THEN 28.5 \n"
-                    + "                     							WHEN Corrida = '25-29' THEN 28.5 \n"
-                    + "                     							WHEN Corrida = '27-29' THEN 0 \n"
-                    + "                     							WHEN Corrida = '30-33' THEN 33.5 \n"
-                    + "                                        			END AS 'Pto8', \n"
-                    + "                     							CASE  \n"
-                    + "                                        			WHEN Corrida = '10-12' THEN 0 \n"
-                    + "                     							WHEN Corrida = '11-14' THEN 0 \n"
-                    + "                     							WHEN Corrida = '12-14' THEN 0 \n"
-                    + "                     							WHEN Corrida = '13-16' THEN 0 \n"
-                    + "                                        			WHEN Corrida = '15-17' THEN 0 \n"
-                    + "                     							WHEN Corrida = '17-21' THEN 21 \n"
-                    + "                                        			WHEN Corrida = '18-21' THEN 0 \n"
-                    + "                     							WHEN Corrida = '21-25' THEN 25 \n"
-                    + "                                        			WHEN Corrida = '22-24' THEN 0 \n"
-                    + "                                        			WHEN Corrida = '22-26' THEN 26 \n"
-                    + "                                        			WHEN Corrida = '23-26' THEN 26\n"
-                    + "													WHEN Corrida = '23-29' THEN 0  \n"
-                    + "                     							WHEN Corrida = '22-27' THEN 26 \n"
-                    + "                     							WHEN Corrida = '23-27' THEN 27 \n"
-                    + "                                        			WHEN Corrida = '25-30' THEN 29 \n"
-                    + "                     							WHEN Corrida = '25-29' THEN 29 \n"
-                    + "                     							WHEN Corrida = '27-29' THEN 0 \n"
-                    + "                     							WHEN Corrida = '30-33' THEN 0 \n"
-                    + "                                        			END AS 'Pto9', \n"
-                    + "                     							CASE  \n"
-                    + "                                        			WHEN Corrida = '10-12' THEN 0 \n"
-                    + "                     							WHEN Corrida = '11-14' THEN 0 \n"
-                    + "                     							WHEN Corrida = '12-14' THEN 0 \n"
-                    + "                     							WHEN Corrida = '13-16' THEN 0 \n"
-                    + "                                        			WHEN Corrida = '15-17' THEN 0 \n"
-                    + "                     							WHEN Corrida = '17-21' THEN 21.5 \n"
-                    + "                                        			WHEN Corrida = '18-21' THEN 0 \n"
-                    + "                     							WHEN Corrida = '21-25' THEN 25.5 \n"
-                    + "                                        			WHEN Corrida = '22-24' THEN 0 \n"
-                    + "                                        			WHEN Corrida = '22-26' THEN 26.5 \n"
-                    + "                                        			WHEN Corrida = '23-26' THEN 26.5 \n"
-                    + "													WHEN Corrida = '23-29' THEN 0 \n"
-                    + "                     							WHEN Corrida = '22-27' THEN 26.5 \n"
-                    + "                     							WHEN Corrida = '23-27' THEN 27.5 \n"
-                    + "                                        			WHEN Corrida = '25-30' THEN 29.5 \n"
-                    + "                     							WHEN Corrida = '25-29' THEN 29.5 \n"
-                    + "                     							WHEN Corrida = '27-29' THEN 0 \n"
-                    + "                     							WHEN Corrida = '30-33' THEN 0 \n"
-                    + "                                        			END AS 'Pto10', \n"
-                    + "                     							CASE  \n"
-                    + "                                        			WHEN Corrida = '10-12' THEN 0 \n"
-                    + "                     							WHEN Corrida = '11-14' THEN 0 \n"
-                    + "                     							WHEN Corrida = '12-14' THEN 0 \n"
-                    + "                     							WHEN Corrida = '13-16' THEN 0 \n"
-                    + "                                        			WHEN Corrida = '15-17' THEN 0 \n"
-                    + "                     							WHEN Corrida = '17-21' THEN 0 \n"
-                    + "                                        			WHEN Corrida = '18-21' THEN 0 \n"
-                    + "                     							WHEN Corrida = '21-25' THEN 0 \n"
-                    + "                                        			WHEN Corrida = '22-24' THEN 0 \n"
-                    + "                                        			WHEN Corrida = '22-26' THEN 0 \n"
-                    + "                                        			WHEN Corrida = '23-26' THEN 0 \n"
-                    + "													WHEN Corrida = '23-29' THEN 0 \n"
-                    + "                     							WHEN Corrida = '22-27' THEN 27 \n"
-                    + "                     							WHEN Corrida = '23-27' THEN 0 \n"
-                    + "                                        			WHEN Corrida = '25-30' THEN 30 \n"
-                    + "                     							WHEN Corrida = '25-29' THEN 30 \n"
-                    + "                     							WHEN Corrida = '27-29' THEN 0 \n"
-                    + "                     							WHEN Corrida = '30-33' THEN 0 \n"
-                    + "                                        			END AS 'Pto11', \n"
-                    + "                     							CASE  \n"
-                    + "                                        			WHEN Corrida = '10-12' THEN 0 \n"
-                    + "                     							WHEN Corrida = '11-14' THEN 0 \n"
-                    + "                     							WHEN Corrida = '12-14' THEN 0 \n"
-                    + "                     							WHEN Corrida = '13-16' THEN 0 \n"
-                    + "                                        			WHEN Corrida = '15-17' THEN 0 \n"
-                    + "                     							WHEN Corrida = '17-21' THEN 0 \n"
-                    + "                                        			WHEN Corrida = '18-21' THEN 0 \n"
-                    + "                     							WHEN Corrida = '21-25' THEN 0 \n"
-                    + "                                        			WHEN Corrida = '22-24' THEN 0 \n"
-                    + "                                        			WHEN Corrida = '22-26' THEN 0 \n"
-                    + "                                        			WHEN Corrida = '23-26' THEN 0 \n"
-                    + "WHEN Corrida = '23-29' THEN 0 \n"
-                    + "WHEN Corrida = '22-27' THEN 27.5 \n"
-                    + "WHEN Corrida = '23-27' THEN 0 \n"
-                    + "WHEN Corrida = '25-30' THEN 30.5 \n"
-                    + "WHEN Corrida = '25-29' THEN 30.5 \n"
-                    + "WHEN Corrida = '27-29' THEN 0 \n"
-                    + "WHEN Corrida = '30-33' THEN 0 \n"
-                    + "END AS 'Pto12', \n"
-                    + "dp.Pares AS TotalPares,p.Observaciones,p.OrdenCompra,dp.Estatus,p.Serie \n"
-                    + "FROM Pedidos p INNER JOIN CobranzaPhy.dbo.Clientes c \n"
-                    + "ON p.Id_Cliente = c.Id_Cliente \n"
-                    + "INNER JOIN CobranzaPhy.dbo.Agentes a \n"
-                    + "ON c.Id_Agente = a.Id_Agente \n"
-                    + "INNER JOIN Dpedido dp  \n"
-                    + "ON p.Npedido = dp.Npedido \n"
-                    + "INNER JOIN ProduccionPhy.dbo.Producto pd \n"
-                    + "ON dp.Id_Producto = pd.Id_Producto \n"
-                    + "INNER JOIN ProduccionPhy.dbo.Color cr \n"
-                    + "ON pd.Id_Color = cr.Id_Color \n"
-                    + "INNER JOIN ProduccionPhy.dbo.Linea l \n"
-                    + "ON pd.Id_Linea = l.Id_Linea \n"
-                    + "INNER JOIN ProduccionPhy.dbo.Corrida crd \n"
-                    + "ON pd.Id_Corrida = crd.Id_Corrida \n"
-                    + "WHERE DATEPART(YEAR,p.Fecha_Entrega) = ? AND \n"
-                    + "DATEPART(WK,p.Fecha_Entrega) = ?");
+            dp = pa.prepareStatement("DECLARE @v1 INT  \n" +
+"                     SET @v1 = 0  \n" +
+"                     SELECT  \n" +
+"                     ROW_NUMBER() OVER(ORDER BY p.Npedido) AS Numero,  \n" +
+"                     dp.Npedido as Pedido,\n" +
+"                     CASE WHEN dp.Serie = 'A' THEN c.RazonSocial \n" +
+"                     WHEN dp.Serie = 'B' THEN c.Nombre \n" +
+"                     END AS Cliente,\n" +
+"                     c.Id_Cliente,a.Id_Agente,pd.Id_Producto,a.Descripcion as Agente,  \n" +
+"                     l.Descripcion as Modelo,cr.Descripcion as Color, \n" +
+"                     cr.Id_Color,crd.Id_Corrida, \n" +
+"                     dp.C1,dp.C2,dp.C3,dp.C4,dp.C5,dp.C6,dp.C7,dp.C8,dp.C9,dp.C10,dp.C11,dp.C12, \n" +
+"                     CASE \n" +
+"                     WHEN Corrida = '10-12' THEN 10 \n" +
+"                     WHEN Corrida = '11-14' THEN 11 \n" +
+"                     WHEN Corrida = '12-14' THEN 12 \n" +
+"                     WHEN Corrida = '13-16' THEN 13 \n" +
+"                     WHEN Corrida = '15-17' THEN 15 \n" +
+"                     WHEN Corrida = '17-21' THEN 17 \n" +
+"                     WHEN Corrida = '18-21' THEN 18 \n" +
+"                     WHEN Corrida = '21-25' THEN 21 \n" +
+"                     WHEN Corrida = '22-24' THEN 22  \n" +
+"                     WHEN Corrida = '22-26' THEN 22 \n" +
+"                     WHEN Corrida = '23-26' THEN 22\n" +
+"                     WHEN Corrida = '23-29' THEN 23 \n" +
+"                     WHEN Corrida = '22-27' THEN 22 \n" +
+"                     WHEN Corrida = '23-27' THEN 23 \n" +
+"                     WHEN Corrida = '25-30' THEN 25 \n" +
+"                     WHEN Corrida = '25-29' THEN 25 \n" +
+"                     WHEN Corrida = '27-29' THEN 27 \n" +
+"                     WHEN Corrida = '30-33' THEN 30 \n" +
+"                     END AS 'Pto1', \n" +
+"                     CASE  \n" +
+"                                                 WHEN Corrida = '10-12' THEN 10.5 \n" +
+"                                          		WHEN Corrida = '11-14' THEN 11.5 \n" +
+"                                          		WHEN Corrida = '12-14' THEN 12.5 \n" +
+"                                          		WHEN Corrida = '13-16' THEN 13.5 \n" +
+"                                                 WHEN Corrida = '15-17' THEN 15.5 \n" +
+"                                          		WHEN Corrida = '17-21' THEN 17.5 \n" +
+"                                                 WHEN Corrida = '18-21' THEN 18.5 \n" +
+"                                          		WHEN Corrida = '21-25' THEN 21.5 \n" +
+"                                                 WHEN Corrida = '22-24' THEN 22.5  \n" +
+"                                                 WHEN Corrida = '22-26' THEN 22.5 \n" +
+"                                                 WHEN Corrida = '23-26' THEN 22.5\n" +
+"                     							WHEN Corrida = '23-29' THEN 23.5 \n" +
+"                                          		WHEN Corrida = '22-27' THEN 22.5 \n" +
+"                                          		WHEN Corrida = '23-27' THEN 23.5 \n" +
+"                                                 WHEN Corrida = '25-30' THEN 25.5 \n" +
+"                                          							WHEN Corrida = '25-29' THEN 25.5 \n" +
+"                                          							WHEN Corrida = '27-29' THEN 27.5 \n" +
+"                                          							WHEN Corrida = '30-33' THEN 30.5 \n" +
+"                                                             			END AS 'Pto2', \n" +
+"                                                             		CASE  \n" +
+"                                                             			WHEN Corrida = '10-12' THEN 11 \n" +
+"                                          							WHEN Corrida = '11-14' THEN 12 \n" +
+"                                          							WHEN Corrida = '12-14' THEN 13 \n" +
+"                                          							WHEN Corrida = '13-16' THEN 14 \n" +
+"                                                             			WHEN Corrida = '15-17' THEN 16 \n" +
+"                                          							WHEN Corrida = '17-21' THEN 18 \n" +
+"                                                             			WHEN Corrida = '18-21' THEN 19 \n" +
+"                                          							WHEN Corrida = '21-25' THEN 22 \n" +
+"                                                             			WHEN Corrida = '22-24' THEN 23  \n" +
+"                                                             			WHEN Corrida = '22-26' THEN 23 \n" +
+"                                                             			WHEN Corrida = '23-26' THEN 23\n" +
+"                     													WHEN Corrida = '23-29' THEN 24 \n" +
+"                                          							WHEN Corrida = '22-27' THEN 23 \n" +
+"                                          							WHEN Corrida = '23-27' THEN 24 \n" +
+"                                                             			WHEN Corrida = '25-30' THEN 26 \n" +
+"                                          							WHEN Corrida = '25-29' THEN 26 \n" +
+"                                          							WHEN Corrida = '27-29' THEN 28 \n" +
+"                                          							WHEN Corrida = '30-33' THEN 31 \n" +
+"                                                             			END AS 'Pto3', \n" +
+"                                                             			CASE  \n" +
+"                                                             			WHEN Corrida = '10-12' THEN 11.5 \n" +
+"                                          							WHEN Corrida = '11-14' THEN 12.5 \n" +
+"                                          							WHEN Corrida = '12-14' THEN 13.5 \n" +
+"                                          							WHEN Corrida = '13-16' THEN 14.5 \n" +
+"                                                             			WHEN Corrida = '15-17' THEN 16.5 \n" +
+"                                          							WHEN Corrida = '17-21' THEN 18.5 \n" +
+"                                                             			WHEN Corrida = '18-21' THEN 19.5 \n" +
+"                                          							WHEN Corrida = '21-25' THEN 22.5 \n" +
+"                                                             			WHEN Corrida = '22-24' THEN 23.5  \n" +
+"                                                             			WHEN Corrida = '22-26' THEN 23.5 \n" +
+"                                                             			WHEN Corrida = '23-26' THEN 23.5 \n" +
+"                     													WHEN Corrida = '23-29' THEN 24.5\n" +
+"                                          							WHEN Corrida = '22-27' THEN 23.5 \n" +
+"                                          							WHEN Corrida = '23-27' THEN 24.5 \n" +
+"                                                             			WHEN Corrida = '25-30' THEN 26.5 \n" +
+"                                          							WHEN Corrida = '25-29' THEN 26.5 \n" +
+"                                          							WHEN Corrida = '27-29' THEN 28.5 \n" +
+"                                          							WHEN Corrida = '30-33' THEN 31.5 \n" +
+"                                                             			END AS 'Pto4', \n" +
+"                                                             			CASE  \n" +
+"                                                             			WHEN Corrida = '10-12' THEN 12 \n" +
+"                                          							WHEN Corrida = '11-14' THEN 13 \n" +
+"                                          							WHEN Corrida = '12-14' THEN 14 \n" +
+"                                          							WHEN Corrida = '13-16' THEN 15 \n" +
+"                                                             			WHEN Corrida = '15-17' THEN 17 \n" +
+"                                          							WHEN Corrida = '17-21' THEN 19 \n" +
+"                                                             			WHEN Corrida = '18-21' THEN 20 \n" +
+"                                          							WHEN Corrida = '21-25' THEN 23 \n" +
+"                                                             			WHEN Corrida = '22-24' THEN 24 \n" +
+"                                                             			WHEN Corrida = '22-26' THEN 24 \n" +
+"                                                             			WHEN Corrida = '23-26' THEN 24 \n" +
+"                     													WHEN Corrida = '23-29' THEN 25\n" +
+"                                          							WHEN Corrida = '22-27' THEN 24 \n" +
+"                                          							WHEN Corrida = '23-27' THEN 25 \n" +
+"                                                             			WHEN Corrida = '25-30' THEN 27 \n" +
+"                                          							WHEN Corrida = '25-29' THEN 27 \n" +
+"                                          							WHEN Corrida = '27-29' THEN 29 \n" +
+"                                          							WHEN Corrida = '30-33' THEN 32 \n" +
+"                                                             			END AS 'Pto5', \n" +
+"                                                             			CASE  \n" +
+"                                                             			WHEN Corrida = '10-12' THEN 12.5 \n" +
+"                                          							WHEN Corrida = '11-14' THEN 13.5 \n" +
+"                                          							WHEN Corrida = '12-14' THEN 14.5 \n" +
+"                                          							WHEN Corrida = '13-16' THEN 15.5 \n" +
+"                                                             			WHEN Corrida = '15-17' THEN 17.5 \n" +
+"                                          							WHEN Corrida = '17-21' THEN 19.5 \n" +
+"                                                             			WHEN Corrida = '18-21' THEN 20.5 \n" +
+"                                          							WHEN Corrida = '21-25' THEN 23.5 \n" +
+"                                                             			WHEN Corrida = '22-24' THEN 24.5 \n" +
+"                                                             			WHEN Corrida = '22-26' THEN 24.5 \n" +
+"                                                             			WHEN Corrida = '23-26' THEN 24.5\n" +
+"                     													WHEN Corrida = '23-29' THEN 25.5 \n" +
+"                                          							WHEN Corrida = '22-27' THEN 24.5 \n" +
+"                                          							WHEN Corrida = '23-27' THEN 25.5 \n" +
+"                                                             			WHEN Corrida = '25-30' THEN 27.5 \n" +
+"                                          							WHEN Corrida = '25-29' THEN 27.5 \n" +
+"                                          							WHEN Corrida = '27-29' THEN 29.5 \n" +
+"                                          							WHEN Corrida = '30-33' THEN 32.5 \n" +
+"                                                             			END AS 'Pto6', \n" +
+"                                          							CASE  \n" +
+"                                                             			WHEN Corrida = '10-12' THEN 0 \n" +
+"                                          							WHEN Corrida = '11-14' THEN 14 \n" +
+"                                          							WHEN Corrida = '12-14' THEN 0 \n" +
+"                                          							WHEN Corrida = '13-16' THEN 16 \n" +
+"                                                             			WHEN Corrida = '15-17' THEN 0 \n" +
+"                                          							WHEN Corrida = '17-21' THEN 20 \n" +
+"                                                             			WHEN Corrida = '18-21' THEN 21 \n" +
+"                                          							WHEN Corrida = '21-25' THEN 24 \n" +
+"                                                             			WHEN Corrida = '22-24' THEN 0 \n" +
+"                                                             			WHEN Corrida = '22-26' THEN 25 \n" +
+"                                                             			WHEN Corrida = '23-26' THEN 25 \n" +
+"                     													WHEN Corrida = '23-29' THEN 26\n" +
+"                                          							WHEN Corrida = '22-27' THEN 25 \n" +
+"                                          							WHEN Corrida = '23-27' THEN 26 \n" +
+"                                                             			WHEN Corrida = '25-30' THEN 28 \n" +
+"                                          							WHEN Corrida = '25-29' THEN 28 \n" +
+"                                          							WHEN Corrida = '27-29' THEN 0 \n" +
+"                                          							WHEN Corrida = '30-33' THEN 33 \n" +
+"                                                             			END AS 'Pto7', \n" +
+"                                          							CASE  \n" +
+"                                                             			WHEN Corrida = '10-12' THEN 0 \n" +
+"                                          							WHEN Corrida = '11-14' THEN 14.5 \n" +
+"                                          							WHEN Corrida = '12-14' THEN 0 \n" +
+"                                          							WHEN Corrida = '13-16' THEN 16.5 \n" +
+"                                                             			WHEN Corrida = '15-17' THEN 0 \n" +
+"                                          							WHEN Corrida = '17-21' THEN 20.5 \n" +
+"                                                             			WHEN Corrida = '18-21' THEN 21.5 \n" +
+"                                          							WHEN Corrida = '21-25' THEN 24.5 \n" +
+"                                                             			WHEN Corrida = '22-24' THEN 0 \n" +
+"                                                             			WHEN Corrida = '22-26' THEN 25.5 \n" +
+"                                                             			WHEN Corrida = '23-26' THEN 25.5\n" +
+"                     													WHEN Corrida = '23-29' THEN 26.5 \n" +
+"                                          							WHEN Corrida = '22-27' THEN 25.5 \n" +
+"                                          							WHEN Corrida = '23-27' THEN 26.5 \n" +
+"                                                             			WHEN Corrida = '25-30' THEN 28.5 \n" +
+"                                          							WHEN Corrida = '25-29' THEN 28.5 \n" +
+"                                          							WHEN Corrida = '27-29' THEN 0 \n" +
+"                                          							WHEN Corrida = '30-33' THEN 33.5 \n" +
+"                                                             			END AS 'Pto8', \n" +
+"                                          							CASE  \n" +
+"                                                             			WHEN Corrida = '10-12' THEN 0 \n" +
+"                                          							WHEN Corrida = '11-14' THEN 0 \n" +
+"                                          							WHEN Corrida = '12-14' THEN 0 \n" +
+"                                          							WHEN Corrida = '13-16' THEN 0 \n" +
+"                                                             			WHEN Corrida = '15-17' THEN 0 \n" +
+"                                          							WHEN Corrida = '17-21' THEN 21 \n" +
+"                                                             			WHEN Corrida = '18-21' THEN 0 \n" +
+"                                          							WHEN Corrida = '21-25' THEN 25 \n" +
+"                                                             			WHEN Corrida = '22-24' THEN 0 \n" +
+"                                                             			WHEN Corrida = '22-26' THEN 26 \n" +
+"                                                             			WHEN Corrida = '23-26' THEN 26\n" +
+"                     													WHEN Corrida = '23-29' THEN 0  \n" +
+"                                          							WHEN Corrida = '22-27' THEN 26 \n" +
+"                                          							WHEN Corrida = '23-27' THEN 27 \n" +
+"                                                             			WHEN Corrida = '25-30' THEN 29 \n" +
+"                                          							WHEN Corrida = '25-29' THEN 29 \n" +
+"                                          							WHEN Corrida = '27-29' THEN 0 \n" +
+"                                          							WHEN Corrida = '30-33' THEN 0 \n" +
+"                                                             			END AS 'Pto9', \n" +
+"                                          							CASE  \n" +
+"                                                             			WHEN Corrida = '10-12' THEN 0 \n" +
+"                                          							WHEN Corrida = '11-14' THEN 0 \n" +
+"                                          							WHEN Corrida = '12-14' THEN 0 \n" +
+"                                          							WHEN Corrida = '13-16' THEN 0 \n" +
+"                                                             			WHEN Corrida = '15-17' THEN 0 \n" +
+"                                          							WHEN Corrida = '17-21' THEN 21.5 \n" +
+"                                                             			WHEN Corrida = '18-21' THEN 0 \n" +
+"                                          							WHEN Corrida = '21-25' THEN 25.5 \n" +
+"                                                             			WHEN Corrida = '22-24' THEN 0 \n" +
+"                                                             			WHEN Corrida = '22-26' THEN 26.5 \n" +
+"                                                             			WHEN Corrida = '23-26' THEN 26.5 \n" +
+"                     													WHEN Corrida = '23-29' THEN 0 \n" +
+"                                          							WHEN Corrida = '22-27' THEN 26.5 \n" +
+"                                          							WHEN Corrida = '23-27' THEN 27.5 \n" +
+"                                                             			WHEN Corrida = '25-30' THEN 29.5 \n" +
+"                                          							WHEN Corrida = '25-29' THEN 29.5 \n" +
+"                                          							WHEN Corrida = '27-29' THEN 0 \n" +
+"                                          							WHEN Corrida = '30-33' THEN 0 \n" +
+"                                                             			END AS 'Pto10', \n" +
+"                                          							CASE  \n" +
+"                                                             			WHEN Corrida = '10-12' THEN 0 \n" +
+"                                          							WHEN Corrida = '11-14' THEN 0 \n" +
+"                                          							WHEN Corrida = '12-14' THEN 0 \n" +
+"                                          							WHEN Corrida = '13-16' THEN 0 \n" +
+"                                                             			WHEN Corrida = '15-17' THEN 0 \n" +
+"                                          							WHEN Corrida = '17-21' THEN 0 \n" +
+"                                                             			WHEN Corrida = '18-21' THEN 0 \n" +
+"                                          							WHEN Corrida = '21-25' THEN 0 \n" +
+"                                                             			WHEN Corrida = '22-24' THEN 0 \n" +
+"                                                             			WHEN Corrida = '22-26' THEN 0 \n" +
+"                                                             			WHEN Corrida = '23-26' THEN 0 \n" +
+"                     													WHEN Corrida = '23-29' THEN 0 \n" +
+"                                          							WHEN Corrida = '22-27' THEN 27 \n" +
+"                                          							WHEN Corrida = '23-27' THEN 0 \n" +
+"                                                             			WHEN Corrida = '25-30' THEN 30 \n" +
+"                                          							WHEN Corrida = '25-29' THEN 30 \n" +
+"                                          							WHEN Corrida = '27-29' THEN 0 \n" +
+"                                          							WHEN Corrida = '30-33' THEN 0 \n" +
+"                                                             			END AS 'Pto11', \n" +
+"                                          							CASE  \n" +
+"                                                             			WHEN Corrida = '10-12' THEN 0 \n" +
+"                                          							WHEN Corrida = '11-14' THEN 0 \n" +
+"                                          							WHEN Corrida = '12-14' THEN 0 \n" +
+"                                          							WHEN Corrida = '13-16' THEN 0 \n" +
+"                                                             			WHEN Corrida = '15-17' THEN 0 \n" +
+"                                          							WHEN Corrida = '17-21' THEN 0 \n" +
+"                                                             			WHEN Corrida = '18-21' THEN 0 \n" +
+"                                          							WHEN Corrida = '21-25' THEN 0 \n" +
+"                                                             			WHEN Corrida = '22-24' THEN 0 \n" +
+"                                                             			WHEN Corrida = '22-26' THEN 0 \n" +
+"                                                             			WHEN Corrida = '23-26' THEN 0 \n" +
+"                     WHEN Corrida = '23-29' THEN 0 \n" +
+"                     WHEN Corrida = '22-27' THEN 27.5 \n" +
+"                     WHEN Corrida = '23-27' THEN 0 \n" +
+"                     WHEN Corrida = '25-30' THEN 30.5 \n" +
+"                     WHEN Corrida = '25-29' THEN 30.5 \n" +
+"                     WHEN Corrida = '27-29' THEN 0 \n" +
+"                     WHEN Corrida = '30-33' THEN 0 \n" +
+"                     END AS 'Pto12', \n" +
+"                     dp.Pares AS TotalPares,p.Observaciones,p.OrdenCompra,dp.Estatus,p.Serie \n" +
+"                     FROM Pedidos p INNER JOIN CobranzaPhy.dbo.Clientes c \n" +
+"                     ON p.Id_Cliente = c.Id_Cliente \n" +
+"                     INNER JOIN CobranzaPhy.dbo.Agentes a \n" +
+"                     ON c.Id_Agente = a.Id_Agente \n" +
+"                     INNER JOIN Dpedido dp  \n" +
+"                     ON p.Npedido = dp.Npedido \n" +
+"                     INNER JOIN ProduccionPhy.dbo.Producto pd \n" +
+"                     ON dp.Id_Producto = pd.Id_Producto \n" +
+"                     INNER JOIN ProduccionPhy.dbo.Color cr \n" +
+"                     ON pd.Id_Color = cr.Id_Color \n" +
+"                     INNER JOIN ProduccionPhy.dbo.Linea l \n" +
+"                     ON pd.Id_Linea = l.Id_Linea \n" +
+"                     INNER JOIN ProduccionPhy.dbo.Corrida crd \n" +
+"                     ON pd.Id_Corrida = crd.Id_Corrida \n" +
+"                     WHERE DATEPART(YEAR,p.Fecha_Captura) = ? AND \n" +
+"                     DATEPART(WK,p.Fecha_Captura) = ? and p.Estatus = '10'");
             dp.setInt(1, año);
             dp.setInt(2, semana);
             rs = dp.executeQuery();

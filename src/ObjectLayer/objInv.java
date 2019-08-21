@@ -106,4 +106,38 @@ public class objInv {
         return false;
     }
     
+    public boolean deteleFolioxPistola(){
+          try {
+            c.setAutoCommit(false);
+            st = c.prepareStatement("DELETE FROM EncInvxPistola");
+            st.executeUpdate();
+            c.commit();
+            st.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            Server.cerrarPrep(st);
+            Server.rollback(c);
+        }
+        return false;
+    }
+    
+    public boolean deteleFoliosTemp(){
+          try {
+            c.setAutoCommit(false);
+            st = c.prepareStatement("DELETE FROM foliostemp");
+            st.executeUpdate();
+            c.commit();
+            st.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            Server.cerrarPrep(st);
+            Server.rollback(c);
+        }
+        return false;
+    }
+    
+    
+    
 }

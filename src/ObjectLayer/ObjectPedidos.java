@@ -378,7 +378,7 @@ public class ObjectPedidos {
     }
 
     public ArrayList<Pedido> pedidoGetByID(String filtro, String Serie) {
-        ArrayList<Pedido> listaPedido = new ArrayList<Pedido>();
+        ArrayList<Pedido> listaPedido = new ArrayList<>();
         try {
             dp = pa.prepareStatement("Select p.Npedido,p.NpedidoCl,p.OrdenCompra,pd.Renglon,c.Id_Cliente,c.RazonSocial,c.Nombre,c.Calle,c.CP,c.Colonia,cd.Descripcion as Ciudad,\n"
                     + "e.Descripcion as Estado,ps.Descripcion as Pais,c.DiasCredito,a.Id_Agente as Agente,p.Observaciones\n"

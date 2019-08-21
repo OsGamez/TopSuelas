@@ -271,6 +271,7 @@ public class Ciudades extends javax.swing.JInternalFrame {
         }
     }
     private void JtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBuscarKeyReleased
+        System.out.println(JtBuscar.getText());
         CleanTable();
         JtBuscar.getText();
         ArrayList<Ciudad> listaCiudades = obj.ciudadSearch(JtBuscar.getText());

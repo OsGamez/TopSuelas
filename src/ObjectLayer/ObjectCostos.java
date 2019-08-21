@@ -54,7 +54,8 @@ public class ObjectCostos {
                     + "from Costos c inner join Producto p\n"
                     + "on c.Id_Producto = p.Id_Producto\n"
                     + "inner join CmpPhylon.dbo.Materiales m \n"
-                    + "on c.CveMat = m.CveMat Group by p.Descripcion,c.Id_Producto,c.Id_ProductoRCPT,c.Punto,c.PesoGr,\n"
+                    + "on c.CveMat = m.CveMat where p.Activo = 1\n"
+                    + "Group by p.Descripcion,c.Id_Producto,c.Id_ProductoRCPT,c.Punto,c.PesoGr,\n"
                     + "c.Ptolerancia,c.Pcolada,\n"
                     + "c.Tolerancia,c.Colada,c.PesoTotal,c.Precio,Costo,m.Descripcion,c.CveMat");
             rs = st.executeQuery();
@@ -175,7 +176,7 @@ public class ObjectCostos {
     }
 
     public ArrayList<Costo> costoSearch(String filtro) {
-        ArrayList<Costo> listaCostos = new ArrayList<Costo>();
+        ArrayList<Costo> listaCostos = new ArrayList<>();
         try {
             st = c.prepareStatement("select c.Id_Producto,p.Descripcion  AS Suela,c.Id_ProductoRCPT,p.Descripcion as Producto,c.Punto,c.PesoGr,c.Ptolerancia,c.Pcolada,\n"
                     + "c.Tolerancia,c.Colada,c.PesoTotal,c.Precio,c.Costo,\n"
@@ -184,7 +185,7 @@ public class ObjectCostos {
                     + "on c.Id_Producto = p.Id_Producto\n"
                     + "inner join CmpPhylon.dbo.Materiales m \n"
                     + "on c.CveMat = m.CveMat \n"
-                    + "WHERE p.Descripcion LIKE '%" + filtro + "%'\n"
+                    + "WHERE p.Activo = 1 and p.Descripcion LIKE '%" + filtro + "%'\n"
                     + "Group by p.Descripcion,c.Id_Producto,c.Id_ProductoRCPT,c.Punto,c.PesoGr,\n"
                     + "c.Ptolerancia,c.Pcolada,\n"
                     + "c.Tolerancia,c.Colada,c.PesoTotal,c.Precio,Costo,m.Descripcion,c.CveMat");

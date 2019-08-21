@@ -42,7 +42,43 @@ public class Kardex {
     /**/
     private int TipoDivisa;
     private double TipoCambio;
+    private String Usuario;
+    private String Factura;
+    private String Serie;
+    private Date Registro;
 
+    public String getUsuario() {
+        return Usuario;
+    }
+
+    public void setUsuario(String Usuario) {
+        this.Usuario = Usuario;
+    }
+
+    public String getFactura() {
+        return Factura;
+    }
+
+    public void setFactura(String Factura) {
+        this.Factura = Factura;
+    }
+
+    public String getSerie() {
+        return Serie;
+    }
+
+    public void setSerie(String Serie) {
+        this.Serie = Serie;
+    }
+
+    public Date getRegistro() {
+        return Registro;
+    }
+
+    public void setRegistro(Date Registro) {
+        this.Registro = Registro;
+    }
+    
     public int getAlmacen() {
         return Almacen;
     }

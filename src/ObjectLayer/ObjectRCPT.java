@@ -67,8 +67,8 @@ public class ObjectRCPT {
     public ArrayList<PtProducto> getById(String filtro) {
         ArrayList<PtProducto> listaProductos = new ArrayList<>();
         try {
-            st = c.prepareStatement("select p.Producto,p.Descripcion as Suela,p.Estilo,p.Combinacion, c.Corrida,c.PuntoInicial,c.PuntoFinal \n"
-                    + "from RCPTPhylon..Productos p inner join RCPTPhylon..Corridas c on p.Corrida = c.Corrida WHERE p.Estatus = 'A'  \n"
+            st = c.prepareStatement("select p.Producto,p.Descripcion as Suela,p.Estilo,p.Combinacion, c.Corrida,c.PuntoInicial,c.PuntoFinal\n"
+                    + "from RCPTPhylon..Productos p inner join RCPTPhylon..Corridas c on p.Corrida = c.Corrida WHERE p.Estatus = 'A'\n"
                     + "and p.Descripcion LIKE'%" + filtro +"%' ORDER BY p.Descripcion");
             //st = c.prepareStatement(sql);
             rs = st.executeQuery();

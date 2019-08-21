@@ -245,7 +245,7 @@ public class ObjectInfisico {
     public boolean deleteByPt(int pt){
         try {
             c.setAutoCommit(false);
-            st = c.prepareStatement("DELETE FROM invtemp WHERE Producto =" + pt);
+            st = c.prepareStatement("DELETE FROM invtemp WHERE Id =" + pt);
             st.executeUpdate();
             c.commit();
             st.close();
@@ -355,7 +355,7 @@ public class ObjectInfisico {
     public ArrayList<Infisico> GetInventario() {
         ArrayList<Infisico> listaInv = new ArrayList<>();
         try {
-            st = c.prepareStatement("SELECT p.Descripcion as Suela,dt.Producto, dt.Almacen, dt.Estilo, dt.Corrida, dt.Combinacion,dt.Tipo,\n"
+            st = c.prepareStatement("SELECT dt.Id,p.Descripcion as Suela,dt.Producto, dt.Almacen, dt.Estilo, dt.Corrida, dt.Combinacion,dt.Tipo,\n"
                     + "dt.Pto1,dt.Pto2,dt.Pto3,dt.Pto4,dt.Pto5,dt.Pto6,dt.Pto7,\n"
                     + "dt.Pto8,dt.Pto9,dt.Pto10,dt.Pto11,dt.Pto12,dt.Pto13,dt.Pto14,dt.TotalPares FROM invtemp dt inner join RCPTPhylon..Productos p\n"
                     + "on dt.Producto = p.Producto");
@@ -363,6 +363,7 @@ public class ObjectInfisico {
             rs = st.executeQuery();
             while (rs.next()) {
                 Infisico inv = new Infisico();
+                inv.setId(rs.getInt("Id"));
                 inv.setSuela(rs.getString("Suela"));
                 inv.setProducto(rs.getInt("Producto"));
                 inv.setAlmacen(rs.getInt("Almacen"));

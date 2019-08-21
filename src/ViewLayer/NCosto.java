@@ -580,9 +580,9 @@ public class NCosto extends javax.swing.JDialog {
         if (JtProducto.getText().isEmpty()) {
             limpiarListaProductos();
         } else {
-            ArrayList<Producto> listaProductos = ObjP.GetByC(JtProducto.getText());
+            ArrayList<Producto> listaP = ObjP.GetByC(JtProducto.getText());
 
-            for (Producto prod : listaProductos) {
+            for (Producto prod : listaP) {
                 modeloListaProductos.addElement(prod);
             }
         }
@@ -660,8 +660,8 @@ public class NCosto extends javax.swing.JDialog {
             limpiarMaterial();
         } else {
             ArrayList<Material> listaMaterial = ObjM.GetByCosto(JtMat.getText());
-            for (Material m : listaMaterial) {
-                modeloListaMat.addElement(m);
+            for (Material mat : listaMaterial) {
+                modeloListaMat.addElement(mat);
             }
         }
     }//GEN-LAST:event_JtMatKeyReleased

@@ -36,11 +36,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" min="-2" pref="676" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="JbUpdate" min="-2" pref="90" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       <Component id="JbReporte" min="-2" pref="90" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                       <Component id="JbEnviar" min="-2" pref="90" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="267" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
                       <Component id="JpCodigos" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -56,6 +58,7 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="JbReporte" max="32767" attributes="0"/>
                       <Component id="JbEnviar" max="32767" attributes="0"/>
+                      <Component id="JbUpdate" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="JpCodigos" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -133,7 +136,7 @@
     <Component class="javax.swing.JButton" name="JbEnviar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Resources/refresh_arrows_14418.png"/>
+          <Image iconType="3" name="/Resources/flat-style-circle-save_icon-icons.com_66942.png"/>
         </Property>
       </Properties>
       <Events>
@@ -194,5 +197,15 @@
         </Container>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="JbUpdate">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Resources/refresh_arrows_14418.png"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbUpdateActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

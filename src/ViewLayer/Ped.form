@@ -619,11 +619,6 @@
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="JpCliente">
-      <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
-        </Property>
-      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -860,11 +855,6 @@
       </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="JpSuelas">
-      <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
-        </Property>
-      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">

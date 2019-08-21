@@ -13,15 +13,12 @@ import Plugins.Sound;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ItemEvent;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -76,8 +73,17 @@ public class CapturaInventario extends javax.swing.JFrame {
         return objF.deleteTemp();
     }
 
+    private boolean limpiarFoliosTemp() {
+        return inv.deteleFoliosTemp();
+    }
+
+    private boolean limpiarFoliosxPistola() {
+        return inv.deteleFolioxPistola();
+    }
+
     private void LoadColumns() {
-        modelP.addColumn("ID");
+        modelP.addColumn("Id");
+        modelP.addColumn("Prod");
         modelP.addColumn("SUELA");
         modelP.addColumn("AM");
         modelP.addColumn("ESTILO");
@@ -103,6 +109,10 @@ public class CapturaInventario extends javax.swing.JFrame {
         JtPhylon.getColumnModel().getColumn(0).setMaxWidth(0);
         JtPhylon.getColumnModel().getColumn(0).setMinWidth(0);
         JtPhylon.getColumnModel().getColumn(0).setPreferredWidth(0);
+        
+        JtPhylon.getColumnModel().getColumn(1).setMaxWidth(0);
+        JtPhylon.getColumnModel().getColumn(1).setMinWidth(0);
+        JtPhylon.getColumnModel().getColumn(1).setPreferredWidth(0);
 
         JtPhylon.getColumnModel().getColumn(3).setMaxWidth(0);
         JtPhylon.getColumnModel().getColumn(3).setMinWidth(0);
@@ -200,8 +210,11 @@ public class CapturaInventario extends javax.swing.JFrame {
 
         JbPf.setText("jLabel1");
 
+        JtPhylon.setBackground(new java.awt.Color(204, 255, 204));
+        JtPhylon.setForeground(new java.awt.Color(51, 51, 51));
         JtPhylon.setModel(modelP);
-        JtPhylon.setSelectionBackground(new java.awt.Color(102, 153, 255));
+        JtPhylon.setSelectionBackground(new java.awt.Color(224, 255, 255));
+        JtPhylon.setSelectionForeground(new java.awt.Color(51, 51, 51));
         jScrollPane2.setViewportView(JtPhylon);
 
         JlistProductos.setModel(modeloListaProductos);
@@ -569,11 +582,13 @@ public class CapturaInventario extends javax.swing.JFrame {
         inv.setPto13(Integer.parseInt(dt[19]));
         inv.setPto14(Integer.parseInt(dt[20]));
         inv.setTotalPares(Integer.parseInt(dt[21]));
-        
-        if(objF.AddTemp(inv)){
+
+        if (objF.AddTemp(inv)) {
             modelP.addRow(dt);
             LimpiarCampos();
-        }else{
+            CleanTable();
+            LoadModelPhy();
+        } else {
             JOptionPane.showMessageDialog(this, "Ocurrio un error!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
         }
 
@@ -698,7 +713,7 @@ public class CapturaInventario extends javax.swing.JFrame {
                 Reporte();
             } else if (JcAgrupado.isSelected()) {
                 ReporteAgrupado();
-            }else if(JcAgrupadoA.isSelected()){
+            } else if (JcAgrupadoA.isSelected()) {
                 ReporteAgrupadoAlmacen();
             }
         }
@@ -826,14 +841,16 @@ public class CapturaInventario extends javax.swing.JFrame {
     }//GEN-LAST:event_JcAgrupadoAItemStateChanged
 
     private void JbEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEnviarActionPerformed
-        if(inv.validarEnvio() == 0){
-            CleanTable();
-            LoadModelEnvio();
-            Guardar();
-        }else{
-           JOptionPane.showMessageDialog(null, "Tienes folios por afectar", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE); 
+        if (inv.validarEnvio() == 0) {
+            int opcion = JOptionPane.showConfirmDialog(this, "¿Estas seguro de guardar los registros?", "TOP-SUELAS", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (opcion == JOptionPane.YES_OPTION) {
+                CleanTable();
+                LoadModelEnvio();
+                Guardar();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Tienes folios por afectar", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
         }
-        
     }//GEN-LAST:event_JbEnviarActionPerformed
 
     private void ComprobaroPuntos() {
@@ -846,13 +863,11 @@ public class CapturaInventario extends javax.swing.JFrame {
 
         for (float i = Pti; i <= pto; i++) {
             array.add(String.valueOf(cant));
-            System.out.println(i);
         }
 
         if (Pti != pto) {
             for (float j = Pti + num; j <= pto; j++) {
                 array.add(String.valueOf(cant));
-                System.out.println(j);
             }
         }
 
@@ -926,7 +941,7 @@ public class CapturaInventario extends javax.swing.JFrame {
         int row = JtPhylon.getRowCount();
         for (int i = 0; i < row; i++) {
             String pt = JtPhylon.getValueAt(i, 0).toString();
-            String am = JtPhylon.getValueAt(i, 2).toString();
+            String alm = JtPhylon.getValueAt(i, 2).toString();
             String est = JtPhylon.getValueAt(i, 3).toString();
             String corr = JtPhylon.getValueAt(i, 4).toString();
             String com = JtPhylon.getValueAt(i, 5).toString();
@@ -948,7 +963,7 @@ public class CapturaInventario extends javax.swing.JFrame {
             String tpares = JtPhylon.getValueAt(i, 21).toString();
 
             int Pt = Integer.parseInt(pt);
-            int Am = Integer.parseInt(am);
+            int Am = Integer.parseInt(alm);
             int Est = Integer.parseInt(est);
             int Corr = Integer.parseInt(corr);
             int Comb = Integer.parseInt(com);
@@ -1001,6 +1016,8 @@ public class CapturaInventario extends javax.swing.JFrame {
         if ("OK".equals(ms)) {
             JOptionPane.showMessageDialog(this, "Se han agregado los registros al inventario!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
             CleanTable();
+            limpiarFoliosTemp();
+            limpiarFoliosxPistola();
             //BorrarTabla();
             //VaciarDatos();
         } else {
@@ -1019,34 +1036,35 @@ public class CapturaInventario extends javax.swing.JFrame {
             for (int i = 0; i < listaInv.size(); i++) {
                 Infisico inv = listaInv.get(i);
 
-                modelP.setValueAt(inv.getProducto(), i, 0);
-                modelP.setValueAt(inv.getSuela(), i, 1);
-                modelP.setValueAt(inv.getAlmacen(), i, 2);
-                modelP.setValueAt(inv.getEstilo(), i, 3);
-                modelP.setValueAt(inv.getCorrida(), i, 4);
-                modelP.setValueAt(inv.getCombinacion(), i, 5);
-                modelP.setValueAt(inv.getTipo(), i, 6);
-                modelP.setValueAt(inv.getPto1(), i, 7);
-                modelP.setValueAt(inv.getPto2(), i, 8);
-                modelP.setValueAt(inv.getPto3(), i, 9);
-                modelP.setValueAt(inv.getPto4(), i, 10);
-                modelP.setValueAt(inv.getPto5(), i, 11);
-                modelP.setValueAt(inv.getPto6(), i, 12);
-                modelP.setValueAt(inv.getPto7(), i, 13);
-                modelP.setValueAt(inv.getPto8(), i, 14);
-                modelP.setValueAt(inv.getPto9(), i, 15);
-                modelP.setValueAt(inv.getPto10(), i, 16);
-                modelP.setValueAt(inv.getPto11(), i, 17);
-                modelP.setValueAt(inv.getPto12(), i, 18);
-                modelP.setValueAt(inv.getPto13(), i, 19);
-                modelP.setValueAt(inv.getPto14(), i, 20);
-                modelP.setValueAt(inv.getTotalPares(), i, 21);
+                modelP.setValueAt(inv.getId(), i, 0);
+                modelP.setValueAt(inv.getProducto(), i, 1);
+                modelP.setValueAt(inv.getSuela(), i, 2);
+                modelP.setValueAt(inv.getAlmacen(), i, 3);
+                modelP.setValueAt(inv.getEstilo(), i, 4);
+                modelP.setValueAt(inv.getCorrida(), i, 5);
+                modelP.setValueAt(inv.getCombinacion(), i, 6);
+                modelP.setValueAt(inv.getTipo(), i, 7);
+                modelP.setValueAt(inv.getPto1(), i, 8);
+                modelP.setValueAt(inv.getPto2(), i, 9);
+                modelP.setValueAt(inv.getPto3(), i, 10);
+                modelP.setValueAt(inv.getPto4(), i, 11);
+                modelP.setValueAt(inv.getPto5(), i, 12);
+                modelP.setValueAt(inv.getPto6(), i, 13);
+                modelP.setValueAt(inv.getPto7(), i, 14);
+                modelP.setValueAt(inv.getPto8(), i, 15);
+                modelP.setValueAt(inv.getPto9(), i, 16);
+                modelP.setValueAt(inv.getPto10(), i, 17);
+                modelP.setValueAt(inv.getPto11(), i, 18);
+                modelP.setValueAt(inv.getPto12(), i, 19);
+                modelP.setValueAt(inv.getPto13(), i, 20);
+                modelP.setValueAt(inv.getPto14(), i, 21);
+                modelP.setValueAt(inv.getTotalPares(), i, 22);
             }
         } else {
             JOptionPane.showMessageDialog(null, "No hay registros", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
         }
     }
-    
+
     private void LoadModelEnvio() {
         ArrayList<Infisico> listaInv = objF.GetInventarioAgrupado();
 
@@ -1086,7 +1104,7 @@ public class CapturaInventario extends javax.swing.JFrame {
 
     private void ReporteAgrupadoAlmacen() {
         try {
-            JasperReport reporte = null;
+            JasperReport reporte;
             reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("/Reports/InventarioDetallado.jasper"));
             try {
                 JasperPrint jprint = JasperFillManager.fillReport(reporte, null, c);
@@ -1131,7 +1149,7 @@ public class CapturaInventario extends javax.swing.JFrame {
             Logger.getLogger(CapturaInventario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void Reporte() {
         try {
             JasperReport reporte;
@@ -1287,7 +1305,6 @@ public class CapturaInventario extends javax.swing.JFrame {
 //            JOptionPane.showMessageDialog(null, "No existe ningun archivo");
 //        }
 //    }
-
     private void VaciarDatos() {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(fichero));

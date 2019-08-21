@@ -34,7 +34,7 @@ public static Connection getConnection(){
          ex.printStackTrace();
      }
      return con;
- }
+}
 public static Connection getCobranza(){
     try{
         if(cbz == null){

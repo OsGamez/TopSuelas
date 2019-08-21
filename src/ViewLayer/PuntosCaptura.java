@@ -37,8 +37,11 @@ public class PuntosCaptura extends javax.swing.JDialog {
         setLocation(new java.awt.Point(250, 250));
         setResizable(false);
 
+        Jtdatos.setBackground(new java.awt.Color(204, 255, 204));
+        Jtdatos.setForeground(new java.awt.Color(51, 51, 51));
         Jtdatos.setModel(modelP);
-        Jtdatos.setSelectionBackground(new java.awt.Color(255, 153, 0));
+        Jtdatos.setSelectionBackground(new java.awt.Color(204, 255, 204));
+        Jtdatos.setSelectionForeground(new java.awt.Color(51, 51, 51));
         Jtdatos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 JtdatosKeyPressed(evt);

@@ -388,7 +388,7 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
         int Mes = Jmes.getMonth() + 1;
         int row = Table.getRowCount();
         int Programa = (int) Jsemana.getValue();
-        int pares = Integer.parseInt(lblPares.getText());
+        //int pares = Integer.parseInt(lblPares.getText());
 
         if (ValidarDatos()) {
             for (int i = 0; i < row; i++) {
@@ -412,6 +412,7 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
                 int Cant10 = Integer.parseInt((String) Table.getValueAt(i, 20));
                 int Cant11 = Integer.parseInt((String) Table.getValueAt(i, 21));
                 int Cant12 = Integer.parseInt((String) Table.getValueAt(i, 22));
+                int pares = Integer.parseInt((String) Table.getValueAt(i, 23));
                 String Pto1 = Table.getValueAt(i, 27).toString();
                 String Pto2 = Table.getValueAt(i, 28).toString();
                 String Pto3 = Table.getValueAt(i, 29).toString();
@@ -472,14 +473,17 @@ public class frmPlaneacion extends javax.swing.JInternalFrame {
                 }
             }
         }
-        if ("ok".equals(var2)) {
-            JOptionPane.showMessageDialog(this, "Programa Guardado!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-            CleanTable();
-            Jsemana.setValue(0);
-        } else if ("error".equals(var2)) {
-            JOptionPane.showMessageDialog(this, "Ocurrio un error!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-            CleanTable();
-            Jsemana.setValue(0);
+        switch (var2) {
+            case "ok":
+                JOptionPane.showMessageDialog(this, "Programa Guardado!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                CleanTable();
+                Jsemana.setValue(0);
+                break;
+            case "error":
+                JOptionPane.showMessageDialog(this, "Ocurrio un error!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+                CleanTable();
+                Jsemana.setValue(0);
+                break;
         }
     }//GEN-LAST:event_JbGuardarActionPerformed
 

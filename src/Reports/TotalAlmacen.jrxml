@@ -4,7 +4,7 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="tabla" class="java.lang.String">
-		<defaultValueExpression><![CDATA["InCopy"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["invtemp"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="almacen" class="java.lang.Short">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>

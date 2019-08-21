@@ -23,14 +23,14 @@ WHERE Folio = $P!{folio}]]>
 	<title>
 		<band height="37" splitType="Stretch">
 			<staticText>
-				<reportElement x="198" y="2" width="135" height="20" uuid="757bd9ad-7c23-4207-aea6-87fa58226215"/>
+				<reportElement x="254" y="2" width="51" height="20" uuid="757bd9ad-7c23-4207-aea6-87fa58226215"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[FOLIO GENERADO]]></text>
+				<text><![CDATA[FOLIO]]></text>
 			</staticText>
 			<textField>
-				<reportElement mode="Transparent" x="345" y="2" width="35" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="9afc5609-9c59-4915-ab3e-ac6e5aac78d3"/>
+				<reportElement mode="Transparent" x="309" y="2" width="35" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="9afc5609-9c59-4915-ab3e-ac6e5aac78d3"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>

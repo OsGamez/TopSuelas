@@ -37,10 +37,12 @@ public class FolioInventario extends javax.swing.JFrame {
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         mostrarFolios();
         JtDatos.getTableHeader().setReorderingAllowed(false);
+        
         cargarColumnasFtemp();
         JpCodigos.setVisible(false);
         JbReporte.setToolTipText("IMPRIMIR FOLIO");
         JbEnviar.setToolTipText("ENVIAR FOLIO");
+        JbUpdate.setToolTipText("ACTUALIZAR");
     }
 
     DefaultTableModel modelInv = new DefaultTableModel() {
@@ -70,6 +72,7 @@ public class FolioInventario extends javax.swing.JFrame {
         JpCodigos = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         JtFolios = new javax.swing.JTable();
+        JbUpdate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FOLIOS DEL INVENTARIO");
@@ -104,7 +107,7 @@ public class FolioInventario extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(JtDatos);
 
-        JbEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/refresh_arrows_14418.png"))); // NOI18N
+        JbEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/flat-style-circle-save_icon-icons.com_66942.png"))); // NOI18N
         JbEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JbEnviarActionPerformed(evt);
@@ -137,6 +140,13 @@ public class FolioInventario extends javax.swing.JFrame {
             .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        JbUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/refresh_arrows_14418.png"))); // NOI18N
+        JbUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbUpdateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -146,11 +156,13 @@ public class FolioInventario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
+                        .addGap(22, 22, 22)
+                        .addComponent(JbUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
                         .addComponent(JbReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46)
                         .addComponent(JbEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(267, 267, 267)
+                        .addGap(127, 127, 127)
                         .addComponent(JpCodigos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -161,7 +173,8 @@ public class FolioInventario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(JbReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JbEnviar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(JbEnviar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JbUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(JpCodigos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
@@ -378,6 +391,7 @@ public class FolioInventario extends javax.swing.JFrame {
                 }
             } catch (JRException ex) {
                 Logger.getLogger(FolioInventario.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, ex, "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
             }
             cleanTableTemp();
             cleanFolios();
@@ -385,6 +399,11 @@ public class FolioInventario extends javax.swing.JFrame {
             contador = 0;
         }
     }//GEN-LAST:event_JbReporteActionPerformed
+
+    private void JbUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbUpdateActionPerformed
+       cleanFolios();
+       mostrarFolios();
+    }//GEN-LAST:event_JbUpdateActionPerformed
 
     public Image getImage() {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/PhotoPrint_11187.png"));
@@ -459,6 +478,7 @@ public class FolioInventario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbEnviar;
     private javax.swing.JButton JbReporte;
+    private javax.swing.JButton JbUpdate;
     private javax.swing.JPanel JpCodigos;
     private javax.swing.JTable JtDatos;
     private javax.swing.JTable JtFolios;

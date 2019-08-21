@@ -1,7 +1,6 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
-import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +12,8 @@ public class ObjectParametros {
 
     Connection c = Server.getRpt();
     Connection pa = Server.getRcpt();
+
+    Connection[] datos = {c, pa};
 //    DB db = new DB();
 //    Connection c = db.RPTPhylon();
 //    Connection pa = db.RCPTPhylonA();
@@ -55,13 +56,13 @@ public class ObjectParametros {
 
     public boolean actualizarPam(String Np) throws SQLException {
         try {
-           c.setAutoCommit(false);
-           st = c.prepareStatement("UPDATE Parametros SET Npedido = ?");
-           st.setString(1, Np);
-           st.executeUpdate();
-           c.commit();
-           st.close();
-           return true;
+            c.setAutoCommit(false);
+            st = c.prepareStatement("UPDATE Parametros SET Npedido = ?");
+            st.setString(1, Np);
+            st.executeUpdate();
+            c.commit();
+            st.close();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
             c.rollback();
@@ -154,7 +155,7 @@ public class ObjectParametros {
     }
 
     public ArrayList<Parametro> getFolioEntrada() {
-        ArrayList<Parametro> listaP = new ArrayList<Parametro>();
+        ArrayList<Parametro> listaP = new ArrayList<>();
         try {
             st = pa.prepareStatement("SELECT  MAX(Entrada) as Folio FROM Parametros");
 
@@ -171,9 +172,9 @@ public class ObjectParametros {
         }
         return listaP;
     }
-    
+
     public ArrayList<Parametro> getFolioSalida() {
-        ArrayList<Parametro> listaP = new ArrayList<Parametro>();
+        ArrayList<Parametro> listaP = new ArrayList<>();
         try {
             st = pa.prepareStatement("SELECT  MAX(Salida) as Folio FROM Parametros");
 
@@ -189,6 +190,52 @@ public class ObjectParametros {
             ex.printStackTrace();
         }
         return listaP;
+    }
+
+    public boolean actualizarFolioEntrada(int entrada) {
+        try {
+            c.setAutoCommit(false);
+            pa.setAutoCommit(false);
+
+            for (int i = 0; i < datos.length; i++) {
+                st = datos[i].prepareStatement("UPDATE Parametros SET Entrada = ?");
+                st.setInt(1, entrada);
+                st.execute();
+            }
+            c.commit();
+            pa.commit();
+            st.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            Server.cerrarPrep(dp);
+            Server.rollback(c);
+            Server.rollback(pa);
+        }
+        return false;
+    }
+
+    public boolean actualizarFolioSalida(int salida) {
+        try {
+            c.setAutoCommit(false);
+            pa.setAutoCommit(false);
+
+            for (int i = 0; i < datos.length; i++) {
+                st = datos[i].prepareStatement("UPDATE Parametros SET Salida = ?");
+                st.setInt(1, salida);
+                st.execute();
+            }
+            c.commit();
+            pa.commit();
+            st.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            Server.cerrarPrep(dp);
+            Server.rollback(c);
+            Server.rollback(pa);
+        }
+        return false;
     }
 
     public ArrayList<Parametro> getFolioActualB() {
