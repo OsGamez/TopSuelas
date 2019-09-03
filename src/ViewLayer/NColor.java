@@ -1,6 +1,6 @@
 package ViewLayer;
 
-import ObjectLayer.Color;
+
 import ObjectLayer.ObjectColores;
 import java.awt.Image;
 import java.awt.Toolkit;

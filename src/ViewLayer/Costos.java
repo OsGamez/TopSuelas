@@ -253,6 +253,7 @@ public class Costos extends javax.swing.JInternalFrame {
         
 
     }//GEN-LAST:event_JbReporteActionPerformed
+    
     public Image getImage() {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/PhotoPrint_11187.png"));
         return icon;
@@ -293,7 +294,7 @@ public class Costos extends javax.swing.JInternalFrame {
                 if (opcion == JOptionPane.YES_OPTION) {
                     editar.JtProducto.setEnabled(false);
                     editar.JtPt.setEnabled(false);
-                    editar.JtMat.setEnabled(false);
+                    //editar.JtMat.setEnabled(false);
                     editar.JtPeso.setEnabled(false);
                     editar.JtPunto.setEnabled(false);
                     editar.JtPtol.requestFocus();
@@ -312,10 +313,11 @@ public class Costos extends javax.swing.JInternalFrame {
                     editar.JtPesoT.setText(JtCostos.getValueAt(row, 11).toString());
                     editar.JbPrecio.setText(JtCostos.getValueAt(row, 12).toString());
                     editar.JbCostoT.setText(JtCostos.getValueAt(row, 13).toString());
+                    editar.JbCvet.setText(JtCostos.getValueAt(row, 14).toString());
                     editar.setVisible(true);
                     editar.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                     editar.setAlwaysOnTop(true);
-                    if (editar.getInformacion() != "") {
+                    if (!"".equals(editar.getInformacion())) {
                         CleanTable();
                         LoadModelCosto();
                     }
@@ -349,6 +351,7 @@ public class Costos extends javax.swing.JInternalFrame {
             modelCosto.setValueAt(num.format(ct.getPesoTotal()), i, 11);
             modelCosto.setValueAt(var.format(ct.getPrecio()), i, 12);
             modelCosto.setValueAt(var.format(ct.getCosto()), i, 13);
+            modelCosto.setValueAt(ct.getCveMat(), i,14);
         }
     }//GEN-LAST:event_JtBuscarKeyReleased
 
@@ -371,6 +374,7 @@ public class Costos extends javax.swing.JInternalFrame {
             evt.setKeyChar(c);
         }
     }//GEN-LAST:event_JtBuscarKeyTyped
+    
     private void LoadModelCosto() {
         ArrayList<Costo> listaCostos = obj.costoGetAll();
         modelCosto.setNumRows(listaCostos.size());
@@ -392,6 +396,7 @@ public class Costos extends javax.swing.JInternalFrame {
             modelCosto.setValueAt(num.format(ct.getPesoTotal()), i, 11);
             modelCosto.setValueAt(var.format(ct.getPrecio()), i, 12);
             modelCosto.setValueAt(var.format(ct.getCosto()), i, 13);
+            modelCosto.setValueAt(ct.getCveMat(), i,14);
         }
     }
 
@@ -410,6 +415,7 @@ public class Costos extends javax.swing.JInternalFrame {
         modelCosto.addColumn("PESO");
         modelCosto.addColumn("PRECIO");
         modelCosto.addColumn("COSTO");
+        modelCosto.addColumn("CVE");
 
         JtCostos.getColumnModel().getColumn(0).setMaxWidth(0);
         JtCostos.getColumnModel().getColumn(0).setMinWidth(0);
@@ -426,6 +432,10 @@ public class Costos extends javax.swing.JInternalFrame {
         JtCostos.getColumnModel().getColumn(3).setMaxWidth(0);
         JtCostos.getColumnModel().getColumn(3).setMinWidth(0);
         JtCostos.getColumnModel().getColumn(3).setPreferredWidth(0);
+        
+        JtCostos.getColumnModel().getColumn(14).setMaxWidth(0);
+        JtCostos.getColumnModel().getColumn(14).setMinWidth(0);
+        JtCostos.getColumnModel().getColumn(14).setPreferredWidth(0);
     }
 
     private void CleanTable() {

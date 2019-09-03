@@ -13,8 +13,6 @@ public class ObjectCostos {
 
     PreparedStatement st = null;
     Connection c = Server.getProduccion();
-//    DB db = new DB();
-//    Connection c = db.Produccion();
     ResultSet rs = null;
 
     public boolean CostoAdd(Costo costo) {
@@ -46,7 +44,7 @@ public class ObjectCostos {
     }
 
     public ArrayList<Costo> costoGetAll() {
-        ArrayList<Costo> listaCostos = new ArrayList<Costo>();
+        ArrayList<Costo> listaCostos = new ArrayList<>();
         try {
             st = c.prepareStatement("select c.Id_Producto,p.Descripcion  AS Suela,c.Id_ProductoRCPT,p.Descripcion as Producto,c.Punto,c.PesoGr,c.Ptolerancia,c.Pcolada,\n"
                     + "c.Tolerancia,c.Colada,c.PesoTotal,c.Precio,c.Costo,\n"
@@ -103,11 +101,12 @@ public class ObjectCostos {
     public boolean costoUpdate(Costo ct) {
         try {
             c.setAutoCommit(false);
-            st = c.prepareStatement("UPDATE Costos SET Ptolerancia=?,Pcolada=? WHERE Id_Producto=? AND Punto = ?");
+            st = c.prepareStatement("UPDATE Costos SET Ptolerancia=?,Pcolada=?,CveMat = ? WHERE Id_Producto=? AND Punto = ?");
             st.setDouble(1, ct.getPtolerancia());
             st.setDouble(2, ct.getPcolada());
-            st.setInt(3, ct.getId_Producto());
-            st.setInt(4, ct.getPunto());
+            st.setString(3, ct.getCveMat());
+            st.setInt(4, ct.getId_Producto());
+            st.setInt(5, ct.getPunto());
             st.executeUpdate();
             c.commit();
             st.close();

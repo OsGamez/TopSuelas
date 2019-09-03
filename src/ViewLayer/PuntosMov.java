@@ -20,7 +20,6 @@ public class PuntosMov extends javax.swing.JDialog {
     public PuntosMov(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
     }
 
     public DefaultTableModel modelP = new DefaultTableModel() {
@@ -84,7 +83,6 @@ public class PuntosMov extends javax.swing.JDialog {
                 }
             }
         }
-
     }
 
     private void VerificarPuntos() {

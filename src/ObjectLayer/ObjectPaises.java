@@ -1,15 +1,12 @@
 package ObjectLayer;
 
 import DataAccesLayer.Conexion;
-import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ObjectPaises {
 
@@ -102,7 +99,7 @@ public class ObjectPaises {
     }
 
     public ArrayList<Pais> paisesGetAll() {
-        ArrayList<Pais> listaPaises = new ArrayList<Pais>();
+        ArrayList<Pais> listaPaises = new ArrayList<>();
         try {
             st = c.prepareStatement("SELECT * FROM Paises WHERE Activo = 1 ORDER BY Descripcion");
             rs = st.executeQuery();
@@ -119,7 +116,7 @@ public class ObjectPaises {
     }
 
     public ArrayList<Pais> paisSearch(String criterio) {
-        ArrayList<Pais> listaPaises = new ArrayList<Pais>();
+        ArrayList<Pais> listaPaises = new ArrayList<>();
         try {
             st = c.prepareStatement("SELECT * FROM Paises WHERE Activo = 1 AND  Descripcion LIKE '%" + criterio + "%'"
                     + "ORDER BY Descripcion ");

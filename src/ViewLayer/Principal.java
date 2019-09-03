@@ -43,6 +43,7 @@ public class Principal extends javax.swing.JFrame {
     CapturaInventario capturaIn;
     Consumos sumos;
     Etiquetas etiq;
+    //MovimientosesCPT mCPT;
     MovimientosCPT mCPT;
     Conceptos concepto;
     ConceptosMPrima conceptom;
@@ -873,17 +874,6 @@ public class Principal extends javax.swing.JFrame {
         }
     }
     
-     private void LoadCodigos(){
-        if (cCodigos == null) {
-            cCodigos = new CapturaCodigos();
-            cCodigos.setVisible(true);
-        } else {
-            cCodigos.dispose();
-            cCodigos = new CapturaCodigos();
-            cCodigos.setVisible(true);
-        }
-    }
-    
     private void LoadInFisico() {
         //Tb = us.getUsuario();
         if (capturaIn == null) {
@@ -942,10 +932,14 @@ public class Principal extends javax.swing.JFrame {
     private void LoadEntradas() {
         if (mCPT == null) {
             mCPT = new MovimientosCPT();
+            MainContent.add(mCPT);
+            MainContent.getDesktopManager().maximizeFrame(mCPT);
             mCPT.setVisible(true);
         } else {
             mCPT.dispose();
             mCPT = new MovimientosCPT();
+            MainContent.add(mCPT);
+            MainContent.getDesktopManager().maximizeFrame(mCPT);
             mCPT.setVisible(true);
         }
     }
@@ -1294,6 +1288,7 @@ public class Principal extends javax.swing.JFrame {
         etiq = new Etiquetas(null, true);
         etiq.setVisible(true);
     }
+    
     private void LoadEtiquetaB() {
         etiqb = new Etiquetasb(null, true);
         etiqb.setVisible(true);

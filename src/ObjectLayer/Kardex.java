@@ -34,6 +34,8 @@ public class Kardex {
     private String StatusSalida;
     private String Observaciones;
     private String StatusImpresion;
+    private String Dsuela;
+    private String Dam;
     /*PENDIENTES*/
     private String Npedido;
     private int RenglonP;
@@ -47,6 +49,22 @@ public class Kardex {
     private String Serie;
     private Date Registro;
 
+    public String getDam() {
+        return Dam;
+    }
+
+    public void setDam(String Dam) {
+        this.Dam = Dam;
+    }
+    
+    public String getDsuela() {
+        return Dsuela;
+    }
+
+    public void setDsuela(String Dsuela) {
+        this.Dsuela = Dsuela;
+    }
+    
     public String getUsuario() {
         return Usuario;
     }

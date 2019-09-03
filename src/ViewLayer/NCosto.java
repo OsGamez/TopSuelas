@@ -39,7 +39,7 @@ public class NCosto extends javax.swing.JDialog {
     DefaultListModel<Producto> modeloListaProductos = new DefaultListModel<Producto>();
     DefaultListModel<PtProducto> modeloListaRCPT = new DefaultListModel<PtProducto>();
     DefaultListModel<Material> modeloListaMat = new DefaultListModel<Material>();
-    
+
     public NCosto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -448,8 +448,8 @@ public class NCosto extends javax.swing.JDialog {
         } else {
             Editar();
         }
-        
-       
+
+
     }//GEN-LAST:event_JbGuardarActionPerformed
 
     private void Guardar() {
@@ -488,6 +488,7 @@ public class NCosto extends javax.swing.JDialog {
         ct.setPunto(Integer.parseInt(JtPunto.getText()));
         ct.setPtolerancia(Double.parseDouble(JtPtol.getText()));
         ct.setPcolada(Double.parseDouble(JtPcol.getText()));
+        ct.setCveMat(JbCvet.getText());
         if (obj.costoUpdate(ct)) {
             JOptionPane.showMessageDialog(this, "Registro Actualizado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
             informacion = "1";
@@ -526,10 +527,10 @@ public class NCosto extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowClosing
 
     private boolean ValidarCorrida() {
-        if(Float.parseFloat(JtPunto.getText()) >= Float.parseFloat(JbPi.getText()) && 
-                Float.parseFloat(JtPunto.getText())<= Float.parseFloat(JbPf.getText())){
+        if (Float.parseFloat(JtPunto.getText()) >= Float.parseFloat(JbPi.getText())
+                && Float.parseFloat(JtPunto.getText()) <= Float.parseFloat(JbPf.getText())) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -599,7 +600,7 @@ public class NCosto extends javax.swing.JDialog {
 
     private void listaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaProductosMouseClicked
         JList lis = (JList) evt.getSource();
-       
+
         if (evt.getClickCount() == 1) {
             Producto prod = (Producto) lis.getSelectedValue();
             JbCorrida.setText(prod.getDescripcionCorrida());

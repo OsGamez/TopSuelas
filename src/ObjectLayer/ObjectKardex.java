@@ -1,11 +1,11 @@
 package ObjectLayer;
 
-import DataAccesLayer.DB;
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ObjectKardex {
 
@@ -73,5 +73,71 @@ public class ObjectKardex {
             Server.rollback(c);
         }
         return false;
+    }
+    
+    public ArrayList<Kardex> getKardex(){
+         ArrayList<Kardex> listK = new ArrayList<>();
+        try {
+            st = c.prepareStatement("SELECT k.Folio, k.Cuenta,k.SubCuenta, k.FMovimiento,k.Serie,a.Descripcion as Almacen,\n" +
+            "p.Descripcion as Suela, k.TotalPares\n" +
+            "FROM Kardex k INNER JOIN Almacenes a\n" +
+            "ON k.Almacen = a.Almacen\n" +
+            "INNER JOIN ProduccionPhy..Producto p\n" +
+            "ON k.Producto = p.Id_Producto\n" +
+            "ORDER BY k.Folio");
+            
+            rs = st.executeQuery();
+            
+            while(rs.next()){
+                
+                Kardex k = new Kardex();
+                k.setFolio(rs.getInt("Folio"));
+                k.setCuenta(rs.getString("Cuenta"));
+                k.setSubCuenta(rs.getString("SubCuenta"));
+                k.setFMovimiento(rs.getDate("FMovimiento"));
+                k.setSerie(rs.getString("Serie"));
+                k.setDam(rs.getString("Almacen"));
+                k.setDsuela(rs.getString("Suela"));
+                k.setTotalPares(rs.getInt("TotalPares"));
+                listK.add(k);
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listK;
+    }
+    
+    public ArrayList<Kardex> getKardexByFolio(String folio){
+         ArrayList<Kardex> listK = new ArrayList<>();
+        try {
+            st = c.prepareStatement("SELECT k.Folio, k.Cuenta,k.SubCuenta, k.FMovimiento,k.Serie,a.Descripcion as Almacen,\n" +
+            "p.Descripcion as Suela, k.TotalPares\n" +
+            "FROM Kardex k INNER JOIN Almacenes a\n" +
+            "ON k.Almacen = a.Almacen\n" +
+            "INNER JOIN ProduccionPhy..Producto p\n" +
+            "ON k.Producto = p.Id_Producto WHERE k.Folio LIKE '%" + folio + "%'"
+            + "ORDER BY k.Folio");
+            
+            rs = st.executeQuery();
+            
+            while(rs.next()){
+                
+                Kardex k = new Kardex();
+                k.setFolio(rs.getInt("Folio"));
+                k.setCuenta(rs.getString("Cuenta"));
+                k.setSubCuenta(rs.getString("SubCuenta"));
+                k.setFMovimiento(rs.getDate("FMovimiento"));
+                k.setSerie(rs.getString("Serie"));
+                k.setDam(rs.getString("Almacen"));
+                k.setDsuela(rs.getString("Suela"));
+                k.setTotalPares(rs.getInt("TotalPares"));
+                listK.add(k);
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listK;
     }
 }

@@ -31,13 +31,13 @@ public class FolioInventario extends javax.swing.JFrame {
     int fl, contador = 0;
     String ms, Estado;
     Connection c = Server.getRcpt();
+    ArrayList array = new ArrayList<>();
 
     public FolioInventario() {
         initComponents();
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         mostrarFolios();
         JtDatos.getTableHeader().setReorderingAllowed(false);
-        
         cargarColumnasFtemp();
         JpCodigos.setVisible(false);
         JbReporte.setToolTipText("IMPRIMIR FOLIO");
@@ -50,7 +50,6 @@ public class FolioInventario extends javax.swing.JFrame {
         public boolean isCellEditable(int row, int column) {
             return false;
         }
-
     };
 
     DefaultTableModel modelFolio = new DefaultTableModel() {
@@ -73,6 +72,8 @@ public class FolioInventario extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         JtFolios = new javax.swing.JTable();
         JbUpdate = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        JbC = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FOLIOS DEL INVENTARIO");
@@ -131,13 +132,12 @@ public class FolioInventario extends javax.swing.JFrame {
         JpCodigosLayout.setHorizontalGroup(
             JpCodigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpCodigosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
                 .addContainerGap())
         );
         JpCodigosLayout.setVerticalGroup(
             JpCodigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
         );
 
         JbUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/refresh_arrows_14418.png"))); // NOI18N
@@ -147,38 +147,54 @@ public class FolioInventario extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("#:");
+
+        JbC.setText("0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(JbUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(JbC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(JbUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(52, 52, 52)
                         .addComponent(JbReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46)
                         .addComponent(JbEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(127, 127, 127)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(JpCodigos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(JpCodigos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(JbReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JbEnviar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JbUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(JbC))))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(JbReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JbEnviar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JbUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(JpCodigos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -206,44 +222,32 @@ public class FolioInventario extends javax.swing.JFrame {
         modelFolio.addColumn("13");
         modelFolio.addColumn("14");
         modelFolio.addColumn("P");
+        modelFolio.addColumn("F");
     }
 
     private void JtDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JtDatosMouseClicked
-        cleanTableTemp();
-        int row = JtDatos.rowAtPoint(evt.getPoint());
+        int row = JtDatos.getSelectedRow();
         boolean valor = (Boolean) JtDatos.getValueAt(row, 0);
         Estado = (String) JtDatos.getValueAt(row, 4);
 
         if (valor == true) {
-            int folio = (int) JtDatos.getValueAt(row, 1);
-            ArrayList<Folio> list = ObjInv.getFolioById(folio);
-            if (list.size() > 0) {
-                fl = folio;
-                contador++;
-                modelFolio.setNumRows(list.size());
-                for (int i = 0; i < list.size(); i++) {
-                    Folio f = list.get(i);
-                    modelFolio.setValueAt(f.getProducto(), i, 0);
-                    modelFolio.setValueAt(f.getAlmacen(), i, 1);
-                    modelFolio.setValueAt(f.getEstilo(), i, 2);
-                    modelFolio.setValueAt(f.getCorrida(), i, 3);
-                    modelFolio.setValueAt(f.getCombinacion(), i, 4);
-                    modelFolio.setValueAt(f.getTipo(), i, 5);
-                    modelFolio.setValueAt(f.getPto1(), i, 6);
-                    modelFolio.setValueAt(f.getPto2(), i, 7);
-                    modelFolio.setValueAt(f.getPto3(), i, 8);
-                    modelFolio.setValueAt(f.getPto4(), i, 9);
-                    modelFolio.setValueAt(f.getPto5(), i, 10);
-                    modelFolio.setValueAt(f.getPto6(), i, 11);
-                    modelFolio.setValueAt(f.getPto7(), i, 12);
-                    modelFolio.setValueAt(f.getPto8(), i, 13);
-                    modelFolio.setValueAt(f.getPto9(), i, 14);
-                    modelFolio.setValueAt(f.getPto10(), i, 15);
-                    modelFolio.setValueAt(f.getPto11(), i, 16);
-                    modelFolio.setValueAt(f.getPto12(), i, 17);
-                    modelFolio.setValueAt(f.getPto13(), i, 18);
-                    modelFolio.setValueAt(f.getPto14(), i, 19);
-                    modelFolio.setValueAt(f.getTotalPares(), i, 20);
+            if ("A".equals(Estado)) {
+                JOptionPane.showMessageDialog(this, "Este folio ya ha sido enviado", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                JtDatos.setRowSelectionAllowed(false);
+                //cleanTableTemp();
+                //cleanFolios();
+                //mostrarFolios();
+            } else {
+                fl = (int) JtDatos.getValueAt(row, 1);
+                ArrayList<Folio> list = ObjInv.getFolioById(fl);
+
+                if (list.size() > 0) {
+                    contador++;
+                    JbC.setText(String.valueOf(contador));
+
+                    for (Folio f : list) {
+                        array.add(f);
+                    }
                 }
             }
         } else {
@@ -266,144 +270,142 @@ public class FolioInventario extends javax.swing.JFrame {
     }
 
     private void JbEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbEnviarActionPerformed
+        agregarFolio();
         if (validarEnvioFolios()) {
-            if (Estado.equals("A")) {
-                JOptionPane.showMessageDialog(this, "Este folio ya ha sido enviado", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+            int row = JtFolios.getRowCount();
+
+            for (int i = 0; i < row; i++) {
+                Infisico inv = new Infisico();
+
+                String pt = JtFolios.getValueAt(i, 0).toString();
+                String am = JtFolios.getValueAt(i, 1).toString();
+                String es = JtFolios.getValueAt(i, 2).toString();
+                String cor = JtFolios.getValueAt(i, 3).toString();
+                String com = JtFolios.getValueAt(i, 4).toString();
+                String pt1 = JtFolios.getValueAt(i, 6).toString();
+                String pt2 = JtFolios.getValueAt(i, 7).toString();
+                String pt3 = JtFolios.getValueAt(i, 8).toString();
+                String pt4 = JtFolios.getValueAt(i, 9).toString();
+                String pt5 = JtFolios.getValueAt(i, 10).toString();
+                String pt6 = JtFolios.getValueAt(i, 11).toString();
+                String pt7 = JtFolios.getValueAt(i, 12).toString();
+                String pt8 = JtFolios.getValueAt(i, 13).toString();
+                String pt9 = JtFolios.getValueAt(i, 14).toString();
+                String pt10 = JtFolios.getValueAt(i, 15).toString();
+                String pt11 = JtFolios.getValueAt(i, 16).toString();
+                String pt12 = JtFolios.getValueAt(i, 17).toString();
+                String pt13 = JtFolios.getValueAt(i, 18).toString();
+                String pt14 = JtFolios.getValueAt(i, 19).toString();
+                String pares = JtFolios.getValueAt(i, 20).toString();
+                String fol = JtFolios.getValueAt(i, 21).toString();
+
+                inv.setProducto(Integer.parseInt(pt));
+                inv.setAlmacen(Integer.parseInt(am));
+                inv.setEstilo(Integer.parseInt(es));
+                inv.setCorrida(Integer.parseInt(cor));
+                inv.setCombinacion(Integer.parseInt(com));
+                inv.setTipo(JtFolios.getValueAt(i, 5).toString());
+                inv.setPto1(Integer.parseInt(pt1));
+                inv.setPto2(Integer.parseInt(pt2));
+                inv.setPto3(Integer.parseInt(pt3));
+                inv.setPto4(Integer.parseInt(pt4));
+                inv.setPto5(Integer.parseInt(pt5));
+                inv.setPto6(Integer.parseInt(pt6));
+                inv.setPto7(Integer.parseInt(pt7));
+                inv.setPto8(Integer.parseInt(pt8));
+                inv.setPto9(Integer.parseInt(pt9));
+                inv.setPto10(Integer.parseInt(pt10));
+                inv.setPto11(Integer.parseInt(pt11));
+                inv.setPto12(Integer.parseInt(pt12));
+                inv.setPto13(Integer.parseInt(pt13));
+                inv.setPto14(Integer.parseInt(pt14));
+                inv.setTotalPares(Integer.parseInt(pares));
+
+                if (objF.AddTemp(inv)) {
+                    ms = "ok";
+                    ObjInv.updateFolioxPistola(Integer.parseInt(fol));
+                } else {
+                    ms = "error";
+                }
+            }
+
+            if (ms.equals("ok")) {
+                JOptionPane.showMessageDialog(this, "Registro agregado", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                 cleanTableTemp();
                 cleanFolios();
                 mostrarFolios();
                 contador = 0;
             } else {
-                if (contador > 1) {
-                    JOptionPane.showMessageDialog(this, "Envie un registro a la vez", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-                    cleanTableTemp();
-                    cleanFolios();
-                    mostrarFolios();
-                    contador = 0;
-                } else if (contador == 0) {
-                    JOptionPane.showMessageDialog(this, "No hay ningun registro", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-                    cleanTableTemp();
-                    cleanFolios();
-                    mostrarFolios();
-                    contador = 0;
-                } else if (contador == 1) {
-                    int row = JtFolios.getRowCount();
-
-                    for (int i = 0; i < row; i++) {
-                        Infisico inv = new Infisico();
-
-                        String pt = JtFolios.getValueAt(i, 0).toString();
-                        String am = JtFolios.getValueAt(i, 1).toString();
-                        String es = JtFolios.getValueAt(i, 2).toString();
-                        String cor = JtFolios.getValueAt(i, 3).toString();
-                        String com = JtFolios.getValueAt(i, 4).toString();
-                        String pt1 = JtFolios.getValueAt(i, 6).toString();
-                        String pt2 = JtFolios.getValueAt(i, 7).toString();
-                        String pt3 = JtFolios.getValueAt(i, 8).toString();
-                        String pt4 = JtFolios.getValueAt(i, 9).toString();
-                        String pt5 = JtFolios.getValueAt(i, 10).toString();
-                        String pt6 = JtFolios.getValueAt(i, 11).toString();
-                        String pt7 = JtFolios.getValueAt(i, 12).toString();
-                        String pt8 = JtFolios.getValueAt(i, 13).toString();
-                        String pt9 = JtFolios.getValueAt(i, 14).toString();
-                        String pt10 = JtFolios.getValueAt(i, 15).toString();
-                        String pt11 = JtFolios.getValueAt(i, 16).toString();
-                        String pt12 = JtFolios.getValueAt(i, 17).toString();
-                        String pt13 = JtFolios.getValueAt(i, 18).toString();
-                        String pt14 = JtFolios.getValueAt(i, 19).toString();
-                        String pares = JtFolios.getValueAt(i, 20).toString();
-
-                        inv.setProducto(Integer.parseInt(pt));
-                        inv.setAlmacen(Integer.parseInt(am));
-                        inv.setEstilo(Integer.parseInt(es));
-                        inv.setCorrida(Integer.parseInt(cor));
-                        inv.setCombinacion(Integer.parseInt(com));
-                        inv.setTipo(JtFolios.getValueAt(i, 5).toString());
-                        inv.setPto1(Integer.parseInt(pt1));
-                        inv.setPto2(Integer.parseInt(pt2));
-                        inv.setPto3(Integer.parseInt(pt3));
-                        inv.setPto4(Integer.parseInt(pt4));
-                        inv.setPto5(Integer.parseInt(pt5));
-                        inv.setPto6(Integer.parseInt(pt6));
-                        inv.setPto7(Integer.parseInt(pt7));
-                        inv.setPto8(Integer.parseInt(pt8));
-                        inv.setPto9(Integer.parseInt(pt9));
-                        inv.setPto10(Integer.parseInt(pt10));
-                        inv.setPto11(Integer.parseInt(pt11));
-                        inv.setPto12(Integer.parseInt(pt12));
-                        inv.setPto13(Integer.parseInt(pt13));
-                        inv.setPto14(Integer.parseInt(pt14));
-                        inv.setTotalPares(Integer.parseInt(pares));
-
-                        if (objF.AddTemp(inv)) {
-                            ms = "ok";
-                        } else {
-                            ms = "error";
-                        }
-                    }
-
-                    if (ms.equals("ok")) {
-                        JOptionPane.showMessageDialog(this, "Registro agregado", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-                        cleanTableTemp();
-                        ObjInv.updateFolioxPistola(fl);
-                        cleanFolios();
-                        mostrarFolios();
-                        contador = 0;
-                    } else {
-                        JOptionPane.showMessageDialog(this, "No se pudo agregar el registro contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-                        cleanTableTemp();
-                        contador = 0;
-                    }
-                }
+                JOptionPane.showMessageDialog(this, "No se pudo agregar el registro contacte con sistemas!!!", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
+                cleanTableTemp();
+                contador = 0;
             }
         }
     }//GEN-LAST:event_JbEnviarActionPerformed
 
     private void JbReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbReporteActionPerformed
-        if (contador > 1) {
-            JOptionPane.showMessageDialog(this, "Selecciona solo un registro", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-            cleanTableTemp();
-            cleanFolios();
-            mostrarFolios();
-            contador = 0;
-        } else if (contador == 0) {
-            JOptionPane.showMessageDialog(this, "Selecciona un registro", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
-            cleanTableTemp();
-            cleanFolios();
-            mostrarFolios();
-            contador = 0;
-        } else if (contador == 1) {
-            try {
-                JasperReport reporte;
-                reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("/Reports/ReporteFolios.jasper"));
-                try {
-                    Map par = new HashMap();
-                    par.put("folio", fl);
-                    JasperPrint jprint = JasperFillManager.fillReport(reporte, par, c);
-                    JasperViewer view = new JasperViewer(jprint, false);
 
-                    view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                    view.setVisible(true);
-                    view.setIconImage(getImage());
-                    view.setTitle("TOP-SUELAS");
-                } catch (JRException ex) {
-                    Logger.getLogger(FolioInventario.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        try {
+            JasperReport reporte;
+            reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("/Reports/ReporteFolios.jasper"));
+            try {
+                Map par = new HashMap();
+                par.put("folio", fl);
+                JasperPrint jprint = JasperFillManager.fillReport(reporte, par, c);
+                JasperViewer view = new JasperViewer(jprint, false);
+
+                view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                view.setVisible(true);
+                view.setIconImage(getImage());
+                view.setTitle("TOP-SUELAS");
             } catch (JRException ex) {
                 Logger.getLogger(FolioInventario.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, ex, "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
             }
-            cleanTableTemp();
-            cleanFolios();
-            mostrarFolios();
-            contador = 0;
+        } catch (JRException ex) {
+            Logger.getLogger(FolioInventario.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex, "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
         }
+        cleanTableTemp();
+        cleanFolios();
+        mostrarFolios();
+           // contador = 0;
+
     }//GEN-LAST:event_JbReporteActionPerformed
 
     private void JbUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbUpdateActionPerformed
-       cleanFolios();
-       mostrarFolios();
+        cleanFolios();
+        mostrarFolios();
     }//GEN-LAST:event_JbUpdateActionPerformed
+
+    private void agregarFolio() {
+        Object O[] = null;
+        for (int i = 0; i < array.size(); i++) {
+            modelFolio.addRow(O);
+            Folio getF = (Folio) array.get(i);
+            modelFolio.setValueAt(getF.getProducto(), i, 0);
+            modelFolio.setValueAt(getF.getAlmacen(), i, 1);
+            modelFolio.setValueAt(getF.getEstilo(), i, 2);
+            modelFolio.setValueAt(getF.getCorrida(), i, 3);
+            modelFolio.setValueAt(getF.getCombinacion(), i, 4);
+            modelFolio.setValueAt(getF.getTipo(), i, 5);
+            modelFolio.setValueAt(getF.getPto1(), i, 6);
+            modelFolio.setValueAt(getF.getPto2(), i, 7);
+            modelFolio.setValueAt(getF.getPto3(), i, 8);
+            modelFolio.setValueAt(getF.getPto4(), i, 9);
+            modelFolio.setValueAt(getF.getPto5(), i, 10);
+            modelFolio.setValueAt(getF.getPto6(), i, 11);
+            modelFolio.setValueAt(getF.getPto7(), i, 12);
+            modelFolio.setValueAt(getF.getPto8(), i, 13);
+            modelFolio.setValueAt(getF.getPto9(), i, 14);
+            modelFolio.setValueAt(getF.getPto10(), i, 15);
+            modelFolio.setValueAt(getF.getPto11(), i, 16);
+            modelFolio.setValueAt(getF.getPto12(), i, 17);
+            modelFolio.setValueAt(getF.getPto13(), i, 18);
+            modelFolio.setValueAt(getF.getPto14(), i, 19);
+            modelFolio.setValueAt(getF.getTotalPares(), i, 20);
+            modelFolio.setValueAt(getF.getFolio(), i, 21);
+        }
+    }
 
     public Image getImage() {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/PhotoPrint_11187.png"));
@@ -476,12 +478,14 @@ public class FolioInventario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel JbC;
     private javax.swing.JButton JbEnviar;
     private javax.swing.JButton JbReporte;
     private javax.swing.JButton JbUpdate;
     private javax.swing.JPanel JpCodigos;
     private javax.swing.JTable JtDatos;
     private javax.swing.JTable JtFolios;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
     // End of variables declaration//GEN-END:variables

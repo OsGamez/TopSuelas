@@ -57,7 +57,7 @@ public class ObjectCorridas {
     }
 
     public ArrayList<Corrida> corridasGetAll() {
-        ArrayList<Corrida> listaCorridas = new ArrayList<Corrida>();
+        ArrayList<Corrida> listaCorridas = new ArrayList<>();
         try {
             st = c.prepareStatement("SELECT * FROM Corrida WHERE Activo = 1");
 

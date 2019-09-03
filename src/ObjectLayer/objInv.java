@@ -38,6 +38,43 @@ public class objInv {
         return list;
     }
     
+     public ArrayList<Folio> getFolio() {
+        ArrayList<Folio> listaF = new ArrayList<>();
+        try {
+            st = c.prepareStatement("SELECT * FROM foliostemp");
+            rs = st.executeQuery();
+            
+            while (rs.next()) {
+                Folio f = new Folio();
+                f.setAlmacen(rs.getInt("Almacen"));
+                f.setProducto(rs.getInt("Producto"));
+                f.setCorrida(rs.getInt("Corrida"));
+                f.setCombinacion(rs.getInt("Combinacion"));
+                f.setEstilo(rs.getInt("Estilo"));
+                f.setTipo(rs.getString("Tipo"));
+                f.setPto1(rs.getInt("Pto1"));
+                f.setPto2(rs.getInt("Pto2"));
+                f.setPto3(rs.getInt("Pto3"));
+                f.setPto4(rs.getInt("Pto4"));
+                f.setPto5(rs.getInt("Pto5"));
+                f.setPto6(rs.getInt("Pto6"));
+                f.setPto7(rs.getInt("Pto7"));
+                f.setPto8(rs.getInt("Pto8"));
+                f.setPto9(rs.getInt("Pto9"));
+                f.setPto10(rs.getInt("Pto10"));
+                f.setPto11(rs.getInt("Pto11"));
+                f.setPto12(rs.getInt("Pto12"));
+                f.setPto13(rs.getInt("Pto13"));
+                f.setPto14(rs.getInt("Pto14"));
+                f.setTotalPares(rs.getInt("TotalPares"));
+                listaF.add(f);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listaF;
+    }
+    
     public ArrayList<Folio> getFolioById(int id) {
         ArrayList<Folio> listaF = new ArrayList<>();
         try {
@@ -68,6 +105,7 @@ public class objInv {
                 f.setPto13(rs.getInt("Pto13"));
                 f.setPto14(rs.getInt("Pto14"));
                 f.setTotalPares(rs.getInt("TotalPares"));
+                f.setFolio(rs.getInt("Folio"));
                 listaF.add(f);
             }
         } catch (SQLException ex) {
