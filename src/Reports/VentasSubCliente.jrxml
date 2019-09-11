@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="accc3e69-ca69-4ac1-b55c-9d955c2e29b1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cve" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select c.NumCliente,c.Nombre,sum(f.TotalPares) as Pares,sum(f.Total) as Total FROM 
+Clientes c
+INNER JOIN RCPTPhylon..Facturas f
+ON c.NumCliente = f.NumCliente 
+WHERE f.CveAgente = $P!{cve}
+GROUP BY c.NumCliente, c.Nombre
+order by Total desc]]>
+	</queryString>
+	<field name="NumCliente" class="java.lang.Short"/>
+	<field name="Nombre" class="java.lang.String"/>
+	<field name="Pares" class="java.lang.Integer"/>
+	<field name="Total" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="8" splitType="Stretch">
+			<textField>
+				<reportElement x="6" y="-1" width="39" height="9" uuid="fd90abe2-5b05-45fa-918b-9975b19c3fb4"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NumCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="-1" width="144" height="9" uuid="7bad02c1-78ea-4ed0-b70d-c4c5651d3d61"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="203" y="-1" width="56" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="a0e1422b-7348-41b6-842d-0e14c045830d"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Pares}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="265" y="-1" width="76" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="b4631002-367b-43f0-b39e-ccda8b41eb46"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

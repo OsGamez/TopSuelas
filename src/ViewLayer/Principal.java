@@ -59,6 +59,7 @@ public class Principal extends javax.swing.JFrame {
     Rplaneacion rplaneacion;
     CapturaCodigos cCodigos;
     FolioInventario finv;
+    ReporteClientesPhy cphy;
     
 
     ImageIcon notificacion = new ImageIcon("C:\\tsmanager\\imagenes\\push.png");
@@ -143,6 +144,7 @@ public class Principal extends javax.swing.JFrame {
         JmClientes = new javax.swing.JMenuItem();
         JmEstados = new javax.swing.JMenuItem();
         JmPais = new javax.swing.JMenuItem();
+        JmRCobranza = new javax.swing.JMenuItem();
         JmZona = new javax.swing.JMenuItem();
         JmCPT = new javax.swing.JMenu();
         Jmcatcpt = new javax.swing.JMenu();
@@ -281,6 +283,15 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         JmCatalogocobranza.add(JmPais);
+
+        JmRCobranza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/chart-1_111423.png"))); // NOI18N
+        JmRCobranza.setText("Reportes");
+        JmRCobranza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmRCobranzaActionPerformed(evt);
+            }
+        });
+        JmCatalogocobranza.add(JmRCobranza);
 
         JmZona.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JmZona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/if-traveling-icon-flat-outline09-3405110_107375.png"))); // NOI18N
@@ -863,6 +874,18 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void loadClientesPhy(){
+      if (cphy == null) {
+            cphy = new ReporteClientesPhy(null, true);
+            cphy.setVisible(true);
+        } else {
+            cphy.dispose();
+            cphy = new ReporteClientesPhy(null, true);
+            cphy.setVisible(true);
+        }
+    }
+    
     private void loadReportesPlaneacion(){
         if (rplaneacion == null) {
             rplaneacion = new Rplaneacion();
@@ -1518,6 +1541,10 @@ public class Principal extends javax.swing.JFrame {
     private void JmFolioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmFolioActionPerformed
        LoadFolio();
     }//GEN-LAST:event_JmFolioActionPerformed
+
+    private void JmRCobranzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmRCobranzaActionPerformed
+        loadClientesPhy();
+    }//GEN-LAST:event_JmRCobranzaActionPerformed
     private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {
         LoadMaquina();
     }
@@ -1614,6 +1641,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JmProductos;
     private javax.swing.JMenuItem JmProductoscpt;
     private javax.swing.JMenuItem JmProveedor;
+    private javax.swing.JMenuItem JmRCobranza;
     private javax.swing.JMenuItem JmReportes;
     private javax.swing.JMenuItem JmReportescpt;
     private javax.swing.JMenuItem JmRplaneacion;

@@ -8,15 +8,15 @@
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT 
- DATEPART(DAY,Fecha_Entrega) as Dia,Fecha_Entrega
+ DATEPART(DAY,Fecha_Captura) as Dia,Fecha_Captura
 
  FROM Pedidos
- WHERE DATEPART(WK,Fecha_Entrega) = $P!{semana}
- GROUP BY DATEPART(DAY,Fecha_Entrega),Fecha_Entrega
- ORDER BY Fecha_Entrega ASC]]>
+ WHERE DATEPART(WK,Fecha_Captura) = $P!{semana}
+ GROUP BY DATEPART(DAY,Fecha_Captura),Fecha_Captura
+ ORDER BY Fecha_Captura ASC]]>
 	</queryString>
 	<field name="Dia" class="java.lang.Integer"/>
-	<field name="Fecha_Entrega" class="java.sql.Date"/>
+	<field name="Fecha_Captura" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -107,14 +107,6 @@
 	</columnHeader>
 	<detail>
 		<band height="17" splitType="Stretch">
-			<textField pattern="yyyy/MM/dd" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="6" y="0" width="48" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="57b73924-ab02-45d3-8780-af00bb78f339"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="7" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{Fecha_Entrega}]]></textFieldExpression>
-			</textField>
 			<subreport>
 				<reportElement x="2" y="7" width="200" height="5" uuid="29e80e51-29a1-44cd-8a64-84035c1a2849"/>
 				<subreportParameter name="semana">
@@ -126,6 +118,14 @@
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA["C:\\tsmanager\\reportes\\PsemanalSubSuela.jasper"]]></subreportExpression>
 			</subreport>
+			<textField pattern="yyyy/MM/dd" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="6" y="0" width="48" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="4cc47eb6-0ebf-45ab-86e7-5189318f1014"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="7" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Fecha_Captura}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 </jasperReport>

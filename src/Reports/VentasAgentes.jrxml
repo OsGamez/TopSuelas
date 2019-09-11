@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0de3bfa9-b9b4-4168-bff3-770e123cb8a7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select CveAgente, Nombre from Agentes
+order by Nombre]]>
+	</queryString>
+	<field name="CveAgente" class="java.lang.Short"/>
+	<field name="Nombre" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="90" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="33" width="131" height="28" uuid="e3dc0632-2894-4e59-a055-b07ecd26f3a2"/>
+				<imageExpression><![CDATA["C:\\tsmanager\\imagenes\\logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="192" y="40" width="195" height="20" uuid="c3a7dbdd-d0ff-4aa9-98c4-58e424755802"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Resúmen De Ventas Por Agente]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="455" y="0" width="112" height="20" uuid="51a55cde-c0d3-4bab-bc43-c1b763635fca"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH.mm.ss">
+				<reportElement x="533" y="26" width="47" height="20" uuid="0118c691-59cc-483a-a058-c9612c387871"/>
+				<textElement>
+					<font fontName="Serif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="22">
+			<staticText>
+				<reportElement x="16" y="5" width="53" height="15" uuid="079d7e0e-c1bd-4212-8966-d95916105db9"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="5" width="35" height="15" uuid="f64e7990-c6ed-42c6-b128-cdf980b24719"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PARES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="269" y="5" width="49" height="15" uuid="47246da7-8f4e-47de-821f-acb1e1aae362"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="9" y="19" width="541" height="1" uuid="8ede7e95-cca2-447b-8876-90e9466db147"/>
+			</line>
+			<line>
+				<reportElement x="9" y="3" width="541" height="1" uuid="da277f97-a2af-465e-855e-8cb395676d8a"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="56" y="0" width="39" height="13" uuid="ea7e79fb-7cde-4e6e-9af6-326bf3665192"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CveAgente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="77" y="0" width="100" height="13" uuid="861d5e66-729d-4a77-aa2a-c0cda8f7de3c"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="16" y="0" width="36" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="ed3834dd-ea57-41fe-939d-471e956edab7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[AGENTE:]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="11" y="16" width="77" height="9" uuid="d8aebb9c-30b8-4159-add0-cbafc4ea159f"/>
+				<subreportParameter name="cve">
+					<subreportParameterExpression><![CDATA[$F{CveAgente}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\tsmanager\\reportes\\VentasSubCliente.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="7">
+			<subreport>
+				<reportElement x="7" y="1" width="136" height="6" uuid="83b932de-f1e4-4dd7-a44e-c8edf09cb457"/>
+				<subreportParameter name="agente">
+					<subreportParameterExpression><![CDATA[$F{CveAgente}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\tsmanager\\reportes\\VentasSuma.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="523" y="0" width="32" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="17e31c2d-7323-407e-9530-fd94050c3920"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="478" y="0" width="80" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="22dd8104-152d-4b3d-880d-4da54e786603"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

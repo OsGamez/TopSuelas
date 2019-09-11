@@ -15,7 +15,9 @@
  pd.Descripcion as Suela,sum(p.Pares) as Pares,p.ParesSurt
 FROM Dpedido p INNER JOIN ProduccionPhy..Producto pd
 ON p.Id_Producto = pd.Id_Producto
-WHERE DATEPART(WK,p.Fecha_Entrega) = $P!{semana} AND  DATEPART(DAY,p.Fecha_Entrega) = $P!{dia}
+INNER JOIN Pedidos pt ON
+p.Npedido = pt.Npedido
+WHERE DATEPART(WK,pt.Fecha_Captura) = $P!{semana} AND  DATEPART(DAY,pt.Fecha_Captura) = $P!{dia}
 GROUP BY pd.Id_Producto,pd.Descripcion,p.ParesSurt
 ORDER BY pd.Descripcion]]>
 	</queryString>

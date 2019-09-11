@@ -8,71 +8,71 @@
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT 
- p.Fecha_Entrega,c.Id_Cliente,
+ p.Fecha_Captura,c.Id_Cliente,
  CASE WHEN p.Serie = 'A' THEN c.RazonSocial
  WHEN p.Serie = 'B' THEN c.Nombre end as Cliente
 ,p.Npedido
 ,CASE
-	WHEN DATEPART(WK,Fecha_Entrega) = 1  THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 2 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 3 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 4 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 5 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 6 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 7 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 8 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 9 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 10 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 11 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 12 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 13 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 14 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 15 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 16 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 17 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 18 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 19 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 20 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 21 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 22 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 23 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 24 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 25 THEN  p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 26 THEN  p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 27 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 28 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 29 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 30 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 31 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 32 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 33 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 34 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 35 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 36 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 37 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 38 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 39 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 40 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 41 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 42 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 43 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 44 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 45 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 46 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 47 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 48 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 49 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 50 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 51 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 52 THEN p.TotalPares
- WHEN DATEPART(WK,Fecha_Entrega) = 53 THEN p.TotalPares
+	WHEN DATEPART(WK,Fecha_Captura) = 1  THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 2 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 3 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 4 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 5 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 6 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 7 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 8 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 9 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 10 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 11 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 12 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 13 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 14 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 15 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 16 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 17 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 18 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 19 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 20 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 21 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 22 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 23 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 24 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 25 THEN  p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 26 THEN  p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 27 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 28 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 29 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 30 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 31 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 32 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 33 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 34 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 35 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 36 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 37 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 38 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 39 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 40 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 41 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 42 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 43 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 44 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 45 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 46 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 47 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 48 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 49 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 50 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 51 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 52 THEN p.TotalPares
+ WHEN DATEPART(WK,Fecha_Captura) = 53 THEN p.TotalPares
 	END AS Pares
 FROM Pedidos p INNER JOIN CobranzaPhy.dbo.Clientes c
 ON p.Id_Cliente = c.Id_Cliente
-WHERE DATEPART(WK,p.Fecha_Entrega) = $P!{Date} 
+WHERE DATEPART(WK,p.Fecha_Captura) = $P!{Date} 
 ORDER BY p.Npedido]]>
 	</queryString>
-	<field name="Fecha_Entrega" class="java.sql.Date"/>
+	<field name="Fecha_Captura" class="java.lang.String"/>
 	<field name="Id_Cliente" class="java.lang.Short"/>
 	<field name="Cliente" class="java.lang.String"/>
 	<field name="Npedido" class="java.lang.String"/>
@@ -109,14 +109,6 @@ ORDER BY p.Npedido]]>
 				</textElement>
 				<text><![CDATA[ENTREGA:]]></text>
 			</staticText>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="151" y="2" width="39" height="12" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="b5387863-c4a9-4523-99b8-a1229e8eaeae"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{Fecha_Entrega}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement mode="Transparent" x="214" y="2" width="50" height="12" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="ae275905-a5e2-40c8-a3f8-a2c0903e64b5"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
@@ -217,6 +209,14 @@ ORDER BY p.Npedido]]>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA["C:\\tsmanager\\reportes\\SubDetalleP.jasper"]]></subreportExpression>
 			</subreport>
+			<textField>
+				<reportElement mode="Transparent" x="154" y="2" width="49" height="12" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="f1e5271d-b29f-4af4-96c9-ee714a2729f7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Fecha_Captura}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 </jasperReport>

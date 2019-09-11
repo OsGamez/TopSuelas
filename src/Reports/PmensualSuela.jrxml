@@ -11,24 +11,24 @@
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT 
- DATEPART(MM,Fecha_Entrega) as #,
+ DATEPART(MM,Fecha_Captura) as #,
  
- CASE WHEN DATEPART(MM,Fecha_Entrega) = 1 THEN 'ENERO'
- WHEN DATEPART(MM,Fecha_Entrega) = 2 THEN 'FEBRERO'
- WHEN DATEPART(MM,Fecha_Entrega) = 3 THEN 'MARZO'
- WHEN DATEPART(MM,Fecha_Entrega) = 4 THEN 'ABRIL'
- WHEN DATEPART(MM,Fecha_Entrega) = 5 THEN 'MAYO'
- WHEN DATEPART(MM,Fecha_Entrega) = 6 THEN 'JUNIO'
- WHEN DATEPART(MM,Fecha_Entrega) = 7 THEN 'JULIO'
- WHEN DATEPART(MM,Fecha_Entrega) = 8 THEN 'AGOSTO'
- WHEN DATEPART(MM,Fecha_Entrega) = 9 THEN 'SEPTIEMBRE'
- WHEN DATEPART(MM,Fecha_Entrega) = 10 THEN 'OCTUBRE'
- WHEN DATEPART(MM,Fecha_Entrega) = 11 THEN 'NOVIEMBRE'
- WHEN DATEPART(MM,Fecha_Entrega) = 12 THEN 'DICIEMBRE'
+ CASE WHEN DATEPART(MM,Fecha_Captura) = 1 THEN 'ENERO'
+ WHEN DATEPART(MM,Fecha_Captura) = 2 THEN 'FEBRERO'
+ WHEN DATEPART(MM,Fecha_Captura) = 3 THEN 'MARZO'
+ WHEN DATEPART(MM,Fecha_Captura) = 4 THEN 'ABRIL'
+ WHEN DATEPART(MM,Fecha_Captura) = 5 THEN 'MAYO'
+ WHEN DATEPART(MM,Fecha_Captura) = 6 THEN 'JUNIO'
+ WHEN DATEPART(MM,Fecha_Captura) = 7 THEN 'JULIO'
+ WHEN DATEPART(MM,Fecha_Captura) = 8 THEN 'AGOSTO'
+ WHEN DATEPART(MM,Fecha_Captura) = 9 THEN 'SEPTIEMBRE'
+ WHEN DATEPART(MM,Fecha_Captura) = 10 THEN 'OCTUBRE'
+ WHEN DATEPART(MM,Fecha_Captura) = 11 THEN 'NOVIEMBRE'
+ WHEN DATEPART(MM,Fecha_Captura) = 12 THEN 'DICIEMBRE'
  END AS 'MES'
 FROM Pedidos
-WHERE Fecha_Entrega BETWEEN $P{fecha} AND $P{fecha2}
-GROUP BY DATEPART(MM,Fecha_Entrega)]]>
+WHERE Fecha_Captura BETWEEN $P{fecha} AND $P{fecha2}
+GROUP BY DATEPART(MM,Fecha_Captura)]]>
 	</queryString>
 	<field name="#" class="java.lang.Integer"/>
 	<field name="MES" class="java.lang.String"/>

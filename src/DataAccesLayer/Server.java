@@ -136,6 +136,19 @@ public class Server {
         return sv;
     }
 
+    public static Connection getServerCobranza() {
+        try {
+            if (sv == null) {
+                String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+                Class.forName(driver);
+                sv = DriverManager.getConnection("jdbc:sqlserver://192.168.90.1:1433;database=RACobranzaPhylon", "sa", "Admin1305");
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return sv;
+    }
+
     public static Connection gettempphy() {
         try {
             if (sv == null) {

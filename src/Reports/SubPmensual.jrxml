@@ -16,7 +16,7 @@ ParesSurt as ENTREGADOS,ParesSurt as PENDS
 
 FROM Pedidos p INNER JOIN CobranzaPhy.dbo.Clientes c
 ON p.Id_Cliente = c.Id_Cliente
-WHERE  DATEPART(MM,p.Fecha_Entrega) = $P{Date}
+WHERE  DATEPART(MM,p.Fecha_Captura) = $P{Date}
 GROUP BY c.RazonSocial,c.Id_Cliente,p.ParesSurt,p.Serie,c.Nombre
 ORDER BY c.RazonSocial, c.Nombre]]>
 	</queryString>
