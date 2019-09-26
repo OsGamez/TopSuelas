@@ -1,7 +1,6 @@
 package ObjectLayer;
 
-import DataAccesLayer.Conexion;
-import DataAccesLayer.DB;
+
 import DataAccesLayer.Server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,6 +19,8 @@ public class Agente {
     PreparedStatement st = null;
     Connection c = Server.getCobranza();
     ResultSet rs = null;
+    
+    Connection ct = Server.getServerCobranza();
 
     public Agente() {
     }
@@ -71,6 +72,33 @@ public class Agente {
                 a = new Agente();
                 a.setId_Agente(rs.getInt("Id_Agente"));
                 a.setDescripcion(rs.getString("Descripcion"));
+                datos.add(a);
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return datos;
+    }
+    
+    public Vector<Agente> getAgentesR() {
+
+        Vector<Agente> datos = new Vector<Agente>();
+        Agente a = null;
+
+        try {
+            st = ct.prepareStatement("SELECT * FROM Agentes ORDER BY Nombre");
+            rs = st.executeQuery();
+
+            a = new Agente();
+            a.setId_Agente(0);
+            a.setDescripcion("Seleciona un agente");
+            datos.add(a);
+
+            while (rs.next()) {
+                a = new Agente();
+                a.setId_Agente(rs.getInt("CveAgente"));
+                a.setDescripcion(rs.getString("Nombre"));
                 datos.add(a);
             }
             rs.close();

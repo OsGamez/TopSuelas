@@ -7,15 +7,13 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select c.NumCliente,c.Nombre,sum(f.TotalPares) as Pares,sum(f.Total) as Total FROM 
-Clientes c
-INNER JOIN RCPTPhylon..Facturas f
-ON c.NumCliente = f.NumCliente 
-WHERE f.CveAgente = $P!{cve}
-GROUP BY c.NumCliente, c.Nombre
-order by Total desc]]>
+		<![CDATA[SELECT c.NumCliente as Num, c.Nombre, ISNULL(SUM(p.TotalPares), 0) Pares, ISNULL(SUM(p.Total),0) as Total
+FROM Clientes c LEFT JOIN RCPTPhylon..Facturas P ON c.NumCliente = p.NumCliente
+where c.Agente1 = $P!{cve}
+GROUP BY c.NumCliente,c.Nombre
+ORDER BY Pares Desc;]]>
 	</queryString>
-	<field name="NumCliente" class="java.lang.Short"/>
+	<field name="Num" class="java.lang.Short"/>
 	<field name="Nombre" class="java.lang.String"/>
 	<field name="Pares" class="java.lang.Integer"/>
 	<field name="Total" class="java.math.BigDecimal"/>
@@ -23,23 +21,25 @@ order by Total desc]]>
 		<band splitType="Stretch"/>
 	</background>
 	<detail>
-		<band height="8" splitType="Stretch">
-			<textField>
-				<reportElement x="6" y="-1" width="39" height="9" uuid="fd90abe2-5b05-45fa-918b-9975b19c3fb4"/>
-				<textElement>
-					<font size="7"/>
+		<band height="9" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="6" y="-1" width="39" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="9db08d06-da3f-4ab7-8388-c156d27e78ca"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{NumCliente}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Num}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="50" y="-1" width="144" height="9" uuid="7bad02c1-78ea-4ed0-b70d-c4c5651d3d61"/>
-				<textElement>
-					<font size="7"/>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="50" y="-1" width="144" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="956b7ad4-c980-4d9d-9152-1aa9a6be4d30"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="203" y="-1" width="56" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="a0e1422b-7348-41b6-842d-0e14c045830d"/>
+				<reportElement mode="Transparent" x="203" y="-1" width="56" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="fa4943dc-eec1-4505-bdef-2ae092bb7dd7"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -47,7 +47,7 @@ order by Total desc]]>
 				<textFieldExpression><![CDATA[$F{Pares}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="265" y="-1" width="76" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="b4631002-367b-43f0-b39e-ccda8b41eb46"/>
+				<reportElement mode="Transparent" x="265" y="-1" width="76" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="8399d98b-a21f-4ca9-a51e-87b7da890d2b"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>

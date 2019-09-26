@@ -73,7 +73,7 @@ order by Nombre]]>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="25" splitType="Stretch">
+		<band height="26" splitType="Stretch">
 			<textField>
 				<reportElement x="56" y="0" width="39" height="13" uuid="ea7e79fb-7cde-4e6e-9af6-326bf3665192"/>
 				<textElement>
@@ -97,22 +97,22 @@ order by Nombre]]>
 				<text><![CDATA[AGENTE:]]></text>
 			</staticText>
 			<subreport>
-				<reportElement x="11" y="16" width="77" height="9" uuid="d8aebb9c-30b8-4159-add0-cbafc4ea159f"/>
+				<reportElement x="11" y="17" width="77" height="9" uuid="7ff295a0-1ae4-4169-890c-9a44f8e0e463"/>
 				<subreportParameter name="cve">
 					<subreportParameterExpression><![CDATA[$F{CveAgente}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\tsmanager\\reportes\\VentasSubCliente.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\VentasSubCliente.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
-		<band height="7">
+		<band height="9">
 			<subreport>
-				<reportElement x="7" y="1" width="136" height="6" uuid="83b932de-f1e4-4dd7-a44e-c8edf09cb457"/>
+				<reportElement x="1" y="3" width="136" height="6" uuid="9fd1e379-1b6d-4abb-bd88-e4c0aa5ae58c"/>
 				<subreportParameter name="agente">
 					<subreportParameterExpression><![CDATA[$F{CveAgente}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\tsmanager\\reportes\\VentasSuma.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["C:\\Users\\BSISTEMAS\\Documents\\NetBeansProjects\\TopSuelas\\src\\Reports\\VentasSuma.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

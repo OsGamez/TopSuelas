@@ -48,7 +48,7 @@ public class AlmacenRcpt {
     }
 
     public Vector<AlmacenRcpt>getAm() {
-        Vector<AlmacenRcpt> datos = new Vector<AlmacenRcpt>();
+        Vector<AlmacenRcpt> datos = new Vector<>();
         AlmacenRcpt a = null;
 
         try {
