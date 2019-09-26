@@ -6,6 +6,8 @@
 package Plugins;
 
 import ObjectLayer.Validacion;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -13,8 +15,21 @@ import ObjectLayer.Validacion;
  */
 public class testvalidar {
     public static void main(String [] ar){
-        Validacion v = new Validacion();
-        System.out.println(v.verificanumeros("3"));
-        
+//        Validacion v = new Validacion();
+//        System.out.println(v.verificanumeros("3"));
+testvalidar t = new testvalidar();
+
+        System.out.println(t.verificanumeros("//"));
+    }
+    public boolean verificanumeros(String cad) {
+        boolean resp = false;
+        String patt = "[0-9A-Za-z/-]*";
+        Pattern pat = Pattern.compile(patt);
+        Matcher match = pat.matcher(cad);
+        if (!match.matches()) {
+            resp = true;
+        }
+        return resp;
     }
 }
+    
