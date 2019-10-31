@@ -32,12 +32,13 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class Etiquetas extends javax.swing.JDialog {
+
     String informacion = "";
     ObjectProductos ObjP = new ObjectProductos();
     ArrayList<etiqueta> listaetiqueta = new ArrayList<>();
     Vector<Almacen> listaalmacen = new Vector<>();
-    
-    DefaultListModel<Producto> modeloListaProductos= new DefaultListModel<Producto>();
+
+    DefaultListModel<Producto> modeloListaProductos = new DefaultListModel<Producto>();
 
     public Etiquetas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -156,6 +157,16 @@ public class Etiquetas extends javax.swing.JDialog {
         });
 
         JeAlmacen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JeAlmacen.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                JeAlmacenItemStateChanged(evt);
+            }
+        });
+        JeAlmacen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JeAlmacenActionPerformed(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/labelprint.png"))); // NOI18N
         jButton1.setText("Generar Etiqueta");
@@ -169,6 +180,7 @@ public class Etiquetas extends javax.swing.JDialog {
 
         JeFecha.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
 
+        JtProducto.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
         JtProducto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 JtProductoMouseClicked(evt);
@@ -190,6 +202,7 @@ public class Etiquetas extends javax.swing.JDialog {
 
         JbIdProd.setText("jLabel2");
 
+        listaProductos.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
         listaProductos.setModel(modeloListaProductos);
         listaProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         listaProductos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -210,6 +223,11 @@ public class Etiquetas extends javax.swing.JDialog {
         JbNombre.setFont(new java.awt.Font("sansserif", 0, 10)); // NOI18N
 
         JcRadiado.setText("Radiado");
+        JcRadiado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JcRadiadoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -334,12 +352,12 @@ public class Etiquetas extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void JeParesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JeParesActionPerformed
-       
+
         JtBase.requestFocus();
     }//GEN-LAST:event_JeParesActionPerformed
 
     private void JeTallaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JeTallaKeyPressed
-        
+
     }//GEN-LAST:event_JeTallaKeyPressed
 
     private void JtProductoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtProductoKeyReleased
@@ -363,10 +381,10 @@ public class Etiquetas extends javax.swing.JDialog {
             evt.setKeyChar(c);
         }
     }//GEN-LAST:event_JtProductoKeyTyped
- private void limpiarListaProductos() {
+    private void limpiarListaProductos() {
         modeloListaProductos.clear();
     }
- 
+
     private void listaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaProductosMouseClicked
         JList lis = (JList) evt.getSource();
 
@@ -380,7 +398,7 @@ public class Etiquetas extends javax.swing.JDialog {
     }//GEN-LAST:event_listaProductosMouseClicked
 
     private void JtProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtProductoActionPerformed
-        
+
     }//GEN-LAST:event_JtProductoActionPerformed
 
     private void JtProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JtProductoMouseClicked
@@ -396,47 +414,72 @@ public class Etiquetas extends javax.swing.JDialog {
     }//GEN-LAST:event_JeParesMouseClicked
 
     private void JtBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtBaseActionPerformed
-        int var = Integer.parseInt(JtBase.getText())/ Integer.parseInt(JePares.getText());
-        int var2 = Integer.parseInt(JtBase.getText())% Integer.parseInt(JePares.getText());
-        JbNombre.setText(String.valueOf(var)+" Etiquetas de "+JePares.getText()+", 1 de " + String.valueOf(var2));
+        int var = Integer.parseInt(JtBase.getText()) / Integer.parseInt(JePares.getText());
+        int var2 = Integer.parseInt(JtBase.getText()) % Integer.parseInt(JePares.getText());
+        JbNombre.setText(String.valueOf(var) + " Etiquetas de " + JePares.getText() + ", 1 de " + String.valueOf(var2));
     }//GEN-LAST:event_JtBaseActionPerformed
+
+    private void JcRadiadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcRadiadoActionPerformed
+        verificaradiado();
+    }//GEN-LAST:event_JcRadiadoActionPerformed
+
+    private void JeAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JeAlmacenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JeAlmacenActionPerformed
+
+    private void JeAlmacenItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JeAlmacenItemStateChanged
+        verificaradiado();
+    }//GEN-LAST:event_JeAlmacenItemStateChanged
+
+    private void verificaradiado() {
+        int rowalm = JeAlmacen.getSelectedIndex();
+        int almacen = listaalmacen.get(rowalm).getAlmacen();
+        if (almacen == 3) {
+            JcRadiado.setSelected(true);
+        } else {
+            JcRadiado.setSelected(false);
+        }
+    }
+
     private void Cerrar() {
 //        String botones[] = {"SI", "NO"};
 //        int eleccion = JOptionPane.showOptionDialog(this,"¿Deseas cerrar esta ventana?", "TOP-SUELAS", 
 //                0, 0, null, botones, this);
 //        if(eleccion == JOptionPane.YES_OPTION){
         dispose();
-        
+
 //        }else if(eleccion == JOptionPane.NO_OPTION){       
 //        }
     }
-    private void limpiar(){
+
+    private void limpiar() {
         JeTalla.setText("");
         JePares.setText("");
         Jtp.setSelectedIndex(0);
         JeAlmacen.setSelectedIndex(0);
-        
+
     }
 
     public void setEtiqueta() {
         try {
             ObjectEtiquetas obje = new ObjectEtiquetas();
-            listaetiqueta=obje.EtiquetaBusca(Integer.parseInt(JbIdProd.getText()));
+            listaetiqueta = obje.EtiquetaBusca(Integer.parseInt(JbIdProd.getText()));
             Map parametros = new HashMap();
             parametros.put("a", "a");
             ArrayList<Object> reports = new ArrayList<>();
             Validacion v = new Validacion();
             int rowprod = 1;
             int rowalm = JeAlmacen.getSelectedIndex();
-            String Rader = JcRadiado.isSelected() ? "R": "N";
+            String Rader = JcRadiado.isSelected() ? "R" : "N";
             if (JeAlmacen.getSelectedIndex() == 0 || JeTalla.getText().equals("") || JePares.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Faltan datos por introducir o seleccionar!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
-            } else if ( !v.verificanumeros(JePares.getText())) {
+            } else if (!v.verificanumeros(JePares.getText())) {
                 JOptionPane.showMessageDialog(this, "Datos introducidos no validos", "TOP-SUELAS", JOptionPane.ERROR_MESSAGE);
                 JeTalla.requestFocus();
             } else if (Float.parseFloat(JeTalla.getText()) >= listaetiqueta.get(rowprod).getPi()
                     && Float.parseFloat(JeTalla.getText()) <= listaetiqueta.get(rowprod).getPf()) {
                 etiqueta e = new etiqueta();
+                int rad=(listaalmacen.get(rowalm).getAlmacen()==3)?1:0;
                 DateFormat df = DateFormat.getDateInstance();
                 e.setAlmacen(listaalmacen.get(rowalm).getAlmacen());
                 e.setProducto(JbIdProd.getText());
@@ -446,19 +489,20 @@ public class Etiquetas extends javax.swing.JDialog {
                 e.setPares(JePares.getText());
                 e.setModelo(listaetiqueta.get(rowprod).getModelo());
                 e.setDescripcion(Rader);
+                e.setPf(rad);
                 e.setCodigo(CreaCodigo(e));
                 reports.add(e);
                 this.dispose();
                 JasperReport jasper = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reports/EtiquetaCodigo.jasper"));
                 JasperPrint print = JasperFillManager.fillReport(jasper, parametros, new JRBeanCollectionDataSource(reports));
                 JasperViewer ver = new JasperViewer(print, false); //despliegue de reporte
-                ver.addWindowListener( new WindowAdapter() {
+                ver.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent we) {
                         setVisible(true);
                         //limpiar();
                     }
-                } );
+                });
                 ver.setTitle("ETIQUETAS");
                 ver.setVisible(true);
             } else {
@@ -473,15 +517,16 @@ public class Etiquetas extends javax.swing.JDialog {
 
     private String CreaCodigo(etiqueta e) {
         String codigo = (e.getAlmacen() < 10) ? "0" + e.getAlmacen() : e.getAlmacen() + "";//01
-        for (int i = e.getProducto().length(); i < 5; i++) {
+        for (int i = e.getProducto().length(); i < 4; i++) {
             codigo += "0";
         }
-        codigo += e.getProducto();//0100128
-        codigo += (e.getPunto().length() == 1) ? e.getPunto() + "0" : (int) (Float.parseFloat(e.getPunto()) * 10) + "";//0100128265
+        codigo += e.getProducto();//010128
+        codigo += (e.getPunto().length() == 1) ? e.getPunto() + "0" : (int) (Float.parseFloat(e.getPunto()) * 10) + "";//010128265
         for (int i = e.getPares().length(); i < 3; i++) {
             codigo += "0";
         }
-        codigo += e.getPares();//01,00128,265,050 {13 numeros}
+        codigo += e.getPares();//01,0128,265,050   {12 numeros}
+        codigo+= e.getPf();//    01,0128,265,050,1 {13 numeros}
         //System.out.println(codigo);
         return codigo;
     }

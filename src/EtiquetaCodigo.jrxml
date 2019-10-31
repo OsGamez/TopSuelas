@@ -143,10 +143,6 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="240" y="189" width="11" height="13" uuid="5dd74234-00e1-4e7e-8ccd-00f4b34f2863"/>
-				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
-			</textField>
 		</band>
 	</detail>
 </jasperReport>
