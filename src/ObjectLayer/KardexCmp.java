@@ -48,7 +48,7 @@ public class KardexCmp implements java.io.Serializable{
     public void setOperacion(String operacion) {
         this.operacion = operacion;
     }
-    private int cuenta,subcuenta,folio,proveedor,almacen,cantidad,renglon,usuario,folio2;
+    private int cuenta,subcuenta,folio,proveedor,almacen,renglon,usuario,folio2;
 
     public int getUsuario() {
         return usuario;
@@ -57,7 +57,7 @@ public class KardexCmp implements java.io.Serializable{
     public void setUsuario(int usuario) {
         this.usuario = usuario;
     }
-    private float costo,importe;
+    private float costo,importe,cantidad;
 
     public String getFechamov() {
         return fechamov;
@@ -195,11 +195,11 @@ public class KardexCmp implements java.io.Serializable{
         this.almacen = almacen;
     }
 
-    public int getCantidad() {
+    public float getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(float cantidad) {
         this.cantidad = cantidad;
     }
 

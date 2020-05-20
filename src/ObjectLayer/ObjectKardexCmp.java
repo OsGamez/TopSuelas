@@ -29,16 +29,16 @@ public class ObjectKardexCmp {
             //bucle para insercion en kardex y actualizacion de cantidades en existencias.
             DateFormat df = DateFormat.getDateInstance();
             for (int i = 0; i < k.getMat().size(); i++) {
-                int cant = k.getMat().get(i).getCantidad();
+                float cant = k.getMat().get(i).getCantidad();
                 float cos = k.getMat().get(i).getCosto();
                 String material = k.getMat().get(i).getMaterial();
                 String sql = "INSERT INTO KardexCmp values(" + k.getFolio() + "," + k.getCuenta() + ""
                         + "," + k.getSubcuenta() + "," + k.getProveedor() + "," + k.getAlmacen() + ",'" + material + "'"
                         + ",'" + k.getOrdenc() + "','" + k.getFechamov() + "','" + k.getFechadoc() + "','" + k.getSerie() + "'"
-                        + ",'" + k.getTipo() + "','" + k.getDocref() + "'," + cant + "," + cos + "," 
-                        + df.format(String.valueOf(cos * cant)) + "," + renglon + ",'1',"
+                        + ",'" + k.getTipo() + "','" + k.getDocref() + "'," + cant + "," + cos + "" 
+                        + "," +(cos * cant) + "," + renglon + ",'1',"
                         + "" + k.getUsuario() + ")";
-////                System.out.println("kardex "+sql);
+//               System.out.println("kardex "+sql);
                 st = c.prepareStatement(sql);
                 st.executeUpdate();
                 Statement s;
@@ -62,7 +62,7 @@ public class ObjectKardexCmp {
                 }
                 st = c.prepareStatement(sql);
                 st.executeUpdate();
-////                System.out.println("existencias "+sql);
+//////                System.out.println("existencias "+sql);
                 renglon++;
             }
             String columna =(k.getTipo().equals("E"))?"Entradas":"Salidas";
@@ -94,17 +94,17 @@ public class ObjectKardexCmp {
             //bucle para insercion en kardex y actualizacion de cantidades en existencias.
             DecimalFormat dff = new DecimalFormat("#.00");
             for (int i = 0; i < k.getMat().size(); i++) {
-                int cant = k.getMat().get(i).getSurtido();
+                float cant = k.getMat().get(i).getSurtido();
                 float cos = k.getMat().get(i).getCosto();
                 String material = k.getMat().get(i).getMaterial();
-                String importe=dff.format(cos*cant);// fecha de orden de compra
+                float importe=(cos*cant);// fecha de orden de compra
                 String sql = "INSERT INTO KardexCmp values(" + k.getFolio() + "," + k.getCuenta() + ""
                         + "," + k.getSubcuenta() + "," + k.getProveedor() + "," + k.getAlmacen() + ",'" + material + "'"
                         + ",'" + k.getOrdenc() + "','" + k.getFechamov() + "','" + k.getFechadoc() + "','" + k.getSerie() + "'"
                         + ",'" + k.getTipo() + "','" + k.getDocref() + "'," + cant + "," + cos + "," 
                         + importe + "," + k.getMat().get(i).getRenglon() + ",'1',"
                         + "" + k.getUsuario() + ")";
-                System.out.println("kardex "+sql);
+//                System.out.println("kardex "+sql);
                 st = c.prepareStatement(sql);
                 st.executeUpdate();
                 Statement s;
@@ -131,7 +131,7 @@ public class ObjectKardexCmp {
                 st=c.prepareStatement("update DOrdencompra set cantsurtido=cantsurtido+"+k.getMat().get(i).getSurtido()+
                         " where folio="+k.getOrdenc()+" and renglon ="+k.getMat().get(i).getRenglon());
                 st.executeUpdate();
-                System.out.println("existencias "+sql+"\n update DOrdencompra set cantsurtido=cantsurtido+"+k.getMat().get(i).getSurtido()+" where folio="+k.getOrdenc()+"  renglon ="+k.getMat().get(i).getRenglon());
+//                //System.out.println("existencias "+sql+"\n update DOrdencompra set cantsurtido=cantsurtido+"+k.getMat().get(i).getSurtido()+" where folio="+k.getOrdenc()+"  renglon ="+k.getMat().get(i).getRenglon());
 //                renglon++;
             }
             String columna =(k.getTipo().equals("E"))?"Entradas":"Salidas";
@@ -168,7 +168,7 @@ public class ObjectKardexCmp {
                     + "join ProvedoresMPrima pmp on k.ProveedorMPrima=pmp.Proveedor\n"
                     + "join Almacenes alm on k.Almacen=alm.Almacen\n"
                     + "join Materiales mat on k.Cvemat=mat.CveMat  ORDER BY fechamov DESC";
-//            System.out.println(sql);
+////            System.out.println(sql);
             st = c.prepareStatement(sql);
             rs = st.executeQuery();
             while (rs.next()) {
@@ -180,7 +180,7 @@ public class ObjectKardexCmp {
                 k.setSerie(rs.getString("serie"));
                 k.setNombrealmacen(rs.getString("adescripcion"));
                 k.setNombrematerial(rs.getString("mdescripcion"));
-                k.setCantidad(rs.getInt("cantidad"));
+                k.setCantidad(rs.getFloat("cantidad"));
                 listaKardexCmp.add(k);
             }
             rs.close();
@@ -213,7 +213,7 @@ public class ObjectKardexCmp {
                 k.setSerie(rs.getString("serie"));
                 k.setNombrealmacen(rs.getString("adescripcion"));
                 k.setNombrematerial(rs.getString("mdescripcion"));
-                k.setCantidad(rs.getInt("cantidad"));
+                k.setCantidad(rs.getFloat("cantidad"));
                 listaKardexCmp.add(k);
             }
             rs.close();

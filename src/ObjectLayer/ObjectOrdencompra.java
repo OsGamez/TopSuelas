@@ -21,32 +21,35 @@ public class ObjectOrdencompra {
     PreparedStatement st, prod = null;
     ResultSet rs = null;
     Statement sta = null;
-
+    public Connection getcon(){
+    return c;
+    }
     public boolean OrdenAdd(Ordencompra o) {
         try {
             c.setAutoCommit(false);
             String sql = "insert into Ordencompra values (" + o.getFolio() + ","
                     + o.getProveedor() + ",'" + o.getRefdoc() + "'," + o.getCantidad() + "," + o.getTotal()
                     + ",'" + o.getFecha() + "','" + o.getFechadoc() + "','" + o.getObservaciones()
-                    + "','1'," + o.getUsuario() + ",'" + o.getSerie() + "')";
+                    + "','1'," + o.getUsuario() + ",'" + o.getSerie() + "',"+o.getIvas()+")";
 //            System.out.println("enc " + sql);
             st = c.prepareStatement(sql);
             st.executeUpdate();
-            int y = 1;
+            int y = 1;// numero de renglon
             for (int i = 0; i < o.getMat().size(); i++) {
                 float costo = o.getMat().get(i).getCosto();
-                int cant = o.getMat().get(i).getCantidad();
+                float cant = o.getMat().get(i).getCantidad();
                 String material = o.getMat().get(i).getMaterial();
                 float sub = costo * cant;
+                float iva=o.getMat().get(i).getIva();
                 DecimalFormat df = new DecimalFormat("#.00");
                 sql = "insert into DOrdencompra values (" + o.getFolio() + "," + y
-                        + ",'" + material + "'," + costo + "," + cant + "," + df.format(sub) + ",0,'1')";
+                        + ",'" + material + "'," + costo + "," + cant + "," + df.format(sub) + ",0,'1',"+iva+")";
 //                System.out.println("det " + sql);
                 st = c.prepareStatement(sql);
                 st.executeUpdate();
                 y++;
             }
-            sql = "update parametroscmp set OrdenCompra=OrdenCompra+1";
+            sql = "update parametroscmp set OrdenCompra=OrdenCompra+1";// se actualiza la variable de parametros
 //            System.out.println("parametro " + sql);
             st = c.prepareStatement(sql);
             st.executeUpdate();
@@ -121,7 +124,7 @@ public class ObjectOrdencompra {
             st = c.prepareStatement("select o.folio as'folio',p.nombre,convert(varchar,fecha,103) as 'fecha',"
                     + "convert(varchar,fecha,108) as 'tiempo',observaciones,"
                     + "d.cvemat as 'material',renglon,precio,d.cantidad as 'cant',subtotal,"
-                    + "mat.descripcion as 'nmaterial', serie,o.usuario,d.cantsurtido \n"
+                    + "mat.descripcion as 'nmaterial', serie,o.usuario,d.cantsurtido,o.proveedor as 'prov' \n"
                     + "from Ordencompra o \n"
                     + "join ProvedoresMPrima p on p.Proveedor=o.proveedor\n"
                     + "join DOrdencompra d on d.folio=o.folio\n"
@@ -135,6 +138,7 @@ public class ObjectOrdencompra {
                 if (flag) {
                     o.setFolio(rs.getInt("folio"));
                     o.setNombreproveedor(rs.getString("nombre"));
+                    o.setProveedor(rs.getInt("prov"));
                     o.setFecha(rs.getString("fecha"));
                     o.setTiempo(rs.getString("tiempo"));
                     o.setObservaciones(rs.getString("observaciones"));

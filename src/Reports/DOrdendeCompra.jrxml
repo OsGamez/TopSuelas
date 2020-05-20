@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="612" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="1b13bb30-b437-4e77-b731-bbb3e3a4071b">
+	<property name="ireport.zoom" value="0.9075000000000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="folio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select precio,cantidad,subtotal,cantsurtido,iva,m.Descripcion as 'mat'
+from DOrdencompra dc join Materiales m on dc.cvemat=m.cvemat
+where folio=$P{folio}
+order by renglon]]>
+	</queryString>
+	<field name="precio" class="java.lang.Double"/>
+	<field name="cantidad" class="java.lang.Double"/>
+	<field name="subtotal" class="java.lang.Double"/>
+	<field name="cantsurtido" class="java.lang.Integer"/>
+	<field name="iva" class="java.lang.Double"/>
+	<field name="mat" class="java.lang.String"/>
+	<variable name="importe" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{subtotal}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="21">
+			<staticText>
+				<reportElement x="0" y="0" width="205" height="20" uuid="02e31948-848a-4c31-ab6e-45f69145f384"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Material]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="205" y="0" width="74" height="20" uuid="f2520c8e-0adf-49ac-b33a-955405281899"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="0" width="75" height="20" uuid="f034b912-4a5f-42f9-8070-c804de2da56b"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="354" y="0" width="66" height="20" uuid="2fab3c2c-eba7-4bf9-8644-3e9dc6cb977d"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Cant. surtido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="0" width="65" height="20" uuid="e5e6a676-5f4c-41a2-b624-63123289c84f"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Iva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="485" y="0" width="88" height="20" uuid="6949fa80-e4e6-410b-897f-00b8805cba97"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Importe]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="205" height="20" uuid="94022fb3-1f42-4d3a-ac54-e366c1147208"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{mat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="205" y="0" width="74" height="20" uuid="6a33a7db-4791-43a3-889e-36da674b2328"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="0" width="75" height="20" uuid="98fc2208-4054-49a9-a85a-2591251e1b59"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="354" y="0" width="66" height="20" uuid="a581cb45-f797-4612-becd-450400e2911c"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cantsurtido}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="420" y="0" width="65" height="20" uuid="4aba5b92-c30f-4307-8f7f-3859dedc8ef3"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{iva}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="485" y="0" width="88" height="20" uuid="e3b7e1fc-c47e-47cf-baba-c61953a3390c"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{subtotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -52,10 +52,8 @@ public class MovimientosCMP extends javax.swing.JInternalFrame {
     public void Loadmodelkardexcmp() {
         listakardex = obj.KardexCmpGatAll();
         modelkardexcmp.setNumRows(listakardex.size());
-
         for (int i = 0; i < listakardex.size(); i++) {
             KardexCmp kardex = listakardex.get(i);
-
             modelkardexcmp.setValueAt(kardex.getFolio(), i, 0);
             modelkardexcmp.setValueAt(kardex.getCuenta(), i, 1);
             modelkardexcmp.setValueAt(kardex.getSubcuenta(), i, 2);

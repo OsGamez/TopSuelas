@@ -642,23 +642,23 @@ public class MovimientosesCMP extends javax.swing.JDialog {
             Movs_materiales ma = new Movs_materiales();
             Validacion v = new Validacion();
             String resp = JOptionPane.showInputDialog("Escribe la cantidad: ");
-            while (!v.verificanumeros(resp) || Integer.parseInt(resp) <= 0) {
+            while (Float.parseFloat(resp) <= 0 && (!v.verificanumeros(resp) || v.verificaflotantes(resp))) {
                 resp = JOptionPane.showInputDialog("Escribe la cantidad: ");
             }
-            int existencia;
+            float existencia;
             if (Integer.parseInt(JtCuenta.getText()) == 1 && Integer.parseInt(JtSubcuenta.getText()) == 16) {
                 existencia = ObjM.validaralmacen_material(listaalmacena.get(JcAlmacena.getSelectedIndex()).getAlmacen(), mat.getCveMat());
             } else {
                 existencia = ObjM.validaralmacen_material(listaalmacen.get(JcAlmacen.getSelectedIndex()).getAlmacen(), mat.getCveMat());
             }
 //            System.out.println(existencia + " * " + resp + " *");
-            if (existencia == 0 || existencia < Integer.parseInt(resp)) {
+            if (existencia == 0 || existencia < Float.parseFloat(resp)) {//  verifica si hay stock suficiente para hacer el traspaso
                 JOptionPane.showMessageDialog(null, "No se cuenta con suficiente existencia de este material con el almacen seleccionado", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                 JtMat.setText("");
                 JtMat.requestFocus();
                 limpiarMaterial();
             } else {
-                ma.setCantidad(Integer.parseInt(resp));
+                ma.setCantidad(Float.parseFloat(resp));
                 ma.setMaterial(mat.getCveMat());
                 ma.setNombre_material(mat.getDescripcion());
                 ma.setCosto((float) mat.getCostoCosteo());
@@ -928,7 +928,7 @@ public class MovimientosesCMP extends javax.swing.JDialog {
                         Movs_materiales mo = new Movs_materiales();
                         mo.setMaterial(listamovimiento_material.get(i).getMaterial());
                         mo.setCosto(listamovimiento_material.get(i).getCosto());
-                        mo.setCantidad(Integer.parseInt(numaux));
+                        mo.setCantidad(Float.parseFloat(numaux));
                         arr.add(mo);
                     }
                     String[] ar;// operacion
@@ -1039,6 +1039,8 @@ public class MovimientosesCMP extends javax.swing.JDialog {
         JtSubcuenta.setText("");
         JtFolio.setText("");
         JcAlmacen.setSelectedIndex(0);
+        listaMaterial.clear();
+        listamovimiento_material.clear() ; 
         LoadModelmaterials();
         JtCuenta.requestFocus();
     }

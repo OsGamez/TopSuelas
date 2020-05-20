@@ -1,9 +1,11 @@
 package ViewLayer;
 
+import DataAccesLayer.Server;
 import ObjectLayer.Almacen;
 import ObjectLayer.KardexCmp;
 import ObjectLayer.Material;
 import ObjectLayer.Movs_materiales;
+import ObjectLayer.ObjectEtiquetas;
 import ObjectLayer.ObjectKardexCmp;
 import ObjectLayer.ObjectMateriales;
 import ObjectLayer.ObjectOrdencompra;
@@ -12,20 +14,34 @@ import ObjectLayer.Ordencompra;
 import ObjectLayer.ProveedorMPrima;
 import ObjectLayer.Sesioninfo;
 import ObjectLayer.Validacion;
+import ObjectLayer.etiqueta;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class NOrdenCompra extends javax.swing.JDialog {
 
@@ -62,9 +78,10 @@ public class NOrdenCompra extends javax.swing.JDialog {
         Calendar fecha = Calendar.getInstance();
         JeFecha.setCalendar(fecha);
         Jlserie.setText(s.getSerie());
-        
+        JlIcono.setVisible(false);
+        //Jlserie.setText("A");
         LoadModelmaterials();
-        LoadOrden();
+        hiloorden();
         JbIdProd.setVisible(false);
         JbCvet.setVisible(false);
         pmp.setProveedor(0);
@@ -471,8 +488,8 @@ public class NOrdenCompra extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(JtFolio, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JtCambio, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
+                        .addComponent(JtCambio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
                         .addComponent(JeFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5)
@@ -536,7 +553,7 @@ public class NOrdenCompra extends javax.swing.JDialog {
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(JtRdoc, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 49, Short.MAX_VALUE)))
+                        .addGap(0, 64, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -625,6 +642,26 @@ public class NOrdenCompra extends javax.swing.JDialog {
         JcAlmacen.setSelectedIndex(0);
     }
 
+    private void hiloorden() {
+        //Actualiza cada segundo el numero de orden. pd: no es lo ideal
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(1000);
+                        LoadOrden();
+//                        //System.out.println("Carga de orden");
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        Thread hilo = new Thread(runnable);
+        hilo.start();
+    }
+
     private void LoadOrden() {
         JtFolio.setText(Objcmp.getByOrden() + "");
     }
@@ -652,7 +689,7 @@ public class NOrdenCompra extends javax.swing.JDialog {
 
     private void vaciatabla() {
         int rows = JttMaterial.getRowCount();
-        System.out.println(rows);
+//        System.out.println(rows);
         for (int i = rows - 1; i >= 0; i--) {
             modelMaterials.removeRow(i);
         }
@@ -746,11 +783,12 @@ public class NOrdenCompra extends javax.swing.JDialog {
             if (resp == null || resp.equals("") || resp.isEmpty()) {
 
             } else {
-                while (!v.verificanumeros(resp) || Integer.parseInt(resp) <= 0) {
+//                System.out.println(!v.verificanumeros(resp) + " " + resp + " " + !v.verificaflotantes(resp));
+                while (Float.parseFloat(resp) <= 0 && (!v.verificanumeros(resp) || !v.verificaflotantes(resp))) {
                     resp = JOptionPane.showInputDialog("Escribe la cantidad: ");
                 }
-                double importe = Integer.parseInt(resp) * mat.getCostoCosteo();
-                ma.setCantidad(Integer.parseInt(resp));
+                double importe = Float.parseFloat(resp) * mat.getCostoCosteo();
+                ma.setCantidad(Float.parseFloat(resp));
                 ma.setMaterial(mat.getCveMat());
                 ma.setNombre_material(mat.getDescripcion());
                 ma.setCosto((float) mat.getCostoCosteo());
@@ -808,19 +846,26 @@ public class NOrdenCompra extends javax.swing.JDialog {
     }//GEN-LAST:event_JcAlmacenItemStateChanged
 
     private void JlserieMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JlserieMouseClicked
-        String serie = (s.getSerie().equals("A")) ? "B" : "A";
-        s.setSerie(serie);
-        Jlserie.setText(serie);
+        cambiodeserie();
     }//GEN-LAST:event_JlserieMouseClicked
 
     private void JtMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtMatActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JtMatActionPerformed
+    private void cambiodeserie() {
+        //Solo se puede tener un tipo de serie por orden
+        if (listamovimiento_material.isEmpty()) {
+            String serie = (s.getSerie().equals("A")) ? "B" : "A";
+            s.setSerie(serie);
+            Jlserie.setText(serie);
+            setdata();
+        } else {
+            JOptionPane.showMessageDialog(null, "No puedes cambiar la serie con una orden ya iniciada!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
+        }
 
+    }
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        String serie = (s.getSerie().equals("A")) ? "B" : "A";
-        s.setSerie(serie);
-        Jlserie.setText(serie);
+        cambiodeserie();
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void JbBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbBuscaActionPerformed
@@ -835,11 +880,12 @@ public class NOrdenCompra extends javax.swing.JDialog {
             JeFechadoc.setCalendar(fecha);
             DecimalFormat df = new DecimalFormat("#.00");
             Ordencompra o = (Ordencompra) lis.getSelectedValue();
+            JtCambio.setText(String.valueOf(o.getFolio()));
             listaOrdenB = ObjO.ordenSearchxfolio(o.getFolio() + "");
             Movs_materiales ma = new Movs_materiales();
             String material = "";
-            int cantidad;
-            int surtido;
+            float cantidad;
+            float surtido;
             float precio;
             float importe;
             float subtotal = 0;
@@ -850,7 +896,7 @@ public class NOrdenCompra extends javax.swing.JDialog {
                 surtido = listaOrdenB.get(0).getMat().get(i).getSurtido();
                 precio = listaOrdenB.get(0).getMat().get(i).getCosto();
                 importe = (float) listaOrdenB.get(0).getMat().get(i).getImporte();
-                Object arr[] = {material, cantidad, surtido, precio, importe};
+                Object arr[] = {material, cantidad, (surtido != 0) ? surtido : "", precio, importe};
                 subtotal += importe;
                 modelMaterials.addRow(arr);
             }
@@ -864,11 +910,18 @@ public class NOrdenCompra extends javax.swing.JDialog {
             JtaObservaciones.setText(listaOrdenB.get(0).getObservaciones());
             JtIva.setText(df.format(subtotal * 0.16));
             JtTotal.setText(df.format((subtotal * 0.16) + subtotal));
+            if (listaOrdenB.get(0).getSerie().equals("A")) {// iva de acuerdo a la serie
+                JtIva.setText(df.format((subtotal * 0.16)) + "");
+                JtTotal.setText(df.format((subtotal * 0.16) + subtotal) + "");
+            } else {
+                JtIva.setText("0.0");
+                JtTotal.setText(df.format(subtotal) + "");
+            }
+
             JtBusquedas.requestFocus();
             JtProveedor.setEditable(false);
             JpAlmacen.setVisible(true);
             limpiarOrden();
-            JtCambio.setText("1");
             JlIcono.setVisible(true);
             JtRdoc.requestFocus();
 
@@ -881,9 +934,34 @@ public class NOrdenCompra extends javax.swing.JDialog {
     }//GEN-LAST:event_JtBusquedasActionPerformed
 
     private void JbImpresionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbImpresionActionPerformed
-        // TODO add your handling code here:
+        Impresion();
     }//GEN-LAST:event_JbImpresionActionPerformed
 
+    private void Impresion(){
+            try {
+            Map parametros = new HashMap();
+            parametros.put("folio", JtCambio.getText());
+           // Connection c = Server.getCmpPhylon();
+            
+            JasperReport jasper = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reports/OrdendeCompra.jasper"));
+            JasperPrint print = JasperFillManager.fillReport(jasper, parametros, ObjO.getcon());
+            JasperViewer view = new JasperViewer(print, false);
+                    this.dispose();
+                    view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    view.setVisible(true);
+                    view.setTitle("TOP-SUELAS");
+                    view.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent we) {
+                        setVisible(true);
+                        //limpiar();
+                    }
+                });
+                    
+        } catch (Exception ex) {
+            Logger.getLogger(Etiquetasb.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     private void JtBusquedasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtBusquedasKeyReleased
         if (JtBusquedas.getText().isEmpty()) {
             limpiarOrden();
@@ -913,10 +991,10 @@ public class NOrdenCompra extends javax.swing.JDialog {
     }//GEN-LAST:event_JmmMouseClicked
 
     private void JmmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmmActionPerformed
-        DecimalFormat df = new DecimalFormat("#.00");
+        //  DecimalFormat df = new DecimalFormat("#.00");
         int row = JttMaterial.getSelectedRow();
         Movs_materiales mov = new Movs_materiales();
-        int cantidad = Integer.parseInt(JttMaterial.getValueAt(row, 1).toString());
+        Float cantidad = Float.parseFloat(JttMaterial.getValueAt(row, 1).toString());
         float costo = listamovimiento_material.get(row).getCosto();
         float importe = cantidad * costo;
         mov.setCosto(costo);
@@ -924,11 +1002,12 @@ public class NOrdenCompra extends javax.swing.JDialog {
         mov.setMaterial(listamovimiento_material.get(row).getMaterial());
         mov.setSurtido(listamovimiento_material.get(row).getSurtido());
         mov.setNombre_material(listamovimiento_material.get(row).getNombre_material());
-        mov.setImporte(Float.parseFloat(df.format(importe)));
+        mov.setImporte(importe);
         listamovimiento_material.set(row, mov);
         modelMaterials.removeRow(row);
-        Object arr[] = {mov.getNombre_material(), cantidad, costo, df.format(importe)};
+        Object arr[] = {mov.getNombre_material(), cantidad, costo, importe};
         modelMaterials.addRow(arr);
+        JOptionPane.showMessageDialog(null, "Cambios realizados!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
         setdata();
 
 //        listamovimiento_material.s
@@ -978,13 +1057,15 @@ public class NOrdenCompra extends javax.swing.JDialog {
 //        }else if(eleccion == JOptionPane.NO_OPTION){       
 //        }
     }
-    private String fechaactual(){
+
+    private String fechaactual() {
         Calendar fechas = Calendar.getInstance(); //intanciar informacion del calendiario respecto al sistema
         int año = fechas.get(Calendar.YEAR);
         int mes = fechas.get(Calendar.MONTH) + 1;
         int dia = fechas.get(Calendar.DAY_OF_MONTH);
-        return dia+"/"+mes+"/"+año;
+        return dia + "/" + mes + "/" + año;
     }
+
     private String getfecha() {
         Calendar fecha = Calendar.getInstance(); //intanciar informacion del calendiario respecto al sistema
         int año = fecha.get(Calendar.YEAR);
@@ -1041,8 +1122,14 @@ public class NOrdenCompra extends javax.swing.JDialog {
         //(double)Math.round(number * 100d) / 100d
         DecimalFormat df = new DecimalFormat("#.00");
         JtSubtotal.setText(df.format(sumsub) + "");
-        JtIva.setText(df.format((sumsub * 0.16)) + "");
-        JtTotal.setText(df.format((sumsub * 0.16) + sumsub) + "");
+        if (s.getSerie().equals("A")) {
+            JtIva.setText(df.format((sumsub * 0.16)) + "");
+            JtTotal.setText(df.format((sumsub * 0.16) + sumsub) + "");
+        } else {
+            JtIva.setText("0.0");
+            JtTotal.setText(df.format(sumsub) + "");
+        }
+
     }
 
     private void generarmovimiento() {
@@ -1061,19 +1148,26 @@ public class NOrdenCompra extends javax.swing.JDialog {
                     if (JtCambio.getText().equals("0")) {// eleccion entre una nueva o surtir orden
                         ArrayList<Movs_materiales> arr = new ArrayList<>();
                         int rows = JttMaterial.getRowCount();
-                        int cantidad = 0;
+                        float cantidad = 0;
                         float costo = 0;
                         boolean flagnumber = true;
                         for (int i = 0; i < rows; i++) {
                             String numaux = JttMaterial.getValueAt(i, 1).toString();
                             Validacion v = new Validacion();
-                            if (v.puntoflotante(numaux) || v.verificanumeros(numaux)) {//verifica numeros
-                                Movs_materiales mo = new Movs_materiales();
+//                            //System.out.println(v.puntoflotante(numaux)+" "+v.verificanumeros(numaux));
+                            if (v.verificaflotantes(numaux) || v.verificanumeros(numaux)) {//verifica numeros
+                                Movs_materiales mo = new Movs_materiales();// agregar a la lista el detalle de la orden
                                 mo.setMaterial(listamovimiento_material.get(i).getMaterial());
                                 mo.setCosto(listamovimiento_material.get(i).getCosto());
-                                mo.setCantidad(Integer.parseInt(numaux));
+                                mo.setCantidad(Float.parseFloat(numaux));
+                                if (s.getSerie().equals("A")) {
+                                    mo.setIva((float) ((listamovimiento_material.get(i).getCosto() * Float.parseFloat(numaux)) * 0.16));
+                                } else {
+                                    mo.setIva(0);
+                                }
+
                                 arr.add(mo);
-                                cantidad += Integer.parseInt(numaux);
+                                cantidad += Float.parseFloat(numaux);
                                 costo += listamovimiento_material.get(i).getCosto();
                             } else {// sino lo detiene y termina procesos
                                 i = rows;
@@ -1084,17 +1178,24 @@ public class NOrdenCompra extends javax.swing.JDialog {
                             DecimalFormat df = new DecimalFormat("#.00");
                             Ordencompra o = new Ordencompra();
                             String importe = df.format((costo * cantidad));
+                            float iva;
+                            if (s.getSerie().equals("A")) { // se establece para saber si contendra iva
+                                iva = (float) ((costo * cantidad) * 0.16);// iva
+                            } else {
+                                iva = 0;
+                            }
+                            o.setIvas(iva);
                             o.setFolio(Integer.parseInt(JtFolio.getText()));
                             o.setProveedor(pmp.getProveedor());
                             o.setRefdoc("");
                             o.setCantidad(cantidad);
-                            o.setTotal(Float.parseFloat(importe));
+                            o.setTotal(Float.parseFloat(importe) + iva);
                             o.setFecha(getfecha());
                             o.setFechadoc(getfecha());
                             o.setObservaciones(JtaObservaciones.getText());
                             o.setUsuario(s.getId_usuario());
                             o.setMat(arr);
-                            o.setSerie("A");
+                            o.setSerie(s.getSerie());
                             ObjectOrdencompra orden = new ObjectOrdencompra();
                             if (orden.OrdenAdd(o)) {
                                 JOptionPane.showMessageDialog(null, "Orden de compra Completo Exitosamente", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
@@ -1148,12 +1249,12 @@ public class NOrdenCompra extends javax.swing.JDialog {
         if (flagnumber) {//verificacion de numeros
             int y = 0;
             for (int i = 0; i < arr.size(); i++) {
-                int surtido = listaOrdenB.get(0).getMat().get(y).getSurtido();
-                int cantidad = listaOrdenB.get(0).getMat().get(y).getCantidad();
-                int cantsurtido=surtido+arr.get(i).getSurtido();
+                float surtido = listaOrdenB.get(0).getMat().get(y).getSurtido();
+                float cantidad = listaOrdenB.get(0).getMat().get(y).getCantidad();
+                float cantsurtido = surtido + arr.get(i).getSurtido();
 //                if ((arr.get(i).getSurtido() <= surtido || (arr.get(i).getSurtido() > cantidad))
 //                        || surtido == arr.get(i).getSurtido()) {
-                    if(cantsurtido>cantidad && surtido!=0 ){
+                if (cantsurtido > cantidad && surtido != 0) {
                     arr.remove(i);
                     i--;
                 }

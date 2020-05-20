@@ -11,9 +11,17 @@ package ObjectLayer;
  */
 public class Movs_materiales implements java.io.Serializable{
     private String nombre_material,material;
-    private float costo;
+    private float costo,surtido,iva;
+
+    public float getIva() {
+        return iva;
+    }
+
+    public void setIva(float iva) {
+        this.iva = iva;
+    }
     private double importe;
-    private int surtido,renglon;
+    private int renglon;
 
     public int getRenglon() {
         return renglon;
@@ -31,11 +39,11 @@ public class Movs_materiales implements java.io.Serializable{
         this.importe = importe;
     }
 
-    public int getSurtido() {
+    public float getSurtido() {
         return surtido;
     }
 
-    public void setSurtido(int surtido) {
+    public void setSurtido(float surtido) {
         this.surtido = surtido;
     }
 
@@ -62,12 +70,12 @@ public class Movs_materiales implements java.io.Serializable{
         this.material = material;
     }
 
-    public int getCantidad() {
+    public float getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(float cantidad) {
         this.cantidad = cantidad;
     }
-    private int cantidad;
+    private float cantidad;
 }

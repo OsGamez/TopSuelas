@@ -34,7 +34,16 @@ public class Ordencompra implements java.io.Serializable{
     public String toString() {
         return "" + folio +", "+nombreproveedor;
     }
-    private int folio, proveedor,cantidad,usuario;
+    private int folio, proveedor,usuario;
+    float cantidad,ivas;
+
+    public float getIvas() {
+        return ivas;
+    }
+
+    public void setIvas(float ivas) {
+        this.ivas = ivas;
+    }
 
     public String getRefdoc() {
         return Refdoc;
@@ -108,11 +117,11 @@ public class Ordencompra implements java.io.Serializable{
         this.proveedor = proveedor;
     }
 
-    public int getCantidad() {
+    public float getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(float cantidad) {
         this.cantidad = cantidad;
     }
 
