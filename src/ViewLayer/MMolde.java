@@ -50,6 +50,8 @@ public class MMolde extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel5 = new javax.swing.JLabel();
+        Jtc1 = new javax.swing.JTextField();
         JbGuardar = new javax.swing.JButton();
         JbCerrar = new javax.swing.JButton();
         JtId = new javax.swing.JTextField();
@@ -62,6 +64,21 @@ public class MMolde extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         Jts = new javax.swing.JLabel();
         Jtlc = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        JtCaja = new javax.swing.JTextField();
+
+        jLabel5.setText("Cantidad de Moldes");
+
+        Jtc1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Jtc1MouseClicked(evt);
+            }
+        });
+        Jtc1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Jtc1ActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("EDITAR MOLDE");
@@ -122,6 +139,19 @@ public class MMolde extends javax.swing.JDialog {
 
         jLabel4.setText("Status");
 
+        jLabel6.setText("Cantidad Par x Caja");
+
+        JtCaja.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JtCajaMouseClicked(evt);
+            }
+        });
+        JtCaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtCajaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -158,7 +188,11 @@ public class MMolde extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Jtl, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Jtlc, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(Jtlc, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(JtCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -180,9 +214,13 @@ public class MMolde extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(Jts, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(JtCaja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addComponent(JtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbGuardar)
                     .addComponent(JbCerrar))
@@ -206,6 +244,7 @@ public class MMolde extends javax.swing.JDialog {
             mol.setPunto(Jtp.getText().toUpperCase());
             mol.setCantidad(Integer.parseInt(Jtc.getText()));
             mol.setMolde(m.getMolde());
+            mol.setParxcaja(Integer.parseInt(JtCaja.getText()));
             if (obm.MoldeUpdate(mol)) {//actualiza el molde especificado con el objeto molde
                 JOptionPane.showMessageDialog(this, "Registro modificado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
                 informacion = "1";
@@ -243,6 +282,22 @@ public class MMolde extends javax.swing.JDialog {
     private void JtcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtcActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JtcActionPerformed
+
+    private void Jtc1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Jtc1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Jtc1MouseClicked
+
+    private void Jtc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jtc1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Jtc1ActionPerformed
+
+    private void JtCajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JtCajaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtCajaMouseClicked
+
+    private void JtCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtCajaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtCajaActionPerformed
     private void Cerrar() {
         String botones[] = {"SI", "NO"};
         int eleccion = JOptionPane.showOptionDialog(this, "¿Deseas cerrar esta ventana?", "TOP-SUELAS",
@@ -299,8 +354,10 @@ public class MMolde extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbCerrar;
     private javax.swing.JButton JbGuardar;
+    public javax.swing.JTextField JtCaja;
     public javax.swing.JTextField JtId;
     public javax.swing.JTextField Jtc;
+    public javax.swing.JTextField Jtc1;
     public javax.swing.JComboBox<String> Jtl;
     public javax.swing.JLabel Jtlc;
     public javax.swing.JTextField Jtp;
@@ -309,5 +366,7 @@ public class MMolde extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }

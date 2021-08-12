@@ -30,7 +30,7 @@ public class ObjectMoldes {
     public ArrayList<Molde> MoldeGetAll() {
         ArrayList<Molde> listamoldes = new ArrayList<Molde>();
         try {
-            st = c.prepareStatement("select molde,punto,cant,stat,suela,l.descripcion as 'descripcion'"
+            st = c.prepareStatement("select molde,punto,cant,stat,suela,l.descripcion as 'descripcion',parxcaja"
                     + " from Moldes m join Linea l on m.suela=l.Id_Linea where stat='1'");
             rs = st.executeQuery();
             while (rs.next()) {
@@ -41,6 +41,7 @@ public class ObjectMoldes {
                 m.setLinea(rs.getShort("suela"));
                 m.setStatus(rs.getString("stat"));
                 m.setCharlinea(rs.getString("descripcion"));
+                m.setParxcaja(rs.getInt("parxcaja"));
                 listamoldes.add(m);
             }
             rs.close();
@@ -55,7 +56,7 @@ public class ObjectMoldes {
     public ArrayList<Molde> BuscaMolde(String dato) {
         ArrayList<Molde> listamoldes = new ArrayList<Molde>();
         try {
-            st = c.prepareStatement("select molde,punto,cant,stat,suela,l.descripcion as 'descripcion' from Moldes m \n"
+            st = c.prepareStatement("select molde,punto,cant,stat,suela,l.descripcion as 'descripcion',parxcaja from Moldes m \n"
                     + "join Linea l on m.suela=l.Id_Linea where l.descripcion like '%" + dato + "%' or molde like '%" + dato + "%'");
             rs = st.executeQuery();
             while (rs.next()) {
@@ -66,6 +67,7 @@ public class ObjectMoldes {
                 m.setLinea(rs.getShort("suela"));
                 m.setStatus(rs.getString("stat"));
                 m.setCharlinea(rs.getString("descripcion"));
+                m.setParxcaja(rs.getInt("parxcaja"));
                 listamoldes.add(m);
             }
             rs.close();
@@ -102,7 +104,8 @@ public class ObjectMoldes {
     public boolean MoldeUpdate(Molde m) {
         try {
             c.setAutoCommit(false);
-            String q = "UPDATE moldes SET cant=" + m.getCantidad() + ", punto='" + m.getPunto() + "', suela=" + m.getLinea() + " WHERE molde=" + m.getMolde();
+            String q = "UPDATE moldes SET cant=" + m.getCantidad() + ", punto='" +
+                    m.getPunto() + "', suela=" + m.getLinea() +", parxcaja="+m.getParxcaja()+ " WHERE molde=" + m.getMolde();
             st = c.prepareStatement(q);
             st.executeUpdate();
             c.commit();
@@ -128,7 +131,8 @@ public class ObjectMoldes {
     public boolean MoldeAdd(Molde m) {
         try {
             c.setAutoCommit(false);
-            String q = "insert into Moldes(punto,cant,stat,suela) values('" + m.getPunto() + "'," + m.getCantidad() + ",'1'," + m.getLinea() + ")";
+            String q = "insert into Moldes(punto,cant,stat,suela,parxcaja) values('"
+                    + m.getPunto() + "'," + m.getCantidad() + ",'1'," + m.getLinea() + ","+m.getParxcaja()+")";
             st = c.prepareStatement(q);
             st.execute();
             c.commit();

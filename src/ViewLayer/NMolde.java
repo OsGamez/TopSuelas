@@ -59,6 +59,8 @@ public class NMolde extends javax.swing.JDialog {
         JbGuardar = new javax.swing.JButton();
         JbCerrar = new javax.swing.JButton();
         Jtp = new javax.swing.JTextField();
+        JbPrecioa1 = new javax.swing.JLabel();
+        JtCaja = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("NUEVA LISTA");
@@ -112,6 +114,15 @@ public class NMolde extends javax.swing.JDialog {
             }
         });
 
+        JbPrecioa1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        JbPrecioa1.setText("Pares por Cajon");
+
+        JtCaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtCajaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,21 +135,29 @@ public class NMolde extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                         .addComponent(Jtl, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JbPrecioa)
-                            .addComponent(JbProd))
-                        .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Jtp, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Jtc, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(JbGuardar)
                         .addGap(50, 50, 50)
                         .addComponent(JbCerrar)
-                        .addGap(34, 34, 34))))
+                        .addGap(34, 34, 34))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JbProd)
+                            .addComponent(JbPrecioa1))
+                        .addGap(77, 77, 77)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JtCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Jtp, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(JbPrecioa)
+                        .addGap(55, 55, 55)
+                        .addComponent(Jtc, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,11 +170,15 @@ public class NMolde extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbProd)
                     .addComponent(Jtp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbPrecioa)
                     .addComponent(Jtc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JbPrecioa1)
+                    .addComponent(JtCaja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbGuardar)
                     .addComponent(JbCerrar))
@@ -189,6 +212,10 @@ public class NMolde extends javax.swing.JDialog {
         Jtp.requestFocus();
     }//GEN-LAST:event_JtlItemStateChanged
 
+    private void JtCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtCajaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtCajaActionPerformed
+
     private void nuevomolde() {
         Validacion v = new Validacion();// instancia objeto para validar campos
         Molde m = new Molde();
@@ -196,11 +223,12 @@ public class NMolde extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Falta datos de ingresar verifica", "TOP-SUELAS", JOptionPane.WARNING_MESSAGE);
             Jtp.requestFocus();
         }//verifica el campo de punto y el campo de cantidad 
-        else if (v.verificanumeros(Jtc.getText())) {
+        else if (v.verificanumeros(Jtc.getText())&&v.verificanumeros(JtCaja.getText())) {
             //se añaden los datos al objeto 'molde'
             m.setCantidad(Integer.parseInt(Jtc.getText()));
             m.setLinea((datos.get(Jtl.getSelectedIndex()).getId_Linea()));
             m.setPunto(Jtp.getText().toUpperCase());
+            m.setParxcaja(Integer.parseInt(JtCaja.getText()));
             ObjectMoldes obm = new ObjectMoldes();
             if (obm.MoldeAdd(m)) {// se ejecuta insercion, si todo esta bien regresa true
                 JOptionPane.showMessageDialog(this, "Molde Guardado Correctamente!!!", "TOP-SUELAS", JOptionPane.INFORMATION_MESSAGE);
@@ -273,7 +301,9 @@ public class NMolde extends javax.swing.JDialog {
     private javax.swing.JLabel JbDes;
     private javax.swing.JButton JbGuardar;
     private javax.swing.JLabel JbPrecioa;
+    private javax.swing.JLabel JbPrecioa1;
     private javax.swing.JLabel JbProd;
+    private javax.swing.JTextField JtCaja;
     private javax.swing.JTextField Jtc;
     private javax.swing.JComboBox<String> Jtl;
     private javax.swing.JTextField Jtp;

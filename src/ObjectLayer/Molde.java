@@ -11,7 +11,15 @@ package ObjectLayer;
  * @author GATEWAY1-
  */
 public class Molde implements java.io.Serializable{
-    private int linea,molde,cantidad;
+    private int linea,molde,cantidad,parxcaja;
+
+    public int getParxcaja() {
+        return parxcaja;
+    }
+
+    public void setParxcaja(int parxcaja) {
+        this.parxcaja = parxcaja;
+    }
     private String status,charlinea,punto;
 
     public String getCharlinea() {

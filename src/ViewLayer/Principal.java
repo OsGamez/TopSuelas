@@ -62,6 +62,7 @@ public class Principal extends javax.swing.JFrame {
     FolioInventario finv;
     Prensistas prensa;
     ProgramarSuelaxMaquina prog;
+    ProgramarSuelaxMaquinav2 prog2;
     
 
     ImageIcon notificacion = new ImageIcon("C:\\tsmanager\\imagenes\\push.png");
@@ -1582,8 +1583,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_JmProgramacionActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        prog = new ProgramarSuelaxMaquina(null, true);
-        prog.setVisible(true);
+        //prog = new ProgramarSuelaxMaquina(null, true);
+        prog2 = new ProgramarSuelaxMaquinav2(null, true);
+        prog2.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     private void JmMaquinasActionPerformed(java.awt.event.ActionEvent evt) {
         LoadMaquina();

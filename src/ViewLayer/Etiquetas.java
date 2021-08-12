@@ -527,7 +527,27 @@ public class Etiquetas extends javax.swing.JDialog {
         }
         codigo += e.getPares();//01,0128,265,050   {12 numeros}
         codigo+= e.getPf();//    01,0128,265,050,1 {13 numeros}
-        //System.out.println(codigo);
+//         Calendar fecha = Calendar.getInstance();
+//        int año = fecha.get(Calendar.YEAR);
+//        int mes = fecha.get(Calendar.MONTH) + 1;
+//        String messtring=String.valueOf(mes);
+//        System.out.println(mes+""+messtring.length());
+        //codigo+=(messtring.length()==2)?""+mes:"0"+mes;
+        //codigo+=String.valueOf(año);
+        DateFormat df = DateFormat.getDateInstance();
+        String h =df.format(JeFecha.getDate());
+        h=(h.length()==9)?"0"+h:""+h;
+        String cod="";
+        for(int i =0;i<h.length();i++){
+            //23/06/2021
+            if(i>=3 && i<=4){
+                cod+=h.charAt(i);
+            }else if(i>=6){
+                cod+=h.charAt(i);
+            }
+        }
+        codigo+=cod+"00000000";
+        //System.out.println(h+"-"+codigo+"-"+cod+"-"+h.length());
         return codigo;
     }
 

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" columnCount="2" printOrder="Horizontal" pageWidth="572" pageHeight="752" columnWidth="286" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2ba7d8a9-fe34-4225-b3b9-a7d1245d8206">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="programa" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select id_avance,a.id_programa,a.pares,a.renglon,a.fechaingreso,p.fechaentrega,a.turno,p.pedido,prod.Descripcion,co.Nombre,a.codigo,a.punto
+ from avances a join programa p on a.id_programa=p.id_programa
+ join producto prod on p.id_producto=prod.Id_Producto
+ join CobranzaPhy.dbo.Clientes co on p.id_cliente=co.id_cliente
+where p.tarjeta=$P{programa}]]>
+	</queryString>
+	<field name="id_avance" class="java.lang.Integer"/>
+	<field name="id_programa" class="java.lang.Integer"/>
+	<field name="pares" class="java.lang.Integer"/>
+	<field name="renglon" class="java.lang.Short"/>
+	<field name="fechaingreso" class="java.sql.Timestamp"/>
+	<field name="fechaentrega" class="java.lang.String"/>
+	<field name="turno" class="java.lang.String"/>
+	<field name="pedido" class="java.lang.Integer"/>
+	<field name="Descripcion" class="java.lang.String"/>
+	<field name="Nombre" class="java.lang.String"/>
+	<field name="codigo" class="java.lang.String"/>
+	<field name="punto" class="java.lang.Double"/>
+	<detail>
+		<band height="195" splitType="Stretch">
+			<rectangle>
+				<reportElement x="14" y="19" width="243" height="163" uuid="36016080-05f9-4be8-94f0-84fbba53fffc"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="189" y="19" width="53" height="19" uuid="21b24a0c-a811-4e72-96e3-907612d207c5"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{punto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="17" y="85" width="67" height="19" uuid="03d8a728-30cc-4497-aa16-c3b0ed9350fe"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha ingreso]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="89" y="85" width="65" height="19" uuid="3aece655-703b-45ff-92bb-3749d0e2210b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechaingreso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="116" y="19" width="68" height="19" uuid="421ac41f-47e7-4639-863c-01884e887d6c"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{programa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="223" y="65" width="34" height="19" uuid="577f1b88-a68c-4223-be6f-0aed1dbea59b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pares]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement x="171" y="65" width="45" height="19" uuid="f8ba30d6-04c9-4c91-8f59-96f496916f5c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pares}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="47" y="132" width="195" height="37" uuid="18edd74e-384d-4c6e-b2f4-43db2e2a724c"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false" barHeight="50">
+					<jr:codeExpression><![CDATA[$F{codigo}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<staticText>
+				<reportElement x="17" y="19" width="94" height="19" uuid="23ac780f-dc23-4fd5-8b18-13ad294b312b"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tarjeta Global]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="65" width="29" height="19" uuid="deb4e251-4ac9-464a-b58e-1bf8c971f137"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="51" y="65" width="103" height="19" uuid="5faf7238-aae9-49b9-befe-cf5a30bfb3bd"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="17" y="105" width="67" height="19" uuid="607ebb40-f177-4ddb-99f0-279295453b4b"/>
+				<text><![CDATA[Fecha entrega]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="89" y="105" width="65" height="19" uuid="234c0bfc-f72e-4043-8ac9-ac2314d26f60"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechaentrega}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="171" y="105" width="45" height="19" uuid="7a15fc0a-74ed-4217-906c-8103b67c3c35"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Turno]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="224" y="105" width="33" height="19" uuid="bef4542f-797e-45ae-b2b7-ed00f29cb7ac"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{turno}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="171" y="85" width="45" height="19" uuid="d7df10be-4552-4ee4-8d6d-a398a68db956"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Pedido]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="224" y="85" width="33" height="19" uuid="1dba698f-af08-41da-b5b4-0846df316cfd"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pedido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="17" y="45" width="137" height="19" uuid="7faadf8c-eb83-45e5-bffe-89cd1f7dcc3e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Descripcion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="171" y="45" width="45" height="19" uuid="ba786120-e21a-4fd1-8988-76fe1610e808"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Operador]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="71" y="169" width="148" height="13" uuid="d270c617-5d92-4208-96c7-170d86110ea4"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

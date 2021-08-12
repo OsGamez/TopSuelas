@@ -1,3 +1,4 @@
+//Decrypted: cambio de archivo por reformulacion de programacion
 package ViewLayer;
 
 import ObjectLayer.Almacen;
@@ -570,7 +571,7 @@ public class ProgramarSuelaxMaquina extends javax.swing.JDialog {
             o.setTotal(listaOT.get(row).getTotal());
             o.setLinea(listaOT.get(row).getLinea());
             o.setFecha(getfecha());
-            ObjOT.OrdenesTAdd(o);
+ //           ObjOT.OrdenesTAdd(o);
             modelOrdenT.removeRow(row);
             listaOT.remove(row);
             vaciatablaLineaS();
@@ -715,11 +716,11 @@ public class ProgramarSuelaxMaquina extends javax.swing.JDialog {
     }
 
     private void onLineaSelect() {
-        if (JtLinea.getRowCount() != 0) {
+        if (JtLinea.getRowCount() != 0) {// Vaciar tabla de linea y color
             vaciatablaLinea();
         }
         listaOT = ObjOT.GetLineaxSemana(JcSemana.getSelectedItem().toString());
-        if (!listaOT.isEmpty()) {
+        if (!listaOT.isEmpty()) {//llenado de tabla
             for (int i = 0; i < listaOT.size(); i++) {
                 Object arri[] = {listaOT.get(i).getNombreprod(), listaOT.get(i).getTotal() + ""};
                 modelOrdenT.addRow(arri);

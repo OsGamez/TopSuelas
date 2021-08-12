@@ -189,6 +189,7 @@ public class Moldes extends javax.swing.JInternalFrame {
         modelMolde.addColumn("Cantidad");
         modelMolde.addColumn("Status");
         modelMolde.addColumn("Suela");
+        modelMolde.addColumn("Par x Caja");
     }
     
     private void LoadModelMolde(){
@@ -201,6 +202,7 @@ public class Moldes extends javax.swing.JInternalFrame {
             modelMolde.setValueAt(listaMolde.get(i).getCantidad(), i, 2);
             modelMolde.setValueAt(listaMolde.get(i).getStatus(), i, 3);
             modelMolde.setValueAt(listaMolde.get(i).getCharlinea(), i, 4);      
+            modelMolde.setValueAt(listaMolde.get(i).getParxcaja(), i, 5);  
           }
     }
     private void JbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbSalirActionPerformed
@@ -241,7 +243,9 @@ public class Moldes extends javax.swing.JInternalFrame {
                         m.setCantidad((int)JtDatosMolde.getValueAt(fila, 2));
                         m.setStatus(JtDatosMolde.getValueAt(fila, 3).toString());
                         m.setCharlinea(JtDatosMolde.getValueAt(fila, 4).toString());
-                        
+                        m.setParxcaja((int)JtDatosMolde.getValueAt(fila, 5));
+                    
+                    editar.JtCaja.setText(String.valueOf(m.getParxcaja()));
                     editar.Jtp.setText(String.valueOf(m.getPunto()));
                     editar.Jtc.setText(String.valueOf(m.getCantidad()));
                     editar.Jts.setText(m.getStatus());
@@ -278,6 +282,7 @@ public class Moldes extends javax.swing.JInternalFrame {
             modelMolde.setValueAt(listaMolde.get(i).getCantidad(), i, 2);
             modelMolde.setValueAt(listaMolde.get(i).getStatus(), i, 3);
             modelMolde.setValueAt(listaMolde.get(i).getCharlinea(), i, 4);
+            modelMolde.setValueAt(listaMolde.get(i).getParxcaja(), i, 5);
         }
     }//GEN-LAST:event_JtBuscarKeyReleased
 
